@@ -1,0 +1,10 @@
+[run]
+branch = True
+data_file = .coverage
+source=event_routing_backends
+omit =
+    test_settings
+    *migrations*
+    *admin.py
+    *static*
+    *templates*
