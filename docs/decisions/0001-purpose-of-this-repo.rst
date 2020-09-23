@@ -4,26 +4,51 @@
 Status
 ------
 
-Draft
+Pending
 
 Context
 -------
 
-TODO: Give context on what lead to the creation of this repo.
-      What project is the repo related to?
+`OEP-26 <https://open-edx-proposals.readthedocs.io/en/latest/oep-0026-arch-realtime-events.html>`__
+consists of the following components:
+
+-  Asynchronous Routing Backend
+
+-  Regular-expressions based filter processor
+
+-  IMS Caliper transformer
+
+-  xAPI transformer
+
+-  Router to forward events
+
+Keeping all of these components in one repo will make the repository
+unnecessarily tangled since these additional components are not required
+by the core app for its functionality.
 
 Decision
 --------
 
-TODO: Clearly state how the context above led you to creating this repo.
+Among the components listed above, Asynchronous Routing Backend and the
+regular-expressions filter will be added in the core app (i.e.
+`event-tracking <https://github.com/edx/event-tracking>`__) while the
+other components, i.e. Caliper transformer backend, xAPI transformer
+backend and router, will be added in the current repo.
+
+By keeping the concrete backends separate from the code, we can have
+only the core plugin interface for event tracking in its repository.
 
 Consequences
 ------------
 
-TODO: As a result of this repo's creation, what other things will change.
+The code will be decoupled and components can be used independently if
+required.
 
 Rejected Alternatives
 ---------------------
 
-TODO: If applicable, list viable alternatives to creating this new repo and
- give reasons for why they were rejected.
+**Add the routing backends to the event-tracking repository**
+
+This idea was rejected to keep the core event-tracking repository clean
+and independent. The core repo is functional on its own and any
+pluggable extensions should be implemented separately.
