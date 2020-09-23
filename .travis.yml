@@ -45,6 +45,8 @@ deploy:
   provider: pypi
   user: "__token__"
   distributions: sdist bdist_wheel
+  password:
+    secure: "b8dqSy5Ww+EA2AAwoek0zZksevl4NmBcJmdoIg/xWNigwl0XX48XQU4YD4+T0ZmrqGGZwwDwSGSSzLAPV6FASu2EorTmlwO81B6Iid45HPQfo10FNjRtRLzRGk7hvF5WyHvIIGGfaMqLJXFeTJXNEjRcn3fznsxYFNMlxza9axQ/8DPVmNAdiykdHyyC0IhM6IWdaVdvD6bT247dgwcf0K7mStwOUN46y5+0q5VN4X0vi98Sxw2WtcQpTOxiCvCBkBcULqlTaVeOtEz29sPLmSqV/lgRY1KIbLMENET6Zh8GXcQT+iuqX1Fk8eYz0Hnan0u6ejPbQyfNz6LJ1J9BOkYbYABB6wzN8vNA8MtuiUNg4mr5vnY/HnbbSQSRtYxmxwat8E/znOLHx48NMRw+qNtt+7v+3Ar+sa1XcqELq6kkeAw4oK3nlzTuQq/44WyIlzImyTeoEQfrnqV/oZ73F5bwVm+EP7Ycd9dy4Ko0YD+29Jtq4JerNt5/VLqLEca9mqd6iPF6GMGk07ZXjcSfgc6JRisl5qu3mMiCeP3M0YIISRcY9byqEnVHyXoYy+cNciiasmJR1qXr/XeJrVUnP51IXqa4hHbZX+lniahDfNOvvUtV+Eg8lx45cYyntdn7wcq2Br2c5J8g18xsFtE2MYhzAuYpUTdLgZkwKwM7nnc="
   on:
     tags: true
     condition: '$TOXENV = quality'
