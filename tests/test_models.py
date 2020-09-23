@@ -2,3 +2,7 @@
 """
 Tests for the `event-routing-backends` models module.
 """
+
+
+def test_canary():
+    assert True
