@@ -9,6 +9,8 @@
 
 admin.LogEntry:
   ".. no_pii:": "This model has no PII"
+auth.User:
+  ".. no_pii:": "This model is not managed by this django app."
 auth.Group:
   ".. no_pii:": "This model has no PII"
 auth.Permission:
