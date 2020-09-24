@@ -23,6 +23,9 @@ matrix:
       env: TOXENV=docs
     - python: 3.5
       env: TOXENV=pii_check
+  exclude:
+    - python: 3.5
+      env: TOXENV=django30
 
 cache:
   - pip
