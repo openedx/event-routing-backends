@@ -4,7 +4,7 @@
 Status
 ------
 
-Pending
+Approved
 
 Context
 -------
