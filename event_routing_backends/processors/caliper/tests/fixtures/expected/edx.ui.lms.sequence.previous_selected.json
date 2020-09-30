@@ -1,0 +1,24 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    "action": "NavigatedTo",
+    "actor": {
+        "id": "anonymous_id",
+        "type": "Person"
+    },
+    "eventTime": "2020-07-14T14:25:39.394Z",
+    "id": "urn:uuid:39e7b46a-64a4-4f86-9a40-b55b36a1f3c8",
+    "object": {
+        "extensions": {
+            "current_tab": 5,
+            "tab_count": 10,
+            "widget_placement": "top"
+        },
+        "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@19a30717eff543078a5d94ae9d6c18a5",
+        "type": "WebPage"
+    },
+    "referrer": {
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/interactive_demonstrations/19a30717eff543078a5d94ae9d6c18a5/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%4019a30717eff543078a5d94ae9d6c18a5",
+        "type": "WebPage"
+    },
+    "type": "NavigationEvent"
+}

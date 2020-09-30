@@ -1,0 +1,30 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    "action": "Paused",
+    "actor": {
+        "id": "anonymous_id",
+        "type": "Person"
+    },
+    "eventTime": "2020-07-15T06:56:09.649Z",
+    "id": "urn:uuid:36428505-2138-423e-a515-5b865b332c80",
+    "object": {
+        "duration": "PT3M15S",
+        "extensions": {
+            "code": "b7xgknqkQk8",
+            "course_id": "course-v1:edX+DemoX+Demo_Course",
+            "id": "0b9e39477cf34507a7a48f74be381fdd"
+        },
+        "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "type": "VideoObject"
+    },
+    "referrer": {
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/d8a6192ade314473a78242dfeedfbf5b/edx_introduction/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40edx_introduction",
+        "type": "WebPage"
+    },
+    "target": {
+        "currentTime": "PT3M14.407359S",
+        "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "type": "MediaLocation"
+    },
+    "type": "MediaEvent"
+}

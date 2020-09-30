@@ -1,0 +1,26 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    "action": "Viewed",
+    "actor": {
+        "id": "anonymous_id",
+        "type": "Person"
+    },
+    "eventTime": "2020-07-15T06:09:37.404Z",
+    "id": "urn:uuid:39e7b46a-64a4-4f86-9a40-b55b36a1f3c8",
+    "object": {
+        "extensions": {
+            "course_id": "course-v1:edX+DemoX+Demo_Course",
+            "hint_index": 1,
+            "hint_len": 2,
+            "hint_text": "If you add more than one hint, a different hint appears each time learners select the hint button.",
+            "module_id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090"
+        },
+        "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090",
+        "type": "Frame"
+    },
+    "referrer": {
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/8b66dcd2d6134eda9355089ece4f39f6/ef37eb3cf1724e38b7f88a9ce85a4842/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40ef37eb3cf1724e38b7f88a9ce85a4842",
+        "type": "WebPage"
+    },
+    "type": "ViewEvent"
+}

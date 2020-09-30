@@ -1,0 +1,22 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    "action": "NavigatedTo",
+    "actor": {
+        "id": "anonymous_id",
+        "type": "Person"
+    },
+    "eventTime": "2020-07-14T14:33:28.973Z",
+    "id": "urn:uuid:47946874-7ce0-4465-9efe-9b2510c45310",
+    "object": {
+        "extensions": {
+            "current_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/#block-v1:edX+DemoX+Demo_Course+type@chapter+block@social_integration"
+        },
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@6ab9c442501d472c8ed200e367b4edfa",
+        "type": "WebPage"
+    },
+    "referrer": {
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
+        "type": "WebPage"
+    },
+    "type": "NavigationEvent"
+}
