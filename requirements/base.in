@@ -10,4 +10,5 @@ jsonfield2
 django-fernet-fields
 django-config-models
 
+tincan
 event-tracking

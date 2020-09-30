@@ -2,7 +2,7 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
     "action": "NavigatedTo",
     "actor": {
-        "id": "anonymous_id",
+        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
     "eventTime": "2020-07-14T14:25:39.394Z",

@@ -2,23 +2,22 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
     "action": "NavigatedTo",
     "actor": {
-        "id": "anonymous_id",
+        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
-    "eventTime": "2020-07-14T14:28:29.829Z",
+    "eventTime": "2020-08-04T12:43:57.705Z",
     "id": "urn:uuid:47946874-7ce0-4465-9efe-9b2510c45310",
     "object": {
         "extensions": {
-            "current_tab": 4,
-            "tab_count": 10,
-            "target_tab": 8,
-            "widget_placement": "top"
+            "target_name": "Lesson 3 - Be Social",
+            "widget_placement": "accordion",
+            "current_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/"
         },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@19a30717eff543078a5d94ae9d6c18a5",
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@48ecb924d7fe4b66a230137626bfa93e",
         "type": "WebPage"
     },
     "referrer": {
-        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/interactive_demonstrations/19a30717eff543078a5d94ae9d6c18a5/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%4019a30717eff543078a5d94ae9d6c18a5",
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
         "type": "WebPage"
     },
     "type": "NavigationEvent"

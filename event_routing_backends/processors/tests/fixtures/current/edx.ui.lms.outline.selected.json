@@ -1,0 +1,26 @@
+{
+    "context": {
+        "accept_language": "en-US,en;q=0.9",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36",
+        "client_id": "667522224.1583394645",
+        "course_id": "course-v1:edX+DemoX+Demo_Course",
+        "event_source": "browser",
+        "host": "localhost:18000",
+        "ip": "172.18.0.1",
+        "org_id": "edX",
+        "page": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
+        "path": "/event",
+        "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
+        "session": "a239c681a246b3c5d8b000d1c7249021",
+        "user_id": 3,
+        "username": "edx"
+    },
+    "data": {
+        "current_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
+        "target_name": "Lesson 3 - Be Social",
+        "target_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@48ecb924d7fe4b66a230137626bfa93e",
+        "widget_placement": "accordion"
+    },
+    "name": "edx.ui.lms.outline.selected",
+    "timestamp": "2020-08-04T12:43:57.705414+00:00"
+}

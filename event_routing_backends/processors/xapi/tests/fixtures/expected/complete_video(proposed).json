@@ -1,0 +1,51 @@
+{
+    "actor": {
+        "objectType": "Agent",
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "context": {
+        "contextActivities": {
+            "category": [
+                {
+                    "id": "https://w3id.org/xapi/video/activity-type/video",
+                    "objectType": "Activity"
+                }
+            ],
+            "parent": [
+                {
+                    "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "extensions": {
+                "code": "b7xgknqkQk8"
+            },
+            "name": {
+                "en": "Video Display Name"
+            },
+            "type": "https://w3id.org/xapi/video/activity-type/video"
+        },
+        "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "objectType": "Activity"
+    },
+    "result": {
+        "extensions": {
+            "https://w3id.org/xapi/video/extensions/time": "PT3M15S"
+        },
+        "completion": true,
+        "duration": "PT03M15S"
+    },
+    "timestamp": "2020-07-15T06:46:41.543562+00:00",
+    "verb": {
+        "display": {
+            "en": "completed"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/completed"
+    },
+    "version": "1.0.3"
+}

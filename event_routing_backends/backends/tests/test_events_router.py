@@ -4,10 +4,12 @@ Test the EventsRouter
 from django.test import TestCase
 from eventtracking.processors.exceptions import EventEmissionExit
 from mock import MagicMock, call, patch, sentinel
+from tincan.statement import Statement
 
 from event_routing_backends.backends.events_router import EventsRouter
 from event_routing_backends.tests.factories import RouterConfigurationFactory
 from event_routing_backends.utils.http_client import HttpClient
+from event_routing_backends.utils.xapi_lrs_client import LrsClient
 
 ROUTER_CONFIG_FIXTURE = [
     {
@@ -60,6 +62,24 @@ ROUTER_CONFIG_FIXTURE = [
             'api_key': 'test_key'
         }
     },
+    {
+        'router_type': 'XAPI_LRS',
+        'match_params': {},
+        'host_configurations': {
+            'url': 'http://test3.com',
+            'version': '1.0.1'
+        }
+    },
+    {
+        'router_type': 'XAPI_LRS',
+        'match_params': {},
+        'host_configurations': {
+            'url': 'http://test3.com',
+            'version': '1.0.1',
+            'auth_scheme': 'bearer',
+            'auth_key': 'key',
+        }
+    }
 ]
 
 
@@ -192,15 +212,28 @@ class TestEventsRouter(TestCase):
         mocked_logger.exception.assert_called_once()
         mocked_post.assert_not_called()
 
+    def test_with_non_dict_event(self):
+        RouterConfigurationFactory.create(
+            backend_name='test_routing',
+            enabled=True,
+            configurations=ROUTER_CONFIG_FIXTURE[4:5]
+        )
+        router = EventsRouter(processors=[], backend_name='test_routing')
+        transformed_event = Statement()
+        with self.assertRaises(ValueError):
+            router.send(transformed_event)
+
     @patch('event_routing_backends.utils.http_client.requests.post')
-    def test_successful_routing_of_event(self, mocked_post):
+    @patch('event_routing_backends.utils.xapi_lrs_client.RemoteLRS')
+    def test_successful_routing_of_event(self, mocked_lrs, mocked_post):
         mocked_oauth_client = MagicMock()
         mocked_api_key_client = MagicMock()
 
         MOCKED_MAP = {
             'AUTH_HEADERS': HttpClient,
             'OAUTH2': mocked_oauth_client,
-            'API_KEY': mocked_api_key_client
+            'API_KEY': mocked_api_key_client,
+            'XAPI_LRS': LrsClient,
         }
 
         RouterConfigurationFactory.create(
@@ -226,6 +259,11 @@ class TestEventsRouter(TestCase):
                     'Authorization': 'Bearer test_key'
                 }
             ),
+        ])
+        # test LRS Client
+        mocked_lrs().save_statement.assert_has_calls([
+            call(self.transformed_event),
+            call(self.transformed_event),
         ])
 
         # test mocked api key client
