@@ -65,7 +65,7 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst')).read()
 
 setup(
-    name='event-routing-backends',
+    name='edx-event-routing-backends',
     version=VERSION,
     description="""Various backends for receiving edX LMS events.""",
     long_description=README + '\n\n' + CHANGELOG,
