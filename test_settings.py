@@ -7,6 +7,8 @@ Django applications, so these settings will not be used.
 
 from os.path import abspath, dirname, join
 
+from test_utils import _mock_third_party_modules
+
 
 def root(*args):
     """
@@ -39,3 +41,7 @@ LOCALE_PATHS = [
 ROOT_URLCONF = 'event_routing_backends.urls'
 
 SECRET_KEY = 'insecure-secret-key'
+
+LMS_ROOT_URL = 'http://localhost:18000'
+
+_mock_third_party_modules()

@@ -1,0 +1,23 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    "action": "Activated",
+    "actor": {
+        "id": "anonymous_id",
+        "type": "Person"
+    },
+    "eventTime": "2020-07-15T06:36:01.917Z",
+    "id": "urn:uuid:b52eb5c3-350f-45c2-9f03-aa642b7ad30d",
+    "object": {
+        "extensions": {
+            "course_id": "course-v1:edX+DemoX+Demo_Course",
+            "mode": "audit"
+        },
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course",
+        "type": "Membership"
+    },
+    "referrer": {
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/about",
+        "type": "WebPage"
+    },
+    "type": "Event"
+}

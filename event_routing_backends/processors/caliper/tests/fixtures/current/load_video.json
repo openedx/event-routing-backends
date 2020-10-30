@@ -1,0 +1,25 @@
+{
+    "context": {
+        "org_id": "edX",
+        "host": "localhost:18000",
+        "ip": "172.18.0.1",
+        "client_id": "667522224.1583394645",
+        "session": "993110e9c27848a545da74a74114158d",
+        "path": "/event",
+        "username": "edx",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+        "course_id": "course-v1:edX+DemoX+Demo_Course",
+        "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/d8a6192ade314473a78242dfeedfbf5b/edx_introduction/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40edx_introduction",
+        "accept_language": "en-US,en;q=0.9",
+        "page": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/d8a6192ade314473a78242dfeedfbf5b/edx_introduction/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40edx_introduction",
+        "user_id": 3,
+        "event_source": "browser"
+    },
+    "name": "load_video",
+    "timestamp": "2020-07-15T06:43:07.277053+00:00",
+    "data": {
+        "id": "0b9e39477cf34507a7a48f74be381fdd",
+        "code": "b7xgknqkQk8",
+        "duration": 195
+    }
+}
