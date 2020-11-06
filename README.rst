@@ -4,24 +4,25 @@ event-routing-backends
 |pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
-The ``README.rst`` file should start with a brief description of the repository,
-which sets it in the context of other repositories under the ``edx``
-organization. It should make clear where this fits in to the overall edX
-codebase.
+Various backends for receiving edX LMS events.  The code in this repository
+hooks into the `event-tracking`_ app that is installed as a part of
+edx-platform. It provides new tracking backends and processors.
 
-Various backends for receiving edX LMS events.
+.. _event-tracking: https://github.com/edx/event-tracking
 
 Overview (please modify)
 ------------------------
 
-The ``README.rst`` file should then provide an overview of the code in this
-repository, including the main components and useful entry points for starting
-to understand the code in more detail.
+It provides a backend that can take events and re-transmit them to external
+services.  It also provides some new processers that can convert edx-platform
+events into other formats.
+
+Currently work to support xAPI and Caliper event formats is in progress.
 
 Documentation
 -------------
 
-(TODO: `Set up documentation <https://openedx.atlassian.net/wiki/spaces/DOC/pages/21627535/Publish+Documentation+on+Read+the+Docs>`_)
+Documentation for this repo is published to `Read the Docs <https://event-routing-backends.readthedocs.io/en/latest/>`_
 
 License
 -------
