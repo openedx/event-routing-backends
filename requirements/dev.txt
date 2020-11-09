@@ -4,66 +4,67 @@
 #
 #    make upgrade
 #
-amqp==2.6.1               # via -r requirements/quality.txt, kombu
+amqp==5.0.2               # via -r requirements/quality.txt, kombu
 appdirs==1.4.4            # via -r requirements/travis.txt, virtualenv
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
-attrs==20.2.0             # via -r requirements/quality.txt, pytest
+attrs==20.3.0             # via -r requirements/quality.txt, pytest
 billiard==3.6.3.0         # via -r requirements/quality.txt, celery
-celery==4.4.7             # via -r requirements/quality.txt, event-tracking
-certifi==2020.6.20        # via -r requirements/quality.txt, -r requirements/travis.txt, requests
+celery==5.0.2             # via -r requirements/quality.txt, event-tracking
+certifi==2020.11.8        # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 cffi==1.14.3              # via -r requirements/quality.txt, cryptography
 chardet==3.0.4            # via -r requirements/quality.txt, -r requirements/travis.txt, requests
+click-didyoumean==0.0.3   # via -r requirements/quality.txt, celery
 click-log==0.3.2          # via -r requirements/quality.txt, edx-lint
-click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, click-log, code-annotations, edx-lint, pip-tools
-code-annotations==0.9.0   # via -r requirements/quality.txt
+click-repl==0.1.6         # via -r requirements/quality.txt, celery
+click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, celery, click-didyoumean, click-log, click-repl, code-annotations, edx-lint, pip-tools
+code-annotations==0.10.0  # via -r requirements/quality.txt
 codecov==2.1.10           # via -r requirements/travis.txt
 coverage==5.3             # via -r requirements/quality.txt, -r requirements/travis.txt, codecov, pytest-cov
-cryptography==3.1.1       # via -r requirements/quality.txt, django-fernet-fields
+cryptography==3.2.1       # via -r requirements/quality.txt, django-fernet-fields
 ddt==1.4.1                # via -r requirements/quality.txt
 diff-cover==4.0.1         # via -r requirements/dev.in
 distlib==0.3.1            # via -r requirements/travis.txt, virtualenv
 django-config-models==2.0.3  # via -r requirements/quality.txt
+django-crum==0.7.8        # via -r requirements/quality.txt, edx-django-utils
 django-fernet-fields==0.6  # via -r requirements/quality.txt
 django-waffle==2.0.0      # via -r requirements/quality.txt, edx-django-utils
-django==2.2.16            # via -c requirements/constraints.txt, -r requirements/quality.txt, code-annotations, django-config-models, django-fernet-fields, djangorestframework, edx-django-utils, edx-i18n-tools, event-tracking, jsonfield2
-djangorestframework==3.12.1  # via -r requirements/quality.txt, django-config-models
-edx-django-utils==3.8.0   # via -r requirements/quality.txt, django-config-models
+django==2.2.17            # via -c requirements/constraints.txt, -r requirements/quality.txt, code-annotations, django-config-models, django-crum, django-fernet-fields, djangorestframework, edx-django-utils, edx-i18n-tools, event-tracking, jsonfield2
+djangorestframework==3.12.2  # via -r requirements/quality.txt, django-config-models
+edx-django-utils==3.11.0  # via -r requirements/quality.txt, django-config-models
 edx-i18n-tools==0.5.3     # via -r requirements/dev.in
 edx-lint==1.5.2           # via -r requirements/quality.txt
 event-tracking==1.0.0     # via -r requirements/quality.txt
 factory-boy==3.1.0        # via -r requirements/quality.txt
-faker==4.14.0             # via -r requirements/quality.txt, factory-boy
+faker==4.14.2             # via -r requirements/quality.txt, factory-boy
 filelock==3.0.12          # via -r requirements/travis.txt, tox, virtualenv
 idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, requests
-importlib-metadata==1.7.0  # via -c requirements/constraints.txt, -r requirements/quality.txt, -r requirements/travis.txt, inflect, kombu, path, pluggy, pytest, tox, virtualenv
-importlib-resources==3.0.0  # via -r requirements/travis.txt, virtualenv
-inflect==3.0.2            # via jinja2-pluralize
-iniconfig==1.0.1          # via -r requirements/quality.txt, pytest
+inflect==4.1.0            # via jinja2-pluralize
+iniconfig==1.1.1          # via -r requirements/quality.txt, pytest
 isodate==0.6.0            # via -r requirements/quality.txt
 isort==4.3.21             # via -r requirements/quality.txt, pylint
 jinja2-pluralize==0.3.0   # via diff-cover
 jinja2==2.11.2            # via -r requirements/quality.txt, code-annotations, diff-cover, jinja2-pluralize
 jsonfield2==4.0.0.post0   # via -r requirements/quality.txt
-kombu==4.6.11             # via -r requirements/quality.txt, celery
+kombu==5.0.2              # via -r requirements/quality.txt, celery
 lazy-object-proxy==1.4.3  # via -r requirements/quality.txt, astroid
 markupsafe==1.1.1         # via -r requirements/quality.txt, jinja2
 mccabe==0.6.1             # via -r requirements/quality.txt, pylint
-mock==3.0.5               # via -r requirements/quality.txt
-newrelic==5.20.1.150      # via -r requirements/quality.txt, edx-django-utils
+mock==4.0.2               # via -r requirements/quality.txt
+newrelic==5.22.1.152      # via -r requirements/quality.txt, edx-django-utils
 packaging==20.4           # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
 path.py==12.5.0           # via edx-i18n-tools
-path==13.1.0              # via path.py
-pathlib2==2.3.5           # via -r requirements/quality.txt, pytest
-pbr==5.5.0                # via -r requirements/quality.txt, stevedore
+path==15.0.0              # via path.py
+pbr==5.5.1                # via -r requirements/quality.txt, stevedore
 pip-tools==5.3.1          # via -r requirements/pip-tools.txt
 pluggy==0.13.1            # via -r requirements/quality.txt, -r requirements/travis.txt, diff-cover, pytest, tox
 polib==1.1.0              # via edx-i18n-tools
-psutil==5.7.2             # via -r requirements/quality.txt, edx-django-utils
+prompt-toolkit==3.0.8     # via -r requirements/quality.txt, click-repl
+psutil==5.7.3             # via -r requirements/quality.txt, edx-django-utils
 py==1.9.0                 # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
 pycodestyle==2.6.0        # via -r requirements/quality.txt
 pycparser==2.20           # via -r requirements/quality.txt, cffi
 pydocstyle==5.1.1         # via -r requirements/quality.txt
-pygments==2.7.1           # via diff-cover
+pygments==2.7.2           # via diff-cover
 pylint-celery==0.3        # via -r requirements/quality.txt, edx-lint
 pylint-django==2.0.11     # via -r requirements/quality.txt, edx-lint
 pylint-plugin-utils==0.6  # via -r requirements/quality.txt, pylint-celery, pylint-django
@@ -71,27 +72,26 @@ pylint==2.4.4             # via -r requirements/quality.txt, edx-lint, pylint-ce
 pymongo==3.11.0           # via -r requirements/quality.txt, event-tracking
 pyparsing==2.4.7          # via -r requirements/quality.txt, -r requirements/travis.txt, packaging
 pytest-cov==2.10.1        # via -r requirements/quality.txt
-pytest-django==3.10.0     # via -r requirements/quality.txt
-pytest==6.1.1             # via -r requirements/quality.txt, pytest-cov, pytest-django
+pytest-django==4.1.0      # via -r requirements/quality.txt
+pytest==6.1.2             # via -r requirements/quality.txt, pytest-cov, pytest-django
 python-dateutil==2.8.1    # via -r requirements/quality.txt, faker
 python-slugify==4.0.1     # via -r requirements/quality.txt, code-annotations
-pytz==2020.1              # via -r requirements/quality.txt, celery, django, event-tracking
+pytz==2020.4              # via -r requirements/quality.txt, celery, django, event-tracking
 pyyaml==5.3.1             # via -r requirements/quality.txt, code-annotations, edx-i18n-tools
 requests==2.24.0          # via -r requirements/quality.txt, -r requirements/travis.txt, codecov
-six==1.15.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, astroid, cryptography, edx-i18n-tools, edx-lint, event-tracking, isodate, mock, packaging, pathlib2, pip-tools, python-dateutil, stevedore, tox, virtualenv
+six==1.15.0               # via -r requirements/pip-tools.txt, -r requirements/quality.txt, -r requirements/travis.txt, astroid, click-repl, cryptography, edx-i18n-tools, edx-lint, event-tracking, isodate, packaging, pip-tools, python-dateutil, tox, virtualenv
 snowballstemmer==2.0.0    # via -r requirements/quality.txt, pydocstyle
 sqlparse==0.4.1           # via -r requirements/quality.txt, django
-stevedore==1.32.0         # via -r requirements/quality.txt, code-annotations, edx-django-utils
+stevedore==3.2.2          # via -r requirements/quality.txt, code-annotations, edx-django-utils
 text-unidecode==1.3       # via -r requirements/quality.txt, faker, python-slugify
-toml==0.10.1              # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
+toml==0.10.2              # via -r requirements/quality.txt, -r requirements/travis.txt, pytest, tox
 tox-battery==0.6.1        # via -r requirements/dev.in
 tox==3.20.1               # via -r requirements/travis.txt, tox-battery
-typed-ast==1.4.1          # via -r requirements/quality.txt, astroid
-urllib3==1.25.10          # via -r requirements/quality.txt, -r requirements/travis.txt, requests
-vine==1.3.0               # via -r requirements/quality.txt, amqp, celery
-virtualenv==20.0.34       # via -r requirements/travis.txt, tox
+urllib3==1.25.11          # via -r requirements/quality.txt, -r requirements/travis.txt, requests
+vine==5.0.0               # via -r requirements/quality.txt, amqp, celery
+virtualenv==20.1.0        # via -r requirements/travis.txt, tox
+wcwidth==0.2.5            # via -r requirements/quality.txt, prompt-toolkit
 wrapt==1.11.2             # via -r requirements/quality.txt, astroid
-zipp==1.2.0               # via -r requirements/quality.txt, -r requirements/travis.txt, importlib-metadata, importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

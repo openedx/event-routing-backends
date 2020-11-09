@@ -8,7 +8,6 @@
 language: python
 
 python:
-  - 3.5
   - 3.8
 
 env:
@@ -17,14 +16,14 @@ env:
 
 matrix:
   include:
-    - python: 3.5
+    - python: 3.8
       env: TOXENV=quality
-    - python: 3.5
+    - python: 3.8
       env: TOXENV=docs
-    - python: 3.5
+    - python: 3.8
       env: TOXENV=pii_check
   exclude:
-    - python: 3.5
+    - python: 3.8
       env: TOXENV=django30
 
 cache:
