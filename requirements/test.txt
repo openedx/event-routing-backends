@@ -14,7 +14,7 @@ chardet==3.0.4            # via -r requirements/base.txt, requests
 click-didyoumean==0.0.3   # via -r requirements/base.txt, celery
 click-repl==0.1.6         # via -r requirements/base.txt, celery
 click==7.1.2              # via -r requirements/base.txt, celery, click-didyoumean, click-repl, code-annotations
-code-annotations==0.10.0  # via -r requirements/test.in
+code-annotations==0.10.1  # via -r requirements/test.in
 coverage==5.3             # via pytest-cov
 cryptography==3.2.1       # via -r requirements/base.txt, django-fernet-fields
 ddt==1.4.1                # via -r requirements/test.in

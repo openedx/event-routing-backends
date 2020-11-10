@@ -17,7 +17,7 @@ click-didyoumean==0.0.3   # via -r requirements/quality.txt, celery
 click-log==0.3.2          # via -r requirements/quality.txt, edx-lint
 click-repl==0.1.6         # via -r requirements/quality.txt, celery
 click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, celery, click-didyoumean, click-log, click-repl, code-annotations, edx-lint, pip-tools
-code-annotations==0.10.0  # via -r requirements/quality.txt
+code-annotations==0.10.1  # via -r requirements/quality.txt
 codecov==2.1.10           # via -r requirements/travis.txt
 coverage==5.3             # via -r requirements/quality.txt, -r requirements/travis.txt, codecov, pytest-cov
 cryptography==3.2.1       # via -r requirements/quality.txt, django-fernet-fields
