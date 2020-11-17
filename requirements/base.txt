@@ -15,7 +15,7 @@ click-repl==0.1.6         # via celery
 click==7.1.2              # via celery, click-didyoumean, click-repl
 cryptography==3.2.1       # via django-fernet-fields
 django-config-models==2.0.3  # via -r requirements/base.in
-django-crum==0.7.8        # via edx-django-utils
+django-crum==0.7.9        # via edx-django-utils
 django-fernet-fields==0.6  # via -r requirements/base.in
 django-waffle==2.0.0      # via edx-django-utils
 django==2.2.17            # via -c requirements/constraints.txt, -r requirements/base.in, django-config-models, django-crum, django-fernet-fields, djangorestframework, edx-django-utils, event-tracking, jsonfield2
@@ -34,10 +34,10 @@ pycparser==2.20           # via cffi
 pymongo==3.11.0           # via event-tracking
 python-dateutil==2.8.1    # via -r requirements/base.in
 pytz==2020.4              # via -r requirements/base.in, celery, django, event-tracking
-requests==2.24.0          # via -r requirements/base.in
+requests==2.25.0          # via -r requirements/base.in
 six==1.15.0               # via click-repl, cryptography, event-tracking, isodate, python-dateutil
 sqlparse==0.4.1           # via django
 stevedore==3.2.2          # via edx-django-utils
-urllib3==1.25.11          # via requests
+urllib3==1.26.2           # via requests
 vine==5.0.0               # via amqp, celery
 wcwidth==0.2.5            # via prompt-toolkit
