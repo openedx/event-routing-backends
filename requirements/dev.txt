@@ -30,12 +30,12 @@ django-fernet-fields==0.6  # via -r requirements/quality.txt
 django-waffle==2.0.0      # via -r requirements/quality.txt, edx-django-utils
 django==2.2.17            # via -c requirements/constraints.txt, -r requirements/quality.txt, code-annotations, django-config-models, django-crum, django-fernet-fields, djangorestframework, edx-django-utils, edx-i18n-tools, event-tracking, jsonfield2
 djangorestframework==3.12.2  # via -r requirements/quality.txt, django-config-models
-edx-django-utils==3.11.0  # via -r requirements/quality.txt, django-config-models
+edx-django-utils==3.13.0  # via -r requirements/quality.txt, django-config-models
 edx-i18n-tools==0.5.3     # via -r requirements/dev.in
 edx-lint==1.5.2           # via -r requirements/quality.txt
 event-tracking==1.0.0     # via -r requirements/quality.txt
 factory-boy==3.1.0        # via -r requirements/quality.txt
-faker==4.15.0             # via -r requirements/quality.txt, factory-boy
+faker==4.17.1             # via -r requirements/quality.txt, factory-boy
 filelock==3.0.12          # via -r requirements/travis.txt, tox, virtualenv
 idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 inflect==5.0.2            # via jinja2-pluralize
@@ -55,7 +55,7 @@ packaging==20.4           # via -r requirements/quality.txt, -r requirements/tra
 path.py==12.5.0           # via edx-i18n-tools
 path==15.0.0              # via path.py
 pbr==5.5.1                # via -r requirements/quality.txt, stevedore
-pip-tools==5.3.1          # via -r requirements/pip-tools.txt
+pip-tools==5.4.0          # via -r requirements/pip-tools.txt
 pluggy==0.13.1            # via -r requirements/quality.txt, -r requirements/travis.txt, diff-cover, pytest, tox
 polib==1.1.0              # via edx-i18n-tools
 prompt-toolkit==3.0.8     # via -r requirements/quality.txt, click-repl
@@ -69,7 +69,7 @@ pylint-celery==0.3        # via -r requirements/quality.txt, edx-lint
 pylint-django==2.0.11     # via -r requirements/quality.txt, edx-lint
 pylint-plugin-utils==0.6  # via -r requirements/quality.txt, pylint-celery, pylint-django
 pylint==2.4.4             # via -r requirements/quality.txt, edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
-pymongo==3.11.0           # via -r requirements/quality.txt, event-tracking
+pymongo==3.11.1           # via -r requirements/quality.txt, event-tracking
 pyparsing==2.4.7          # via -r requirements/quality.txt, -r requirements/travis.txt, packaging
 pytest-cov==2.10.1        # via -r requirements/quality.txt
 pytest-django==4.1.0      # via -r requirements/quality.txt
@@ -89,7 +89,7 @@ tox-battery==0.6.1        # via -r requirements/dev.in
 tox==3.20.1               # via -r requirements/travis.txt, tox-battery
 urllib3==1.26.2           # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 vine==5.0.0               # via -r requirements/quality.txt, amqp, celery
-virtualenv==20.1.0        # via -r requirements/travis.txt, tox
+virtualenv==20.2.1        # via -r requirements/travis.txt, tox
 wcwidth==0.2.5            # via -r requirements/quality.txt, prompt-toolkit
 wrapt==1.11.2             # via -r requirements/quality.txt, astroid
 
