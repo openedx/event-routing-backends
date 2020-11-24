@@ -29,11 +29,11 @@ django==2.2.17            # via -c requirements/constraints.txt, -r requirements
 djangorestframework==3.12.2  # via -r requirements/test.txt, django-config-models
 doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
-edx-django-utils==3.11.0  # via -r requirements/test.txt, django-config-models
+edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-sphinx-theme==1.5.0   # via -r requirements/doc.in
 event-tracking==1.0.0     # via -r requirements/test.txt
 factory-boy==3.1.0        # via -r requirements/test.txt
-faker==4.15.0             # via -r requirements/test.txt, factory-boy
+faker==4.17.1             # via -r requirements/test.txt, factory-boy
 idna==2.10                # via -r requirements/test.txt, requests
 imagesize==1.2.0          # via sphinx
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
@@ -52,7 +52,7 @@ psutil==5.7.3             # via -r requirements/test.txt, edx-django-utils
 py==1.9.0                 # via -r requirements/test.txt, pytest
 pycparser==2.20           # via -r requirements/test.txt, cffi
 pygments==2.7.2           # via doc8, readme-renderer, sphinx
-pymongo==3.11.0           # via -r requirements/test.txt, event-tracking
+pymongo==3.11.1           # via -r requirements/test.txt, event-tracking
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-cov==2.10.1        # via -r requirements/test.txt
 pytest-django==4.1.0      # via -r requirements/test.txt
