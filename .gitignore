@@ -59,3 +59,5 @@ docs/event_routing_backends.*.rst
 # Private requirements
 requirements/private.in
 requirements/private.txt
+
+.idea

@@ -1,7 +1,7 @@
 event-routing-backends
 =============================
 
-|pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
+|pypi-badge| |ci-badge| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
 Various backends for retransmitting edX LMS events to external services.
@@ -67,9 +67,9 @@ For more information about these options, see the `Getting Help`_ page.
     :target: https://pypi.python.org/pypi/event-routing-backends/
     :alt: PyPI
 
-.. |travis-badge| image:: https://travis-ci.org/edx/event-routing-backends.svg?branch=master
-    :target: https://travis-ci.org/edx/event-routing-backends
-    :alt: Travis
+.. |ci-badge| image:: https://github.com/edx/event-routing-backends/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/edx/event-routing-backends/actions?query=workflow%3A%22Python+CI%22
+    :alt: CI
 
 .. |codecov-badge| image:: https://codecov.io/github/edx/event-routing-backends/coverage.svg?branch=master
     :target: https://codecov.io/github/edx/event-routing-backends?branch=master
