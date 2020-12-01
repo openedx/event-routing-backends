@@ -9,7 +9,7 @@ attrs==20.3.0             # via pytest
 billiard==3.6.3.0         # via -r requirements/base.txt, celery
 celery==5.0.2             # via -r requirements/base.txt, event-tracking
 certifi==2020.11.8        # via -r requirements/base.txt, requests
-cffi==1.14.3              # via -r requirements/base.txt, cryptography
+cffi==1.14.4              # via -r requirements/base.txt, cryptography
 chardet==3.0.4            # via -r requirements/base.txt, requests
 click-didyoumean==0.0.3   # via -r requirements/base.txt, celery
 click-repl==0.1.6         # via -r requirements/base.txt, celery
@@ -26,7 +26,7 @@ djangorestframework==3.12.2  # via -r requirements/base.txt, django-config-model
 edx-django-utils==3.13.0  # via -r requirements/base.txt, django-config-models
 event-tracking==1.0.0     # via -r requirements/base.txt
 factory-boy==3.1.0        # via -r requirements/test.in
-faker==4.17.1             # via factory-boy
+faker==4.18.0             # via factory-boy
 idna==2.10                # via -r requirements/base.txt, requests
 iniconfig==1.1.1          # via pytest
 isodate==0.6.0            # via -r requirements/base.txt
@@ -36,7 +36,7 @@ kombu==5.0.2              # via -r requirements/base.txt, celery
 markupsafe==1.1.1         # via jinja2
 mock==4.0.2               # via -r requirements/test.in
 newrelic==5.22.1.152      # via -r requirements/base.txt, edx-django-utils
-packaging==20.4           # via pytest
+packaging==20.7           # via pytest
 pbr==5.5.1                # via -r requirements/base.txt, stevedore
 pluggy==0.13.1            # via pytest
 prompt-toolkit==3.0.8     # via -r requirements/base.txt, click-repl
@@ -53,9 +53,9 @@ python-slugify==4.0.1     # via code-annotations
 pytz==2020.4              # via -r requirements/base.txt, celery, django, event-tracking
 pyyaml==5.3.1             # via code-annotations
 requests==2.25.0          # via -r requirements/base.txt
-six==1.15.0               # via -r requirements/base.txt, click-repl, cryptography, event-tracking, isodate, packaging, python-dateutil
+six==1.15.0               # via -r requirements/base.txt, click-repl, cryptography, event-tracking, isodate, python-dateutil
 sqlparse==0.4.1           # via -r requirements/base.txt, django
-stevedore==3.2.2          # via -r requirements/base.txt, code-annotations, edx-django-utils
+stevedore==3.3.0          # via -r requirements/base.txt, code-annotations, edx-django-utils
 text-unidecode==1.3       # via faker, python-slugify
 toml==0.10.2              # via pytest
 urllib3==1.26.2           # via -r requirements/base.txt, requests

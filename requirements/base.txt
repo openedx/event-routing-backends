@@ -8,7 +8,7 @@ amqp==5.0.2               # via kombu
 billiard==3.6.3.0         # via celery
 celery==5.0.2             # via event-tracking
 certifi==2020.11.8        # via requests
-cffi==1.14.3              # via cryptography
+cffi==1.14.4              # via cryptography
 chardet==3.0.4            # via requests
 click-didyoumean==0.0.3   # via celery
 click-repl==0.1.6         # via celery
@@ -37,7 +37,7 @@ pytz==2020.4              # via -r requirements/base.in, celery, django, event-t
 requests==2.25.0          # via -r requirements/base.in
 six==1.15.0               # via click-repl, cryptography, event-tracking, isodate, python-dateutil
 sqlparse==0.4.1           # via django
-stevedore==3.2.2          # via edx-django-utils
+stevedore==3.3.0          # via edx-django-utils
 urllib3==1.26.2           # via requests
 vine==5.0.0               # via amqp, celery
 wcwidth==0.2.5            # via prompt-toolkit
