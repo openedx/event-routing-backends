@@ -57,4 +57,4 @@ Triggering events
 
 lms throws ton of events. You'll have to do something different for each event type you are testing. You can find which type of events are supported at event_routing_backends/processors/${processor_name}/event_transformers.
 
-For my testing, I tested using navigation events, so I just navigated around a local course using the navigation bar and it created events everytime I moved around.
+For my testing, I tested using navigation events, so I just navigated around a local course using the navigation bar and it created events every time I moved around.
