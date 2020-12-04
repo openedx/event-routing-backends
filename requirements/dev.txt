@@ -9,14 +9,15 @@ appdirs==1.4.4            # via -r requirements/travis.txt, virtualenv
 astroid==2.3.3            # via -r requirements/quality.txt, pylint, pylint-celery
 attrs==20.3.0             # via -r requirements/quality.txt, pytest
 billiard==3.6.3.0         # via -r requirements/quality.txt, celery
-celery==5.0.2             # via -r requirements/quality.txt, event-tracking
+celery==5.0.3             # via -r requirements/quality.txt, event-tracking
 certifi==2020.11.8        # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 cffi==1.14.4              # via -r requirements/quality.txt, cryptography
 chardet==3.0.4            # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 click-didyoumean==0.0.3   # via -r requirements/quality.txt, celery
 click-log==0.3.2          # via -r requirements/quality.txt, edx-lint
+click-plugins==1.1.1      # via -r requirements/quality.txt, celery
 click-repl==0.1.6         # via -r requirements/quality.txt, celery
-click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, celery, click-didyoumean, click-log, click-repl, code-annotations, edx-lint, pip-tools
+click==7.1.2              # via -r requirements/pip-tools.txt, -r requirements/quality.txt, celery, click-didyoumean, click-log, click-plugins, click-repl, code-annotations, edx-lint, pip-tools
 code-annotations==0.10.1  # via -r requirements/quality.txt
 codecov==2.1.10           # via -r requirements/travis.txt
 coverage==5.3             # via -r requirements/quality.txt, -r requirements/travis.txt, codecov, pytest-cov
@@ -35,7 +36,7 @@ edx-i18n-tools==0.5.3     # via -r requirements/dev.in
 edx-lint==1.5.2           # via -r requirements/quality.txt
 event-tracking==1.0.0     # via -r requirements/quality.txt
 factory-boy==3.1.0        # via -r requirements/quality.txt
-faker==4.18.0             # via -r requirements/quality.txt, factory-boy
+faker==5.0.0              # via -r requirements/quality.txt, factory-boy
 filelock==3.0.12          # via -r requirements/travis.txt, tox, virtualenv
 idna==2.10                # via -r requirements/quality.txt, -r requirements/travis.txt, requests
 inflect==5.0.2            # via jinja2-pluralize
@@ -69,7 +70,7 @@ pylint-celery==0.3        # via -r requirements/quality.txt, edx-lint
 pylint-django==2.0.11     # via -r requirements/quality.txt, edx-lint
 pylint-plugin-utils==0.6  # via -r requirements/quality.txt, pylint-celery, pylint-django
 pylint==2.4.4             # via -r requirements/quality.txt, edx-lint, pylint-celery, pylint-django, pylint-plugin-utils
-pymongo==3.11.1           # via -r requirements/quality.txt, event-tracking
+pymongo==3.11.2           # via -r requirements/quality.txt, event-tracking
 pyparsing==2.4.7          # via -r requirements/quality.txt, -r requirements/travis.txt, packaging
 pytest-cov==2.10.1        # via -r requirements/quality.txt
 pytest-django==4.1.0      # via -r requirements/quality.txt
