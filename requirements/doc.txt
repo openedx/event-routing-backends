@@ -10,13 +10,14 @@ attrs==20.3.0             # via -r requirements/test.txt, pytest
 babel==2.9.0              # via sphinx
 billiard==3.6.3.0         # via -r requirements/test.txt, celery
 bleach==3.2.1             # via readme-renderer
-celery==5.0.2             # via -r requirements/test.txt, event-tracking
+celery==5.0.3             # via -r requirements/test.txt, event-tracking
 certifi==2020.11.8        # via -r requirements/test.txt, requests
 cffi==1.14.4              # via -r requirements/test.txt, cryptography
 chardet==3.0.4            # via -r requirements/test.txt, doc8, requests
 click-didyoumean==0.0.3   # via -r requirements/test.txt, celery
+click-plugins==1.1.1      # via -r requirements/test.txt, celery
 click-repl==0.1.6         # via -r requirements/test.txt, celery
-click==7.1.2              # via -r requirements/test.txt, celery, click-didyoumean, click-repl, code-annotations
+click==7.1.2              # via -r requirements/test.txt, celery, click-didyoumean, click-plugins, click-repl, code-annotations
 code-annotations==0.10.1  # via -r requirements/test.txt
 coverage==5.3             # via -r requirements/test.txt, pytest-cov
 cryptography==3.2.1       # via -r requirements/test.txt, django-fernet-fields
@@ -33,7 +34,7 @@ edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-sphinx-theme==1.5.0   # via -r requirements/doc.in
 event-tracking==1.0.0     # via -r requirements/test.txt
 factory-boy==3.1.0        # via -r requirements/test.txt
-faker==4.18.0             # via -r requirements/test.txt, factory-boy
+faker==5.0.0              # via -r requirements/test.txt, factory-boy
 idna==2.10                # via -r requirements/test.txt, requests
 imagesize==1.2.0          # via sphinx
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
@@ -52,7 +53,7 @@ psutil==5.7.3             # via -r requirements/test.txt, edx-django-utils
 py==1.9.0                 # via -r requirements/test.txt, pytest
 pycparser==2.20           # via -r requirements/test.txt, cffi
 pygments==2.7.2           # via doc8, readme-renderer, sphinx
-pymongo==3.11.1           # via -r requirements/test.txt, event-tracking
+pymongo==3.11.2           # via -r requirements/test.txt, event-tracking
 pyparsing==2.4.7          # via -r requirements/test.txt, packaging
 pytest-cov==2.10.1        # via -r requirements/test.txt
 pytest-django==4.1.0      # via -r requirements/test.txt
