@@ -4,20 +4,19 @@ event-routing-backends
 |pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
-Various backends for receiving edX LMS events.  The code in this repository
-hooks into the `event-tracking`_ app that is installed as a part of
-edx-platform. It provides new tracking backends and processors.
+Various backends for retransmitting edX LMS events to external services.
 
-.. _event-tracking: https://github.com/edx/event-tracking
+Overview
+--------
 
-Overview (please modify)
-------------------------
-
-It provides a backend that can take events and re-transmit them to external
-services.  It also provides some new processers that can convert edx-platform
-events into other formats.
+event-routing-backends contains plugins for the `event-tracking`_ app that is installed as a part of edx-platform. It provides a backend that can take events and re-transmit them to external services.  It also provides some new processers that can convert edx-platform events into other formats.
 
 Currently work to support xAPI and Caliper event formats is in progress.
+
+See `OEP 26`_ for background.
+
+.. _event-tracking: https://github.com/edx/event-tracking
+.. _OEP 26: https://open-edx-proposals.readthedocs.io/en/latest/oep-0026-arch-realtime-events.html
 
 Documentation
 -------------
