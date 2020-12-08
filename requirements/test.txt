@@ -8,14 +8,14 @@ amqp==5.0.2               # via -r requirements/base.txt, kombu
 attrs==20.3.0             # via pytest
 billiard==3.6.3.0         # via -r requirements/base.txt, celery
 celery==5.0.3             # via -r requirements/base.txt, event-tracking
-certifi==2020.11.8        # via -r requirements/base.txt, requests
+certifi==2020.12.5        # via -r requirements/base.txt, requests
 cffi==1.14.4              # via -r requirements/base.txt, cryptography
 chardet==3.0.4            # via -r requirements/base.txt, requests
 click-didyoumean==0.0.3   # via -r requirements/base.txt, celery
 click-plugins==1.1.1      # via -r requirements/base.txt, celery
 click-repl==0.1.6         # via -r requirements/base.txt, celery
 click==7.1.2              # via -r requirements/base.txt, celery, click-didyoumean, click-plugins, click-repl, code-annotations
-code-annotations==0.10.1  # via -r requirements/test.in
+code-annotations==0.10.2  # via -r requirements/test.in
 coverage==5.3             # via pytest-cov
 cryptography==3.2.1       # via -r requirements/base.txt, django-fernet-fields
 ddt==1.4.1                # via -r requirements/test.in
@@ -27,7 +27,7 @@ djangorestframework==3.12.2  # via -r requirements/base.txt, django-config-model
 edx-django-utils==3.13.0  # via -r requirements/base.txt, django-config-models
 event-tracking==1.0.0     # via -r requirements/base.txt
 factory-boy==3.1.0        # via -r requirements/test.in
-faker==5.0.0              # via factory-boy
+faker==5.0.1              # via factory-boy
 idna==2.10                # via -r requirements/base.txt, requests
 iniconfig==1.1.1          # via pytest
 isodate==0.6.0            # via -r requirements/base.txt

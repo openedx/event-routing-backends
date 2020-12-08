@@ -9,7 +9,7 @@ astroid==2.3.3            # via pylint, pylint-celery
 attrs==20.3.0             # via -r requirements/test.txt, pytest
 billiard==3.6.3.0         # via -r requirements/test.txt, celery
 celery==5.0.3             # via -r requirements/test.txt, event-tracking
-certifi==2020.11.8        # via -r requirements/test.txt, requests
+certifi==2020.12.5        # via -r requirements/test.txt, requests
 cffi==1.14.4              # via -r requirements/test.txt, cryptography
 chardet==3.0.4            # via -r requirements/test.txt, requests
 click-didyoumean==0.0.3   # via -r requirements/test.txt, celery
@@ -17,7 +17,7 @@ click-log==0.3.2          # via edx-lint
 click-plugins==1.1.1      # via -r requirements/test.txt, celery
 click-repl==0.1.6         # via -r requirements/test.txt, celery
 click==7.1.2              # via -r requirements/test.txt, celery, click-didyoumean, click-log, click-plugins, click-repl, code-annotations, edx-lint
-code-annotations==0.10.1  # via -r requirements/test.txt
+code-annotations==0.10.2  # via -r requirements/test.txt
 coverage==5.3             # via -r requirements/test.txt, pytest-cov
 cryptography==3.2.1       # via -r requirements/test.txt, django-fernet-fields
 ddt==1.4.1                # via -r requirements/test.txt
@@ -31,7 +31,7 @@ edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-lint==1.5.2           # via -r requirements/quality.in
 event-tracking==1.0.0     # via -r requirements/test.txt
 factory-boy==3.1.0        # via -r requirements/test.txt
-faker==5.0.0              # via -r requirements/test.txt, factory-boy
+faker==5.0.1              # via -r requirements/test.txt, factory-boy
 idna==2.10                # via -r requirements/test.txt, requests
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
 isodate==0.6.0            # via -r requirements/test.txt
