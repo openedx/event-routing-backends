@@ -70,12 +70,12 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
 
 - Add router configuraton from django admin under ``EVENT_ROUTING_BACKENDS`` section (http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/) using backend name ``caliper``
 
-Here is a sample configuration for a `Bearer Authentication`_ client which routes only those events where ``org_id`` is set to edX.
-`override_args` allows us to pass any additional info in event.
+  Here is a sample configuration for a `Bearer Authentication`_ client which routes only those events where ``org_id`` is set to edX.
+  `override_args` allows us to pass any additional info in event.
 
-.. _Bearer Authentication: https://swagger.io/docs/specification/authentication/bearer-authentication/
+  .. _Bearer Authentication: https://swagger.io/docs/specification/authentication/bearer-authentication/
 
-    .. code-block:: JSON
+  .. code-block:: JSON
 
     [
         {
