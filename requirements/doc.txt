@@ -32,6 +32,7 @@ doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
 edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-sphinx-theme==1.5.0   # via -r requirements/doc.in
+edx-tincan-py35==0.0.9    # via -r requirements/test.txt
 event-tracking==1.0.0     # via -r requirements/test.txt
 factory-boy==3.1.0        # via -r requirements/test.txt
 faker==5.0.1              # via -r requirements/test.txt, factory-boy

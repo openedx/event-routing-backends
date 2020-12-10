@@ -1,7 +1,7 @@
 """
 Transformers for problem interaction events.
 """
-from event_routing_backends.processors.caliper.helpers import get_block_id_from_event_referrer
+from event_routing_backends.helpers import get_block_id_from_event_referrer
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
 

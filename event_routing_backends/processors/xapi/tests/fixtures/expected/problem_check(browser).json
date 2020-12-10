@@ -1,0 +1,35 @@
+{
+    "actor": {
+        "objectType": "Agent",
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "extensions": {
+                "data": "input_3fc5461f86764ad7bdbdf6cbdde61e66_2_1%5B%5D=choice_0&input_3fc5461f86764ad7bdbdf6cbdde61e66_2_1%5B%5D=choice_2"
+            },
+            "type": "http://adlnet.gov/expapi/activities/interaction"
+        },
+        "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@ef37eb3cf1724e38b7f88a9ce85a4842",
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-07-14T14:39:26.580443+00:00",
+    "verb": {
+        "display": {
+            "en": "answered"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/answered"
+    },
+    "version": "1.0.3"
+}

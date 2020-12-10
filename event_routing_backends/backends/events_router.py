@@ -7,11 +7,13 @@ from eventtracking.processors.exceptions import EventEmissionExit
 
 from event_routing_backends.models import RouterConfiguration
 from event_routing_backends.utils.http_client import HttpClient
+from event_routing_backends.utils.xapi_lrs_client import LrsClient
 
 logger = logging.getLogger(__name__)
 
 ROUTER_STRATEGY_MAPPING = {
     'AUTH_HEADERS': HttpClient,
+    'XAPI_LRS': LrsClient,
 }
 
 
@@ -30,6 +32,17 @@ class EventsRouter:
         """
         self.processors = processors if processors else []
         self.backend_name = backend_name
+
+    def _copy(self, event):
+        """
+        Copy the event to avoid mutation.
+
+        Currently supports only `dict` type events.
+        """
+        if isinstance(event, dict):
+            return event.copy()
+        else:
+            raise ValueError('Expected event as dict but {type} was given.'.format(type=type(event)))
 
     def send(self, event):
         """
@@ -99,7 +112,7 @@ class EventsRouter:
         Returns
             dict
         """
-        event = event.copy()
+        event = self._copy(event)
         for processor in self.processors:
             event = processor(event)
 
@@ -119,8 +132,8 @@ class EventsRouter:
         Returns:
             dict
         """
-        if 'override_args' in host:
-            event = event.copy()
+        if 'override_args' in host and isinstance(event, dict):
+            event = self._copy(event)
             event.update(host['override_args'])
             logger.debug('Overwriting event with values {}'.format(host['override_args']))
         return event

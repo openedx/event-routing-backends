@@ -7,9 +7,9 @@ from unittest import TestCase
 from mock import patch, sentinel
 from pytz import UTC
 
+from event_routing_backends.helpers import convert_datetime_to_iso
 from event_routing_backends.processors.caliper.constants import CALIPER_EVENT_CONTEXT
 from event_routing_backends.processors.caliper.envelop_processor import CaliperEnvelopProcessor
-from event_routing_backends.processors.caliper.helpers import convert_datetime_to_iso
 
 FROZEN_TIME = datetime(2013, 10, 3, 8, 24, 55, tzinfo=UTC)
 

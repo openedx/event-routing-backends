@@ -47,7 +47,7 @@ class BaseTransformerMixin:
             for _, value in event_dict.items():
                 if isinstance(value, dict):
                     found = _find_nested(value)
-                    if found:
+                    if found is not None:
                         return found
             return None
 

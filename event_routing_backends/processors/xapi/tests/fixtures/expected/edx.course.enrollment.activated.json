@@ -1,0 +1,30 @@
+{
+    "actor": {
+        "objectType": "Agent",
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "context": {
+        "extensions": {
+            "http://id.tincanapi.com/extension/referrer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/about"
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "name": {
+                "en": "Demonstration Course"
+            },
+            "type": "http://adlnet.gov/expapi/activities/course"
+        },
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-07-15T06:36:01.917775+00:00",
+    "verb": {
+        "display": {
+            "en": "registered"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/registered"
+    },
+    "version": "1.0.3"
+}

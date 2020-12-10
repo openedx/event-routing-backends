@@ -1,0 +1,30 @@
+{
+    "actor": {
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "objectType": "Agent"
+    },
+    "context": {
+        "extensions": {
+            "http://id.tincanapi.com/extension/referrer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/"
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "name": {
+                "en": "Lesson 3 - Be Social"
+            },
+            "type": "http://adlnet.gov/expapi/activities/module"
+        },
+        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@48ecb924d7fe4b66a230137626bfa93e",
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-08-04T12:43:57.705414+00:00",
+    "verb": {
+        "display": {
+            "en": "initialized"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/initialized"
+    },
+    "version": "1.0.3"
+}

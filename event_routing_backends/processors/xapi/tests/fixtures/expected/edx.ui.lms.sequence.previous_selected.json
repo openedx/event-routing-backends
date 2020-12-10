@@ -1,0 +1,38 @@
+{
+    "actor": {
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "objectType": "Agent"
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@19a30717eff543078a5d94ae9d6c18a5",
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "extensions": {
+            "http://id.tincanapi.com/extension/ending-point": "previous unit"
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "extensions": {
+                "http://id.tincanapi.com/extension/position": 5
+            },
+            "type": "http://adlnet.gov/expapi/activities/module"
+        },
+        "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@19a30717eff543078a5d94ae9d6c18a5",
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-07-14T14:25:39.394105+00:00",
+    "verb": {
+        "display": {
+            "en": "terminated"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/terminated"
+    },
+    "version": "1.0.3"
+}

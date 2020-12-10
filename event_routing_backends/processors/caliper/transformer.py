@@ -6,10 +6,9 @@ from logging import getLogger
 
 from django.contrib.auth import get_user_model
 
+from event_routing_backends.helpers import convert_datetime_to_iso, get_anonymous_user_id_by_username
 from event_routing_backends.processors.caliper.constants import CALIPER_EVENT_CONTEXT
-from event_routing_backends.processors.caliper.helpers import convert_datetime_to_iso
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
-from student.models import anonymous_id_for_user  # pylint: disable=import-error
 
 logger = getLogger()
 User = get_user_model()
@@ -52,34 +51,10 @@ class CaliperTransformer(BaseTransformerMixin):
         """
         Add all generic information related to `actor`.
         """
-        anonymous_id = self._generate_anonymous_id()
-
         self.transformed_event['actor'] = {
-            'id': anonymous_id,
+            'id': get_anonymous_user_id_by_username(self.event['context']['username']),
             'type': 'Person'
         }
-
-    def _generate_anonymous_id(self):
-        """
-        Generate anonymous user id.
-
-        If no anonymous id is generated, return "anonymous"
-
-        Returns:
-            str
-        """
-        username = self.event['context'].get('username')
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            logger.error('User with username "{}" does not exist. '
-                         'Cannot generate anonymous ID'.format(username))
-
-            anonymous_id = 'anonymous'
-        else:
-            anonymous_id = anonymous_id_for_user(user, None)
-
-        return anonymous_id
 
     def _add_referrer(self):
         """
