@@ -10,3 +10,7 @@
 
 # code-annotations currently restricts to Django<2.3
 Django<2.3
+
+
+# maintaining the production version.
+celery<5.0
