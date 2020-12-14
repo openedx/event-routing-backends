@@ -76,8 +76,8 @@ class BaseTransformerMixin:
             if hasattr(self, key):
                 value = getattr(self, key)
                 self.transformed_event[key] = value
-            elif hasattr(self, 'get_{}'.format(key)):
-                value = getattr(self, 'get_{}'.format(key))()
+            elif hasattr(self, f'get_{key}'):
+                value = getattr(self, f'get_{key}')()
                 self.transformed_event[key] = value
             else:
                 raise ValueError(

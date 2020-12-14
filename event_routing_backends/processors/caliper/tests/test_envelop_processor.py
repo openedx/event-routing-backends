@@ -3,8 +3,8 @@ Test the CaliperEnvelopProcessor.
 """
 from datetime import datetime
 from unittest import TestCase
+from unittest.mock import patch, sentinel
 
-from mock import patch, sentinel
 from pytz import UTC
 
 from event_routing_backends.helpers import convert_datetime_to_iso

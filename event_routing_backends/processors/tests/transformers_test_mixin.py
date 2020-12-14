@@ -4,10 +4,10 @@ Mixin for testing transformers for all of the currently supported events
 import json
 import os
 from abc import abstractmethod
+from unittest.mock import patch
 
 import ddt
 from django.contrib.auth import get_user_model
-from mock import patch
 
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.tests.factories import UserFactory
@@ -18,7 +18,7 @@ TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
 EVENT_FIXTURE_FILENAMES = [
     event_file_name for event_file_name in os.listdir(
-        '{}/fixtures/current/'.format(TEST_DIR_PATH)
+        f'{TEST_DIR_PATH}/fixtures/current/'
     ) if event_file_name.endswith(".json")
 ]
 

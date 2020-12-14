@@ -1,9 +1,10 @@
 """
 Test the TransformerRegistry
 """
+from unittest.mock import MagicMock
+
 import ddt
 from django.test import TestCase
-from mock import MagicMock
 
 from event_routing_backends.processors.transformer_utils.registry import TransformerRegistry
 

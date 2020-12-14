@@ -39,7 +39,7 @@ class HttpClient:
         """
         if self.AUTH_SCHEME:
             return {
-                'Authorization': '{} {}'.format(self.AUTH_SCHEME, self.AUTH_KEY)
+                'Authorization': f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
             }
         return {}
 

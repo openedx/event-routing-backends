@@ -1,9 +1,10 @@
 """
 Test the EventsRouter
 """
+from unittest.mock import MagicMock, call, patch, sentinel
+
 from django.test import TestCase
 from eventtracking.processors.exceptions import EventEmissionExit
-from mock import MagicMock, call, patch, sentinel
 from tincan.statement import Statement
 
 from event_routing_backends.backends.events_router import EventsRouter
