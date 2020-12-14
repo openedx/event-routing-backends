@@ -5,8 +5,9 @@
 #    make upgrade
 #
 amqp==5.0.2               # via kombu
+aniso8601==8.1.0          # via tincan
 billiard==3.6.3.0         # via celery
-celery==5.0.3             # via event-tracking
+celery==5.0.4             # via event-tracking
 certifi==2020.12.5        # via requests
 cffi==1.14.4              # via cryptography
 chardet==3.0.4            # via requests
@@ -14,7 +15,7 @@ click-didyoumean==0.0.3   # via celery
 click-plugins==1.1.1      # via celery
 click-repl==0.1.6         # via celery
 click==7.1.2              # via celery, click-didyoumean, click-plugins, click-repl
-cryptography==3.2.1       # via django-fernet-fields
+cryptography==3.3.1       # via django-fernet-fields
 django-config-models==2.0.3  # via -r requirements/base.in
 django-crum==0.7.9        # via edx-django-utils
 django-fernet-fields==0.6  # via -r requirements/base.in
@@ -22,7 +23,7 @@ django-waffle==2.0.0      # via edx-django-utils
 django==2.2.17            # via -c requirements/constraints.txt, -r requirements/base.in, django-config-models, django-crum, django-fernet-fields, djangorestframework, edx-django-utils, event-tracking, jsonfield2
 djangorestframework==3.12.2  # via django-config-models
 edx-django-utils==3.13.0  # via django-config-models
-event-tracking==1.0.0     # via -r requirements/base.in
+event-tracking==1.0.3     # via -r requirements/base.in
 idna==2.10                # via requests
 isodate==0.6.0            # via -r requirements/base.in
 jsonfield2==4.0.0.post0   # via -r requirements/base.in
@@ -34,11 +35,12 @@ psutil==5.7.3             # via edx-django-utils
 pycparser==2.20           # via cffi
 pymongo==3.11.2           # via event-tracking
 python-dateutil==2.8.1    # via -r requirements/base.in
-pytz==2020.4              # via -r requirements/base.in, celery, django, event-tracking
+pytz==2020.4              # via -r requirements/base.in, celery, django, event-tracking, tincan
 requests==2.25.0          # via -r requirements/base.in
 six==1.15.0               # via click-repl, cryptography, event-tracking, isodate, python-dateutil
 sqlparse==0.4.1           # via django
 stevedore==3.3.0          # via edx-django-utils
+tincan==1.0.0             # via -r requirements/base.in
 urllib3==1.26.2           # via requests
 vine==5.0.0               # via amqp, celery
 wcwidth==0.2.5            # via prompt-toolkit
