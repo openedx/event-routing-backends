@@ -45,7 +45,23 @@ Follow instructions in `getting_started <docs/gettingstarted.rst>`_ doc. There i
 Change router endpoint
 ~~~~~~~~~~~~~~~~~~~~~~
 
-When adding configurations for router, change host_configuration.url key to point to a link at `webhook.site <webhook.site>`_. When you visit the site, it will automatically generate an unique link for you. Use the unique url as value for host_configuration.url key.
+When adding configurations for router, change host_configuration.url key to point to a link at `webhook.site <webhook.site>`_. When you visit the site, it will automatically generate an unique link for you. Use the unique url as value for host_configuration.url key. Example router settings to send info to webhook.site::
+
+    [
+      {
+        "host_configurations": {
+          "url": "https://webhook.site/fa5e53ee-1498-43b0-9b08-f1d1f80e4eb6",
+          "auth_scheme":"Bearer",
+          "headers":{"test":"header"}
+        },
+        "router_type": "AUTH_HEADERS",
+        "backend_name": "caliper",
+        "match_params": {}
+      }
+    ]
+
+
+
 
 Filtering events
 ~~~~~~~~~~~~~~~~
