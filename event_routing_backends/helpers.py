@@ -11,7 +11,6 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from isodate import duration_isoformat
-
 # Imported from edx-platform
 # pylint: disable=import-error
 from opaque_keys.edx.keys import CourseKey
