@@ -183,7 +183,7 @@ class VideoLoadedTransformer(BaseVideoTransformer):
         Returns:
             `Context`
         """
-        context = super(VideoLoadedTransformer, self).get_context()
+        context = super().get_context()
 
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({

@@ -20,7 +20,7 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
     registry = XApiTransformersRegistry
 
     def setUp(self):
-        super(TestXApiTransformers, self).setUp()
+        super().setUp()
         self.mocked_reverse_calls = [
             patch(call_path, side_effect=mocked_course_reverse) for call_path in [
                 'event_routing_backends.helpers.reverse',

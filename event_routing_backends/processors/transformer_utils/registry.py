@@ -89,5 +89,5 @@ class TransformerRegistry:
         event_name = event.get('name')
         try:
             return cls.mapping[event_name](event)
-        except KeyError:
-            raise NoTransformerImplemented
+        except KeyError as error:
+            raise NoTransformerImplemented from error

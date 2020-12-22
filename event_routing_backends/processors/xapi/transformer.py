@@ -28,7 +28,7 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             `Statement`
         """
-        transformed_props = super(XApiTransformer, self).transform()
+        transformed_props = super().transform()
         return Statement(**transformed_props)
 
     def base_transform(self):

@@ -35,7 +35,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
         Raises:
             Any Exception
         """
-        transformed_event = super(XApiProcessor, self).transform_event(event)
+        transformed_event = super().transform_event(event)
 
         if transformed_event:
             event_json = transformed_event.to_json()

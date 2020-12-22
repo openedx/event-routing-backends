@@ -35,7 +35,7 @@ class CaliperProcessor(BaseTransformerProcessorMixin):
         Raises:
             Any Exception
         """
-        transformed_event = super(CaliperProcessor, self).transform_event(event)
+        transformed_event = super().transform_event(event)
 
         if transformed_event:
             caliper_logger.info(json.dumps(transformed_event))

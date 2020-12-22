@@ -4,18 +4,21 @@
 #
 #    make upgrade
 #
-amqp==2.6.1               # via -r requirements/base.txt, kombu
+amqp==5.0.2               # via -r requirements/base.txt, kombu
 aniso8601==8.1.0          # via -r requirements/base.txt, tincan
 attrs==20.3.0             # via pytest
 billiard==3.6.3.0         # via -r requirements/base.txt, celery
-celery==4.4.7             # via -r requirements/base.txt, event-tracking
+celery==5.0.5             # via -r requirements/base.txt, event-tracking
 certifi==2020.12.5        # via -r requirements/base.txt, requests
 cffi==1.14.4              # via -r requirements/base.txt, cryptography
-chardet==3.0.4            # via -r requirements/base.txt, requests
-click==7.1.2              # via code-annotations
+chardet==4.0.0            # via -r requirements/base.txt, requests
+click-didyoumean==0.0.3   # via -r requirements/base.txt, celery
+click-plugins==1.1.1      # via -r requirements/base.txt, celery
+click-repl==0.1.6         # via -r requirements/base.txt, celery
+click==7.1.2              # via -r requirements/base.txt, celery, click-didyoumean, click-plugins, click-repl, code-annotations
 code-annotations==0.10.2  # via -r requirements/test.in
-coverage==5.3             # via pytest-cov
-cryptography==3.2.1       # via -r requirements/base.txt, django-fernet-fields
+coverage==5.3.1           # via pytest-cov
+cryptography==3.3.1       # via -r requirements/base.txt, django-fernet-fields
 ddt==1.4.1                # via -r requirements/test.in
 django-config-models==2.0.3  # via -r requirements/base.txt
 django-crum==0.7.9        # via -r requirements/base.txt, edx-django-utils
@@ -25,40 +28,39 @@ djangorestframework==3.12.2  # via -r requirements/base.txt, django-config-model
 edx-django-utils==3.13.0  # via -r requirements/base.txt, django-config-models
 event-tracking==1.0.3     # via -r requirements/base.txt
 factory-boy==3.1.0        # via -r requirements/test.in
-faker==5.0.0              # via factory-boy
+faker==5.0.2              # via factory-boy
 idna==2.10                # via -r requirements/base.txt, requests
-importlib-metadata==2.1.1  # via -r requirements/base.txt, kombu, pluggy, pytest
 iniconfig==1.1.1          # via pytest
 isodate==0.6.0            # via -r requirements/base.txt
 jinja2==2.11.2            # via code-annotations
 jsonfield2==4.0.0.post0   # via -r requirements/base.txt
-kombu==4.6.11             # via -r requirements/base.txt, celery
+kombu==5.0.2              # via -r requirements/base.txt, celery
 markupsafe==1.1.1         # via jinja2
-mock==3.0.5               # via -r requirements/test.in
+mock==4.0.3               # via -r requirements/test.in
 newrelic==5.22.1.152      # via -r requirements/base.txt, edx-django-utils
 packaging==20.8           # via pytest
-pathlib2==2.3.5           # via pytest
 pbr==5.5.1                # via -r requirements/base.txt, stevedore
 pluggy==0.13.1            # via pytest
-psutil==5.7.3             # via -r requirements/base.txt, edx-django-utils
+prompt-toolkit==3.0.8     # via -r requirements/base.txt, click-repl
+psutil==5.8.0             # via -r requirements/base.txt, edx-django-utils
 py==1.10.0                # via pytest
 pycparser==2.20           # via -r requirements/base.txt, cffi
 pymongo==3.11.2           # via -r requirements/base.txt, event-tracking
 pyparsing==2.4.7          # via packaging
 pytest-cov==2.10.1        # via -r requirements/test.in
 pytest-django==4.1.0      # via -r requirements/test.in
-pytest==6.1.2             # via pytest-cov, pytest-django
+pytest==6.2.1             # via pytest-cov, pytest-django
 python-dateutil==2.8.1    # via -r requirements/base.txt, faker
 python-slugify==4.0.1     # via code-annotations
 pytz==2020.4              # via -r requirements/base.txt, celery, django, event-tracking, tincan
 pyyaml==5.3.1             # via code-annotations
-requests==2.25.0          # via -r requirements/base.txt
-six==1.15.0               # via -r requirements/base.txt, cryptography, event-tracking, isodate, mock, pathlib2, python-dateutil, stevedore
+requests==2.25.1          # via -r requirements/base.txt
+six==1.15.0               # via -r requirements/base.txt, click-repl, cryptography, event-tracking, isodate, python-dateutil
 sqlparse==0.4.1           # via -r requirements/base.txt, django
-stevedore==1.32.0         # via -r requirements/base.txt, code-annotations, edx-django-utils
+stevedore==3.3.0          # via -r requirements/base.txt, code-annotations, edx-django-utils
 text-unidecode==1.3       # via faker, python-slugify
 tincan==1.0.0             # via -r requirements/base.txt
 toml==0.10.2              # via pytest
 urllib3==1.26.2           # via -r requirements/base.txt, requests
-vine==1.3.0               # via -r requirements/base.txt, amqp, celery
-zipp==1.2.0               # via -r requirements/base.txt, importlib-metadata
+vine==5.0.0               # via -r requirements/base.txt, amqp, celery
+wcwidth==0.2.5            # via -r requirements/base.txt, prompt-toolkit

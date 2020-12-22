@@ -20,7 +20,7 @@ class TestCaliperTransformers(TransformersTestMixin, TestCase):
     registry = CaliperTransformersRegistry
 
     def setUp(self):
-        super(TestCaliperTransformers, self).setUp()
+        super().setUp()
         self.mocked_reverse = patch(
             'event_routing_backends.processors.caliper.event_transformers.enrollment_events.reverse',
             side_effect=mocked_course_reverse
