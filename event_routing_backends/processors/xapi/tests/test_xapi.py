@@ -14,7 +14,7 @@ class TestXApiProcessor(TestCase):
     """Test cases for xAPI processor"""
 
     def setUp(self):
-        super(TestXApiProcessor, self).setUp()
+        super().setUp()
         self.sample_event = {
             'name': str(sentinel.name)
         }

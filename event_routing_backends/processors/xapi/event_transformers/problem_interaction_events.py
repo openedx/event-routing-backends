@@ -172,7 +172,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         Returns:
             `Activity`
         """
-        xapi_object = super(ProblemCheckTransformer, self).get_object()
+        xapi_object = super().get_object()
 
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.

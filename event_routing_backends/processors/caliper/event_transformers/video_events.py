@@ -105,7 +105,7 @@ class LoadVideoTransformer(BaseVideoTransformer):
         Returns:
             dict
         """
-        caliper_object = super(LoadVideoTransformer, self).get_object()
+        caliper_object = super().get_object()
 
         caliper_object['extensions'].update(self.event['data'])
         return caliper_object
@@ -130,7 +130,7 @@ class StopVideoTransformer(BaseVideoTransformer):
         Returns:
             dict
         """
-        caliper_object = super(StopVideoTransformer, self).get_object()
+        caliper_object = super().get_object()
         data = self.event['data'].copy()
 
         if 'currentTime' in data:
@@ -157,7 +157,7 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
         Returns:
             dict
         """
-        caliper_object = super(PlayPauseVideoTransformer, self).get_object()
+        caliper_object = super().get_object()
 
         data = self.event['data'].copy()
 

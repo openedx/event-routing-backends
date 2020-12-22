@@ -14,7 +14,7 @@ class TestCaliperProcessor(TestCase):
     """Test cases for Caliper processor"""
 
     def setUp(self):
-        super(TestCaliperProcessor, self).setUp()
+        super().setUp()
         self.sample_event = {
             'name': str(sentinel.name)
         }

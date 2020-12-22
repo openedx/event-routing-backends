@@ -78,7 +78,7 @@ class CaliperTransformer(BaseTransformerMixin):
         Returns:
             dict
         """
-        transformed_event = super(CaliperTransformer, self).transform()
+        transformed_event = super().transform()
         self.clean_event(transformed_event, ('id', 'type'))
         return transformed_event
 
