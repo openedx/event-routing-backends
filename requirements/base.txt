@@ -28,14 +28,14 @@ idna==2.10                # via requests
 isodate==0.6.0            # via -r requirements/base.in
 jsonfield2==4.0.0.post0   # via -r requirements/base.in
 kombu==5.0.2              # via celery
-newrelic==5.22.1.152      # via edx-django-utils
+newrelic==5.24.0.153      # via edx-django-utils
 pbr==5.5.1                # via stevedore
 prompt-toolkit==3.0.8     # via click-repl
 psutil==5.8.0             # via edx-django-utils
 pycparser==2.20           # via cffi
 pymongo==3.11.2           # via event-tracking
 python-dateutil==2.8.1    # via -r requirements/base.in
-pytz==2020.4              # via -r requirements/base.in, celery, django, event-tracking, tincan
+pytz==2020.5              # via -r requirements/base.in, celery, django, event-tracking, tincan
 requests==2.25.1          # via -r requirements/base.in
 six==1.15.0               # via click-repl, cryptography, event-tracking, isodate, python-dateutil
 sqlparse==0.4.1           # via django
