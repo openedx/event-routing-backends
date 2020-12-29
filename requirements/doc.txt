@@ -34,7 +34,7 @@ docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sp
 edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-sphinx-theme==1.6.0   # via -r requirements/doc.in
 event-tracking==1.0.3     # via -r requirements/test.txt
-factory-boy==3.1.0        # via -r requirements/test.txt
+factory-boy==3.2.0        # via -r requirements/test.txt
 faker==5.0.2              # via -r requirements/test.txt, factory-boy
 idna==2.10                # via -r requirements/test.txt, requests
 imagesize==1.2.0          # via sphinx
@@ -45,7 +45,7 @@ jsonfield2==4.0.0.post0   # via -r requirements/test.txt
 kombu==5.0.2              # via -r requirements/test.txt, celery
 markupsafe==1.1.1         # via -r requirements/test.txt, jinja2
 mock==4.0.3               # via -r requirements/test.txt
-newrelic==5.22.1.152      # via -r requirements/test.txt, edx-django-utils
+newrelic==5.24.0.153      # via -r requirements/test.txt, edx-django-utils
 packaging==20.8           # via -r requirements/test.txt, bleach, pytest, sphinx
 pbr==5.5.1                # via -r requirements/test.txt, stevedore
 pluggy==0.13.1            # via -r requirements/test.txt, pytest
@@ -61,14 +61,14 @@ pytest-django==4.1.0      # via -r requirements/test.txt
 pytest==6.2.1             # via -r requirements/test.txt, pytest-cov, pytest-django
 python-dateutil==2.8.1    # via -r requirements/test.txt, faker
 python-slugify==4.0.1     # via -r requirements/test.txt, code-annotations
-pytz==2020.4              # via -r requirements/test.txt, babel, celery, django, event-tracking, tincan
+pytz==2020.5              # via -r requirements/test.txt, babel, celery, django, event-tracking, tincan
 pyyaml==5.3.1             # via -r requirements/test.txt, code-annotations
 readme-renderer==28.0     # via -r requirements/doc.in
 requests==2.25.1          # via -r requirements/test.txt, sphinx
 restructuredtext-lint==1.3.2  # via doc8
 six==1.15.0               # via -r requirements/test.txt, bleach, click-repl, cryptography, doc8, edx-sphinx-theme, event-tracking, isodate, python-dateutil, readme-renderer
 snowballstemmer==2.0.0    # via sphinx
-sphinx==3.4.0             # via -r requirements/doc.in, edx-sphinx-theme
+sphinx==3.4.1             # via -r requirements/doc.in, edx-sphinx-theme
 sphinxcontrib-applehelp==1.0.2  # via sphinx
 sphinxcontrib-devhelp==1.0.2  # via sphinx
 sphinxcontrib-htmlhelp==1.0.3  # via sphinx

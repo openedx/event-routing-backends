@@ -31,7 +31,7 @@ djangorestframework==3.12.2  # via -r requirements/test.txt, django-config-model
 edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-lint==1.6             # via -r requirements/quality.in
 event-tracking==1.0.3     # via -r requirements/test.txt
-factory-boy==3.1.0        # via -r requirements/test.txt
+factory-boy==3.2.0        # via -r requirements/test.txt
 faker==5.0.2              # via -r requirements/test.txt, factory-boy
 idna==2.10                # via -r requirements/test.txt, requests
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
@@ -44,7 +44,7 @@ lazy-object-proxy==1.4.3  # via astroid
 markupsafe==1.1.1         # via -r requirements/test.txt, jinja2
 mccabe==0.6.1             # via pylint
 mock==4.0.3               # via -r requirements/test.txt
-newrelic==5.22.1.152      # via -r requirements/test.txt, edx-django-utils
+newrelic==5.24.0.153      # via -r requirements/test.txt, edx-django-utils
 packaging==20.8           # via -r requirements/test.txt, pytest
 pbr==5.5.1                # via -r requirements/test.txt, stevedore
 pluggy==0.13.1            # via -r requirements/test.txt, pytest
@@ -65,7 +65,7 @@ pytest-django==4.1.0      # via -r requirements/test.txt
 pytest==6.2.1             # via -r requirements/test.txt, pytest-cov, pytest-django
 python-dateutil==2.8.1    # via -r requirements/test.txt, faker
 python-slugify==4.0.1     # via -r requirements/test.txt, code-annotations
-pytz==2020.4              # via -r requirements/test.txt, celery, django, event-tracking, tincan
+pytz==2020.5              # via -r requirements/test.txt, celery, django, event-tracking, tincan
 pyyaml==5.3.1             # via -r requirements/test.txt, code-annotations
 requests==2.25.1          # via -r requirements/test.txt
 six==1.15.0               # via -r requirements/test.txt, astroid, click-repl, cryptography, edx-lint, event-tracking, isodate, python-dateutil
