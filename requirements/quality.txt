@@ -32,11 +32,11 @@ edx-django-utils==3.13.0  # via -r requirements/test.txt, django-config-models
 edx-lint==1.6             # via -r requirements/quality.in
 event-tracking==1.0.3     # via -r requirements/test.txt
 factory-boy==3.2.0        # via -r requirements/test.txt
-faker==5.0.2              # via -r requirements/test.txt, factory-boy
+faker==5.3.0              # via -r requirements/test.txt, factory-boy
 idna==2.10                # via -r requirements/test.txt, requests
 iniconfig==1.1.1          # via -r requirements/test.txt, pytest
 isodate==0.6.0            # via -r requirements/test.txt
-isort==5.6.4              # via -r requirements/quality.in, pylint
+isort==5.7.0              # via -r requirements/quality.in, pylint
 jinja2==2.11.2            # via -r requirements/test.txt, code-annotations
 jsonfield2==4.0.0.post0   # via -r requirements/test.txt
 kombu==5.0.2              # via -r requirements/test.txt, celery
