@@ -55,7 +55,10 @@ click==7.1.2
     #   click-repl
     #   code-annotations
 code-annotations==0.10.2
-    # via -r requirements/test.in
+    # via
+    #   -r requirements/base.txt
+    #   -r requirements/test.in
+    #   edx-toggles
 coverage==5.3.1
     # via pytest-cov
 cryptography==3.3.1
@@ -70,12 +73,14 @@ django-crum==0.7.9
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
+    #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/base.txt
 django-waffle==2.0.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
+    #   edx-toggles
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
@@ -85,6 +90,7 @@ django-waffle==2.0.0
     #   django-fernet-fields
     #   djangorestframework
     #   edx-django-utils
+    #   edx-toggles
     #   event-tracking
     #   jsonfield2
 djangorestframework==3.12.2
@@ -95,6 +101,9 @@ edx-django-utils==3.13.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
+    #   edx-toggles
+edx-toggles==1.2.2
+    # via -r requirements/base.txt
 event-tracking==1.0.3
     # via -r requirements/base.txt
 factory-boy==3.2.0
@@ -110,7 +119,9 @@ iniconfig==1.1.1
 isodate==0.6.0
     # via -r requirements/base.txt
 jinja2==2.11.2
-    # via code-annotations
+    # via
+    #   -r requirements/base.txt
+    #   code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
 kombu==5.0.2
@@ -118,7 +129,9 @@ kombu==5.0.2
     #   -r requirements/base.txt
     #   celery
 markupsafe==1.1.1
-    # via jinja2
+    # via
+    #   -r requirements/base.txt
+    #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
 newrelic==5.24.0.153
@@ -166,7 +179,9 @@ python-dateutil==2.8.1
     #   -r requirements/base.txt
     #   faker
 python-slugify==4.0.1
-    # via code-annotations
+    # via
+    #   -r requirements/base.txt
+    #   code-annotations
 pytz==2020.5
     # via
     #   -r requirements/base.txt
@@ -175,7 +190,9 @@ pytz==2020.5
     #   event-tracking
     #   tincan
 pyyaml==5.3.1
-    # via code-annotations
+    # via
+    #   -r requirements/base.txt
+    #   code-annotations
 requests==2.25.1
     # via -r requirements/base.txt
 six==1.15.0
@@ -197,6 +214,7 @@ stevedore==3.3.0
     #   edx-django-utils
 text-unidecode==1.3
     # via
+    #   -r requirements/base.txt
     #   faker
     #   python-slugify
 tincan==1.0.0

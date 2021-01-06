@@ -76,7 +76,9 @@ click==7.1.2
     #   edx-lint
     #   pip-tools
 code-annotations==0.10.2
-    # via -r requirements/quality.txt
+    # via
+    #   -r requirements/quality.txt
+    #   edx-toggles
 codecov==2.1.11
     # via -r requirements/ci.txt
 coverage==5.3.1
@@ -103,12 +105,14 @@ django-crum==0.7.9
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
+    #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/quality.txt
 django-waffle==2.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
+    #   edx-toggles
 django==2.2.17
     # via
     #   -c requirements/constraints.txt
@@ -120,6 +124,7 @@ django==2.2.17
     #   djangorestframework
     #   edx-django-utils
     #   edx-i18n-tools
+    #   edx-toggles
     #   event-tracking
     #   jsonfield2
 djangorestframework==3.12.2
@@ -130,9 +135,12 @@ edx-django-utils==3.13.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
+    #   edx-toggles
 edx-i18n-tools==0.5.3
     # via -r requirements/dev.in
 edx-lint==1.6
+    # via -r requirements/quality.txt
+edx-toggles==1.2.2
     # via -r requirements/quality.txt
 event-tracking==1.0.3
     # via -r requirements/quality.txt

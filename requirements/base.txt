@@ -30,41 +30,58 @@ click==7.1.2
     #   click-didyoumean
     #   click-plugins
     #   click-repl
+    #   code-annotations
+code-annotations==0.10.2
+    # via edx-toggles
 cryptography==3.3.1
     # via django-fernet-fields
 django-config-models==2.0.3
     # via -r requirements/base.in
 django-crum==0.7.9
-    # via edx-django-utils
+    # via
+    #   edx-django-utils
+    #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/base.in
 django-waffle==2.0.0
-    # via edx-django-utils
+    # via
+    #   edx-django-utils
+    #   edx-toggles
 django==2.2.17
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
+    #   code-annotations
     #   django-config-models
     #   django-crum
     #   django-fernet-fields
     #   djangorestframework
     #   edx-django-utils
+    #   edx-toggles
     #   event-tracking
     #   jsonfield2
 djangorestframework==3.12.2
     # via django-config-models
 edx-django-utils==3.13.0
-    # via django-config-models
+    # via
+    #   django-config-models
+    #   edx-toggles
+edx-toggles==1.2.2
+    # via -r requirements/base.in
 event-tracking==1.0.3
     # via -r requirements/base.in
 idna==2.10
     # via requests
 isodate==0.6.0
     # via -r requirements/base.in
+jinja2==2.11.2
+    # via code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 kombu==5.0.2
     # via celery
+markupsafe==1.1.1
+    # via jinja2
 newrelic==5.24.0.153
     # via edx-django-utils
 pbr==5.5.1
@@ -79,6 +96,8 @@ pymongo==3.11.2
     # via event-tracking
 python-dateutil==2.8.1
     # via -r requirements/base.in
+python-slugify==4.0.1
+    # via code-annotations
 pytz==2020.5
     # via
     #   -r requirements/base.in
@@ -86,6 +105,8 @@ pytz==2020.5
     #   django
     #   event-tracking
     #   tincan
+pyyaml==5.3.1
+    # via code-annotations
 requests==2.25.1
     # via -r requirements/base.in
 six==1.15.0
@@ -98,7 +119,11 @@ six==1.15.0
 sqlparse==0.4.1
     # via django
 stevedore==3.3.0
-    # via edx-django-utils
+    # via
+    #   code-annotations
+    #   edx-django-utils
+text-unidecode==1.3
+    # via python-slugify
 tincan==1.0.0
     # via -r requirements/base.in
 urllib3==1.26.2

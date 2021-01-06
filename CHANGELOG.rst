@@ -14,7 +14,7 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-*
+* **Breaking change**: Caliper and xAPI processors will reject events unless the ``CALIPER_EVENTS_ENABLED`` and ``XAPI_EVENTS_ENABLED`` Django settings are enabled, respectively.
 
 [1.0.0] - 2020-11-09
 ~~~~~~~~~~~~~~~~~~~~
