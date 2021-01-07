@@ -5,7 +5,6 @@ xAPI processors and spec implementation.
 
 from edx_toggles.toggles import SettingToggle
 
-
 # .. toggle_name: XAPI_EVENTS_ENABLED
 # .. toggle_implementation: SettingToggle
 # .. toggle_default: False
