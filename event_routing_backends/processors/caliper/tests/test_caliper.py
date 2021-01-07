@@ -2,15 +2,17 @@
 Test the caliper processor.
 """
 import json
-from unittest import TestCase
 
+from django.test import SimpleTestCase
+from django.test.utils import override_settings
 from eventtracking.processors.exceptions import EventEmissionExit
 from mock import MagicMock, call, patch, sentinel
 
 from event_routing_backends.processors.caliper.transformer_processor import CaliperProcessor
 
 
-class TestCaliperProcessor(TestCase):
+@override_settings(CALIPER_EVENTS_ENABLED=True)
+class TestCaliperProcessor(SimpleTestCase):
     """Test cases for Caliper processor"""
 
     def setUp(self):
@@ -24,6 +26,11 @@ class TestCaliperProcessor(TestCase):
         }
 
         self.processor = CaliperProcessor()
+
+    @override_settings(CALIPER_EVENTS_ENABLED=False)
+    def test_skip_event_when_disabled(self):
+        with self.assertRaises(EventEmissionExit):
+            self.processor(self.sample_event)
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_send_method_with_no_transformer_implemented(self, mocked_logger):
