@@ -1,8 +1,9 @@
 """
 Test the xAPI processor.
 """
-from unittest import TestCase
 
+from django.test import SimpleTestCase
+from django.test.utils import override_settings
 from eventtracking.processors.exceptions import EventEmissionExit
 from mock import MagicMock, call, patch, sentinel
 from tincan import Statement
@@ -10,7 +11,8 @@ from tincan import Statement
 from event_routing_backends.processors.xapi.transformer_processor import XApiProcessor
 
 
-class TestXApiProcessor(TestCase):
+@override_settings(XAPI_EVENTS_ENABLED=True)
+class TestXApiProcessor(SimpleTestCase):
     """Test cases for xAPI processor"""
 
     def setUp(self):
@@ -19,6 +21,11 @@ class TestXApiProcessor(TestCase):
             'name': str(sentinel.name)
         }
         self.processor = XApiProcessor()
+
+    @override_settings(XAPI_EVENTS_ENABLED=False)
+    def test_skip_event_when_disabled(self):
+        with self.assertRaises(EventEmissionExit):
+            self.processor(self.sample_event)
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_send_method_with_no_transformer_implemented(self, mocked_logger):

@@ -31,6 +31,12 @@ There is a chance some of this has already been done:
 
     'event_routing_backends.apps.EventRoutingBackendsConfig'
 
+Enable processors
+-----------------
+
+Set the Django setting ``CALIPER_EVENTS_ENABLED`` or ``XAPI_EVENTS_ENABLED`` to true as appropriate. For now, these *must* only be enabled in local, sandbox, or stage environments.
+
+
 Configure for testing
 ---------------------
 

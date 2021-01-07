@@ -64,7 +64,9 @@ click==7.1.2
     #   click-repl
     #   code-annotations
 code-annotations==0.10.2
-    # via -r requirements/test.txt
+    # via
+    #   -r requirements/test.txt
+    #   edx-toggles
 coverage==5.3.1
     # via
     #   -r requirements/test.txt
@@ -81,12 +83,14 @@ django-crum==0.7.9
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
+    #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/test.txt
 django-waffle==2.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
+    #   edx-toggles
 django==2.2.17
     # via
     #   -c requirements/constraints.txt
@@ -97,6 +101,7 @@ django==2.2.17
     #   django-fernet-fields
     #   djangorestframework
     #   edx-django-utils
+    #   edx-toggles
     #   event-tracking
     #   jsonfield2
 djangorestframework==3.12.2
@@ -115,8 +120,11 @@ edx-django-utils==3.13.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
+    #   edx-toggles
 edx-sphinx-theme==1.6.0
     # via -r requirements/doc.in
+edx-toggles==1.2.2
+    # via -r requirements/test.txt
 event-tracking==1.0.3
     # via -r requirements/test.txt
 factory-boy==3.2.0

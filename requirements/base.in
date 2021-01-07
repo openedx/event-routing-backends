@@ -9,6 +9,6 @@ python-dateutil
 jsonfield2
 django-fernet-fields
 django-config-models
-
+edx-toggles               # For SettingToggle class
 tincan
 event-tracking
