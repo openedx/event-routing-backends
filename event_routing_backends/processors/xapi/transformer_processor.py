@@ -4,10 +4,11 @@ xAPI processor for transforming and routing events.
 import json
 from logging import getLogger
 
+from eventtracking.processors.exceptions import EventEmissionExit
+
 from event_routing_backends.processors.xapi import XAPI_EVENTS_ENABLED
 from event_routing_backends.processors.mixins.base_transformer_processor import BaseTransformerProcessorMixin
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
-from eventtracking.processors.exceptions import EventEmissionExit
 
 xapi_logger = getLogger('xapi_tracking')
 
