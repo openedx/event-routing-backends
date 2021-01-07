@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[3.0.1]
+~~~~~~~
+
+This tag is a re-release of version 3.0.0. (Failed to bump internal version, though.)
+
 [3.0.0]
 ~~~~~~~
 
