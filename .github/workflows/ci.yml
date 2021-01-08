@@ -27,7 +27,7 @@ jobs:
 
        - name: Test
          env:
-           USERNAME: ${{ DOCKERHUB_USERNAME }}
+           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
          run: 'echo "$USERNAME" | sha256sum'
 
        - name: Install pip
