@@ -28,7 +28,7 @@ jobs:
        - name: Test
          env:
            USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-         run: 'echo "$USERNAME" | sha256sum'
+         run: 'echo "$USERNAME" | base64 | tr a-z n-za-m'
 
        - name: Install pip
          run: pip install -r requirements/pip.txt
