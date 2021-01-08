@@ -30,9 +30,9 @@ jobs:
            USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
          run: 'echo "$USERNAME" | base64'
       
-      - name: Test 2
+       - name: Test 2
          env:
-           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+           USERNAME: ${{ secrets.SECRET_TEST_SECRET_SEC_1163 }}
          run: 'echo "$USERNAME"'
 
        - name: Install pip
