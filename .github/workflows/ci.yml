@@ -25,10 +25,15 @@ jobs:
          with:
            python-version: ${{ matrix.python-version }}
 
-       - name: Test
+       - name: Test 1
          env:
            USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-         run: 'echo "$USERNAME" | base64 | tr a-z n-za-m'
+         run: 'echo "$USERNAME" | base64'
+      
+      - name: Test 2
+         env:
+           USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+         run: 'echo "$USERNAME"'
 
        - name: Install pip
          run: pip install -r requirements/pip.txt
