@@ -25,6 +25,11 @@ jobs:
          with:
            python-version: ${{ matrix.python-version }}
 
+       - name: Test
+         env:
+           USERNAME: ${{ DOCKERHUB_USERNAME }}
+         run: 'echo "$USERNAME" | sha256sum'
+
        - name: Install pip
          run: pip install -r requirements/pip.txt
 
