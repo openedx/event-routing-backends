@@ -1,5 +1,5 @@
 {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
     "action": "Paused",
     "actor": {
         "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
