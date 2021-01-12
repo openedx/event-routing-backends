@@ -1,8 +1,9 @@
 """
 Test the helper methods.
 """
+from unittest.mock import patch
+
 from django.test import TestCase
-from mock import patch
 
 from event_routing_backends.helpers import get_anonymous_user_id_by_username, get_block_id_from_event_referrer
 from event_routing_backends.tests.factories import UserFactory

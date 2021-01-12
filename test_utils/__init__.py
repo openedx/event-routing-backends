@@ -9,8 +9,7 @@ in multiple test modules (i.e. factoryboy factories, base test classes).
 So this package is the place to put them.
 """
 import sys
-
-import mock
+from unittest import mock
 
 
 def _mock_third_party_modules():

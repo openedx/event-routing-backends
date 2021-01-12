@@ -2,9 +2,9 @@
 Test the transformers for all of the currently supported events into Caliper format.
 """
 import os
+from unittest.mock import patch
 
 from django.test import TestCase
-from mock import patch
 
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.tests.transformers_test_mixin import TransformersTestMixin

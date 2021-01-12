@@ -41,7 +41,7 @@ class LrsClient:
             str
         """
         if self.AUTH_SCHEME:
-            return '{} {}'.format(self.AUTH_SCHEME, self.AUTH_KEY)
+            return f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
 
         return None
 
