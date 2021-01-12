@@ -34,6 +34,6 @@ class TestCaliperEnvelopProcessor(TestCase):
         self.assertEqual(result, {
             'sensor': self.sensor_id,
             'sendTime': convert_datetime_to_iso(str(FROZEN_TIME)),
-            'data': self.sample_event,
+            'data': [self.sample_event],
             'dataVersion': CALIPER_EVENT_CONTEXT
         })

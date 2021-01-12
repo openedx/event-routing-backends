@@ -32,6 +32,6 @@ class CaliperEnvelopProcessor:
         return {
             'sensor': self.sensor_id,
             'sendTime': convert_datetime_to_iso(datetime.now(UTC)),
-            'data': event,
+            'data': [event],
             'dataVersion': CALIPER_EVENT_CONTEXT
         }

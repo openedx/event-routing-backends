@@ -16,6 +16,12 @@ Unreleased
 
 *
 
+[3.0.2]
+~~~~~~~
+* Added more directions for local testing
+* changed how event data is enveloped for caliper events
+* changed url to point from http://purl.imsglobal.org/ctx/caliper/v1p1 to http://purl.imsglobal.org/ctx/caliper/v1p2
+
 [3.0.1]
 ~~~~~~~
 
