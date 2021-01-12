@@ -93,13 +93,13 @@ cryptography==3.3.1
     #   django-fernet-fields
 ddt==1.4.1
     # via -r requirements/quality.txt
-diff-cover==4.0.1
+diff-cover==4.1.1
     # via -r requirements/dev.in
 distlib==0.3.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django-config-models==2.0.3
+django-config-models==2.0.4
     # via -r requirements/quality.txt
 django-crum==0.7.9
     # via
@@ -140,13 +140,13 @@ edx-i18n-tools==0.5.3
     # via -r requirements/dev.in
 edx-lint==1.6
     # via -r requirements/quality.txt
-edx-toggles==1.2.2
+edx-toggles==2.0.0
     # via -r requirements/quality.txt
 event-tracking==1.0.3
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==5.3.0
+faker==5.5.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -229,7 +229,7 @@ pluggy==0.13.1
     #   tox
 polib==1.1.0
     # via edx-i18n-tools
-prompt-toolkit==3.0.9
+prompt-toolkit==3.0.10
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -359,7 +359,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.20.1
+tox==3.21.0
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -373,7 +373,7 @@ vine==5.0.0
     #   -r requirements/quality.txt
     #   amqp
     #   celery
-virtualenv==20.2.2
+virtualenv==20.3.0
     # via
     #   -r requirements/ci.txt
     #   tox
