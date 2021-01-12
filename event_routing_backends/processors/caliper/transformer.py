@@ -69,10 +69,10 @@ class CaliperTransformer(BaseTransformerMixin):
         """
         Transform the edX event.
 
-        Overriding this method to clean the event after successfull
+        Overriding this method to clean the event after successful
         transformation.
-        In some cases, `object[extensions]` in the transfromed event may have
-        some keys that already exist in the `object` field of transfromed event.
+        In some cases, `object[extensions]` in the transformed event may have
+        some keys that already exist in the `object` field of transformed event.
         Here we delete such fields.
 
         Returns:

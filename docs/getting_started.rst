@@ -49,7 +49,7 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
                                     'OPTIONS': {}
                                 },
                                 {
-                                    'ENGINE': 'event_routing_backends.processors.caliper.envelop_processor.CaliperEnvelopProcessor',
+                                    'ENGINE': 'event_routing_backends.processors.caliper.envelope_processor.CaliperEnvelopeProcessor',
                                     'OPTIONS': {
                                         'sensor_id': 'http://example.com/sensors'
                                     }

@@ -81,7 +81,7 @@ class BaseTransformerProcessorMixin:
         Transform the event using the class's registry.
 
         Making this a separate method so that subclasses can override
-        this method if those class want to do it some otherway.
+        this method if those class want to do it some other way.
 
         Arguments:
             event (dict):   Event to be transformed.
