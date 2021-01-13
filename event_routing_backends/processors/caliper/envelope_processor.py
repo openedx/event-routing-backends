@@ -9,7 +9,7 @@ from event_routing_backends.helpers import convert_datetime_to_iso
 from event_routing_backends.processors.caliper.constants import CALIPER_EVENT_CONTEXT
 
 
-class CaliperEnvelopProcessor:
+class CaliperEnvelopeProcessor:
     """
     Envelope the caliper transformed event.
     """

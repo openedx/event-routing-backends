@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[4.0.0]
+~~~~~~~
+
+* **Breaking change**: Rename ``CaliperEnvelopProcessor`` to ``CaliperEnvelopeProcessor`` and rename module accordingly (typo fix)
+
 [3.0.2]
 ~~~~~~~
 * Added more directions for local testing

@@ -20,7 +20,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
     This processor first transform the event using the registered transformer
     and then route the events through the configured routers.
 
-    Every router configured to be used MUST support the transfromed event type.
+    Every router configured to be used MUST support the transformed event type.
     """
 
     registry = XApiTransformersRegistry

@@ -81,7 +81,7 @@ class BaseTransformerMixin:
                 self.transformed_event[key] = value
             else:
                 raise ValueError(
-                    'Cannot find value for "{}" in transforomer {} for the event "{}"'.format(
+                    'Cannot find value for "{}" in transformer {} for the event "{}"'.format(
                         key, self.__class__.__name__, self.event['name']
                     )
                 )
