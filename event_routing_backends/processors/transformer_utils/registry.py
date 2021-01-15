@@ -51,7 +51,7 @@ class TransformerRegistry:
             """
             if event_key in cls.mapping:
                 logger.info(
-                    'Overriding the existing transfromer {old_transformer} for event '
+                    'Overriding the existing transformer {old_transformer} for event '
                     '{event_name} with {new_transformer}'.format(
                         old_transformer=cls.mapping[event_key],
                         new_transformer=transformer,
@@ -61,8 +61,8 @@ class TransformerRegistry:
                 cls.mapping[event_key] = transformer
 
             else:
-                logger.info(
-                    'Registered transfromer {transformer} for event {event_name} '.format(
+                logger.debug(
+                    'Registered transformer {transformer} for event {event_name} '.format(
                         transformer=transformer,
                         event_name=event_key
                     )

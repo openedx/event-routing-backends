@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[4.0.1]
+~~~~~~~
+
+* Change a noisy INFO log message in ``TransformerRegistry.register()`` to DEBUG and fix two logging typos.
+
 [4.0.0]
 ~~~~~~~
 
