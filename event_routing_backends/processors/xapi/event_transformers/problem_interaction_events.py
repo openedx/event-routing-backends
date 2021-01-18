@@ -7,7 +7,6 @@ from tincan import (
     ActivityList,
     Context,
     ContextActivities,
-    Extensions,
     InteractionComponent,
     InteractionComponentList,
     LanguageMap,
@@ -177,10 +176,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
         if self.event['context']['event_source'] == 'browser':
-            xapi_object.id = get_block_id_from_event_referrer(self.event) or self.find_nested('referer')
-            xapi_object.definition.extensions = Extensions({
-                'data': self.event['data']
-            })
+            xapi_object.id = get_block_id_from_event_referrer(self.event)
             return xapi_object
 
         interaction_type = self._get_interaction_type()
@@ -230,7 +226,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         Returns:
             list
         """
-        answers = self.find_nested('answers')
+        answers = self.find_nested('answers', [dict])
         try:
             answers = next(iter(answers.values()))
             if isinstance(answers, str):
@@ -254,7 +250,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             InteractionComponentList<InteractionComponent>
         """
         answers = self._get_answers_list()
-        answers_descriptions = self.find_nested('answer')
+        answers_descriptions = self.find_nested('answer', [list, str])
         if isinstance(answers_descriptions, str):
             answers_descriptions = [answers_descriptions, ]
         return InteractionComponentList([
@@ -285,5 +281,5 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 'raw': event_data['grade'],
                 'scaled': event_data['grade']/event_data['max_grade']
             },
-            response=self.find_nested('answers')
+            response=self.find_nested('answers', [dict])
         )

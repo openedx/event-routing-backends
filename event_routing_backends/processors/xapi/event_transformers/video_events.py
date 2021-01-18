@@ -128,9 +128,6 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
                 type=constants.XAPI_ACTIVITY_VIDEO,
                 # TODO: how to get video's display name?
                 name=LanguageMap({constants.EN: 'Video Display Name'}),
-                extensions=Extensions({
-                    'code': self.event['data']['code']
-                })
             ),
         )
 
@@ -187,7 +184,7 @@ class VideoLoadedTransformer(BaseVideoTransformer):
 
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({
-            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.find_nested('duration')),
+            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.find_nested('duration', [int])),
         })
         return context
 
@@ -213,7 +210,9 @@ class VideoInteractionTransformers(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.find_nested('currentTime'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(
+                    self.find_nested('currentTime', [int, float])
+                )
             })
         )
 
@@ -235,10 +234,10 @@ class VideoCompletedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.find_nested('duration'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.find_nested('duration', [int]))
             }),
             completion=True,
-            duration=convert_seconds_to_iso(self.find_nested('duration'))
+            duration=convert_seconds_to_iso(self.find_nested('duration', [int]))
         )
 
 
@@ -259,7 +258,11 @@ class VideoPositionChangedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.find_nested('old_time')),
-                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.find_nested('new_time')),
+                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(
+                    self.find_nested('old_time', [float, str])
+                ),
+                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(
+                    self.find_nested('new_time', [int, str])
+                ),
             }),
         )

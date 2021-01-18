@@ -31,7 +31,6 @@ XAPI_ACTIVITY_LINK = 'http://adlnet.gov/expapi/activities/link'
 XAPI_ACTIVITY_POSITION = 'http://id.tincanapi.com/extension/position'
 
 # xAPI context
-XAPI_CONTEXT_REFERRER = 'http://id.tincanapi.com/extension/referrer'
 XAPI_CONTEXT_VIDEO_LENGTH = 'https://w3id.org/xapi/video/extensions/length'
 XAPI_CONTEXT_VIDEO_CC_LANGUAGE = 'https://w3id.org/xapi/video/extensions/cc-subtitle-lang'
 XAPI_CONTEXT_STARTING_POSITION = 'http://id.tincanapi.com/extension/starting-position'

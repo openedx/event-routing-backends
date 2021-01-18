@@ -9,6 +9,7 @@ class BaseTransformerMixin:
 
     Other transformers are inherited from this class.
     """
+
     required_fields = ()
     additional_fields = ()
 
@@ -22,16 +23,37 @@ class BaseTransformerMixin:
         self.event = event.copy()
         self.transformed_event = {}
 
-    def find_nested(self, key):
+    def extract_subdict_by_keys(self, base_dict, keys):
         """
-        Find a key at all levels in the original event dictionary.
+        Extract a subdict from given dict.
+        Subdict would have only those keys provided in `keys` argument.
+        If given key is not present in provided dict it will be ignored.
 
         Arguments:
-            key (str)         :  dictionary key
+            base_dict (dict)    :  dictionay to extract keys from
+            keys (list)         :  list of keys need in extracted dict
+
+        Returns:
+            dict
+        """
+        # ignore the key if it is not in the original dict
+        return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
+
+    def find_nested(self, key, return_types=None):
+        """
+        Find a key at all levels in the original event dictionary.
+        Asserts the type of value is same as expected return type
+
+        Arguments:
+            key (str)            :  dictionary key
+            return_types (list)  :  list of possbile types of return value
 
         Returns:
             ANY
         """
+        if not return_types:
+            return_types = [str]
+
         def _find_nested(event_dict):
             """
             Inner recursive method to find the key in dict.
@@ -42,12 +64,12 @@ class BaseTransformerMixin:
             Returns:
                 ANY
             """
-            if key in event_dict:
+            if key in event_dict and type(event_dict[key]) in return_types:
                 return event_dict[key]
             for _, value in event_dict.items():
                 if isinstance(value, dict):
                     found = _find_nested(value)
-                    if found is not None:
+                    if found is not None and type(found) in return_types:
                         return found
             return None
 

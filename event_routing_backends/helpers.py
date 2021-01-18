@@ -116,7 +116,8 @@ def get_block_id_from_event_referrer(event):
         str or None
     """
     try:
-        parsed = urlparse(event['context']['referer'])
+        referrer = event.get('referer', event['context']['referer'])
+        parsed = urlparse(referrer)
         block_id = parse_qs(parsed.query)['activate_block_id'][0]
         return block_id
     except (KeyError, IndexError):
