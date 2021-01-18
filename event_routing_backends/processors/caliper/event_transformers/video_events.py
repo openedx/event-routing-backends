@@ -90,14 +90,14 @@ class BaseVideoTransformer(CaliperTransformer):
         extensions = self.extract_subdict_by_keys(
             data, ['id', 'new_time', 'old_time', 'currentTime']
         )
-        if extensions:
-            if 'currentTime' in extensions:
-                extensions['currentTime'] = convert_seconds_to_iso(extensions['currentTime'])
-            if 'new_time' in extensions:
-                extensions['new_time'] = convert_seconds_to_iso(seconds=extensions['new_time'])
-            if 'old_time' in extensions:
-                extensions['old_time'] = convert_seconds_to_iso(seconds=extensions['old_time'])
-            caliper_object['extensions'].update(extensions)
+
+        if 'currentTime' in extensions:
+            extensions['currentTime'] = convert_seconds_to_iso(extensions['currentTime'])
+        if 'new_time' in extensions:
+            extensions['new_time'] = convert_seconds_to_iso(seconds=extensions['new_time'])
+        if 'old_time' in extensions:
+            extensions['old_time'] = convert_seconds_to_iso(seconds=extensions['old_time'])
+        caliper_object['extensions'].update(extensions)
 
         return caliper_object
 
@@ -145,8 +145,7 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
 
         # currentTime is included in the `target` of transformed event
         # therefore no need to include it in the `extensions`.
-        if 'extensions' in caliper_object and 'currentTime' in caliper_object['extensions']:
-            caliper_object['extensions'].pop('currentTime', None)
+        caliper_object['extensions'].pop('currentTime', None)
 
         return caliper_object
 
