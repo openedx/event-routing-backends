@@ -99,7 +99,7 @@ distlib==0.3.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django-config-models==2.0.4
+django-config-models==2.1.0
     # via -r requirements/quality.txt
 django-crum==0.7.9
     # via
@@ -140,13 +140,13 @@ edx-i18n-tools==0.5.3
     # via -r requirements/dev.in
 edx-lint==1.6
     # via -r requirements/quality.txt
-edx-toggles==2.0.0
+edx-toggles==3.1.0
     # via -r requirements/quality.txt
 event-tracking==1.0.3
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==5.5.0
+faker==5.6.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -282,7 +282,7 @@ pyparsing==2.4.7
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   packaging
-pytest-cov==2.10.1
+pytest-cov==2.11.0
     # via -r requirements/quality.txt
 pytest-django==4.1.0
     # via -r requirements/quality.txt
@@ -359,7 +359,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.0
+tox==3.21.1
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -373,7 +373,7 @@ vine==5.0.0
     #   -r requirements/quality.txt
     #   amqp
     #   celery
-virtualenv==20.3.0
+virtualenv==20.3.1
     # via
     #   -r requirements/ci.txt
     #   tox

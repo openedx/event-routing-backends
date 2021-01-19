@@ -78,7 +78,7 @@ cryptography==3.3.1
     #   django-fernet-fields
 ddt==1.4.1
     # via -r requirements/test.txt
-django-config-models==2.0.4
+django-config-models==2.1.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -116,13 +116,13 @@ edx-django-utils==3.13.0
     #   edx-toggles
 edx-lint==1.6
     # via -r requirements/quality.in
-edx-toggles==2.0.0
+edx-toggles==3.1.0
     # via -r requirements/test.txt
 event-tracking==1.0.3
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==5.5.0
+faker==5.6.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -218,7 +218,7 @@ pyparsing==2.4.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest-cov==2.10.1
+pytest-cov==2.11.0
     # via -r requirements/test.txt
 pytest-django==4.1.0
     # via -r requirements/test.txt
