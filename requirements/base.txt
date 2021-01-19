@@ -35,7 +35,7 @@ code-annotations==0.10.2
     # via edx-toggles
 cryptography==3.3.1
     # via django-fernet-fields
-django-config-models==2.0.4
+django-config-models==2.1.0
     # via -r requirements/base.in
 django-crum==0.7.9
     # via
@@ -66,7 +66,7 @@ edx-django-utils==3.13.0
     # via
     #   django-config-models
     #   edx-toggles
-edx-toggles==2.0.0
+edx-toggles==3.1.0
     # via -r requirements/base.in
 event-tracking==1.0.3
     # via -r requirements/base.in
