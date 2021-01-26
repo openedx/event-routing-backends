@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-amqp==5.0.2
+amqp==5.0.3
     # via
     #   -r requirements/test.txt
     #   kombu
@@ -64,9 +64,10 @@ click==7.1.2
     #   click-repl
     #   code-annotations
     #   edx-lint
-code-annotations==0.10.2
+code-annotations==1.0.2
     # via
     #   -r requirements/test.txt
+    #   edx-lint
     #   edx-toggles
 coverage==5.3.1
     # via
@@ -87,7 +88,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/test.txt
-django-waffle==2.0.0
+django-waffle==2.1.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -102,6 +103,7 @@ django==2.2.17
     #   django-fernet-fields
     #   djangorestframework
     #   edx-django-utils
+    #   edx-lint
     #   edx-toggles
     #   event-tracking
     #   jsonfield2
@@ -114,15 +116,15 @@ edx-django-utils==3.13.0
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-lint==1.6
+edx-lint==3.0
     # via -r requirements/quality.in
 edx-toggles==3.1.0
     # via -r requirements/test.txt
-event-tracking==1.0.3
+event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==5.6.1
+faker==5.7.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -160,7 +162,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==5.24.0.153
+newrelic==6.0.1.155
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -176,7 +178,7 @@ pluggy==0.13.1
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.10
+prompt-toolkit==3.0.14
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -218,11 +220,11 @@ pyparsing==2.4.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest-cov==2.11.0
+pytest-cov==2.11.1
     # via -r requirements/test.txt
 pytest-django==4.1.0
     # via -r requirements/test.txt
-pytest==6.2.1
+pytest==6.2.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -242,7 +244,7 @@ pytz==2020.5
     #   django
     #   event-tracking
     #   tincan
-pyyaml==5.3.1
+pyyaml==5.4.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -258,7 +260,7 @@ six==1.15.0
     #   event-tracking
     #   isodate
     #   python-dateutil
-snowballstemmer==2.0.0
+snowballstemmer==2.1.0
     # via pydocstyle
 sqlparse==0.4.1
     # via
