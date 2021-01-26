@@ -30,7 +30,6 @@ class CaliperTransformer(BaseTransformerMixin):
         """
         self._add_generic_fields()
         self._add_actor_info()
-        self._add_referrer()
 
     def _add_generic_fields(self):
         """
@@ -54,15 +53,6 @@ class CaliperTransformer(BaseTransformerMixin):
         self.transformed_event['actor'] = {
             'id': get_anonymous_user_id_by_username(self.event['context']['username']),
             'type': 'Person'
-        }
-
-    def _add_referrer(self):
-        """
-        Adds information of an Entity that represents the referring context.
-        """
-        self.transformed_event['referrer'] = {
-            'id': self.event['context'].get('referer'),
-            'type': 'WebPage'
         }
 
     def transform(self):

@@ -116,12 +116,13 @@ def get_block_id_from_event_referrer(event):
         str or None
     """
     try:
-        parsed = urlparse(event['context']['referer'])
+        referrer = event['context']['referer']
+        parsed = urlparse(referrer)
         block_id = parse_qs(parsed.query)['activate_block_id'][0]
         return block_id
     except (KeyError, IndexError):
         logger.error('Could not get block id for event "%s"', event.get('name'))
-        return None
+        raise
 
 
 def make_video_block_id(video_id, course_id, video_block_name='video', block_version='block-v1'):

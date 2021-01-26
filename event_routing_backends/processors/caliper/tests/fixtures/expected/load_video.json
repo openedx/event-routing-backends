@@ -17,9 +17,5 @@
         "type": "VideoObject",
         "duration": "PT3M15S"
     },
-    "referrer": {
-        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/d8a6192ade314473a78242dfeedfbf5b/edx_introduction/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40edx_introduction",
-        "type": "WebPage"
-    },
     "type": "Event"
 }
