@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-amqp==5.0.3
+amqp==5.0.5
     # via
     #   -r requirements/quality.txt
     #   kombu
-aniso8601==8.1.0
+aniso8601==8.1.1
     # via
     #   -r requirements/quality.txt
     #   tincan
@@ -76,14 +76,14 @@ click==7.1.2
     #   code-annotations
     #   edx-lint
     #   pip-tools
-code-annotations==1.0.2
+code-annotations==1.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
     #   edx-toggles
 codecov==2.1.11
     # via -r requirements/ci.txt
-coverage==5.3.1
+coverage==5.4
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -95,13 +95,13 @@ cryptography==3.3.1
     #   django-fernet-fields
 ddt==1.4.1
     # via -r requirements/quality.txt
-diff-cover==4.2.0
+diff-cover==4.2.1
     # via -r requirements/dev.in
 distlib==0.3.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django-config-models==2.1.0
+django-config-models==2.1.1
     # via -r requirements/quality.txt
 django-crum==0.7.9
     # via
@@ -115,7 +115,7 @@ django-waffle==2.1.0
     #   -r requirements/quality.txt
     #   edx-django-utils
     #   edx-toggles
-django==2.2.17
+django==2.2.18
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
@@ -141,7 +141,7 @@ edx-django-utils==3.13.0
     #   edx-toggles
 edx-i18n-tools==0.5.3
     # via -r requirements/dev.in
-edx-lint==3.0
+edx-lint==3.0.2
     # via -r requirements/quality.txt
 edx-toggles==3.1.0
     # via -r requirements/quality.txt
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==5.7.0
+faker==5.8.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -177,7 +177,7 @@ isort==5.7.0
     #   pylint
 jinja2-pluralize==0.3.0
     # via diff-cover
-jinja2==2.11.2
+jinja2==2.11.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -207,7 +207,7 @@ newrelic==6.0.1.155
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-packaging==20.8
+packaging==20.9
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -215,7 +215,7 @@ packaging==20.8
     #   tox
 path.py==12.5.0
     # via edx-i18n-tools
-path==15.0.1
+path==15.1.0
     # via path.py
 pbr==5.5.1
     # via
@@ -260,7 +260,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.3.0
+pylint-django==2.4.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -302,7 +302,7 @@ python-slugify==4.0.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2020.5
+pytz==2021.1
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -362,11 +362,11 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.2
+tox==3.21.3
     # via
     #   -r requirements/ci.txt
     #   tox-battery
-urllib3==1.26.2
+urllib3==1.26.3
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -376,7 +376,7 @@ vine==5.0.0
     #   -r requirements/quality.txt
     #   amqp
     #   celery
-virtualenv==20.4.0
+virtualenv==20.4.2
     # via
     #   -r requirements/ci.txt
     #   tox

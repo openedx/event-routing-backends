@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-amqp==5.0.3
+amqp==5.0.5
     # via
     #   -r requirements/base.txt
     #   kombu
-aniso8601==8.1.0
+aniso8601==8.1.1
     # via
     #   -r requirements/base.txt
     #   tincan
@@ -54,12 +54,12 @@ click==7.1.2
     #   click-plugins
     #   click-repl
     #   code-annotations
-code-annotations==1.0.2
+code-annotations==1.1.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage==5.3.1
+coverage==5.4
     # via pytest-cov
 cryptography==3.3.1
     # via
@@ -67,7 +67,7 @@ cryptography==3.3.1
     #   django-fernet-fields
 ddt==1.4.1
     # via -r requirements/test.in
-django-config-models==2.1.0
+django-config-models==2.1.1
     # via -r requirements/base.txt
 django-crum==0.7.9
     # via
@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==5.7.0
+faker==5.8.0
     # via factory-boy
 idna==2.10
     # via
@@ -118,7 +118,7 @@ iniconfig==1.1.1
     # via pytest
 isodate==0.6.0
     # via -r requirements/base.txt
-jinja2==2.11.2
+jinja2==2.11.3
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -138,7 +138,7 @@ newrelic==6.0.1.155
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-packaging==20.8
+packaging==20.9
     # via pytest
 pbr==5.5.1
     # via
@@ -182,7 +182,7 @@ python-slugify==4.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
-pytz==2020.5
+pytz==2021.1
     # via
     #   -r requirements/base.txt
     #   celery
@@ -221,7 +221,7 @@ tincan==1.0.0
     # via -r requirements/base.txt
 toml==0.10.2
     # via pytest
-urllib3==1.26.2
+urllib3==1.26.3
     # via
     #   -r requirements/base.txt
     #   requests
