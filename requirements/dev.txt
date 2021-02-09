@@ -89,7 +89,7 @@ coverage==5.4
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==3.3.1
+cryptography==3.4.2
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields
@@ -141,7 +141,7 @@ edx-django-utils==3.13.0
     #   edx-toggles
 edx-i18n-tools==0.5.3
     # via -r requirements/dev.in
-edx-lint==3.0.2
+edx-lint==4.0.1
     # via -r requirements/quality.txt
 edx-toggles==3.1.0
     # via -r requirements/quality.txt
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==5.8.0
+faker==6.0.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -276,7 +276,7 @@ pylint==2.6.0
     #   pylint-celery
     #   pylint-django
     #   pylint-plugin-utils
-pymongo==3.11.2
+pymongo==3.11.3
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -325,7 +325,6 @@ six==1.15.0
     #   -r requirements/quality.txt
     #   astroid
     #   click-repl
-    #   cryptography
     #   edx-i18n-tools
     #   edx-lint
     #   event-tracking
@@ -362,7 +361,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.3
+tox==3.21.4
     # via
     #   -r requirements/ci.txt
     #   tox-battery

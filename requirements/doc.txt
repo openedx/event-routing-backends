@@ -71,7 +71,7 @@ coverage==5.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.3.1
+cryptography==3.4.2
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -121,7 +121,7 @@ edx-django-utils==3.13.0
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-sphinx-theme==1.6.1
+edx-sphinx-theme==2.0.0
     # via -r requirements/doc.in
 edx-toggles==3.1.0
     # via -r requirements/test.txt
@@ -129,7 +129,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==5.8.0
+faker==6.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -201,7 +201,7 @@ pygments==2.7.4
     #   doc8
     #   readme-renderer
     #   sphinx
-pymongo==3.11.2
+pymongo==3.11.3
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -251,7 +251,6 @@ six==1.15.0
     #   -r requirements/test.txt
     #   bleach
     #   click-repl
-    #   cryptography
     #   doc8
     #   edx-sphinx-theme
     #   event-tracking
