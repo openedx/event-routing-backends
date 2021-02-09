@@ -33,7 +33,7 @@ click==7.1.2
     #   code-annotations
 code-annotations==1.1.0
     # via edx-toggles
-cryptography==3.3.1
+cryptography==3.4.2
     # via django-fernet-fields
 django-config-models==2.1.1
     # via -r requirements/base.in
@@ -92,7 +92,7 @@ psutil==5.8.0
     # via edx-django-utils
 pycparser==2.20
     # via cffi
-pymongo==3.11.2
+pymongo==3.11.3
     # via event-tracking
 python-dateutil==2.8.1
     # via -r requirements/base.in
@@ -112,7 +112,6 @@ requests==2.25.1
 six==1.15.0
     # via
     #   click-repl
-    #   cryptography
     #   event-tracking
     #   isodate
     #   python-dateutil
