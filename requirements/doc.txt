@@ -34,7 +34,7 @@ certifi==2020.12.5
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==1.14.4
+cffi==1.14.5
     # via
     #   -r requirements/test.txt
     #   cryptography
@@ -71,7 +71,7 @@ coverage==5.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.2
+cryptography==3.4.5
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -123,13 +123,13 @@ edx-django-utils==3.13.0
     #   edx-toggles
 edx-sphinx-theme==2.0.0
     # via -r requirements/doc.in
-edx-toggles==3.1.0
+edx-toggles==4.0.0
     # via -r requirements/test.txt
 event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.0.0
+faker==6.1.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -180,7 +180,7 @@ pluggy==0.13.1
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.14
+prompt-toolkit==3.0.16
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -196,7 +196,7 @@ pycparser==2.20
     # via
     #   -r requirements/test.txt
     #   cffi
-pygments==2.7.4
+pygments==2.8.0
     # via
     #   doc8
     #   readme-renderer
@@ -259,7 +259,7 @@ six==1.15.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==3.4.3
+sphinx==3.5.0
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
