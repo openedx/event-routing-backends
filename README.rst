@@ -13,7 +13,7 @@ event-routing-backends contains plugins for the `event-tracking`_ app that is in
 
 Currently work to support xAPI and Caliper event formats is in progress.
 
-See `OEP 26`_ for background.
+See `OEP 26`_ for background; the xAPI and Caliper subdocuments in particular include a specification of how LMS events will be translated to the format of the respective protocols.
 
 .. _event-tracking: https://github.com/edx/event-tracking
 .. _OEP 26: https://open-edx-proposals.readthedocs.io/en/latest/oep-0026-arch-realtime-events.html
