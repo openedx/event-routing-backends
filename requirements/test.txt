@@ -8,7 +8,7 @@ amqp==5.0.5
     # via
     #   -r requirements/base.txt
     #   kombu
-aniso8601==8.1.1
+aniso8601==9.0.0
     # via
     #   -r requirements/base.txt
     #   tincan
@@ -61,7 +61,7 @@ code-annotations==1.1.0
     #   edx-toggles
 coverage==5.4
     # via pytest-cov
-cryptography==3.4.5
+cryptography==3.4.6
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields
@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==6.1.1
+faker==6.4.1
     # via factory-boy
 idna==2.10
     # via

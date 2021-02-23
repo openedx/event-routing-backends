@@ -8,7 +8,7 @@ amqp==5.0.5
     # via
     #   -r requirements/test.txt
     #   kombu
-aniso8601==8.1.1
+aniso8601==9.0.0
     # via
     #   -r requirements/test.txt
     #   tincan
@@ -73,7 +73,7 @@ coverage==5.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.5
+cryptography==3.4.6
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -93,7 +93,7 @@ django-waffle==2.1.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-django==2.2.18
+django==2.2.19
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -124,7 +124,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.1.1
+faker==6.4.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -206,7 +206,7 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.6.0
+pylint==2.7.0
     # via
     #   edx-lint
     #   pylint-celery
