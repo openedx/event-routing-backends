@@ -8,7 +8,7 @@ amqp==5.0.5
     # via
     #   -r requirements/quality.txt
     #   kombu
-aniso8601==8.1.1
+aniso8601==9.0.0
     # via
     #   -r requirements/quality.txt
     #   tincan
@@ -89,7 +89,7 @@ coverage==5.4
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==3.4.5
+cryptography==3.4.6
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields
@@ -115,7 +115,7 @@ django-waffle==2.1.0
     #   -r requirements/quality.txt
     #   edx-django-utils
     #   edx-toggles
-django==2.2.18
+django==2.2.19
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==6.1.1
+faker==6.4.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -215,7 +215,7 @@ packaging==20.9
     #   tox
 path.py==12.5.0
     # via edx-i18n-tools
-path==15.1.0
+path==15.1.2
     # via path.py
 pbr==5.5.1
     # via
@@ -269,7 +269,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.6.0
+pylint==2.7.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -360,7 +360,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.4
+tox==3.22.0
     # via
     #   -r requirements/ci.txt
     #   tox-battery
