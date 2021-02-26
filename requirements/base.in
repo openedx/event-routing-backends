@@ -6,7 +6,7 @@ isodate
 pytz
 requests
 python-dateutil
-jsonfield2
+jsonfield
 django-fernet-fields
 django-config-models
 edx-toggles               # For SettingToggle class

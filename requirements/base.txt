@@ -51,7 +51,7 @@ django==2.2.24
     #   edx-django-utils
     #   edx-toggles
     #   event-tracking
-    #   jsonfield2
+    #   jsonfield
 django-config-models==2.2.0
     # via -r requirements/base.in
 django-crum==0.7.9
@@ -86,10 +86,10 @@ isodate==0.6.0
     # via -r requirements/base.in
 jinja2==3.0.1
     # via code-annotations
+jsonfield==3.1.0
+    # via -r requirements/base.in
 jsonfield2==4.0.0.post0
-    # via
-    #   -r requirements/base.in
-    #   edx-celeryutils
+    # via edx-celeryutils
 kombu==5.1.0
     # via celery
 markupsafe==2.0.1

@@ -100,6 +100,7 @@ django-waffle==2.2.1
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-toggles
+    #   jsonfield
 djangorestframework==3.12.4
     # via
     #   -r requirements/base.txt
@@ -135,10 +136,10 @@ jinja2==3.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
+jsonfield==3.1.0
+    # via -r requirements/base.txt
 jsonfield2==4.0.0.post0
-    # via
-    #   -r requirements/base.txt
-    #   edx-celeryutils
+    # via edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/base.txt
