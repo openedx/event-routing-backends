@@ -10,67 +10,9 @@
     "object": {
         "extensions": {
             "course_id":"course-v1:edX+DemoX+Demo_Course",
-            "answers": {
-                "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": [
-                    "choice_0",
-                    "choice_2"
-                ]
-            },
             "attempts": 10,
-            "correct_map": {
-                "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {
-                    "answervariable": null,
-                    "correctness": "incorrect",
-                    "hint": "",
-                    "hintmode": null,
-                    "msg": "",
-                    "npoints": null,
-                    "queuestate": null
-                }
-            },
             "grade": 0,
             "max_grade": 1,
-            "state": {
-                "correct_map": {
-                    "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {
-                        "answervariable": null,
-                        "correctness": "incorrect",
-                        "hint": "",
-                        "hintmode": null,
-                        "msg": "",
-                        "npoints": null,
-                        "queuestate": null
-                    }
-                },
-                "done": true,
-                "has_saved_answers": false,
-                "input_state": {
-                    "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {}
-                },
-                "seed": 1,
-                "student_answers": {
-                    "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": [
-                        "choice_0",
-                        "choice_1",
-                        "choice_2",
-                        "choice_3"
-                    ]
-                }
-            },
-            "submission": {
-                "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {
-                    "answer": [
-                        "a correct answer",
-                        "an incorrect answer"
-                    ],
-                    "correct": false,
-                    "group_label": "",
-                    "input_type": "checkboxgroup",
-                    "question": "Add the question text, or prompt, here. This text is required.",
-                    "response_type": "choiceresponse",
-                    "variant": ""
-                }
-            },
             "success": "incorrect"
         },
         "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",

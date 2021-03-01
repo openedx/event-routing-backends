@@ -41,7 +41,6 @@ class EnrollmentEventTransformers(CaliperTransformer):
             dict
         """
         data = self.event['data'].copy()
-        data.pop('user_id')
 
         # TODO: replace with anonymous enrollment id?
         course_root_url = '{root_url}{course_root}'.format(
@@ -51,6 +50,6 @@ class EnrollmentEventTransformers(CaliperTransformer):
         caliper_object = {
             'id': course_root_url,
             'type': 'Membership',
-            'extensions': data
+            'extensions': self.extract_subdict_by_keys(data, ['course_id', 'mode']),
         }
         return caliper_object

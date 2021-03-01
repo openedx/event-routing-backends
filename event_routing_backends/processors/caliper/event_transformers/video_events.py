@@ -73,9 +73,9 @@ class BaseVideoTransformer(CaliperTransformer):
             str
         """
         caliper_object = self.transformed_event['object']
-        event = self.event['data'].copy()
+        data = self.event['data'].copy()
         course_id = self.find_nested('course_id')
-        video_id = event['id']
+        video_id = data['id']
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
@@ -83,9 +83,21 @@ class BaseVideoTransformer(CaliperTransformer):
             'id': object_id,
             'type': 'VideoObject',
             'duration': duration_isoformat(timedelta(
-                    seconds=event.pop('duration')
+                    seconds=data.get('duration', 0)
             ))
         })
+        caliper_object['extensions'] = {'course_id': course_id}
+        extensions = self.extract_subdict_by_keys(
+            data, ['id', 'new_time', 'old_time', 'currentTime']
+        )
+
+        if 'currentTime' in extensions:
+            extensions['currentTime'] = convert_seconds_to_iso(extensions['currentTime'])
+        if 'new_time' in extensions:
+            extensions['new_time'] = convert_seconds_to_iso(seconds=extensions['new_time'])
+        if 'old_time' in extensions:
+            extensions['old_time'] = convert_seconds_to_iso(seconds=extensions['old_time'])
+        caliper_object['extensions'].update(extensions)
 
         return caliper_object
 
@@ -97,18 +109,6 @@ class LoadVideoTransformer(BaseVideoTransformer):
     Transform the events fired when a video is loaded.
     """
     type = 'Event'
-
-    def get_object(self):
-        """
-        Return transformed object for the caliper event.
-
-        Returns:
-            dict
-        """
-        caliper_object = super().get_object()
-
-        caliper_object['extensions'].update(self.event['data'])
-        return caliper_object
 
 
 @CaliperTransformersRegistry.register('stop_video')
@@ -122,22 +122,6 @@ class StopVideoTransformer(BaseVideoTransformer):
     Please note that "complete_video" doesn't exist currently but is
     expected to be added.
     """
-
-    def get_object(self):
-        """
-        Return transformed object for the caliper event.
-
-        Returns:
-            dict
-        """
-        caliper_object = super().get_object()
-        data = self.event['data'].copy()
-
-        if 'currentTime' in data:
-            caliper_object['extensions']['currentTime'] = convert_seconds_to_iso(data.pop('currentTime'))
-
-        caliper_object['extensions'].update(data)
-        return caliper_object
 
 
 @CaliperTransformersRegistry.register('play_video')
@@ -159,13 +143,10 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
         """
         caliper_object = super().get_object()
 
-        data = self.event['data'].copy()
-
         # currentTime is included in the `target` of transformed event
         # therefore no need to include it in the `extensions`.
-        data.pop('currentTime', None)
+        caliper_object['extensions'].pop('currentTime', None)
 
-        caliper_object['extensions'].update(data)
         return caliper_object
 
     def get_target(self):
@@ -192,27 +173,3 @@ class SeekVideoTransformer(BaseVideoTransformer):
     """
     Transform the events fired when a video is seeked.
     """
-
-    def get_object(self):
-        """
-        Return tranformed object for the caliper event.
-
-        Returns:
-            dict
-        """
-        caliper_object = super().get_object()
-        data = self.event['data'].copy()
-
-        new_time = convert_seconds_to_iso(
-            seconds=data.pop('new_time')
-        )
-        old_time = convert_seconds_to_iso(
-            seconds=data.pop('old_time')
-        )
-        caliper_object['extensions'].update({
-            'new_time': new_time,
-            'old_time': old_time
-        })
-
-        caliper_object['extensions'].update(data)
-        return caliper_object
