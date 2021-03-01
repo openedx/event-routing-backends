@@ -9,6 +9,7 @@ class BaseTransformerMixin:
 
     Other transformers are inherited from this class.
     """
+
     required_fields = ()
     additional_fields = ()
 
@@ -21,6 +22,20 @@ class BaseTransformerMixin:
         """
         self.event = event.copy()
         self.transformed_event = {}
+
+    def extract_subdict_by_keys(self, base_dict, keys):
+        """
+        Extract a subdict from given dict.
+        Subdict would have only those keys provided in `keys` argument.
+        If given key is not present in provided dict it will be ignored.
+        Arguments:
+            base_dict (dict)    :  dictionay to extract keys from
+            keys (list)         :  list of keys need in extracted dict
+        Returns:
+            dict
+        """
+        # ignore the key if it is not in the original dict
+        return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
 
     def find_nested(self, key):
         """

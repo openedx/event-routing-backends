@@ -10,9 +10,6 @@
     "object": {
         "extensions": {
             "course_id": "course-v1:edX+DemoX+Demo_Course",
-            "hint_index": 1,
-            "hint_len": 2,
-            "hint_text": "If you add more than one hint, a different hint appears each time learners select the hint button.",
             "module_id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090"
         },
         "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090",
