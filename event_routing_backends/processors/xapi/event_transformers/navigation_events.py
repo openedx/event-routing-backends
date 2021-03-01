@@ -86,10 +86,7 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             registration=get_anonymous_user_id_by_username(
                 self.event['context']['username']
             ),
-            contextActivities=self.get_context_activities(),
-            extensions=Extensions({
-                constants.XAPI_CONTEXT_REFERRER: self.event['context']['referer'],
-            })
+            contextActivities=self.get_context_activities()
         )
 
     def get_context_activities(self):
@@ -143,10 +140,7 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.event['context']['username']
-            ),
-            extensions=Extensions({
-                constants.XAPI_CONTEXT_REFERRER: self.event['context']['referer'],
-            })
+            )
         )
 
 

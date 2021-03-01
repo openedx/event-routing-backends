@@ -76,7 +76,7 @@ class ProblemEventsTransformers(CaliperTransformer):
         if not object_id:
             object_id = self.find_nested('module_id')
         if not object_id:
-            object_id = get_block_id_from_event_referrer(self.event) or self.event['context']['referer']
+            object_id = get_block_id_from_event_referrer(self.event)
 
         caliper_object = self.transformed_event['object']
         caliper_object.update({

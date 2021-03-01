@@ -16,9 +16,5 @@
         "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@48ecb924d7fe4b66a230137626bfa93e",
         "type": "WebPage"
     },
-    "referrer": {
-        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
-        "type": "WebPage"
-    },
     "type": "NavigationEvent"
 }
