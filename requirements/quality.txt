@@ -8,11 +8,11 @@ amqp==5.0.5
     # via
     #   -r requirements/test.txt
     #   kombu
-aniso8601==9.0.0
+aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.5
+astroid==2.5.1
     # via
     #   pylint
     #   pylint-celery
@@ -69,7 +69,7 @@ code-annotations==1.1.0
     #   -r requirements/test.txt
     #   edx-lint
     #   edx-toggles
-coverage==5.4
+coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -116,7 +116,7 @@ edx-django-utils==3.13.0
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-lint==4.0.1
+edx-lint==4.1.0
     # via -r requirements/quality.in
 edx-toggles==4.0.0
     # via -r requirements/test.txt
@@ -124,7 +124,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.4.1
+faker==6.5.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -162,7 +162,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.0.1.155
+newrelic==6.2.0.156
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -206,7 +206,7 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.7.0
+pylint==2.7.2
     # via
     #   edx-lint
     #   pylint-celery

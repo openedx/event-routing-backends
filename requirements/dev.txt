@@ -8,7 +8,7 @@ amqp==5.0.5
     # via
     #   -r requirements/quality.txt
     #   kombu
-aniso8601==9.0.0
+aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
@@ -16,7 +16,7 @@ appdirs==1.4.4
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-astroid==2.5
+astroid==2.5.1
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -83,7 +83,7 @@ code-annotations==1.1.0
     #   edx-toggles
 codecov==2.1.11
     # via -r requirements/ci.txt
-coverage==5.4
+coverage==5.5
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -95,7 +95,7 @@ cryptography==3.4.6
     #   django-fernet-fields
 ddt==1.4.1
     # via -r requirements/quality.txt
-diff-cover==4.2.1
+diff-cover==4.2.2
     # via -r requirements/dev.in
 distlib==0.3.1
     # via
@@ -141,7 +141,7 @@ edx-django-utils==3.13.0
     #   edx-toggles
 edx-i18n-tools==0.5.3
     # via -r requirements/dev.in
-edx-lint==4.0.1
+edx-lint==4.1.0
     # via -r requirements/quality.txt
 edx-toggles==4.0.0
     # via -r requirements/quality.txt
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==6.4.1
+faker==6.5.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -163,8 +163,12 @@ idna==2.10
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
-inflect==5.0.2
-    # via jinja2-pluralize
+importlib-metadata==3.7.0
+    # via inflect
+inflect==3.0.2
+    # via
+    #   diff-cover
+    #   jinja2-pluralize
 iniconfig==1.1.1
     # via
     #   -r requirements/quality.txt
@@ -203,7 +207,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==6.0.1.155
+newrelic==6.2.0.156
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -254,7 +258,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==5.1.1
     # via -r requirements/quality.txt
-pygments==2.8.0
+pygments==2.6.1
     # via diff-cover
 pylint-celery==0.3
     # via
@@ -269,7 +273,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.7.0
+pylint==2.7.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -386,6 +390,8 @@ wrapt==1.12.1
     # via
     #   -r requirements/quality.txt
     #   astroid
+zipp==3.4.0
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

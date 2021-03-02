@@ -10,7 +10,7 @@ amqp==5.0.5
     # via
     #   -r requirements/test.txt
     #   kombu
-aniso8601==9.0.0
+aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
@@ -67,7 +67,7 @@ code-annotations==1.1.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage==5.4
+coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -129,7 +129,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.4.1
+faker==6.5.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -162,7 +162,7 @@ markupsafe==1.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.0.1.155
+newrelic==6.2.0.156
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -238,7 +238,7 @@ pyyaml==5.4.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==28.0
+readme-renderer==29.0
     # via -r requirements/doc.in
 requests==2.25.1
     # via

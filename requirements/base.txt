@@ -6,7 +6,7 @@
 #
 amqp==5.0.5
     # via kombu
-aniso8601==9.0.0
+aniso8601==9.0.1
     # via tincan
 billiard==3.6.3.0
     # via celery
@@ -82,7 +82,7 @@ kombu==5.0.2
     # via celery
 markupsafe==1.1.1
     # via jinja2
-newrelic==6.0.1.155
+newrelic==6.2.0.156
     # via edx-django-utils
 pbr==5.5.1
     # via stevedore
