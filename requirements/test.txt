@@ -97,7 +97,7 @@ djangorestframework==3.12.2
     # via
     #   -r requirements/base.txt
     #   django-config-models
-edx-django-utils==3.13.0
+edx-django-utils==3.15.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==6.5.0
+faker==6.5.2
     # via factory-boy
 idna==2.10
     # via

@@ -95,7 +95,7 @@ cryptography==3.4.6
     #   django-fernet-fields
 ddt==1.4.1
     # via -r requirements/quality.txt
-diff-cover==4.2.2
+diff-cover==5.0.0
     # via -r requirements/dev.in
 distlib==0.3.1
     # via
@@ -134,7 +134,7 @@ djangorestframework==3.12.2
     # via
     #   -r requirements/quality.txt
     #   django-config-models
-edx-django-utils==3.13.0
+edx-django-utils==3.15.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==6.5.0
+faker==6.5.2
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -163,12 +163,8 @@ idna==2.10
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
-importlib-metadata==3.7.0
-    # via inflect
-inflect==3.0.2
-    # via
-    #   diff-cover
-    #   jinja2-pluralize
+inflect==5.3.0
+    # via jinja2-pluralize
 iniconfig==1.1.1
     # via
     #   -r requirements/quality.txt
@@ -258,7 +254,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==5.1.1
     # via -r requirements/quality.txt
-pygments==2.6.1
+pygments==2.8.1
     # via diff-cover
 pylint-celery==0.3
     # via
@@ -364,7 +360,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.22.0
+tox==3.23.0
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -390,8 +386,6 @@ wrapt==1.12.1
     # via
     #   -r requirements/quality.txt
     #   astroid
-zipp==3.4.0
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
