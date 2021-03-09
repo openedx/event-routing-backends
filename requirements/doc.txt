@@ -116,7 +116,7 @@ docutils==0.16
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-django-utils==3.13.0
+edx-django-utils==3.15.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -129,7 +129,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.5.0
+faker==6.5.2
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -196,7 +196,7 @@ pycparser==2.20
     # via
     #   -r requirements/test.txt
     #   cffi
-pygments==2.8.0
+pygments==2.8.1
     # via
     #   doc8
     #   readme-renderer
@@ -259,7 +259,7 @@ six==1.15.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==3.5.1
+sphinx==3.5.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
