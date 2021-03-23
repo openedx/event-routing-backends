@@ -102,13 +102,13 @@ edx-django-utils==3.15.0
     #   -r requirements/base.txt
     #   django-config-models
     #   edx-toggles
-edx-toggles==4.0.0
+edx-toggles==4.1.0
     # via -r requirements/base.txt
 event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==6.6.1
+faker==6.6.2
     # via factory-boy
 idna==2.10
     # via
@@ -146,7 +146,7 @@ pbr==5.5.1
     #   stevedore
 pluggy==0.13.1
     # via pytest
-prompt-toolkit==3.0.17
+prompt-toolkit==3.0.18
     # via
     #   -r requirements/base.txt
     #   click-repl

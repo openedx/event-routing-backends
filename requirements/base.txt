@@ -66,7 +66,7 @@ edx-django-utils==3.15.0
     # via
     #   django-config-models
     #   edx-toggles
-edx-toggles==4.0.0
+edx-toggles==4.1.0
     # via -r requirements/base.in
 event-tracking==1.0.4
     # via -r requirements/base.in
@@ -86,7 +86,7 @@ newrelic==6.2.0.156
     # via edx-django-utils
 pbr==5.5.1
     # via stevedore
-prompt-toolkit==3.0.17
+prompt-toolkit==3.0.18
     # via click-repl
 psutil==5.8.0
     # via edx-django-utils
