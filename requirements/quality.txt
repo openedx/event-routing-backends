@@ -116,15 +116,15 @@ edx-django-utils==3.15.0
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-lint==4.1.0
+edx-lint==5.0.0
     # via -r requirements/quality.in
-edx-toggles==4.0.0
+edx-toggles==4.1.0
     # via -r requirements/test.txt
 event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.6.1
+faker==6.6.2
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -138,7 +138,7 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.0
     # via -r requirements/test.txt
-isort==5.7.0
+isort==5.8.0
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -152,7 +152,7 @@ kombu==5.0.2
     # via
     #   -r requirements/test.txt
     #   celery
-lazy-object-proxy==1.5.2
+lazy-object-proxy==1.6.0
     # via astroid
 markupsafe==1.1.1
     # via
@@ -178,7 +178,7 @@ pluggy==0.13.1
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.17
+prompt-toolkit==3.0.18
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -196,7 +196,7 @@ pycparser==2.20
     # via
     #   -r requirements/test.txt
     #   cffi
-pydocstyle==5.1.1
+pydocstyle==6.0.0
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
