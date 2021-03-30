@@ -33,7 +33,7 @@ click==7.1.2
     #   code-annotations
 code-annotations==1.1.0
     # via edx-toggles
-cryptography==3.4.6
+cryptography==3.4.7
     # via django-fernet-fields
 django-config-models==2.1.1
     # via -r requirements/base.in
@@ -60,7 +60,7 @@ django==2.2.19
     #   edx-toggles
     #   event-tracking
     #   jsonfield2
-djangorestframework==3.12.2
+djangorestframework==3.12.4
     # via django-config-models
 edx-django-utils==3.15.0
     # via

@@ -16,7 +16,7 @@ appdirs==1.4.4
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-astroid==2.5.1
+astroid==2.5.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -89,7 +89,7 @@ coverage==5.5
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==3.4.6
+cryptography==3.4.7
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields
@@ -130,7 +130,7 @@ django==2.2.19
     #   edx-toggles
     #   event-tracking
     #   jsonfield2
-djangorestframework==3.12.2
+djangorestframework==3.12.4
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==6.6.2
+faker==7.0.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -234,7 +234,7 @@ pluggy==0.13.1
     #   diff-cover
     #   pytest
     #   tox
-polib==1.1.0
+polib==1.1.1
     # via edx-i18n-tools
 prompt-toolkit==3.0.18
     # via
@@ -273,7 +273,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.7.2
+pylint==2.7.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
