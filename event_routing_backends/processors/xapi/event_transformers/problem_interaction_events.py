@@ -7,7 +7,6 @@ from tincan import (
     ActivityList,
     Context,
     ContextActivities,
-    Extensions,
     InteractionComponent,
     InteractionComponentList,
     LanguageMap,
@@ -178,9 +177,6 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         # or `module_id` field. Therefore we get block id from the referrer.
         if self.event['context']['event_source'] == 'browser':
             xapi_object.id = get_block_id_from_event_referrer(self.event)
-            xapi_object.definition.extensions = Extensions({
-                'data': self.event['data']
-            })
             return xapi_object
 
         interaction_type = self._get_interaction_type()

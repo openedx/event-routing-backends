@@ -40,7 +40,12 @@ class NavigationEventsTransformers(CaliperTransformer):
         caliper_object.update({
             'id': object_id,
             'type': 'WebPage',
-            'extensions': data
         })
+
+        caliper_object.pop('extensions', None)
+
+        extensions = self.extract_subdict_by_keys(data, ['current_tab', 'tab_count', 'target_tab', 'widget_placement'])
+        if extensions:
+            caliper_object.update({'extensions': extensions})
 
         return caliper_object

@@ -9,8 +9,7 @@
     "id": "urn:uuid:042bc7ee-ba16-41e8-80ce-5b50185edb67",
     "object": {
         "extensions": {
-            "course_id": "course-v1:edX+DemoX+Demo_Course",
-            "data": "input_3fc5461f86764ad7bdbdf6cbdde61e66_2_1%5B%5D=choice_0&input_3fc5461f86764ad7bdbdf6cbdde61e66_2_1%5B%5D=choice_2"
+            "course_id": "course-v1:edX+DemoX+Demo_Course"
         },
         "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@ef37eb3cf1724e38b7f88a9ce85a4842",
         "type": "Assessment"

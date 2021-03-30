@@ -84,17 +84,21 @@ class ProblemEventsTransformers(CaliperTransformer):
             'type': OBJECT_TYPE_MAP[self.event['name']],
         })
 
-        if self.event['context'].get('event_source') == 'browser':
-            caliper_object['extensions'].update({
-                'data': self.event['data']
-            })
-        else:
-            caliper_object['extensions'].update(self.event['data'])
-            # problem_id is already being used as object id
-            if 'problem_id' in caliper_object['extensions']:
-                del caliper_object['extensions']['problem_id']
-
-        if 'user_id' in caliper_object['extensions']:
-            del caliper_object['extensions']['user_id']
+        if 'data' in self.event and isinstance(self.event['data'], dict):
+            data = self.event['data'].copy()
+            extensions = self.extract_subdict_by_keys(
+                data, [
+                    'module_id',
+                    'grade',
+                    'max_grade',
+                    'success',
+                    'attempts',
+                    'event_transaction_id',
+                    'event_transaction_type',
+                    'weighted_earned',
+                    'weighted_possible',
+                ]
+            )
+            caliper_object['extensions'].update(extensions)
 
         return caliper_object
