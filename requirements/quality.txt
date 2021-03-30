@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.5.1
+astroid==2.5.2
     # via
     #   pylint
     #   pylint-celery
@@ -73,7 +73,7 @@ coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.6
+cryptography==3.4.7
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -107,7 +107,7 @@ django==2.2.19
     #   edx-toggles
     #   event-tracking
     #   jsonfield2
-djangorestframework==3.12.2
+djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -124,7 +124,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==6.6.2
+faker==7.0.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -206,7 +206,7 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.7.2
+pylint==2.7.3
     # via
     #   edx-lint
     #   pylint-celery
