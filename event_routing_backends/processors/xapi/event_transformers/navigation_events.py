@@ -126,7 +126,7 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
             id=self.event['data']['target_url'],
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_MODULE,
-                name=LanguageMap({constants.EN: self.find_nested('target_name')}),
+                name=LanguageMap({constants.EN: self.event['data']['target_name']}),
             ),
         )
 

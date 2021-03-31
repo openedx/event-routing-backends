@@ -118,7 +118,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
-        course_id = self.find_nested('course_id')
+        course_id = self.event['context']['course_id']
         video_id = self.event['data']['id']
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
@@ -187,7 +187,7 @@ class VideoLoadedTransformer(BaseVideoTransformer):
 
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({
-            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.find_nested('duration')),
+            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.event['data']['duration']),
         })
         return context
 
@@ -213,7 +213,7 @@ class VideoInteractionTransformers(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.find_nested('currentTime'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['currentTime'])
             })
         )
 
@@ -235,10 +235,10 @@ class VideoCompletedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.find_nested('duration'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['duration'])
             }),
             completion=True,
-            duration=convert_seconds_to_iso(self.find_nested('duration'))
+            duration=convert_seconds_to_iso(self.event['data']['duration'])
         )
 
 
@@ -259,7 +259,7 @@ class VideoPositionChangedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.find_nested('old_time')),
-                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.find_nested('new_time')),
+                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.event['data']['old_time']),
+                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.event['data']['new_time']),
             }),
         )

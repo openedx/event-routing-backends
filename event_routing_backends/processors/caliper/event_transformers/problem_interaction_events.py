@@ -72,9 +72,12 @@ class ProblemEventsTransformers(CaliperTransformer):
         Returns:
             dict
         """
-        object_id = self.find_nested('problem_id')
-        if not object_id:
-            object_id = self.find_nested('module_id')
+        object_id = None
+        event_data = None
+        data = self.event.get('data', None)
+        if data and isinstance(data, dict):
+            event_data = data.copy()
+            object_id = event_data.get('problem_id', event_data.get('module_id', None))
         if not object_id:
             object_id = get_block_id_from_event_referrer(self.event)
 
@@ -84,10 +87,9 @@ class ProblemEventsTransformers(CaliperTransformer):
             'type': OBJECT_TYPE_MAP[self.event['name']],
         })
 
-        if 'data' in self.event and isinstance(self.event['data'], dict):
-            data = self.event['data'].copy()
+        if event_data and isinstance(event_data, dict):
             extensions = self.extract_subdict_by_keys(
-                data, [
+                event_data, [
                     'module_id',
                     'grade',
                     'max_grade',

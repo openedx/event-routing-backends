@@ -74,7 +74,7 @@ class BaseVideoTransformer(CaliperTransformer):
         """
         caliper_object = self.transformed_event['object']
         data = self.event['data'].copy()
-        course_id = self.find_nested('course_id')
+        course_id = self.event['context']['course_id']
         video_id = data['id']
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
