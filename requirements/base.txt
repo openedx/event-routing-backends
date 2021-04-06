@@ -4,11 +4,11 @@
 #
 #    make upgrade
 #
-amqp==5.0.5
+amqp==5.0.6
     # via kombu
 aniso8601==9.0.1
     # via tincan
-billiard==3.6.3.0
+billiard==3.6.4.0
     # via celery
 celery==5.0.5
     # via event-tracking
@@ -31,7 +31,7 @@ click==7.1.2
     #   click-plugins
     #   click-repl
     #   code-annotations
-code-annotations==1.1.0
+code-annotations==1.1.1
     # via edx-toggles
 cryptography==3.4.7
     # via django-fernet-fields
@@ -62,7 +62,7 @@ django==2.2.19
     #   jsonfield2
 djangorestframework==3.12.4
     # via django-config-models
-edx-django-utils==3.15.0
+edx-django-utils==3.16.0
     # via
     #   django-config-models
     #   edx-toggles

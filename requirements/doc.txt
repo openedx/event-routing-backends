@@ -6,7 +6,7 @@
 #
 alabaster==0.7.12
     # via sphinx
-amqp==5.0.5
+amqp==5.0.6
     # via
     #   -r requirements/test.txt
     #   kombu
@@ -20,7 +20,7 @@ attrs==20.3.0
     #   pytest
 babel==2.9.0
     # via sphinx
-billiard==3.6.3.0
+billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
@@ -63,7 +63,7 @@ click==7.1.2
     #   click-plugins
     #   click-repl
     #   code-annotations
-code-annotations==1.1.0
+code-annotations==1.1.1
     # via
     #   -r requirements/test.txt
     #   edx-toggles
@@ -110,18 +110,18 @@ djangorestframework==3.12.4
     #   django-config-models
 doc8==0.8.1
     # via -r requirements/doc.in
-docutils==0.16
+docutils==0.17
     # via
     #   doc8
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-django-utils==3.15.0
+edx-django-utils==3.16.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-sphinx-theme==2.0.0
+edx-sphinx-theme==2.1.0
     # via -r requirements/doc.in
 edx-toggles==4.1.0
     # via -r requirements/test.txt
@@ -129,7 +129,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==7.0.1
+faker==8.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -213,7 +213,7 @@ pytest-cov==2.11.1
     # via -r requirements/test.txt
 pytest-django==4.1.0
     # via -r requirements/test.txt
-pytest==6.2.2
+pytest==6.2.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
