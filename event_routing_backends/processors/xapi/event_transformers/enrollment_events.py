@@ -26,7 +26,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
         Returns:
             `Activity`
         """
-        course_id = self.find_nested('course_id')
+        course_id = self.event['context']['course_id']
         object_id = make_course_url(course_id)
 
         course = get_course_from_id(course_id)

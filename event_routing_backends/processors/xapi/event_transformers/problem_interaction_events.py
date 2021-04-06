@@ -82,9 +82,14 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
+        object_id = None
+        data = self.event.get('data', None)
+        if data and isinstance(data, dict):
+            object_id = data.get('problem_id', data.get('module_id', None))
+
         # TODO: Add definition[name] of problem once it is added in the event.
         return Activity(
-            id=self.find_nested('problem_id') or self.find_nested('module_id'),
+            id=object_id,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_INTERACTION,
             ),
@@ -226,7 +231,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         Returns:
             list
         """
-        answers = self.find_nested('answers')
+        answers = self.event.get('data', {}).get('answers', {})
         try:
             answers = next(iter(answers.values()))
             if isinstance(answers, str):
@@ -281,5 +286,5 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 'raw': event_data['grade'],
                 'scaled': event_data['grade']/event_data['max_grade']
             },
-            response=self.find_nested('answers')
+            response=event_data['answers']
         )
