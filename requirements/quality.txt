@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.5.2
+astroid==2.5.3
     # via
     #   pylint
     #   pylint-celery
@@ -93,7 +93,7 @@ django-waffle==2.1.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-django==2.2.19
+django==2.2.20
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -200,7 +200,7 @@ pydocstyle==6.0.0
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
-pylint-django==2.4.2
+pylint-django==2.4.3
     # via edx-lint
 pylint-plugin-utils==0.6
     # via
@@ -222,7 +222,7 @@ pyparsing==2.4.7
     #   packaging
 pytest-cov==2.11.1
     # via -r requirements/test.txt
-pytest-django==4.1.0
+pytest-django==4.2.0
     # via -r requirements/test.txt
 pytest==6.2.3
     # via

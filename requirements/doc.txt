@@ -91,7 +91,7 @@ django-waffle==2.1.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-django==2.2.19
+django==2.2.20
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -110,8 +110,9 @@ djangorestframework==3.12.4
     #   django-config-models
 doc8==0.8.1
     # via -r requirements/doc.in
-docutils==0.17
+docutils==0.16
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   doc8
     #   readme-renderer
     #   restructuredtext-lint
@@ -211,7 +212,7 @@ pyparsing==2.4.7
     #   packaging
 pytest-cov==2.11.1
     # via -r requirements/test.txt
-pytest-django==4.1.0
+pytest-django==4.2.0
     # via -r requirements/test.txt
 pytest==6.2.3
     # via
@@ -259,7 +260,7 @@ six==1.15.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==3.5.3
+sphinx==3.5.4
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
