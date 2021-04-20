@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.0.0
+faker==8.1.0
     # via factory-boy
 idna==2.10
     # via
