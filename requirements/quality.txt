@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.5.3
+astroid==2.5.6
     # via
     #   pylint
     #   pylint-celery
@@ -124,7 +124,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.1.0
+faker==8.1.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -170,7 +170,7 @@ packaging==20.9
     # via
     #   -r requirements/test.txt
     #   pytest
-pbr==5.5.1
+pbr==5.6.0
     # via
     #   -r requirements/test.txt
     #   stevedore
@@ -200,7 +200,7 @@ pydocstyle==6.0.0
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
-pylint-django==2.4.3
+pylint-django==2.4.4
     # via edx-lint
 pylint-plugin-utils==0.6
     # via
@@ -208,6 +208,7 @@ pylint-plugin-utils==0.6
     #   pylint-django
 pylint==2.7.4
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   edx-lint
     #   pylint-celery
     #   pylint-django

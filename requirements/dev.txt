@@ -16,7 +16,7 @@ appdirs==1.4.4
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-astroid==2.5.3
+astroid==2.5.6
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.1.0
+faker==8.1.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -217,7 +217,7 @@ path.py==12.5.0
     # via edx-i18n-tools
 path==15.1.2
     # via path.py
-pbr==5.5.1
+pbr==5.6.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
@@ -264,7 +264,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.4.3
+pylint-django==2.4.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -275,6 +275,7 @@ pylint-plugin-utils==0.6
     #   pylint-django
 pylint==2.7.4
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
     #   edx-lint
     #   pylint-celery
@@ -380,7 +381,7 @@ vine==5.0.0
     #   -r requirements/quality.txt
     #   amqp
     #   celery
-virtualenv==20.4.3
+virtualenv==20.4.4
     # via
     #   -r requirements/ci.txt
     #   tox
