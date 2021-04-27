@@ -84,7 +84,7 @@ markupsafe==1.1.1
     # via jinja2
 newrelic==6.2.0.156
     # via edx-django-utils
-pbr==5.5.1
+pbr==5.6.0
     # via stevedore
 prompt-toolkit==3.0.18
     # via click-repl

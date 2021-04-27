@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.1.0
+faker==8.1.1
     # via factory-boy
 idna==2.10
     # via
@@ -140,7 +140,7 @@ newrelic==6.2.0.156
     #   edx-django-utils
 packaging==20.9
     # via pytest
-pbr==5.5.1
+pbr==5.6.0
     # via
     #   -r requirements/base.txt
     #   stevedore
