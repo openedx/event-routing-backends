@@ -78,29 +78,31 @@ class EventsRouter:
         logger.debug('Successfully processed event %s for router with backend %s',
                      event, self.backend_name)
 
-        router = RouterConfiguration.get_enabled_router(self.backend_name)
+        routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
-        if not router:
+        if not routers:
             logger.error('Could not find an enabled router configurations for backend %s', self.backend_name)
             return
 
-        hosts = router.get_allowed_hosts(event)
-        if not hosts:
-            logger.info(
-                'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                event, self.backend_name
-            )
-            return
+        for router in routers:
+            hosts = router.get_allowed_hosts(event)
 
-        for host in hosts:
-            updated_event = self.overwrite_event_data(processed_event, host)
+            if not hosts:
+                logger.info(
+                    'Event %s is not allowed to be sent to any host for router with backend "%s"',
+                    event, self.backend_name
+                )
+                return
 
-            self.dispatch_event(
-                event,
-                updated_event,
-                host['router_type'],
-                host['host_configurations']
-            )
+            for host in hosts:
+                updated_event = self.overwrite_event_data(processed_event, host)
+
+                self.dispatch_event(
+                    event,
+                    updated_event,
+                    host['router_type'],
+                    host['host_configurations']
+                )
 
     def process_event(self, event):
         """
