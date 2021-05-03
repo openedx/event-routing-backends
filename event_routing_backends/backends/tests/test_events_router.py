@@ -4,6 +4,7 @@ Test the EventsRouter
 from unittest.mock import MagicMock, call, patch, sentinel
 
 from django.test import TestCase
+from edx_django_utils.cache.utils import TieredCache
 from eventtracking.processors.exceptions import EventEmissionExit
 from tincan.statement import Statement
 
@@ -163,10 +164,12 @@ class TestEventsRouter(TestCase):
         RouterConfigurationFactory.create(
             backend_name='test_backend',
             enabled=True,
+            route_url='http://test3.com',
             configurations=configurations
         )
 
         router = EventsRouter(processors=[], backend_name='test_backend')
+        TieredCache.dangerous_clear_all_tiers()
         router.send(self.transformed_event)
 
         mocked_logger.error.assert_called_once_with('Unsupported routing strategy detected: INVALID_TYPE')
@@ -178,10 +181,12 @@ class TestEventsRouter(TestCase):
         RouterConfigurationFactory.create(
             backend_name='test_backend',
             enabled=True,
+            route_url='http://test3.com',
             configurations=ROUTER_CONFIG_FIXTURE[1:1]
         )
 
         router = EventsRouter(processors=[], backend_name='test_backend')
+        TieredCache.dangerous_clear_all_tiers()
         router.send(self.transformed_event)
 
         mocked_post.assert_not_called()
@@ -200,10 +205,10 @@ class TestEventsRouter(TestCase):
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.backends.events_router.logger')
     def test_generic_exception(self, mocked_logger, mocked_post):
-
         RouterConfigurationFactory.create(
             backend_name='test_backend',
             enabled=True,
+            route_url='http://test3.com',
             configurations=ROUTER_CONFIG_FIXTURE[0:1]
         )
 
@@ -217,6 +222,7 @@ class TestEventsRouter(TestCase):
         RouterConfigurationFactory.create(
             backend_name='test_routing',
             enabled=True,
+            route_url='http://test3.com',
             configurations=ROUTER_CONFIG_FIXTURE[4:5]
         )
         router = EventsRouter(processors=[], backend_name='test_routing')
@@ -240,6 +246,7 @@ class TestEventsRouter(TestCase):
         RouterConfigurationFactory.create(
             backend_name='test_routing',
             enabled=True,
+            route_url='http://test3.com',
             configurations=ROUTER_CONFIG_FIXTURE
         )
 

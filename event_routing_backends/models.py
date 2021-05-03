@@ -1,9 +1,12 @@
+
 """
 Database models for event_routing_backends.
 """
-from config_models.models import ConfigurationModel
+from config_models.models import ConfigurationModel, ConfigurationModelManager
 from django.db import models
+from edx_django_utils.cache.utils import TieredCache, get_cache_key
 
+from event_routing_backends.helpers import backend_cache_ttl
 from event_routing_backends.utils.fields import EncryptedJSONField
 
 
@@ -38,6 +41,31 @@ def get_value_from_dotted_path(dict_obj, dotted_key):
     except KeyError:
         return None
     return result
+
+
+class RouterConfigurationManager(ConfigurationModelManager):
+    """
+    Query manager for ConfigurationModel.
+    """
+
+    def get_routers(self, backend_name):
+        """
+        Bring active routers of a backend.
+
+        A queryset for the active configuration entries only. Only useful if backend_name is passed.
+        This function will return all active routers of a backend.
+        """
+        if not backend_name:
+            return []
+
+        cache_key = get_cache_key(namespace="event_routing_backends", resource=backend_name)
+        cached_response = TieredCache.get_cached_response(cache_key)
+        if cached_response.is_found:
+            return cached_response.value
+
+        current = self.current_set().filter(backend_name=backend_name, enabled=True).order_by('-change_date')
+        TieredCache.set_all_tiers(cache_key, current, backend_cache_ttl())
+        return current
 
 
 class RouterConfiguration(ConfigurationModel):
@@ -84,12 +112,13 @@ class RouterConfiguration(ConfigurationModel):
 
     """
 
-    KEY_FIELDS = ('backend_name',)
+    KEY_FIELDS = ('route_url',)
     backend_name = models.CharField(
         max_length=50,
         verbose_name='Backend name',
         null=False,
         blank=False,
+        db_index=True,
         help_text=(
             'Name of the tracking backend on which this router should be applied.'
             '<br/>'
@@ -97,11 +126,24 @@ class RouterConfiguration(ConfigurationModel):
         )
     )
 
+    route_url = models.CharField(
+        max_length=255,
+        verbose_name='Route url',
+        null=False,
+        blank=False,
+        help_text=(
+            'Route Url of the tracking backend on which this router should be applied.'
+            '<br/>'
+            'Please note that this field is <b>case sensitive.</b>'
+        )
+    )
+
     configurations = EncryptedJSONField()
+    objects = RouterConfigurationManager()
 
     class Meta:
         """
-        Meta class.
+        Addition of class names.
         """
 
         verbose_name = 'Router Configuration'
@@ -118,20 +160,21 @@ class RouterConfiguration(ConfigurationModel):
         )
 
     @classmethod
-    def get_enabled_router(cls, backend_name):
+    def get_enabled_routers(cls, backend_name):
         """
-        Return enabled router.
+        Return enabled routers.
 
-        Return the enabled router for the backend matching the `backend_name`.
+        Return the enabled routers for the backend matching the `backend_name`.
 
         Arguments:
-            backend_name (str):     Name of the backend for which the router is required.
+            backend_name (str):     Name of the backend for which the routers are required.
+            cache(bool): If cache enable or not
 
         Returns:
-            RouterConfiguration or None
+            RouterConfigurations or None
         """
-        router_config = cls.current(backend_name)
-        return router_config if router_config.enabled else None
+        router_configs = cls.objects.get_routers(backend_name)
+        return router_configs if len(router_configs) > 0 else None
 
     def get_allowed_hosts(self, original_event):
         """
