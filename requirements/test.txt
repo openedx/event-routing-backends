@@ -97,7 +97,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/base.txt
     #   django-config-models
-edx-django-utils==3.16.0
+edx-django-utils==4.0.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.1.1
+faker==8.1.2
     # via factory-boy
 idna==2.10
     # via
@@ -178,7 +178,7 @@ python-dateutil==2.8.1
     # via
     #   -r requirements/base.txt
     #   faker
-python-slugify==4.0.1
+python-slugify==5.0.0
     # via
     #   -r requirements/base.txt
     #   code-annotations

@@ -111,7 +111,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
-edx-django-utils==3.16.0
+edx-django-utils==4.0.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -124,7 +124,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.1.1
+faker==8.1.2
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -206,9 +206,8 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.7.4
+pylint==2.8.2
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   edx-lint
     #   pylint-celery
     #   pylint-django
@@ -234,7 +233,7 @@ python-dateutil==2.8.1
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==4.0.1
+python-slugify==5.0.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
