@@ -21,7 +21,7 @@ astroid==2.5.6
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
-attrs==20.3.0
+attrs==21.2.0
     # via
     #   -r requirements/quality.txt
     #   pytest
@@ -95,7 +95,7 @@ cryptography==3.4.7
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==5.0.1
+diff-cover==5.1.0
     # via -r requirements/dev.in
 distlib==0.3.1
     # via
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.1.2
+faker==8.1.3
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -280,7 +280,7 @@ pylint==2.8.2
     #   pylint-celery
     #   pylint-django
     #   pylint-plugin-utils
-pymongo==3.11.3
+pymongo==3.11.4
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -293,7 +293,7 @@ pytest-cov==2.11.1
     # via -r requirements/quality.txt
 pytest-django==4.2.0
     # via -r requirements/quality.txt
-pytest==6.2.3
+pytest==6.2.4
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -302,7 +302,7 @@ python-dateutil==2.8.1
     # via
     #   -r requirements/quality.txt
     #   faker
-python-slugify==5.0.0
+python-slugify==5.0.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -323,7 +323,7 @@ requests==2.25.1
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   codecov
-six==1.15.0
+six==1.16.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -366,7 +366,7 @@ toml==0.10.2
     #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.23.0
+tox==3.23.1
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -380,7 +380,7 @@ vine==5.0.0
     #   -r requirements/quality.txt
     #   amqp
     #   celery
-virtualenv==20.4.4
+virtualenv==20.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
