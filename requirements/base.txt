@@ -26,6 +26,7 @@ click-repl==0.1.6
     # via celery
 click==7.1.2
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
@@ -47,7 +48,7 @@ django-waffle==2.1.0
     # via
     #   edx-django-utils
     #   edx-toggles
-django==2.2.20
+django==2.2.23
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -75,13 +76,17 @@ idna==2.10
 isodate==0.6.0
     # via -r requirements/base.in
 jinja2==2.11.3
-    # via code-annotations
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.in
 kombu==5.0.2
     # via celery
 markupsafe==1.1.1
-    # via jinja2
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   jinja2
 newrelic==6.2.0.156
     # via edx-django-utils
 pbr==5.6.0
