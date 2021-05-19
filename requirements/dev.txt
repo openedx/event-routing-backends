@@ -150,7 +150,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.1.4
+faker==8.2.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
