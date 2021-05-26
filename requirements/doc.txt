@@ -26,7 +26,7 @@ billiard==3.6.4.0
     #   celery
 bleach==3.3.0
     # via readme-renderer
-celery==5.0.5
+celery==5.1.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -57,14 +57,14 @@ click-repl==0.1.6
     #   celery
 click==7.1.2
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
     #   click-repl
     #   code-annotations
-code-annotations==1.1.1
+code-annotations==1.1.2
     # via
     #   -r requirements/test.txt
     #   edx-toggles
@@ -87,7 +87,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/test.txt
-django-waffle==2.1.0
+django-waffle==2.2.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -96,7 +96,6 @@ django==2.2.23
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
-    #   code-annotations
     #   django-config-models
     #   django-crum
     #   django-fernet-fields
@@ -131,7 +130,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.2.0
+faker==8.2.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -147,27 +146,24 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.0
     # via -r requirements/test.txt
-jinja2==2.11.3
+jinja2==3.0.1
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   code-annotations
     #   sphinx
 jsonfield2==4.0.0.post0
     # via -r requirements/test.txt
-kombu==5.0.2
+kombu==5.1.0
     # via
     #   -r requirements/test.txt
     #   celery
-markupsafe==1.1.1
+markupsafe==2.0.1
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   jinja2
-    #   sphinx
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.2.0.156
+newrelic==6.4.0.157
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -264,7 +260,7 @@ six==1.16.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==4.0.1
+sphinx==4.0.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -272,13 +268,13 @@ sphinxcontrib-applehelp==1.0.2
     # via sphinx
 sphinxcontrib-devhelp==1.0.2
     # via sphinx
-sphinxcontrib-htmlhelp==1.0.3
+sphinxcontrib-htmlhelp==2.0.0
     # via sphinx
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
 sphinxcontrib-qthelp==1.0.3
     # via sphinx
-sphinxcontrib-serializinghtml==1.1.4
+sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 sqlparse==0.4.1
     # via
@@ -311,6 +307,7 @@ vine==5.0.0
     #   -r requirements/test.txt
     #   amqp
     #   celery
+    #   kombu
 wcwidth==0.2.5
     # via
     #   -r requirements/test.txt
