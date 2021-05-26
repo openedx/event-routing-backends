@@ -6,7 +6,7 @@
 #
 click==7.1.2
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c requirements/constraints.txt
     #   pip-tools
 pep517==0.10.0
     # via pip-tools

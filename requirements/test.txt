@@ -18,7 +18,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/base.txt
     #   celery
-celery==5.0.5
+celery==5.1.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -48,14 +48,14 @@ click-repl==0.1.6
     #   celery
 click==7.1.2
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
     #   click-repl
     #   code-annotations
-code-annotations==1.1.1
+code-annotations==1.1.2
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
@@ -77,7 +77,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/base.txt
-django-waffle==2.1.0
+django-waffle==2.2.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -85,7 +85,6 @@ django-waffle==2.1.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.txt
-    #   code-annotations
     #   django-config-models
     #   django-crum
     #   django-fernet-fields
@@ -109,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.2.0
+faker==8.2.1
     # via factory-boy
 idna==2.10
     # via
@@ -119,25 +118,23 @@ iniconfig==1.1.1
     # via pytest
 isodate==0.6.0
     # via -r requirements/base.txt
-jinja2==2.11.3
+jinja2==3.0.1
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.txt
     #   code-annotations
 jsonfield2==4.0.0.post0
     # via -r requirements/base.txt
-kombu==5.0.2
+kombu==5.1.0
     # via
     #   -r requirements/base.txt
     #   celery
-markupsafe==1.1.1
+markupsafe==2.0.1
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.txt
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==6.2.0.156
+newrelic==6.4.0.157
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -234,7 +231,11 @@ vine==5.0.0
     #   -r requirements/base.txt
     #   amqp
     #   celery
+    #   kombu
 wcwidth==0.2.5
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
