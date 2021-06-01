@@ -33,7 +33,7 @@ celery==5.1.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-certifi==2020.12.5
+certifi==2021.5.30
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -60,7 +60,7 @@ click-plugins==1.1.1
     # via
     #   -r requirements/quality.txt
     #   celery
-click-repl==0.1.6
+click-repl==0.2.0
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -96,9 +96,9 @@ cryptography==3.4.7
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==5.1.1
+diff-cover==5.1.2
     # via -r requirements/dev.in
-distlib==0.3.1
+distlib==0.3.2
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -149,7 +149,7 @@ event-tracking==1.0.4
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.2.1
+faker==8.4.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -273,7 +273,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.8.2
+pylint==2.8.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -371,7 +371,7 @@ tox==3.23.1
     # via
     #   -r requirements/ci.txt
     #   tox-battery
-urllib3==1.26.4
+urllib3==1.26.5
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt

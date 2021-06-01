@@ -22,7 +22,7 @@ celery==5.1.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-certifi==2020.12.5
+certifi==2021.5.30
     # via
     #   -r requirements/base.txt
     #   requests
@@ -42,7 +42,7 @@ click-plugins==1.1.1
     # via
     #   -r requirements/base.txt
     #   celery
-click-repl==0.1.6
+click-repl==0.2.0
     # via
     #   -r requirements/base.txt
     #   celery
@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.2.1
+faker==8.4.0
     # via factory-boy
 idna==2.10
     # via
@@ -222,7 +222,7 @@ toml==0.10.2
     # via
     #   coverage
     #   pytest
-urllib3==1.26.4
+urllib3==1.26.5
     # via
     #   -r requirements/base.txt
     #   requests
