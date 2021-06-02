@@ -48,7 +48,11 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             `Agent`
         """
-        user_uuid = get_anonymous_user_id_by_username(self.event['context'].get('username'))
+        username = self.event['context']['username']
+        if username == '':
+            username = self.event['data']['username']
+
+        user_uuid = get_anonymous_user_id_by_username(username)
         return Agent(
             openid='https://openedx.org/users/user-v1/%s' % user_uuid,
         )
