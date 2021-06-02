@@ -68,7 +68,7 @@ code-annotations==1.1.2
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==5.5
+coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -117,7 +117,7 @@ docutils==0.16
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-django-utils==4.0.0
+edx-django-utils==4.1.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -210,7 +210,7 @@ pyparsing==2.4.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest-cov==2.12.0
+pytest-cov==2.12.1
     # via -r requirements/test.txt
 pytest-django==4.3.0
     # via -r requirements/test.txt
@@ -296,8 +296,8 @@ tincan==1.0.0
 toml==0.10.2
     # via
     #   -r requirements/test.txt
-    #   coverage
     #   pytest
+    #   pytest-cov
 urllib3==1.26.5
     # via
     #   -r requirements/test.txt

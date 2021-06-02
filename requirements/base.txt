@@ -62,7 +62,7 @@ django==2.2.23
     #   jsonfield2
 djangorestframework==3.12.4
     # via django-config-models
-edx-django-utils==4.0.0
+edx-django-utils==4.1.0
     # via
     #   django-config-models
     #   edx-toggles
