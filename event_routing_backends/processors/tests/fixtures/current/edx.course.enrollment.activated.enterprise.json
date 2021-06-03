@@ -11,7 +11,8 @@
         "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/about",
         "session": "",
         "user_id": "",
-        "username": ""
+        "username": "",
+        "enterprise_uuid": "1a0fbcbe-49e5-42f1-8e83-4cddfa592f22"
     },
     "data": {
         "course_id": "course-v1:edX+DemoX+Demo_Course",
