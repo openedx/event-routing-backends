@@ -141,12 +141,9 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Context`
         """
-        username = self.event['context']['username']
-        if username == '':
-            username = self.event['data']['username']
         return Context(
             registration=get_anonymous_user_id_by_username(
-                username
+                self.extract_username()
             ),
             contextActivities=self.get_context_activities()
         )

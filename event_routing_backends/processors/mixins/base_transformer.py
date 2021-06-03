@@ -102,3 +102,16 @@ class BaseTransformerMixin:
                 )
 
         return self.transformed_event
+
+    def extract_username(self):
+        """
+        extract username edX event.
+
+        Returns:
+            username
+        """
+        username = self.event['context']['username']
+        if username == '' and 'username' in self.event['data']:
+            username = self.event['data']['username']
+
+        return username
