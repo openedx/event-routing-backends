@@ -111,7 +111,7 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-
-        return self.event['data']['username'] \
-            if self.event['context']['username'] == '' and 'username' in self.event['data'] \
-            else self.event['context']['username']
+        username = self.event.get('context', {}).get('username')
+        if not username:
+            username = self.event.get('data', {}).get('username')
+        return username
