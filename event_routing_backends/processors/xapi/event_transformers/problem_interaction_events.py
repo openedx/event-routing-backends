@@ -102,9 +102,10 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Context`
         """
+
         return Context(
             registration=get_anonymous_user_id_by_username(
-                self.event['context']['username']
+                self.extract_username()
             ),
             contextActivities=self.get_context_activities()
         )

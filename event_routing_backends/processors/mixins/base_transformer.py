@@ -102,3 +102,16 @@ class BaseTransformerMixin:
                 )
 
         return self.transformed_event
+
+    def extract_username(self):
+        """
+        Extracts username from event by finding it in context first and falling back to data
+        if context does have username key
+
+        Returns:
+            str
+        """
+        username = self.event.get('context', {}).get('username')
+        if not username:
+            username = self.event.get('data', {}).get('username')
+        return username

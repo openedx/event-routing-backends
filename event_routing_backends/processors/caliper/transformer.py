@@ -50,7 +50,8 @@ class CaliperTransformer(BaseTransformerMixin):
         """
         Add all generic information related to `actor`.
         """
+
         self.transformed_event['actor'] = {
-            'id': get_anonymous_user_id_by_username(self.event['context']['username']),
+            'id': get_anonymous_user_id_by_username(self.extract_username()),
             'type': 'Person'
         }
