@@ -47,9 +47,10 @@ class BaseEnrollmentTransformer(XApiTransformer):
         Returns:
             `Context`
         """
+
         return Context(
             registration=get_anonymous_user_id_by_username(
-                self.event['context']['username']
+                self.extract_username()
             )
         )
 

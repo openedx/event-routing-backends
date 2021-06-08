@@ -82,9 +82,10 @@ class LinkClickedTransformer(NavigationTransformersMixin):
         Returns:
             `Context`
         """
+
         return Context(
             registration=get_anonymous_user_id_by_username(
-                self.event['context']['username']
+                self.extract_username()
             ),
             contextActivities=self.get_context_activities()
         )
@@ -137,9 +138,10 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
         Returns:
             `Context`
         """
+
         return Context(
             registration=get_anonymous_user_id_by_username(
-                self.event['context']['username']
+                self.extract_username()
             )
         )
 
@@ -195,9 +197,10 @@ class TabNavigationTransformer(NavigationTransformersMixin):
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'previous unit',
             })
+
         return Context(
             registration=get_anonymous_user_id_by_username(
-                self.event['context']['username']
+                self.extract_username()
             ),
             contextActivities=self.get_context_activities(),
             extensions=extensions

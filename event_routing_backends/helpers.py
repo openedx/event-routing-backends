@@ -162,3 +162,13 @@ def make_course_url(course_id):
             'course_id': course_id
         })
     )
+
+
+def backend_cache_ttl():
+    """
+    Return cache time out.
+
+    Returns:
+        int
+    """
+    return getattr(settings, 'EVENT_TRACKING_BACKENDS_CACHE_TTL', 600)
