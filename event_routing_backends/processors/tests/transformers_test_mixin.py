@@ -9,6 +9,7 @@ from unittest.mock import patch
 import ddt
 from django.contrib.auth import get_user_model
 
+import settings
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.tests.factories import UserFactory
 
@@ -83,11 +84,10 @@ class TransformersTestMixin:
         Test if pii fields getting blocked by transfarmer or not
         """
 
-        event = {
+        expected_event = event = {
             'name': 'abc',
             'event_type': 'edx.test.event',
             'time': '2020-01-01T12:12:12.000000+00:00',
-            'Password': 'xzy',
             'data': {
                 'key': 'value'
             },
@@ -97,18 +97,7 @@ class TransformersTestMixin:
             'session': '0000'
         }
 
-        expected_event = {
-            'name': 'abc',
-            'event_type': 'edx.test.event',
-            'time': '2020-01-01T12:12:12.000000+00:00',
-            'data': {
-                'key': 'value'
-            },
-            'context': {
-                'username': 'testuser'
-            },
-            'session': '0000'
-        }
+        event[settings.PII_FIELDS[0]] = 'abc'
         base_transfer = BaseTransformerMixin(event)
         transformed_event = base_transfer.strip_blocked_keys(event)
         self.assertDictEqual(expected_event, transformed_event)
