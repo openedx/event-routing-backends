@@ -77,3 +77,38 @@ class TransformersTestMixin:
             actual_transformed_event = self.registry.get_transformer(original_event).transform()
 
             self.compare_events(actual_transformed_event, expected_event)
+
+    def test_pii_fields_blockage(self):
+        """
+        Test if pii fields getting blocked by transfarmer or not
+        """
+
+        event = {
+            'name': 'abc',
+            'event_type': 'edx.test.event',
+            'time': '2020-01-01T12:12:12.000000+00:00',
+            'Password': 'xzy',
+            'data': {
+                'key': 'value'
+            },
+            'context': {
+                'username': 'testuser'
+            },
+            'session': '0000'
+        }
+
+        expected_event = {
+            'name': 'abc',
+            'event_type': 'edx.test.event',
+            'time': '2020-01-01T12:12:12.000000+00:00',
+            'data': {
+                'key': 'value'
+            },
+            'context': {
+                'username': 'testuser'
+            },
+            'session': '0000'
+        }
+        base_transfer = BaseTransformerMixin(event)
+        transformed_event = base_transfer.strip_blocked_keys(event)
+        self.assertDictEqual(expected_event, transformed_event)

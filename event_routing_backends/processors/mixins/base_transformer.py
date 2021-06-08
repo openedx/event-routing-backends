@@ -2,6 +2,8 @@
 Base Transformer Mixin to add or transform common data values.
 """
 
+import settings
+
 
 class BaseTransformerMixin:
     """
@@ -87,6 +89,7 @@ class BaseTransformerMixin:
         self.base_transform()
 
         transforming_fields = self.required_fields + self.additional_fields
+
         for key in transforming_fields:
             if hasattr(self, key):
                 value = getattr(self, key)
@@ -100,5 +103,20 @@ class BaseTransformerMixin:
                         key, self.__class__.__name__, self.event['name']
                     )
                 )
-
+        self.transformed_event = self.strip_blocked_keys(self.transformed_event)
         return self.transformed_event
+
+    def strip_blocked_keys(self, event):
+        """
+        Transform the edX event.
+
+        Returns:
+            dict
+        """
+        event_copy = event.copy()  # Used as iterator to avoid the 'DictionaryHasChanged' error
+        for field in event_copy:
+            if field in settings.PII_FIELDS:
+                del event[field]
+            if isinstance(event_copy[field], dict):
+                self.strip_blocked_keys(event[field])
+        return event

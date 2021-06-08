@@ -11,13 +11,16 @@
         "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/about",
         "session": "44c2f6b53a6aaf210797a56391a443bc",
         "user_id": 3,
-        "username": "edx"
+        "username": "edx",
+        "Password": "xyz"
     },
     "data": {
         "course_id": "course-v1:edX+DemoX+Demo_Course",
         "mode": "audit",
-        "user_id": 3
+        "user_id": 3,
+        "Password": "xyz"
     },
     "name": "edx.course.enrollment.activated",
-    "timestamp": "2020-07-15T06:36:01.917775+00:00"
+    "timestamp": "2020-07-15T06:36:01.917775+00:00",
+    "Password": "xyz"
 }
