@@ -108,7 +108,7 @@ event-tracking==1.0.4
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.4.0
+faker==8.6.0
     # via factory-boy
 idna==2.10
     # via
@@ -134,7 +134,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==6.4.0.157
+newrelic==6.4.1.158
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -168,7 +168,7 @@ pyparsing==2.4.7
     # via packaging
 pytest-cov==2.12.1
     # via -r requirements/test.in
-pytest-django==4.3.0
+pytest-django==4.4.0
     # via -r requirements/test.in
 pytest==6.2.4
     # via

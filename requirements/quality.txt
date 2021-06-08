@@ -94,7 +94,7 @@ django-waffle==2.2.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-django==2.2.23
+django==2.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -124,7 +124,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.4.0
+faker==8.6.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -162,7 +162,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.4.0.157
+newrelic==6.4.1.158
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -222,7 +222,7 @@ pyparsing==2.4.7
     #   packaging
 pytest-cov==2.12.1
     # via -r requirements/test.txt
-pytest-django==4.3.0
+pytest-django==4.4.0
     # via -r requirements/test.txt
 pytest==6.2.4
     # via
