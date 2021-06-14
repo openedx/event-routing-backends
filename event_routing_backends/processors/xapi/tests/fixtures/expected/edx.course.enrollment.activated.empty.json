@@ -1,0 +1,24 @@
+{
+    "actor": {
+        "objectType": "Agent",
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "context": {
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "name": {
+            },
+            "type": "http://adlnet.gov/expapi/activities/course"
+        },
+        "objectType": "Activity"
+    },
+    "verb": {
+        "display": {
+            "en": "registered"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/registered"
+    },
+    "version": "1.0.3"
+}

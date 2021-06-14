@@ -1,0 +1,34 @@
+{
+    "actor": {
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "objectType": "Agent"
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "extensions": {
+            },
+            "name": {
+                "en": "Link name"
+            },
+            "type": "http://adlnet.gov/expapi/activities/link"
+        },
+        "objectType": "Activity"
+    },
+    "verb": {
+        "display": {
+            "en": "experienced"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/experienced"
+    },
+    "version": "1.0.3"
+}

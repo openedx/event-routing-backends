@@ -1,8 +1,12 @@
 """
 Transformers for navigation related events.
 """
+import logging
+
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
+
+logger = logging.getLogger('caliper_tracking')
 
 
 @CaliperTransformersRegistry.register('edx.ui.lms.sequence.next_selected')
@@ -30,6 +34,7 @@ class NavigationEventsTransformers(CaliperTransformer):
             dict
         """
         caliper_object = self.transformed_event['object']
+
         data = self.event['data'].copy()
 
         object_id = data.pop('target_url') if self.event['name'] in (
@@ -47,5 +52,10 @@ class NavigationEventsTransformers(CaliperTransformer):
         extensions = self.extract_subdict_by_keys(data, ['current_tab', 'tab_count', 'target_tab', 'widget_placement'])
         if extensions:
             caliper_object.update({'extensions': extensions})
+        else:
+            logger.info(
+                'In Event %s no extensions found!',
+                self.event
+            )
 
         return caliper_object

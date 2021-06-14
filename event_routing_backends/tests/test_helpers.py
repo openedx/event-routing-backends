@@ -21,8 +21,7 @@ class TestHelpers(TestCase):
         sample_event = {
             'context': {}
         }
-        with self.assertRaises(KeyError):
-            get_block_id_from_event_referrer(sample_event)
+        self.assertEqual(get_block_id_from_event_referrer(sample_event), None)
 
     @patch('event_routing_backends.helpers.ExternalId')
     def test_get_anonymous_user_id_by_username_with_error(self, mocked_external_id):

@@ -38,20 +38,32 @@ class CaliperTransformer(BaseTransformerMixin):
         self.transformed_event.update({
             '@context': CALIPER_EVENT_CONTEXT,
             'id': uuid.uuid4().urn,
-            'eventTime': convert_datetime_to_iso(self.event.get('timestamp'))
+            **({'eventTime': convert_datetime_to_iso(self.event.get('timestamp'))}
+               if self.event.get('timestamp') is not None else {})
         })
-        self.transformed_event['object'] = {
-            'extensions': {
-                'course_id': self.event['context'].get('course_id', '')
+        if self.event['context'].get('course_id', ''):
+            self.transformed_event['object'] = {
+                'extensions': {
+                    'course_id': self.event['context'].get('course_id', '')
+                }
             }
-        }
+        else:
+            logger.info(
+                'In Event %s no course_id found!',
+                self.event
+            )
 
     def _add_actor_info(self):
         """
         Add all generic information related to `actor`.
         """
-
         self.transformed_event['actor'] = {
             'id': get_anonymous_user_id_by_username(self.extract_username()),
             'type': 'Person'
         }
+
+        if not self.extract_username():
+            logger.info(
+                'In Event %s username not found!',
+                self.event
+            )

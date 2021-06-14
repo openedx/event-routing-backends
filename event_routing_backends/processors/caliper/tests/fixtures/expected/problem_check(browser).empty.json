@@ -1,0 +1,14 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
+    "action": "Submitted",
+    "actor": {
+        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "type": "Person"
+    },
+    "id": "urn:uuid:042bc7ee-ba16-41e8-80ce-5b50185edb67",
+    "object": {
+        "extensions": {},
+        "type": "Assessment"
+    },
+    "type": "AssessmentEvent"
+}

@@ -1,6 +1,9 @@
 """
 Base Transformer Mixin to add or transform common data values.
 """
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class BaseTransformerMixin:
@@ -35,6 +38,12 @@ class BaseTransformerMixin:
             dict
         """
         # ignore the key if it is not in the original dict
+        keys_ignored = set(keys) - set(base_dict.keys())
+        if keys_ignored:
+            logger.info(
+                'Following keys are ignore: %s',
+                str(keys_ignored)
+            )
         return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
 
     def find_nested(self, key):

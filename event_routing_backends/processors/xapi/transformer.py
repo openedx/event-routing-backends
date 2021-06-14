@@ -1,11 +1,15 @@
 """
 xAPI Transformer Class
 """
+from logging import getLogger
+
 from tincan import Agent, LanguageMap, Statement, Verb
 
 from event_routing_backends.helpers import get_anonymous_user_id_by_username
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.processors.xapi import constants
+
+logger = getLogger()
 
 
 class XApiTransformer(BaseTransformerMixin):
@@ -48,6 +52,11 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             `Agent`
         """
+        if not self.extract_username():
+            logger.info(
+                'In Event %s username not found!',
+                self.event
+            )
 
         user_uuid = get_anonymous_user_id_by_username(self.extract_username())
         return Agent(
@@ -61,7 +70,14 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             str
         """
-        return self.event['timestamp']
+        if 'timestamp' in self.event:
+            return self.event['timestamp']
+        else:
+            logger.info(
+                'In Event %s timestamp not found!',
+                self.event
+            )
+            return None
 
 
 class XApiVerbTransformerMixin:

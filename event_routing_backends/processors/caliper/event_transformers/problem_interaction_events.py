@@ -1,9 +1,14 @@
 """
 Transformers for problem interaction events.
 """
+import logging
+
 from event_routing_backends.helpers import get_block_id_from_event_referrer
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
+
+logger = logging.getLogger('caliper_tracking')
+
 
 EVENT_ACTION_MAP = {
     'problem_check': 'Submitted',
@@ -78,14 +83,26 @@ class ProblemEventsTransformers(CaliperTransformer):
         if data and isinstance(data, dict):
             event_data = data.copy()
             object_id = event_data.get('problem_id', event_data.get('module_id', None))
+        else:
+            logger.info(
+                'Event Data not found!',
+            )
+
         if not object_id:
             object_id = get_block_id_from_event_referrer(self.event)
-
-        caliper_object = self.transformed_event['object']
-        caliper_object.update({
+        if 'object' in self.transformed_event and self.transformed_event['object']:
+            caliper_object = self.transformed_event['object']
+        else:
+            caliper_object = {'extensions': {}}
+            logger.info(
+                'object not found!',
+            )
+        caliper_object.update(**({
             'id': object_id,
             'type': OBJECT_TYPE_MAP[self.event['name']],
-        })
+        } if object_id is not None else {
+            'type': OBJECT_TYPE_MAP[self.event['name']],
+        }))
 
         if event_data and isinstance(event_data, dict):
             extensions = self.extract_subdict_by_keys(

@@ -1,0 +1,19 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
+    "action": "Started",
+    "actor": {
+        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "type": "Person"
+    },
+    "id": "urn:uuid:4c53b337-b72f-4a36-b0ea-17fb335e18ab",
+    "object": {
+        "duration": "P0D",
+        "extensions": {
+        },
+        "type": "VideoObject"
+    },
+    "target": {
+        "type": "MediaLocation"
+    },
+    "type": "MediaEvent"
+}

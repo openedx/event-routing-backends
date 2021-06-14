@@ -118,19 +118,36 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
-        course_id = self.event['context']['course_id']
-        video_id = self.event['data']['id']
+        if 'course_id' in self.event['context']:
+            course_id = self.event['context']['course_id']
+        else:
+            course_id = None
+            logger.info(
+                'In Event %s course_id not found!',
+                self.event
+            )
 
-        object_id = make_video_block_id(course_id=course_id, video_id=video_id)
+        if 'id' in self.event['data']:
+            video_id = self.event['data']['id']
+        else:
+            video_id = None
+            logger.info(
+                'In Event %s video_id not found!',
+                self.event
+            )
+        if course_id is not None and video_id is not None:
+            object_id = make_video_block_id(course_id=course_id, video_id=video_id)
+        else:
+            object_id = None
         return Activity(
             id=object_id,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_VIDEO,
                 # TODO: how to get video's display name?
                 name=LanguageMap({constants.EN: 'Video Display Name'}),
-                extensions=Extensions({
+                extensions=Extensions(**({
                     'code': self.event['data']['code']
-                })
+                } if 'code' in self.event['data'] else {}))
             ),
         )
 
@@ -141,6 +158,11 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Context`
         """
+        if not self.extract_username():
+            logger.info(
+                'In Event %s username not found!',
+                self.event
+            )
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
@@ -157,7 +179,8 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id']),
+                id=make_course_url(self.event['context']['course_id'])
+                if 'course_id' in self.event['context'] else None,
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -212,9 +235,9 @@ class VideoInteractionTransformers(BaseVideoTransformer):
             `Result`
         """
         return Result(
-            extensions=Extensions({
+            extensions=Extensions(**({
                 constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['currentTime'])
-            })
+            } if 'currentTime' in self.event['data'] else {}))
         )
 
 

@@ -119,7 +119,8 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id']),
+                id=make_course_url(self.event['context']['course_id'])
+                if 'course_id' in self.event['context'] else None,
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -181,7 +182,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
 
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
-        if self.event['context']['event_source'] == 'browser':
+        if 'event_source' in self.event['context'] and self.event['context']['event_source'] == 'browser':
             xapi_object.id = get_block_id_from_event_referrer(self.event)
             return xapi_object
 
@@ -274,18 +275,19 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             Result
         """
         # Do not transform result if the event is generated from browser
-        if self.event['context']['event_source'] == 'browser':
+        if 'event_source' in self.event['context'] and self.event['context']['event_source'] == 'browser':
             return None
 
         event_data = self.event['data']
 
         return Result(
-            success=event_data['success'] == 'correct',
+            success=event_data['success'] == 'correct' if 'success' in event_data else False,
             score={
                 'min': 0,
-                'max': event_data['max_grade'],
-                'raw': event_data['grade'],
+                'max': event_data['max_grade'] if 'max_grade' in event_data else None,
+                'raw': event_data['grade'] if 'grade' in event_data else None,
                 'scaled': event_data['grade']/event_data['max_grade']
+                if 'grade' in event_data and 'max_grade' in event_data else None
             },
-            response=event_data['answers']
+            response=event_data['answers'] if 'answers' in event_data else None
         )

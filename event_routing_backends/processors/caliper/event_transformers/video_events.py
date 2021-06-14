@@ -21,6 +21,7 @@ The (soon to be) updated event names are as following:
 - edx.video.position.changed
 - edx.video.completed (proposed)
 """
+import logging
 from datetime import timedelta
 
 from isodate import duration_isoformat
@@ -28,6 +29,8 @@ from isodate import duration_isoformat
 from event_routing_backends.helpers import convert_seconds_to_iso, make_video_block_id
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
+
+logger = logging.getLogger('caliper_tracking')
 
 EVENTS_ACTION_MAP = {
     'load_video': 'Retrieved',
@@ -72,21 +75,44 @@ class BaseVideoTransformer(CaliperTransformer):
         Returns:
             str
         """
-        caliper_object = self.transformed_event['object']
+        if 'object' in self.transformed_event and self.transformed_event['object']:
+            caliper_object = self.transformed_event['object']
+        else:
+            caliper_object = {}
+            logger.info(
+                'object not found!',
+            )
         data = self.event['data'].copy()
-        course_id = self.event['context']['course_id']
-        video_id = data['id']
+        if 'course_id' in self.event['context'] and self.event['context']['course_id']:
+            course_id = self.event['context']['course_id']
+        else:
+            course_id = None
+            logger.info(
+                'Course id not found!',
+            )
+
+        if 'id' in data:
+            video_id = data['id']
+        else:
+            video_id = None
+            logger.info(
+                'video id not found!',
+            )
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
         caliper_object.update({
-            'id': object_id,
+            **({'id': object_id} if course_id is not None and video_id is not None else {}),
             'type': 'VideoObject',
             'duration': duration_isoformat(timedelta(
                     seconds=data.get('duration', 0)
             ))
         })
-        caliper_object['extensions'] = {'course_id': course_id}
+        if course_id is not None:
+            caliper_object['extensions'] = {'course_id': course_id}
+        else:
+            caliper_object['extensions'] = {}
+
         extensions = self.extract_subdict_by_keys(
             data, ['id', 'new_time', 'old_time', 'currentTime']
         )
@@ -156,14 +182,20 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
         Returns:
             str
         """
-        current_time = convert_seconds_to_iso(
-            seconds=self.event['data']['currentTime']
-        )
+        if 'currentTime' in self.event['data']:
+            current_time = convert_seconds_to_iso(
+                seconds=self.event['data']['currentTime']
+            )
+        else:
+            current_time = None
+            logger.info(
+                'Course id not found!',
+            )
 
         return {
-            'id': self.transformed_event['object']['id'],
+            **({'id': self.transformed_event['object']['id']} if 'id' in self.transformed_event['object'] else {}),
             'type': 'MediaLocation',
-            'currentTime': current_time
+            **({'currentTime': current_time} if current_time is not None else {})
         }
 
 

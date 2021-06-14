@@ -65,13 +65,13 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Activity`
         """
         return Activity(
-            id=self.event['data']['target_url'],
+            id=self.event['data']['target_url'] if 'target_url' in self.event['data'] else None,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_LINK,
                 name=LanguageMap({constants.EN: 'Link name'}),
-                extensions=Extensions({
+                extensions=Extensions(**({
                     constants.XAPI_ACTIVITY_POSITION: self.event['data']['target_url']
-                })
+                } if 'target_url' in self.event['data'] else {}))
             ),
         )
 
@@ -83,6 +83,11 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Context`
         """
 
+        if not self.extract_username():
+            logger.info(
+                'In Event %s username not found!',
+                self.event
+            )
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
@@ -99,7 +104,8 @@ class LinkClickedTransformer(NavigationTransformersMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id']),
+                id=make_course_url(self.event['context']['course_id'])
+                if 'course_id' in self.event['context'] else None,
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -127,7 +133,8 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
             id=self.event['data']['target_url'],
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_MODULE,
-                name=LanguageMap({constants.EN: self.event['data']['target_name']}),
+                name=LanguageMap(**({constants.EN: self.event['data']['target_name']}
+                                    if 'target_name' in self.event['data'] else {})),
             ),
         )
 
@@ -138,7 +145,6 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
         Returns:
             `Context`
         """
-
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
@@ -186,9 +192,9 @@ class TabNavigationTransformer(NavigationTransformersMixin):
         """
         event_name = self.event['name']
         if event_name == 'edx.ui.lms.sequence.tab_selected':
-            extensions = Extensions({
+            extensions = Extensions(**({
                 constants.XAPI_CONTEXT_STARTING_POSITION: self.event['data']['current_tab'],
-            })
+            } if 'current_tab' in self.event['data'] else {}))
         elif event_name == 'edx.ui.lms.sequence.next_selected':
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'next unit',

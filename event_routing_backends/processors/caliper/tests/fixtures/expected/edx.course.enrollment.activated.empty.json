@@ -1,0 +1,14 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
+    "action": "Activated",
+    "actor": {
+        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "type": "Person"
+    },
+    "id": "urn:uuid:b52eb5c3-350f-45c2-9f03-aa642b7ad30d",
+    "object": {
+        "extensions": {},
+        "type": "Membership"
+    },
+    "type": "Event"
+}
