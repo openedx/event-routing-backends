@@ -130,7 +130,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.6.0
+faker==8.8.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
