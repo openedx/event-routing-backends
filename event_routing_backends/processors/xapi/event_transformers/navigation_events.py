@@ -1,17 +1,12 @@
 """
 Transformers for navigation related events.
 """
-from logging import getLogger
-
 from tincan import Activity, ActivityDefinition, ActivityList, Context, ContextActivities, Extensions, LanguageMap
 
 from event_routing_backends.helpers import get_anonymous_user_id_by_username, make_course_url
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
-
-logger = getLogger(__name__)
-
 
 VERB_MAP = {
     'edx.ui.lms.sequence.next_selected': {
@@ -65,13 +60,13 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Activity`
         """
         return Activity(
-            id=self.event['data']['target_url'] if 'target_url' in self.event['data'] else None,
+            id=self.get_data('data.target_url'),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_LINK,
                 name=LanguageMap({constants.EN: 'Link name'}),
-                extensions=Extensions(**({
-                    constants.XAPI_ACTIVITY_POSITION: self.event['data']['target_url']
-                } if 'target_url' in self.event['data'] else {}))
+                extensions=Extensions({
+                    constants.XAPI_ACTIVITY_POSITION: self.get_data('data.target_url')
+                })
             ),
         )
 
@@ -83,11 +78,6 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Context`
         """
 
-        if not self.extract_username():
-            logger.info(
-                'In Event %s username not found!',
-                self.event
-            )
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
@@ -104,8 +94,7 @@ class LinkClickedTransformer(NavigationTransformersMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id'])
-                if 'course_id' in self.event['context'] else None,
+                id=make_course_url(self.get_data('context.course_id')),
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -130,11 +119,10 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
             `Activity`
         """
         return Activity(
-            id=self.event['data']['target_url'],
+            id=self.get_data('data.target_url'),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_MODULE,
-                name=LanguageMap(**({constants.EN: self.event['data']['target_name']}
-                                    if 'target_name' in self.event['data'] else {})),
+                name=LanguageMap({constants.EN: self.get_data('data.target_name')}),
             ),
         )
 
@@ -169,12 +157,12 @@ class TabNavigationTransformer(NavigationTransformersMixin):
             `Activity`
         """
         if self.event['name'] == 'edx.ui.lms.sequence.tab_selected':
-            position = self.event['data']['target_tab']
+            position = self.get_data('data.target_tab')
         else:
-            position = self.event['data']['current_tab']
+            position = self.get_data('data.current_tab')
 
         return Activity(
-            id=self.event['data']['id'],
+            id=self.get_data('data.id'),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_MODULE,
                 extensions=Extensions({
@@ -190,11 +178,11 @@ class TabNavigationTransformer(NavigationTransformersMixin):
         Returns:
             `Context`
         """
-        event_name = self.event['name']
+        event_name = self.get_data('name', True)
         if event_name == 'edx.ui.lms.sequence.tab_selected':
-            extensions = Extensions(**({
-                constants.XAPI_CONTEXT_STARTING_POSITION: self.event['data']['current_tab'],
-            } if 'current_tab' in self.event['data'] else {}))
+            extensions = Extensions({
+                constants.XAPI_CONTEXT_STARTING_POSITION: self.get_data('data.current_tab'),
+            })
         elif event_name == 'edx.ui.lms.sequence.next_selected':
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'next unit',
@@ -221,7 +209,7 @@ class TabNavigationTransformer(NavigationTransformersMixin):
         """
         parent_activities = [
             Activity(
-                id=self.event['data']['id'],
+                id=self.get_data('data.id'),
                 object_type=constants.XAPI_ACTIVITY_MODULE
             ),
         ]

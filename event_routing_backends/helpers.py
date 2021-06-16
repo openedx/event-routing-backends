@@ -78,6 +78,8 @@ def convert_seconds_to_iso(seconds):
     Returns:
         str
     """
+    if seconds is None:
+        return None
     return duration_isoformat(timedelta(
         seconds=seconds
     ))
@@ -93,6 +95,8 @@ def convert_datetime_to_iso(current_datetime):
     Returns:
         str
     """
+    if current_datetime is None:
+        return None
     # convert current_datetime to a datetime object if it is string
     if isinstance(current_datetime, str):
         current_datetime = parse(current_datetime)
@@ -141,6 +145,8 @@ def make_video_block_id(video_id, course_id, video_block_name='video', block_ver
     Returns:
         str
     """
+    if course_id is None or video_id is None:
+        return None
     return '{block_version}:{course_id}+type@{video_block_name}+block@{video_id}'.format(
         block_version=block_version,
         course_id=course_id,
@@ -159,6 +165,8 @@ def make_course_url(course_id):
     Returns:
         str
     """
+    if course_id is None:
+        return None
     return '{root_url}{course_root_url}'.format(
         root_url=settings.LMS_ROOT_URL,
         course_root_url=reverse('course_root', kwargs={

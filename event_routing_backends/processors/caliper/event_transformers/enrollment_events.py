@@ -1,15 +1,12 @@
 """
 Transformers for enrollment related events.
 """
-import logging
 
 from django.conf import settings
 from django.urls import reverse
 
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
-
-logger = logging.getLogger('caliper_tracking')
 
 
 @CaliperTransformersRegistry.register('edx.course.enrollment.activated')
@@ -44,21 +41,20 @@ class EnrollmentEventTransformers(CaliperTransformer):
         Returns:
             dict
         """
-        data = self.event['data'].copy()
+        data = self.get_data('data', True)
+        if data is not None:
+            data = data.copy()
 
         # TODO: replace with anonymous enrollment id?
-        if 'course_id' in data and data['course_id']:
+        if data and 'course_id' in data and data['course_id']:
             course_root_url = '{root_url}{course_root}'.format(
                 root_url=settings.LMS_ROOT_URL,
                 course_root=reverse('course_root', kwargs={'course_id': data['course_id']})
             )
         else:
             course_root_url = None
-            logger.info(
-                'Course id not found!',
-            )
         caliper_object = {
-            **({'id': course_root_url} if course_root_url is not None else {}),
+            'id': course_root_url,
             'type': 'Membership',
             'extensions': self.extract_subdict_by_keys(data, ['course_id', 'mode']),
         }

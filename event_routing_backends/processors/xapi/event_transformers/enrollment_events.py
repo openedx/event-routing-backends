@@ -1,7 +1,6 @@
 """
 Transformers for enrollment related events.
 """
-from logging import getLogger
 
 from tincan import Activity, ActivityDefinition, Context, LanguageMap, Verb
 
@@ -9,8 +8,6 @@ from event_routing_backends.helpers import get_anonymous_user_id_by_username, ge
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
-
-logger = getLogger(__name__)
 
 
 class BaseEnrollmentTransformer(XApiTransformer):
@@ -26,26 +23,14 @@ class BaseEnrollmentTransformer(XApiTransformer):
         Returns:
             `Activity`
         """
-        if 'course_id' in self.event['context']:
-            course_id = self.event['context']['course_id']
-            object_id = make_course_url(course_id)
-        else:
-            course_id = None
-            object_id = None
-            logger.info(
-                'In Event %s course_id not found!',
-                self.event
-            )
+        course_id = self.get_data('context.course_id')
+        object_id = make_course_url(course_id)
 
         if course_id is not None:
             course = get_course_from_id(course_id)
             display_name = course['display_name']
         else:
             display_name = None
-            logger.info(
-                'In Event %s course not found!',
-                self.event
-            )
 
         return Activity(
             id=object_id,
@@ -63,11 +48,6 @@ class BaseEnrollmentTransformer(XApiTransformer):
             `Context`
         """
 
-        if not self.extract_username():
-            logger.info(
-                'In Event %s username not found!',
-                self.event
-            )
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()

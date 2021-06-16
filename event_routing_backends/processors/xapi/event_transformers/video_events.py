@@ -21,7 +21,6 @@ The (soon to be) updated event names are as following:
 - edx.video.position.changed
 - edx.video.completed (proposed)
 """
-from logging import getLogger
 
 from tincan import (
     Activity,
@@ -43,9 +42,6 @@ from event_routing_backends.helpers import (
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
-
-logger = getLogger(__name__)
-
 
 VERB_MAP = {
     'load_video': {
@@ -118,36 +114,21 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
-        if 'course_id' in self.event['context']:
-            course_id = self.event['context']['course_id']
-        else:
-            course_id = None
-            logger.info(
-                'In Event %s course_id not found!',
-                self.event
-            )
+        course_id = self.get_data('context.course_id')
 
-        if 'id' in self.event['data']:
-            video_id = self.event['data']['id']
-        else:
-            video_id = None
-            logger.info(
-                'In Event %s video_id not found!',
-                self.event
-            )
-        if course_id is not None and video_id is not None:
-            object_id = make_video_block_id(course_id=course_id, video_id=video_id)
-        else:
-            object_id = None
+        video_id = self.get_data('data.id')
+
+        object_id = make_video_block_id(course_id=course_id, video_id=video_id)
+
         return Activity(
             id=object_id,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_VIDEO,
                 # TODO: how to get video's display name?
                 name=LanguageMap({constants.EN: 'Video Display Name'}),
-                extensions=Extensions(**({
-                    'code': self.event['data']['code']
-                } if 'code' in self.event['data'] else {}))
+                extensions=Extensions({
+                    'code': self.get_data('data.code')
+                })
             ),
         )
 
@@ -158,11 +139,6 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Context`
         """
-        if not self.extract_username():
-            logger.info(
-                'In Event %s username not found!',
-                self.event
-            )
         return Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
@@ -179,8 +155,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id'])
-                if 'course_id' in self.event['context'] else None,
+                id=make_course_url(self.get_data('context.course_id')),
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -210,7 +185,7 @@ class VideoLoadedTransformer(BaseVideoTransformer):
 
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({
-            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.event['data']['duration']),
+            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.get_data('data.duration')),
         })
         return context
 
@@ -235,9 +210,9 @@ class VideoInteractionTransformers(BaseVideoTransformer):
             `Result`
         """
         return Result(
-            extensions=Extensions(**({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['currentTime'])
-            } if 'currentTime' in self.event['data'] else {}))
+            extensions=Extensions({
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.get_data('data.currentTime'))
+            })
         )
 
 
@@ -258,10 +233,10 @@ class VideoCompletedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['duration'])
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.get_data('data.duration'))
             }),
             completion=True,
-            duration=convert_seconds_to_iso(self.event['data']['duration'])
+            duration=convert_seconds_to_iso(self.get_data('data.duration'))
         )
 
 
@@ -282,7 +257,7 @@ class VideoPositionChangedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.event['data']['old_time']),
-                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.event['data']['new_time']),
+                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.get_data('data.old_time')),
+                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.get_data('data.new_time')),
             }),
         )
