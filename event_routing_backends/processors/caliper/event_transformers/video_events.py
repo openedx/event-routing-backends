@@ -75,8 +75,6 @@ class BaseVideoTransformer(CaliperTransformer):
         caliper_object = self.transformed_event['object']
 
         data = self.get_data('data', True)
-        if data is not None:
-            data = data.copy()
 
         course_id = self.get_data('context.course_id')
 

@@ -2,9 +2,7 @@
 Transformers for enrollment related events.
 """
 
-from django.conf import settings
-from django.urls import reverse
-
+from event_routing_backends.helpers import make_course_url
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
 
@@ -42,17 +40,9 @@ class EnrollmentEventTransformers(CaliperTransformer):
             dict
         """
         data = self.get_data('data', True)
-        if data is not None:
-            data = data.copy()
 
         # TODO: replace with anonymous enrollment id?
-        if data and 'course_id' in data and data['course_id']:
-            course_root_url = '{root_url}{course_root}'.format(
-                root_url=settings.LMS_ROOT_URL,
-                course_root=reverse('course_root', kwargs={'course_id': data['course_id']})
-            )
-        else:
-            course_root_url = None
+        course_root_url = make_course_url(self.get_data('data.course_id'))
         caliper_object = {
             'id': course_root_url,
             'type': 'Membership',

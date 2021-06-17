@@ -182,7 +182,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
         if self.get_data('context.event_source') == 'browser':
-            xapi_object.id = get_block_id_from_event_referrer(self.event)
+            xapi_object.id = get_block_id_from_event_referrer(self.get_data('context.referer'))
             return xapi_object
 
         interaction_type = self._get_interaction_type()
@@ -282,13 +282,13 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         event_data = self.get_data('data', True)
 
         return Result(
-            success=event_data['success'] == 'correct' if 'success' in event_data else False,
+            success=event_data.get('success', None) == 'correct',
             score={
                 'min': 0,
-                'max': event_data['max_grade'] if 'max_grade' in event_data else None,
-                'raw': event_data['grade'] if 'grade' in event_data else None,
-                'scaled': event_data['grade']/event_data['max_grade']
-                if 'grade' in event_data and 'max_grade' in event_data else None
+                'max': event_data.get('max_grade', None),
+                'raw': event_data.get('grade', None),
+                'scaled': event_data.get('grade', None)/event_data.get('max_grade', None)
+                if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
             },
-            response=event_data['answers'] if 'answers' in event_data else None
+            response=event_data.get('answers', None)
         )

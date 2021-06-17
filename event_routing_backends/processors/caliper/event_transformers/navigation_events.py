@@ -32,7 +32,7 @@ class NavigationEventsTransformers(CaliperTransformer):
         """
         caliper_object = self.transformed_event['object']
 
-        data = self.get_data('data', True).copy()
+        data = self.get_data('data', True)
 
         object_id = data.pop('target_url') if self.get_data('name', True) in (
             'edx.ui.lms.link_clicked',

@@ -109,26 +109,22 @@ def convert_datetime_to_iso(current_datetime):
     return formatted_datetime
 
 
-def get_block_id_from_event_referrer(event):
+def get_block_id_from_event_referrer(referrer):
     """
     Derive and return block id from event referrer.
 
     Arguments:
-        event (dict):   event dictionary object.
+        referrer (str):   referrer string.
 
     Returns:
         str or None
     """
-    if 'referer' in event['context']:
-        referrer = event['context']['referer']
+    if referrer is not None:
         parsed = urlparse(referrer)
         block_id = parse_qs(parsed.query)['activate_block_id'][0]
     else:
         block_id = None
-        logger.info(
-            'In Event %s referer not found!',
-            event
-        )
+
     return block_id
 
 

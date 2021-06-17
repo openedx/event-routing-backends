@@ -22,7 +22,7 @@ class TestCaliperTransformers(TransformersTestMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.mocked_reverse = patch(
-            'event_routing_backends.processors.caliper.event_transformers.enrollment_events.reverse',
+            'event_routing_backends.helpers.reverse',
             side_effect=mocked_course_reverse
         )
         self.mocked_reverse.start()
@@ -43,5 +43,4 @@ class TestCaliperTransformers(TransformersTestMixin, TestCase):
         self.assertIn('id', transformed_event)
         expected_event.pop('id')
         transformed_event.pop('id')
-
         self.assertDictEqual(expected_event, transformed_event)

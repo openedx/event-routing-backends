@@ -162,15 +162,15 @@ class BaseTransformerMixin:
 
         return result
 
-    def del_none(self, d):
+    def del_none(self, source_dict):
         """
         Delete keys with the value ``None`` in a dictionary, recursively.
 
         This alters the input so you may wish to ``copy`` the dict first.
         """
-        for key, value in list(d.items()):
+        for key, value in list(source_dict.items()):
             if value is None:
-                del d[key]
+                del source_dict[key]
             elif isinstance(value, dict):
                 self.del_none(value)
-        return d  # For convenience
+        return source_dict
