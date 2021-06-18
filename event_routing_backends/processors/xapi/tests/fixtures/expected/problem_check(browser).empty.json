@@ -15,24 +15,24 @@
     },
     "object": {
         "definition": {
-            "correctResponsesPattern": [
-            ],
+            "type": "http://adlnet.gov/expapi/activities/interaction",
             "interactionType": "other",
-            "type": "http://adlnet.gov/expapi/activities/interaction"
+            "correctResponsesPattern": []
         },
         "objectType": "Activity"
     },
-    "result": {
-        "score": {
-            "min": 0
-        },
-        "success": false
-    },
+    "timestamp": "2020-07-14T14:39:26.580443+00:00",
     "verb": {
         "display": {
             "en": "answered"
         },
         "id": "http://adlnet.gov/expapi/verbs/answered"
+    },
+    "result": {
+        "score": {
+             "min": 0.0
+        },
+        "success": false
     },
     "version": "1.0.3"
 }

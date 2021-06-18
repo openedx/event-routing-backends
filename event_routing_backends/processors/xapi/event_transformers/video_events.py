@@ -114,9 +114,9 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
-        course_id = self.get_data('context.course_id')
+        course_id = self.get_data('context.course_id', True)
 
-        video_id = self.get_data('data.id')
+        video_id = self.get_data('data.id', True)
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 

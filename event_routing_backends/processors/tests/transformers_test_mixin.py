@@ -47,6 +47,16 @@ class TransformersTestMixin:
                 'name': 'test_event'
             }).transform()
 
+    def test_required_field_transformer(self):
+        class DummyTransformer(BaseTransformerMixin):
+            required_fields = ()
+
+        self.registry.register('test_event')(DummyTransformer)
+        with self.assertRaises(ValueError):
+            self.registry.get_transformer({
+                 "name": "edx.course.enrollment.activated"
+                 }).transform()
+
     @abstractmethod
     def compare_events(self, transformed_event, expected_event):
         """

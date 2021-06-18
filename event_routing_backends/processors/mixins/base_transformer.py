@@ -40,12 +40,10 @@ class BaseTransformerMixin:
             dict
         """
         # ignore the key if it is not in the original dict
-        if base_dict is None:
-            return {}
         keys_ignored = set(keys) - set(base_dict.keys())
         if keys_ignored:
             logger.info(
-                'Following keys are ignore: %s',
+                'Following keys are ignored: %s',
                 str(keys_ignored)
             )
         return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
@@ -126,13 +124,14 @@ class BaseTransformerMixin:
             str
         """
         username = self.get_data('context.username')
-        if not username:
-            username = self.get_data('data.username')
+        if username is None:
+            username = self.get_data('data.username', True)
         return username
 
     def get_data(self, key, required=False):
         """
-        Map the dotted key to nested keys for event dict and return the matching value.
+        Map the dotted key to nested keys for event dict and return the matching value.If key is required field and
+        not fond in event and error will be logged else an info will be logged
 
         For example:
             'key_a.key_b.key_c' will look for the following value:
@@ -147,18 +146,24 @@ class BaseTransformerMixin:
 
         Arguments:
             key (str)  :    dotted key string for the event dict
-            required (bool) :    key is required or not
+            required (bool) :    key is a required field of event or not.
 
         Returns:
             ANY :                 Returns the value found in the event dict or `None` if
                                   no value exists for provided dotted path.
         """
         result = get_value_from_dotted_path(self.event, key)
+        print('###########')
+        print(key)
+        print(self.event)
+        print('###########')
         if result is None:
-            if required:
-                logger.error('Could not get data for %s in event "%s"', key, self.get_data('name', True))
-            else:
+            if not required:
                 logger.info('Could not get data for %s in event "%s"', key, self.get_data('name', True))
+            else:
+                raise ValueError(
+                    'Could not get data for {} in event "{}"'.format(key, self.get_data('name', True))
+                )
 
         return result
 

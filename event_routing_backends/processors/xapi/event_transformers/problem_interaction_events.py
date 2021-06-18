@@ -83,7 +83,7 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
             `Activity`
         """
         object_id = None
-        data = self.get_data('data', True)
+        data = self.get_data('data')
         if data and isinstance(data, dict):
             object_id = data.get('problem_id', data.get('module_id', None))
 
@@ -182,7 +182,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
         if self.get_data('context.event_source') == 'browser':
-            xapi_object.id = get_block_id_from_event_referrer(self.get_data('context.referer'))
+            xapi_object.id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
             return xapi_object
 
         interaction_type = self._get_interaction_type()
@@ -279,16 +279,17 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         if self.get_data('context.event_source') == 'browser':
             return None
 
-        event_data = self.get_data('data', True)
-
+        event_data = self.get_data('data')
+        if event_data is None:
+            event_data = {}
         return Result(
             success=event_data.get('success', None) == 'correct',
             score={
                 'min': 0,
                 'max': event_data.get('max_grade', None),
                 'raw': event_data.get('grade', None),
-                'scaled': event_data.get('grade', None)/event_data.get('max_grade', None)
+                'scaled': event_data.get('grade', None) / event_data.get('max_grade', None)
                 if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
             },
-            response=event_data.get('answers', None)
+            response=event_data.get('answers', None) if event_data else None
         )

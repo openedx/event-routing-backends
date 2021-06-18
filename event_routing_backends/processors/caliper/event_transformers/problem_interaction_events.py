@@ -75,13 +75,13 @@ class ProblemEventsTransformers(CaliperTransformer):
         """
         object_id = None
         event_data = None
-        data = self.get_data('data', True)
+        data = self.get_data('data')
         if data and isinstance(data, dict):
             event_data = data
             object_id = event_data.get('problem_id', event_data.get('module_id', None))
 
         if not object_id:
-            object_id = get_block_id_from_event_referrer(self.get_data('context.referer'))
+            object_id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
 
         caliper_object = self.transformed_event['object']
 

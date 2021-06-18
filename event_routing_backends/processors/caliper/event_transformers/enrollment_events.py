@@ -39,10 +39,10 @@ class EnrollmentEventTransformers(CaliperTransformer):
         Returns:
             dict
         """
-        data = self.get_data('data', True)
+        data = self.get_data('data')
 
         # TODO: replace with anonymous enrollment id?
-        course_root_url = make_course_url(self.get_data('data.course_id'))
+        course_root_url = make_course_url(self.get_data('data.course_id', True))
         caliper_object = {
             'id': course_root_url,
             'type': 'Membership',

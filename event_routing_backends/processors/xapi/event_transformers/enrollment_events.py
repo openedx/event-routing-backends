@@ -23,14 +23,10 @@ class BaseEnrollmentTransformer(XApiTransformer):
         Returns:
             `Activity`
         """
-        course_id = self.get_data('context.course_id')
+        course_id = self.get_data('context.course_id', True)
         object_id = make_course_url(course_id)
-
-        if course_id is not None:
-            course = get_course_from_id(course_id)
-            display_name = course['display_name']
-        else:
-            display_name = None
+        course = get_course_from_id(course_id)
+        display_name = course['display_name']
 
         return Activity(
             id=object_id,

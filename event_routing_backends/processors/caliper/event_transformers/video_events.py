@@ -74,11 +74,11 @@ class BaseVideoTransformer(CaliperTransformer):
         """
         caliper_object = self.transformed_event['object']
 
-        data = self.get_data('data', True)
+        data = self.get_data('data')
 
-        course_id = self.get_data('context.course_id')
+        course_id = self.get_data('context.course_id', True)
 
-        video_id = self.get_data('data.id')
+        video_id = self.get_data('data.id', True)
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
@@ -86,13 +86,11 @@ class BaseVideoTransformer(CaliperTransformer):
             'id': object_id,
             'type': 'VideoObject',
             'duration': duration_isoformat(timedelta(
-                    seconds=data.get('duration', 0) if data is not None else 0
+                    seconds=data.get('duration', 0)
             ))
         })
-        if course_id is not None:
-            caliper_object['extensions'] = {'course_id': course_id}
-        else:
-            caliper_object['extensions'] = {}
+
+        caliper_object['extensions'] = {'course_id': course_id}
 
         extensions = self.extract_subdict_by_keys(
             data, ['id', 'new_time', 'old_time', 'currentTime']
@@ -168,7 +166,7 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
         )
 
         return {
-            **({'id': self.transformed_event['object']['id']} if 'id' in self.transformed_event['object'] else {}),
+            'id': self.transformed_event['object']['id'],
             'type': 'MediaLocation',
             'currentTime': current_time
         }
