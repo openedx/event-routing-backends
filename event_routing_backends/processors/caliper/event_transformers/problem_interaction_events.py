@@ -1,7 +1,6 @@
 """
 Transformers for problem interaction events.
 """
-
 from event_routing_backends.helpers import get_block_id_from_event_referrer
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
@@ -84,7 +83,6 @@ class ProblemEventsTransformers(CaliperTransformer):
             object_id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
 
         caliper_object = self.transformed_event['object']
-
         caliper_object.update({
             'id': object_id,
             'type': OBJECT_TYPE_MAP[self.get_data('name', True)],

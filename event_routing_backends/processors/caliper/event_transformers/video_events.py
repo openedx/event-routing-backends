@@ -73,13 +73,9 @@ class BaseVideoTransformer(CaliperTransformer):
             str
         """
         caliper_object = self.transformed_event['object']
-
         data = self.get_data('data')
-
         course_id = self.get_data('context.course_id', True)
-
         video_id = self.get_data('data.id', True)
-
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
         caliper_object.update({
@@ -89,9 +85,7 @@ class BaseVideoTransformer(CaliperTransformer):
                     seconds=data.get('duration', 0)
             ))
         })
-
         caliper_object['extensions'] = {'course_id': course_id}
-
         extensions = self.extract_subdict_by_keys(
             data, ['id', 'new_time', 'old_time', 'currentTime']
         )

@@ -153,10 +153,6 @@ class BaseTransformerMixin:
                                   no value exists for provided dotted path.
         """
         result = get_value_from_dotted_path(self.event, key)
-        print('###########')
-        print(key)
-        print(self.event)
-        print('###########')
         if result is None:
             if not required:
                 logger.info('Could not get data for %s in event "%s"', key, self.get_data('name', True))

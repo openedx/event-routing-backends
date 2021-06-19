@@ -1,7 +1,6 @@
 """
 Transformers for navigation related events.
 """
-
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
 
@@ -33,7 +32,6 @@ class NavigationEventsTransformers(CaliperTransformer):
         caliper_object = self.transformed_event['object']
 
         data = self.get_data('data')
-
         if self.get_data('name', True) in (
             'edx.ui.lms.link_clicked',
             'edx.ui.lms.outline.selected'

@@ -33,7 +33,6 @@ class CaliperTransformer(BaseTransformerMixin):
         """
         Add all of the generic fields to the transformed_event object.
         """
-
         self.transformed_event.update({
             '@context': CALIPER_EVENT_CONTEXT,
             'id': uuid.uuid4().urn,

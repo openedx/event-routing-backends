@@ -291,5 +291,5 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 'scaled': event_data.get('grade', None) / event_data.get('max_grade', None)
                 if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
             },
-            response=event_data.get('answers', None) if event_data else None
+            response=event_data.get('answers', None)
         )
