@@ -23,6 +23,10 @@ EVENT_FIXTURE_FILENAMES = [
 ]
 
 
+class DummyTransformer(BaseTransformerMixin):
+    required_fields = ('does_not_exist',)
+
+
 @ddt.ddt
 class TransformersTestMixin:
     """
@@ -38,9 +42,6 @@ class TransformersTestMixin:
         UserFactory.create(username='edx')
 
     def test_with_no_field_transformer(self):
-        class DummyTransformer(BaseTransformerMixin):
-            required_fields = ('does_not_exist', )
-
         self.registry.register('test_event')(DummyTransformer)
         with self.assertRaises(ValueError):
             self.registry.get_transformer({
@@ -48,9 +49,6 @@ class TransformersTestMixin:
             }).transform()
 
     def test_required_field_transformer(self):
-        class DummyTransformer(BaseTransformerMixin):
-            required_fields = ()
-
         self.registry.register('test_event')(DummyTransformer)
         with self.assertRaises(ValueError):
             self.registry.get_transformer({
