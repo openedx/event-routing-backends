@@ -1,7 +1,6 @@
 """
 Transformers for enrollment related events.
 """
-from logging import getLogger
 
 from tincan import Activity, ActivityDefinition, Context, LanguageMap, Verb
 
@@ -9,8 +8,6 @@ from event_routing_backends.helpers import get_anonymous_user_id_by_username, ge
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
-
-logger = getLogger(__name__)
 
 
 class BaseEnrollmentTransformer(XApiTransformer):
@@ -26,9 +23,8 @@ class BaseEnrollmentTransformer(XApiTransformer):
         Returns:
             `Activity`
         """
-        course_id = self.event['context']['course_id']
+        course_id = self.get_data('context.course_id', True)
         object_id = make_course_url(course_id)
-
         course = get_course_from_id(course_id)
         display_name = course['display_name']
 
@@ -36,7 +32,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
             id=object_id,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_COURSE,
-                name=LanguageMap({constants.EN: display_name}),
+                name=LanguageMap(**({constants.EN: display_name} if display_name is not None else {})),
             ),
         )
 

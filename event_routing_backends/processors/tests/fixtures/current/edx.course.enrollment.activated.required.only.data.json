@@ -1,0 +1,11 @@
+{
+    "name": "edx.course.enrollment.activated",
+    "timestamp": "2020-07-15T06:36:01.917775+00:00",
+    "data": {
+        "course_id": "course-v1:edX+DemoX+Demo_Course",
+        "username": "edx"
+    },
+    "context": {
+        "course_id": "course-v1:edX+DemoX+Demo_Course"
+    }
+}

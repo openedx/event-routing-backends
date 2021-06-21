@@ -83,7 +83,7 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
             `Activity`
         """
         object_id = None
-        data = self.event.get('data', None)
+        data = self.get_data('data')
         if data and isinstance(data, dict):
             object_id = data.get('problem_id', data.get('module_id', None))
 
@@ -119,7 +119,7 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id']),
+                id=make_course_url(self.get_data('context.course_id')),
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -151,7 +151,7 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
         Returns:
             `Result`
         """
-        event_data = self.event['data']
+        event_data = self.get_data('data')
         return Result(
             success=event_data['weighted_earned'] >= event_data['weighted_possible'],
             score={
@@ -181,8 +181,8 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
 
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
-        if self.event['context']['event_source'] == 'browser':
-            xapi_object.id = get_block_id_from_event_referrer(self.event)
+        if self.get_data('context.event_source') == 'browser':
+            xapi_object.id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
             return xapi_object
 
         interaction_type = self._get_interaction_type()
@@ -232,7 +232,9 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         Returns:
             list
         """
-        answers = self.event.get('data', {}).get('answers', {})
+        answers = self.get_data('data.answers')
+        if answers is None:
+            answers = {}
         try:
             answers = next(iter(answers.values()))
             if isinstance(answers, str):
@@ -274,18 +276,20 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             Result
         """
         # Do not transform result if the event is generated from browser
-        if self.event['context']['event_source'] == 'browser':
+        if self.get_data('context.event_source') == 'browser':
             return None
 
-        event_data = self.event['data']
-
+        event_data = self.get_data('data')
+        if event_data is None:
+            event_data = {}
         return Result(
-            success=event_data['success'] == 'correct',
+            success=event_data.get('success', None) == 'correct',
             score={
                 'min': 0,
-                'max': event_data['max_grade'],
-                'raw': event_data['grade'],
-                'scaled': event_data['grade']/event_data['max_grade']
+                'max': event_data.get('max_grade', None),
+                'raw': event_data.get('grade', None),
+                'scaled': event_data.get('grade', None) / event_data.get('max_grade', None)
+                if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
             },
-            response=event_data['answers']
+            response=event_data.get('answers', None)
         )

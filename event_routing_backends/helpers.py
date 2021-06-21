@@ -78,6 +78,8 @@ def convert_seconds_to_iso(seconds):
     Returns:
         str
     """
+    if seconds is None:
+        return None
     return duration_isoformat(timedelta(
         seconds=seconds
     ))
@@ -105,24 +107,23 @@ def convert_datetime_to_iso(current_datetime):
     return formatted_datetime
 
 
-def get_block_id_from_event_referrer(event):
+def get_block_id_from_event_referrer(referrer):
     """
     Derive and return block id from event referrer.
 
     Arguments:
-        event (dict):   event dictionary object.
+        referrer (str):   referrer string.
 
     Returns:
         str or None
     """
-    try:
-        referrer = event['context']['referer']
+    if referrer is not None:
         parsed = urlparse(referrer)
         block_id = parse_qs(parsed.query)['activate_block_id'][0]
-        return block_id
-    except (KeyError, IndexError):
-        logger.error('Could not get block id for event "%s"', event.get('name'))
-        raise
+    else:
+        block_id = None
+
+    return block_id
 
 
 def make_video_block_id(video_id, course_id, video_block_name='video', block_version='block-v1'):
@@ -156,6 +157,8 @@ def make_course_url(course_id):
     Returns:
         str
     """
+    if course_id is None:
+        return None
     return '{root_url}{course_root_url}'.format(
         root_url=settings.LMS_ROOT_URL,
         course_root_url=reverse('course_root', kwargs={

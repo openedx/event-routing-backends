@@ -63,7 +63,7 @@ class BaseVideoTransformer(CaliperTransformer):
         Returns:
             str
         """
-        return EVENTS_ACTION_MAP[self.event['name']]
+        return EVENTS_ACTION_MAP[self.get_data('name', True)]
 
     def get_object(self):
         """
@@ -73,10 +73,9 @@ class BaseVideoTransformer(CaliperTransformer):
             str
         """
         caliper_object = self.transformed_event['object']
-        data = self.event['data'].copy()
-        course_id = self.event['context']['course_id']
-        video_id = data['id']
-
+        data = self.get_data('data')
+        course_id = self.get_data('context.course_id', True)
+        video_id = self.get_data('data.id', True)
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
         caliper_object.update({
@@ -157,7 +156,7 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
             str
         """
         current_time = convert_seconds_to_iso(
-            seconds=self.event['data']['currentTime']
+            seconds=self.get_data('data.currentTime')
         )
 
         return {

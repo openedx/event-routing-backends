@@ -1,6 +1,7 @@
 """
 xAPI Transformer Class
 """
+
 from tincan import Agent, LanguageMap, Statement, Verb
 
 from event_routing_backends.helpers import get_anonymous_user_id_by_username
@@ -61,7 +62,7 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             str
         """
-        return self.event['timestamp']
+        return self.get_data('timestamp')
 
 
 class XApiVerbTransformerMixin:
@@ -84,7 +85,7 @@ class XApiVerbTransformerMixin:
         Returns:
             `Verb`
         """
-        event_name = self.event['name']
+        event_name = self.get_data('name', True)
 
         verb = self.verb_map[event_name]
 

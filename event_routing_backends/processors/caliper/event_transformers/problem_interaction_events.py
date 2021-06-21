@@ -54,7 +54,7 @@ class ProblemEventsTransformers(CaliperTransformer):
         Returns:
             str
         """
-        return EVENT_TYPE_MAP[self.event['name']]
+        return EVENT_TYPE_MAP[self.get_data('name', True)]
 
     def get_action(self):
         """
@@ -63,7 +63,7 @@ class ProblemEventsTransformers(CaliperTransformer):
         Returns:
             str
         """
-        return EVENT_ACTION_MAP[self.event['name']]
+        return EVENT_ACTION_MAP[self.get_data('name', True)]
 
     def get_object(self):
         """
@@ -74,17 +74,18 @@ class ProblemEventsTransformers(CaliperTransformer):
         """
         object_id = None
         event_data = None
-        data = self.event.get('data', None)
+        data = self.get_data('data')
         if data and isinstance(data, dict):
-            event_data = data.copy()
+            event_data = data
             object_id = event_data.get('problem_id', event_data.get('module_id', None))
+
         if not object_id:
-            object_id = get_block_id_from_event_referrer(self.event)
+            object_id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
 
         caliper_object = self.transformed_event['object']
         caliper_object.update({
             'id': object_id,
-            'type': OBJECT_TYPE_MAP[self.event['name']],
+            'type': OBJECT_TYPE_MAP[self.get_data('name', True)],
         })
 
         if event_data and isinstance(event_data, dict):

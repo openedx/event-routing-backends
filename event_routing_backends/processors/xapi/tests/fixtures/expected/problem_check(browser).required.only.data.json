@@ -1,0 +1,38 @@
+{
+    "actor": {
+        "objectType": "Agent",
+        "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "objectType": "Activity"
+                }
+            ]
+        },
+        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "object": {
+        "definition": {
+            "type": "http://adlnet.gov/expapi/activities/interaction",
+            "interactionType": "other",
+            "correctResponsesPattern": []
+        },
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-07-14T14:39:26.580443+00:00",
+    "verb": {
+        "display": {
+            "en": "answered"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/answered"
+    },
+    "result": {
+        "score": {
+             "min": 0.0
+        },
+        "success": false
+    },
+    "version": "1.0.3"
+}

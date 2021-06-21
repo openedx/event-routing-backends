@@ -1,6 +1,11 @@
 """
 Base Transformer Mixin to add or transform common data values.
 """
+import logging
+
+from event_routing_backends.models import get_value_from_dotted_path
+
+logger = logging.getLogger(__name__)
 
 
 class BaseTransformerMixin:
@@ -35,6 +40,12 @@ class BaseTransformerMixin:
             dict
         """
         # ignore the key if it is not in the original dict
+        keys_ignored = set(keys) - set(base_dict.keys())
+        if keys_ignored:
+            logger.info(
+                'Following keys are ignored: %s',
+                str(keys_ignored)
+            )
         return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
 
     def find_nested(self, key):
@@ -97,9 +108,10 @@ class BaseTransformerMixin:
             else:
                 raise ValueError(
                     'Cannot find value for "{}" in transformer {} for the event "{}"'.format(
-                        key, self.__class__.__name__, self.event['name']
+                        key, self.__class__.__name__, self.get_data('name', True)
                     )
                 )
+        self.transformed_event = self.del_none(self.transformed_event)
 
         return self.transformed_event
 
@@ -111,7 +123,55 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-        username = self.event.get('context', {}).get('username')
-        if not username:
-            username = self.event.get('data', {}).get('username')
+        username = self.get_data('context.username')
+        if username is None:
+            username = self.get_data('data.username', True)
         return username
+
+    def get_data(self, key, required=False):
+        """
+        Map the dotted key to nested keys for event dict and return the matching value.If key is required field and
+        not fond in event and error will be logged else an info will be logged
+
+        For example:
+            'key_a.key_b.key_c' will look for the following value:
+
+            {
+                'key_a': {
+                    'key_b': {
+                        'key_c': 'final value'
+                    }
+                }
+            }
+
+        Arguments:
+            key (str)  :    dotted key string for the event dict
+            required (bool) :    key is a required field of event or not.
+
+        Returns:
+            ANY :                 Returns the value found in the event dict or `None` if
+                                  no value exists for provided dotted path.
+        """
+        result = get_value_from_dotted_path(self.event, key)
+        if result is None:
+            if not required:
+                logger.info('Could not get data for %s in event "%s"', key, self.get_data('name', True))
+            else:
+                raise ValueError(
+                    'Could not get data for {} in event "{}"'.format(key, self.get_data('name', True))
+                )
+
+        return result
+
+    def del_none(self, source_dict):
+        """
+        Delete keys with the value ``None`` in a dictionary, recursively.
+
+        This alters the input so you may wish to ``copy`` the dict first.
+        """
+        for key, value in list(source_dict.items()):
+            if value is None:
+                del source_dict[key]
+            elif isinstance(value, dict):
+                self.del_none(value)
+        return source_dict
