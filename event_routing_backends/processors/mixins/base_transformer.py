@@ -138,7 +138,7 @@ class BaseTransformerMixin:
 
         Parameters:
                 key (str): dotted-separated key string
-                required (bool) : whether or not key is a required field (default: None)
+                required (bool) : whether or not key is a required field (default: False)
         Returns:
                 ANY (str) : value of key in self.event or 'None' if key is not found or is empty
         Raises:
