@@ -15,8 +15,6 @@ Decision
 --------
 #. Versions of event transformers will be maintained and emitted as part of  xAPI and Caliper events.
 
-#. Versioning scheme is inspired by a semantic versioning `guide`_ (v2.0.0) authored by Tom Preston Werner.
-
 #. Transformer version will be defined by two non-negative integers X and Y representing major and minor version respectively in the form: X.Y.
 
 #. Major version (X) will be incremented when:
@@ -34,6 +32,3 @@ Decision
 #. Change logs of transformers will be maintained for both xAPI and Caliper.
 
 #. This version (X.Y) can be found in `` context [ extensions [ minorVersion ] ]`` for xAPI statement and in ``extensions [ minorVersion ]`` for Caliper event.
-
-
-.. _guide: https://semver.org/
