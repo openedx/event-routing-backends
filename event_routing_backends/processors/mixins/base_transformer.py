@@ -130,27 +130,28 @@ class BaseTransformerMixin:
 
     def get_data(self, key, required=False):
         """
-        Map the dotted key to nested keys for event dict and return the matching value.If key is required field and
-        not fond in event and error will be logged else an info will be logged
+        This function returns value in self.event against a specified key.
 
-        For example:
-            'key_a.key_b.key_c' will look for the following value:
+        Hierarchy levels in a nested key are separated by '.' (dot). If required is True and key is not found or is
+        empty, the function will raise an exception. If required is False and key is not found or is empty, the
+        function will log the instance.
 
-            {
-                'key_a': {
-                    'key_b': {
-                        'key_c': 'final value'
+        Parameters:
+                key (str): dotted-separated key string
+                required (bool) : whether or not key is a required field (default: False)
+        Returns:
+                ANY (str) : value of key in self.event or 'None' if key is not found or is empty
+        Raises:
+                ValueError : If key is not found or is empty and required is True
+        Example:
+                key = 'key_a.key_b.key_c' will return 'value_abc' if:
+                self.event = {
+                    'key_a': {
+                        'key_b': {
+                            'key_c': 'value_abc'
+                        }
                     }
                 }
-            }
-
-        Arguments:
-            key (str)  :    dotted key string for the event dict
-            required (bool) :    key is a required field of event or not.
-
-        Returns:
-            ANY :                 Returns the value found in the event dict or `None` if
-                                  no value exists for provided dotted path.
         """
         result = get_value_from_dotted_path(self.event, key)
         if result is None:
