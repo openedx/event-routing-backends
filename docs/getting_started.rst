@@ -63,12 +63,52 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
         }
     }
 
+- See sample configuration for ``xapi`` backend below.
+
+   .. code-block:: python
+
+    EVENT_TRACKING_BACKENDS = {
+            'xapi': {
+            'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
+            'OPTIONS': {
+                'backend_name': 'xapi',
+                'processors': [
+                        {
+                            'ENGINE': 'eventtracking.processors.regex_filter.RegexFilter',
+                            'OPTIONS': {
+                                'filter_type': 'allowlist',
+                                'regular_expressions': [
+                                    'edx.course.enrollment.*',
+                                    'seek_video',
+                                    'edx.video.position.changed'
+                                ]
+                            }
+                        },
+                ],
+                'backends': {
+                    'caliper': {
+                        'ENGINE': 'event_routing_backends.backends.events_router.EventsRouter',
+                        'OPTIONS': {
+                            'processors': [
+                                {
+                                    'ENGINE': 'event_routing_backends.processors.xapi.transformer_processor.XApiProcessor',
+                                    'OPTIONS': {}
+                                }
+                            ],
+                            'backend_name': 'xapi',
+                        }
+                    }
+                },
+            },
+        }
+    }
+
 - Run migrations in lms-shell
    .. code-block:: bash
 
     $ ./manage.py lms migrate event_routing_backends
 
-- Add router configuraton from django admin under ``EVENT_ROUTING_BACKENDS`` section (http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/) using backend name ``caliper``
+- Add router configuraton from django admin under ``EVENT_ROUTING_BACKENDS`` section (http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/) using backend name ``caliper`` or ``xapi`` and route url of lrs (for example http://concerned.host.example.com)
 
   Here is a sample configuration for a `Bearer Authentication`_ client which routes only those events where ``org_id`` is set to edX.
   `override_args` allows us to pass any additional info in event.
@@ -85,7 +125,6 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
             },
             "host_configurations": {
                 "auth_key": "test_key",
-                "url": "http://concerned.host.example.com",
                 "auth_scheme": "Bearer",
                 "headers": {
                     "test": "header"
