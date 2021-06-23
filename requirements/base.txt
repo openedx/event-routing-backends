@@ -10,7 +10,7 @@ aniso8601==9.0.1
     # via tincan
 billiard==3.6.4.0
     # via celery
-celery==5.1.0
+celery==5.1.1
     # via event-tracking
 certifi==2021.5.30
     # via requests
@@ -82,11 +82,11 @@ kombu==5.1.0
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==6.4.1.158
+newrelic==6.4.2.159
     # via edx-django-utils
 pbr==5.6.0
     # via stevedore
-prompt-toolkit==3.0.18
+prompt-toolkit==3.0.19
     # via click-repl
 psutil==5.8.0
     # via edx-django-utils
