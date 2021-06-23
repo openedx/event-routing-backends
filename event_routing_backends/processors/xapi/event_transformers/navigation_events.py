@@ -156,7 +156,7 @@ class TabNavigationTransformer(NavigationTransformersMixin):
         Returns:
             `Activity`
         """
-        if self.event['name'] == 'edx.ui.lms.sequence.tab_selected':
+        if self.get_data('name', True) == 'edx.ui.lms.sequence.tab_selected':
             position = self.get_data('data.target_tab')
         else:
             position = self.get_data('data.current_tab')

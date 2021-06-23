@@ -9,14 +9,18 @@ from event_routing_backends.processors.caliper.transformer import CaliperTransfo
 
 @CaliperTransformersRegistry.register('edx.course.enrollment.activated')
 @CaliperTransformersRegistry.register('edx.course.enrollment.deactivated')
+@CaliperTransformersRegistry.register('edx.course.completed')
 class EnrollmentEventTransformers(CaliperTransformer):
     """
-    This transformer transformes two events:
+    This transformer transforms three events:
         - edx.course.enrollment.activated
             Generated when a user is enrolled in a course.
 
         - edx.course.enrollment.deactivated
             Generated when a user is unenrolled from a course.
+
+        - edx.course.completed
+            Generated when a user complete a course.
     """
 
     type = 'Event'
@@ -28,8 +32,10 @@ class EnrollmentEventTransformers(CaliperTransformer):
         Returns:
             str
         """
-        if self.event['name'] == 'edx.course.enrollment.activated':
+        if self.get_data('name', True) == 'edx.course.enrollment.activated':
             return 'Activated'
+        if self.get_data('name', True) == 'edx.course.completed':
+            return 'Completed'
         return 'Deactivated'
 
     def get_object(self):
