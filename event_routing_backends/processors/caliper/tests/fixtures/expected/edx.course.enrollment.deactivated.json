@@ -15,5 +15,8 @@
         "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
         "type": "Membership"
     },
+    "extensions": {
+      "minorVersion": 1.0
+    },
     "type": "Event"
 }

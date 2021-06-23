@@ -17,6 +17,8 @@ class BaseTransformerMixin:
 
     required_fields = ()
     additional_fields = ()
+    minor_version = None
+    backend_name = None
 
     def __init__(self, event):
         """
@@ -111,6 +113,10 @@ class BaseTransformerMixin:
                         key, self.__class__.__name__, self.get_data('name', True)
                     )
                 )
+
+        if self.backend_name == 'caliper':
+            self.transformed_event['extensions']['minorVersion'] = self.minor_version
+
         self.transformed_event = self.del_none(self.transformed_event)
 
         return self.transformed_event
