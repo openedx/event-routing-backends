@@ -18,5 +18,8 @@
         "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
         "type": "AssessmentItem"
     },
+    "extensions": {
+      "minorVersion": 1.0
+    },
     "type": "AssessmentItemEvent"
 }

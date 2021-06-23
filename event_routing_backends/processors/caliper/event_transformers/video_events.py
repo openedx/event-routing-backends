@@ -72,6 +72,8 @@ class BaseVideoTransformer(CaliperTransformer):
         Returns:
             str
         """
+        self.minor_version = 1.0
+        self.backend_name = 'caliper'
         caliper_object = self.transformed_event['object']
         data = self.get_data('data')
         course_id = self.get_data('context.course_id', True)

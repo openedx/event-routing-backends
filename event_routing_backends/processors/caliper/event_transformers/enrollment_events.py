@@ -45,6 +45,8 @@ class EnrollmentEventTransformers(CaliperTransformer):
         Returns:
             dict
         """
+        self.minor_version = 1.0
+        self.backend_name = 'caliper'
         data = self.get_data('data')
 
         # TODO: replace with anonymous enrollment id?

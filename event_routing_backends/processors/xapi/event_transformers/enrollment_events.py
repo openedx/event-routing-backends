@@ -2,7 +2,7 @@
 Transformers for enrollment related events.
 """
 
-from tincan import Activity, ActivityDefinition, Context, LanguageMap, Verb
+from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap, Verb
 
 from event_routing_backends.helpers import get_anonymous_user_id_by_username, get_course_from_id, make_course_url
 from event_routing_backends.processors.xapi import constants
@@ -15,6 +15,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
     Base transformer for enrollment events.
     """
     additional_fields = ('context', )
+    minor_version = 1.0
 
     def get_object(self):
         """
@@ -44,11 +45,13 @@ class BaseEnrollmentTransformer(XApiTransformer):
             `Context`
         """
 
-        return Context(
+        context = Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
             )
         )
+        context.extensions = Extensions({"minorVersion": self.minor_version})
+        return context
 
 
 @XApiTransformersRegistry.register('edx.course.enrollment.activated')

@@ -7,6 +7,7 @@ from tincan import (
     ActivityList,
     Context,
     ContextActivities,
+    Extensions,
     InteractionComponent,
     InteractionComponentList,
     LanguageMap,
@@ -74,6 +75,7 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
     """
     additional_fields = ('context', )
     verb_map = VERB_MAP
+    minor_version = 1.0
 
     def get_object(self):
         """
@@ -103,12 +105,14 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
             `Context`
         """
 
-        return Context(
+        context = Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
             ),
             contextActivities=self.get_context_activities()
         )
+        context.extensions = Extensions({"minorVersion": self.minor_version})
+        return context
 
     def get_context_activities(self):
         """

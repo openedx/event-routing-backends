@@ -106,6 +106,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
     """
     additional_fields = ('context', )
     verb_map = VERB_MAP
+    minor_version = 1.0
 
     def get_object(self):
         """
@@ -139,12 +140,14 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Context`
         """
-        return Context(
+        context = Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
             ),
             contextActivities=self.get_context_activities()
         )
+        context.extensions = Extensions({"minorVersion": self.minor_version})
+        return context
 
     def get_context_activities(self):
         """
@@ -186,6 +189,7 @@ class VideoLoadedTransformer(BaseVideoTransformer):
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({
             constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.get_data('data.duration')),
+            "minorVersion": self.minor_version
         })
         return context
 

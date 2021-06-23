@@ -36,7 +36,8 @@ class CaliperTransformer(BaseTransformerMixin):
         self.transformed_event.update({
             '@context': CALIPER_EVENT_CONTEXT,
             'id': uuid.uuid4().urn,
-            'eventTime': convert_datetime_to_iso(self.get_data('timestamp', True))
+            'eventTime': convert_datetime_to_iso(self.get_data('timestamp', True)),
+            'extensions': {}
         })
         self.transformed_event['object'] = {
             'extensions': {

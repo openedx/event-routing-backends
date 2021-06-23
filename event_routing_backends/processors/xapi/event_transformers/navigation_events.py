@@ -44,6 +44,7 @@ class NavigationTransformersMixin(XApiTransformer, XApiVerbTransformerMixin):
     """
     additional_fields = ('context', )
     verb_map = VERB_MAP
+    minor_version = 1.0
 
 
 @XApiTransformersRegistry.register('edx.ui.lms.link_clicked')
@@ -78,12 +79,14 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Context`
         """
 
-        return Context(
+        context = Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
             ),
             contextActivities=self.get_context_activities()
         )
+        context.extensions = Extensions({"minorVersion": self.minor_version})
+        return context
 
     def get_context_activities(self):
         """
@@ -133,11 +136,13 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
         Returns:
             `Context`
         """
-        return Context(
+        context = Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
             )
         )
+        context.extensions = Extensions({"minorVersion": self.minor_version})
+        return context
 
 
 @ XApiTransformersRegistry.register('edx.ui.lms.sequence.next_selected')
@@ -182,23 +187,27 @@ class TabNavigationTransformer(NavigationTransformersMixin):
         if event_name == 'edx.ui.lms.sequence.tab_selected':
             extensions = Extensions({
                 constants.XAPI_CONTEXT_STARTING_POSITION: self.get_data('data.current_tab'),
+                "minorVersion": self.minor_version
             })
         elif event_name == 'edx.ui.lms.sequence.next_selected':
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'next unit',
+                "minorVersion": self.minor_version
             })
         else:
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'previous unit',
+                "minorVersion": self.minor_version
             })
 
-        return Context(
+        context = Context(
             registration=get_anonymous_user_id_by_username(
                 self.extract_username()
             ),
-            contextActivities=self.get_context_activities(),
-            extensions=extensions
+            contextActivities=self.get_context_activities()
         )
+        context.extensions = extensions
+        return context
 
     def get_context_activities(self):
         """
