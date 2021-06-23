@@ -71,3 +71,14 @@ class EnrollmentDeactivatedTransformer(BaseEnrollmentTransformer):
         id=constants.XAPI_VERB_UNREGISTERED,
         display=LanguageMap({constants.EN: constants.UNREGISTERED}),
     )
+
+
+@XApiTransformersRegistry.register('edx.course.completed')
+class CourseCompletionTransformer(BaseEnrollmentTransformer):
+    """
+    Transformers for event generated when learner un-enrolls from a course.
+    """
+    verb = Verb(
+        id=constants.XAPI_VERB_COMPLETED,
+        display=LanguageMap({constants.EN: constants.COMPLETED}),
+    )
