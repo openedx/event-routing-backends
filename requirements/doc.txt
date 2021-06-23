@@ -26,7 +26,7 @@ billiard==3.6.4.0
     #   celery
 bleach==3.3.0
     # via readme-renderer
-celery==5.1.0
+celery==5.1.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -130,7 +130,7 @@ event-tracking==1.0.4
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.8.0
+faker==8.8.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -163,7 +163,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.4.1.158
+newrelic==6.4.2.159
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -181,7 +181,7 @@ pluggy==0.13.1
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.18
+prompt-toolkit==3.0.19
     # via
     #   -r requirements/test.txt
     #   click-repl
