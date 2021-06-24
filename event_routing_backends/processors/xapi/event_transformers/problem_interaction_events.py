@@ -209,7 +209,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         Returns:
             str
         """
-        response_type = self.find_nested('response_type')
+        response_type = self.get_data('response_type')
         try:
             return INTERACTION_TYPES_MAP[response_type]
         except KeyError:
@@ -262,7 +262,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             InteractionComponentList<InteractionComponent>
         """
         answers = self._get_answers_list()
-        answers_descriptions = self.find_nested('answer')
+        answers_descriptions = self.get_data('answer')
         if isinstance(answers_descriptions, str):
             answers_descriptions = [answers_descriptions, ]
         return InteractionComponentList([
