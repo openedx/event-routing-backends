@@ -50,11 +50,13 @@ class BaseTransformerMixin:
             )
         return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
 
-    def find_nested(self, key):
+    @staticmethod
+    def find_nested(source_dict, key):
         """
         Find a key at all levels in the original event dictionary.
 
         Arguments:
+            source_dict (dict) :  event dictionary object
             key (str)         :  dictionary key
 
         Returns:
@@ -79,7 +81,7 @@ class BaseTransformerMixin:
                         return found
             return None
 
-        return _find_nested(self.event)
+        return _find_nested(source_dict)
 
     def base_transform(self):
         """
@@ -159,13 +161,16 @@ class BaseTransformerMixin:
                     }
                 }
         """
-        result = get_value_from_dotted_path(self.event, key)
+        if '.' in key:
+            result = get_value_from_dotted_path(self.event, key)
+        else:
+            result = BaseTransformerMixin.find_nested(self.event, key)
         if result is None:
             if not required:
-                logger.info('Could not get data for %s in event "%s"', key, self.get_data('name', True))
+                logger.info('Could not get data for %s in event "%s"', key, self.event.get('name', None))
             else:
                 raise ValueError(
-                    'Could not get data for {} in event "{}"'.format(key, self.get_data('name', True))
+                    'Could not get data for {} in event "{}"'.format(key, self.event.get('name', None))
                 )
 
         return result
