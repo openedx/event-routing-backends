@@ -4,7 +4,7 @@ PII leakage prevention
 Status
 ------
 
-Pending
+Accepted
 
 Context
 -------
@@ -13,7 +13,7 @@ Context
 
 Decision
 --------
-#. An accessor method will be developed to get values from open edx events for a specified key. Information inside the open edx event will only be accessed using this accessor method in base transformers and in event transformers.
+#. An accessor `method`_ will be developed to get values from open edx events for a specified key. Information inside the open edx event will only be accessed using this accessor method in base transformers and in event transformers.
 
 #. If a key, required by the specification (xAPI or Caliper), is not found in open edx event, this method will throw an exception.
 
@@ -25,3 +25,5 @@ Benefits
 ---------
 
 #. Only the instances where this accessor is called, will need to be reviewed during code review, in order to check for potential PII leakage.
+
+.. _method: https://github.com/edx/event-routing-backends/blob/f430d4cf58bdab01e42fcc944241898606873d82/event_routing_backends/processors/mixins/base_transformer.py#L139
