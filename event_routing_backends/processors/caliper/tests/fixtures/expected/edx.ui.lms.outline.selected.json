@@ -15,7 +15,7 @@
         "type": "WebPage"
     },
     "extensions": {
-      "minorVersion": 1.0
+      "eventVersion": 1.0
     },
     "type": "NavigationEvent"
 }

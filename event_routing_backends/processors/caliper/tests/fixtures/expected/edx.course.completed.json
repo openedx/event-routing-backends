@@ -15,7 +15,7 @@
         "type": "Membership"
     },
     "extensions": {
-      "minorVersion": 1.0
+      "eventVersion": 1.0
     },
     "type": "Event"
 }
