@@ -4,7 +4,7 @@ Versioning of event transformers
 Status
 ------
 
-Accepted
+Pending
 
 Context
 -------
@@ -31,4 +31,4 @@ Decision
 
 #. Change logs of transformers will be maintained for both xAPI and Caliper.
 
-#. This version (X.Y) can be found in `` context [ extensions [ eventVersion ] ]`` for xAPI statement and in ``extensions [ eventVersion ]`` for Caliper event.
+#. This version (X.Y) can be found in `` context [ extensions [ minorVersion ] ]`` for xAPI statement and in ``extensions [ minorVersion ]`` for Caliper event.
