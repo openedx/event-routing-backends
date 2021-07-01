@@ -17,7 +17,7 @@
         "duration": "PT3M15S"
     },
     "extensions": {
-      "minorVersion": 1.0
+      "eventVersion": 1.0
     },
     "type": "Event"
 }

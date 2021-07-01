@@ -14,7 +14,7 @@
         },
         "extensions": {
             "http://id.tincanapi.com/extension/ending-point": "previous unit",
-            "minorVersion": 1.0
+            "eventVersion": 1.0
         },
         "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
     },

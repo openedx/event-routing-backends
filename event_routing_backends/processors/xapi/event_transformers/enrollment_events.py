@@ -15,7 +15,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
     Base transformer for enrollment events.
     """
     additional_fields = ('context', )
-    minor_version = 1.0
+    event_version = 1.0
 
     def get_object(self):
         """
@@ -50,7 +50,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
                 self.extract_username()
             )
         )
-        context.extensions = Extensions({"minorVersion": self.minor_version})
+        context.extensions = Extensions({"eventVersion": self.event_version})
         return context
 
 
