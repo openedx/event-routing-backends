@@ -1,0 +1,86 @@
+{
+    "name":"problem_check",
+    "context":{
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags":{
+
+        },
+        "user_id":3,
+        "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@0d759dee4f9d459c8956136dbde55f02/handler/xmodule_handler/problem_check",
+        "org_id":"edX",
+        "module":{
+            "display_name":"Text Input",
+            "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@0d759dee4f9d459c8956136dbde55f02"
+        },
+        "asides":{
+
+        }
+    },
+    "username":"edx",
+    "session":"4a3cad52ba64aa9369c0b582faf8da08",
+    "ip":"172.18.0.1",
+    "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "host":"localhost:18000",
+    "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@e8a5cc2aed424838853defab7be45e42?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=Homework",
+    "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+    "event":{
+        "state":{
+            "seed":1,
+            "student_answers":{
+                "0d759dee4f9d459c8956136dbde55f02_2_1":"Germany"
+            },
+            "has_saved_answers":false,
+            "correct_map":{
+                "0d759dee4f9d459c8956136dbde55f02_2_1":{
+                    "correctness":"incorrect",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                }
+            },
+            "input_state":{
+                "0d759dee4f9d459c8956136dbde55f02_2_1":{
+
+                }
+            },
+            "done":true
+        },
+        "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@0d759dee4f9d459c8956136dbde55f02",
+        "answers":{
+            "0d759dee4f9d459c8956136dbde55f02_2_1":"France"
+        },
+        "grade":1,
+        "max_grade":1,
+        "correct_map":{
+            "0d759dee4f9d459c8956136dbde55f02_2_1":{
+                "correctness":"correct",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            }
+        },
+        "success":"correct",
+        "attempts":4,
+        "submission":{
+            "0d759dee4f9d459c8956136dbde55f02_2_1":{
+                "question":"",
+                "answer":"France",
+                "response_type":"stringresponse",
+                "input_type":"textline",
+                "correct":true,
+                "variant":"",
+                "group_label":""
+            }
+        }
+    },
+    "time":"2021-06-30T10:18:59.212556+00:00",
+    "event_type":"problem_check",
+    "event_source":"server",
+    "page":"x_module"
+}

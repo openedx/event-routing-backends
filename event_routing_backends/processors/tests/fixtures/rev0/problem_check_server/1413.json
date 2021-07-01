@@ -1,0 +1,97 @@
+{
+    "name":"problem_check",
+    "context":{
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags":{
+
+        },
+        "user_id":3,
+        "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@Sample_Algebraic_Problem/handler/xmodule_handler/problem_check",
+        "org_id":"edX",
+        "module":{
+            "display_name":"Mathematical Expressions",
+            "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@Sample_Algebraic_Problem"
+        },
+        "asides":{
+
+        }
+    },
+    "username":"edx",
+    "session":"4a3cad52ba64aa9369c0b582faf8da08",
+    "ip":"172.18.0.1",
+    "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "host":"localhost:18000",
+    "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@vertical_0c92347a5c00?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=Homework",
+    "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+    "event":{
+        "state":{
+            "seed":1,
+            "student_answers":{
+                "Sample_Algebraic_Problem_2_1":"x+y",
+                "Sample_Algebraic_Problem_2_1_dynamath":"<math xmlns=\"http://www.w3.org/1998/Math/MathML\" data-semantic-complexity=\"6\">\r\n  <mstyle displaystyle=\"true\" data-semantic-type=\"infixop\" data-semantic-role=\"addition\" data-semantic-id=\"3\" data-semantic-children=\"0,2\" data-semantic-content=\"1\" data-semantic-complexity=\"6\">\r\n    <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"0\" data-semantic-parent=\"3\" data-semantic-complexity=\"1\">x</mi>\r\n    <mo data-semantic-type=\"operator\" data-semantic-role=\"addition\" data-semantic-id=\"1\" data-semantic-parent=\"3\" data-semantic-operator=\"infixop,+\" data-semantic-complexity=\"1\">+</mo>\r\n    <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"2\" data-semantic-parent=\"3\" data-semantic-complexity=\"1\">y</mi>\r\n  </mstyle>\r\n</math>"
+            },
+            "has_saved_answers":false,
+            "correct_map":{
+                "Sample_Algebraic_Problem_2_1":{
+                    "correctness":"incorrect",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                }
+            },
+            "input_state":{
+                "Sample_Algebraic_Problem_2_1":{
+
+                }
+            },
+            "done":true
+        },
+        "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@Sample_Algebraic_Problem",
+        "answers":{
+            "Sample_Algebraic_Problem_2_1_dynamath":"<math xmlns=\"http://www.w3.org/1998/Math/MathML\" data-semantic-complexity=\"2\">\r\n  <maction id=\"MJX-Collapse-3\" actiontype=\"toggle\" selection=\"2\" data-semantic-complexity=\"2\">\r\n    <mtext data-semantic-complexity=\"2\">&#x25C2;+&#x25B8;</mtext>\r\n    <mstyle displaystyle=\"true\" data-semantic-type=\"infixop\" data-semantic-role=\"addition\" data-semantic-id=\"9\" data-semantic-children=\"8,7\" data-semantic-content=\"5\" data-semantic-complexity=\"17.8\">\r\n      <mrow data-semantic-type=\"infixop\" data-semantic-role=\"multiplication\" data-semantic-id=\"8\" data-semantic-children=\"0,4\" data-semantic-content=\"1\" data-semantic-parent=\"9\" data-semantic-complexity=\"10.8\">\r\n        <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"0\" data-semantic-parent=\"8\" data-semantic-complexity=\"1\">A</mi>\r\n        <mo data-semantic-type=\"operator\" data-semantic-role=\"multiplication\" data-semantic-id=\"1\" data-semantic-parent=\"8\" data-semantic-operator=\"infixop,&#x22C5;\" data-semantic-complexity=\"1\">&#x22C5;</mo>\r\n        <msup data-semantic-type=\"superscript\" data-semantic-role=\"latinletter\" data-semantic-id=\"4\" data-semantic-children=\"2,3\" data-semantic-parent=\"8\" data-semantic-complexity=\"5.8\">\r\n          <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"2\" data-semantic-parent=\"4\" data-semantic-complexity=\"1\">x</mi>\r\n          <mn data-semantic-type=\"number\" data-semantic-role=\"integer\" data-semantic-font=\"normal\" data-semantic-id=\"3\" data-semantic-parent=\"4\" data-semantic-complexity=\"1\">2</mn>\r\n        </msup>\r\n      </mrow>\r\n      <mo data-semantic-type=\"operator\" data-semantic-role=\"addition\" data-semantic-id=\"5\" data-semantic-parent=\"9\" data-semantic-operator=\"infixop,+\" data-semantic-complexity=\"1\">+</mo>\r\n      <msqrt data-semantic-type=\"sqrt\" data-semantic-role=\"unknown\" data-semantic-id=\"7\" data-semantic-children=\"6\" data-semantic-parent=\"9\" data-semantic-complexity=\"3\">\r\n        <mrow data-semantic-complexity=\"1\">\r\n          <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"6\" data-semantic-parent=\"7\" data-semantic-complexity=\"1\">y</mi>\r\n        </mrow>\r\n      </msqrt>\r\n    </mstyle>\r\n  </maction>\r\n</math>",
+            "Sample_Algebraic_Problem_2_1":"A*x^2 + sqrt(y)"
+        },
+        "grade":1,
+        "max_grade":1,
+        "correct_map":{
+            "Sample_Algebraic_Problem_2_1":{
+                "correctness":"correct",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            }
+        },
+        "success":"correct",
+        "attempts":5,
+        "submission":{
+            "Sample_Algebraic_Problem_2_1_dynamath":{
+                "question":"",
+                "answer":"<math xmlns=\"http://www.w3.org/1998/Math/MathML\" data-semantic-complexity=\"2\">\r\n  <maction id=\"MJX-Collapse-3\" actiontype=\"toggle\" selection=\"2\" data-semantic-complexity=\"2\">\r\n    <mtext data-semantic-complexity=\"2\">&#x25C2;+&#x25B8;</mtext>\r\n    <mstyle displaystyle=\"true\" data-semantic-type=\"infixop\" data-semantic-role=\"addition\" data-semantic-id=\"9\" data-semantic-children=\"8,7\" data-semantic-content=\"5\" data-semantic-complexity=\"17.8\">\r\n      <mrow data-semantic-type=\"infixop\" data-semantic-role=\"multiplication\" data-semantic-id=\"8\" data-semantic-children=\"0,4\" data-semantic-content=\"1\" data-semantic-parent=\"9\" data-semantic-complexity=\"10.8\">\r\n        <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"0\" data-semantic-parent=\"8\" data-semantic-complexity=\"1\">A</mi>\r\n        <mo data-semantic-type=\"operator\" data-semantic-role=\"multiplication\" data-semantic-id=\"1\" data-semantic-parent=\"8\" data-semantic-operator=\"infixop,&#x22C5;\" data-semantic-complexity=\"1\">&#x22C5;</mo>\r\n        <msup data-semantic-type=\"superscript\" data-semantic-role=\"latinletter\" data-semantic-id=\"4\" data-semantic-children=\"2,3\" data-semantic-parent=\"8\" data-semantic-complexity=\"5.8\">\r\n          <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"2\" data-semantic-parent=\"4\" data-semantic-complexity=\"1\">x</mi>\r\n          <mn data-semantic-type=\"number\" data-semantic-role=\"integer\" data-semantic-font=\"normal\" data-semantic-id=\"3\" data-semantic-parent=\"4\" data-semantic-complexity=\"1\">2</mn>\r\n        </msup>\r\n      </mrow>\r\n      <mo data-semantic-type=\"operator\" data-semantic-role=\"addition\" data-semantic-id=\"5\" data-semantic-parent=\"9\" data-semantic-operator=\"infixop,+\" data-semantic-complexity=\"1\">+</mo>\r\n      <msqrt data-semantic-type=\"sqrt\" data-semantic-role=\"unknown\" data-semantic-id=\"7\" data-semantic-children=\"6\" data-semantic-parent=\"9\" data-semantic-complexity=\"3\">\r\n        <mrow data-semantic-complexity=\"1\">\r\n          <mi data-semantic-type=\"identifier\" data-semantic-role=\"latinletter\" data-semantic-font=\"italic\" data-semantic-id=\"6\" data-semantic-parent=\"7\" data-semantic-complexity=\"1\">y</mi>\r\n        </mrow>\r\n      </msqrt>\r\n    </mstyle>\r\n  </maction>\r\n</math>",
+                "response_type":"",
+                "input_type":"",
+                "correct":"",
+                "variant":"",
+                "group_label":""
+            },
+            "Sample_Algebraic_Problem_2_1":{
+                "question":"",
+                "answer":"A*x^2 + sqrt(y)",
+                "response_type":"formularesponse",
+                "input_type":"textline",
+                "correct":true,
+                "variant":"",
+                "group_label":""
+            }
+        }
+    },
+    "time":"2021-06-30T10:06:28.685081+00:00",
+    "event_type":"problem_check",
+    "event_source":"server",
+    "page":"x_module"
+}

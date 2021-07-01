@@ -1,0 +1,86 @@
+{
+    "name":"problem_check",
+    "context":{
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags":{
+
+        },
+        "user_id":3,
+        "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@python_grader/handler/xmodule_handler/problem_check",
+        "org_id":"edX",
+        "module":{
+            "display_name":"",
+            "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@python_grader"
+        },
+        "asides":{
+
+        }
+    },
+    "username":"edx",
+    "session":"4a3cad52ba64aa9369c0b582faf8da08",
+    "ip":"172.18.0.1",
+    "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "host":"localhost:18000",
+    "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@vertical_aae927868e55?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=Homework",
+    "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+    "event":{
+        "state":{
+            "seed":1,
+            "student_answers":{
+                "python_grader_2_1":"monthlyInterestRate = annualInterestRate / 12\r\n\r\nminimum = balance / 12\r\nmaximum = (balance * (1 + monthlyInterestRate)**12) / 12.0\r\n\r\nguessMinimum = (minimum + maximum)/2\r\n\r\nremain = balance #if you payed nothin, the remain is the balance!!!!\r\n\r\nprecision = 0.010  #you choose....\r\n\r\nwhile (remain >= precision):\r\n\r\n    guessMinimum = (minimum + maximum)/2\r\n\r\n\r\n    for i in range (1,13):\r\n\r\n        newBalance = remain - guessMinimum\r\n        monthInterest = annualInterestRate/12*newBalance\r\n        remain = newBalance+monthInterest\r\n\r\n    # after one month, the CODE need to check about the remain\r\n\r\n    if (remain < 0): #paying too much.... need to decrease the value\r\n\r\n        maximum = guessMinimum      #remember my beautiful draw above!!\r\n        remain = balance  # reset the remain to start again!!\r\n\r\n    elif (remain > precision): #paying less .... need to increase the value\r\n        minimum = guessMinimum\r\n        remain = balance  # reset the remain to start again!!   \r\n\r\nprint \"Lowest Payment: %.2f\" %(guessMinimum)"
+            },
+            "has_saved_answers":false,
+            "correct_map":{
+                "python_grader_2_1":{
+                    "correctness":null,
+                    "npoints":null,
+                    "msg":"Unable to deliver your submission to grader (Reason: cannot connect to server). Please try again later.",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                }
+            },
+            "input_state":{
+                "python_grader_2_1":{
+
+                }
+            },
+            "done":true
+        },
+        "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@python_grader",
+        "answers":{
+            "python_grader_2_1":"monthlyInterestRate = annualInterestRate / 12\r\n\r\nminimum = balance / 12\r\nmaximum = (balance * (1 + monthlyInterestRate)**12) / 12.0\r\n\r\nguessMinimum = (minimum + maximum)/2\r\n\r\nremain = balance #if you payed nothin, the remain is the balance!!!!\r\n\r\nprecision = 0.010  #you choose....\r\n\r\nwhile (remain >= precision):\r\n\r\n    guessMinimum = (minimum + maximum)/2\r\n\r\n\r\n    for i in range (1,13):\r\n\r\n        newBalance = remain - guessMinimum\r\n        monthInterest = annualInterestRate/12*newBalance\r\n        remain = newBalance+monthInterest\r\n\r\n    # after one month, the CODE need to check about the remain\r\n\r\n    if (remain < 0): #paying too much.... need to decrease the value\r\n\r\n        maximum = guessMinimum      #remember my beautiful draw above!!\r\n        remain = balance  # reset the remain to start again!!\r\n\r\n    elif (remain > precision): #paying less .... need to increase the value\r\n        minimum = guessMinimum\r\n        remain = balance  # reset the remain to start again!!   \r\n\r\nprint \"Lowest Payment: %.2f\" %(guessMinimum)"
+        },
+        "grade":0,
+        "max_grade":1,
+        "correct_map":{
+            "python_grader_2_1":{
+                "correctness":null,
+                "npoints":null,
+                "msg":"Unable to deliver your submission to grader (Reason: cannot connect to server). Please try again later.",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            }
+        },
+        "success":"incorrect",
+        "attempts":2,
+        "submission":{
+            "python_grader_2_1":{
+                "question":"",
+                "answer":"monthlyInterestRate = annualInterestRate / 12\r\n\r\nminimum = balance / 12\r\nmaximum = (balance * (1 + monthlyInterestRate)**12) / 12.0\r\n\r\nguessMinimum = (minimum + maximum)/2\r\n\r\nremain = balance #if you payed nothin, the remain is the balance!!!!\r\n\r\nprecision = 0.010  #you choose....\r\n\r\nwhile (remain >= precision):\r\n\r\n    guessMinimum = (minimum + maximum)/2\r\n\r\n\r\n    for i in range (1,13):\r\n\r\n        newBalance = remain - guessMinimum\r\n        monthInterest = annualInterestRate/12*newBalance\r\n        remain = newBalance+monthInterest\r\n\r\n    # after one month, the CODE need to check about the remain\r\n\r\n    if (remain < 0): #paying too much.... need to decrease the value\r\n\r\n        maximum = guessMinimum      #remember my beautiful draw above!!\r\n        remain = balance  # reset the remain to start again!!\r\n\r\n    elif (remain > precision): #paying less .... need to increase the value\r\n        minimum = guessMinimum\r\n        remain = balance  # reset the remain to start again!!   \r\n\r\nprint \"Lowest Payment: %.2f\" %(guessMinimum)",
+                "response_type":"coderesponse",
+                "input_type":"textbox",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            }
+        }
+    },
+    "time":"2021-06-30T10:28:25.281977+00:00",
+    "event_type":"problem_check",
+    "event_source":"server",
+    "page":"x_module"
+}
