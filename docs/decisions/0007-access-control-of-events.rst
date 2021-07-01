@@ -9,7 +9,7 @@ Pending
 Context
 -------
 
-`event-routing-backends` can transform filtered edX events in xAPI and Caliper format which can then be routed to configured URLs. Procedure for configuring URLs of learning record consumers can be found in the `documentation`_. A method is required to filter edX events based on event name, course id, organisation id etc. or on any combination of these properties.
+`event-routing-backends` can transform filtered edX events in xAPI and Caliper format which can then be routed to configured URLs. Procedure for configuring URLs of learning record consumers can be found in the `documentation`_. List of supported edX events can be accessed `here`_. A method is required to filter edX events based on event name, course id, organisation id etc. or on any combination of these properties.
 
 Decision
 --------
@@ -49,3 +49,4 @@ Examples
              "event_source": "server"}
 
 .. _documentation: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#setup
+.. _here: ../event-mapping/list_of_supported_edx_events.rst
