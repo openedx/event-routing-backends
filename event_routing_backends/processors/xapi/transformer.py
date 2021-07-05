@@ -30,6 +30,7 @@ class XApiTransformer(BaseTransformerMixin):
             `Statement`
         """
         transformed_props = super().transform()
+        transformed_props["version"] = constants.XAPI_TRANSFORMER_VERSION
         return Statement(**transformed_props)
 
     def base_transform(self):
