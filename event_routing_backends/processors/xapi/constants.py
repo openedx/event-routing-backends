@@ -43,6 +43,7 @@ XAPI_RESULT_VIDEO_TIME_FROM = 'https://w3id.org/xapi/video/extensions/time-from'
 XAPI_RESULT_VIDEO_TIME_TO = 'https://w3id.org/xapi/video/extensions/time-to'
 XAPI_RESULT_VIDEO_CC_ENABLED = 'https://w3id.org/xapi/video/extensions/cc-enabled'
 XAPI_RESULT_VIDEO_PROGRESS = 'https://w3id.org/xapi/video/extensions/progress'
+XAPI_TRANSFORMER_VERSION = '1.0.3'
 
 # Languages
 EN = 'en'
