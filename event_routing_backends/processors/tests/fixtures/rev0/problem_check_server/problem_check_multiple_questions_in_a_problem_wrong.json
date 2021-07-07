@@ -1,0 +1,176 @@
+{
+    "name":"problem_check",
+    "context":{
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags":{
+
+        },
+        "user_id":7,
+        "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df/handler/xmodule_handler/problem_check",
+        "org_id":"edX",
+        "module":{
+            "display_name":"Checkboxes",
+            "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df"
+        },
+        "asides":{
+
+        }
+    },
+    "username":"verified",
+    "session":"fef5218f5c69b5a90be75b375f5881b0",
+    "ip":"172.18.0.1",
+    "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "host":"localhost:18000",
+    "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@2fceba7d458447f380da0959e82d8d92?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view",
+    "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+    "event":{
+        "state":{
+            "seed":1,
+            "student_answers":{
+
+            },
+            "has_saved_answers":false,
+            "correct_map":{
+
+            },
+            "input_state":{
+                "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+
+                }
+            },
+            "done":false
+        },
+        "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+        "answers":{
+            "389a51ad148a4a09bd9ae0f73482d2df_4_1":"wow",
+            "389a51ad148a4a09bd9ae0f73482d2df_6_1":"incorrect",
+            "389a51ad148a4a09bd9ae0f73482d2df_3_1":[
+                "choice_1"
+            ],
+            "389a51ad148a4a09bd9ae0f73482d2df_2_1":[
+                "choice_1",
+                "choice_2"
+            ],
+            "389a51ad148a4a09bd9ae0f73482d2df_5_1":"10"
+        },
+        "grade":0,
+        "max_grade":5,
+        "correct_map":{
+            "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+                "correctness":"incorrect",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+                "correctness":"incorrect",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+                "correctness":"incorrect",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+                "correctness":"incorrect",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+                "correctness":"incorrect",
+                "npoints":null,
+                "msg":"",
+                "hint":"",
+                "hintmode":null,
+                "queuestate":null,
+                "answervariable":null
+            }
+        },
+        "success":"incorrect",
+        "attempts":1,
+        "submission":{
+            "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+                "question":"\"answer\" text input here.",
+                "answer":"wow",
+                "response_type":"stringresponse",
+                "input_type":"textline",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+                "question":"drop down here.",
+                "answer":"incorrect",
+                "response_type":"optionresponse",
+                "input_type":"optioninput",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+                "question":"Checkbox input here.",
+                "answer":[
+                    "incorrect"
+                ],
+                "response_type":"choiceresponse",
+                "input_type":"checkboxgroup",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+                "question":"Add the question text, or prompt, here. This text is required.",
+                "answer":[
+                    "an incorrect answer",
+                    "an incorrect answer"
+                ],
+                "response_type":"choiceresponse",
+                "input_type":"checkboxgroup",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+                "question":"100 numerical input here.",
+                "answer":"10",
+                "response_type":"numericalresponse",
+                "input_type":"formulaequationinput",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            }
+        }
+    },
+    "time":"2021-07-02T07:11:49.631553+00:00",
+    "event_type":"problem_check",
+    "event_source":"server",
+    "page":"x_module"
+}
