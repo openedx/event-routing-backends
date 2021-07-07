@@ -13,7 +13,7 @@
         "type": "Assessment"
     },
     "extensions": {
-      "minorVersion": 1.0
+      "eventVersion": 1.0
     },
     "type": "AssessmentEvent"
 }
