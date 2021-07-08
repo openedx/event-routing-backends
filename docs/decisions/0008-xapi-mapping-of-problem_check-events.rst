@@ -55,7 +55,7 @@ Decision
 
 2. Mapping between `event.submission.*.response_type` and `event.submission.*.input_type` and `interactionType` is as follows:
 
-.. list-table:: Mapping of response_type and input_type with interactionType
+.. list-table::
    :widths: 33 33 33
    :align: center
    :header-rows: 1
