@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[4.1.0]
+~~~~~~~
+
+* Added support for django3.2
+
 [4.0.1]
 ~~~~~~~
 

@@ -2,7 +2,7 @@ name: Python CI
 
 on:
    push:
-     branches: [ master ]
+     branches: [master]
    pull_request:
      branches:
        - '**'
@@ -16,7 +16,7 @@ jobs:
        matrix:
          os: [ubuntu-20.04]
          python-version: ['3.8']
-         toxenv: ['django22', 'quality', 'docs', 'pii_check']
+         toxenv: [django22, django30, django31, django32, quality, docs, pii_check]
 
      steps:
        - uses: actions/checkout@v1
