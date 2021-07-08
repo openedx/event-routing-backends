@@ -11,7 +11,7 @@ Context
 
 #. Event named problem_check is emitted when:
 
-   #. Learner submits a solution to problem. `event_source` is `browser` in this case.
+   #. Learner submits solution to a problem. `event_source` is `browser` in this case.
 
    #. Server grades the submitted solution. `event_source` is `server` in this case.
 
@@ -56,7 +56,8 @@ Decision
 2. Mapping between `event.submission.*.response_type` and `event.submission.*.input_type` and `interactionType` is as follows:
 
 .. list-table:: Mapping of response_type and input_type with interactionType
-   :widths: 25 25 25
+   :widths: 33 33 33
+   :align: center
    :header-rows: 1
 
    * - response_type
@@ -87,7 +88,7 @@ Decision
 
    a. `interactionType` will be a list of strings, each representing an interaction type as per the table above.
 
-   b. `Result [response]` will be a list of answers.
+   b. `Result [response]` will be a list of answers mapped from `event.submission.*.answer`.
 
 5. xAPI spec does not specify that `interactionType` and `Result[response]` can be defined as lists. However, this is a better alternate to emitting multiple events for each assessment in a group of assessments, with same problem IDs.
 
