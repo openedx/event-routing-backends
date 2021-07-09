@@ -39,7 +39,7 @@ Examples
              "context.org_id": "edX",
              "name": ["problem_check", "showanswer", "stop_video"]}
 
-2. Following configuration will allow transformation and routing of an edX event if the organisation is `edX` AND course run is `2021` AND event name starts with `problem` AND event source is `server`.
+2. Following configuration will allow transformation and routing of an edX event if the content organisation is `edX` AND course run is `2021` AND event name starts with `problem` AND event source is `server`.
 
 ::
 
@@ -47,6 +47,14 @@ Examples
              "course_id": "^.*course-v.:edX\+.*\+2021.*$",
              "name": "^problem.*",
              "event_source": "server"}
+
+3. Following configuration will allow transformation and routing of an edX event if the enterprise is `org_XYZ` AND event name is `edx.course.completed` OR `edx.course.enrollment.activated`.
+
+::
+
+    "match_params": {
+             "enterprise_uuid": "org_XYZ",
+             "name": ["edx.course.completed", "edx.course.enrollment.activated"]}
 
 .. _documentation: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#setup
 .. _here: ../event-mapping/list_of_supported_edx_events.rst
