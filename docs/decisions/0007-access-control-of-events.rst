@@ -39,14 +39,13 @@ Examples
              "context.org_id": "edX",
              "name": ["problem_check", "showanswer", "stop_video"]}
 
-2. Following configuration will allow transformation and routing of an edX event if the content organisation is `edX` AND course run is `2021` AND event name starts with `problem` AND event source is `server`.
+2. Following configuration will allow transformation and routing of an edX event if the content organisation is `edX` AND course run is `2021` AND event name starts with `problem` OR event name contains `video`.
 
 ::
 
     "match_params": {
              "course_id": "^.*course-v.:edX\+.*\+2021.*$",
-             "name": "^problem.*",
-             "event_source": "server"}
+             "name": ["^problem.*", "video"]}
 
 3. Following configuration will allow transformation and routing of an edX event if the enterprise is `org_XYZ` AND event name is `edx.course.completed` OR `edx.course.enrollment.activated`.
 
