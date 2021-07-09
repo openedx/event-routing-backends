@@ -1,0 +1,24 @@
+{
+    "context": {
+        "accept_language": "en-US,en;q=0.9",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+        "client_id": "667522224.1583394645",
+        "course_id": "course-v1:edX+DemoX+Demo_Course",
+        "event_source": "browser",
+        "host": "localhost:18000",
+        "ip": "172.18.0.1",
+        "org_id": "edX",
+        "page": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/#block-v1:edX+DemoX+Demo_Course+type@chapter+block@social_integration",
+        "path": "/event",
+        "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/",
+        "session": "6ad0a24d8303f49d14409a669d430b6f",
+        "user_id": null,
+        "username": ""
+    },
+    "data": {
+        "current_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/course/#block-v1:edX+DemoX+Demo_Course+type@chapter+block@social_integration",
+        "target_url": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@6ab9c442501d472c8ed200e367b4edfa"
+    },
+    "name": "edx.ui.lms.link_clicked",
+    "timestamp": "2020-07-14T14:33:28.973761+00:00"
+}

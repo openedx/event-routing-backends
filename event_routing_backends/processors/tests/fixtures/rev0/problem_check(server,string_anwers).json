@@ -1,0 +1,83 @@
+{
+    "context": {
+        "accept_language": "en-US,en;q=0.9",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+        "asides": {},
+        "client_id": "667522224.1583394645",
+        "course_id": "course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags": {},
+        "event_source": "server",
+        "host": "localhost:18000",
+        "ip": "172.18.0.1",
+        "module": {
+            "display_name": "Checkboxes",
+            "usage_key": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66"
+        },
+        "org_id": "edX",
+        "page": "x_module",
+        "path": "/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66/handler/xmodule_handler/problem_check",
+        "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/8b66dcd2d6134eda9355089ece4f39f6/ef37eb3cf1724e38b7f88a9ce85a4842/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40ef37eb3cf1724e38b7f88a9ce85a4842",
+        "session": "6ad0a24d8303f49d14409a669d430b6f",
+        "user_id": 3,
+        "username": "edx"
+    },
+    "data": {
+        "answers": {},
+        "attempts": 10,
+        "correct_map": {
+            "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {
+                "answervariable": null,
+                "correctness": "incorrect",
+                "hint": "",
+                "hintmode": null,
+                "msg": "",
+                "npoints": null,
+                "queuestate": null
+            }
+        },
+        "grade": 0,
+        "max_grade": 1,
+        "problem_id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
+        "state": {
+            "correct_map": {
+                "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {
+                    "answervariable": null,
+                    "correctness": "incorrect",
+                    "hint": "",
+                    "hintmode": null,
+                    "msg": "",
+                    "npoints": null,
+                    "queuestate": null
+                }
+            },
+            "done": true,
+            "has_saved_answers": false,
+            "input_state": {
+                "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {}
+            },
+            "seed": 1,
+            "student_answers": {
+                "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": [
+                    "choice_0",
+                    "choice_1",
+                    "choice_2",
+                    "choice_3"
+                ]
+            }
+        },
+        "submission": {
+            "3fc5461f86764ad7bdbdf6cbdde61e66_2_1": {
+                "answer": "A correct answer",
+                "correct": false,
+                "group_label": "",
+                "input_type": "checkboxgroup",
+                "question": "Add the question text, or prompt, here. This text is required.",
+                "response_type": "choiceresponse",
+                "variant": ""
+            }
+        },
+        "success": "incorrect"
+    },
+    "name": "problem_check",
+    "timestamp": "2020-07-14T14:39:26.906232+00:00"
+}

@@ -1,0 +1,32 @@
+{
+    "context": {
+        "accept_language": "en-US,en;q=0.9",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+        "asides": {},
+        "client_id": "667522224.1583394645",
+        "course_id": "course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags": {},
+        "event_source": "server",
+        "host": "localhost:18000",
+        "ip": "172.18.0.1",
+        "module": {
+            "display_name": "Dropdown with Hints and Feedback",
+            "usage_key": "block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090"
+        },
+        "org_id": "edX",
+        "page": "x_module",
+        "path": "/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090/handler/xmodule_handler/hint_button",
+        "referer": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/courseware/8b66dcd2d6134eda9355089ece4f39f6/ef37eb3cf1724e38b7f88a9ce85a4842/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40ef37eb3cf1724e38b7f88a9ce85a4842",
+        "session": "993110e9c27848a545da74a74114158d",
+        "user_id": 3,
+        "username": "edx"
+    },
+    "data": {
+        "hint_index": 1,
+        "hint_len": 2,
+        "hint_text": "If you add more than one hint, a different hint appears each time learners select the hint button.",
+        "module_id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@07adfed616844fa780c606b55270a090"
+    },
+    "name": "edx.problem.hint.demandhint_displayed",
+    "timestamp": "2020-07-15T06:09:37.404285+00:00"
+}
