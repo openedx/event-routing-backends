@@ -1,0 +1,28 @@
+{
+    "name":"edx.ui.lms.sequence.previous_selected",
+    "context":{
+        "user_id":7,
+        "path":"/event",
+        "course_id":"",
+        "org_id":""
+    },
+    "username":"verified",
+    "session":"485a6a16eaf9c0b256aa96b620038c9c",
+    "ip":"172.18.0.1",
+    "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "host":"localhost:18000",
+    "referer":"http://localhost:2000/",
+    "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+    "event":{
+        "current_tab":2,
+        "id":"block-v1:edX+DemoX+Demo_Course+type@vertical+block@vertical_2dbb0072785e",
+        "tab_count":4,
+        "widget_placement":"bottom",
+        "old":2,
+        "new":1
+    },
+    "time":"2021-07-09T14:12:50.210379+00:00",
+    "event_type":"seq_prev",
+    "event_source":"browser",
+    "page":"http://localhost:2000/course/course-v1:edX+DemoX+Demo_Course/block-v1:edX+DemoX+Demo_Course+type@sequential+block@simulations/block-v1:edX+DemoX+Demo_Course+type@vertical+block@vertical_2dbb0072785e"
+}

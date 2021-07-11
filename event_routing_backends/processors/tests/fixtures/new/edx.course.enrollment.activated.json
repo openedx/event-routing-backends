@@ -1,5 +1,5 @@
 {
-    "name":"edx.course.enrollment.deactivated",
+    "name":"edx.course.enrollment.activated",
     "context":{
         "user_id":7,
         "path":"/change_enrollment",
@@ -11,15 +11,15 @@
     "ip":"172.18.0.1",
     "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
     "host":"localhost:18000",
-    "referer":"http://localhost:18000/dashboard",
+    "referer":"http://localhost:18000/courses/course-v1:edX+E2E-101+course/about",
     "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
     "event":{
         "user_id":7,
         "course_id":"course-v1:edX+E2E-101+course",
         "mode":"audit"
     },
-    "time":"2021-07-09T12:07:46.279089+00:00",
-    "event_type":"edx.course.enrollment.deactivated",
+    "time":"2021-07-09T11:45:15.761595+00:00",
+    "event_type":"edx.course.enrollment.activated",
     "event_source":"server",
     "page":null
 }

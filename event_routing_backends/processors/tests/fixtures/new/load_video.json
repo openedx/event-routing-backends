@@ -1,0 +1,25 @@
+{
+    "name":"load_video",
+    "context":{
+        "user_id":7,
+        "path":"/event",
+        "course_id":"",
+        "org_id":""
+    },
+    "username":"verified",
+    "session":"485a6a16eaf9c0b256aa96b620038c9c",
+    "ip":"172.18.0.1",
+    "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+    "host":"localhost:18000",
+    "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@4f6c1b4e316a419ab5b6bf30e6c708e9?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view",
+    "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+    "event":{
+        "id":"7e9b434e6de3435ab99bd3fb25bde807",
+        "code":"CCxmtcICYNc",
+        "duration":257
+    },
+    "time":"2021-07-09T12:12:41.702128+00:00",
+    "event_type":"load_video",
+    "event_source":"browser",
+    "page":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@4f6c1b4e316a419ab5b6bf30e6c708e9?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
+}
