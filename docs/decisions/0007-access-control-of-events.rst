@@ -4,7 +4,7 @@ Access control of events
 Status
 ------
 
-Pending
+Approved
 
 Context
 -------
