@@ -41,4 +41,9 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
         Raises:
             AssertionError:     Raised if the two events are not same.
         """
-        self.assertDictEqual(expected_event, json.loads(transformed_event.to_json()))
+        # id is a randomly generated UUID therefore not comparing that
+        transformed_event_json = json.loads(transformed_event.to_json())
+        self.assertIn('id', transformed_event_json)
+        expected_event.pop('id')
+        transformed_event_json.pop('id')
+        self.assertDictEqual(expected_event, transformed_event_json)

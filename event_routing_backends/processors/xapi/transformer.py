@@ -1,6 +1,7 @@
 """
 xAPI Transformer Class
 """
+import uuid
 
 from tincan import Agent, LanguageMap, Statement, Verb
 
@@ -40,7 +41,8 @@ class XApiTransformer(BaseTransformerMixin):
         # TODO: Move context registration in base transform
         self.transformed_event = {
             'actor': self.get_actor(),
-            'timestamp': self.get_timestamp()
+            'timestamp': self.get_timestamp(),
+            'id': uuid.uuid4()
         }
 
     def get_actor(self):
