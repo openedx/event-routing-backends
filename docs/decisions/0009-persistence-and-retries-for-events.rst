@@ -27,7 +27,7 @@ Decision
 Consequences
 ------------
 
-1. All but *business critical events*, will be lost after the time and number of retry attempts in decision # 1 expire.
+1. All but *business critical events*, will be lost after the time and number of retry attempts in decision # 2 expire.
 
 2. Decision # 1 is necessary to enable decision # 3 but will also increase the number of celery workers in use.
 
