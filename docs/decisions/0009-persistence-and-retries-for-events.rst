@@ -16,7 +16,7 @@ Decision
 
 1. Retry attempts shall be made for all events for a configured limit of time and number of retries.
 
-2. A limited type of events (namely *business critical events*) shall be persisted even after all retry attempts have been exhausted. The celery task for routing these events to the LRS (whose link is down) will be stored in a database. List of persisted events shall contain events that consumers of LRS may use for record keeping such as course enrolment and completion events.
+2. A limited type of events (namely *business critical events*) shall be persisted even after all retry attempts have been exhausted. The celery task for routing these events to the LRS (whose link is down) will be stored in a database. List of persisted events shall contain events that consumers of LRS may use for record keeping such as course enrollment and completion events.
 
 3. A scheduled process will retry transmitting all persisted events in the database to respective LRS(s) at a configured frequency (e.g. once a day). This process will also check if the number of persisted events is higher than a configured threshold. If so, it will generate an alert.
 
