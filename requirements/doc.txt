@@ -24,7 +24,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
-bleach==3.3.0
+bleach==3.3.1
     # via readme-renderer
 celery==5.1.2
     # via
@@ -38,9 +38,7 @@ cffi==1.14.6
     # via
     #   -r requirements/test.txt
     #   cryptography
-chardet==4.0.0
-    # via doc8
-charset-normalizer==2.0.1
+charset-normalizer==2.0.3
     # via
     #   -r requirements/test.txt
     #   requests
@@ -109,7 +107,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
-doc8==0.8.1
+doc8==0.9.0
     # via -r requirements/doc.in
 docutils==0.17.1
     # via
@@ -117,7 +115,7 @@ docutils==0.17.1
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-django-utils==4.1.0
+edx-django-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -252,7 +250,6 @@ six==1.16.0
     #   -r requirements/test.txt
     #   bleach
     #   click-repl
-    #   doc8
     #   edx-sphinx-theme
     #   event-tracking
     #   isodate
@@ -260,7 +257,7 @@ six==1.16.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==4.1.0
+sphinx==4.1.1
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
