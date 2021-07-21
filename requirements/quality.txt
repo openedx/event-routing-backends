@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.6.2
+astroid==2.6.4
     # via
     #   pylint
     #   pylint-celery
@@ -36,7 +36,7 @@ cffi==1.14.6
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.1
+charset-normalizer==2.0.3
     # via
     #   -r requirements/test.txt
     #   requests
@@ -111,7 +111,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
-edx-django-utils==4.1.0
+edx-django-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -198,7 +198,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.9.3
+pylint==2.9.4
     # via
     #   edx-lint
     #   pylint-celery

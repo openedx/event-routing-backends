@@ -16,7 +16,7 @@ certifi==2021.5.30
     # via requests
 cffi==1.14.6
     # via cryptography
-charset-normalizer==2.0.1
+charset-normalizer==2.0.3
     # via requests
 click==7.1.2
     # via
@@ -62,7 +62,7 @@ django-waffle==2.2.1
     #   edx-toggles
 djangorestframework==3.12.4
     # via django-config-models
-edx-django-utils==4.1.0
+edx-django-utils==4.2.0
     # via
     #   django-config-models
     #   edx-toggles

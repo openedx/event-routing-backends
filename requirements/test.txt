@@ -30,7 +30,7 @@ cffi==1.14.6
     # via
     #   -r requirements/base.txt
     #   cryptography
-charset-normalizer==2.0.1
+charset-normalizer==2.0.3
     # via
     #   -r requirements/base.txt
     #   requests
@@ -97,7 +97,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/base.txt
     #   django-config-models
-edx-django-utils==4.1.0
+edx-django-utils==4.2.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
