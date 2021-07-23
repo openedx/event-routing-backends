@@ -16,11 +16,11 @@ Decision
 
 1. A separate celery task will be created per transformed event per recipient.
 
-2. Retry attempts shall be made for each recipient, for all events types, and for a configured limit of time and number of retries.
+2. Retry attempts shall be made for each recipient, for all events types, and for a configured number of retries and delay between each retry.
 
 3. A limited type of events (namely *business critical events*) shall be persisted even after all retry attempts have been exhausted. The celery task for routing these events to the recipient (whose link is down) will be stored in a database. This task (persisted via `celery-utils`) will include just enough information about the event that it gets resent appropriately after persistence. Events that consumers of LRS may use for record keeping such as course enrollment and completion events, shall be classified as *business critical events*.
 
-4. A scheduled process will retry transmitting all persisted events in the database to respective recipient(s) at a configured frequency (e.g. once a day). This process will also check if the number of persisted events is higher than a configured threshold. If so, it will generate an alert.
+4. A scheduled process will retry transmitting all persisted events in the database to respective recipient(s) at a configured frequency (e.g. once a day). This process will also check if the number of persisted events is higher than a configured threshold. If so, it will generate an alert for the admin.
 
 5. An interface shall be provided for admin to view the list of recipient(s) whose events are persisting in the database. The admin may choose to contact the recipient(s) to try and resolve the communication issue.
 
