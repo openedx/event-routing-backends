@@ -55,13 +55,13 @@ class EventsRouter:
         event.
 
         Arguments:
-            original_event (dict):      original event dictionary
-            transformed_event (dict):   transformed event dictionary
+            event (dict):      original event dictionary
         """
+        event_name = event.get('name')
         try:
             logger.debug(
                 'Processing event %s for router with backend %s',
-                event,
+                event_name,
                 self.backend_name
             )
 
@@ -69,14 +69,14 @@ class EventsRouter:
         except EventEmissionExit:
             logger.error(
                 'Could not process event %s for backend %s\'s router',
-                event,
+                event_name,
                 self.backend_name,
                 exc_info=True
             )
             return
 
         logger.debug('Successfully processed event %s for router with backend %s',
-                     event, self.backend_name)
+                     event_name, self.backend_name)
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
@@ -90,7 +90,7 @@ class EventsRouter:
             if not hosts:
                 logger.info(
                     'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                    event, self.backend_name
+                    event_name, self.backend_name
                 )
                 return
 
@@ -98,7 +98,7 @@ class EventsRouter:
                 updated_event = self.overwrite_event_data(processed_event, host)
 
                 self.dispatch_event(
-                    event,
+                    event_name,
                     updated_event,
                     host['router_type'],
                     host['host_configurations']
@@ -164,7 +164,7 @@ class EventsRouter:
 
         try:
             client = client_class(**host_config)
-            client.send(event)
+            client.send(event, event_name)
             logger.debug(
                 'Successfully dispatched event "{}" using client strategy "{}"'.format(
                     event_name,

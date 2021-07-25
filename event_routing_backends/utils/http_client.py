@@ -43,12 +43,13 @@ class HttpClient:
             }
         return {}
 
-    def send(self, json):
+    def send(self, json, event_name):
         """
         Send the event to configured remote.
 
         Arguments:
             json (dict) :   event payload to send to host.
+            event_name (str) :   original name of the event that has now been transformed.
 
         Returns:
             requests.Response object
@@ -63,5 +64,5 @@ class HttpClient:
             'headers': headers,
         })
 
-        logger.debug('Sending event json to {}'.format(self.URL))
+        logger.info('Sending transformed version of event {} to {}'.format(event_name, self.URL))
         return requests.post(**options)

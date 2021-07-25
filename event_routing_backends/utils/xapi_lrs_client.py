@@ -53,27 +53,30 @@ class LrsClient:
 
         return None
 
-    def send(self, statement):
+    def send(self, json, event_name):
         """
         Send the xAPI statement to configured remote.
 
         Arguments:
-            statement (Statement) :   transformed xAPI statement
+            json (dict) :   transformed xAPI event json
+            event_name (str) :   original name of the event that has now been transformed
 
         Returns:
             requests.Response object
         """
-        ### WARNING!!!!!!!! The following del command needs to be removed
-        statement['context']['extensions']['http://id.tincanapi.com/extension/tags'] = ['1.0', ]
-        del(statement['context']['extensions']['eventVersion'])
-        del(statement['version'])
-        logger.info('Sending event json to %s', self.URL)
+        ### WARNING!!!!!!!! The following 3 lines needs to be removed
+        json['context']['extensions']['http://id.tincanapi.com/extension/tags'] = ['1.0', ]
+        del(json['context']['extensions']['eventVersion'])
+        del(json['version'])
 
-        response = self.lrs_client.save_statement(statement)
+        logger.info('Sending xAPI statement of {} to {}'.format(event_name, self.URL))
+        response = self.lrs_client.save_statement(json)
         if not response:
-            logger.error('Failed to send xapi statement to URL: {}'.format(self.URL))
+            logger.error('Failed to send xAPI statement of {} to LRS at {}'.format(event_name, self.URL))
         else:
             if not response.success:
-                logger.warning('LRS has rejected the statement. Data: {}, Code: {}'.format(response.data, response.response.code))
+                logger.warning(
+                    'LRS at {} has rejected the statement for event {}. Data: {}, Code: {}'.format(self.URL, event_name, response.data, response.response.code))
             else:
-                logger.info('LRS has accepted the statement. Data: {}, Code: {}'.format(response.data, response.response.code))
+                logger.info(
+                    'LRS at {} has accepted the statement for event {}. Data: {}, Code: {}'.format(self.URL, event_name, response.data, response.response.code))
