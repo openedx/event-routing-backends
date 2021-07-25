@@ -13,7 +13,7 @@ class LrsClient:
     An LRS client for xAPI stores.
     """
 
-    def __init__(self, url=None, version=None, auth_scheme=None, auth_key=None, auth_pass=None):
+    def __init__(self, url=None, version=None, auth_scheme=None, auth_key=None, auth_pass=None, auth=None):
         """
         Initialize the client with provided configurations.
 
@@ -27,6 +27,7 @@ class LrsClient:
         self.AUTH_KEY = auth_key
         self.AUTH_PASS = auth_pass
         self.VERSION = version
+        self.AUTH = auth
         if self.AUTH_SCHEME == 'Basic' and self.AUTH_KEY is not None and self.AUTH_PASS is not None:
             self.lrs_client = RemoteLRS(
                 version=self.VERSION,
@@ -48,8 +49,8 @@ class LrsClient:
         Returns:
             str
         """
-        if self.AUTH_SCHEME:
-            return f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
+        if self.AUTH:
+            return f'{self.AUTH_SCHEME} {self.AUTH}'
 
         return None
 
