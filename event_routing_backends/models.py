@@ -2,12 +2,17 @@
 """
 Database models for event_routing_backends.
 """
+import logging
+import re
+
 from config_models.models import ConfigurationModel, ConfigurationModelManager
 from django.db import models
 from edx_django_utils.cache.utils import TieredCache, get_cache_key
 
 from event_routing_backends.helpers import backend_cache_ttl
 from event_routing_backends.utils.fields import EncryptedJSONField
+
+logger = logging.getLogger(__name__)
 
 
 def get_value_from_dotted_path(dict_obj, dotted_key):
@@ -240,6 +245,33 @@ class RouterConfiguration(ConfigurationModel):
             bool
         """
         for key, value in host_config.get('match_params', {}).items():
-            if get_value_from_dotted_path(original_event, key) != value:
+            original_event_value = get_value_from_dotted_path(original_event, key)
+            if isinstance(value, list):
+                matched = False
+                for value_item in value:
+                    if self._is_match(value_item, original_event_value):
+                        matched = True
+                if not matched:
+                    return False
+            elif not self._is_match(value, original_event_value):
                 return False
         return True
+
+    def _is_match(self, regex_exp, value_str):
+        """
+        Return True if the `regex expression` matches the `value_str`.
+
+        Arguments:
+            regex_exp    (str):     regex expression string
+            value_str       (str):     value string in which we need to compare regex expression
+
+        Returns:
+            bool
+        """
+        try:
+            return bool(re.compile(str(regex_exp))) and re.search(regex_exp, value_str)
+        except TypeError as err:
+            logger.info(
+                        'Invalid regex %s with error: %s', regex_exp, err
+                    )
+            return False
