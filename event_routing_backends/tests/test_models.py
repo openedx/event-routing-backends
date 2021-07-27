@@ -7,10 +7,38 @@ from edx_django_utils.cache.utils import TieredCache
 
 from event_routing_backends.models import RouterConfiguration
 from event_routing_backends.tests.factories import RouterConfigurationFactory
+from event_routing_backends.tests.test_mixin import RouterTestMixin
+
+ROUTER_CONFIG_FIXTURE = [
+            {
+                'match_params': {
+                    'context.org_id': 'abc',
+                    'name': None
+                },
+                'host_configurations': {
+                    'url': 'http://test1.com',
+                    'headers': {
+                        'authorization': 'Token test'
+                    }
+                }
+            },
+            {
+                'match_params': {
+                    'context.org_id': 'test',
+                    'name': ['problem_check', 'showanswer', 'stop_video']
+                },
+                'host_configurations': {
+                    'url': 'http://test1.com',
+                    'headers': {
+                        'authorization': 'Token test'
+                    }
+                }
+            }
+        ]
 
 
 @ddt.ddt
-class TestRouterConfiguration(TestCase):
+class TestRouterConfiguration(TestCase, RouterTestMixin):
     """
     Test `RouterConfiguration` model
     """
@@ -39,25 +67,24 @@ class TestRouterConfiguration(TestCase):
         TieredCache.dangerous_clear_all_tiers()
         self.assertEqual(RouterConfiguration.get_enabled_routers('second')[0], second_router)
 
-    def test_allowed_hosts(self):
+    @ddt.data(
+        ({'context.org_id': 'test'}, True),
+        ({'non_existing.id.value': 'test'}, False),
+        ({'context.org_id': 'abc', 'name': None}, False),
+        ({'context.org_id': 'test', 'name': ['problem_check', 'showanswer', 'stop_video']}, True),
+        ({'context.org_id': 'test', 'name': [None]}, False),
+        ({'context.org_id': 'abc', 'name': 'problem_check'}, False),
+        ({'context.org_id': 'test', 'name': 'problem_check'}, True),
+        ({"course_id": r"^.*course-v.:edX\+.*\+2021.*$", "name": "problem_check"}, True),
+        ({'context.org_id': 'test', "name": ["^problem.*", "video"]}, True),
+    )
+    @ddt.unpack
+    def test_allowed_hosts(self, match_params, found):
         config_fixture = [
             {
-                'match_params': {
-                    'context.org_id': 'test'
-                },
+                'match_params': match_params,
                 'host_configurations': {
                     'url': 'http://test1.com',
-                    'headers': {
-                        'authorization': 'Token test'
-                    }
-                }
-            },
-            {
-                'match_params': {
-                    'non_existing.id.value': 'test'
-                },
-                'host_configurations': {
-                    'url': 'http://test2.com',
                     'headers': {
                         'authorization': 'Token test'
                     }
@@ -66,6 +93,8 @@ class TestRouterConfiguration(TestCase):
         ]
 
         original_event = {
+            'course_id': 'course-v1:edX+E2E+2021+course',
+            'name': 'problem_check',
             'context': {
                 'org_id': 'test'
             },
@@ -73,16 +102,13 @@ class TestRouterConfiguration(TestCase):
                 'id': 'test_id'
             }
         }
-
-        router = RouterConfigurationFactory(
-            configurations=config_fixture,
-            enabled=True,
-            route_url='http://test3.com',
-            backend_name='first'
-        )
+        router = self.create_router_configuration(config_fixture, 'first')
 
         hosts = router.get_allowed_hosts(original_event)
-        self.assertEqual(config_fixture[:1], hosts)
+        if found:
+            self.assertEqual(config_fixture[:1], hosts)
+        else:
+            self.assertEqual([], hosts)
 
     def test_model_cache(self):
         test_cache_router = RouterConfigurationFactory(
