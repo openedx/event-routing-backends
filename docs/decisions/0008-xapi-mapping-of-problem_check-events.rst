@@ -27,25 +27,29 @@ Context
 
 ::
 
-    "submission": {
-             "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
-             "question": "What color is the sky?",
-             "answer": "green",
-             "response_type": "stringresponse",
-             "input_type": "textline",
-             "correct": false,
-             "variant": "",
-             "group_label": ""},
-
-             "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
-             "question": "What is 5 times 3?",
-             "answer": "15",
-             "response_type": "numericalresponse",
-             "input_type": "formulaequationinput",
-             "correct": true,
-             "variant": "",
-             "group_label": ""}
-         }
+    "submission":{
+            "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+                "question":"Checkbox input here.",
+                "answer":[
+                    "an incorrect answer",
+                    "a correct answer"
+                ],
+                "response_type":"choiceresponse",
+                "input_type":"checkboxgroup",
+                "correct":false,
+                "variant":"",
+                "group_label":""
+            },
+            "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+                "question":"Drop down here.",
+                "answer":"correct",
+                "response_type":"optionresponse",
+                "input_type":"optioninput",
+                "correct":true,
+                "variant":"",
+                "group_label":""
+            }
+    }
 
 
 Decision
