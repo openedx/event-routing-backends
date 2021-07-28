@@ -32,7 +32,7 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via edx-toggles
 cryptography==3.4.7
     # via django-fernet-fields
@@ -68,7 +68,7 @@ edx-django-utils==4.2.0
     #   edx-toggles
 edx-toggles==4.2.0
     # via -r requirements/base.in
-event-tracking==1.0.4
+event-tracking==1.1.0
     # via -r requirements/base.in
 idna==3.2
     # via requests
