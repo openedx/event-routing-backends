@@ -55,7 +55,7 @@ click-repl==0.2.0
     # via
     #   -r requirements/base.txt
     #   celery
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
@@ -104,11 +104,11 @@ edx-django-utils==4.2.0
     #   edx-toggles
 edx-toggles==4.2.0
     # via -r requirements/base.txt
-event-tracking==1.0.4
+event-tracking==1.1.0
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.10.1
+faker==8.10.3
     # via factory-boy
 idna==3.2
     # via

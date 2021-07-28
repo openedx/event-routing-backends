@@ -63,7 +63,7 @@ click-repl==0.2.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
@@ -124,11 +124,11 @@ edx-sphinx-theme==3.0.0
     # via -r requirements/doc.in
 edx-toggles==4.2.0
     # via -r requirements/test.txt
-event-tracking==1.0.4
+event-tracking==1.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.10.1
+faker==8.10.3
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -257,7 +257,7 @@ six==1.16.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==4.1.1
+sphinx==4.1.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme

@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.6.4
+astroid==2.6.5
     # via
     #   pylint
     #   pylint-celery
@@ -65,7 +65,7 @@ click-repl==0.2.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
@@ -120,11 +120,11 @@ edx-lint==5.0.0
     # via -r requirements/quality.in
 edx-toggles==4.2.0
     # via -r requirements/test.txt
-event-tracking==1.0.4
+event-tracking==1.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.10.1
+faker==8.10.3
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -198,7 +198,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.9.4
+pylint==2.9.5
     # via
     #   edx-lint
     #   pylint-celery
