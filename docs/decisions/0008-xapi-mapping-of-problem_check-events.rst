@@ -53,11 +53,10 @@ Decision
 
 1. Only the `problem_check` event having `event_source` as `server` will be transformed and emitted.
 
-2. Mapping between `event.submission.*.response_type` and `event.submission.*.input_type` and `interactionType` is as follows:
+2. Value of `interactionType` key in transformed event will be mapped based on `event.submission.*.response_type` and `event.submission.*.input_type` as listed in the table below:
 
 .. list-table::
    :widths: 33 33 33
-   :align: center
    :header-rows: 1
 
    * - response_type
@@ -82,15 +81,68 @@ Decision
      -
      - other
 
-3. Learner's answers are mapped from `event.submission.*.answer` to `Result [response]`.
+3. Learner's answers are mapped from `event.submission.*.answer` to `Result [response]` in the transformed event. !!!talk about lists!!!
 
 4. For an event containing multiple assessments:
 
-   a. `interactionType` will be a list of strings, each representing an interaction type as per the table above.
+   a. Transformed event will be emitted with a single attachment.
 
-   b. `Result [response]` will be a list of answers mapped from `event.submission.*.answer`.
+   b. This attachment will be of type `application/json`.
 
-5. xAPI spec does not specify that `interactionType` and `Result[response]` can be defined as lists. However, this is a better alternate to emitting multiple events for each assessment in a group of assessments, with same problem IDs.
+   c. The attachment will contain keys `Objects` and `Results` with lists of `objects` and `results` as their values respectively.
+
+   d. Each list entry of `objects` and `results` will contain information for a single submission.
+
+::
+
+    {
+        'objects':[
+            {
+                'id':'block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df',
+                'objectType':'Activity',
+                'definition':{
+                    'description':{
+                        'en-US':'Checkbox input here.'
+                    },
+                    'type':'http://adlnet.gov/expapi/activities/cmi.interaction',
+                    'interactionType':'choice'
+                }
+            },
+            {
+                'id':'block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df',
+                'objectType':'Activity',
+                'definition':{
+                    'description':{
+                        'en-US':'Drop down here.'
+                    },
+                    'type':'http://adlnet.gov/expapi/activities/cmi.interaction',
+                    'interactionType':'choice'
+                }
+            },
+        ],
+        'results':[
+            {
+                'score':{
+                    'scaled':0.4,
+                    'raw':2.0,
+                    'min':0.0,
+                    'max':5.0
+                },
+                'success':False,
+                'response':"['an incorrect answer', 'a correct answer']"
+            },
+            {
+                'score':{
+                    'scaled':0.4,
+                    'raw':2.0,
+                    'min':0.0,
+                    'max':5.0
+                },
+                'success':False,
+                'response':'correct'
+            },
+        ]
+    }
 
 6. Each key in `submission` where `key.response_type` is empty will be ignored.
 
