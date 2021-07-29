@@ -87,7 +87,13 @@ Decision
 
 3. Learner's answers are mapped from `event.submission.*.answer` to `Result [response]` in the transformed event. !!!talk about lists!!!
 
-4. For an event containing multiple assessments:
+4. Each key in `submission` where `key.response_type` is empty will be ignored.
+
+5. xAPI spec allows for `correctResponsesPattern` to be emitted with each problem interaction event. This field will not be used because edX `problem_check` event does not contain information about correct answers.
+
+6. xAPI spec allows for additional properties for certain event types like an array of choices for multiple choice assessments. These properties will not be used because `problem_check` event does not contain such information.
+
+7. For an event containing multiple assessments:
 
    a. Transformed event will be emitted with a single attachment.
 
@@ -97,59 +103,201 @@ Decision
 
    d. Each list entry of `objects` and `results` will contain information for a single submission.
 
+8. Example of header and body of a post request for a `problem_check` event with multiple questions is as follows:
+
+Header of post request
+----------------------
 ::
+    {
+        'User-Agent':'python-requests/2.26.0',
+        'Accept-Encoding':'gzip, deflate',
+        'Accept':'*/*',
+        'Connection':'keep-alive',
+        'X-Experience-API-Version':'1.0.1',
+        'Content-Type':"multipart/mixed; boundary=abcABC0123'()+_,-./:=?",
+        'Content-Length':'3581',
+        'Authorization':'Basic bkZLdnVNWjhvZDlVSGpSZmV6ZzpvOEJwbzVOa1NHdllvUmNUY3g4'
+    }
+Body of post request
+---------------------
+::
+    --abcABC0123'()+_,-./:=?
+    Content-Disposition: form-data; name="randomField1"; filename="randomFilename1"
+    Content-Type: application/json
 
     {
-        'objects':[
-            {
-                'id':'block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df',
-                'objectType':'Activity',
-                'definition':{
-                    'description':{
-                        'en-US':'Checkbox input here.'
-                    },
-                    'type':'http://adlnet.gov/expapi/activities/cmi.interaction',
-                    'interactionType':'choice'
-                }
+        "result":{
+            "score":{
+                "scaled":0.4,
+                "raw":2.0,
+                "min":0.0,
+                "max":5.0
             },
-            {
-                'id':'block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df',
-                'objectType':'Activity',
-                'definition':{
-                    'description':{
-                        'en-US':'Drop down here.'
-                    },
-                    'type':'http://adlnet.gov/expapi/activities/cmi.interaction',
-                    'interactionType':'choice'
-                }
-            },
-        ],
-        'results':[
-            {
-                'score':{
-                    'scaled':0.4,
-                    'raw':2.0,
-                    'min':0.0,
-                    'max':5.0
+            "success":false,
+            "response":"100"
+        },
+        "version":"1.0.3",
+        "actor":{
+            "objectType":"Agent",
+            "openid":"https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+        },
+        "verb":{
+            "id":"http://adlnet.gov/expapi/verbs/answered",
+            "display":{
+                "en-US":"answered"
+            }
+        },
+        "object":{
+            "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+            "objectType":"Activity",
+            "definition":{
+                "description":{
+                    "en-US":"Numerical input here (100)."
                 },
-                'success':False,
-                'response':"['an incorrect answer', 'a correct answer']"
-            },
+                "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                "interactionType":"numeric"
+            }
+        },
+        "context":{
+            "contextActivities":{
+                "parent":[
+                    {
+                        "id":"course-v1:edX+DemoX+Demo_Course",
+                        "objectType":"Activity"
+                    }
+                ]
+            }
+        },
+        "attachments":[
             {
-                'score':{
-                    'scaled':0.4,
-                    'raw':2.0,
-                    'min':0.0,
-                    'max':5.0
+                "usageType":"http://id.tincanapi.com/attachment/supporting_media",
+                "display":{
+                    "en-US":"supporting media"
                 },
-                'success':False,
-                'response':'correct'
-            },
+                "contentType":"application/json",
+                "length":2001,
+                "sha2":"1efeee7dd1170cfd7d31f4b50b489cc9182ff874a0744dcc05c58ea4392158ae",
+                "description":{
+                    "en-US":"A media file that supports the experience. For example a video that shows the experience taking place"
+                }
+            }
         ]
     }
+    --abcABC0123'()+_,-./:=?
+    Content-Disposition: form-data; name="randomField2"; filename="randomFilename2"
+    Content-Type: application/json
+    Content-Transfer-Encoding: binary
+    X-Experience-API-Hash: 1efeee7dd1170cfd7d31f4b50b489cc9182ff874a0744dcc05c58ea4392158ae
 
-6. Each key in `submission` where `key.response_type` is empty will be ignored.
-
-7. xAPI spec allows for `correctResponsesPattern` to be emitted with each problem interaction event. This field will not be used because edX `problem_check` event does not contain information about correct answers.
-
-8. xAPI spec allows for additional properties for certain event types like an array of choices for multiple choice assessments. These properties will not be used because `problem_check` event does not contain such information.
+    {
+        "objects":[
+            {
+                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+                "objectType":"Activity",
+                "definition":{
+                    "description":{
+                        "en-US":"Checkbox input here."
+                    },
+                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                    "interactionType":"choice"
+                }
+            },
+            {
+                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+                "objectType":"Activity",
+                "definition":{
+                    "description":{
+                        "en-US":"Drop down here."
+                    },
+                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                    "interactionType":"choice"
+                }
+            },
+            {
+                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+                "objectType":"Activity",
+                "definition":{
+                    "description":{
+                        "en-US":"Text input here (\"answer\")."
+                    },
+                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                    "interactionType":"fill-in"
+                }
+            },
+            {
+                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+                "objectType":"Activity",
+                "definition":{
+                    "description":{
+                        "en-US":"Multiple choice input here."
+                    },
+                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                    "interactionType":"choice"
+                }
+            },
+            {
+                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+                "objectType":"Activity",
+                "definition":{
+                    "description":{
+                        "en-US":"Numerical input here (100)."
+                    },
+                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                    "interactionType":"numeric"
+                }
+            }
+        ],
+        "results":[
+            {
+                "score":{
+                    "scaled":0.4,
+                    "raw":2.0,
+                    "min":0.0,
+                    "max":5.0
+                },
+                "success":false,
+                "response":"['an incorrect answer', 'a correct answer']"
+            },
+            {
+                "score":{
+                    "scaled":0.4,
+                    "raw":2.0,
+                    "min":0.0,
+                    "max":5.0
+                },
+                "success":false,
+                "response":"correct"
+            },
+            {
+                "score":{
+                    "scaled":0.4,
+                    "raw":2.0,
+                    "min":0.0,
+                    "max":5.0
+                },
+                "success":false,
+                "response":"not an answer"
+            },
+            {
+                "score":{
+                    "scaled":0.4,
+                    "raw":2.0,
+                    "min":0.0,
+                    "max":5.0
+                },
+                "success":false,
+                "response":"incorrect"
+            },
+            {
+                "score":{
+                    "scaled":0.4,
+                    "raw":2.0,
+                    "min":0.0,
+                    "max":5.0
+                },
+                "success":false,
+                "response":"100"
+            }
+        ]
+    }
+    --abcABC0123'()+_,-./:=?--
