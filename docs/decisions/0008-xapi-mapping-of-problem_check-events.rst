@@ -109,49 +109,137 @@ Header of post request
 ----------------------
 ::
 
-    {
-        'User-Agent':'python-requests/2.26.0',
-        'Accept-Encoding':'gzip, deflate',
-        'Accept':'*/*',
-        'Connection':'keep-alive',
-        'X-Experience-API-Version':'1.0.1',
-        'Content-Type':"multipart/mixed; boundary=abcABC0123'()+_,-./:=?",
-        'Content-Length':'3581',
-        'Authorization':'Basic bkZLdnVNWjhvZDlVSGpSZmV6ZzpvOEJwbzVOa1NHdllvUmNUY3g4'
-    }
+{
+    'User-Agent':'python-requests/2.26.0',
+    'Accept-Encoding':'gzip, deflate',
+    'Accept':'*/*',
+    'Connection':'keep-alive',
+    'X-Experience-API-Version':'1.0.1',
+    'Content-Type':"multipart/mixed; boundary=abcABC0123'()+_,-./:=?",
+    'Content-Length':'3581',
+    'Authorization':'Basic bkZLdnVNWjhvZDlVSGpSZmV6ZzpvOEJwbzVOa1NHdllvUmNUY3g4'
+}
 
 Body of post request
 ---------------------
 
 ::
 
-    --abcABC0123'()+_,-./:=?
-    Content-Disposition: form-data; name="randomField1"; filename="randomFilename1"
-    Content-Type: application/json
+--abcABC0123'()+_,-./:=?
+Content-Disposition: form-data; name="randomField1"; filename="randomFilename1"
+Content-Type: application/json
 
-    {
-        "result":{
-            "score":{
-                "scaled":0.4,
-                "raw":2.0,
-                "min":0.0,
-                "max":5.0
+{
+    "result":{
+        "score":{
+            "scaled":0.4,
+            "raw":2.0,
+            "min":0.0,
+            "max":5.0
+        },
+        "success":false,
+        "response":"100"
+    },
+    "version":"1.0.3",
+    "actor":{
+        "objectType":"Agent",
+        "openid":"https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+    },
+    "verb":{
+        "id":"http://adlnet.gov/expapi/verbs/answered",
+        "display":{
+            "en-US":"answered"
+        }
+    },
+    "object":{
+        "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+        "objectType":"Activity",
+        "definition":{
+            "description":{
+                "en-US":"Numerical input here (100)."
             },
-            "success":false,
-            "response":"100"
-        },
-        "version":"1.0.3",
-        "actor":{
-            "objectType":"Agent",
-            "openid":"https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
-        },
-        "verb":{
-            "id":"http://adlnet.gov/expapi/verbs/answered",
+            "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+            "interactionType":"numeric"
+        }
+    },
+    "context":{
+        "contextActivities":{
+            "parent":[
+                {
+                    "id":"course-v1:edX+DemoX+Demo_Course",
+                    "objectType":"Activity"
+                }
+            ]
+        }
+    },
+    "attachments":[
+        {
+            "usageType":"http://id.tincanapi.com/attachment/supporting_media",
             "display":{
-                "en-US":"answered"
+                "en-US":"supporting media"
+            },
+            "contentType":"application/json",
+            "length":2001,
+            "sha2":"1efeee7dd1170cfd7d31f4b50b489cc9182ff874a0744dcc05c58ea4392158ae",
+            "description":{
+                "en-US":"A media file that supports the experience. For example a video that shows the experience taking place"
+            }
+        }
+    ]
+}
+--abcABC0123'()+_,-./:=?
+Content-Disposition: form-data; name="randomField2"; filename="randomFilename2"
+Content-Type: application/json
+Content-Transfer-Encoding: binary
+X-Experience-API-Hash: 1efeee7dd1170cfd7d31f4b50b489cc9182ff874a0744dcc05c58ea4392158ae
+
+{
+    "objects":[
+        {
+            "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+            "objectType":"Activity",
+            "definition":{
+                "description":{
+                    "en-US":"Checkbox input here."
+                },
+                "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                "interactionType":"choice"
             }
         },
-        "object":{
+        {
+            "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+            "objectType":"Activity",
+            "definition":{
+                "description":{
+                    "en-US":"Drop down here."
+                },
+                "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                "interactionType":"choice"
+            }
+        },
+        {
+            "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+            "objectType":"Activity",
+            "definition":{
+                "description":{
+                    "en-US":"Text input here (\"answer\")."
+                },
+                "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                "interactionType":"fill-in"
+            }
+        },
+        {
+            "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+            "objectType":"Activity",
+            "definition":{
+                "description":{
+                    "en-US":"Multiple choice input here."
+                },
+                "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
+                "interactionType":"choice"
+            }
+        },
+        {
             "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
             "objectType":"Activity",
             "definition":{
@@ -161,147 +249,59 @@ Body of post request
                 "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
                 "interactionType":"numeric"
             }
+        }
+    ],
+    "results":[
+        {
+            "score":{
+                "scaled":0.4,
+                "raw":2.0,
+                "min":0.0,
+                "max":5.0
+            },
+            "success":false,
+            "response":"['an incorrect answer', 'a correct answer']"
         },
-        "context":{
-            "contextActivities":{
-                "parent":[
-                    {
-                        "id":"course-v1:edX+DemoX+Demo_Course",
-                        "objectType":"Activity"
-                    }
-                ]
-            }
+        {
+            "score":{
+                "scaled":0.4,
+                "raw":2.0,
+                "min":0.0,
+                "max":5.0
+            },
+            "success":false,
+            "response":"correct"
         },
-        "attachments":[
-            {
-                "usageType":"http://id.tincanapi.com/attachment/supporting_media",
-                "display":{
-                    "en-US":"supporting media"
-                },
-                "contentType":"application/json",
-                "length":2001,
-                "sha2":"1efeee7dd1170cfd7d31f4b50b489cc9182ff874a0744dcc05c58ea4392158ae",
-                "description":{
-                    "en-US":"A media file that supports the experience. For example a video that shows the experience taking place"
-                }
-            }
-        ]
-    }
-    --abcABC0123'()+_,-./:=?
-    Content-Disposition: form-data; name="randomField2"; filename="randomFilename2"
-    Content-Type: application/json
-    Content-Transfer-Encoding: binary
-    X-Experience-API-Hash: 1efeee7dd1170cfd7d31f4b50b489cc9182ff874a0744dcc05c58ea4392158ae
-
-    {
-        "objects":[
-            {
-                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
-                "objectType":"Activity",
-                "definition":{
-                    "description":{
-                        "en-US":"Checkbox input here."
-                    },
-                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
-                    "interactionType":"choice"
-                }
+        {
+            "score":{
+                "scaled":0.4,
+                "raw":2.0,
+                "min":0.0,
+                "max":5.0
             },
-            {
-                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
-                "objectType":"Activity",
-                "definition":{
-                    "description":{
-                        "en-US":"Drop down here."
-                    },
-                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
-                    "interactionType":"choice"
-                }
+            "success":false,
+            "response":"not an answer"
+        },
+        {
+            "score":{
+                "scaled":0.4,
+                "raw":2.0,
+                "min":0.0,
+                "max":5.0
             },
-            {
-                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
-                "objectType":"Activity",
-                "definition":{
-                    "description":{
-                        "en-US":"Text input here (\"answer\")."
-                    },
-                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
-                    "interactionType":"fill-in"
-                }
+            "success":false,
+            "response":"incorrect"
+        },
+        {
+            "score":{
+                "scaled":0.4,
+                "raw":2.0,
+                "min":0.0,
+                "max":5.0
             },
-            {
-                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
-                "objectType":"Activity",
-                "definition":{
-                    "description":{
-                        "en-US":"Multiple choice input here."
-                    },
-                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
-                    "interactionType":"choice"
-                }
-            },
-            {
-                "id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
-                "objectType":"Activity",
-                "definition":{
-                    "description":{
-                        "en-US":"Numerical input here (100)."
-                    },
-                    "type":"http://adlnet.gov/expapi/activities/cmi.interaction",
-                    "interactionType":"numeric"
-                }
-            }
-        ],
-        "results":[
-            {
-                "score":{
-                    "scaled":0.4,
-                    "raw":2.0,
-                    "min":0.0,
-                    "max":5.0
-                },
-                "success":false,
-                "response":"['an incorrect answer', 'a correct answer']"
-            },
-            {
-                "score":{
-                    "scaled":0.4,
-                    "raw":2.0,
-                    "min":0.0,
-                    "max":5.0
-                },
-                "success":false,
-                "response":"correct"
-            },
-            {
-                "score":{
-                    "scaled":0.4,
-                    "raw":2.0,
-                    "min":0.0,
-                    "max":5.0
-                },
-                "success":false,
-                "response":"not an answer"
-            },
-            {
-                "score":{
-                    "scaled":0.4,
-                    "raw":2.0,
-                    "min":0.0,
-                    "max":5.0
-                },
-                "success":false,
-                "response":"incorrect"
-            },
-            {
-                "score":{
-                    "scaled":0.4,
-                    "raw":2.0,
-                    "min":0.0,
-                    "max":5.0
-                },
-                "success":false,
-                "response":"100"
-            }
-        ]
-    }
-    --abcABC0123'()+_,-./:=?--
+            "success":false,
+            "response":"100"
+        }
+    ]
+}
+--abcABC0123'()+_,-./:=?--
