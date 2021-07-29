@@ -17,24 +17,24 @@ Context
 
 #. Only the latter in above, contains useful information such as grade, learner's answer etc.
 
-#. Solution of an assessment (or group of assessments) can be found in `event.submission`.
+#. Solution of an assessment (or group of assessments) can be found in `data.submission`.
 
 #. Each solution in `data.submission` is defined by response type and input type defined in `data.submission.*.response_type` and `data.submission.*.input_type` respectively. The combination of `response_type` and `input_type` for each submission needs to be mapped with `interactionType` in xAPI specification.
 
-#. xAPI specification provides a special schema for recording interaction with assessments. The specification assumes that each statement records interaction with only 1 assessment. However, edX studio allows grouping multiple assessments into a single assessment. And therefore, a single `problem_check` event is emitted even for a group of assessments as seen in `Appendix A`_.
+#. xAPI specification provides a special schema for recording interaction with assessments. The specification assumes that each statement records interaction with only one assessment. However, edX studio allows grouping multiple assessments into a single assessment. And therefore, a single `problem_check` event is emitted even for a group of assessments as seen in `Appendix A`_.
 
 #. In case of `problem_check` event having multiple submissions in `event.submission`, one of the following approach needs to be implemented:
 
-   #. Multiple xAPI transformed events can be emitted, each containing information regarding one of the submissions. Grades of the problem (`data.grade` and `data.max_grade`) will then have to be calculated for each submission based on value of `data.submission.*.correct`.
+   #. Multiple xAPI transformed events can be emitted, each containing information regarding one of the submissions. Grades of the problem (`data.grade` and `data.max_grade`) will then have to be calculated for each submission based on the value of `data.submission.*.correct`.
 
-  #. A single xAPI transformed event will be emitted with information of any one of the submissions. Information about the rest of the submission can be emitted in an attachment of this event.
+   #. A single xAPI transformed event can be emitted having information mapped from any one of the submissions. Information about the rest of the submissions can be emitted in an attachment with this event.
 
 Decision
 --------
 
 1. Only the `problem_check` event having `event_source` as `server` will be transformed and emitted.
 
-2. Value of `interactionType` key in transformed event will be mapped based on `event.submission.*.response_type` and `event.submission.*.input_type` as listed in the table below:
+2. Value of `interactionType` key in transformed event will be mapped based on `data.submission.*.response_type` and `data.submission.*.input_type` as listed in the table below:
 
 .. list-table::
    :widths: 33 33 33
@@ -86,7 +86,7 @@ Decision
 
    e. Each list entry of `objects` and `results` will contain information for a single submission.
 
-8. Example of header and body of a post request for a `problem_check` event with multiple questions is presented in `Appendix B`_.
+8. Example of header and body of a post request for a `problem_check` event in `Appendix A`_ is presented in `Appendix B`_.
 
 
 .. _Appendix A:
