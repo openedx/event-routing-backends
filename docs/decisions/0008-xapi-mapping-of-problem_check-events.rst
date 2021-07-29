@@ -9,48 +9,25 @@ Pending
 Context
 -------
 
-#. Event named problem_check is emitted when:
+#. Event named `problem_check` is emitted when:
 
    #. Learner submits solution to a problem. `event_source` is `browser` in this case.
 
    #. Server grades the submitted solution. `event_source` is `server` in this case.
 
-#. Only the latter case in above, contains useful information such as grade, learner's answer etc.
+#. Only the latter in above, contains useful information such as grade, learner's answer etc.
 
-#. xAPI specification provides a special schema for recording interaction with assessments. The specification assumes that each statement records interaction with only 1 assessment. However, lms studio allows grouping multiple assessments into a single assessment. And therefore, a single event is emitted even for a group of assessments.
+#. Solution of an assessment (or group of assessments) can be found in `event.submission`.
 
-#. Solution of an assessment (or group of assessments) can be found as a dictionary in `event.submission`.
+#. Each solution in `data.submission` is defined by response type and input type defined in `data.submission.*.response_type` and `data.submission.*.input_type` respectively. The combination of `response_type` and `input_type` for each submission needs to be mapped with `interactionType` in xAPI specification.
 
-#. Solution of each assessment in edX is defined by response type and input type defined in `event.submission.*.response_type` and `event.submission.*.input_type` respectively. The combination of `response_type` and `input_type` for each submission needs to be mapped with `interactionType` in xAPI specification.
+#. xAPI specification provides a special schema for recording interaction with assessments. The specification assumes that each statement records interaction with only 1 assessment. However, edX studio allows grouping multiple assessments into a single assessment. And therefore, a single `problem_check` event is emitted even for a group of assessments as seen in `Appendix A`_.
 
-#. Example of `submission` for a group of two assessments is as follows:
+#. In case of `problem_check` event having multiple submissions in `event.submission`, one of the following approach needs to be implemented:
 
-::
+   #. Multiple xAPI transformed events can be emitted, each containing information regarding one of the submissions. Grades of the problem (`data.grade` and `data.max_grade`) will then have to be calculated for each submission based on value of `data.submission.*.correct`.
 
-    "submission":{
-            "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
-                "question":"Checkbox input here.",
-                "answer":[
-                    "an incorrect answer",
-                    "a correct answer"
-                ],
-                "response_type":"choiceresponse",
-                "input_type":"checkboxgroup",
-                "correct":false,
-                "variant":"",
-                "group_label":""
-            },
-            "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
-                "question":"Drop down here.",
-                "answer":"correct",
-                "response_type":"optionresponse",
-                "input_type":"optioninput",
-                "correct":true,
-                "variant":"",
-                "group_label":""
-            }
-    }
-
+  #. A single xAPI transformed event will be emitted with information of any one of the submissions. Information about the rest of the submission can be emitted in an attachment of this event.
 
 Decision
 --------
@@ -85,7 +62,7 @@ Decision
      -
      - other
 
-3. Learner's answers are mapped from `event.submission.*.answer` to `Result [response]` in the transformed event. !!!talk about lists!!!
+3. Learner's answers are mapped from `data.submission.*.answer` to `Result [response]` in the transformed event. As per specification, `Result [response]` needs to be a string. Therefore any lists in `data.submission.*.answer` will be converted to a string delimited by pipe character (`|`).
 
 4. Each key in `submission` where `key.response_type` is empty will be ignored.
 
@@ -95,18 +72,260 @@ Decision
 
 7. For an event containing multiple assessments:
 
-   a. Transformed event will be emitted with a single attachment.
+   a. The approach involving multiple transformed events will not be used because:
 
-   b. This attachment will be of type `application/json`.
+      i. This approach would have required manipulating the grading of problems already graded by the server.
 
-   c. The attachment will contain keys `Objects` and `Results` with lists of `objects` and `results` as their values respectively.
+      ii. It would have required significant changes in workflow of `event-routing-backends` application. At present, the application generates only one transformed version for a given event.
 
-   d. Each list entry of `objects` and `results` will contain information for a single submission.
+   b. Instead, the transformed event will be emitted with a single attachment.
 
-8. Example of header and body of a post request for a `problem_check` event with multiple questions is as follows:
+   c. This attachment will be of type `application/json`.
 
-Header of post request
-----------------------
+   d. The attachment will contain keys `Objects` and `Results` with lists of `objects` and `results` as their values respectively.
+
+   e. Each list entry of `objects` and `results` will contain information for a single submission.
+
+8. Example of header and body of a post request for a `problem_check` event with multiple questions is presented in `Appendix B`_.
+
+
+.. _Appendix A:
+
+Appendix A
+----------
+::
+
+    {
+        "name":"problem_check",
+        "timestamp":"2021-07-28T06:39:07.422913+00:00",
+        "data":{
+            "state":{
+                "seed":1,
+                "student_answers":{
+                    "389a51ad148a4a09bd9ae0f73482d2df_6_1":"correct",
+                    "389a51ad148a4a09bd9ae0f73482d2df_4_1":"answer",
+                    "389a51ad148a4a09bd9ae0f73482d2df_2_1":[
+                        "choice_0",
+                        "choice_3"
+                    ],
+                    "389a51ad148a4a09bd9ae0f73482d2df_5_1":"100",
+                    "389a51ad148a4a09bd9ae0f73482d2df_3_1":"choice_2"
+                },
+                "has_saved_answers":false,
+                "correct_map":{
+                    "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+                        "correctness":"correct",
+                        "npoints":null,
+                        "msg":"",
+                        "hint":"",
+                        "hintmode":null,
+                        "queuestate":null,
+                        "answervariable":null
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+                        "correctness":"correct",
+                        "npoints":null,
+                        "msg":"",
+                        "hint":"",
+                        "hintmode":null,
+                        "queuestate":null,
+                        "answervariable":null
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+                        "correctness":"correct",
+                        "npoints":null,
+                        "msg":"",
+                        "hint":"",
+                        "hintmode":null,
+                        "queuestate":null,
+                        "answervariable":null
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+                        "correctness":"correct",
+                        "npoints":null,
+                        "msg":"",
+                        "hint":"",
+                        "hintmode":null,
+                        "queuestate":null,
+                        "answervariable":null
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+                        "correctness":"correct",
+                        "npoints":null,
+                        "msg":"",
+                        "hint":"",
+                        "hintmode":null,
+                        "queuestate":null,
+                        "answervariable":null
+                    }
+                },
+                "input_state":{
+                    "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+
+                    },
+                    "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+
+                    }
+                },
+                "done":true
+            },
+            "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df",
+            "answers":{
+                "389a51ad148a4a09bd9ae0f73482d2df_2_1":[
+                    "choice_2",
+                    "choice_3"
+                ],
+                "389a51ad148a4a09bd9ae0f73482d2df_6_1":"correct",
+                "389a51ad148a4a09bd9ae0f73482d2df_4_1":"not an answer",
+                "389a51ad148a4a09bd9ae0f73482d2df_3_1":"choice_1",
+                "389a51ad148a4a09bd9ae0f73482d2df_5_1":"100"
+            },
+            "grade":2,
+            "max_grade":5,
+            "correct_map":{
+                "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+                    "correctness":"incorrect",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+                    "correctness":"incorrect",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+                    "correctness":"incorrect",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+                    "correctness":"correct",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+                    "correctness":"correct",
+                    "npoints":null,
+                    "msg":"",
+                    "hint":"",
+                    "hintmode":null,
+                    "queuestate":null,
+                    "answervariable":null
+                }
+            },
+            "success":"incorrect",
+            "attempts":3,
+            "submission":{
+                "389a51ad148a4a09bd9ae0f73482d2df_2_1":{
+                    "question":"Checkbox input here.",
+                    "answer":[
+                        "an incorrect answer",
+                        "a correct answer"
+                    ],
+                    "response_type":"choiceresponse",
+                    "input_type":"checkboxgroup",
+                    "correct":false,
+                    "variant":"",
+                    "group_label":""
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_6_1":{
+                    "question":"Drop down here.",
+                    "answer":"correct",
+                    "response_type":"optionresponse",
+                    "input_type":"optioninput",
+                    "correct":true,
+                    "variant":"",
+                    "group_label":""
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_4_1":{
+                    "question":"Text input here (\"answer\").",
+                    "answer":"not an answer",
+                    "response_type":"stringresponse",
+                    "input_type":"textline",
+                    "correct":false,
+                    "variant":"",
+                    "group_label":""
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_3_1":{
+                    "question":"Multiple choice input here.",
+                    "answer":"incorrect",
+                    "response_type":"multiplechoiceresponse",
+                    "input_type":"choicegroup",
+                    "correct":false,
+                    "variant":"",
+                    "group_label":""
+                },
+                "389a51ad148a4a09bd9ae0f73482d2df_5_1":{
+                    "question":"Numerical input here (100).",
+                    "answer":"100",
+                    "response_type":"numericalresponse",
+                    "input_type":"formulaequationinput",
+                    "correct":true,
+                    "variant":"",
+                    "group_label":""
+                }
+            }
+        },
+        "context":{
+            "course_id":"course-v1:edX+DemoX+Demo_Course",
+            "course_user_tags":{
+
+            },
+            "session":"dc4d4862f54a6d3de1d203d5e063d1f2",
+            "user_id":7,
+            "username":"verified",
+            "ip":"172.18.0.1",
+            "host":"localhost:18000",
+            "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36",
+            "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df/handler/xmodule_handler/problem_check",
+            "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@2fceba7d458447f380da0959e82d8d92?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view",
+            "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+            "client_id":null,
+            "org_id":"edX",
+            "module":{
+                "display_name":"Multiple questions",
+                "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@389a51ad148a4a09bd9ae0f73482d2df"
+            },
+            "asides":{
+
+            },
+            "event_source":"server",
+            "page":"x_module"
+        }
+    }
+
+.. _Appendix B:
+
+Appendix B
+----------
+
+**Header of post request:**
+
 ::
 
    {
@@ -117,11 +336,10 @@ Header of post request
     'X-Experience-API-Version':'1.0.1',
     'Content-Type':"multipart/mixed; boundary=abcABC0123'()+_,-./:=?",
     'Content-Length':'3581',
-    'Authorization':'Basic bkZLdnVNWjhvZDlVSGpSZmV6ZzpvOEJwbzVOa1NHdllvUmNUY3g4'
+    'Authorization':'Basic bkZLdnVQWjhvZDlVSGpSZmV6ZzpvOEJwbzVOa1NHdllvUmNUY3g4'
    }
 
-Body of post request
----------------------
+**Body of post request:**
 
 ::
 
