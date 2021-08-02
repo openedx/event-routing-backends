@@ -31,4 +31,8 @@ Decision
 
 #. Change logs of transformers will be maintained for both xAPI and Caliper.
 
-#. This version (X.Y) can be found in `` context [ extensions [ eventVersion ] ]`` for xAPI statement and in ``extensions [ eventVersion ]`` for Caliper event.
+#. This version (X.Y) can be found as type `string` in:
+
+   #. First element of array in value of key `context [ extensions [ http://id.tincanapi.com/extension/tags ] ]` in xAPI statement.
+
+   #. Value of key `extensions [ eventVersion ]` in Caliper event.
