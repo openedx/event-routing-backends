@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.6.5
+astroid==2.6.6
     # via
     #   pylint
     #   pylint-celery
@@ -36,7 +36,7 @@ cffi==1.14.6
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via
     #   -r requirements/test.txt
     #   requests
@@ -124,7 +124,7 @@ event-tracking==1.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.10.3
+faker==8.11.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -138,7 +138,7 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.0
     # via -r requirements/test.txt
-isort==5.9.2
+isort==5.9.3
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -162,7 +162,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.4.4.161
+newrelic==6.6.0.162
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -198,7 +198,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.9.5
+pylint==2.9.6
     # via
     #   edx-lint
     #   pylint-celery
