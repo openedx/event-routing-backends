@@ -30,7 +30,7 @@ cffi==1.14.6
     # via
     #   -r requirements/base.txt
     #   cryptography
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via
     #   -r requirements/base.txt
     #   requests
@@ -108,7 +108,7 @@ event-tracking==1.1.0
     # via -r requirements/base.txt
 factory-boy==3.2.0
     # via -r requirements/test.in
-faker==8.10.3
+faker==8.11.0
     # via factory-boy
 idna==3.2
     # via
@@ -134,7 +134,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==6.4.4.161
+newrelic==6.6.0.162
     # via
     #   -r requirements/base.txt
     #   edx-django-utils

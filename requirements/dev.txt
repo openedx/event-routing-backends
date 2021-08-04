@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-astroid==2.6.5
+astroid==2.6.6
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -44,7 +44,7 @@ cffi==1.14.6
     #   cryptography
 chardet==4.0.0
     # via diff-cover
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -83,7 +83,7 @@ code-annotations==1.2.0
     #   -r requirements/quality.txt
     #   edx-lint
     #   edx-toggles
-codecov==2.1.11
+codecov==2.1.12
     # via -r requirements/ci.txt
 coverage==5.5
     # via
@@ -97,7 +97,7 @@ cryptography==3.4.7
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==6.2.0
+diff-cover==6.2.1
     # via -r requirements/dev.in
 distlib==0.3.2
     # via
@@ -150,7 +150,7 @@ event-tracking==1.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.10.3
+faker==8.11.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -172,7 +172,7 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.0
     # via -r requirements/quality.txt
-isort==5.9.2
+isort==5.9.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -204,7 +204,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==6.4.4.161
+newrelic==6.6.0.162
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -226,7 +226,7 @@ pep517==0.11.0
     #   pip-tools
 pip-tools==6.2.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.1.0
+platformdirs==2.2.0
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -263,7 +263,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.9.0
     # via diff-cover
-pylint==2.9.5
+pylint==2.9.6
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -366,11 +366,11 @@ toml==0.10.2
     #   pytest
     #   pytest-cov
     #   tox
-tomli==1.1.0
+tomli==1.2.0
     # via
     #   -r requirements/pip-tools.txt
     #   pep517
-tox==3.24.0
+tox==3.24.1
     # via
     #   -r requirements/ci.txt
     #   tox-battery
@@ -387,7 +387,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.6.0
+virtualenv==20.7.0
     # via
     #   -r requirements/ci.txt
     #   tox
