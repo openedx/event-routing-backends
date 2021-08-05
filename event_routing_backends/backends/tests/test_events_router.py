@@ -117,7 +117,7 @@ class TestEventsRouter(TestCase):
         self.router = EventsRouter(processors=[], backend_name='test')
 
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_with_processor_exception(self, mocked_logger, mocked_post):
         processors = [
             MagicMock(return_value=self.transformed_event),
@@ -143,7 +143,7 @@ class TestEventsRouter(TestCase):
         ), mocked_logger.error.mock_calls)
 
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_with_no_router_configurations_available(self, mocked_logger, mocked_post):
         router = EventsRouter(processors=[], backend_name='test')
         router.send(self.transformed_event)
@@ -156,7 +156,7 @@ class TestEventsRouter(TestCase):
         )
 
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_with_unsupported_routing_strategy(self, mocked_logger, mocked_post):
         configurations = ROUTER_CONFIG_FIXTURE[0:1].copy()
         configurations[0]['router_type'] = 'INVALID_TYPE'
@@ -176,7 +176,7 @@ class TestEventsRouter(TestCase):
         mocked_post.assert_not_called()
 
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_with_no_available_hosts(self, mocked_logger, mocked_post):
         RouterConfigurationFactory.create(
             backend_name='test_backend',
@@ -199,11 +199,11 @@ class TestEventsRouter(TestCase):
             mocked_logger.info.mock_calls
         )
 
-    @patch.dict('event_routing_backends.backends.events_router.ROUTER_STRATEGY_MAPPING', {
+    @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
         'AUTH_HEADERS': MagicMock(side_effect=Exception)
     })
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_generic_exception(self, mocked_logger, mocked_post):
         RouterConfigurationFactory.create(
             backend_name='test_backend',
@@ -252,7 +252,7 @@ class TestEventsRouter(TestCase):
 
         router = EventsRouter(processors=[], backend_name='test_routing')
 
-        with patch.dict('event_routing_backends.backends.events_router.ROUTER_STRATEGY_MAPPING', MOCKED_MAP):
+        with patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', MOCKED_MAP):
             router.send(self.transformed_event)
 
         # test the HTTP client
