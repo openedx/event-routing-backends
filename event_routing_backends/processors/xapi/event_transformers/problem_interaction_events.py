@@ -7,7 +7,6 @@ from tincan import (
     ActivityList,
     Context,
     ContextActivities,
-    Extensions,
     InteractionComponent,
     InteractionComponentList,
     LanguageMap,
@@ -111,7 +110,6 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
             ),
             contextActivities=self.get_context_activities()
         )
-        context.extensions = Extensions({"eventVersion": self.event_version})
         return context
 
     def get_context_activities(self):
