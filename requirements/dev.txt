@@ -97,7 +97,7 @@ cryptography==3.4.7
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==6.2.1
+diff-cover==6.2.2
     # via -r requirements/dev.in
 distlib==0.3.2
     # via
@@ -204,7 +204,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==6.6.0.162
+newrelic==6.8.0.163
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -366,9 +366,10 @@ toml==0.10.2
     #   pytest
     #   pytest-cov
     #   tox
-tomli==1.2.0
+tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
+    #   diff-cover
     #   pep517
 tox==3.24.1
     # via
@@ -387,7 +388,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.7.0
+virtualenv==20.7.2
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -395,7 +396,7 @@ wcwidth==0.2.5
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
-wheel==0.36.2
+wheel==0.37.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
