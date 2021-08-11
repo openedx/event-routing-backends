@@ -82,7 +82,7 @@ kombu==5.1.0
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==6.6.0.162
+newrelic==6.8.0.163
     # via edx-django-utils
 pbr==5.6.0
     # via stevedore
