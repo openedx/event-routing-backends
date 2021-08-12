@@ -85,7 +85,6 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             ),
             contextActivities=self.get_context_activities()
         )
-        context.extensions = Extensions({"eventVersion": self.event_version})
         return context
 
     def get_context_activities(self):
@@ -141,7 +140,6 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
                 self.extract_username()
             )
         )
-        context.extensions = Extensions({"eventVersion": self.event_version})
         return context
 
 
@@ -187,17 +185,14 @@ class TabNavigationTransformer(NavigationTransformersMixin):
         if event_name == 'edx.ui.lms.sequence.tab_selected':
             extensions = Extensions({
                 constants.XAPI_CONTEXT_STARTING_POSITION: self.get_data('data.current_tab'),
-                "eventVersion": self.event_version
             })
         elif event_name == 'edx.ui.lms.sequence.next_selected':
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'next unit',
-                "eventVersion": self.event_version
             })
         else:
             extensions = Extensions({
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'previous unit',
-                "eventVersion": self.event_version
             })
 
         context = Context(

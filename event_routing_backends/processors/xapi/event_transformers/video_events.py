@@ -146,7 +146,6 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
             ),
             contextActivities=self.get_context_activities()
         )
-        context.extensions = Extensions({"eventVersion": self.event_version})
         return context
 
     def get_context_activities(self):
@@ -189,7 +188,6 @@ class VideoLoadedTransformer(BaseVideoTransformer):
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({
             constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.get_data('data.duration')),
-            "eventVersion": self.event_version
         })
         return context
 

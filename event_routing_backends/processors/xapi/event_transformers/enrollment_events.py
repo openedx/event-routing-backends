@@ -2,7 +2,7 @@
 Transformers for enrollment related events.
 """
 
-from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap, Verb
+from tincan import Activity, ActivityDefinition, Context, LanguageMap, Verb
 
 from event_routing_backends.helpers import get_anonymous_user_id_by_username, get_course_from_id, make_course_url
 from event_routing_backends.processors.xapi import constants
@@ -50,7 +50,6 @@ class BaseEnrollmentTransformer(XApiTransformer):
                 self.extract_username()
             )
         )
-        context.extensions = Extensions({"eventVersion": self.event_version})
         return context
 
 
