@@ -97,7 +97,7 @@ cryptography==3.4.7
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==6.2.2
+diff-cover==6.3.1
     # via -r requirements/dev.in
 distlib==0.3.2
     # via
@@ -261,7 +261,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.txt
-pygments==2.9.0
+pygments==2.10.0
     # via diff-cover
 pylint==2.9.6
     # via
@@ -369,7 +369,6 @@ toml==0.10.2
 tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
-    #   diff-cover
     #   pep517
 tox==3.24.1
     # via
