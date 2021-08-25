@@ -34,7 +34,7 @@ click-repl==0.2.0
     # via celery
 code-annotations==1.2.0
     # via edx-toggles
-cryptography==3.4.7
+cryptography==3.4.8
     # via django-fernet-fields
 django==2.2.24
     # via
@@ -62,7 +62,7 @@ django-waffle==2.2.1
     #   edx-toggles
 djangorestframework==3.12.4
     # via django-config-models
-edx-django-utils==4.2.0
+edx-django-utils==4.3.0
     # via
     #   django-config-models
     #   edx-toggles
@@ -82,11 +82,11 @@ kombu==5.1.0
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==6.8.0.163
+newrelic==6.8.1.164
     # via edx-django-utils
 pbr==5.6.0
     # via stevedore
-prompt-toolkit==3.0.19
+prompt-toolkit==3.0.20
     # via click-repl
 psutil==5.8.0
     # via edx-django-utils
@@ -117,7 +117,7 @@ six==1.16.0
     #   python-dateutil
 sqlparse==0.4.1
     # via django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   code-annotations
     #   edx-django-utils

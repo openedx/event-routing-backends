@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.6.6
+astroid==2.7.2
     # via
     #   pylint
     #   pylint-celery
@@ -74,7 +74,7 @@ coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.7
+cryptography==3.4.8
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -111,7 +111,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
-edx-django-utils==4.2.0
+edx-django-utils==4.3.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -124,7 +124,7 @@ event-tracking==1.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.11.0
+faker==8.12.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -162,7 +162,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.8.0.163
+newrelic==6.8.1.164
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -174,11 +174,13 @@ pbr==5.6.0
     # via
     #   -r requirements/test.txt
     #   stevedore
+platformdirs==2.2.0
+    # via pylint
 pluggy==0.13.1
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.19
+prompt-toolkit==3.0.20
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -198,7 +200,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.9.6
+pylint==2.10.2
     # via
     #   edx-lint
     #   pylint-celery
@@ -264,7 +266,7 @@ sqlparse==0.4.1
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   -r requirements/test.txt
     #   code-annotations

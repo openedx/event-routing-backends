@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-astroid==2.6.6
+astroid==2.7.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -91,13 +91,13 @@ coverage==5.5
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==3.4.7
+cryptography==3.4.8
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==6.3.1
+diff-cover==6.3.4
     # via -r requirements/dev.in
 distlib==0.3.2
     # via
@@ -135,7 +135,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/quality.txt
     #   django-config-models
-edx-django-utils==4.2.0
+edx-django-utils==4.3.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -150,7 +150,7 @@ event-tracking==1.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.11.0
+faker==8.12.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -204,7 +204,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==6.8.0.163
+newrelic==6.8.1.164
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -229,6 +229,8 @@ pip-tools==6.2.0
 platformdirs==2.2.0
     # via
     #   -r requirements/ci.txt
+    #   -r requirements/quality.txt
+    #   pylint
     #   virtualenv
 pluggy==0.13.1
     # via
@@ -239,7 +241,7 @@ pluggy==0.13.1
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.19
+prompt-toolkit==3.0.20
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -263,7 +265,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.10.0
     # via diff-cover
-pylint==2.9.6
+pylint==2.10.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -346,7 +348,7 @@ sqlparse==0.4.1
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -370,7 +372,7 @@ tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   pep517
-tox==3.24.1
+tox==3.24.3
     # via
     #   -r requirements/ci.txt
     #   tox-battery
