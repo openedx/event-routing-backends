@@ -78,7 +78,8 @@ class TransformersTestMixin:
         if not os.path.isfile(expected_event_file_path):
             return
 
-        with open(input_event_file_path) as current, open(expected_event_file_path) as expected:
+        with open(input_event_file_path, encoding='utf-8') as current, open(
+                expected_event_file_path, encoding='utf-8') as expected:
             original_event = json.loads(current.read())
             expected_event = json.loads(expected.read())
 

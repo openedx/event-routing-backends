@@ -18,7 +18,7 @@ def get_version(*file_paths):
                    version string
     """
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
-    version_file = open(filename).read()  # pylint: disable=consider-using-with
+    version_file = open(filename, encoding='utf-8').read()  # pylint: disable=consider-using-with
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
                               version_file, re.M)
     if version_match:
@@ -36,7 +36,8 @@ def load_requirements(*requirements_paths):
     requirements = set()
     for path in requirements_paths:
         requirements.update(
-            line.split('#')[0].strip() for line in open(path).readlines()  # pylint: disable=consider-using-with
+            line.split('#')[0].strip() for line
+            in open(path, encoding='utf-8').readlines()  # pylint: disable=consider-using-with
             if is_requirement(line.strip())
         )
     return list(requirements)
@@ -61,8 +62,10 @@ if sys.argv[-1] == 'tag':
     os.system("git push --tags")
     sys.exit()
 
-README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()  # pylint: disable=consider-using-with
-CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst')).read()  # pylint: disable=consider-using-with
+README = open(os.path.join(os.path.dirname(__file__), 'README.rst'),  # pylint: disable=consider-using-with
+              encoding='utf-8').read()
+CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst'),  # pylint: disable=consider-using-with
+                 encoding='utf-8').read()
 
 setup(
     name='edx-event-routing-backends',

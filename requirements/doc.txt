@@ -71,7 +71,7 @@ coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.7
+cryptography==3.4.8
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -115,7 +115,7 @@ docutils==0.17.1
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-django-utils==4.2.0
+edx-django-utils==4.3.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -128,7 +128,7 @@ event-tracking==1.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.11.0
+faker==8.12.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -161,7 +161,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.8.0.163
+newrelic==6.8.1.164
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -179,7 +179,7 @@ pluggy==0.13.1
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.19
+prompt-toolkit==3.0.20
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -277,7 +277,7 @@ sqlparse==0.4.1
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
