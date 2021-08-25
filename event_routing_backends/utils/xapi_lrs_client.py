@@ -13,7 +13,7 @@ class LrsClient:
     An LRS client for xAPI stores.
     """
 
-    def __init__(self, url=None, version=None, auth_scheme=None, auth_key=None):
+    def __init__(self, url=None, version=None, auth_scheme=None, auth_key=None, username=None, password=None):
         """
         Initialize the client with provided configurations.
 
@@ -22,6 +22,7 @@ class LrsClient:
         auth_key (str)    :     API key used in the authorization header.
         headers (str)     :     Any additional headers to be sent with event payload.
         """
+
         self.URL = url
         self.AUTH_SCHEME = auth_scheme
         self.AUTH_KEY = auth_key
@@ -31,6 +32,8 @@ class LrsClient:
             version=self.VERSION,
             endpoint=self.URL,
             auth=self.get_auth_header_value(),
+            username=username,
+            password=password
         )
 
     def get_auth_header_value(self):
@@ -40,7 +43,7 @@ class LrsClient:
         Returns:
             str
         """
-        if self.AUTH_SCHEME:
+        if self.AUTH_SCHEME and self.AUTH_KEY:
             return f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
 
         return None
