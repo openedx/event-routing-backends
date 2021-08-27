@@ -28,13 +28,21 @@ class LrsClient:
         self.AUTH_KEY = auth_key
         self.VERSION = version
 
-        self.lrs_client = RemoteLRS(
-            version=self.VERSION,
-            endpoint=self.URL,
-            auth=self.get_auth_header_value(),
-            username=username,
-            password=password
-        )
+        if auth_key is None \
+                and username is not None \
+                and password is not None:
+            self.lrs_client = RemoteLRS(
+                version=self.VERSION,
+                endpoint=self.URL,
+                username=username,
+                password=password
+            )
+        else:
+            self.lrs_client = RemoteLRS(
+                version=self.VERSION,
+                endpoint=self.URL,
+                auth=self.get_auth_header_value()
+            )
 
     def get_auth_header_value(self):
         """
