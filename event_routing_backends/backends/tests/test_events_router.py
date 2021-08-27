@@ -81,6 +81,17 @@ ROUTER_CONFIG_FIXTURE = [
             'auth_scheme': 'bearer',
             'auth_key': 'key',
         }
+    },
+    {
+        'router_type': 'XAPI_LRS',
+        'match_params': {},
+        'host_configurations': {
+            'url': 'http://test3.com',
+            'version': '1.0.1',
+            'auth_scheme': 'bearer',
+            'username': 'abc',
+            'password': 'xyz'
+        }
     }
 ]
 
