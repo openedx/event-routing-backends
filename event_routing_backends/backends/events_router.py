@@ -94,9 +94,11 @@ class EventsRouter:
                 )
                 return
 
+            router_url = router.route_url
             for host in hosts:
                 updated_event = self.overwrite_event_data(processed_event, host)
 
+                host['host_configurations'].update({'url': router_url})
                 self.dispatch_event(
                     event,
                     updated_event,
