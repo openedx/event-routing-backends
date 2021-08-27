@@ -235,6 +235,7 @@ class TestEventsRouter(TestCase):
     def test_successful_routing_of_event(self, mocked_lrs, mocked_post):
         mocked_oauth_client = MagicMock()
         mocked_api_key_client = MagicMock()
+        route_url = 'http://test3.com'
 
         MOCKED_MAP = {
             'AUTH_HEADERS': HttpClient,
@@ -246,7 +247,7 @@ class TestEventsRouter(TestCase):
         RouterConfigurationFactory.create(
             backend_name='test_routing',
             enabled=True,
-            route_url='http://test3.com',
+            route_url=route_url,
             configurations=ROUTER_CONFIG_FIXTURE
         )
 
@@ -261,7 +262,7 @@ class TestEventsRouter(TestCase):
 
         mocked_post.assert_has_calls([
             call(
-                url=ROUTER_CONFIG_FIXTURE[0]['host_configurations']['url'],
+                url=route_url,
                 json=overridden_event,
                 headers={
                     'Authorization': 'Bearer test_key'
