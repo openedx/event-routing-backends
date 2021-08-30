@@ -6,15 +6,9 @@ import logging
 from eventtracking.processors.exceptions import EventEmissionExit
 
 from event_routing_backends.models import RouterConfiguration
-from event_routing_backends.utils.http_client import HttpClient
-from event_routing_backends.utils.xapi_lrs_client import LrsClient
+from event_routing_backends.tasks import dispatch_event
 
 logger = logging.getLogger(__name__)
-
-ROUTER_STRATEGY_MAPPING = {
-    'AUTH_HEADERS': HttpClient,
-    'XAPI_LRS': LrsClient,
-}
 
 
 class EventsRouter:
@@ -97,9 +91,8 @@ class EventsRouter:
             router_url = router.route_url
             for host in hosts:
                 updated_event = self.overwrite_event_data(processed_event, host)
-
                 host['host_configurations'].update({'url': router_url})
-                self.dispatch_event(
+                dispatch_event.delay(
                     event,
                     updated_event,
                     host['router_type'],
@@ -141,43 +134,3 @@ class EventsRouter:
             event.update(host['override_args'])
             logger.debug('Overwriting event with values {}'.format(host['override_args']))
         return event
-
-    def dispatch_event(self, event_name, event, router_type, host_config):
-        """
-        Send event to configured client.
-
-        Arguments:
-            event_name (str)    : name of the original event
-            event (dict)        : event dictionary to be delivered.
-            router_type (str)   : decides the client to use for sending the event
-            host_config (dict)  : contains configurations for the host.
-        """
-        logger.debug(
-            'Routing event "%s" for router type "%s"',
-            event_name,
-            router_type
-        )
-
-        try:
-            client_class = ROUTER_STRATEGY_MAPPING[router_type]
-        except KeyError:
-            logger.error('Unsupported routing strategy detected: {}'.format(router_type))
-            return
-
-        try:
-            client = client_class(**host_config)
-            client.send(event)
-            logger.debug(
-                'Successfully dispatched event "{}" using client strategy "{}"'.format(
-                    event_name,
-                    router_type
-                )
-            )
-
-        except Exception:   # pylint: disable=broad-except
-            logger.exception(
-                'Exception occured while trying to dispatch event "{}"'.format(
-                    event_name,
-                ),
-                exc_info=True
-            )

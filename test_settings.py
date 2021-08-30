@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'event_routing_backends',
+    'celery_utils',
 )
 
 LOCALE_PATHS = [
@@ -43,5 +44,7 @@ ROOT_URLCONF = 'event_routing_backends.urls'
 SECRET_KEY = 'insecure-secret-key'
 
 LMS_ROOT_URL = 'http://localhost:18000'
+
+CELERY_ALWAYS_EAGER = True
 
 _mock_third_party_modules()

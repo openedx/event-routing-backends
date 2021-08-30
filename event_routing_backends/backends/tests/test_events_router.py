@@ -95,6 +95,9 @@ ROUTER_CONFIG_FIXTURE = [
     }
 ]
 
+# Maximum number of retries before giving up
+MAX_RETRIES = 3
+
 
 class TestEventsRouter(TestCase):
     """
@@ -167,7 +170,7 @@ class TestEventsRouter(TestCase):
         )
 
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_with_unsupported_routing_strategy(self, mocked_logger, mocked_post):
         configurations = ROUTER_CONFIG_FIXTURE[0:1].copy()
         configurations[0]['router_type'] = 'INVALID_TYPE'
@@ -210,11 +213,11 @@ class TestEventsRouter(TestCase):
             mocked_logger.info.mock_calls
         )
 
-    @patch.dict('event_routing_backends.backends.events_router.ROUTER_STRATEGY_MAPPING', {
+    @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
         'AUTH_HEADERS': MagicMock(side_effect=Exception)
     })
     @patch('event_routing_backends.utils.http_client.requests.post')
-    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.tasks.logger')
     def test_generic_exception(self, mocked_logger, mocked_post):
         RouterConfigurationFactory.create(
             backend_name='test_backend',
@@ -226,7 +229,7 @@ class TestEventsRouter(TestCase):
         router = EventsRouter(processors=[], backend_name='test_backend')
         router.send(self.transformed_event)
 
-        mocked_logger.exception.assert_called_once()
+        self.assertEqual(mocked_logger.exception.call_count, MAX_RETRIES + 1)
         mocked_post.assert_not_called()
 
     def test_with_non_dict_event(self):
@@ -264,7 +267,7 @@ class TestEventsRouter(TestCase):
 
         router = EventsRouter(processors=[], backend_name='test_routing')
 
-        with patch.dict('event_routing_backends.backends.events_router.ROUTER_STRATEGY_MAPPING', MOCKED_MAP):
+        with patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', MOCKED_MAP):
             router.send(self.transformed_event)
 
         # test the HTTP client

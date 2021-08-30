@@ -12,3 +12,4 @@ django-config-models
 edx-toggles               # For SettingToggle class
 tincan
 event-tracking
+edx-celeryutils
