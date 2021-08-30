@@ -75,10 +75,10 @@ class EnrollmentDeactivatedTransformer(BaseEnrollmentTransformer):
     )
 
 
-@XApiTransformersRegistry.register('edx.course.completed')
+@XApiTransformersRegistry.register('edx.course.grade.passed.first_time')
 class CourseCompletionTransformer(BaseEnrollmentTransformer):
     """
-    Transformers for event generated when learner un-enrolls from a course.
+    Transformers for event generated when learner complete a course.
     """
     verb = Verb(
         id=constants.XAPI_VERB_COMPLETED,

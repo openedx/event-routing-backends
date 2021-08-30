@@ -27,7 +27,10 @@ class BaseTransformerMixin:
         Arguments:
             event (dict)    :   event to be transformed
         """
-        self.event = event.copy()
+        event_data = event.copy()
+        if event_data["name"] == 'edx.course.grade.passed.first_time':
+            event_data["name"] = 'edx.course.completed'
+        self.event = event_data
         self.transformed_event = {}
 
     def extract_subdict_by_keys(self, base_dict, keys):

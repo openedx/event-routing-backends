@@ -9,7 +9,7 @@ from event_routing_backends.processors.caliper.transformer import CaliperTransfo
 
 @CaliperTransformersRegistry.register('edx.course.enrollment.activated')
 @CaliperTransformersRegistry.register('edx.course.enrollment.deactivated')
-@CaliperTransformersRegistry.register('edx.course.completed')
+@CaliperTransformersRegistry.register('edx.course.grade.passed.first_time')
 class EnrollmentEventTransformers(CaliperTransformer):
     """
     This transformer transforms three events:
@@ -19,7 +19,7 @@ class EnrollmentEventTransformers(CaliperTransformer):
         - edx.course.enrollment.deactivated
             Generated when a user is unenrolled from a course.
 
-        - edx.course.completed
+        - edx.course.grade.passed.first_time
             Generated when a user complete a course.
     """
 
