@@ -5,8 +5,9 @@ import logging
 
 from eventtracking.processors.exceptions import EventEmissionExit
 
+from event_routing_backends.helpers import get_business_critical_events
 from event_routing_backends.models import RouterConfiguration
-from event_routing_backends.tasks import dispatch_event
+from event_routing_backends.tasks import dispatch_event, dispatch_event_persistent
 
 logger = logging.getLogger(__name__)
 
@@ -92,12 +93,22 @@ class EventsRouter:
             for host in hosts:
                 updated_event = self.overwrite_event_data(processed_event, host)
                 host['host_configurations'].update({'url': router_url})
-                dispatch_event.delay(
-                    event,
-                    updated_event,
-                    host['router_type'],
-                    host['host_configurations']
-                )
+                event_name = event.get('name')
+                business_critical_events = get_business_critical_events()
+                if event_name in business_critical_events:
+                    dispatch_event_persistent.delay(
+                        event,
+                        updated_event,
+                        host['router_type'],
+                        host['host_configurations']
+                    )
+                else:
+                    dispatch_event.delay(
+                        event,
+                        updated_event,
+                        host['router_type'],
+                        host['host_configurations']
+                    )
 
     def process_event(self, event):
         """
