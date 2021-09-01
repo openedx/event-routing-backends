@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-astroid==2.7.2
+astroid==2.7.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -32,6 +32,7 @@ billiard==3.6.4.0
 celery==5.1.2
     # via
     #   -r requirements/quality.txt
+    #   edx-celeryutils
     #   event-tracking
 certifi==2021.5.30
     # via
@@ -97,7 +98,7 @@ cryptography==3.4.8
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==6.3.4
+diff-cover==6.3.5
     # via -r requirements/dev.in
 distlib==0.3.2
     # via
@@ -110,7 +111,9 @@ django==2.2.24
     #   django-config-models
     #   django-crum
     #   django-fernet-fields
+    #   django-model-utils
     #   djangorestframework
+    #   edx-celeryutils
     #   edx-django-utils
     #   edx-i18n-tools
     #   edx-lint
@@ -126,6 +129,10 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/quality.txt
+django-model-utils==4.1.1
+    # via
+    #   -r requirements/quality.txt
+    #   edx-celeryutils
 django-waffle==2.2.1
     # via
     #   -r requirements/quality.txt
@@ -135,6 +142,8 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/quality.txt
     #   django-config-models
+edx-celeryutils==1.1.0
+    # via -r requirements/quality.txt
 edx-django-utils==4.3.0
     # via
     #   -r requirements/quality.txt
@@ -159,6 +168,10 @@ filelock==3.0.12
     #   -r requirements/ci.txt
     #   tox
     #   virtualenv
+future==0.18.2
+    # via
+    #   -r requirements/quality.txt
+    #   edx-celeryutils
 idna==3.2
     # via
     #   -r requirements/ci.txt
@@ -185,7 +198,9 @@ jinja2==3.0.1
 jinja2-pluralize==0.3.0
     # via diff-cover
 jsonfield2==4.0.0.post0
-    # via -r requirements/quality.txt
+    # via
+    #   -r requirements/quality.txt
+    #   edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/quality.txt
@@ -226,7 +241,7 @@ pep517==0.11.0
     #   pip-tools
 pip-tools==6.2.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.2.0
+platformdirs==2.3.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -234,6 +249,7 @@ platformdirs==2.2.0
     #   virtualenv
 pluggy==0.13.1
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   diff-cover
@@ -294,7 +310,7 @@ pyparsing==2.4.7
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   packaging
-pytest==6.2.4
+pytest==6.2.5
     # via
     #   -r requirements/quality.txt
     #   pytest-cov

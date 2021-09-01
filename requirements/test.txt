@@ -21,6 +21,7 @@ billiard==3.6.4.0
 celery==5.1.2
     # via
     #   -r requirements/base.txt
+    #   edx-celeryutils
     #   event-tracking
 certifi==2021.5.30
     # via
@@ -74,7 +75,9 @@ ddt==1.4.2
     #   django-config-models
     #   django-crum
     #   django-fernet-fields
+    #   django-model-utils
     #   djangorestframework
+    #   edx-celeryutils
     #   edx-django-utils
     #   edx-toggles
     #   event-tracking
@@ -88,6 +91,10 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/base.txt
+django-model-utils==4.1.1
+    # via
+    #   -r requirements/base.txt
+    #   edx-celeryutils
 django-waffle==2.2.1
     # via
     #   -r requirements/base.txt
@@ -97,6 +104,8 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/base.txt
     #   django-config-models
+edx-celeryutils==1.1.0
+    # via -r requirements/base.txt
 edx-django-utils==4.3.0
     # via
     #   -r requirements/base.txt
@@ -110,6 +119,10 @@ factory-boy==3.2.0
     # via -r requirements/test.in
 faker==8.12.1
     # via factory-boy
+future==0.18.2
+    # via
+    #   -r requirements/base.txt
+    #   edx-celeryutils
 idna==3.2
     # via
     #   -r requirements/base.txt
@@ -123,7 +136,9 @@ jinja2==3.0.1
     #   -r requirements/base.txt
     #   code-annotations
 jsonfield2==4.0.0.post0
-    # via -r requirements/base.txt
+    # via
+    #   -r requirements/base.txt
+    #   edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/base.txt
@@ -145,7 +160,9 @@ pbr==5.6.0
     #   -r requirements/base.txt
     #   stevedore
 pluggy==0.13.1
-    # via pytest
+    # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   pytest
 prompt-toolkit==3.0.20
     # via
     #   -r requirements/base.txt
@@ -166,7 +183,7 @@ pymongo==3.12.0
     #   event-tracking
 pyparsing==2.4.7
     # via packaging
-pytest==6.2.4
+pytest==6.2.5
     # via
     #   pytest-cov
     #   pytest-django
