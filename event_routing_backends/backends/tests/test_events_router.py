@@ -152,7 +152,7 @@ class TestEventsRouter(TestCase):
 
         self.assertIn(call(
             'Could not process event %s for backend %s\'s router',
-            self.transformed_event,
+            self.transformed_event['name'],
             'test',
             exc_info=True
         ), mocked_logger.error.mock_calls)
@@ -231,7 +231,7 @@ class TestEventsRouter(TestCase):
         self.assertIn(
             call(
                 'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                self.transformed_event, 'test_backend'
+                self.transformed_event['name'], 'test_backend'
             ),
             mocked_logger.info.mock_calls
         )

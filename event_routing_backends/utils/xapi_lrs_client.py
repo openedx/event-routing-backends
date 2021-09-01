@@ -56,15 +56,15 @@ class LrsClient:
 
         return None
 
-    def send(self, statement):
+    def send(self, statement_data):
         """
         Send the xAPI statement to configured remote.
 
         Arguments:
-            statement (Statement) :   transformed xAPI statement
+            statement_data (Statement) :   transformed xAPI statement
 
         Returns:
             requests.Response object
         """
         logger.info('Sending event json to %s', self.URL)
-        self.lrs_client.save_statement(statement)
+        self.lrs_client.save_statement(statement_data)
