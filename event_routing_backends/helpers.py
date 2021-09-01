@@ -175,3 +175,17 @@ def backend_cache_ttl():
         int
     """
     return getattr(settings, 'EVENT_TRACKING_BACKENDS_CACHE_TTL', 600)
+
+
+def get_business_critical_events():
+    """
+    Return list of business critical events.
+
+    Returns:
+        list
+    """
+    return getattr(settings, 'EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS', [
+        'edx.course.enrollment.activated',
+        'edx.course.enrollment.deactivated',
+        'edx.course.grade.passed.first_time'
+    ])

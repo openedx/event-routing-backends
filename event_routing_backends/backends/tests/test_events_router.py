@@ -9,6 +9,7 @@ from eventtracking.processors.exceptions import EventEmissionExit
 from tincan.statement import Statement
 
 from event_routing_backends.backends.events_router import EventsRouter
+from event_routing_backends.helpers import get_business_critical_events
 from event_routing_backends.tests.factories import RouterConfigurationFactory
 from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
@@ -155,6 +156,28 @@ class TestEventsRouter(TestCase):
             'test',
             exc_info=True
         ), mocked_logger.error.mock_calls)
+
+    @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
+        'AUTH_HEADERS': MagicMock(side_effect=Exception)
+    })
+    @patch('event_routing_backends.utils.http_client.requests.post')
+    @patch('event_routing_backends.tasks.logger')
+    def test_generic_exception_business_critical_event(self, mocked_logger, mocked_post):
+        RouterConfigurationFactory.create(
+            backend_name='test_backend',
+            enabled=True,
+            route_url='http://test3.com',
+            configurations=ROUTER_CONFIG_FIXTURE[0:1]
+        )
+
+        router = EventsRouter(processors=[], backend_name='test_backend')
+        event_data = self.transformed_event.copy()
+        business_critical_events = get_business_critical_events()
+        event_data['name'] = business_critical_events[0]
+        router.send(event_data)
+
+        self.assertEqual(mocked_logger.exception.call_count, MAX_RETRIES + 1)
+        mocked_post.assert_not_called()
 
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.backends.events_router.logger')

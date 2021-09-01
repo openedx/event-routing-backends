@@ -22,12 +22,41 @@ COUNTDOWN = 30
 
 
 @shared_task(bind=True, base=LoggedPersistOnFailureTask)
+def dispatch_event_persistent(self, event_name, event, router_type, host_config):
+    """
+    Send event to configured client.
+
+    Arguments:
+        self (object)       :  celery task object to perform celery actions
+        event_name (str)    : name of the original event
+        event (dict)        : event dictionary to be delivered.
+        router_type (str)   : decides the client to use for sending the event
+        host_config (dict)  : contains configurations for the host.
+    """
+    send_event(self, event_name, event, router_type, host_config)
+
+
+@shared_task(bind=True,)
 def dispatch_event(self, event_name, event, router_type, host_config):
     """
     Send event to configured client.
 
     Arguments:
-        self (dict)         : task
+        self (object)       : celery task object to perform celery actions
+        event_name (str)    : name of the original event
+        event (dict)        : event dictionary to be delivered.
+        router_type (str)   : decides the client to use for sending the event
+        host_config (dict)  : contains configurations for the host.
+    """
+    send_event(self, event_name, event, router_type, host_config)
+
+
+def send_event(task, event_name, event, router_type, host_config):
+    """
+    Send event to configured client.
+
+    Arguments:
+        task (object)       : celery task object to perform celery actions
         event_name (str)    : name of the original event
         event (dict)        : event dictionary to be delivered.
         router_type (str)   : decides the client to use for sending the event
@@ -61,4 +90,4 @@ def dispatch_event(self, event_name, event, router_type, host_config):
             ),
             exc_info=True
         )
-        raise self.retry(exc=exc, countdown=COUNTDOWN, max_retries=MAX_RETRIES)
+        raise task.retry(exc=exc, countdown=COUNTDOWN, max_retries=MAX_RETRIES)
