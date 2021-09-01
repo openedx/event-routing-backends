@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.7.2
+astroid==2.7.3
     # via
     #   pylint
     #   pylint-celery
@@ -27,6 +27,7 @@ billiard==3.6.4.0
 celery==5.1.2
     # via
     #   -r requirements/test.txt
+    #   edx-celeryutils
     #   event-tracking
 certifi==2021.5.30
     # via
@@ -87,7 +88,9 @@ django==2.2.24
     #   django-config-models
     #   django-crum
     #   django-fernet-fields
+    #   django-model-utils
     #   djangorestframework
+    #   edx-celeryutils
     #   edx-django-utils
     #   edx-lint
     #   edx-toggles
@@ -102,6 +105,10 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/test.txt
+django-model-utils==4.1.1
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
 django-waffle==2.2.1
     # via
     #   -r requirements/test.txt
@@ -111,6 +118,8 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
+edx-celeryutils==1.1.0
+    # via -r requirements/test.txt
 edx-django-utils==4.3.0
     # via
     #   -r requirements/test.txt
@@ -128,6 +137,10 @@ faker==8.12.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
+future==0.18.2
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
 idna==3.2
     # via
     #   -r requirements/test.txt
@@ -147,7 +160,9 @@ jinja2==3.0.1
     #   -r requirements/test.txt
     #   code-annotations
 jsonfield2==4.0.0.post0
-    # via -r requirements/test.txt
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/test.txt
@@ -174,10 +189,11 @@ pbr==5.6.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==2.2.0
+platformdirs==2.3.0
     # via pylint
 pluggy==0.13.1
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   pytest
 prompt-toolkit==3.0.20
@@ -222,7 +238,7 @@ pyparsing==2.4.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==6.2.4
+pytest==6.2.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
