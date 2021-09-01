@@ -28,35 +28,25 @@ class EventsRouter:
         self.processors = processors if processors else []
         self.backend_name = backend_name
 
-    def _copy(self, event):
-        """
-        Copy the event to avoid mutation.
-
-        Currently supports only `dict` type events.
-        """
-        if isinstance(event, dict):
-            return event.copy()
-        else:
-            raise ValueError('Expected event as dict but {type} was given.'.format(type=type(event)))
-
     def send(self, event):
         """
         Send the event to configured routers after processing it.
 
         Event is processed through the configured processors. A router config
-        object matching the backend_name is used to get the list of hosts to
-        which the event is required to be delivered to.
-        Then a client as per the router configurations will be used to deliver the
-        event.
+        object matching the backend_name and other match params is used to get
+        the list of hosts to which the event is required to be delivered to.
 
         Arguments:
-            original_event (dict):      original event dictionary
-            transformed_event (dict):   transformed event dictionary
+            event (dict):      original event dictionary
         """
+        try:
+            event_name = event['name']
+        except TypeError as exc:
+            raise ValueError('Expected event as dict but {type} was given.'.format(type=type(event))) from exc
         try:
             logger.debug(
                 'Processing event %s for router with backend %s',
-                event,
+                event['name'],
                 self.backend_name
             )
 
@@ -64,14 +54,14 @@ class EventsRouter:
         except EventEmissionExit:
             logger.error(
                 'Could not process event %s for backend %s\'s router',
-                event,
+                event_name,
                 self.backend_name,
                 exc_info=True
             )
             return
 
         logger.debug('Successfully processed event %s for router with backend %s',
-                     event, self.backend_name)
+                     event_name, self.backend_name)
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
@@ -85,7 +75,7 @@ class EventsRouter:
             if not hosts:
                 logger.info(
                     'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                    event, self.backend_name
+                    event_name, self.backend_name
                 )
                 return
 
@@ -120,7 +110,7 @@ class EventsRouter:
         Returns
             dict
         """
-        event = self._copy(event)
+        event = event.copy()
         for processor in self.processors:
             event = processor(event)
 
@@ -141,7 +131,7 @@ class EventsRouter:
             dict
         """
         if 'override_args' in host and isinstance(event, dict):
-            event = self._copy(event)
+            event = event.copy()
             event.update(host['override_args'])
             logger.debug('Overwriting event with values {}'.format(host['override_args']))
         return event
