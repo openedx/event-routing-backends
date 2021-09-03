@@ -63,15 +63,57 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
         }
     }
 
+Sample configuration for ``xapi`` backend with `NameWhitelist`_ filter
+
+.. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
+
+   .. code-block:: python
+
+    EVENT_TRACKING_BACKENDS = {
+        'xapi': {
+            'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
+            'OPTIONS': {
+                'backend_name': 'xapi',
+                'processors': [
+                    {
+                        'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
+                        'OPTIONS': {
+                            'whitelist': [
+                                'edx.course.enrollment.activated',
+                                'edx.course.enrollment.deactivated',
+                                'edx.course.grade.passed.first_time',
+                                'edx.ui.lms.sequence.tab_selected',
+                            ]
+                        }
+                    }
+                ],
+                'backends': {
+                    'xapi': {
+                        'ENGINE': 'event_routing_backends.backends.events_router.EventsRouter',
+                        'OPTIONS': {
+                            'processors': [
+                                {
+                                    'ENGINE': 'event_routing_backends.processors.xapi.transformer_processor.XApiProcessor',
+                                    'OPTIONS': {}
+                                }
+                            ],
+                            'backend_name': 'xapi'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 - Run migrations in lms-shell
    .. code-block:: bash
 
     $ ./manage.py lms migrate event_routing_backends
 
-- Add router configuraton from django admin under ``EVENT_ROUTING_BACKENDS`` section (http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/) using backend name ``caliper``
+- Add router configuraton from django admin under ``EVENT_ROUTING_BACKENDS`` section (http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/) using backend name ``caliper`` or ``xapi``
 
-  Here is a sample configuration for a `Bearer Authentication`_ client which routes only those events where ``org_id`` is set to edX.
-  `override_args` allows us to pass any additional info in event.
+  Here is a sample **configuration** for a `Bearer Authentication`_ client which routes only those events where ``org_id`` is set to edX.
+  `override_args` allows us to pass any additional info in event. `match_params` allows us to filter events that match a criteria e.g. `org_id` attribute in event context match "edX".
 
   .. _Bearer Authentication: https://swagger.io/docs/specification/authentication/bearer-authentication/
 
@@ -85,7 +127,6 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
             },
             "host_configurations": {
                 "auth_key": "test_key",
-                "url": "http://concerned.host.example.com",
                 "auth_scheme": "Bearer",
                 "headers": {
                     "test": "header"
@@ -94,6 +135,26 @@ only enrollment, seek_video and edx.video.position.changed events to be routed t
             "router_type": "AUTH_HEADERS",
             "match_params": {
                 "context.org_id": "edX"
+            }
+        }
+    ]
+
+  Here is a sample **configuration** for routing events to XAPI LRS with `Basic Authentication`_ .
+
+  .. _Basic Authentication: https://swagger.io/docs/specification/authentication/basic-authentication/
+
+  .. code-block:: JSON
+
+    [
+        {
+            "host_configurations":{
+                "username":"abc",
+                "password":"pass",
+                "auth_scheme":"Basic"
+            },
+            "router_type":"XAPI_LRS",
+            "match_params":{
+                "context.org_id":"edX"
             }
         }
     ]
