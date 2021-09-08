@@ -43,8 +43,6 @@ cffi==1.14.6
     # via
     #   -r requirements/quality.txt
     #   cryptography
-chardet==4.0.0
-    # via diff-cover
 charset-normalizer==2.0.4
     # via
     #   -r requirements/ci.txt
@@ -98,8 +96,10 @@ cryptography==3.4.8
     #   django-fernet-fields
 ddt==1.4.2
     # via -r requirements/quality.txt
-diff-cover==6.3.5
-    # via -r requirements/dev.in
+diff-cover==4.0.0
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/dev.in
 distlib==0.3.2
     # via
     #   -r requirements/ci.txt
@@ -116,7 +116,6 @@ django==2.2.24
     #   edx-celeryutils
     #   edx-django-utils
     #   edx-i18n-tools
-    #   edx-lint
     #   edx-toggles
     #   event-tracking
     #   jsonfield2
@@ -144,14 +143,14 @@ djangorestframework==3.12.4
     #   django-config-models
 edx-celeryutils==1.1.0
     # via -r requirements/quality.txt
-edx-django-utils==4.3.0
+edx-django-utils==4.4.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
     #   edx-toggles
 edx-i18n-tools==0.7.0
     # via -r requirements/dev.in
-edx-lint==5.0.0
+edx-lint==5.1.0
     # via -r requirements/quality.txt
 edx-toggles==4.2.0
     # via -r requirements/quality.txt
@@ -247,9 +246,8 @@ platformdirs==2.3.0
     #   -r requirements/quality.txt
     #   pylint
     #   virtualenv
-pluggy==0.13.1
+pluggy==1.0.0
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   diff-cover
