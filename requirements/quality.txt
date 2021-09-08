@@ -92,7 +92,6 @@ django==2.2.24
     #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
-    #   edx-lint
     #   edx-toggles
     #   event-tracking
     #   jsonfield2
@@ -120,12 +119,12 @@ djangorestframework==3.12.4
     #   django-config-models
 edx-celeryutils==1.1.0
     # via -r requirements/test.txt
-edx-django-utils==4.3.0
+edx-django-utils==4.4.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-lint==5.0.0
+edx-lint==5.1.0
     # via -r requirements/quality.in
 edx-toggles==4.2.0
     # via -r requirements/test.txt
@@ -191,9 +190,8 @@ pbr==5.6.0
     #   stevedore
 platformdirs==2.3.0
     # via pylint
-pluggy==0.13.1
+pluggy==1.0.0
     # via
-    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   pytest
 prompt-toolkit==3.0.20
