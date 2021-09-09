@@ -4,7 +4,7 @@ Test the xAPI processor.
 
 from django.test import SimpleTestCase
 from django.test.utils import override_settings
-from eventtracking.processors.exceptions import EventEmissionExit
+from eventtracking.processors.exceptions import EventEmissionExit, NoBackendEnabled
 from mock import MagicMock, call, patch, sentinel
 from tincan import Statement
 
@@ -24,7 +24,7 @@ class TestXApiProcessor(SimpleTestCase):
 
     @override_settings(XAPI_EVENTS_ENABLED=False)
     def test_skip_event_when_disabled(self):
-        with self.assertRaises(EventEmissionExit):
+        with self.assertRaises(NoBackendEnabled):
             self.processor(self.sample_event)
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')

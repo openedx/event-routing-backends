@@ -3,9 +3,7 @@ Base Processor Mixin for transformer processors.
 """
 from logging import getLogger
 
-from eventtracking.processors.exceptions import EventEmissionExit
-
-from event_routing_backends.processors.transformer_utils.exceptions import NoTransformerImplemented
+from eventtracking.processors.exceptions import EventEmissionExit, NoTransformerImplemented
 
 logger = getLogger(__name__)
 

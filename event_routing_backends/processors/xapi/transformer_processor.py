@@ -4,7 +4,7 @@ xAPI processor for transforming and routing events.
 import json
 from logging import getLogger
 
-from eventtracking.processors.exceptions import EventEmissionExit
+from eventtracking.processors.exceptions import NoBackendEnabled
 
 from event_routing_backends.processors.mixins.base_transformer_processor import BaseTransformerProcessorMixin
 from event_routing_backends.processors.xapi import XAPI_EVENTS_ENABLED
@@ -39,7 +39,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
             Any Exception
         """
         if not XAPI_EVENTS_ENABLED.is_enabled():
-            raise EventEmissionExit
+            raise NoBackendEnabled
 
         transformed_event = super().transform_event(event)
 

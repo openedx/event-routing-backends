@@ -5,6 +5,7 @@ from celery import shared_task
 from celery.utils.log import get_task_logger
 from celery_utils.persist_on_failure import LoggedPersistOnFailureTask
 
+from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
 
@@ -83,7 +84,7 @@ def send_event(task, event_name, event, router_type, host_config):
                 router_type
             )
         )
-    except Exception as exc:   # pylint: disable=broad-except
+    except EventNotDispatched as exc:   # pylint: disable=broad-except
         logger.exception(
             'Exception occurred while trying to dispatch event "{}"'.format(
                 event_name,
