@@ -154,7 +154,7 @@ edx-lint==5.1.0
     # via -r requirements/quality.txt
 edx-toggles==4.2.0
     # via -r requirements/quality.txt
-event-tracking==1.1.0
+event-tracking==1.1.1
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt

@@ -76,7 +76,7 @@ edx-django-utils==4.4.0
     #   edx-toggles
 edx-toggles==4.2.0
     # via -r requirements/base.in
-event-tracking==1.1.0
+event-tracking==1.1.1
     # via -r requirements/base.in
 future==0.18.2
     # via edx-celeryutils

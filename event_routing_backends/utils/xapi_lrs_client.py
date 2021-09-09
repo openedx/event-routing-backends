@@ -5,6 +5,8 @@ from logging import getLogger
 
 from tincan.remote_lrs import RemoteLRS
 
+from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
+
 logger = getLogger(__name__)
 
 
@@ -67,4 +69,24 @@ class LrsClient:
             requests.Response object
         """
         logger.info('Sending event json to %s', self.URL)
-        self.lrs_client.save_statement(statement_data)
+        response = self.lrs_client.save_statement(statement_data)
+
+        if not response.success:
+            logger.warning(
+                'LRS at {} has rejected the statement for event {}. Data: {}, Code: {}'.format(
+                    self.URL,
+                    statement_data,
+                    response.data,
+                    response.response.code
+                )
+            )
+            raise EventNotDispatched
+
+        logger.info(
+            'LRS at {} has accepted the statement for event {}. Data: {}, Code: {}'.format(
+                self.URL,
+                statement_data,
+                response.data,
+                response.response.code
+            )
+        )

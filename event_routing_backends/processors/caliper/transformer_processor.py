@@ -4,7 +4,7 @@ Caliper processor for transforming and routing events.
 import json
 from logging import getLogger
 
-from eventtracking.processors.exceptions import EventEmissionExit
+from eventtracking.processors.exceptions import NoBackendEnabled
 
 from event_routing_backends.processors.caliper import CALIPER_EVENTS_ENABLED
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
@@ -39,7 +39,7 @@ class CaliperProcessor(BaseTransformerProcessorMixin):
             Any Exception
         """
         if not CALIPER_EVENTS_ENABLED.is_enabled():
-            raise EventEmissionExit
+            raise NoBackendEnabled
 
         transformed_event = super().transform_event(event)
 

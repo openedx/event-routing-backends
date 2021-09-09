@@ -3,8 +3,7 @@ Exceptions related to Caliper transformation
 """
 
 
-class NoTransformerImplemented(Exception):
+class EventNotDispatched(Exception):
     """
-    Raise this exception when there is no transformer implemented
-    for an event.
+    Raise this exception when an event is not dispatched
     """

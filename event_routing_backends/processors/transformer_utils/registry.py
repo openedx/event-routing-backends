@@ -3,7 +3,7 @@ Registry to keep track of event transformers
 """
 from logging import getLogger
 
-from event_routing_backends.processors.transformer_utils.exceptions import NoTransformerImplemented
+from eventtracking.processors.exceptions import NoTransformerImplemented
 
 logger = getLogger(__name__)
 

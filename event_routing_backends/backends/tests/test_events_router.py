@@ -10,6 +10,7 @@ from tincan.statement import Statement
 
 from event_routing_backends.backends.events_router import EventsRouter
 from event_routing_backends.helpers import get_business_critical_events
+from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 from event_routing_backends.tests.factories import RouterConfigurationFactory
 from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
@@ -158,7 +159,7 @@ class TestEventsRouter(TestCase):
         ), mocked_logger.error.mock_calls)
 
     @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
-        'AUTH_HEADERS': MagicMock(side_effect=Exception)
+        'AUTH_HEADERS': MagicMock(side_effect=EventNotDispatched)
     })
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.tasks.logger')
@@ -237,7 +238,7 @@ class TestEventsRouter(TestCase):
         )
 
     @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
-        'AUTH_HEADERS': MagicMock(side_effect=Exception)
+        'AUTH_HEADERS': MagicMock(side_effect=EventNotDispatched)
     })
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.tasks.logger')
@@ -309,7 +310,6 @@ class TestEventsRouter(TestCase):
         # test LRS Client
         mocked_lrs().save_statement.assert_has_calls([
             call(self.transformed_event),
-            call(self.transformed_event),
         ])
 
         # test mocked api key client
@@ -320,3 +320,14 @@ class TestEventsRouter(TestCase):
 
         # test mocked oauth client
         mocked_oauth_client.assert_not_called()
+
+    def test_unsuccessful_routing_of_event(self):
+        host_configurations = {
+                        'url': 'http://test3.com',
+                        'version': '1.0.1',
+                        'auth_scheme': 'bearer',
+                        'auth_key': 'key',
+                    }
+        client = LrsClient(**host_configurations)
+        with self.assertRaises(EventNotDispatched):
+            client.send({})
