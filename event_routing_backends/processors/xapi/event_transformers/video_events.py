@@ -127,9 +127,6 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
                 type=constants.XAPI_ACTIVITY_VIDEO,
                 # TODO: how to get video's display name?
                 name=LanguageMap({constants.EN: 'Video Display Name'}),
-                extensions=Extensions({
-                    'code': self.get_data('data.code')
-                })
             ),
         )
 
