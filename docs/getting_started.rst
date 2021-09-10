@@ -118,7 +118,7 @@ Setup
 
       d. `match_params`: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
 
-      e. A sample configuration for routing Caliper events having content organisation as `edX` AND course run is 2021 AND event name starts with `problem` OR event name contains `video`, using `Bearer` authentication, with override arguments and additional headers:
+   v. A sample configuration for routing Caliper events having content organisation as `edX` AND course run is 2021 AND event name starts with `problem` OR event name contains `video`, using `Bearer` authentication, with override arguments and additional headers:
 
 .. code-block:: JSON
 
@@ -144,7 +144,7 @@ Setup
 
 .
 
-      f. A sample configuration for routing xAPI events if the enterprise is `org_XYZ` AND event name is `edx.course.grade.passed.first_time` OR `edx.course.enrollment.activated`, using `Basic` authentication:
+   vi. A sample configuration for routing xAPI events if the enterprise is `org_XYZ` AND event name is `edx.course.grade.passed.first_time` OR `edx.course.enrollment.activated`, using `Basic` authentication:
 
 .. code-block:: JSON
 
