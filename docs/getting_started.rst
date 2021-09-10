@@ -8,13 +8,13 @@ edx-platform. It provides new tracking backends and processors.
 
 Setup
 ------------
-1. `event_tracking_backends` has two processors namely `CaliperProcessor` and `XApiProcessor` that can transform edX events into Caliper and xAPI format respectively. Events in Caliper format require an additional processor named `CaliperEnvelopeProcessor` before they can be routed.
+#. `event_tracking_backends` has two processors namely `CaliperProcessor` and `XApiProcessor` that can transform edX events into Caliper and xAPI format respectively. Events in Caliper format require an additional processor named `CaliperEnvelopeProcessor` before they can be routed.
 
-2. Prior to being transformed into xAPI or Caliper format, edX events can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor. Both of these processors run in the main thread and `NameWhitelist`_ is comparatively faster because it performs a simple string comparison.
+#. Prior to being transformed into xAPI or Caliper format, edX events can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor. Both of these processors run in the main thread and `NameWhitelist`_ is comparatively faster because it performs a simple string comparison.
 
-3. We need to update ``EVENT_TRACKING_BACKENDS`` setting to create `xapi` and/or `caliper` backends with appropriate processors. Examples for creating each type of backend are presented below.
+#. We need to update ``EVENT_TRACKING_BACKENDS`` setting to create `xapi` and/or `caliper` backends with appropriate processors. Examples for creating each type of backend are presented below.
 
-   i. A sample backend configuration for `caliper` is presented below. Here we are allowing only enrollment, `seek_video` and `edx.video.position.changed` events to be routed to `caliper` backend using `RegexFilter`_.
+   #. A sample backend configuration for `caliper` is presented below. Here we are allowing only enrollment, `seek_video` and `edx.video.position.changed` events to be routed to `caliper` backend using `RegexFilter`_.
 
    .. code-block:: python
 
@@ -60,7 +60,7 @@ Setup
         }
     })
 
-   ii. A sample backend configuration for `xapi` is presented below. Here we are allowing only enrollment, `edx.course.grade.passed.first_time` and `edx.ui.lms.sequence.tab_selected` events to be routed to `xapi` backend using `NameWhitelist`_.
+   #. A sample backend configuration for `xapi` is presented below. Here we are allowing only enrollment, `edx.course.grade.passed.first_time` and `edx.ui.lms.sequence.tab_selected` events to be routed to `xapi` backend using `NameWhitelist`_.
 
    .. code-block:: python
 
@@ -100,25 +100,25 @@ Setup
         }
     }
 
-4. To add recipients for xAPI or Caliper events:
+#. To add recipients for xAPI or Caliper events:
 
-   i. log in to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
+   #. log in to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
 
-   ii. Add `Backend name` as `xapi` or `caliper` (same as the name of backend configured in `EVENT_TRACKING_BACKENDS`)
+   #. Add `Backend name` as `xapi` or `caliper` (same as the name of backend configured in `EVENT_TRACKING_BACKENDS`)
 
-   iii. Add `Route URL` where events are to be received.
+   #. Add `Route URL` where events are to be received.
 
-   iv. `Host configurations` requires following configuration items:
+   #. `Host configurations` requires following configuration items:
 
-      a. `override_args`: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their values will be overridden.
+      #. `override_args`: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their values will be overridden.
 
-      b. `router_type`: Two router types are available namely `XAPI_LRS` and `AUTH_HEADERS`. `XAPI_LRS` implements `save_statement`_ method of the `tincan` library and is ONLY to be used for routing xAPI events (i.e. `Backend name` = `xapi`). `AUTH_HEADERS` implements `post`_ method of the `requests` library and is ONLY to be used for routing Caliper events (i.e. `Backend name` = `caliper`).
+      #. `router_type`: Two router types are available namely `XAPI_LRS` and `AUTH_HEADERS`. `XAPI_LRS` implements `save_statement`_ method of the `tincan` library and is ONLY to be used for routing xAPI events (i.e. `Backend name` = `xapi`). `AUTH_HEADERS` implements `post`_ method of the `requests` library and is ONLY to be used for routing Caliper events (i.e. `Backend name` = `caliper`).
 
-      c. `host_configurations`: Authorization parameters are to be added here. Specify `username` and `password` for `Basic` http authentication. For other authentication types, specify `auth_key` and `auth_scheme`. Additional headers can be specified in value of `headers` key for `AUTH_HEADERS` router type ONLY.
+      #. `host_configurations`: Authorization parameters are to be added here. Specify `username` and `password` for `Basic` http authentication. For other authentication types, specify `auth_key` and `auth_scheme`. Additional headers can be specified in value of `headers` key for `AUTH_HEADERS` router type ONLY.
 
-      d. `match_params`: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
+      #. `match_params`: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
 
-   v. A sample configuration for routing Caliper events having content organisation as `edX` AND course run is 2021 AND event name starts with `problem` OR event name contains `video`, using `Bearer` authentication, with override arguments and additional headers:
+   #. A sample configuration for routing Caliper events having content organisation as `edX` AND course run is 2021 AND event name starts with `problem` OR event name contains `video`, using `Bearer` authentication, with override arguments and additional headers:
 
 .. code-block:: JSON
 
@@ -144,7 +144,7 @@ Setup
 
 .
 
-   vi. A sample configuration for routing xAPI events if the enterprise is `org_XYZ` AND event name is `edx.course.grade.passed.first_time` OR `edx.course.enrollment.activated`, using `Basic` authentication:
+   #. A sample configuration for routing xAPI events if the enterprise is `org_XYZ` AND event name is `edx.course.grade.passed.first_time` OR `edx.course.enrollment.activated`, using `Basic` authentication:
 
 .. code-block:: JSON
 
@@ -161,7 +161,7 @@ Setup
         }
     ]
 
-5. After adding the `Host configurations` as per above, the setup is complete. Events should now begin routing to configured recipients.
+#. After adding the `Host configurations` as per above, the setup is complete. Events should now begin routing to configured recipients.
 
 .. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
 
