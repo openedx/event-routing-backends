@@ -37,7 +37,7 @@ cffi==1.14.6
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.4
+charset-normalizer==2.0.5
     # via
     #   -r requirements/test.txt
     #   requests
@@ -276,7 +276,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via
     #   -r requirements/test.txt
     #   django
