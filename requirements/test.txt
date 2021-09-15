@@ -31,7 +31,7 @@ cffi==1.14.6
     # via
     #   -r requirements/base.txt
     #   cryptography
-charset-normalizer==2.0.4
+charset-normalizer==2.0.5
     # via
     #   -r requirements/base.txt
     #   requests
@@ -217,7 +217,7 @@ six==1.16.0
     #   event-tracking
     #   isodate
     #   python-dateutil
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via
     #   -r requirements/base.txt
     #   django
