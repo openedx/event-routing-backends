@@ -93,6 +93,21 @@ ROUTER_CONFIG_FIXTURE = [
             'username': 'abc',
             'password': 'xyz'
         }
+    },
+    {
+        'router_type': 'AUTH_HEADERS',
+        'match_params': {
+            'data.key': 'value'
+        },
+        'host_configurations': {
+            'url': 'http://test1.com',
+            'headers': {},
+            'username': 'abc',
+            'password': 'xyz'
+        },
+        'override_args': {
+            'new_key': 'new_value'
+        }
     }
 ]
 
