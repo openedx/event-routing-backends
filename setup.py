@@ -97,4 +97,12 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
     ],
+    entry_points={
+        "lms.djangoapp": [
+            "event_routing_backends = event_routing_backend.apps:EventRoutingBackendsConfig",
+        ],
+        "cms.djangoapp": [
+            "event_routing_backends = event_routing_backend.apps:EventRoutingBackendsConfig",
+        ],
+    }
 )
