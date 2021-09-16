@@ -12,7 +12,7 @@ class HttpClient:
     """
     A generic HTTP Client.
     """
-    def __init__(self, url='', auth_scheme='', auth_key='', headers=None, **options):
+    def __init__(self, url='', auth_scheme='', auth_key='', headers=None, username=None, password=None, **options):
         """
         Initialize the client with provided configurations.
 
@@ -29,6 +29,8 @@ class HttpClient:
         self.AUTH_KEY = auth_key
         self.HEADERS = headers or {}
         self.options = options
+        self.username = username
+        self.password = password
 
     def get_auth_header(self):
         """
@@ -62,6 +64,8 @@ class HttpClient:
             'json': json,
             'headers': headers,
         })
+        if not self.AUTH_KEY:
+            options.update({'auth': (self.username, self.password)})
 
         logger.debug('Sending event json to {}'.format(self.URL))
         return requests.post(**options)
