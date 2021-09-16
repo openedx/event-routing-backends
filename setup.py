@@ -99,10 +99,10 @@ setup(
     ],
     entry_points={
         "lms.djangoapp": [
-            "event_routing_backends = event_routing_backend.apps:EventRoutingBackendsConfig",
+            "event_routing_backends = event_routing_backends.apps:EventRoutingBackendsConfig",
         ],
         "cms.djangoapp": [
-            "event_routing_backends = event_routing_backend.apps:EventRoutingBackendsConfig",
+            "event_routing_backends = event_routing_backends.apps:EventRoutingBackendsConfig",
         ],
     }
 )

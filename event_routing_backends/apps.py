@@ -5,8 +5,6 @@ event_routing_backends Django application initialization.
 from django.apps import AppConfig
 from edx_django_utils.plugins import PluginSettings
 
-from .constants import ProjectType, SettingsType
-
 
 class EventRoutingBackendsConfig(AppConfig):
     """
@@ -17,19 +15,19 @@ class EventRoutingBackendsConfig(AppConfig):
     verbose_name = "Event Routing Backends"
 
     plugin_app = {
-            PluginSettings.CONFIG: {
-                ProjectType.LMS: {
-                    SettingsType.PRODUCTION: {PluginSettings.RELATIVE_PATH: 'settings.production'},
-                    SettingsType.COMMON: {PluginSettings.RELATIVE_PATH: 'settings.common'},
-                    SettingsType.DEVSTACK: {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
-                },
-                ProjectType.CMS: {
-                    SettingsType.PRODUCTION: {PluginSettings.RELATIVE_PATH: 'settings.production'},
-                    SettingsType.COMMON: {PluginSettings.RELATIVE_PATH: 'settings.common'},
-                    SettingsType.DEVSTACK: {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
-                }
+        PluginSettings.CONFIG: {
+            'lms.djangoapp': {
+                'production': {PluginSettings.RELATIVE_PATH: 'settings.production'},
+                'common': {PluginSettings.RELATIVE_PATH: 'settings.common'},
+                'devstack': {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
+            },
+            'cms.djangoapp': {
+                'production': {PluginSettings.RELATIVE_PATH: 'settings.production'},
+                'common': {PluginSettings.RELATIVE_PATH: 'settings.common'},
+                'devstack': {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
             }
         }
+    }
 
     def ready(self):
         """

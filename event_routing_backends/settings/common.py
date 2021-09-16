@@ -1,7 +1,6 @@
 """
 Default settings for the event_routing_backends app.
 """
-import pdb
 
 
 def plugin_settings(settings):
@@ -17,7 +16,7 @@ def plugin_settings(settings):
         'edx.course.grade.passed.first_time'
     ]
 
-    settings.EVENT_TRACKING_BACKENDS({
+    settings.EVENT_TRACKING_BACKENDS.update({
         'xapi': {
             'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
             'OPTIONS': {
@@ -133,5 +132,3 @@ def plugin_settings(settings):
             }
         }
     })
-    pdb.set_trace()
-    breakpoint()
