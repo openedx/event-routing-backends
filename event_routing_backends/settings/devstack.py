@@ -1,10 +1,10 @@
 """
-Development settings for the password_policy app.
+Development settings for the event_routing_backends app.
 """
 
 
 def plugin_settings(settings):  # pylint: disable=unused-argument
     """
-    Override the default password_policy app settings with development settings.
+    Override the default event_routing_backends app settings with development settings.
     """
     pass  # lint-amnesty, pylint: disable=unnecessary-pass
