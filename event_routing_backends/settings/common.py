@@ -7,7 +7,6 @@ def plugin_settings(settings):
     """
     Adds default settings for the event_routing_backends app.
     """
-   
     settings.CALIPER_EVENTS_ENABLED = False
     settings.XAPI_EVENTS_ENABLED = True
 
