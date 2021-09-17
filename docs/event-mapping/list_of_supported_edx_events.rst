@@ -1,7 +1,7 @@
 List of supported edx events
 ============================
 
-edX events supported by `event-routing-backends` are listed below. Each entry has a link to documentation of that event. Documentation of course completion event will be added soon.
+edX events supported by `event-routing-backends` are listed below.
 
 Enrollment events
 -----------------
