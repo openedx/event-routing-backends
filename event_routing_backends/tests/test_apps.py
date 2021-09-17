@@ -1,32 +1,54 @@
 """
-Test password policy settings
+Test plugin settings for commond, devstack and production environments
 """
 
 from django.conf import settings
-from django.test import TestCase, override_settings
+from django.test import TestCase
 
-import event_routing_backends as event_routing_backends_config
-from event_routing_backends.apps import EventRoutingBackendsConfig
+from event_routing_backends.settings import common as common_settings
+from event_routing_backends.settings import devstack as devstack_settings
+from event_routing_backends.settings import production as production_setttings
 
 
-class TestApps(TestCase):
+class TestPluginSettings(TestCase):
     """
-    Tests plugin config
+    Tests plugin settings
     """
 
-    @override_settings(
-        CALIPER_EVENTS_ENABLED=False,
-        XAPI_EVENTS_ENABLED=False
-    )
-    def test_settings_misconfiguration(self, ):
+    def test_common_settings(self):
         """
-        Test that we gracefully handle configurations
+        Test common settings
         """
-        app = EventRoutingBackendsConfig('event_routing_backends', event_routing_backends_config)
-        app.ready()
-        config = settings.EVENT_TRACKING_BACKENDS
+        common_settings.plugin_settings(settings)
+        self.assertIn('xapi', settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn('edx.course.enrollment.activated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
+        self.assertTrue(settings.CALIPER_EVENTS_ENABLED)
+        self.assertTrue(settings.XAPI_EVENTS_ENABLED)
 
-        assert settings.CALIPER_EVENTS_ENABLED is True
-        assert settings.CALIPER_EVENTS_ENABLED is True
+    def test_devstack_settings(self):
+        """
+        Test devstack settings
+        """
+        devstack_settings.plugin_settings(settings)
+        self.assertIn('xapi', settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn('edx.course.enrollment.deactivated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
+        self.assertTrue(settings.CALIPER_EVENTS_ENABLED)
+        self.assertTrue(settings.XAPI_EVENTS_ENABLED)
 
-        assert isinstance(config, dict)
+    def test_production_settings(self):
+        """
+        Test production settings
+        """
+        settings.ENV_TOKENS = {
+            'EVENT_TRACKING_BACKENDS': None,
+            'CALIPER_EVENTS_ENABLED': False,
+            'XAPI_EVENTS_ENABLED': False,
+            'EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS': [],
+        }
+        production_setttings.plugin_settings(settings)
+        self.assertIsNone(settings.EVENT_TRACKING_BACKENDS)
+        self.assertFalse(bool(settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS))
+        self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
+        self.assertFalse(settings.XAPI_EVENTS_ENABLED)
