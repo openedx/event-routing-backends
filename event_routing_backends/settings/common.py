@@ -7,9 +7,20 @@ def plugin_settings(settings):
     """
     Adds default settings for the event_routing_backends app.
     """
-    settings.CALIPER_EVENTS_ENABLED = True
+   
+    settings.CALIPER_EVENTS_ENABLED = False
     settings.XAPI_EVENTS_ENABLED = True
 
+    # .. setting_name: EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS
+    # .. setting_default: [
+    #    'edx.course.enrollment.activated',
+    #    'edx.course.enrollment.deactivated',
+    #    'edx.course.grade.passed.first_time'
+    #    ]
+    # .. setting_description: This setting can be used to specify list of events which are
+    #    treated as business critical events. For business critical events we persist them
+    #    in case multiple attempts to rout them to relevant LRS are failed. Once persisted we can retry sending
+    #    them once issues are resolved.
     settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS = [
         'edx.course.enrollment.activated',
         'edx.course.enrollment.deactivated',
