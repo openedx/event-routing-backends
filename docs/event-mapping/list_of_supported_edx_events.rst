@@ -1,7 +1,7 @@
 List of supported edx events
 ============================
 
-edX events supported by `event-routing-backends` are listed below. Each entry has a link to documentation of that event. Documentation of course completion event will be added soon.
+edX events supported by `event-routing-backends` are listed below.
 
 Enrollment events
 -----------------
@@ -20,11 +20,12 @@ Problem interaction events
 Video events
 -------------
 
-* `edx.video.loaded`_
-* `edx.video.played`_
-* `edx.video.stopped`_
-* `edx.video.paused`_
-* `edx.video.position.changed`_
+* `edx.video.loaded`_ (legacy name: `load_video`)
+* `edx.video.played`_ (legacy name: `play_video`)
+* `edx.video.stopped`_ (legacy name: `stop_video`)
+* `edx.video.paused`_ (legacy name: `pause_video`)
+* `edx.video.position.changed`_ (legacy name: `seek_video`)
+
 
 Course navigation events
 ------------------------
@@ -35,10 +36,12 @@ Course navigation events
 * `edx.ui.lms.sequence.tab_selected`_
 * `edx.ui.lms.link_clicked`_
 
-Course completion event
+Course grading events
 -----------------------
 
-* edx.course.completed
+* `edx.course.grade.passed.first_time`
+* `edx.course.grade.now_passed`
+* `edx.course.grade.now_failed`
 
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
