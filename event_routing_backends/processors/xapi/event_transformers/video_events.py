@@ -35,7 +35,7 @@ from tincan import (
 
 from event_routing_backends.helpers import (
     convert_seconds_to_iso,
-    get_anonymous_user_id_by_username,
+    get_anonymous_user_id,
     make_course_url,
     make_video_block_id,
 )
@@ -138,8 +138,8 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
             `Context`
         """
         context = Context(
-            registration=get_anonymous_user_id_by_username(
-                self.extract_username()
+            registration=get_anonymous_user_id(
+                self.extract_username_or_userid()
             ),
             contextActivities=self.get_context_activities()
         )

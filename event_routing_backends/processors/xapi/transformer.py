@@ -5,7 +5,7 @@ import uuid
 
 from tincan import Agent, LanguageMap, Statement, Verb
 
-from event_routing_backends.helpers import get_anonymous_user_id_by_username
+from event_routing_backends.helpers import get_anonymous_user_id
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.processors.xapi import constants
 
@@ -53,7 +53,7 @@ class XApiTransformer(BaseTransformerMixin):
             `Agent`
         """
 
-        user_uuid = get_anonymous_user_id_by_username(self.extract_username())
+        user_uuid = get_anonymous_user_id(self.extract_username_or_userid())
         return Agent(
             openid='https://openedx.org/users/user-v1/%s' % user_uuid,
         )

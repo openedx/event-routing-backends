@@ -4,7 +4,7 @@ Transformers for enrollment related events.
 
 from tincan import Activity, ActivityDefinition, Context, LanguageMap, Verb
 
-from event_routing_backends.helpers import get_anonymous_user_id_by_username, get_course_from_id, make_course_url
+from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, make_course_url
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -46,8 +46,8 @@ class BaseEnrollmentTransformer(XApiTransformer):
         """
 
         context = Context(
-            registration=get_anonymous_user_id_by_username(
-                self.extract_username()
+            registration=get_anonymous_user_id(
+                self.extract_username_or_userid()
             )
         )
         return context
