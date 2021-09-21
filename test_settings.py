@@ -47,4 +47,8 @@ LMS_ROOT_URL = 'http://localhost:18000'
 
 CELERY_ALWAYS_EAGER = True
 
+XAPI_EVENTS_ENABLED = True
+
+EVENT_TRACKING_BACKENDS = {}
+
 _mock_third_party_modules()

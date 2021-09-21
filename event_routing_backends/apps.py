@@ -3,6 +3,7 @@ event_routing_backends Django application initialization.
 """
 
 from django.apps import AppConfig
+from edx_django_utils.plugins import PluginSettings
 
 
 class EventRoutingBackendsConfig(AppConfig):
@@ -11,6 +12,22 @@ class EventRoutingBackendsConfig(AppConfig):
     """
 
     name = 'event_routing_backends'
+    verbose_name = "Event Routing Backends"
+
+    plugin_app = {
+        PluginSettings.CONFIG: {
+            'lms.djangoapp': {
+                'production': {PluginSettings.RELATIVE_PATH: 'settings.production'},
+                'common': {PluginSettings.RELATIVE_PATH: 'settings.common'},
+                'devstack': {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
+            },
+            'cms.djangoapp': {
+                'production': {PluginSettings.RELATIVE_PATH: 'settings.production'},
+                'common': {PluginSettings.RELATIVE_PATH: 'settings.common'},
+                'devstack': {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
+            }
+        }
+    }
 
     def ready(self):
         """
