@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-astroid==2.7.3
+astroid==2.8.0
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -43,7 +43,7 @@ cffi==1.14.6
     # via
     #   -r requirements/quality.txt
     #   cryptography
-charset-normalizer==2.0.5
+charset-normalizer==2.0.6
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -158,7 +158,7 @@ event-tracking==1.1.1
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.12.1
+faker==8.13.2
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -218,7 +218,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==6.8.1.164
+newrelic==6.10.0.165
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -238,7 +238,7 @@ pep517==0.11.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-pip-tools==6.2.0
+pip-tools==6.3.0
     # via -r requirements/pip-tools.txt
 platformdirs==2.3.0
     # via
@@ -279,7 +279,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.10.0
     # via diff-cover
-pylint==2.10.2
+pylint==2.11.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -386,12 +386,17 @@ tomli==1.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   pep517
-tox==3.24.3
+tox==3.24.4
     # via
     #   -r requirements/ci.txt
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
+typing-extensions==3.10.0.2
+    # via
+    #   -r requirements/quality.txt
+    #   astroid
+    #   pylint
 urllib3==1.26.6
     # via
     #   -r requirements/ci.txt
@@ -403,7 +408,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.7.2
+virtualenv==20.8.0
     # via
     #   -r requirements/ci.txt
     #   tox
