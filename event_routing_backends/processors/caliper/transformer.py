@@ -5,7 +5,7 @@ import uuid
 
 from django.contrib.auth import get_user_model
 
-from event_routing_backends.helpers import convert_datetime_to_iso, get_anonymous_user_id_by_username
+from event_routing_backends.helpers import convert_datetime_to_iso, get_anonymous_user_id
 from event_routing_backends.processors.caliper.constants import CALIPER_EVENT_CONTEXT
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 
@@ -50,6 +50,6 @@ class CaliperTransformer(BaseTransformerMixin):
         Add all generic information related to `actor`.
         """
         self.transformed_event['actor'] = {
-            'id': get_anonymous_user_id_by_username(self.extract_username()),
+            'id': get_anonymous_user_id(self.extract_username_or_userid()),
             'type': 'Person'
         }

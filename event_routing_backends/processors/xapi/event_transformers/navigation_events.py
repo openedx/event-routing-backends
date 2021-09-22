@@ -3,7 +3,7 @@ Transformers for navigation related events.
 """
 from tincan import Activity, ActivityDefinition, ActivityList, Context, ContextActivities, Extensions, LanguageMap
 
-from event_routing_backends.helpers import get_anonymous_user_id_by_username, make_course_url
+from event_routing_backends.helpers import get_anonymous_user_id, make_course_url
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -80,8 +80,8 @@ class LinkClickedTransformer(NavigationTransformersMixin):
         """
 
         context = Context(
-            registration=get_anonymous_user_id_by_username(
-                self.extract_username()
+            registration=get_anonymous_user_id(
+                self.extract_username_or_userid()
             ),
             contextActivities=self.get_context_activities()
         )
@@ -136,8 +136,8 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
             `Context`
         """
         context = Context(
-            registration=get_anonymous_user_id_by_username(
-                self.extract_username()
+            registration=get_anonymous_user_id(
+                self.extract_username_or_userid()
             )
         )
         return context
@@ -196,8 +196,8 @@ class TabNavigationTransformer(NavigationTransformersMixin):
             })
 
         context = Context(
-            registration=get_anonymous_user_id_by_username(
-                self.extract_username()
+            registration=get_anonymous_user_id(
+                self.extract_username_or_userid()
             ),
             contextActivities=self.get_context_activities()
         )

@@ -13,11 +13,7 @@ from tincan import (
     Result,
 )
 
-from event_routing_backends.helpers import (
-    get_anonymous_user_id_by_username,
-    get_block_id_from_event_referrer,
-    make_course_url,
-)
+from event_routing_backends.helpers import get_anonymous_user_id, get_block_id_from_event_referrer, make_course_url
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -105,8 +101,8 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
 
         context = Context(
-            registration=get_anonymous_user_id_by_username(
-                self.extract_username()
+            registration=get_anonymous_user_id(
+                self.extract_username_or_userid()
             ),
             contextActivities=self.get_context_activities()
         )

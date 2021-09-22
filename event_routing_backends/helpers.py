@@ -23,7 +23,7 @@ User = get_user_model()
 UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 
 
-def get_anonymous_user_id_by_username(username):
+def get_anonymous_user_id(username_or_id):
     """
     Generate anonymous user id.
 
@@ -31,16 +31,26 @@ def get_anonymous_user_id_by_username(username):
     In case of anonymous user, return random uuid.
 
     Arguments:
-        username (str):     username for the learner
+        username_or_id (str):     username for the learner
 
     Returns:
         str
     """
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
+    user = user_id = username = None
+    if username_or_id:
+        try:
+            user_id = int(username_or_id)
+        except ValueError:
+            username = username_or_id
+
+    if username:
+        user = User.objects.filter(username=username).first()
+    elif user_id:
+        user = User.objects.filter(id=user_id).first()
+
+    if not user:
         logger.info('User with username "%s" does not exist. '
-                    'Cannot generate anonymous ID', username)
+                    'Cannot generate anonymous ID', username_or_id)
 
         anonymous_id = str(uuid4())
     else:
