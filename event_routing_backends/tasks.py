@@ -84,7 +84,7 @@ def send_event(task, event_name, event, router_type, host_config):
                 router_type
             )
         )
-    except EventNotDispatched as exc:   # pylint: disable=broad-except
+    except EventNotDispatched as exc:
         logger.exception(
             'Exception occurred while trying to dispatch event "{}"'.format(
                 event_name,
