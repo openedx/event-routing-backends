@@ -2,3 +2,4 @@
 [MASTER]
 ignore = migrations
 load-plugins = edx_lint.pylint,pylint_django,pylint_celery
+
