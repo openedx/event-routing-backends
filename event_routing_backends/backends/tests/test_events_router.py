@@ -238,6 +238,13 @@ class TestEventsRouter(TestCase):
             configurations=ROUTER_CONFIG_FIXTURE[1:1]
         )
 
+        RouterConfigurationFactory.create(
+            backend_name='test_backend',
+            enabled=True,
+            route_url='http://test2.com',
+            configurations=ROUTER_CONFIG_FIXTURE[1:1]
+        )
+
         router = EventsRouter(processors=[], backend_name='test_backend')
         TieredCache.dangerous_clear_all_tiers()
         router.send(self.transformed_event)

@@ -68,36 +68,35 @@ class EventsRouter:
         if not routers:
             logger.error('Could not find an enabled router configurations for backend %s', self.backend_name)
             return
-
-        for router in routers:
+        for index, router in enumerate(routers):
             hosts = router.get_allowed_hosts(event)
-
             if not hosts:
-                logger.info(
-                    'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                    event_name, self.backend_name
-                )
-                return
-
-            router_url = router.route_url
-            for host in hosts:
-                updated_event = self.overwrite_event_data(processed_event, host)
-                host['host_configurations'].update({'url': router_url})
-                business_critical_events = get_business_critical_events()
-                if event_name in business_critical_events:
-                    dispatch_event_persistent.delay(
-                        event,
-                        updated_event,
-                        host['router_type'],
-                        host['host_configurations']
+                if (index + 1) == len(routers):
+                    logger.info(
+                        'Event %s is not allowed to be sent to any host for router with backend "%s"',
+                        event_name, self.backend_name
                     )
-                else:
-                    dispatch_event.delay(
-                        event,
-                        updated_event,
-                        host['router_type'],
-                        host['host_configurations']
-                    )
+                    return
+            else:
+                router_url = router.route_url
+                for host in hosts:
+                    updated_event = self.overwrite_event_data(processed_event, host)
+                    host['host_configurations'].update({'url': router_url})
+                    business_critical_events = get_business_critical_events()
+                    if event_name in business_critical_events:
+                        dispatch_event_persistent.delay(
+                            event,
+                            updated_event,
+                            host['router_type'],
+                            host['host_configurations']
+                        )
+                    else:
+                        dispatch_event.delay(
+                            event,
+                            updated_event,
+                            host['router_type'],
+                            host['host_configurations']
+                        )
 
     def process_event(self, event):
         """
