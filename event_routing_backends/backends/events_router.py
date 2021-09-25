@@ -72,14 +72,13 @@ class EventsRouter:
         for router in routers:
             hosts = router.get_allowed_hosts(event)
 
+            router_url = router.route_url
             if not hosts:
                 logger.info(
-                    'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                    event_name, self.backend_name
+                    'Event %s is not allowed to be sent to any host for router %s with backend "%s"',
+                    event_name, router_url, self.backend_name
                 )
-                return
 
-            router_url = router.route_url
             for host in hosts:
                 updated_event = self.overwrite_event_data(processed_event, host)
                 host['host_configurations'].update({'url': router_url})
