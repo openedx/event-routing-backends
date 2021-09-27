@@ -231,7 +231,7 @@ class TestEventsRouter(TestCase):
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.backends.events_router.logger')
     def test_with_no_available_hosts(self, mocked_logger, mocked_post):
-        RouterConfigurationFactory.create(
+        router_config = RouterConfigurationFactory.create(
             backend_name='test_backend',
             enabled=True,
             route_url='http://test3.com',
@@ -246,8 +246,8 @@ class TestEventsRouter(TestCase):
 
         self.assertIn(
             call(
-                'Event %s is not allowed to be sent to any host for router with backend "%s"',
-                self.transformed_event['name'], 'test_backend'
+                'Event %s is not allowed to be sent to any host for router %s with backend "%s"',
+                self.transformed_event['name'], router_config.route_url, 'test_backend'
             ),
             mocked_logger.info.mock_calls
         )
