@@ -252,6 +252,26 @@ class TestEventsRouter(TestCase):
             mocked_logger.info.mock_calls
         )
 
+    @patch('event_routing_backends.utils.http_client.requests.post')
+    def test_with_multiple_router_config(self, mocked_post):
+        RouterConfigurationFactory.create(
+            backend_name='test_backend',
+            enabled=True,
+            route_url='http://test3.com',
+            configurations=ROUTER_CONFIG_FIXTURE[1:1]
+        )
+        RouterConfigurationFactory.create(
+            backend_name='test_backend',
+            enabled=True,
+            route_url='http://test1.com',
+            configurations=ROUTER_CONFIG_FIXTURE[1:2]
+        )
+
+        router = EventsRouter(processors=[], backend_name='test_backend')
+        TieredCache.dangerous_clear_all_tiers()
+        router.send(self.transformed_event)
+        self.assertEqual(mocked_post.call_count, 1)
+
     @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
         'AUTH_HEADERS': MagicMock(side_effect=EventNotDispatched)
     })
