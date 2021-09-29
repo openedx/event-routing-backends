@@ -39,8 +39,6 @@ LOCALE_PATHS = [
     root('event_routing_backends', 'conf', 'locale'),
 ]
 
-ROOT_URLCONF = 'event_routing_backends.urls'
-
 SECRET_KEY = 'insecure-secret-key'
 
 LMS_ROOT_URL = 'http://localhost:18000'

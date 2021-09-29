@@ -118,7 +118,7 @@ django==2.2.24
     #   edx-i18n-tools
     #   edx-toggles
     #   event-tracking
-    #   jsonfield2
+    #   jsonfield
 django-config-models==2.2.0
     # via -r requirements/quality.txt
 django-crum==0.7.9
@@ -196,10 +196,10 @@ jinja2==3.0.1
     #   jinja2-pluralize
 jinja2-pluralize==0.3.0
     # via diff-cover
+jsonfield==3.1.0
+    # via -r requirements/quality.txt
 jsonfield2==4.0.0.post0
-    # via
-    #   -r requirements/quality.txt
-    #   edx-celeryutils
+    # via edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/quality.txt
