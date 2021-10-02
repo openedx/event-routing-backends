@@ -52,7 +52,7 @@ click==7.1.2
     #   click-plugins
     #   click-repl
     #   code-annotations
-click-didyoumean==0.0.3
+click-didyoumean==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
@@ -72,11 +72,11 @@ coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.8
+cryptography==35.0.0
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
-ddt==1.4.2
+ddt==1.4.3
     # via -r requirements/test.txt
 django==2.2.24
     # via
@@ -91,6 +91,7 @@ django==2.2.24
     #   edx-django-utils
     #   edx-toggles
     #   event-tracking
+    #   jsonfield
     #   jsonfield2
 django-config-models==2.2.0
     # via -r requirements/test.txt
@@ -114,7 +115,7 @@ djangorestframework==3.12.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
-doc8==0.9.0
+doc8==0.9.1
     # via -r requirements/doc.in
 docutils==0.17.1
     # via
@@ -137,7 +138,7 @@ event-tracking==1.1.1
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.13.2
+faker==8.14.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -165,7 +166,9 @@ jinja2==3.0.1
 jsonfield==3.1.0
     # via -r requirements/test.txt
 jsonfield2==4.0.0.post0
-    # via edx-celeryutils
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/test.txt
@@ -176,7 +179,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.10.0.165
+newrelic==7.0.0.166
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -240,7 +243,7 @@ python-slugify==5.0.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2021.1
+pytz==2021.3
     # via
     #   -r requirements/test.txt
     #   babel
@@ -252,7 +255,7 @@ pyyaml==5.4.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==29.0
+readme-renderer==30.0
     # via -r requirements/doc.in
 requests==2.26.0
     # via
@@ -269,7 +272,6 @@ six==1.16.0
     #   event-tracking
     #   isodate
     #   python-dateutil
-    #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
 sphinx==4.2.0
@@ -310,7 +312,7 @@ toml==0.10.2
     #   -r requirements/test.txt
     #   pytest
     #   pytest-cov
-urllib3==1.26.6
+urllib3==1.26.7
     # via
     #   -r requirements/test.txt
     #   requests

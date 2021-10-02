@@ -61,7 +61,7 @@ click==7.1.2
     #   code-annotations
     #   edx-lint
     #   pip-tools
-click-didyoumean==0.0.3
+click-didyoumean==0.3.0
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -90,17 +90,17 @@ coverage==5.5
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==3.4.8
+cryptography==35.0.0
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields
-ddt==1.4.2
+ddt==1.4.3
     # via -r requirements/quality.txt
 diff-cover==4.0.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/dev.in
-distlib==0.3.2
+distlib==0.3.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -119,6 +119,7 @@ django==2.2.24
     #   edx-toggles
     #   event-tracking
     #   jsonfield
+    #   jsonfield2
 django-config-models==2.2.0
     # via -r requirements/quality.txt
 django-crum==0.7.9
@@ -150,7 +151,7 @@ edx-django-utils==4.4.0
     #   edx-toggles
 edx-i18n-tools==0.7.0
     # via -r requirements/dev.in
-edx-lint==5.1.0
+edx-lint==5.2.0
     # via -r requirements/quality.txt
 edx-toggles==4.2.0
     # via -r requirements/quality.txt
@@ -158,11 +159,11 @@ event-tracking==1.1.1
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.13.2
+faker==8.14.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-filelock==3.0.12
+filelock==3.2.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -199,7 +200,9 @@ jinja2-pluralize==0.3.0
 jsonfield==3.1.0
     # via -r requirements/quality.txt
 jsonfield2==4.0.0.post0
-    # via edx-celeryutils
+    # via
+    #   -r requirements/quality.txt
+    #   edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/quality.txt
@@ -218,7 +221,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==6.10.0.165
+newrelic==7.0.0.166
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -240,7 +243,7 @@ pep517==0.11.0
     #   pip-tools
 pip-tools==6.3.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.3.0
+platformdirs==2.4.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -325,7 +328,7 @@ python-slugify==5.0.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2021.1
+pytz==2021.3
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -397,7 +400,7 @@ typing-extensions==3.10.0.2
     #   -r requirements/quality.txt
     #   astroid
     #   pylint
-urllib3==1.26.6
+urllib3==1.26.7
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -408,7 +411,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.8.0
+virtualenv==20.8.1
     # via
     #   -r requirements/ci.txt
     #   tox

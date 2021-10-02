@@ -63,3 +63,4 @@ requirements/private.in
 requirements/private.txt
 
 .idea
+venv/

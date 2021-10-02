@@ -52,7 +52,7 @@ click==7.1.2
     #   click-repl
     #   code-annotations
     #   edx-lint
-click-didyoumean==0.0.3
+click-didyoumean==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
@@ -75,11 +75,11 @@ coverage==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==3.4.8
+cryptography==35.0.0
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
-ddt==1.4.2
+ddt==1.4.3
     # via -r requirements/test.txt
 django==2.2.24
     # via
@@ -94,6 +94,7 @@ django==2.2.24
     #   edx-django-utils
     #   edx-toggles
     #   event-tracking
+    #   jsonfield
     #   jsonfield2
 django-config-models==2.2.0
     # via -r requirements/test.txt
@@ -124,7 +125,7 @@ edx-django-utils==4.4.0
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
-edx-lint==5.1.0
+edx-lint==5.2.0
     # via -r requirements/quality.in
 edx-toggles==4.2.0
     # via -r requirements/test.txt
@@ -132,7 +133,7 @@ event-tracking==1.1.1
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.13.2
+faker==8.14.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -161,7 +162,9 @@ jinja2==3.0.1
 jsonfield==3.1.0
     # via -r requirements/test.txt
 jsonfield2==4.0.0.post0
-    # via edx-celeryutils
+    # via
+    #   -r requirements/test.txt
+    #   edx-celeryutils
 kombu==5.1.0
     # via
     #   -r requirements/test.txt
@@ -176,7 +179,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.10.0.165
+newrelic==7.0.0.166
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -188,7 +191,7 @@ pbr==5.6.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==2.3.0
+platformdirs==2.4.0
     # via pylint
 pluggy==1.0.0
     # via
@@ -253,7 +256,7 @@ python-slugify==5.0.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2021.1
+pytz==2021.3
     # via
     #   -r requirements/test.txt
     #   celery
@@ -302,7 +305,7 @@ typing-extensions==3.10.0.2
     # via
     #   astroid
     #   pylint
-urllib3==1.26.6
+urllib3==1.26.7
     # via
     #   -r requirements/test.txt
     #   requests
