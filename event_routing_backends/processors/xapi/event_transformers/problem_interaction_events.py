@@ -1,19 +1,9 @@
 """
 Transformers for problem interaction events.
 """
-from tincan import (
-    Activity,
-    ActivityDefinition,
-    ActivityList,
-    Context,
-    ContextActivities,
-    InteractionComponent,
-    InteractionComponentList,
-    LanguageMap,
-    Result,
-)
+from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap, Result
 
-from event_routing_backends.helpers import get_anonymous_user_id, get_block_id_from_event_referrer, make_course_url
+from event_routing_backends.helpers import get_block_id_from_event_referrer
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -25,16 +15,22 @@ INTERACTION_TYPES_MAP = {
     'numericalresponse': 'numeric',
     'stringresponse': 'fill-in',
     'customresponse': 'other',
-    'coderesponse': 'performance',  # or "other"?
-    'externalresponse': 'performance',  # or "other"?
+    'coderesponse': 'other',
+    'externalresponse': 'other',
     'formularesponse': 'fill-in',
-    'schematicresponse': 'sequencing',  # or "other"?
+    'schematicresponse': 'other',
     'imageresponse': 'matching',
     'annotationresponse': 'fill-in',
     'choicetextresponse': 'choice',
     'optionresponse': 'choice',
     'symbolicresponse': 'fill-in',
     'truefalseresponse': 'true-false',
+    'non_existent': 'other',
+}
+EVENT_OBJECT_DEFINITION_TYPE = {
+    'edx.grades.problem.submitted': constants.XAPI_ACTIVITY_QUESTION,
+    'showanswer': constants.XAPI_ACTIVITY_SOLUTION,
+    'edx.problem.hint.demandhint_displayed': constants.XAPI_ACTIVITY_SUPPLEMENTAL_INFO,
 }
 
 
@@ -46,16 +42,16 @@ VERB_MAP = {
         'display': constants.ATTEMPTED
     },
     'problem_check': {
-        'id': constants.XAPI_VERB_ANSWERED,
-        'display': constants.ANSWERED
+        'id': constants.XAPI_VERB_EVALUATED,
+        'display': constants.EVALUATED
     },
     'showanswer': {
         'id': constants.XAPI_VERB_ASKED,
         'display': constants.ASKED
     },
     'edx.problem.hint.demandhint_displayed': {
-        'id': constants.XAPI_VERB_INTERACTED,
-        'display': constants.INTERACTED
+        'id': constants.XAPI_VERB_ASKED,
+        'display': constants.ASKED
     },
     'edx.problem.completed': {
         'id': constants.XAPI_VERB_COMPLETED,
@@ -84,11 +80,13 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         if data and isinstance(data, dict):
             object_id = data.get('problem_id', data.get('module_id', None))
 
+        event_name = self.get_data('name', True)
         # TODO: Add definition[name] of problem once it is added in the event.
         return Activity(
             id=object_id,
             definition=ActivityDefinition(
-                type=constants.XAPI_ACTIVITY_INTERACTION,
+                type=EVENT_OBJECT_DEFINITION_TYPE[event_name] if event_name in EVENT_OBJECT_DEFINITION_TYPE else
+                constants.XAPI_ACTIVITY_INTERACTION,
             ),
         )
 
@@ -101,29 +99,9 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
 
         context = Context(
-            registration=get_anonymous_user_id(
-                self.extract_username_or_userid()
-            ),
             contextActivities=self.get_context_activities()
         )
         return context
-
-    def get_context_activities(self):
-        """
-        Get context activities for xAPI transformed event.
-
-        Returns:
-            `ContextActivities`
-        """
-        parent_activities = [
-            Activity(
-                id=make_course_url(self.get_data('context.course_id')),
-                object_type=constants.XAPI_ACTIVITY_COURSE
-            ),
-        ]
-        return ContextActivities(
-            parent=ActivityList(parent_activities),
-        )
 
 
 @XApiTransformersRegistry.register('showanswer')
@@ -183,15 +161,34 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             xapi_object.id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
             return xapi_object
 
+        if self.get_data('data.attempts'):
+            xapi_object.definition.extensions = Extensions({
+                constants.XAPI_ACTIVITY_ATTEMPT: self.get_data('data.attempts')
+            })
         interaction_type = self._get_interaction_type()
-        answers = self._get_answers_list()
-        xapi_object.definition.interaction_type = interaction_type
-        xapi_object.definition.correct_responses_pattern = answers
+        submission = self._get_submission()
+        if submission:
+            interaction_type = INTERACTION_TYPES_MAP[submission['response_type']]
+            xapi_object.definition.description = LanguageMap({constants.EN_US: submission['question']})
 
-        if interaction_type == 'choice':
-            xapi_object.definition.choices = self._get_choices_list()
+        xapi_object.definition.interaction_type = interaction_type
 
         return xapi_object
+
+    def _get_submission(self):
+        """
+        Return first submission available in event data
+
+        Returns:
+            dict
+        """
+        submissions = self.get_data('data.submission')
+        if submissions:
+            for sub_id in submissions:
+                if 'response_type' in submissions[sub_id] and submissions[sub_id]['response_type']:
+                    return submissions[sub_id]
+
+        return None
 
     def _get_interaction_type(self):
         """
@@ -209,63 +206,6 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         except KeyError:
             return DEFAULT_INTERACTION_TYPE
 
-    def _get_answers_list(self):
-        """
-        Get the answers list from the event.
-
-        The event contains answers in the form of:
-
-        {
-            ...,
-            "data": {
-                "answers":{
-                    "[id]": <Answer(s)>
-                }
-
-            }
-        }
-
-        Where these answer(s) can either be a single string, or a list of strings.
-
-        Returns:
-            list
-        """
-        answers = self.get_data('data.answers')
-        if answers is None:
-            answers = {}
-        try:
-            answers = next(iter(answers.values()))
-            if isinstance(answers, str):
-                return [answers]
-
-            return answers
-        except StopIteration:
-            return []
-
-    def _get_choices_list(self):
-        """
-        Return list of choices for the problem.
-
-        Every choice is an InteractionComponent containing id (obtained from the
-        `data[answers][<ID>]` map) and a correspoding display name (obtained from
-        `data[submission][<ID>][answer]` map).
-
-        These answer(s) could either be a single string or be a list of strings.
-
-        Returns:
-            InteractionComponentList<InteractionComponent>
-        """
-        answers = self._get_answers_list()
-        answers_descriptions = self.get_data('answer')
-        if isinstance(answers_descriptions, str):
-            answers_descriptions = [answers_descriptions, ]
-        return InteractionComponentList([
-            InteractionComponent(
-                id=answer,
-                description=LanguageMap({constants.EN: description})
-            ) for (answer, description) in zip(answers, answers_descriptions)
-        ])
-
     def get_result(self):
         """
         Get result for xAPI transformed event.
@@ -280,6 +220,13 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         event_data = self.get_data('data')
         if event_data is None:
             event_data = {}
+
+        submission = self._get_submission()
+        if submission:
+            response = submission["answer"]
+        else:
+            response = event_data.get('answers', None)
+
         return Result(
             success=event_data.get('success', None) == 'correct',
             score={
@@ -289,5 +236,5 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 'scaled': event_data.get('grade', None) / event_data.get('max_grade', None)
                 if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
             },
-            response=event_data.get('answers', None)
+            response=response
         )

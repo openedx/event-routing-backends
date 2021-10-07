@@ -2,9 +2,9 @@
 Transformers for enrollment related events.
 """
 
-from tincan import Activity, ActivityDefinition, Context, LanguageMap, Verb
+from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap, Verb
 
-from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, make_course_url
+from event_routing_backends.helpers import get_course_from_id, make_course_url
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -34,6 +34,9 @@ class BaseEnrollmentTransformer(XApiTransformer):
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_COURSE,
                 name=LanguageMap(**({constants.EN: display_name} if display_name is not None else {})),
+                extensions=Extensions({
+                    constants.XAPI_ACTIVITY_MODE: self.get_data('data.mode')
+                })
             ),
         )
 
@@ -46,9 +49,6 @@ class BaseEnrollmentTransformer(XApiTransformer):
         """
 
         context = Context(
-            registration=get_anonymous_user_id(
-                self.extract_username_or_userid()
-            )
         )
         return context
 
@@ -81,6 +81,6 @@ class CourseGradePassedFirstTimeTransformer(BaseEnrollmentTransformer):
     Transformers for event generated when learner pass course grade first time from a course.
     """
     verb = Verb(
-        id=constants.XAPI_VERB_COMPLETED,
-        display=LanguageMap({constants.EN: constants.COMPLETED}),
+        id=constants.XAPI_VERB_PASSED,
+        display=LanguageMap({constants.EN: constants.PASSED}),
     )

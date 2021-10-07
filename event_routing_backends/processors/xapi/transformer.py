@@ -3,9 +3,9 @@ xAPI Transformer Class
 """
 import uuid
 
-from tincan import Agent, LanguageMap, Statement, Verb
+from tincan import Activity, ActivityDefinition, ActivityList, Agent, ContextActivities, LanguageMap, Statement, Verb
 
-from event_routing_backends.helpers import get_anonymous_user_id
+from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, make_course_url
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.processors.xapi import constants
 
@@ -66,6 +66,32 @@ class XApiTransformer(BaseTransformerMixin):
             str
         """
         return self.get_data('timestamp')
+
+    def get_context_activities(self):
+        """
+        Get context activities for xAPI transformed event.
+
+        Returns:
+            `ContextActivities`
+        """
+        if self.get_data('context.course_id') is not None:
+            course = get_course_from_id(self.get_data('context.course_id'))
+            course_name = LanguageMap({constants.EN_US: course["display_name"]})
+            parent_activities = [
+                Activity(
+                    id=make_course_url(self.get_data('context.course_id')),
+                    object_type=constants.XAPI_ACTIVITY_COURSE,
+                    definition=ActivityDefinition(
+                        type=constants.XAPI_ACTIVITY_COURSE,
+                        name=course_name
+                    )
+                ),
+            ]
+            return ContextActivities(
+                parent=ActivityList(parent_activities),
+            )
+        else:
+            return None
 
 
 class XApiVerbTransformerMixin:
