@@ -6,13 +6,16 @@ edx-platform. It provides new tracking backends and processors.
 
 .. _event-tracking: https://github.com/edx/event-tracking
 
-Setup
-------------
-#. `event_tracking_backends` has two processors namely `CaliperProcessor` and `XApiProcessor` that can transform edX events into Caliper and xAPI format respectively. Events in Caliper format require an additional processor named `CaliperEnvelopeProcessor` before they can be routed.
+Workflow
+-------------
 
-#. Prior to being transformed into xAPI or Caliper format, edX events can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor. Both of these processors run in the main thread and `NameWhitelist`_ is comparatively faster because it performs a simple string comparison.
+#. Two processors, namely `CaliperProcessor` and `XApiProcessor`, in `event_tracking_backends` can transform edX events into Caliper and xAPI format respectively. Events in Caliper format need to be passed through an additional processor named `CaliperEnvelopeProcessor` after transformation and before being routed.
 
-#. We need to update ``EVENT_TRACKING_BACKENDS`` setting to create `xapi` and/or `caliper` backends with appropriate processors. Examples for creating each type of backend are presented below.
+#. Events that need to be transformed can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor offered by the `event-tracking` library. Both of these processors run in the main thread. `NameWhitelist`_ performs simple string comparisons and is, therefore, faster.
+
+#. `EventsRouter` processor can route the transformed events (into xAPI and Caliper format) to configured routers.
+
+#. The processors discussed so far, need to be configured as `EVENT_TRACKING_BACKENDS` for the `event-tracking` library in the format shown below:
 
    #. A sample backend configuration for `caliper` is presented below. Here we are allowing only enrollment, `seek_video` and `edx.video.position.changed` events to be routed to `caliper` backend using `RegexFilter`_.
 
@@ -171,24 +174,29 @@ Setup
 
 .. _post: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
 
+Setup
+-----
+#. Upgrade edX devstack to latest master branch.
 
-Local development
------------------
+#. Start devstack and ssh into `lms` docker container (`make lms-shell`).
 
-If you have not already done so, create/activate a `virtualenv`_. Unless otherwise stated, assume all terminal code
-below is executed within the virtualenv.
+#. Run `pip install edx-event-routing-backends`.
 
-.. _virtualenv: https://virtualenvwrapper.readthedocs.org/en/latest/
+#. Run migrations (`python manage.py lms migrate`).
 
-Dependencies can be installed via the command below.
+#. Exit shell (`exit`) and restart lms container (`make lms-stop` and `make lms-up`).
 
-.. code-block:: bash
+#. Configure routers for routing the transformed events:
 
-    $ make requirements
+   #. Log in to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
 
-Then you might want to run tests to make sure the setup went fine and there are no pre-existing problems (i.e. failed
-tests or quality checks)
+   #. Add `Backend name` as `xapi` or `caliper` (same as the name of backend configured in `EVENT_TRACKING_BACKENDS` setting)
 
-.. code-block:: bash
+   #. Add `Route URL` where events are to be received.
 
-    $ make validate
+   #. Add `Host configurations` as described above.
+
+#. Events should now begin routing to configured `Route URLs`.
+
+
+
