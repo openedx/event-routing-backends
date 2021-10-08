@@ -6,8 +6,8 @@ edx-platform. It provides new tracking backends and processors.
 
 .. _event-tracking: https://github.com/edx/event-tracking
 
-Workflow
--------------
+Features
+===============
 
 #. Two processors, namely ``CaliperProcessor`` and ``XApiProcessor``, in ``event_tracking_backends`` can transform edX events into Caliper and xAPI format respectively. Events in Caliper format need to be passed through an additional processor named `CaliperEnvelopeProcessor`, after being transformed and before being routed.
 
@@ -21,7 +21,7 @@ Workflow
 
    #. ``Host configurations``: Comprising of following configuration items:
 
-      #. ``override_args``: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their values will be overridden.
+      #. ``override_args``: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their value will be overridden.
 
       #. ``router_type``: Two router types are available namely ``XAPI_LRS`` and ``AUTH_HEADERS``. ``XAPI_LRS`` implements `save_statement`_ method of the ``tincan`` library and is ONLY to be used for routing xAPI events (i.e. ``Backend name`` as ``xapi``). `AUTH_HEADERS` implements `post`_ method of the ``requests`` python library and is ONLY to be used for routing Caliper events (i.e. ``Backend name`` as ``caliper``).
 
@@ -49,7 +49,6 @@ Workflow
             "match_params": {
                 "course_id": "^.*course-v.:edX\+.*\+2021.*$",
                 "name": ["^problem.*", "video"]}
-            }
         }
     ]
 
@@ -74,7 +73,43 @@ Workflow
 
 #. The processors discussed so far, need to be configured as ``EVENT_TRACKING_BACKENDS`` for the ``event-tracking`` library in the format shown below:
 
-   #. A sample backend configuration for ``caliper`` is presented below. Here we are allowing only enrollment, ``seek_video`` and ``edx.video.position.changed`` events to be routed to ``caliper`` backend using `RegexFilter`_.
+
+.. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
+
+.. _RegexFilter: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
+
+.. _save_statement: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/xapi_lrs_client.py#L70
+
+.. _post: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
+
+Installation
+===============
+#. Upgrade edX devstack to latest master branch.
+
+#. Start devstack and ssh into ``lms`` docker container (``make lms-shell``).
+
+#. Run ``pip install edx-event-routing-backends``.
+
+#. Run migrations (``python manage.py lms migrate``).
+
+#. Exit shell (``exit``) and restart lms container (``make lms-stop`` and ``make lms-up``).
+
+Configuration
+===============
+
+Two types of configuration are needed for the plugin:
+
+#. Backends for transformation of selected events into ``xapi`` or ``caliper`` format.
+
+#. Routers for routing transformed events to desired http endpoints.
+
+Backends configuration
+----------------------
+
+By default, both `caliper` and `xapi` backends are configured with ``NameWhitelistProcessor`` that filters all the events currently supported. Users can override default backends to change filter type and name of the events to be filtered.
+
+
+A sample override for ``caliper`` backend is presented below. Here we are allowing only enrollment, ``seek_video`` and ``edx.video.position.changed`` events to be filtered through `RegexFilter`_ to ``caliper`` backend.
 
    .. code-block:: python
 
@@ -120,7 +155,7 @@ Workflow
         }
     })
 
-   #. A sample backend configuration for ``xapi`` is presented below. Here we are allowing only enrolment, ``edx.course.grade.passed.first_time`` and ``edx.ui.lms.sequence.tab_selected`` events to be routed to ``xapi`` backend using `NameWhitelist`_.
+A sample override for ``xapi`` backend is presented below. Here we are allowing only enrollment, ``edx.course.grade.passed.first_time`` and ``edx.ui.lms.sequence.tab_selected`` events to be filtered through `NameWhitelist`_ to ``xapi`` backend.
 
    .. code-block:: python
 
@@ -160,25 +195,6 @@ Workflow
         }
     }
 
-.. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
-
-.. _RegexFilter: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
-
-.. _save_statement: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/xapi_lrs_client.py#L70
-
-.. _post: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
-
-Setup
------
-#. Upgrade edX devstack to latest master branch.
-
-#. Start devstack and ssh into ``lms`` docker container (``make lms-shell``).
-
-#. Run ``pip install edx-event-routing-backends``.
-
-#. Run migrations (``python manage.py lms migrate``).
-
-#. Exit shell (``exit``) and restart lms container (``make lms-stop`` and ``make lms-up``).
 
 #. Configure routers for routing the transformed events:
 
