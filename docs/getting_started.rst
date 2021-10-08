@@ -13,64 +13,7 @@ Features
 
 #. Events that need to be transformed can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor offered by the ``event-tracking`` library. Both these processors run in the main thread. `NameWhitelist`_ performs simple string comparisons and is therefore, faster.
 
-#. ``EventsRouter`` processor in ``event_tracking_backends``, can route the transformed events (xAPI and Caliper format) to configured routers. Routers can be configured using django admin settings and require following properties:
-
-   #. ``Backend name``: `xapi` or `caliper` (same as the name of backend configured in ``EVENT_TRACKING_BACKENDS`` explained below).
-
-   #. ``Route URL``: The HTTP endpoint where events are to be received.
-
-   #. ``Host configurations``: Comprising of following configuration items:
-
-      #. ``override_args``: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their value will be overridden.
-
-      #. ``router_type``: Two router types are available namely ``XAPI_LRS`` and ``AUTH_HEADERS``. ``XAPI_LRS`` implements `save_statement`_ method of the ``tincan`` library and is ONLY to be used for routing xAPI events (i.e. ``Backend name`` as ``xapi``). `AUTH_HEADERS` implements `post`_ method of the ``requests`` python library and is ONLY to be used for routing Caliper events (i.e. ``Backend name`` as ``caliper``).
-
-      #. ``host_configurations``: Authorisation parameters are to be added here. Specify ``username`` and ``password`` for ``Basic`` http authentication. For other authentication types, specify ``auth_key`` and ``auth_scheme`` (instead of ``username`` and ``password``). Additional headers can be specified in value of ``headers`` key for ``AUTH_HEADERS`` router type ONLY.
-
-      #. ``match_params``: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
-
-   #. A sample configuration for routing Caliper events having content organisation as ``edX`` AND course run is 2021 AND event name starts with ``problem`` OR event name contains ``video``, using ``Bearer`` authentication, with override arguments and additional headers:
-
-.. code-block:: JSON
-
-    [
-        {
-            "override_args": {
-                "sensor": "test.sensor.example.com",
-            },
-            "router_type": "AUTH_HEADERS",
-            "host_configurations": {
-                "auth_key": "token",
-                "auth_scheme": "Bearer",
-                "headers": {
-                    "test": "header"
-                }
-            },
-            "match_params": {
-                "course_id": "^.*course-v.:edX\+.*\+2021.*$",
-                "name": ["^problem.*", "video"]}
-        }
-    ]
-
-.
-
-   #. A sample configuration for routing xAPI events if the enterprise is ``org_XYZ`` AND event name is ``edx.course.grade.passed.first_time`` OR ``edx.course.enrollment.activated``, using ``Basic`` authentication:
-
-.. code-block:: JSON
-
-    [
-        {
-            "router_type":"XAPI_LRS",
-            "host_configurations":{
-                "username":"abc",
-                "password":"pass",
-            },
-            "match_params": {
-                "enterprise_uuid": "org_XYZ",
-                "name": ["edx.course.grade.passed.first_time", "edx.course.enrollment.activated"]}
-        }
-    ]
-
+#. ``EventsRouter`` processor in ``event_tracking_backends``, can route the transformed events (xAPI and Caliper format) to configured routers.
 #. The processors discussed so far, need to be configured as ``EVENT_TRACKING_BACKENDS`` for the ``event-tracking`` library in the format shown below:
 
 
@@ -195,15 +138,73 @@ A sample override for ``xapi`` backend is presented below. Here we are allowing 
         }
     }
 
+Router configuration
+--------------------
 
-#. Configure routers for routing the transformed events:
+Routers can be configured in django admin settings and require following properties:
 
-   #. Log in to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
+#. ``Backend name``: `xapi` or `caliper` (same as the name of backend configured in ``EVENT_TRACKING_BACKENDS`` explained above).
 
-   #. Add ``Backend name`` as ``xapi`` or ``caliper`` (same as the name of backend configured in `EVENT_TRACKING_BACKENDS` setting)
+#. ``Route URL``: The HTTP endpoint where events are to be received.
 
-   #. Add ``Route URL`` where events are to be received.
+#. ``Host configurations``: Comprising of following configuration items:
 
-   #. Add ``Host configurations`` as described above.
+   #. ``override_args``: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their value will be overridden.
 
-#. Events should now begin routing to configured ``Route URLs``.
+   #. ``router_type``: Two router types are available namely ``XAPI_LRS`` and ``AUTH_HEADERS``. ``XAPI_LRS`` implements `save_statement`_ method of the ``tincan`` library and is ONLY to be used for routing xAPI events (i.e. ``Backend name`` as ``xapi``). `AUTH_HEADERS` implements `post`_ method of the ``requests`` python library and is ONLY to be used for routing Caliper events (i.e. ``Backend name`` as ``caliper``).
+
+   #. ``host_configurations``: Authorisation parameters are to be added here. Specify ``username`` and ``password`` for ``Basic`` http authentication. For other authentication types, specify ``auth_key`` and ``auth_scheme`` (instead of ``username`` and ``password``). Additional headers can be specified in value of ``headers`` key for ``AUTH_HEADERS`` router type ONLY.
+
+   #. ``match_params``: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
+
+A sample configuration for routing Caliper events having content organisation as ``edX`` AND course run is 2021 AND event name starts with ``problem`` OR event name contains ``video``, using ``Bearer`` authentication, with override arguments and additional headers:
+
+.. code-block:: JSON
+
+    [
+        {
+            "override_args": {
+                "sensor": "test.sensor.example.com",
+            },
+            "router_type": "AUTH_HEADERS",
+            "host_configurations": {
+                "auth_key": "token",
+                "auth_scheme": "Bearer",
+                "headers": {
+                    "test": "header"
+                }
+            },
+            "match_params": {
+                "course_id": "^.*course-v.:edX\+.*\+2021.*$",
+                "name": ["^problem.*", "video"]}
+        }
+    ]
+
+A sample configuration for routing xAPI events if the enterprise is ``org_XYZ`` AND event name is ``edx.course.grade.passed.first_time`` OR ``edx.course.enrollment.activated``, using ``Basic`` authentication:
+
+.. code-block:: JSON
+
+    [
+        {
+            "router_type":"XAPI_LRS",
+            "host_configurations":{
+                "username":"abc",
+                "password":"pass",
+            },
+            "match_params": {
+                "enterprise_uuid": "org_XYZ",
+                "name": ["edx.course.grade.passed.first_time", "edx.course.enrollment.activated"]}
+        }
+    ]
+
+To configure routers for routing the transformed events:
+
+#. Log in to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
+
+#. Add ``Backend name`` as ``xapi`` or ``caliper`` (same as the name of backend configured in `EVENT_TRACKING_BACKENDS` setting)
+
+#. Add ``Route URL`` where events are to be received.
+
+#. Add ``Host configurations`` as described above.
+
+Events (transformed by configured ``Backend name``) should now begin routing to configured ``Route URL``. More than one router configurations can be added for a backend.
