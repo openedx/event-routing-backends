@@ -1,3 +1,5 @@
+... _supported-events:
+
 List of supported edx events
 ============================
 
@@ -40,9 +42,6 @@ Course grading events
 -----------------------
 
 * `edx.course.grade.passed.first_time`
-* `edx.course.grade.now_passed`
-* `edx.course.grade.now_failed`
-
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.deactivated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated

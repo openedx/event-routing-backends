@@ -11,19 +11,8 @@ Various backends for receiving edX LMS events.
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    readme
    getting_started
    testing
-   internationalization
-   modules
-   changelog
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

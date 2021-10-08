@@ -1,29 +1,60 @@
-Getting Started
+Introduction
 ===============
 
 ``event-routing-backends`` is developed as a pluggable application for the edx-platform. The code in this app hooks into the `event-tracking`_ app that is installed as a part of
 edx-platform. It provides new tracking backends and processors.
 
-.. _event-tracking: https://github.com/edx/event-tracking
-
 Features
-===============
+--------
 
-#. Two processors, namely ``CaliperProcessor`` and ``XApiProcessor``, in ``event_tracking_backends`` can transform edX events into Caliper and xAPI format respectively. Events in Caliper format need to be passed through an additional processor named `CaliperEnvelopeProcessor`, after being transformed and before being routed.
+Events that need to be transformed can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor offered by the ``event-tracking`` library. Both these processors run in the main thread. ``NameWhitelist`` performs simple string comparisons and is therefore, faster.
 
-#. Events that need to be transformed can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor offered by the ``event-tracking`` library. Both these processors run in the main thread. `NameWhitelist`_ performs simple string comparisons and is therefore, faster.
+Two processors, namely ``CaliperProcessor`` and ``XApiProcessor``, in ``event_tracking_backends`` can transform edX events into Caliper and xAPI format respectively. Events in Caliper format need to be passed through an additional processor named `CaliperEnvelopeProcessor`, after being transformed and before being routed.
 
-#. ``EventsRouter`` processor in ``event_tracking_backends``, can route the transformed events (xAPI and Caliper format) to configured routers.
-#. The processors discussed so far, need to be configured as ``EVENT_TRACKING_BACKENDS`` for the ``event-tracking`` library in the format shown below:
+``EventsRouter`` processor in ``event_tracking_backends``, can route the transformed events (xAPI and Caliper format) to configured routers.
+
+The processors discussed above, are configured as nested backends (named ``xapi`` or ``caliper``) of `AsyncRoutingBackend`_ in ``EVENT_TRACKING_BACKENDS`` configuration of ``event-tracking`` library.
+
+Execution
+---------
+
+``RegexFilter`` and ``NameWhitelist`` run synchronously in the main thread. Processors in ``xapi`` and ``caliper`` backends are executed asynchronously, with each backend run as a separate celery task.
+
+Routing of transformed events is also done asynchronously. Therefore, nested celery tasks are created, one for each router, to route events that have been transformed by ``xapi`` or ``caliper`` backends.
+
+Retries
+-------
+
+Once an event fails to transmit due to connection error, it is retried after a delay of 30 seconds for 3 more times. If it still fails to transmit, then event is dropped unless it is configured to persist in the datebase.
+
+Persistence
+-----------
+
+Some events are critical for record keeping and should never be lost. These `business_critical_events`_ are persisted in the database even after the retries expire. Retry is attempted to transmit persisted events once a day. Following events are configured as ``business_critical_events``:
+
+#. ``edx.course.enrollment.activated``
+#. ``edx.course.enrollment.deactivated``
+#. ``edx.course.grade.passed.first_time``
+
+.. _business_critical_events: https://github.com/edx/event-routing-backends/blob/e375674156b347be833ad8c2479be2c4ff4b073f/event_routing_backends/helpers.py#L197
+
+Supported events
+----------------
+
+List of supported events can be found here :any:`supported-events`.
 
 
-.. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
+Mapping of edX event onto xAPI and Caliper formats
+---------------------------------------------------
 
-.. _RegexFilter: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
+Mapping for Caliper events can be found `Caliper mapping <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_.
 
-.. _save_statement: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/xapi_lrs_client.py#L70
+Mapping for xAPI events can be found in `xAPI mapping <https://docs.google.com/spreadsheets/d/1hvOvJnWD9d00QjPoou0wTxx5gTsqk5uda6RJp56LJjI/edit?usp=sharing>`_.
 
-.. _post: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
+Version information of mapping
+------------------------------
+
+*Needs to be updated*
 
 Installation
 ===============
@@ -208,3 +239,17 @@ To configure routers for routing the transformed events:
 #. Add ``Host configurations`` as described above.
 
 Events (transformed by configured ``Backend name``) should now begin routing to configured ``Route URL``. More than one router configurations can be added for a backend.
+
+.. _event-tracking: https://github.com/edx/event-tracking
+
+.. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
+
+.. _RegexFilter: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
+
+.. _save_statement: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/xapi_lrs_client.py#L70
+
+.. _post: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
+
+.. _AsyncRoutingBackend: https://github.com/edx/event-tracking/blob/fccad3d118f594fe304ec48517e896447f15e782/eventtracking/backends/async_routing.py#L13
+
+.
