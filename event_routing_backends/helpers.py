@@ -95,6 +95,22 @@ def convert_seconds_to_iso(seconds):
     ))
 
 
+def convert_seconds_to_float(seconds):
+    """
+    Convert seconds from integer to Float format.
+
+    Arguments:
+        seconds(str) : number of seconds
+
+    Returns:
+        float
+    """
+    if seconds is None or not seconds:
+        return None
+    else:
+        return float("{0:.3f}".format(float(seconds)))
+
+
 def convert_datetime_to_iso(current_datetime):
     """
     Convert provided datetime into UTC format.
@@ -167,8 +183,6 @@ def make_course_url(course_id):
     Returns:
         str
     """
-    if course_id is None:
-        return None
     return '{root_url}{course_root_url}'.format(
         root_url=settings.LMS_ROOT_URL,
         course_root_url=reverse('course_root', kwargs={

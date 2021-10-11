@@ -22,23 +22,9 @@ The (soon to be) updated event names are as following:
 - edx.video.completed (proposed)
 """
 
-from tincan import (
-    Activity,
-    ActivityDefinition,
-    ActivityList,
-    Context,
-    ContextActivities,
-    Extensions,
-    LanguageMap,
-    Result,
-)
+from tincan import Activity, ActivityDefinition, Context, Extensions, Result
 
-from event_routing_backends.helpers import (
-    convert_seconds_to_iso,
-    get_anonymous_user_id,
-    make_course_url,
-    make_video_block_id,
-)
+from event_routing_backends.helpers import convert_seconds_to_float, make_video_block_id
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -125,8 +111,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
             id=object_id,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_VIDEO,
-                # TODO: how to get video's display name?
-                name=LanguageMap({constants.EN: 'Video Display Name'}),
+                # TODO: Add video's display name
             ),
         )
 
@@ -138,32 +123,13 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
             `Context`
         """
         context = Context(
-            registration=get_anonymous_user_id(
-                self.extract_username_or_userid()
-            ),
-            contextActivities=self.get_context_activities()
+            contextActivities=self.get_context_activities(),
+            extensions=Extensions({
+                # TODO: Add completion threshold once its added in the platform.
+                constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_float(self.get_data('data.duration')),
+            })
         )
         return context
-
-    def get_context_activities(self):
-        """
-        Get context activities for xAPI transformed event.
-
-        Returns:
-            `ContextActivities`
-        """
-        parent_activities = [
-            Activity(
-                id=make_course_url(self.get_data('context.course_id')),
-                object_type=constants.XAPI_ACTIVITY_COURSE
-            ),
-        ]
-        return ContextActivities(
-            parent=ActivityList(parent_activities),
-            category=Activity(
-                id=constants.XAPI_ACTIVITY_VIDEO
-            )
-        )
 
 
 @XApiTransformersRegistry.register('load_video')
@@ -182,10 +148,6 @@ class VideoLoadedTransformer(BaseVideoTransformer):
         """
         context = super().get_context()
 
-        # TODO: Add completion threshold once its added in the platform.
-        context.extensions = Extensions({
-            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.get_data('data.duration')),
-        })
         return context
 
 
@@ -210,7 +172,7 @@ class VideoInteractionTransformers(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.get_data('data.currentTime'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(self.get_data('data.currentTime'))
             })
         )
 
@@ -232,10 +194,10 @@ class VideoCompletedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.get_data('data.duration'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(self.get_data('data.duration'))
             }),
             completion=True,
-            duration=convert_seconds_to_iso(self.get_data('data.duration'))
+            duration=convert_seconds_to_float(self.get_data('data.duration'))
         )
 
 
@@ -256,7 +218,7 @@ class VideoPositionChangedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.get_data('data.old_time')),
-                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.get_data('data.new_time')),
+                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_float(self.get_data('data.old_time')),
+                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_float(self.get_data('data.new_time')),
             }),
         )

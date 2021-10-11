@@ -4,6 +4,13 @@
         "objectType": "Agent",
         "openid": "https://openedx.org/users/user-v1/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
     },
+    "object": {
+        "definition": {
+            "type": "https://w3id.org/xapi/video/activity-type/video"
+        },
+        "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "objectType": "Activity"
+    },
     "context": {
         "contextActivities": {
             "parent": [
@@ -20,27 +27,14 @@
             ]
         },
         "extensions": {
-            "https://w3id.org/xapi/video/extensions/length": 195.0
         }
     },
-    "object": {
-        "definition": {
-            "type": "https://w3id.org/xapi/video/activity-type/video"
-        },
-        "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
-        "objectType": "Activity"
-    },
-    "result": {
-        "extensions": {
-            "https://w3id.org/xapi/video/extensions/time": 194.0
-        }
-    },
-    "timestamp": "2020-07-15T06:46:41.543562+00:00",
+    "timestamp": "2020-07-15T06:43:07.277053+00:00",
     "verb": {
         "display": {
-            "en": "terminated"
+            "en": "initialized"
         },
-        "id": "http://adlnet.gov/expapi/verbs/terminated"
+        "id": "http://adlnet.gov/expapi/verbs/initialized"
     },
     "version": "1.0.3"
 }

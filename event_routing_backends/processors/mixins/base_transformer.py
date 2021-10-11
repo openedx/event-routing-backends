@@ -165,6 +165,10 @@ class BaseTransformerMixin:
             result = get_value_from_dotted_path(self.event, key)
         else:
             result = BaseTransformerMixin.find_nested(self.event, key)
+
+        if not result:
+            result = None
+
         if result is None:
             if not required:
                 logger.info('Could not get data for %s in event "%s"', key, self.event.get('name', None))

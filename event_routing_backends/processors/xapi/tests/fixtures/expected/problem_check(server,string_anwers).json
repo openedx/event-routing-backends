@@ -9,20 +9,25 @@
             "parent": [
                 {
                     "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
-                    "objectType": "Activity"
+                    "objectType": "Activity",
+                    "definition": {
+                      "name": {
+                        "en-US": "Demonstration Course"
+                      },
+                      "type": "http://adlnet.gov/expapi/activities/course"
+                    }
                 }
             ]
-        },
-        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+        }
     },
     "object": {
         "definition": {
-            "choices": [
-
-            ],
-            "correctResponsesPattern": [
-
-            ],
+            "extensions":{
+              "http://id.tincanapi.com/extension/attempt-id":10
+            },
+            "description": {
+              "en-US": "Add the question text, or prompt, here. This text is required."
+            },
             "interactionType": "choice",
             "type": "http://adlnet.gov/expapi/activities/interaction"
         },
@@ -30,7 +35,7 @@
         "objectType": "Activity"
     },
     "result": {
-        "response": "{}",
+        "response": "A correct answer",
         "score": {
             "max": 1,
             "min": 0,
@@ -42,9 +47,9 @@
     "timestamp": "2020-07-14T14:39:26.906232+00:00",
     "verb": {
         "display": {
-            "en": "answered"
+            "en": "evaluated"
         },
-        "id": "http://adlnet.gov/expapi/verbs/answered"
+        "id": "https://w3id.org/xapi/acrossx/verbs/evaluated"
     },
     "version": "1.0.3"
 }

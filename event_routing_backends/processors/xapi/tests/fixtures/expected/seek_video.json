@@ -6,26 +6,25 @@
     },
     "context": {
         "contextActivities": {
-            "category": [
-                {
-                    "id": "https://w3id.org/xapi/video/activity-type/video",
-                    "objectType": "Activity"
-                }
-            ],
             "parent": [
                 {
                     "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
-                    "objectType": "Activity"
+                    "objectType": "Activity",
+                    "definition": {
+                      "name": {
+                        "en-US": "Demonstration Course"
+                      },
+                      "type": "http://adlnet.gov/expapi/activities/course"
+                    }
                 }
             ]
         },
-        "registration": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
+        "extensions": {
+            "https://w3id.org/xapi/video/extensions/length": 195.0
+        }
     },
     "object": {
         "definition": {
-            "name": {
-                "en": "Video Display Name"
-            },
             "type": "https://w3id.org/xapi/video/activity-type/video"
         },
         "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
@@ -33,8 +32,8 @@
     },
     "result": {
         "extensions": {
-            "https://w3id.org/xapi/video/extensions/time-from": "PT3M14.381S",
-            "https://w3id.org/xapi/video/extensions/time-to": "PT10S"
+            "https://w3id.org/xapi/video/extensions/time-from": 194.381,
+            "https://w3id.org/xapi/video/extensions/time-to": 10.0
         }
     },
     "timestamp": "2020-07-15T06:58:28.027485+00:00",

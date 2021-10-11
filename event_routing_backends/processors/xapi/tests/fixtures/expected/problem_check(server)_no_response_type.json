@@ -18,29 +18,35 @@
                     }
                 }
             ]
-        },
-        "extensions": {
-            "https://w3id.org/xapi/video/extensions/length": 195.0
         }
     },
     "object": {
         "definition": {
-            "type": "https://w3id.org/xapi/video/activity-type/video"
+            "extensions":{
+              "http://id.tincanapi.com/extension/attempt-id": 10
+            },
+            "interactionType": "other",
+            "type": "http://adlnet.gov/expapi/activities/interaction"
         },
-        "id": "block-v1:course-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
         "objectType": "Activity"
     },
     "result": {
-        "extensions": {
-            "https://w3id.org/xapi/video/extensions/time": 194.0
-        }
+        "response": "{'3fc5461f86764ad7bdbdf6cbdde61e66_2_1': ['choice_0', 'choice_2']}",
+        "score": {
+            "max": 1,
+            "min": 0,
+            "raw": 0,
+            "scaled": 0
+        },
+        "success": false
     },
-    "timestamp": "2020-07-15T06:46:41.543562+00:00",
+    "timestamp": "2020-07-14T14:39:26.906232+00:00",
     "verb": {
         "display": {
-            "en": "terminated"
+            "en": "evaluated"
         },
-        "id": "http://adlnet.gov/expapi/verbs/terminated"
+        "id": "https://w3id.org/xapi/acrossx/verbs/evaluated"
     },
     "version": "1.0.3"
 }
