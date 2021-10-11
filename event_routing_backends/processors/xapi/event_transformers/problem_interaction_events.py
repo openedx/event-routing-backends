@@ -3,7 +3,7 @@ Transformers for problem interaction events.
 """
 from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap, Result
 
-from event_routing_backends.helpers import get_block_id_from_event_referrer
+from event_routing_backends.helpers import get_problem_block_id
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -158,7 +158,12 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
         if self.get_data('context.event_source') == 'browser':
-            xapi_object.id = get_block_id_from_event_referrer(self.get_data('context.referer', True))
+            block_id = get_problem_block_id(
+                self.get_data('context.referer', True),
+                self.get_data('data'),
+                self.get_data('context.course_id')
+            )
+            xapi_object.id = block_id
             return xapi_object
 
         if self.get_data('data.attempts'):
