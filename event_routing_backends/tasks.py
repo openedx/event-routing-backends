@@ -4,6 +4,7 @@ Celery tasks.
 from celery import shared_task
 from celery.utils.log import get_task_logger
 from celery_utils.persist_on_failure import LoggedPersistOnFailureTask
+from django.conf import settings
 
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 from event_routing_backends.utils.http_client import HttpClient
@@ -15,11 +16,6 @@ ROUTER_STRATEGY_MAPPING = {
     'AUTH_HEADERS': HttpClient,
     'XAPI_LRS': LrsClient,
 }
-
-# Maximum number of retries before giving up
-MAX_RETRIES = 3
-# Number of seconds after task is retried
-COUNTDOWN = 30
 
 
 @shared_task(bind=True, base=LoggedPersistOnFailureTask)
@@ -91,4 +87,5 @@ def send_event(task, event_name, event, router_type, host_config):
             ),
             exc_info=True
         )
-        raise task.retry(exc=exc, countdown=COUNTDOWN, max_retries=MAX_RETRIES)
+        raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
+                         max_retries=getattr(settings, 'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
