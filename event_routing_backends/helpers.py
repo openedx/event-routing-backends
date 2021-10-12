@@ -145,9 +145,56 @@ def get_block_id_from_event_referrer(referrer):
     """
     if referrer is not None:
         parsed = urlparse(referrer)
-        block_id = parse_qs(parsed.query)['activate_block_id'][0]
+        block_id = parse_qs(parsed.query)['activate_block_id'][0]\
+            if 'activate_block_id' in parse_qs(parsed.query) and parse_qs(parsed.query)['activate_block_id'][0] \
+            else None
+
     else:
         block_id = None
+
+    return block_id
+
+
+def get_block_id_from_event_data(data, course_id):
+    """
+    Derive and return block id from event data.
+
+    Arguments:
+        data (str):   data string.
+        course_id       (str) : course key string
+
+    Returns:
+        str or None
+    """
+    if data is not None and course_id is not None:
+        data_array = data.split('_')
+        course_id_array = course_id.split(':')
+        block_id = "block-v1:{}+type@problem+block@{}".format(course_id_array[1], data_array[1]) \
+            if len(data_array) > 1 and len(course_id_array) > 1 else None
+    else:
+        block_id = None
+
+    return block_id
+
+
+def get_problem_block_id(referrer, data, course_id):
+    """
+    Derive and return block id from event data.
+
+    Arguments:
+        referrer (str):   referrer string.
+        data (str):   data string.
+        course_id       (str) : course key string
+
+    Returns:
+        str or None
+    """
+    block_id = get_block_id_from_event_referrer(referrer)
+    if block_id is None:
+        block_id = get_block_id_from_event_data(
+            data,
+            course_id
+        )
 
     return block_id
 

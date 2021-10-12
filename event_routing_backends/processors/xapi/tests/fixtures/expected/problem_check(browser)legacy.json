@@ -24,7 +24,7 @@
         "definition": {
             "type": "http://adlnet.gov/expapi/activities/interaction"
         },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
+        "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@ef37eb3cf1724e38b7f88a9ce85a4842",
         "objectType": "Activity"
     },
     "timestamp": "2020-07-14T14:39:26.580443+00:00",
