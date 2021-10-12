@@ -7,6 +7,14 @@ def plugin_settings(settings):
     """
     Override the default event_routing_backends app settings with production settings.
     """
+    settings.EVENT_ROUTING_BACKEND_MAX_RETRIES = settings.ENV_TOKENS.get(
+        'EVENT_ROUTING_BACKEND_MAX_RETRIES',
+        settings.EVENT_ROUTING_BACKEND_MAX_RETRIES
+    )
+    settings.EVENT_ROUTING_BACKEND_COUNTDOWN = settings.ENV_TOKENS.get(
+        'EVENT_ROUTING_BACKEND_COUNTDOWN',
+        settings.EVENT_ROUTING_BACKEND_COUNTDOWN
+    )
     settings.CALIPER_EVENTS_ENABLED = settings.ENV_TOKENS.get(
         'CALIPER_EVENTS_ENABLED',
         settings.CALIPER_EVENTS_ENABLED

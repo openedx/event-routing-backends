@@ -3,6 +3,7 @@ Test the EventsRouter
 """
 from unittest.mock import MagicMock, call, patch, sentinel
 
+from django.conf import settings
 from django.test import TestCase
 from edx_django_utils.cache.utils import TieredCache
 from eventtracking.processors.exceptions import EventEmissionExit
@@ -112,9 +113,6 @@ ROUTER_CONFIG_FIXTURE = [
     }
 ]
 
-# Maximum number of retries before giving up
-MAX_RETRIES = 3
-
 
 class TestEventsRouter(TestCase):
     """
@@ -192,7 +190,8 @@ class TestEventsRouter(TestCase):
         event_data['name'] = business_critical_events[0]
         router.send(event_data)
 
-        self.assertEqual(mocked_logger.exception.call_count, MAX_RETRIES + 1)
+        self.assertEqual(mocked_logger.exception.call_count,
+                         getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 3) + 1)
         mocked_post.assert_not_called()
 
     @patch('event_routing_backends.utils.http_client.requests.post')
@@ -288,7 +287,8 @@ class TestEventsRouter(TestCase):
         router = EventsRouter(processors=[], backend_name='test_backend')
         router.send(self.transformed_event)
 
-        self.assertEqual(mocked_logger.exception.call_count, MAX_RETRIES + 1)
+        self.assertEqual(mocked_logger.exception.call_count,
+                         getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 3) + 1)
         mocked_post.assert_not_called()
 
     def test_with_non_dict_event(self):

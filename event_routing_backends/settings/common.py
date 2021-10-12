@@ -9,6 +9,8 @@ def plugin_settings(settings):
     """
     settings.CALIPER_EVENTS_ENABLED = False
     settings.XAPI_EVENTS_ENABLED = True
+    settings.EVENT_ROUTING_BACKEND_MAX_RETRIES = 3
+    settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
 
     # .. setting_name: EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS
     # .. setting_default: [
@@ -60,9 +62,6 @@ def plugin_settings(settings):
                                     'edx.video.paused',
                                     'seek_video',
                                     'edx.video.position.changed',
-                                    'edx.course.completed',
-                                    'edx.course.grade.now_passed',
-                                    'edx.course.grade.now_passed',
                                     'edx.course.grade.passed.first_time'
                                 ]
                             }
@@ -118,7 +117,7 @@ def plugin_settings(settings):
                                 'edx.video.paused',
                                 'seek_video',
                                 'edx.video.position.changed',
-                                'edx.course.completed'
+                                'edx.course.grade.passed.first_time'
                             ]
                         }
                     }
