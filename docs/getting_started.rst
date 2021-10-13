@@ -47,9 +47,9 @@ List of supported events can be found here :any:`supported-events`.
 Mapping of edX event onto xAPI and Caliper formats
 ---------------------------------------------------
 
-Mapping for Caliper events can be found `Caliper mapping <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_.
+Mapping for Caliper events can be found in `Caliper mapping google sheet <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_.
 
-Mapping for xAPI events can be found in `xAPI mapping <https://docs.google.com/spreadsheets/d/1hvOvJnWD9d00QjPoou0wTxx5gTsqk5uda6RJp56LJjI/edit?usp=sharing>`_.
+Mapping for xAPI events can be found in `xAPI mapping google sheet <https://docs.google.com/spreadsheets/d/1hvOvJnWD9d00QjPoou0wTxx5gTsqk5uda6RJp56LJjI/edit?usp=sharing>`_.
 
 Version information of mapping
 ------------------------------
