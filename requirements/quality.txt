@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-astroid==2.8.0
+astroid==2.8.2
     # via
     #   pylint
     #   pylint-celery
@@ -29,7 +29,7 @@ celery==5.1.2
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2021.5.30
+certifi==2021.10.8
     # via
     #   -r requirements/test.txt
     #   requests
@@ -37,7 +37,7 @@ cffi==1.14.6
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
     # via
     #   -r requirements/test.txt
     #   requests
@@ -71,7 +71,7 @@ code-annotations==1.2.0
     #   -r requirements/test.txt
     #   edx-lint
     #   edx-toggles
-coverage[toml]==6.0
+coverage[toml]==6.0.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -132,7 +132,7 @@ event-tracking==1.1.1
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==8.16.0
+faker==9.3.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -140,7 +140,7 @@ future==0.18.2
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-idna==3.2
+idna==3.3
     # via
     #   -r requirements/test.txt
     #   requests
@@ -176,7 +176,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.0.0.166
+newrelic==7.2.1.168
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -206,7 +206,7 @@ py==1.10.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pycodestyle==2.7.0
+pycodestyle==2.8.0
     # via -r requirements/quality.in
 pycparser==2.20
     # via

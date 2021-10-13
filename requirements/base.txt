@@ -14,11 +14,11 @@ celery==5.1.2
     # via
     #   edx-celeryutils
     #   event-tracking
-certifi==2021.5.30
+certifi==2021.10.8
     # via requests
 cffi==1.14.6
     # via cryptography
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
     # via requests
 click==7.1.2
     # via
@@ -80,7 +80,7 @@ event-tracking==1.1.1
     # via -r requirements/base.in
 future==0.18.2
     # via edx-celeryutils
-idna==3.2
+idna==3.3
     # via requests
 isodate==0.6.0
     # via -r requirements/base.in
@@ -94,7 +94,7 @@ kombu==5.1.0
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==7.0.0.166
+newrelic==7.2.1.168
     # via edx-django-utils
 pbr==5.6.0
     # via stevedore

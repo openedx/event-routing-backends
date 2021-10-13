@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-astroid==2.8.0
+astroid==2.8.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -34,7 +34,7 @@ celery==5.1.2
     #   -r requirements/quality.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2021.5.30
+certifi==2021.10.8
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -43,7 +43,7 @@ cffi==1.14.6
     # via
     #   -r requirements/quality.txt
     #   cryptography
-charset-normalizer==2.0.6
+charset-normalizer==2.0.7
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -84,12 +84,11 @@ code-annotations==1.2.0
     #   edx-toggles
 codecov==2.1.12
     # via -r requirements/ci.txt
-coverage[toml]==6.0
+coverage[toml]==6.0.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   codecov
-    #   edx-i18n-tools
     #   pytest-cov
 cryptography==35.0.0
     # via
@@ -149,7 +148,7 @@ edx-django-utils==4.4.0
     #   -r requirements/quality.txt
     #   django-config-models
     #   edx-toggles
-edx-i18n-tools==0.8.0
+edx-i18n-tools==0.8.1
     # via -r requirements/dev.in
 edx-lint==5.2.0
     # via -r requirements/quality.txt
@@ -159,7 +158,7 @@ event-tracking==1.1.1
     # via -r requirements/quality.txt
 factory-boy==3.2.0
     # via -r requirements/quality.txt
-faker==8.16.0
+faker==9.3.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -172,7 +171,7 @@ future==0.18.2
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-idna==3.2
+idna==3.3
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -219,7 +218,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.0.0.166
+newrelic==7.2.1.168
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -239,7 +238,7 @@ pep517==0.11.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-pip-tools==6.3.0
+pip-tools==6.4.0
     # via -r requirements/pip-tools.txt
 platformdirs==2.4.0
     # via
@@ -270,7 +269,7 @@ py==1.10.0
     #   -r requirements/quality.txt
     #   pytest
     #   tox
-pycodestyle==2.7.0
+pycodestyle==2.8.0
     # via -r requirements/quality.txt
 pycparser==2.20
     # via
