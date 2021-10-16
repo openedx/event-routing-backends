@@ -81,7 +81,22 @@ class EventsRouter:
 
             for host in hosts:
                 updated_event = self.overwrite_event_data(processed_event, host)
+                if 'host_configurations' not in host:
+                    host['host_configurations'] = {}
                 host['host_configurations'].update({'url': router_url})
+                if router.auth_scheme and router.username \
+                        and router.password and router.auth_scheme == RouterConfiguration.AUTH_BASIC:
+                    host['host_configurations'].update({'username': router.username})
+                    host['host_configurations'].update({'password': router.password})
+                if router.auth_scheme and router.auth_key and router.auth_scheme == RouterConfiguration.AUTH_BEARER:
+                    host['host_configurations'].update({'auth_key': router.auth_key})
+                    host['host_configurations'].update({'auth_scheme': 'Bearer'})
+
+                if router.backend_name and router.backend_name == RouterConfiguration.CALIPER_BACKEND:
+                    host.update({'router_type': 'AUTH_HEADERS'})
+                if router.backend_name and router.backend_name == RouterConfiguration.XAPI_BACKEND:
+                    host.update({'router_type': 'XAPI_LRS'})
+
                 business_critical_events = get_business_critical_events()
                 if event_name in business_critical_events:
                     dispatch_event_persistent.delay(

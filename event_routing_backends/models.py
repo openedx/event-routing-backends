@@ -8,6 +8,7 @@ import re
 from config_models.models import ConfigurationModel, ConfigurationModelManager
 from django.db import models
 from edx_django_utils.cache.utils import TieredCache, get_cache_key
+from fernet_fields import EncryptedCharField
 
 from event_routing_backends.helpers import backend_cache_ttl
 from event_routing_backends.utils.fields import EncryptedJSONField
@@ -87,10 +88,7 @@ class RouterConfiguration(ConfigurationModel):
                 'data.key': 'value'
             },
             'host_configurations': {
-                'url': 'http://test1.com',
                 'headers': {},
-                'auth_scheme': 'Bearer',
-                'auth_key': 'test_key'
             },
             'override_args': {
                 'new_key': 'new_value'
@@ -102,7 +100,6 @@ class RouterConfiguration(ConfigurationModel):
                 'data.key': 'value'
             },
             'host_configurations': {
-                'url': 'http://test1.com',
             },
         },
     ]
@@ -117,13 +114,20 @@ class RouterConfiguration(ConfigurationModel):
 
     """
 
+    AUTH_BASIC = 'BASIC'
+    AUTH_BEARER = 'BEARER'
+    AUTH_CHOICES = ((AUTH_BASIC, 'Basic'), (AUTH_BEARER, 'Bearer'),)
+    CALIPER_BACKEND = 'Caliper'
+    XAPI_BACKEND = 'xAPI'
+    BACKEND_CHOICES = ((CALIPER_BACKEND, 'Caliper'), (XAPI_BACKEND, 'xAPI'),)
     KEY_FIELDS = ('route_url',)
     backend_name = models.CharField(
+        choices=BACKEND_CHOICES,
         max_length=50,
-        verbose_name='Backend name',
         null=False,
         blank=False,
         db_index=True,
+        default=XAPI_BACKEND,
         help_text=(
             'Name of the tracking backend on which this router should be applied.'
             '<br/>'
@@ -143,6 +147,30 @@ class RouterConfiguration(ConfigurationModel):
         )
     )
 
+    auth_scheme = models.CharField(
+        choices=AUTH_CHOICES,
+        verbose_name='Auth Scheme',
+        max_length=6,
+        default=AUTH_BASIC
+    )
+    auth_key = EncryptedCharField(
+        verbose_name='Auth Key',
+        max_length=256,
+        blank=True,
+        null=True
+    )
+    username = EncryptedCharField(
+        verbose_name='Username',
+        max_length=256,
+        blank=True,
+        null=True
+    )
+    password = EncryptedCharField(
+        verbose_name='Password',
+        max_length=256,
+        blank=True,
+        null=True
+    )
     configurations = EncryptedJSONField()
     objects = RouterConfigurationManager()
 
