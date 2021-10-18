@@ -70,7 +70,7 @@ def send_event(task, event_name, event, router_type, host_config):
         client = client_class(**host_config)
         client.send(event, event_name)
         logger.info(
-            'Successfully dispatched edx event "{}" using client: {}'.format(
+            'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(
                 event_name,
                 client.__class__.__name__
             )

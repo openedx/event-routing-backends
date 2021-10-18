@@ -3,7 +3,7 @@ Generic router to send events to hosts.
 """
 import logging
 
-from eventtracking.processors.exceptions import EventEmissionExit
+from eventtracking.processors.exceptions import EventEmissionExit, NoBackendEnabled
 
 from event_routing_backends.helpers import get_business_critical_events
 from event_routing_backends.models import RouterConfiguration
@@ -51,6 +51,8 @@ class EventsRouter:
             )
 
             processed_event = self.process_event(event)
+        except NoBackendEnabled:
+            return
         except EventEmissionExit:
             logger.error(
                 'Could not process event %s for backend %s\'s router',
@@ -60,13 +62,12 @@ class EventsRouter:
             )
             return
 
-        logger.info('Successfully processed event %s for router with backend %s',
-                     event_name, self.backend_name)
+        logger.info('Successfully processed event %s for router with backend %s', event_name, self.backend_name)
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
         if not routers:
-            logger.error('Could not find an enabled router configurations for backend %s', self.backend_name)
+            logger.error('Could not find any enabled router configuration for backend %s', self.backend_name)
             return
 
         for router in routers:

@@ -39,6 +39,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
             Any Exception
         """
         if not XAPI_EVENTS_ENABLED.is_enabled():
+            xapi_logger.info('xAPI backend is not enabled')
             raise NoBackendEnabled
 
         transformed_event = super().transform_event(event)

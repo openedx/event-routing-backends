@@ -39,6 +39,7 @@ class CaliperProcessor(BaseTransformerProcessorMixin):
             Any Exception
         """
         if not CALIPER_EVENTS_ENABLED.is_enabled():
+            caliper_logger.info('Caliper backend is not enabled')
             raise NoBackendEnabled
 
         transformed_event = super().transform_event(event)
