@@ -105,7 +105,7 @@ def convert_seconds_to_float(seconds):
     Returns:
         float
     """
-    if seconds is None or not seconds:
+    if seconds is None or (seconds != 0 and not seconds):
         return None
     else:
         return float("{0:.3f}".format(float(seconds)))

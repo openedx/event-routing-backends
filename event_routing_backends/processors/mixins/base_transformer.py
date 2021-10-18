@@ -166,7 +166,7 @@ class BaseTransformerMixin:
         else:
             result = BaseTransformerMixin.find_nested(self.event, key)
 
-        if not result:
+        if result != 0 and not result:
             result = None
 
         if result is None:
@@ -186,8 +186,9 @@ class BaseTransformerMixin:
         This alters the input so you may wish to ``copy`` the dict first.
         """
         for key, value in list(source_dict.items()):
-            if value is None:
+            if value is None or (value != 0 and not value):
                 del source_dict[key]
             elif isinstance(value, dict):
                 self.del_none(value)
+
         return source_dict

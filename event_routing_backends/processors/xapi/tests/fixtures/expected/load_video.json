@@ -27,7 +27,7 @@
             ]
         },
         "extensions": {
-            "https://w3id.org/xapi/video/extensions/length": 195.0
+            "https://w3id.org/xapi/video/extensions/length": 0.0
         }
     },
     "timestamp": "2020-07-15T06:43:07.277053+00:00",
