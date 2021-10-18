@@ -44,7 +44,7 @@ class EventsRouter:
         except TypeError as exc:
             raise ValueError('Expected event as dict but {type} was given.'.format(type=type(event))) from exc
         try:
-            logger.debug(
+            logger.info(
                 'Processing event %s for router with backend %s',
                 event['name'],
                 self.backend_name
@@ -60,7 +60,7 @@ class EventsRouter:
             )
             return
 
-        logger.debug('Successfully processed event %s for router with backend %s',
+        logger.info('Successfully processed event %s for router with backend %s',
                      event_name, self.backend_name)
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
@@ -100,14 +100,14 @@ class EventsRouter:
                 business_critical_events = get_business_critical_events()
                 if event_name in business_critical_events:
                     dispatch_event_persistent.delay(
-                        event,
+                        event_name,
                         updated_event,
                         host['router_type'],
                         host['host_configurations']
                     )
                 else:
                     dispatch_event.delay(
-                        event,
+                        event_name,
                         updated_event,
                         host['router_type'],
                         host['host_configurations']
@@ -146,5 +146,5 @@ class EventsRouter:
         if 'override_args' in host and isinstance(event, dict):
             event = event.copy()
             event.update(host['override_args'])
-            logger.debug('Overwriting event with values {}'.format(host['override_args']))
+            logger.info('Overwriting event with values {}'.format(host['override_args']))
         return event

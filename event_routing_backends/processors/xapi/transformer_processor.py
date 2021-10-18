@@ -46,6 +46,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
         if transformed_event:
             event_json = transformed_event.to_json()
             xapi_logger.info(event_json)
+            xapi_logger.info('xAPI statement of edx event "{}" is: {}'.format(event["name"], event_json))
             return json.loads(event_json)
 
         return transformed_event
