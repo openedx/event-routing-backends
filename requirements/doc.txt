@@ -35,7 +35,7 @@ certifi==2021.10.8
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==1.14.6
+cffi==1.15.0
     # via
     #   -r requirements/test.txt
     #   cryptography
@@ -101,7 +101,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/test.txt
-django-model-utils==4.1.1
+django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -137,7 +137,7 @@ event-tracking==1.1.1
     # via -r requirements/test.txt
 factory-boy==3.2.0
     # via -r requirements/test.txt
-faker==9.3.1
+faker==9.5.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -176,7 +176,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.2.1.168
+newrelic==7.2.2.169
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -215,7 +215,7 @@ pygments==2.10.0
     #   doc8
     #   readme-renderer
     #   sphinx
-pymongo==3.12.0
+pymongo==3.12.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -248,7 +248,7 @@ pytz==2021.3
     #   django
     #   event-tracking
     #   tincan
-pyyaml==5.4.1
+pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -291,7 +291,7 @@ sqlparse==0.4.2
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==3.4.0
+stevedore==3.5.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
