@@ -58,7 +58,8 @@ class EventsRouter:
             )
             return
 
-        logger.info('Successfully processed edx event "%s" for router with backend %s', event_name, self.backend_name)
+        logger.info('Successfully processed edx event "%s" for router with backend %s. Processed event: %s', event_name,
+                    self.backend_name, processed_event)
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
@@ -77,7 +78,7 @@ class EventsRouter:
                 )
 
             for host in hosts:
-                updated_event = self.overwrite_event_data(processed_event, host)
+                updated_event = self.overwrite_event_data(processed_event, host, event_name)
                 if 'host_configurations' not in host:
                     host['host_configurations'] = {}
                 host['host_configurations'].update({'url': router_url})
@@ -126,7 +127,7 @@ class EventsRouter:
 
         return event
 
-    def overwrite_event_data(self, event, host):
+    def overwrite_event_data(self, event, host, event_name):
         """
         Overwrite/Add values in the event.
 
@@ -134,8 +135,9 @@ class EventsRouter:
         add those keys to the event and overwrite the existing values (if any).
 
         Arguments:
-            event (dict):   Event in which values are to be added/overwritten
-            host (dict):    Host configurations dict.
+            event (dict):       Event in which values are to be added/overwritten
+            host (dict):        Host configurations dict.
+            event_name (str):   name of the original event.
 
         Returns:
             dict
@@ -143,5 +145,6 @@ class EventsRouter:
         if 'override_args' in host and isinstance(event, dict):
             event = event.copy()
             event.update(host['override_args'])
-            logger.info('Overwriting event with values {}'.format(host['override_args']))
+            logger.info('Overwriting processed version of edx event "{}" with values {}'.format(event_name,
+                                                                                                host['override_args']))
         return event

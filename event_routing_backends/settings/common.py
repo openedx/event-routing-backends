@@ -7,8 +7,8 @@ def plugin_settings(settings):
     """
     Adds default settings for the event_routing_backends app.
     """
-    settings.CALIPER_EVENTS_ENABLED = False
-    settings.XAPI_EVENTS_ENABLED = True
+    settings.CALIPER_EVENTS_ENABLED = True
+    settings.XAPI_EVENTS_ENABLED = False
     settings.EVENT_ROUTING_BACKEND_MAX_RETRIES = 3
     settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
 
@@ -126,6 +126,14 @@ def plugin_settings(settings):
                                         "event_routing_backends.processors."
                                         "caliper.transformer_processor.CaliperProcessor",
                                     "OPTIONS": {}
+                                },
+                                {
+                                    "ENGINE":
+                                        "event_routing_backends.processors."
+                                        "caliper.envelope_processor.CaliperEnvelopeProcessor",
+                                    "OPTIONS": {
+                                        "sensor_id": settings.LMS_ROOT_URL
+                                    }
                                 }
                             ],
                             "backend_name": "caliper"
