@@ -65,7 +65,7 @@ def plugin_settings(settings):
                         },
                 ],
                 'backends': {
-                    'caliper': {
+                    'xapi': {
                         'ENGINE': 'event_routing_backends.backends.events_router.EventsRouter',
                         'OPTIONS': {
                             'processors': [

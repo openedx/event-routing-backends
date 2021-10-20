@@ -44,25 +44,21 @@ class EventsRouter:
         except TypeError as exc:
             raise ValueError('Expected event as dict but {type} was given.'.format(type=type(event))) from exc
         try:
-            logger.info(
-                'Processing event %s for router with backend %s',
-                event['name'],
-                self.backend_name
-            )
+            logger.info('Processing edx event "{}" for router with backend {}'.format(event['name'], self.backend_name))
 
             processed_event = self.process_event(event)
         except NoBackendEnabled:
             return
         except EventEmissionExit:
             logger.error(
-                'Could not process event %s for backend %s\'s router',
+                'Could not process edx event "%s" for backend %s\'s router',
                 event_name,
                 self.backend_name,
                 exc_info=True
             )
             return
 
-        logger.info('Successfully processed event %s for router with backend %s', event_name, self.backend_name)
+        logger.info('Successfully processed edx event "%s" for router with backend %s', event_name, self.backend_name)
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
