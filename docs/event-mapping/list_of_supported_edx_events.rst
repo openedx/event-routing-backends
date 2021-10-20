@@ -49,14 +49,14 @@ new
 ============================ ==========================================
 open edX event name          edx.course.grade.passed.first_time
 ============================ ==========================================
-Actor
+**Actor**
 objectType                   Agent
 account [ homePage ]         <LMS_ROOT_URL>
 account [ name ]             <anonymized-user-id>
-Verb
+**Verb**
 id                           http://adlnet.gov/expapi/verbs/passed
 display [ en-US ]            passed
-Object
+**Object**
 id                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 definition [ type ]          http://adlnet.gov/expapi/activities/course
 definition [ name ][ en-US ] <name of course-run>
