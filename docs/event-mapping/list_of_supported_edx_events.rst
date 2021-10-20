@@ -43,16 +43,24 @@ Course grading events
 
 * ``edx.course.grade.passed.first_time``
 
-.. class:: center
+new
+===
 
-=====  =====  ======
-   Inputs     Output
-------------  ------
-  A      B    A or B
-=====  =====  ======
-False  False  False
-True   False  True
-=====  =====  ======
+============================ ==========================================
+open edX event name          edx.course.grade.passed.first_time
+============================ ==========================================
+Actor
+objectType                   Agent
+account [ homePage ]         <LMS_ROOT_URL>
+account [ name ]             <anonymized-user-id>
+Verb
+id                           http://adlnet.gov/expapi/verbs/passed
+display [ en-US ]            passed
+Object
+id                           <LMS_ROOT_URL>/course/<data [ course_id ]>
+definition [ type ]          http://adlnet.gov/expapi/activities/course
+definition [ name ][ en-US ] <name of course-run>
+============================ ==========================================
 
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
