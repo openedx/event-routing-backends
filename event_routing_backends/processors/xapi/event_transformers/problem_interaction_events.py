@@ -41,6 +41,10 @@ VERB_MAP = {
         'id': constants.XAPI_VERB_ATTEMPTED,
         'display': constants.ATTEMPTED
     },
+    'problem_check_browser': {
+        'id': constants.XAPI_VERB_ATTEMPTED,
+        'display': constants.ATTEMPTED
+    },
     'problem_check': {
         'id': constants.XAPI_VERB_EVALUATED,
         'display': constants.EVALUATED
@@ -112,6 +116,30 @@ class ProblemEventsTransformer(BaseProblemsTransformer):
     Transform problem interaction events into xAPI format.
     """
 
+    def get_object(self):
+        """
+        Get object for xAPI transformed event.
+
+        Returns:
+            `Activity`
+        """
+        xapi_object = super().get_object()
+        event_name = self.get_data('name', True)
+        if event_name == 'showanswer':
+            problem_id = self.get_data('problem_id', True)
+            xapi_object.id = '{iri}/answer'.format(
+                iri=self.get_object_iri('xblock', problem_id),
+            )
+        if event_name == 'edx.problem.hint.demandhint_displayed':
+            module_id = self.get_data('module_id', True)
+            hint_index = self.get_data('hint_index', True)
+            xapi_object.id = '{iri}/hint/{hint_index}'.format(
+                iri=self.get_object_iri('xblock', module_id),
+                hint_index=hint_index
+            )
+
+        return xapi_object
+
 
 @XApiTransformersRegistry.register('edx.grades.problem.submitted')
 class ProblemSubmittedTransformer(BaseProblemsTransformer):
@@ -163,8 +191,11 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 self.get_data('data'),
                 self.get_data('context.course_id')
             )
-            xapi_object.id = block_id
+            xapi_object.id = self.get_object_iri('xblock', block_id)
             return xapi_object
+        else:
+            if xapi_object.id:
+                xapi_object.id = self.get_object_iri('xblock', xapi_object.id)
 
         if self.get_data('data.attempts'):
             xapi_object.definition.extensions = Extensions({

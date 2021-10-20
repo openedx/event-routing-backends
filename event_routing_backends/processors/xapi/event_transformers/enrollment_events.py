@@ -4,7 +4,7 @@ Transformers for enrollment related events.
 
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Verb
 
-from event_routing_backends.helpers import get_course_from_id, make_course_url
+from event_routing_backends.helpers import get_course_from_id
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -25,7 +25,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
             `Activity`
         """
         course_id = self.get_data('context.course_id', True)
-        object_id = make_course_url(course_id)
+        object_id = self.get_object_iri('course', course_id)
         course = get_course_from_id(course_id)
         display_name = course['display_name']
 

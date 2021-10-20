@@ -22,6 +22,7 @@ The (soon to be) updated event names are as following:
 - edx.video.completed (proposed)
 """
 
+from django.conf import settings
 from tincan import Activity, ActivityDefinition, Context, Extensions, Result
 
 from event_routing_backends.helpers import convert_seconds_to_float, make_video_block_id
@@ -108,7 +109,10 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
         return Activity(
-            id=object_id,
+            id='{lms_root_url}/xblock/{object_id}'.format(
+                    lms_root_url=settings.LMS_ROOT_URL,
+                    object_id=object_id
+                ),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_VIDEO,
                 # TODO: Add video's display name

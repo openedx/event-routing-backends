@@ -12,7 +12,7 @@
             "course_id": "course-v1:edX+DemoX+Demo_Course",
             "mode": "audit"
         },
-        "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/",
+        "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
         "type": "Membership"
     },
     "extensions": {

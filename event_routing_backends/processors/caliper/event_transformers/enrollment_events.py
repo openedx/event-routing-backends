@@ -2,7 +2,6 @@
 Transformers for enrollment related events.
 """
 
-from event_routing_backends.helpers import make_course_url
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
 
@@ -50,7 +49,7 @@ class EnrollmentEventTransformers(CaliperTransformer):
         data = self.get_data('data')
 
         # TODO: replace with anonymous enrollment id?
-        course_root_url = make_course_url(self.get_data('data.course_id', True))
+        course_root_url = self.get_object_iri('course', self.get_data('data.course_id', True))
         caliper_object = {
             'id': course_root_url,
             'type': 'Membership',
