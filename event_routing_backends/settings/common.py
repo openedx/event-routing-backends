@@ -48,7 +48,6 @@ def plugin_settings(settings):
                                     'edx.ui.lms.sequence.tab_selected',
                                     'showanswer',
                                     'edx.problem.hint.demandhint_displayed',
-                                    'edx.grades.problem.submitted',
                                     'problem_check',
                                     'load_video',
                                     'edx.video.loaded',
@@ -56,8 +55,6 @@ def plugin_settings(settings):
                                     'edx.video.played',
                                     'stop_video',
                                     'edx.video.stopped',
-                                    'complete_video',
-                                    'edx.video.completed',
                                     'pause_video',
                                     'edx.video.paused',
                                     'seek_video',
@@ -68,7 +65,7 @@ def plugin_settings(settings):
                         },
                 ],
                 'backends': {
-                    'caliper': {
+                    'xapi': {
                         'ENGINE': 'event_routing_backends.backends.events_router.EventsRouter',
                         'OPTIONS': {
                             'processors': [
@@ -103,7 +100,6 @@ def plugin_settings(settings):
                                 'edx.ui.lms.sequence.tab_selected',
                                 'showanswer',
                                 'edx.problem.hint.demandhint_displayed',
-                                'edx.grades.problem.submitted',
                                 'problem_check',
                                 'load_video',
                                 'edx.video.loaded',
@@ -111,8 +107,6 @@ def plugin_settings(settings):
                                 'edx.video.played',
                                 'stop_video',
                                 'edx.video.stopped',
-                                'complete_video',
-                                'edx.video.completed',
                                 'pause_video',
                                 'edx.video.paused',
                                 'seek_video',
@@ -132,6 +126,14 @@ def plugin_settings(settings):
                                         "event_routing_backends.processors."
                                         "caliper.transformer_processor.CaliperProcessor",
                                     "OPTIONS": {}
+                                },
+                                {
+                                    "ENGINE":
+                                        "event_routing_backends.processors."
+                                        "caliper.envelope_processor.CaliperEnvelopeProcessor",
+                                    "OPTIONS": {
+                                        "sensor_id": settings.LMS_ROOT_URL
+                                    }
                                 }
                             ],
                             "backend_name": "caliper"

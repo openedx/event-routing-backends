@@ -58,35 +58,22 @@ class LrsClient:
 
         return None
 
-    def send(self, statement_data):
+    def send(self, statement_data, event_name):
         """
         Send the xAPI statement to configured remote.
 
         Arguments:
+            event_name (str)           :   name of the original event.
             statement_data (Statement) :   transformed xAPI statement
 
         Returns:
             requests.Response object
         """
-        logger.info('Sending event json to %s', self.URL)
+        logger.debug('Sending xAPI statement of edx event "{}" to {}'.format(event_name, self.URL))
         response = self.lrs_client.save_statement(statement_data)
 
         if not response.success:
-            logger.warning(
-                'LRS at {} has rejected the statement for event {}. Data: {}, Code: {}'.format(
-                    self.URL,
-                    statement_data,
-                    response.data,
-                    response.response.code
-                )
-            )
+            logger.warning('{} request failed for sending xAPI statement of edx event "{}" to {}. '
+                           'Response code: {}. Response: {}'.format(response.request.method, event_name, self.URL,
+                                                                    response.response.code, response.data))
             raise EventNotDispatched
-
-        logger.info(
-            'LRS at {} has accepted the statement for event {}. Data: {}, Code: {}'.format(
-                self.URL,
-                statement_data,
-                response.data,
-                response.response.code
-            )
-        )

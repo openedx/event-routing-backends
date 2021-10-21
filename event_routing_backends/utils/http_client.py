@@ -5,6 +5,8 @@ from logging import getLogger
 
 import requests
 
+from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
+
 logger = getLogger(__name__)
 
 
@@ -12,6 +14,7 @@ class HttpClient:
     """
     A generic HTTP Client.
     """
+
     def __init__(self, url='', auth_scheme='', auth_key='', headers=None, username=None, password=None, **options):
         """
         Initialize the client with provided configurations.
@@ -45,12 +48,13 @@ class HttpClient:
             }
         return {}
 
-    def send(self, json):
+    def send(self, event, event_name):
         """
         Send the event to configured remote.
 
         Arguments:
-            json (dict) :   event payload to send to host.
+            event (dict)        :   event payload to send to host.
+            event_name (str)    :   name of the original event.
 
         Returns:
             requests.Response object
@@ -61,11 +65,21 @@ class HttpClient:
         options = self.options.copy()
         options.update({
             'url': self.URL,
-            'json': json,
+            'json': event,
             'headers': headers,
         })
         if not self.AUTH_KEY:
             options.update({'auth': (self.username, self.password)})
 
-        logger.debug('Sending event json to {}'.format(self.URL))
-        return requests.post(**options)
+        logger.debug('Sending caliper version of edx event "{}" to {}'.format(event_name, self.URL))
+        response = requests.post(**options)
+        if not 200 <= response.status_code < 300:
+            logger.warning(
+                '{} request failed for sending Caliper version of edx event "{}" to {}.Response code: {}. Response: '
+                '{}'.format(
+                    response.request.method,
+                    event_name, self.URL,
+                    response.status_code,
+                    response.text
+                ))
+            raise EventNotDispatched

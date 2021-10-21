@@ -113,7 +113,7 @@ class BaseTransformerMixin:
                 self.transformed_event[key] = value
             else:
                 raise ValueError(
-                    'Cannot find value for "{}" in transformer {} for the event "{}"'.format(
+                    'Cannot find value for "{}" in transformer {} for the edx event "{}"'.format(
                         key, self.__class__.__name__, self.get_data('name', True)
                     )
                 )
@@ -173,10 +173,10 @@ class BaseTransformerMixin:
 
         if result is None:
             if not required:
-                logger.info('Could not get data for %s in event "%s"', key, self.event.get('name', None))
+                logger.warning('Could not get value for %s in event "%s"', key, self.event.get('name', None))
             else:
                 raise ValueError(
-                    'Could not get data for {} in event "{}"'.format(key, self.event.get('name', None))
+                    'Could not get value for {} in event "{}"'.format(key, self.event.get('name', None))
                 )
 
         return result

@@ -59,12 +59,6 @@ def send_event(task, event_name, event, router_type, host_config):
         router_type (str)   : decides the client to use for sending the event
         host_config (dict)  : contains configurations for the host.
     """
-    logger.debug(
-        'Routing event "%s" for router type "%s"',
-        event_name,
-        router_type
-    )
-
     try:
         client_class = ROUTER_STRATEGY_MAPPING[router_type]
     except KeyError:
@@ -73,17 +67,18 @@ def send_event(task, event_name, event, router_type, host_config):
 
     try:
         client = client_class(**host_config)
-        client.send(event)
+        client.send(event, event_name)
         logger.debug(
-            'Successfully dispatched event "{}" using client strategy "{}"'.format(
+            'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(
                 event_name,
-                router_type
+                client_class
             )
         )
     except EventNotDispatched as exc:
         logger.exception(
-            'Exception occurred while trying to dispatch event "{}"'.format(
+            'Exception occurred while trying to dispatch edx event "{}" using client: {}'.format(
                 event_name,
+                client_class
             ),
             exc_info=True
         )
