@@ -3,6 +3,8 @@ Base Transformer Mixin to add or transform common data values.
 """
 import logging
 
+from django.conf import settings
+
 from event_routing_backends.models import get_value_from_dotted_path
 
 logger = logging.getLogger(__name__)
@@ -192,3 +194,21 @@ class BaseTransformerMixin:
                 self.del_none(value)
 
         return source_dict
+
+    def get_object_iri(self, object_type, object_id):
+        """
+        Inner recursive method to find the key in dict.
+
+        Arguments:
+            object_type (str) :  object type string like course/block
+            object_id (str) :  object id string
+
+        Returns:
+            str
+        """
+
+        return '{root_url}/{object_type}/{object_id}'.format(
+            root_url=settings.LMS_ROOT_URL,
+            object_type=object_type,
+            object_id=object_id
+        )

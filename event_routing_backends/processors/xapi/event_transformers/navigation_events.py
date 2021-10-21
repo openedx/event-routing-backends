@@ -60,7 +60,7 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Activity`
         """
         return Activity(
-            id=self.get_data('data.target_url', True),
+            id=self.get_data('data.target_url'),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_LINK
             ),
@@ -133,7 +133,7 @@ class TabNavigationTransformer(NavigationTransformersMixin):
             `Activity`
         """
         return Activity(
-            id=self.get_data('data.id'),
+            id=self.get_object_iri('xblock', self.get_data('data.id')),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_RESOURCE,
                 extensions=Extensions({

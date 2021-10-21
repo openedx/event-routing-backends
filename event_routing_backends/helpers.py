@@ -9,7 +9,6 @@ from uuid import uuid4
 from dateutil.parser import parse
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 from isodate import duration_isoformat
 # Imported from edx-platform
 # pylint: disable=import-error
@@ -212,29 +211,12 @@ def make_video_block_id(video_id, course_id, video_block_name='video', block_ver
     Returns:
         str
     """
+    course_id_array = course_id.split(':')
     return '{block_version}:{course_id}+type@{video_block_name}+block@{video_id}'.format(
         block_version=block_version,
-        course_id=course_id,
+        course_id=course_id_array[1],
         video_block_name=video_block_name,
         video_id=video_id
-    )
-
-
-def make_course_url(course_id):
-    """
-    Return course info url.
-
-    Arguments:
-        course_id       (str) : course key string
-
-    Returns:
-        str
-    """
-    return '{root_url}{course_root_url}'.format(
-        root_url=settings.LMS_ROOT_URL,
-        course_root_url=reverse('course_root', kwargs={
-            'course_id': course_id
-        })
     )
 
 

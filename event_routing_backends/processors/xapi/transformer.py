@@ -3,9 +3,10 @@ xAPI Transformer Class
 """
 import uuid
 
+from django.conf import settings
 from tincan import Activity, ActivityDefinition, ActivityList, Agent, ContextActivities, LanguageMap, Statement, Verb
 
-from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, make_course_url
+from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.processors.xapi import constants
 
@@ -55,7 +56,7 @@ class XApiTransformer(BaseTransformerMixin):
 
         user_uuid = get_anonymous_user_id(self.extract_username_or_userid())
         return Agent(
-            openid='https://openedx.org/users/user-v1/%s' % user_uuid,
+            account={"homePage": settings.LMS_ROOT_URL, "name": user_uuid}
         )
 
     def get_timestamp(self):
@@ -79,7 +80,7 @@ class XApiTransformer(BaseTransformerMixin):
             course_name = LanguageMap({constants.EN_US: course["display_name"]})
             parent_activities = [
                 Activity(
-                    id=make_course_url(self.get_data('context.course_id')),
+                    id=self.get_object_iri('course', self.get_data('context.course_id')),
                     object_type=constants.XAPI_ACTIVITY_COURSE,
                     definition=ActivityDefinition(
                         type=constants.XAPI_ACTIVITY_COURSE,
@@ -116,7 +117,10 @@ class XApiVerbTransformerMixin:
         """
         event_name = self.get_data('name', True)
 
-        verb = self.verb_map[event_name]
+        if self.get_data('context.event_source') == 'browser' and event_name == 'problem_check':
+            verb = self.verb_map['problem_check_browser']
+        else:
+            verb = self.verb_map[event_name]
 
         return Verb(
             id=verb['id'],
