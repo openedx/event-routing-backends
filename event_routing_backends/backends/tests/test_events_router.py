@@ -126,7 +126,7 @@ class TestEventsRouter(TestCase):
         mocked_post.assert_not_called()
 
         self.assertIn(call(
-            'Could not process event %s for backend %s\'s router',
+            'Could not process edx event "%s" for backend %s\'s router',
             self.transformed_event['name'],
             'test',
             exc_info=True
@@ -166,7 +166,7 @@ class TestEventsRouter(TestCase):
         mocked_post.assert_not_called()
 
         self.assertIn(
-            call('Could not find an enabled router configurations for backend %s', 'test'),
+            call('Could not find any enabled router configuration for backend %s', 'test'),
             mocked_logger.error.mock_calls
         )
 
@@ -384,4 +384,14 @@ class TestEventsRouter(TestCase):
                     }
         client = LrsClient(**host_configurations)
         with self.assertRaises(EventNotDispatched):
-            client.send({})
+            client.send(event_name='test', statement_data={})
+
+    def test_unsuccessful_routing_of_event_http(self):
+        host_configurations = {
+                        'url': 'http://test4.com',
+                        'auth_scheme': 'bearer',
+                        'auth_key': 'key',
+                    }
+        client = HttpClient(**host_configurations)
+        with self.assertRaises(EventNotDispatched):
+            client.send(event=self.transformed_event, event_name=self.transformed_event['name'])

@@ -69,7 +69,15 @@ class TestCaliperProcessor(SimpleTestCase):
 
         self.processor(self.sample_event)
 
-        self.assertIn(call(json.dumps(transformed_event)), mocked_logger.mock_calls)
+        self.assertIn(
+            call(
+                'Caliper version of edx event "{}" is: {}'.format(
+                    self.sample_event.get('name'),
+                    json.dumps(transformed_event)
+                )
+            ),
+            mocked_logger.info.mock_calls
+        )
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_with_no_registry(self, mocked_logger):

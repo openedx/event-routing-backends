@@ -44,29 +44,30 @@ class EventsRouter:
         except TypeError as exc:
             raise ValueError('Expected event as dict but {type} was given.'.format(type=type(event))) from exc
         try:
-            logger.debug(
-                'Processing event %s for router with backend %s',
-                event['name'],
-                self.backend_name
-            )
+            logger.debug('Processing edx event "{}" for router with backend {}'.format(event_name, self.backend_name))
 
             processed_event = self.process_event(event)
+
         except EventEmissionExit:
             logger.error(
-                'Could not process event %s for backend %s\'s router',
+                'Could not process edx event "%s" for backend %s\'s router',
                 event_name,
                 self.backend_name,
                 exc_info=True
             )
             return
 
-        logger.debug('Successfully processed event %s for router with backend %s',
-                     event_name, self.backend_name)
+        logger.debug(
+            'Successfully processed edx event "%s" for router with backend %s. Processed event: %s',
+            event_name,
+            self.backend_name,
+            processed_event
+        )
 
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
 
         if not routers:
-            logger.error('Could not find an enabled router configurations for backend %s', self.backend_name)
+            logger.error('Could not find any enabled router configuration for backend %s', self.backend_name)
             return
 
         for router in routers:
@@ -80,7 +81,7 @@ class EventsRouter:
                 )
 
             for host in hosts:
-                updated_event = self.overwrite_event_data(processed_event, host)
+                updated_event = self.overwrite_event_data(processed_event, host, event_name)
                 if 'host_configurations' not in host:
                     host['host_configurations'] = {}
                 host['host_configurations'].update({'url': router_url})
@@ -100,14 +101,14 @@ class EventsRouter:
                 business_critical_events = get_business_critical_events()
                 if event_name in business_critical_events:
                     dispatch_event_persistent.delay(
-                        event,
+                        event_name,
                         updated_event,
                         host['router_type'],
                         host['host_configurations']
                     )
                 else:
                     dispatch_event.delay(
-                        event,
+                        event_name,
                         updated_event,
                         host['router_type'],
                         host['host_configurations']
@@ -129,7 +130,7 @@ class EventsRouter:
 
         return event
 
-    def overwrite_event_data(self, event, host):
+    def overwrite_event_data(self, event, host, event_name):
         """
         Overwrite/Add values in the event.
 
@@ -137,8 +138,9 @@ class EventsRouter:
         add those keys to the event and overwrite the existing values (if any).
 
         Arguments:
-            event (dict):   Event in which values are to be added/overwritten
-            host (dict):    Host configurations dict.
+            event (dict):       Event in which values are to be added/overwritten
+            host (dict):        Host configurations dict.
+            event_name (str):   name of the original event.
 
         Returns:
             dict
@@ -146,5 +148,8 @@ class EventsRouter:
         if 'override_args' in host and isinstance(event, dict):
             event = event.copy()
             event.update(host['override_args'])
-            logger.debug('Overwriting event with values {}'.format(host['override_args']))
+            logger.debug('Overwriting processed version of edx event "{}" with values {}'.format(
+                event_name,
+                host['override_args']
+            ))
         return event

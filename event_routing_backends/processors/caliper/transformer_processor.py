@@ -44,6 +44,7 @@ class CaliperProcessor(BaseTransformerProcessorMixin):
         transformed_event = super().transform_event(event)
 
         if transformed_event:
-            caliper_logger.info(json.dumps(transformed_event))
+            caliper_logger.info('Caliper version of edx event "{}" is: {}'.format(event["name"],
+                                                                                  json.dumps(transformed_event)))
 
         return transformed_event
