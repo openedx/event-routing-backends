@@ -9,34 +9,30 @@ Features
 
 Events that need to be transformed can be filtered by their names using either `RegexFilter`_ processor or `NameWhitelist`_ processor offered by the ``event-tracking`` library. Both these processors run in the main thread. ``NameWhitelist`` performs simple string comparisons and is therefore, faster.
 
-Two processors, namely ``CaliperProcessor`` and ``XApiProcessor``, in ``event_tracking_backends`` can transform edX events into Caliper and xAPI format respectively. Events in Caliper format need to be passed through an additional processor named `CaliperEnvelopeProcessor`, after being transformed and before being routed.
+In ``event_tracking_backends``, two processors, namely `CaliperProcessor`_ and `XApiProcessor`_ can transform edX events into Caliper and xAPI format respectively. Events in Caliper format need to be passed through an additional processor named `CaliperEnvelopeProcessor`_, after being transformed and before being routed.
 
-``EventsRouter`` processor in ``event_tracking_backends``, can route the transformed events (xAPI and Caliper format) to configured routers.
-
-The processors discussed above, are configured as nested backends (named ``xapi`` or ``caliper``) of `AsyncRoutingBackend`_ in ``EVENT_TRACKING_BACKENDS`` configuration of ``event-tracking`` library.
+`EventsRouter`_ backend runs these processors and then routes the transformed events (xAPI or Caliper format) to configured routers. It is configured as a nested backend (named ``xapi`` or ``caliper``) of `AsyncRoutingBackend`_ (along with desired processors) in ``EVENT_TRACKING_BACKENDS`` configuration of the ``event-tracking`` library.
 
 Execution
 ---------
 
-``RegexFilter`` and ``NameWhitelist`` run synchronously in the main thread. Processors in ``xapi`` and ``caliper`` backends are executed asynchronously, with each backend run as a separate celery task.
+``RegexFilter`` and ``NameWhitelist`` run synchronously in the main thread. Processors in ``xapi`` and ``caliper`` backends are executed asynchronously, with each backend executed as a separate celery task.
 
-Routing of transformed events is also done asynchronously. Therefore, nested celery tasks are created, one for each router, to route events that have been transformed by ``xapi`` or ``caliper`` backends.
+Routing of transformed events is also done asynchronously. Therefore, nested celery tasks are created, one for each configured router, to route events that have been transformed by ``xapi`` or ``caliper`` backends.
 
 Retries
 -------
 
-Once an event fails to transmit due to connection error, it is retried after a delay of 30 seconds for 3 more times. If it still fails to transmit, then event is dropped unless it is configured to persist in the datebase.
+Once an event fails to transmit due to connection error, it is retried periodically for a finite number of times, with delay between each retry. Total number of retries and delay (in seconds) between each retry can be configured using plugin setting ``EVENT_ROUTING_BACKEND_MAX_RETRIES`` (default: 3) and ``EVENT_ROUTING_BACKEND_COUNTDOWN`` (default: 30), respectively. If it still fails to transmit, then the event is dropped unless it is configured to persist in the database.
 
 Persistence
 -----------
 
-Some events are critical for record keeping and should never be lost. These `business_critical_events`_ are persisted in the database even after the retries expire. Retry is attempted to transmit persisted events once a day. Following events are configured as ``business_critical_events``:
+Event consumers may never want to lose certain events even after a brief connection failure. List of these events can be specified in plugin setting ``EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS``. Failed celery tasks for routing these events are persisted using `edx-celeryutils`_ package, once the retries have expired. ``edx-celeryutils`` also has `commands`_ for rerunning failed tasks and deleting old ones. Default list of events in ``EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS`` is:
 
 #. ``edx.course.enrollment.activated``
 #. ``edx.course.enrollment.deactivated``
 #. ``edx.course.grade.passed.first_time``
-
-.. _business_critical_events: https://github.com/edx/event-routing-backends/blob/e375674156b347be833ad8c2479be2c4ff4b073f/event_routing_backends/helpers.py#L197
 
 Supported events
 ----------------
@@ -81,7 +77,6 @@ Backends configuration
 ----------------------
 
 By default, both `caliper` and `xapi` backends are configured with ``NameWhitelistProcessor`` that filters all the events currently supported. Users can override default backends to change filter type and name of the events to be filtered.
-
 
 A sample override for ``caliper`` backend is presented below. Here we are allowing only enrollment, ``seek_video`` and ``edx.video.position.changed`` events to be filtered through `RegexFilter`_ to ``caliper`` backend.
 
@@ -252,4 +247,16 @@ Events (transformed by configured ``Backend name``) should now begin routing to 
 
 .. _AsyncRoutingBackend: https://github.com/edx/event-tracking/blob/fccad3d118f594fe304ec48517e896447f15e782/eventtracking/backends/async_routing.py#L13
 
-.
+.. _CaliperProcessor: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/caliper/transformer_processor.py#L16
+
+.. _XApiProcessor: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/xapi/transformer_processor.py#L16
+
+.. _CaliperEnvelopeProcessor: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/caliper/envelope_processor.py#L12
+
+.. _EventsRouter: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/backends/events_router.py#L15
+
+.. _business_critical_events: https://github.com/edx/event-routing-backends/blob/e375674156b347be833ad8c2479be2c4ff4b073f/event_routing_backends/helpers.py#L197
+
+.. _edx-celeryutils: https://github.com/edx/edx-celeryutils
+
+.. _commands: https://github.com/edx/edx-celeryutils/tree/master/celery_utils/management/commands
