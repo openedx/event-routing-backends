@@ -1,4 +1,4 @@
-... _supported-events:
+.. _Supported_events:
 
 List of supported edx events
 ============================
