@@ -36,7 +36,7 @@ Event consumers may never want to lose certain events even after a brief failure
 Supported events
 ----------------
 
-List of supported events can be found here. :ref:`Supported_events`
+List of supported events can be found in `Supported_events <./event-mapping/Supported_events.rst>`_.
 
 
 Mapping of edX event onto xAPI and Caliper formats
