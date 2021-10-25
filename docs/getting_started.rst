@@ -38,7 +38,7 @@ Supported events
 
 List of supported events can be found here :any:`supported-events`.
 
-:doc:`../event-mapping/list_of_supported_edx_events.rst`
+:doc:`./event-mapping/list_of_supported_edx_events.rst`
 
 
 Mapping of edX event onto xAPI and Caliper formats
