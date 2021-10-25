@@ -1,18 +1,18 @@
 ============================================================= ==================================================
 showanswer
 ============================================================= ==================================================
-``**Actor**``
+**``Actor``**
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-``**Verb**``
+**``Verb``**
 id                                                            http://adlnet.gov/expapi/verbs/asked
 display [ en-US ]                                             asked
-``**Object**``
+**``Object``**
 id                                                            <LMS_ROOT_URL>/xblock/<data [ problem_id ]>/answer
 objectType                                                    Activity
 definition [ type ]                                           http://id.tincanapi.com/activitytype/solution
-``**Context**``
+**``Context``**
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
