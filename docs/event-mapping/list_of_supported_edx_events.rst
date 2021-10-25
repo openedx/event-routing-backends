@@ -43,37 +43,6 @@ Course grading events
 
 * ``edx.course.grade.passed.first_time``
 
-new
-===
-
-=============================================================== ======================================================================================================== ======================================== ========================================= ======================================== ========================================
-**open edX event name**                                         edx.video.loaded                                                                                         edx.video.played                         edx.video.stopped                         edx.video.paused                         edx.video.position.changed
-=============================================================== ======================================================================================================== ======================================== ========================================= ======================================== ========================================
-**Actor**
-objectType                                                      Agent
-openid                                                          https://openedx.org/users/user-v1:<anonymized-user-id>
-account [ homePage ]                                            <LMS_ROOT_URL>
-account [ name ]                                                <anonymized-user-id>
-**Verb**
-id                                                              http://adlnet.gov/expapi/verbs/initialized                                                               https://w3id.org/xapi/video/verbs/played http://adlnet.gov/expapi/verbs/terminated https://w3id.org/xapi/video/verbs/paused https://w3id.org/xapi/video/verbs/seeked
-display [ en-US ]                                               initialized                                                                                              played                                   terminated                                paused                                   seeked
-Object
-id                                                              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
-objectType                                                      Activity
-definition [ type ]                                             https://w3id.org/xapi/video/activity-type/video
-**Context**
-contextActivities [ parent [ objectType ] ]                     Activity
-contextActivities [ parent [ id ] ]                             <LMS_ROOT_URL>/course/<data [ course_id ]>
-contextActivities [ parent [ definition [ type ] ] ]            http://adlnet.gov/expapi/activities/course
-contextActivities [ parent [ definition [ name ][ en-US ] ] ]   <name of course-run>
-extensions [ https://w3id.org/xapi/video/extensions/length ]    data [ duration ]
-dtype: Float with max 3 decimals
-**Result**
-extensions [ https://w3id.org/xapi/video/extensions/time ]      n/a                                                                                                      data [ currentTime ]                     data [ currentTime ]                      data [ currentTime ]                     n/a
-extensions [ https://w3id.org/xapi/video/extensions/time-from ] n/a                                                                                                      n/a                                      n/a                                       n/a                                      data [ old_time ]
-extensions [ https://w3id.org/xapi/video/extensions/time-to ]   n/a                                                                                                      n/a                                      n/a                                       n/a                                      data [ new_time ]
-=============================================================== ======================================================================================================== ======================================== ========================================= ======================================== ========================================
-
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.deactivated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
