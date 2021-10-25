@@ -38,6 +38,8 @@ Supported events
 
 List of supported events can be found here :any:`supported-events`.
 
+:doc:`../event-mapping/list_of_supported_edx_events.rst`
+
 
 Mapping of edX event onto xAPI and Caliper formats
 ---------------------------------------------------
@@ -54,11 +56,11 @@ Version information of mapping
 Installation
 ===============
 
-Install event routing backends library or add it to private requirements of your virtual environment(``requirements/private.txt``).
+Install event routing backends library or add it to private requirements of your virtual environment ( ``requirements/private.txt`` ).
 
 #. Run ``pip install edx-event-routing-backends``.
 
-#. Run migrations (``python manage.py lms migrate``).
+#. Run migrations ( ``python manage.py lms migrate`` ).
 
 #. Restart LMS service of edx-platform.
 
@@ -67,7 +69,7 @@ Configuration
 
 Two types of configuration are needed for the plugin:
 
-#. Backends for transformation of selected events into ``xapi`` or ``caliper`` format.
+#. Backends for filtering and transformation of selected events into ``xapi`` or ``caliper`` format.
 
 #. Routers for routing transformed events to desired http endpoints.
 

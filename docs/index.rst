@@ -11,7 +11,7 @@ Various backends for receiving edX LMS events.
 Contents:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    readme
    getting_started
