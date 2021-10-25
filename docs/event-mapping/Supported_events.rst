@@ -3,7 +3,7 @@
 List of supported edx events
 ============================
 
-edX events supported by `event-routing-backends` are listed below.
+edX events supported by ``event-routing-backends`` are listed below.
 
 Enrollment events
 -----------------

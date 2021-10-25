@@ -1,131 +1,131 @@
-edx.course.enrollment.activated.csv
-===================================
+edx.course.enrollment.activated
+===============================
 
 =========================================================================== ==========================================
 xAPI Key                                                                    Value
 =========================================================================== ==========================================
-Actor
+``Actor``
 objectType                                                                  Agent
 account [ homePage ]                                                        <LMS_ROOT_URL>
 account [ name ]                                                            <anonymized-user-id>
-Verb
+``Verb``
 id                                                                          http://adlnet.gov/expapi/verbs/registered
 display [ en-US ]                                                           registered
-Object
+``Object``
 id                                                                          <LMS_ROOT_URL>/course/<data [ course_id ]>
 objectType                                                                  Activity
 definition [ type ]                                                         http://adlnet.gov/expapi/activities/course
 definition [ name ][ en-US ]                                                <name of course-run>
-definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] data [ mode ]
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ mode ]>
 =========================================================================== ==========================================
 
-edx.course.enrollment.deactivated.csv
-=====================================
+edx.course.enrollment.deactivated
+=================================
 
 =========================================================================== ==========================================
 xAPI Key                                                                    Value
 =========================================================================== ==========================================
-Actor
+``Actor``
 objectType                                                                  Agent
 account [ homePage ]                                                        <LMS_ROOT_URL>
 account [ name ]                                                            <anonymized-user-id>
-Verb
+``Verb``
 id                                                                          http://id.tincanapi.com/verb/unregistered
 display [ en-US ]                                                           unregistered
-Object
+``Object``
 id                                                                          <LMS_ROOT_URL>/course/<data [ course_id ]>
 objectType                                                                  Activity
 definition [ type ]                                                         http://adlnet.gov/expapi/activities/course
 definition [ name ][ en-US ]                                                <name of course-run>
-definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] data [ mode ]
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ mode ]>
 =========================================================================== ==========================================
 
-edx.course.grade.passed.first_time.csv
-======================================
+edx.course.grade.passed.first_time
+==================================
 
 ============================ ==========================================
 xAPI Key                     Value
 ============================ ==========================================
-Actor
+``Actor``
 objectType                   Agent
 account [ homePage ]         <LMS_ROOT_URL>
 account [ name ]             <anonymized-user-id>
-Verb
+``Verb``
 id                           http://adlnet.gov/expapi/verbs/passed
 display [ en-US ]            passed
-Object
+``Object``
 id                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 definition [ type ]          http://adlnet.gov/expapi/activities/course
 definition [ name ][ en-US ] <name of course-run>
 ============================ ==========================================
 
-edx.problem.hint.demandhint_displayed.csv
-=========================================
+edx.problem.hint.demandhint_displayed
+=====================================
 
 ============================================================= ============================================================
 xAPI Key                                                      Value
 ============================================================= ============================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/asked
 display [ en-US ]                                             asked
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/<data [ module_id ]>/hint/<hint_index>
 objectType                                                    Activity
 definition [ type ]                                           https://w3id.org/xapi/acrossx/extensions/supplemental-info
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 ============================================================= ============================================================
 
-edx.ui.lms.link_clicked.csv
-===========================
+edx.ui.lms.link_clicked
+=======================
 
 ============================================================= =============================================
 xAPI Key                                                      Value
 ============================================================= =============================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                             Navigated
-Object
-id                                                            data [ target_url ]
+``Object``
+id                                                            <data [ target_url ]>
 objectType                                                    Activity
 definition [ type ]                                           http://adlnet.gov/expapi/activities/link
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 ============================================================= =============================================
 
-edx.ui.lms.sequence.next_selected.csv
-=====================================
+edx.ui.lms.sequence.next_selected
+=================================
 
 ================================================================================== =============================================
 xAPI Key                                                                           Value
 ================================================================================== =============================================
-Actor
+``Actor``
 objectType                                                                         Agent
 account [ homePage ]                                                               <LMS_ROOT_URL>
 account [ name ]                                                                   <anonymized-user-id>
-Verb
+``Verb``
 id                                                                                 https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                                                  Navigated
-Object
+``Object``
 id                                                                                 <LMS_ROOT_URL>/xblock/<data [ id ]>
 objectType                                                                         Activity
 definition [ type ]                                                                http://id.tincanapi.com/activitytype/resource
-definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/total-items ] ] data [ tab_count ]
-Context
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/total-items ] ] <data [ tab_count ]>
+``Context``
 contextActivities [ parent [ objectType ] ]                                        Activity
 contextActivities [ parent [ id ] ]                                                <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                               http://adlnet.gov/expapi/activities/course
@@ -135,50 +135,50 @@ tarting-point ]                   data [current_tab]
 extensions [ http://http://id.tincanapi.com/extension/ending-point ]               "next unit"
 ================================================================================== =============================================
 
-edx.ui.lms.sequence.outline.selected.csv
-========================================
+edx.ui.lms.sequence.outline.selected
+====================================
 
 ============================================================= =============================================
 xAPI Key                                                      Value
 ============================================================= =============================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                             Navigated
-Object
-id                                                            data [ target_url ]
+``Object``
+id                                                            <data [ target_url ]>
 objectType                                                    Activity
 definition [ type ]                                           http://adlnet.gov/expapi/activities/module
-definition [ name ][ en-US ]                                  data [ target_name ]
-Context
+definition [ name ][ en-US ]                                  <data [ target_name ]>
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 ============================================================= =============================================
 
-edx.ui.lms.sequence.previous_selected.csv
-=========================================
+edx.ui.lms.sequence.previous_selected
+=====================================
 
 ================================================================================== =============================================
 xAPI Key                                                                           Value
 ================================================================================== =============================================
-Actor
+``Actor``
 objectType                                                                         Agent
 account [ homePage ]                                                               <LMS_ROOT_URL>
 account [ name ]                                                                   <anonymized-user-id>
-Verb
+``Verb``
 id                                                                                 https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                                                  Navigated
-Object
+``Object``
 id                                                                                 <LMS_ROOT_URL>/xblock/<data [ id ]>
 objectType                                                                         Activity
 definition [ type ]                                                                http://id.tincanapi.com/activitytype/resource
-definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/total-items ] ] data [ tab_count ]
-Context
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/total-items ] ] <data [ tab_count ]>
+``Context``
 contextActivities [ parent [ objectType ] ]                                        Activity
 contextActivities [ parent [ id ] ]                                                <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                               http://adlnet.gov/expapi/activities/course
@@ -188,247 +188,269 @@ tarting-point ]                   data [current_tab]
 extensions [ http://http://id.tincanapi.com/extension/ending-point ]               "previous unit"
 ================================================================================== =============================================
 
-edx.ui.lms.sequence.tab_selected.csv
-====================================
+edx.ui.lms.sequence.tab_selected
+================================
 
 ================================================================================== =============================================
 xAPI Key                                                                           Value
 ================================================================================== =============================================
-Actor
+``Actor``
 objectType                                                                         Agent
 account [ homePage ]                                                               <LMS_ROOT_URL>
 account [ name ]                                                                   <anonymized-user-id>
-Verb
+``Verb``
 id                                                                                 https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                                                  Navigated
-Object
+``Object``
 id                                                                                 <LMS_ROOT_URL>/xblock/<data [ id ]>
 objectType                                                                         Activity
 definition [ type ]                                                                http://id.tincanapi.com/activitytype/resource
-definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/total-items ] ] data [ tab_count ]
-Context
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/total-items ] ] <data [ tab_count ]>
+``Context``
 contextActivities [ parent [ objectType ] ]                                        Activity
 contextActivities [ parent [ id ] ]                                                <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                               http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]                      <name of course-run>
 extensions [ http://id.tincanapi.com/extension/s
 tarting-point ]                   data [current_tab]
-extensions [ http://http://id.tincanapi.com/extension/ending-point ]               data [ target_tab ]
+extensions [ http://http://id.tincanapi.com/extension/ending-point ]               <data [ target_tab ]>
 ================================================================================== =============================================
 
-edx.video.loaded.csv
-====================
+edx.video.loaded
+================
 
 ============================================================= ========================================================================================================
 xAPI Key                                                      Value
 ============================================================= ========================================================================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/initialized
 display [ en-US ]                                             initialized
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
 objectType                                                    Activity
 definition [ type ]                                           https://w3id.org/xapi/video/activity-type/video
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
-extensions [ https://w3id.org/xapi/video/extensions/length ]  data [ duration ]
+extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
 dtype: Float with max 3 decimals
 ============================================================= ========================================================================================================
 
-edx.video.paused.csv
-====================
+edx.video.paused
+================
 
 ============================================================= ========================================================================================================
 xAPI Key                                                      Value
 ============================================================= ========================================================================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            https://w3id.org/xapi/video/verbs/paused
 display [ en-US ]                                             paused
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
 objectType                                                    Activity
 definition [ type ]                                           https://w3id.org/xapi/video/activity-type/video
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
-extensions [ https://w3id.org/xapi/video/extensions/length ]  data [ duration ]
+extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
 dtype: Float with max 3 decimals
-Result
-extensions [ https://w3id.org/xapi/video/extensions/time ]    data [ currentTime ]
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time ]    <data [ currentTime ]>
 ============================================================= ========================================================================================================
 
-edx.video.played.csv
-====================
+edx.video.played
+================
 
 ============================================================= ========================================================================================================
 xAPI Key                                                      Value
 ============================================================= ========================================================================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            https://w3id.org/xapi/video/verbs/played
 display [ en-US ]                                             played
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
 objectType                                                    Activity
 definition [ type ]                                           https://w3id.org/xapi/video/activity-type/video
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
-extensions [ https://w3id.org/xapi/video/extensions/length ]  data [ duration ]
+extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
 dtype: Float with max 3 decimals
 ============================================================= ========================================================================================================
 
-edx.video.position.changed.csv
-==============================
+edx.video.position.changed
+==========================
 
 =============================================================== ========================================================================================================
 xAPI Key                                                        Value
 =============================================================== ========================================================================================================
-Actor
+``Actor``
 objectType                                                      Agent
 account [ homePage ]                                            <LMS_ROOT_URL>
 account [ name ]                                                <anonymized-user-id>
-Verb
+``Verb``
 id                                                              https://w3id.org/xapi/video/verbs/seeked
 display [ en-US ]                                               seeked
-Object
+``Object``
 id                                                              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
 objectType                                                      Activity
 definition [ type ]                                             https://w3id.org/xapi/video/activity-type/video
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                     Activity
 contextActivities [ parent [ id ] ]                             <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]            http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]   <name of course-run>
-extensions [ https://w3id.org/xapi/video/extensions/length ]    data [ duration ]
+extensions [ https://w3id.org/xapi/video/extensions/length ]    <data [ duration ]>
 dtype: Float with max 3 decimals
-Result
-extensions [ https://w3id.org/xapi/video/extensions/time-from ] data [ old_time ]
-extensions [ https://w3id.org/xapi/video/extensions/time-to ]   data [ new_time ]
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time-from ] <data [ old_time ]>
+extensions [ https://w3id.org/xapi/video/extensions/time-to ]   <data [ new_time ]>
 =============================================================== ========================================================================================================
 
-edx.video.stopped.csv
-=====================
+edx.video.stopped
+==================
 
 ============================================================= ========================================================================================================
 xAPI Key                                                      Value
 ============================================================= ========================================================================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/terminated
 display [ en-US ]                                             terminated
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
 objectType                                                    Activity
 definition [ type ]                                           https://w3id.org/xapi/video/activity-type/video
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
-extensions [ https://w3id.org/xapi/video/extensions/length ]  data [ duration ]
+extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
 dtype: Float with max 3 decimals
-Result
-extensions [ https://w3id.org/xapi/video/extensions/time ]    data [ currentTime ]
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time ]    <data [ currentTime ]>
 ============================================================= ========================================================================================================
 
-problem_check (event_source_ browser).csv
-=========================================
+problem_check (event_source: browser)
+=====================================
 
 ============================================================= =================================================================================================================
 xAPI Key                                                      Value
 ============================================================= =================================================================================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/attempted
 display [ en-US ]                                             attempted
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@problem+block@<block_id from data>
 objectType                                                    Activity
 definition [ type ]                                           http://adlnet.gov/expapi/activities/cmi.interaction
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 ============================================================= =================================================================================================================
 
-problem_check (event_source_ server).csv
-========================================
+problem_check (event_source: server)
+=====================================
 
 ========================================================================== ======================================================================================================
 xAPI Key                                                                   Value
 ========================================================================== ======================================================================================================
-Actor
+``Actor``
 objectType                                                                 Agent
 account [ homePage ]                                                       <LMS_ROOT_URL>
 account [ name ]                                                           <anonymized-user-id>
-Verb
-id                                                                         https://w3id.org/xapi/acrossx/verbs/evaluated
+``Verb``
+id                                                                         https://w3id.org/xapi/acrossx/``Verb``s/evaluated
 display [ en-US ]                                                          evaluated
-Object
+``Object``
 id                                                                         <LMS_ROOT_URL>/xblock/<data [ problem_id ]>
 objectType                                                                 Activity
 definition [ type ]                                                        http://adlnet.gov/expapi/activities/cmi.interaction
-definition [description]                                                   data [ submission ] [ 0 ] [ question ] if [ submission ] [ 0 ] [ response_type ] not empty
-definition [ interactionType ]                                             mapping of data [submission] [ 0 ] [response_type] if [ submission ] [ 0 ] [ response_type ] not empty
-definition [ extensions [ http://id.tincanapi.com/extension/attempt-id ] ] data [attempts]
-Context
+definition [description]                                                   <data [ submission ] [ 0 ] [ question ]> if <[ submission ] [ 0 ] [ response_type ]> is not empty
+definition [ interactionType ]                                             Mapping of <data [submission] [ 0 ] [response_type]> if <[ submission ] [ 0 ] [ response_type ]> is not empty
+definition [ extensions [ http://id.tincanapi.com/extension/attempt-id ] ] <data [attempts]>
+``Context``
 contextActivities [ parent [ objectType ] ]                                Activity
 contextActivities [ parent [ id ] ]                                        <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                       http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]              <name of course-run>
-Results
-success                                                                    TRUE if data [success]  == "correct" else FALSE
+``Results``
+success                                                                    TRUE if <data [success]>  == "correct" else FALSE
 score [ min ]                                                              0
-score [ max ]                                                              data [max_grade]
-score [ raw ]                                                              data [grade]
-score [ scaled ]                                                           data [grade] / data [max_grade]
-response                                                                   data [submission] [ 0 ] [answer] if [ submission ] [ 0 ] [ response_type ] not empty
+score [ max ]                                                              <data [max_grade]>
+score [ raw ]                                                              <data [grade]>
+score [ scaled ]                                                           <data [grade]> / <data [max_grade]>
+response                                                                   <data [submission] [ 0 ] [answer]> if <[ submission ] [ 0 ] [ response_type ]> is not empty
 ========================================================================== ======================================================================================================
 
-showanswer.csv
-==============
+Mapping of ``response_type`` to ``interactionType``:
+
+====================== ===============
+response_type          interactionType
+====================== ===============
+choiceresponse         choice
+multiplechoiceresponse choice
+numericalresponse      numeric
+stringresponse         fill-in
+customresponse         other
+coderesponse           other
+externalresponse       other
+formularesponse        fill-in
+schematicresponse      other
+imageresponse          matching
+annotationresponse     fill-in
+choicetextresponse     choice
+optionresponse         choice
+symbolicresponse       fill-in
+truefalseresponse      true-false
+====================== ===============
+
+showanswer
+==========
 
 ============================================================= ==================================================
 xAPI Key                                                      Value
 ============================================================= ==================================================
-Actor
+``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
 account [ name ]                                              <anonymized-user-id>
-Verb
+``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/asked
 display [ en-US ]                                             asked
-Object
+``Object``
 id                                                            <LMS_ROOT_URL>/xblock/<data [ problem_id ]>/answer
 objectType                                                    Activity
 definition [ type ]                                           http://id.tincanapi.com/activitytype/solution
-Context
+``Context``
 contextActivities [ parent [ objectType ] ]                   Activity
 contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
