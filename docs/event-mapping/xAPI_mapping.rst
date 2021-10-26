@@ -20,7 +20,6 @@ definition [ name ][ en-US ]                                                <nam
 definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ mode ]>
 =========================================================================== ==========================================
 
-.. _RST_Overview:
 edx.course.enrollment.deactivated
 =================================
 
@@ -434,6 +433,8 @@ optionresponse         choice
 symbolicresponse       fill-in
 truefalseresponse      true-false
 ====================== ===============
+
+.. _RST_Overview:
 
 showanswer
 ==========
