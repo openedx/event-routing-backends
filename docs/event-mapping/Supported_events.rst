@@ -7,40 +7,40 @@ edX events supported by ``event-routing-backends`` are listed below.
 Enrollment events
 -----------------
 
-* `edx.course.enrollment.activated`_
-* `edx.course.enrollment.deactivated`_
+* `edx.course.enrollment.activated`_ | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.enrollment.activated.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.enrollment.activated.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.enrollment.activated.json>`_
+* `edx.course.enrollment.deactivated`_ | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.enrollment.deactivated.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.enrollment.deactivated.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.enrollment.deactivated.json>`_
 
 Problem interaction events
 ---------------------------
 
-* `problem_check`_ with ``event_source`` as ``server``
-* `problem_check`_ with ``event_source`` as ``browser``
-* `showanswer`_
-* `edx.problem.hint.demandhint_displayed`_
+* `problem_check`_ with ``event_source`` as ``server`` | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/problem_check(server).json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/problem_check(server).json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/problem_check(server).json>`_
+* `problem_check`_ with ``event_source`` as ``browser`` | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/problem_check(browser).json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/problem_check(browser).json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/problem_check(browser).json>`_
+* `showanswer`_ | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/showanswer.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/showanswer.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/showanswer.json>`_
+* `edx.problem.hint.demandhint_displayed`_ | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.problem.hint.demandhint_displayed.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.problem.hint.demandhint_displayed.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.problem.hint.demandhint_displayed.json>`_
 
 Video events
 -------------
 
-* `edx.video.loaded`_ (legacy name: ``load_video``)  `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX event <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `xAPI event <../../event_routing_backends/processors/xapi/tests/fixtures/expected/load_video.json>`_ | `Caliper event <../../event_routing_backends/processors/caliper/tests/fixtures/expected/load_video.json>`_
-* `edx.video.played`_ (legacy name: ``play_video``)
-* `edx.video.stopped`_ (legacy name: ``stop_video``)
-* `edx.video.paused`_ (legacy name: ``pause_video``)
-* `edx.video.position.changed`_ (legacy name: ``seek_video``)
+* `edx.video.loaded`_ (legacy name: ``load_video``) | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/load_video.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/load_video.json>`_
+* `edx.video.played`_ (legacy name: ``play_video``) | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/play_video.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/play_video.json>`_
+* `edx.video.stopped`_ (legacy name: ``stop_video``) | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/stop_video.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/stop_video.json>`_
+* `edx.video.paused`_ (legacy name: ``pause_video``) | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/pause_video.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/pause_video.json>`_
+* `edx.video.position.changed`_ (legacy name: ``seek_video``) | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/seek_video.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/seek_video.json>`_
 
 
 Course navigation events
 ------------------------
 
-* `edx.ui.lms.sequence.outline.selected`_
-* `edx.ui.lms.sequence.next_selected`_
-* `edx.ui.lms.sequence.previous_selected`_
-* `edx.ui.lms.sequence.tab_selected`_
-* `edx.ui.lms.link_clicked`_
+* `edx.ui.lms.sequence.outline.selected`_  | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.sequence.outline.selected.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.sequence.outline.selected.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.sequence.outline.selected.json>`_
+* `edx.ui.lms.sequence.next_selected`_  | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.sequence.next_selected.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.sequence.next_selected.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.sequence.next_selected.json>`_
+* `edx.ui.lms.sequence.previous_selected`_  | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.sequence.previous_selected.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.sequence.previous_selected.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.sequence.previous_selected.json>`_
+* `edx.ui.lms.sequence.tab_selected`_  | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.sequence.tab_selected.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.sequence.tab_selected.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.sequence.tab_selected.json>`_
+* `edx.ui.lms.link_clicked`_  | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.link_clicked.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.link_clicked.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.link_clicked.json>`_
 
 Course grading events
 -----------------------
 
-* edx.course.grade.passed.first_time
+* edx.course.grade.passed.first_time | `xAPI map <./xAPI_mapping.rst>`_ | `Caliper map <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `edX sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.passed.first_time.json>`_ | `xAPI sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`_ | `Caliper sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`_
 
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
