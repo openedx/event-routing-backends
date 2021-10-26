@@ -71,32 +71,34 @@ class EventsRouter:
             return
 
         for router in routers:
-            hosts = router.get_allowed_hosts(event)
+            host = router.get_allowed_host(event)
 
             router_url = router.route_url
-            if not hosts:
+            if not host:
                 logger.info(
                     'Event %s is not allowed to be sent to any host for router %s with backend "%s"',
                     event_name, router_url, self.backend_name
                 )
-
-            for host in hosts:
+            else:
                 updated_event = self.overwrite_event_data(processed_event, host, event_name)
-                if 'host_configurations' not in host:
-                    host['host_configurations'] = {}
+                host['host_configurations'] = {}
                 host['host_configurations'].update({'url': router_url})
-                if router.auth_scheme and router.username \
-                        and router.password and router.auth_scheme == RouterConfiguration.AUTH_BASIC:
+                host['host_configurations'].update({'auth_scheme': router.auth_scheme})
+
+                if router.auth_scheme == RouterConfiguration.AUTH_BASIC:
                     host['host_configurations'].update({'username': router.username})
                     host['host_configurations'].update({'password': router.password})
-                if router.auth_scheme and router.auth_key and router.auth_scheme == RouterConfiguration.AUTH_BEARER:
+                elif router.auth_scheme == RouterConfiguration.AUTH_BEARER:
                     host['host_configurations'].update({'auth_key': router.auth_key})
-                    host['host_configurations'].update({'auth_scheme': 'Bearer'})
 
-                if router.backend_name and router.backend_name == RouterConfiguration.CALIPER_BACKEND:
+                if router.backend_name == RouterConfiguration.CALIPER_BACKEND:
                     host.update({'router_type': 'AUTH_HEADERS'})
-                if router.backend_name and router.backend_name == RouterConfiguration.XAPI_BACKEND:
+                    if 'headers' in host:
+                        host['host_configurations'].update({'headers': host['headers']})
+                elif router.backend_name == RouterConfiguration.XAPI_BACKEND:
                     host.update({'router_type': 'XAPI_LRS'})
+                else:
+                    host.update({'router_type': 'INVALID_TYPE'})
 
                 business_critical_events = get_business_critical_events()
                 if event_name in business_critical_events:

@@ -5,6 +5,7 @@ from logging import getLogger
 
 from tincan.remote_lrs import RemoteLRS
 
+from event_routing_backends.models import RouterConfiguration
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 
 logger = getLogger(__name__)
@@ -30,9 +31,7 @@ class LrsClient:
         self.AUTH_KEY = auth_key
         self.VERSION = version
 
-        if auth_key is None \
-                and username is not None \
-                and password is not None:
+        if auth_scheme == RouterConfiguration.AUTH_BASIC:
             self.lrs_client = RemoteLRS(
                 version=self.VERSION,
                 endpoint=self.URL,
@@ -53,7 +52,7 @@ class LrsClient:
         Returns:
             str
         """
-        if self.AUTH_SCHEME and self.AUTH_KEY:
+        if self.AUTH_SCHEME and self.AUTH_SCHEME == RouterConfiguration.AUTH_BEARER and self.AUTH_KEY:
             return f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
 
         return None
@@ -70,8 +69,8 @@ class LrsClient:
             requests.Response object
         """
         logger.debug('Sending xAPI statement of edx event "{}" to {}'.format(event_name, self.URL))
-        response = self.lrs_client.save_statement(statement_data)
 
+        response = self.lrs_client.save_statement(statement_data)
         if not response.success:
             logger.warning('{} request failed for sending xAPI statement of edx event "{}" to {}. '
                            'Response code: {}. Response: {}'.format(response.request.method, event_name, self.URL,

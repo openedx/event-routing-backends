@@ -114,8 +114,8 @@ class RouterConfiguration(ConfigurationModel):
 
     """
 
-    AUTH_BASIC = 'BASIC'
-    AUTH_BEARER = 'BEARER'
+    AUTH_BASIC = 'Basic'
+    AUTH_BEARER = 'Bearer'
     AUTH_CHOICES = ((AUTH_BASIC, 'Basic'), (AUTH_BEARER, 'Bearer'),)
     CALIPER_BACKEND = 'Caliper'
     XAPI_BACKEND = 'xAPI'
@@ -151,7 +151,9 @@ class RouterConfiguration(ConfigurationModel):
         choices=AUTH_CHOICES,
         verbose_name='Auth Scheme',
         max_length=6,
-        default=AUTH_BASIC
+        default=None,
+        blank=True,
+        null=True
     )
     auth_key = EncryptedCharField(
         verbose_name='Auth Key',
@@ -171,7 +173,7 @@ class RouterConfiguration(ConfigurationModel):
         blank=True,
         null=True
     )
-    configurations = EncryptedJSONField()
+    configurations = EncryptedJSONField(blank=True, default=None)
     objects = RouterConfigurationManager()
 
     class Meta:
@@ -209,7 +211,7 @@ class RouterConfiguration(ConfigurationModel):
         router_configs = cls.objects.get_routers(backend_name)
         return router_configs if len(router_configs) > 0 else None
 
-    def get_allowed_hosts(self, original_event):
+    def get_allowed_host(self, original_event):
         """
         Return list of hosts to which the `transformed_event` is allowed to be sent.
 
@@ -250,16 +252,17 @@ class RouterConfiguration(ConfigurationModel):
             original_event    (dict):       original event dict
 
         Returns
-            list<dict>
+            dict
         """
-        allowed_hosts = []
-        for host_config in self.configurations:
-            is_allowed = self._match_event_for_host(original_event, host_config)
+        if not self.configurations:
+            return {'host_configurations': {}}
 
-            if is_allowed:
-                allowed_hosts.append(host_config)
+        is_allowed = self._match_event_for_host(original_event, self.configurations)
 
-        return allowed_hosts
+        if is_allowed:
+            return self.configurations
+
+        return None
 
     def _match_event_for_host(self, original_event, host_config):
         """

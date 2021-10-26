@@ -1,13 +1,18 @@
 (function($) {
     $(function() {
         function changeFieldsDisplay() {
-          if($("#id_auth_scheme").val() == 'BASIC'){
+          if($("#id_auth_scheme").val() == 'Basic'){
                 $('.field-auth_key').hide();
                 $('.field-password').show();
                 $('.field-username').show();
           }
-          else{
+          else if($("#id_auth_scheme").val() =='Bearer') {
                 $('.field-auth_key').show();
+                $('.field-password').hide();
+                $('.field-username').hide();
+          }
+          else{
+                $('.field-auth_key').hide();
                 $('.field-password').hide();
                 $('.field-username').hide();
           }
