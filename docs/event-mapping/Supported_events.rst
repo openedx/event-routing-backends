@@ -21,7 +21,7 @@ Problem interaction events
 Video events
 -------------
 
-* `edx.video.loaded`_ (legacy name: ``load_video``)  `xAPI mapping <./xAPI_mapping.rst#RST_Overview>`_ `Sample edX event <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `Sample xAPI event <../../event_routing_backends/processors/xapi/tests/fixtures/expected/load_video.json>`_ | `Sample Caliper event <../../event_routing_backends/processors/caliper/tests/fixtures/expected/load_video.json>`_
+* `edx.video.loaded`_ (legacy name: ``load_video``)  `xAPI mapping <./xAPI_mapping.rst>`_ | `Caliper mapping <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_ | `Sample edX event <../../event_routing_backends/processors/tests/fixtures/current/load_video.json>`_ | `Sample xAPI event <../../event_routing_backends/processors/xapi/tests/fixtures/expected/load_video.json>`_ | `Sample Caliper event <../../event_routing_backends/processors/caliper/tests/fixtures/expected/load_video.json>`_
 * `edx.video.played`_ (legacy name: ``play_video``)
 * `edx.video.stopped`_ (legacy name: ``stop_video``)
 * `edx.video.paused`_ (legacy name: ``pause_video``)
