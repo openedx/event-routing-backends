@@ -389,7 +389,7 @@ objectType                                                                 Agent
 account [ homePage ]                                                       <LMS_ROOT_URL>
 account [ name ]                                                           <anonymized-user-id>
 ``Verb``
-id                                                                         https://w3id.org/xapi/acrossx/``Verb``s/evaluated
+id                                                                         https://w3id.org/xapi/acrossx/verbs/evaluated
 display [ en-US ]                                                          evaluated
 ``Object``
 id                                                                         <LMS_ROOT_URL>/xblock/<data [ problem_id ]>
