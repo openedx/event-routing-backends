@@ -434,8 +434,6 @@ symbolicresponse       fill-in
 truefalseresponse      true-false
 ====================== ===============
 
-.. _RST_Overview:
-
 showanswer
 ==========
 
