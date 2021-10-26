@@ -21,7 +21,7 @@ Problem interaction events
 Video events
 -------------
 
-* `edx.video.loaded`_ (legacy name: ``load_video``) `Sample edX event <../changelog.rst>`_  `Sample xAPI event <../../admin.py>`_  `Sample Caliper event <../../event_routing_backends/processors/caliper/tests/fixtures/load_video.json>`_
+* `edx.video.loaded`_ (legacy name: ``load_video``) `Sample edX event <../changelog.rst>`_  `Sample xAPI event <../../manage.py>`_  `Sample Caliper event <../../event_routing_backends/processors/caliper/tests/fixtures/load_video.json>`_
 * `edx.video.played`_ (legacy name: ``play_video``)
 * `edx.video.stopped`_ (legacy name: ``stop_video``)
 * `edx.video.paused`_ (legacy name: ``pause_video``)
