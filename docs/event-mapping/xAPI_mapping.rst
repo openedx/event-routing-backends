@@ -1,3 +1,4 @@
+
 edx.course.enrollment.activated
 ===============================
 
