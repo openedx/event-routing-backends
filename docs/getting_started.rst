@@ -34,18 +34,10 @@ Event consumers may never want to lose certain events even after a brief failure
 #. ``edx.course.enrollment.deactivated``
 #. ``edx.course.grade.passed.first_time``
 
-Supported events
-----------------
+Supported events and mapping of edx events onto xAPI and Caliper formats
+------------------------------------------------------------------------
 
-List of supported events can be found in `Supported_events <./event-mapping/Supported_events.rst>`_.
-
-
-Mapping of edX event onto xAPI and Caliper formats
----------------------------------------------------
-
-Mapping for xAPI events can be found in `xAPI mapping sheet <./event-mapping/xAPI_mapping.rst>`_.
-
-Mapping for Caliper events can be found in `Caliper mapping google sheet <https://docs.google.com/spreadsheets/d/1MgHddOO6G33sSpknvYi-aXuLiBmuKTfHmESsXpIiuU8/edit#gid=389163646>`_.
+List of supported edx events can be found in `Supported_events <./event-mapping/Supported_events.rst>`_ along with their mapping onto xAPI and Caliper format.
 
 Version information of mapping
 ------------------------------
@@ -68,9 +60,66 @@ Configuration
 
 Two types of configuration are needed for the plugin:
 
+#. Routers for routing transformed events to desired http endpoints.
+
 #. Backends for filtering and transformation of selected events into ``xapi`` or ``caliper`` format.
 
-#. Routers for routing transformed events to desired http endpoints.
+By default, both ``xapi`` and ``caliper`` backends are already configured along with filters that allow all the supported events. ``caliper`` backend is disabled by default and can be enabled by setting ``CALIPER_EVENTS_ENABLED`` to ``True`` in plugin settings.
+
+Router configuration
+--------------------
+
+Router(s) for each backend can be configured in django admin settings as follows:
+
+#. Navigate to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
+
+#. Select ``Backend name`` (``xapi`` or ``caliper``).
+
+#. Add ``Route URL``; the HTTP endpoint where events are to be received.
+
+#. Select ``Auth Scheme`` (``Basic`` or ``Bearer`` or ``None``). For ``Basic`` authentication, add ``username`` and ``password``. For ``Bearer`` authentication, add ``Token``.
+
+#. Add ``Configurations`` comprising of following configuration items as json:
+
+   #. ``override_args``: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their value will be overridden. Please note that for ``caliper`` backend, these changes will be made in the envelope.
+
+   #. ``match_params``: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
+
+   #. ``headers``: Additional headers can be specified here for ``caliper`` backend only.
+
+A sample configuration for routing Caliper events having content organisation as ``edX`` AND course run is 2021 AND event name starts with ``problem`` OR event name contains ``video``, with override arguments and additional headers:
+
+.. code-block:: JSON
+
+   {
+       "override_args":{
+           "sensor_id":"sensor@example.com"
+       },
+       "headers":{
+           "test":"header"
+       },
+       "match_params":{
+           "course_id":"^.*course-v.:edX\\+.*\\+2021.*$",
+           "name":[
+               "^problem.*",
+               "video"
+           ]
+       }
+   }
+
+A sample configuration for routing xAPI events if the enterprise is ``org_XYZ`` AND event name is ``edx.course.grade.passed.first_time`` OR ``edx.course.enrollment.activated``:
+
+.. code-block:: JSON
+
+   {
+       "match_params":{
+           "enterprise_uuid":"org_XYZ",
+           "name":[
+               "edx.course.grade.passed.first_time",
+               "edx.course.enrollment.activated"
+           ]
+       }
+   }
 
 Backends configuration
 ----------------------
@@ -162,61 +211,6 @@ A sample override for ``xapi`` backend is presented below. Here we are allowing 
             }
         }
     }
-
-Router configuration
---------------------
-
-Router(s) for each backend can be configured in django admin settings as follows:
-
-#. Navigate to http://localhost:18000/admin/event_routing_backends/routerconfiguration/add/
-
-#. Select ``Backend name`` (``xapi`` or ``caliper``).
-
-#. Add ``Route URL``; the HTTP endpoint where events are to be received.
-
-#. Select ``Auth Scheme`` (``Basic`` or ``Bearer`` or ``None``). For ``Basic`` authentication, add ``username`` and ``password``. For ``Bearer`` authentication, add ``Token``.
-
-#. Add ``Configurations`` comprising of following configuration items as json:
-
-   #. ``override_args``: Accepts set of key:value pairs that will be added at the root level of the json of the event being routed. If the any of the keys already exist at the root level, their value will be overridden. Please note that for ``caliper`` backend, these changes will be made in the envelope.
-
-   #. ``match_params``: This can be used to filter events based on values of keys in the original edX events. Regular expressions can be used for values.
-
-   #. ``headers``: Additional headers can be specified here for ``caliper`` backend only.
-
-A sample configuration for routing Caliper events having content organisation as ``edX`` AND course run is 2021 AND event name starts with ``problem`` OR event name contains ``video``, with override arguments and additional headers:
-
-.. code-block:: JSON
-
-   {
-       "override_args":{
-           "sensor_id":"sensor@example.com"
-       },
-       "headers":{
-           "test":"header"
-       },
-       "match_params":{
-           "course_id":"^.*course-v.:edX\\+.*\\+2021.*$",
-           "name":[
-               "^problem.*",
-               "video"
-           ]
-       }
-   }
-
-A sample configuration for routing xAPI events if the enterprise is ``org_XYZ`` AND event name is ``edx.course.grade.passed.first_time`` OR ``edx.course.enrollment.activated``:
-
-.. code-block:: JSON
-
-   {
-       "match_params":{
-           "enterprise_uuid":"org_XYZ",
-           "name":[
-               "edx.course.grade.passed.first_time",
-               "edx.course.enrollment.activated"
-           ]
-       }
-   }
 
 .. _event-tracking: https://github.com/edx/event-tracking
 
