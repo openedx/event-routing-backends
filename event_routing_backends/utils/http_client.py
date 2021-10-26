@@ -5,6 +5,7 @@ from logging import getLogger
 
 import requests
 
+from event_routing_backends.models import RouterConfiguration
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 
 logger = getLogger(__name__)
@@ -42,7 +43,7 @@ class HttpClient:
         Returns:
             dict
         """
-        if self.AUTH_SCHEME:
+        if self.AUTH_SCHEME == RouterConfiguration.AUTH_BEARER:
             return {
                 'Authorization': f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
             }
@@ -68,11 +69,11 @@ class HttpClient:
             'json': event,
             'headers': headers,
         })
-        if not self.AUTH_KEY:
+        if self.AUTH_SCHEME == RouterConfiguration.AUTH_BASIC:
             options.update({'auth': (self.username, self.password)})
-
         logger.debug('Sending caliper version of edx event "{}" to {}'.format(event_name, self.URL))
         response = requests.post(**options)
+
         if not 200 <= response.status_code < 300:
             logger.warning(
                 '{} request failed for sending Caliper version of edx event "{}" to {}.Response code: {}. Response: '

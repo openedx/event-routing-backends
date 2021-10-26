@@ -20,7 +20,7 @@ from event_routing_backends.utils.xapi_lrs_client import LrsClient
 
 ROUTER_CONFIG_FIXTURE = [
     {
-        'router_type': 'AUTH_HEADERS',
+        'headers': {},
         'match_params': {
             'data.key': 'value'
         },
@@ -29,46 +29,22 @@ ROUTER_CONFIG_FIXTURE = [
         }
     },
     {
-        'router_type': 'AUTH_HEADERS',
         'match_params': {
-            'data.key': 'value'
+            'data.key': 'value1'
         },
         'override_args': {
             'new_key': 'new_value'
         }
     },
     {
-        'router_type': 'OAUTH2',
         'match_params': {
-            'non_existing.id.value': 'test'
-        },
-        'host_configurations': {
-            'client_id': 'id',
-            'client_secret': 'secret'
-        },
-        'override_args': {}
-    },
-    {
-        'router_type': 'XAPI_LRS',
-        'match_params': {},
-        'host_configurations': {
-            'version': '1.0.1'
+            'data.key': 'value'
         }
     },
     {
-        'router_type': 'XAPI_LRS',
         'match_params': {},
         'host_configurations': {
             'version': '1.0.1',
-        }
-    },
-    {
-        'router_type': 'AUTH_HEADERS',
-        'match_params': {
-            'data.key': 'value'
-        },
-        'override_args': {
-            'new_key': 'new_value'
         }
     }
 ]
@@ -144,7 +120,7 @@ class TestEventsRouter(TestCase):
             route_url='http://test3.com',
             auth_scheme=RouterConfiguration.AUTH_BEARER,
             auth_key='test_key',
-            configurations=ROUTER_CONFIG_FIXTURE[0:1]
+            configurations=ROUTER_CONFIG_FIXTURE[0]
         )
 
         router = EventsRouter(processors=[], backend_name=RouterConfiguration.CALIPER_BACKEND)
@@ -173,16 +149,13 @@ class TestEventsRouter(TestCase):
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.tasks.logger')
     def test_with_unsupported_routing_strategy(self, mocked_logger, mocked_post):
-        configurations = ROUTER_CONFIG_FIXTURE[0:1].copy()
-        configurations[0]['router_type'] = 'INVALID_TYPE'
-
         RouterConfigurationFactory.create(
             backend_name='test_backend',
             enabled=True,
             route_url='http://test3.com',
             auth_scheme=RouterConfiguration.AUTH_BEARER,
             auth_key='test_key',
-            configurations=configurations
+            configurations=ROUTER_CONFIG_FIXTURE[0]
         )
 
         router = EventsRouter(processors=[], backend_name='test_backend')
@@ -199,7 +172,7 @@ class TestEventsRouter(TestCase):
             backend_name='test_backend',
             enabled=True,
             route_url='http://test3.com',
-            configurations=ROUTER_CONFIG_FIXTURE[1:1]
+            configurations=ROUTER_CONFIG_FIXTURE[1]
         )
 
         router = EventsRouter(processors=[], backend_name='test_backend')
@@ -215,26 +188,6 @@ class TestEventsRouter(TestCase):
             ),
             mocked_logger.info.mock_calls
         )
-
-    @patch('event_routing_backends.utils.http_client.requests.post')
-    def test_with_multiple_router_config(self, mocked_post):
-        RouterConfigurationFactory.create(
-            backend_name=RouterConfiguration.CALIPER_BACKEND,
-            enabled=True,
-            route_url='http://test3.com',
-            configurations=ROUTER_CONFIG_FIXTURE[1:1]
-        )
-        RouterConfigurationFactory.create(
-            backend_name=RouterConfiguration.CALIPER_BACKEND,
-            enabled=True,
-            route_url='http://test1.com',
-            configurations=ROUTER_CONFIG_FIXTURE[1:2]
-        )
-
-        router = EventsRouter(processors=[], backend_name=RouterConfiguration.CALIPER_BACKEND)
-        TieredCache.dangerous_clear_all_tiers()
-        router.send(self.transformed_event)
-        self.assertEqual(mocked_post.call_count, 1)
 
     @ddt.data(
         (
@@ -255,7 +208,7 @@ class TestEventsRouter(TestCase):
             backend_name=backend_name,
             enabled=True,
             route_url='http://test3.com',
-            configurations=ROUTER_CONFIG_FIXTURE[0:1]
+            configurations=ROUTER_CONFIG_FIXTURE[2]
         )
 
         router = EventsRouter(processors=[], backend_name=backend_name)
@@ -272,7 +225,7 @@ class TestEventsRouter(TestCase):
             backend_name=RouterConfiguration.XAPI_BACKEND,
             enabled=True,
             route_url='http://test3.com',
-            configurations=ROUTER_CONFIG_FIXTURE[4:5]
+            configurations=ROUTER_CONFIG_FIXTURE[3]
         )
         router = EventsRouter(processors=[], backend_name=RouterConfiguration.XAPI_BACKEND)
         transformed_event = Statement()
@@ -284,7 +237,7 @@ class TestEventsRouter(TestCase):
          None,
          'abc',
          'xyz',
-         'test_routing_1',
+         RouterConfiguration.CALIPER_BACKEND,
          'http://test1.com'
          ),
         (
@@ -292,15 +245,38 @@ class TestEventsRouter(TestCase):
             'test_key',
             None,
             None,
-            'test_routing_2',
+            RouterConfiguration.CALIPER_BACKEND,
             'http://test2.com'
         ),
         (
-            RouterConfiguration.AUTH_BASIC,
             None,
             None,
             None,
-            'test_routing_3',
+            None,
+            RouterConfiguration.CALIPER_BACKEND,
+            'http://test3.com'
+        ),
+        (RouterConfiguration.AUTH_BASIC,
+         None,
+         'abc',
+         'xyz',
+         RouterConfiguration.XAPI_BACKEND,
+         'http://test1.com'
+         ),
+        (
+            RouterConfiguration.AUTH_BEARER,
+            'test_key',
+            None,
+            None,
+            RouterConfiguration.XAPI_BACKEND,
+            'http://test2.com'
+        ),
+        (
+            None,
+            None,
+            None,
+            None,
+            RouterConfiguration.XAPI_BACKEND,
             'http://test3.com'
         ),
     )
@@ -316,8 +292,9 @@ class TestEventsRouter(TestCase):
         backend_name,
         route_url,
         mocked_lrs,
-        mocked_post
+        mocked_post,
     ):
+        TieredCache.dangerous_clear_all_tiers()
         mocked_oauth_client = MagicMock()
         mocked_api_key_client = MagicMock()
 
@@ -335,7 +312,7 @@ class TestEventsRouter(TestCase):
             auth_key=auth_key,
             username=username,
             password=password,
-            configurations=ROUTER_CONFIG_FIXTURE
+            configurations=ROUTER_CONFIG_FIXTURE[0]
         )
 
         router = EventsRouter(processors=[], backend_name=backend_name)
@@ -343,34 +320,45 @@ class TestEventsRouter(TestCase):
         with patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', MOCKED_MAP):
             router.send(self.transformed_event)
 
-        # test the HTTP client
         overridden_event = self.transformed_event.copy()
         overridden_event['new_key'] = 'new_value'
 
-        if auth_scheme == RouterConfiguration.AUTH_BASIC:
-            mocked_post.assert_has_calls([
-                call(
-                    url=route_url,
-                    json=overridden_event,
-                    headers={
-                    },
-                    auth=(username, password)
-                ),
+        if backend_name == RouterConfiguration.XAPI_BACKEND:
+            # test LRS Client
+            mocked_lrs().save_statement.assert_has_calls([
+                call(overridden_event),
             ])
         else:
-            mocked_post.assert_has_calls([
-                call(
-                    url=route_url,
-                    json=overridden_event,
-                    headers={
-                        'Authorization': 'Bearer '+auth_key
-                    }
-                ),
-            ])
-        # test LRS Client
-        mocked_lrs().save_statement.assert_has_calls([
-            call(self.transformed_event),
-        ])
+            # test the HTTP client
+            if auth_scheme == RouterConfiguration.AUTH_BASIC:
+                mocked_post.assert_has_calls([
+                    call(
+                        url=route_url,
+                        json=overridden_event,
+                        headers={
+                        },
+                        auth=(username, password)
+                    ),
+                ])
+            elif auth_scheme == RouterConfiguration.AUTH_BEARER:
+                mocked_post.assert_has_calls([
+                    call(
+                        url=route_url,
+                        json=overridden_event,
+                        headers={
+                            'Authorization': RouterConfiguration.AUTH_BEARER + ' ' + auth_key
+                        }
+                    ),
+                ])
+            else:
+                mocked_post.assert_has_calls([
+                    call(
+                        url=route_url,
+                        json=overridden_event,
+                        headers={
+                        },
+                    ),
+                ])
 
         # test mocked oauth client
         mocked_oauth_client.assert_not_called()

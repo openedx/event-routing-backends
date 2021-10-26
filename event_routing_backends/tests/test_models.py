@@ -80,8 +80,7 @@ class TestRouterConfiguration(TestCase, RouterTestMixin):
     )
     @ddt.unpack
     def test_allowed_hosts(self, match_params, found):
-        config_fixture = [
-            {
+        config_fixture = {
                 'match_params': match_params,
                 'host_configurations': {
                     'url': 'http://test1.com',
@@ -90,7 +89,6 @@ class TestRouterConfiguration(TestCase, RouterTestMixin):
                     }
                 }
             }
-        ]
 
         original_event = {
             'course_id': 'course-v1:edX+E2E+2021+course',
@@ -104,11 +102,11 @@ class TestRouterConfiguration(TestCase, RouterTestMixin):
         }
         router = self.create_router_configuration(config_fixture, 'first')
 
-        hosts = router.get_allowed_hosts(original_event)
+        host = router.get_allowed_host(original_event)
         if found:
-            self.assertEqual(config_fixture[:1], hosts)
+            self.assertEqual(config_fixture, host)
         else:
-            self.assertEqual([], hosts)
+            self.assertEqual(None, host)
 
     def test_model_cache(self):
         test_cache_router = RouterConfigurationFactory(
@@ -144,3 +142,8 @@ class TestRouterConfiguration(TestCase, RouterTestMixin):
 
     def test_empty_backend(self):
         self.assertEqual(RouterConfiguration.get_enabled_routers(''), None)
+
+    def test_empty_configurations(self):
+        router = self.create_router_configuration(None, 'first')
+        host = router.get_allowed_host({})
+        self.assertEqual(host, {'host_configurations': {}})
