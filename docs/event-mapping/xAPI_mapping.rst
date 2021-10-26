@@ -20,7 +20,7 @@ definition [ name ][ en-US ]                                                <nam
 definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ mode ]>
 =========================================================================== ==========================================
 
-.. _RST Overview:
+.. _RST_Overview:
 edx.course.enrollment.deactivated
 =================================
 
