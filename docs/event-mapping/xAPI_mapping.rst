@@ -240,7 +240,6 @@ contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/cou
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
-dtype: Float with max 3 decimals
 ============================================================= ========================================================================================================
 
 edx.video.paused
@@ -266,7 +265,6 @@ contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/cou
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
-dtype: Float with max 3 decimals
 ``Result``
 extensions [ https://w3id.org/xapi/video/extensions/time ]    <data [ currentTime ]>
 ============================================================= ========================================================================================================
@@ -294,7 +292,6 @@ contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/cou
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
-dtype: Float with max 3 decimals
 ============================================================= ========================================================================================================
 
 edx.video.position.changed
@@ -320,7 +317,6 @@ contextActivities [ parent [ id ] ]                             <LMS_ROOT_URL>/c
 contextActivities [ parent [ definition [ type ] ] ]            http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]   <name of course-run>
 extensions [ https://w3id.org/xapi/video/extensions/length ]    <data [ duration ]>
-dtype: Float with max 3 decimals
 ``Result``
 extensions [ https://w3id.org/xapi/video/extensions/time-from ] <data [ old_time ]>
 extensions [ https://w3id.org/xapi/video/extensions/time-to ]   <data [ new_time ]>
@@ -349,7 +345,6 @@ contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/cou
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 extensions [ https://w3id.org/xapi/video/extensions/length ]  <data [ duration ]>
-dtype: Float with max 3 decimals
 ``Result``
 extensions [ https://w3id.org/xapi/video/extensions/time ]    <data [ currentTime ]>
 ============================================================= ========================================================================================================
