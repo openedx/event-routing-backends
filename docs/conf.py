@@ -67,7 +67,8 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx.ext.autosectionlabel'
 ]
 
 # A list of warning types to suppress arbitrary warning messages.
