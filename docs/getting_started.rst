@@ -53,7 +53,7 @@ Install event routing backends library or add it to private requirements of your
 
 #. Run migrations ( ``python manage.py lms migrate`` ).
 
-#. Restart LMS service of edx-platform.
+#. Restart LMS service and celery workers of edx-platform.
 
 Configuration
 ===============
