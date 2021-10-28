@@ -12,9 +12,14 @@ class RouterConfigurationAdmin(KeyedConfigurationModelAdmin):
     Admin model class for RouterConfiguration model.
     """
 
-    list_display = ('backend_name', 'route_url', 'is_enabled', 'configurations',)
     history_list_display = ('status')
     change_form_template = 'admin/router_conf_change_form.html'
+
+    def get_displayable_field_names(self):
+        """
+        Get the list display.
+        """
+        return ['backend_name', 'enabled', 'route_url', 'configurations']
 
 
 admin.site.register(RouterConfiguration, RouterConfigurationAdmin)
