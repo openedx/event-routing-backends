@@ -2,7 +2,7 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
     "action": "JumpedTo",
     "actor": {
-        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "id": "http://localhost:18000/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
     "eventTime": "2020-07-15T06:58:28.027Z",
@@ -10,13 +10,18 @@
     "object": {
         "duration": "PT3M15S",
         "extensions": {
-            "course_id": "course-v1:edX+DemoX+Demo_Course",
-            "id": "0b9e39477cf34507a7a48f74be381fdd",
-            "new_time": "PT10S",
-            "old_time": "PT3M14.381S"
+          "isPartOf": {
+            "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+            "type": "CourseOffering"
+          }
         },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
         "type": "VideoObject"
+    },
+    "target": {
+      "id": "_:MediaLocation",
+      "new_time": "PT10S",
+      "type": "MediaLocation"
     },
     "extensions": {
       "eventVersion": "1.0"

@@ -1,12 +1,12 @@
 {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
-    "action": "Paused",
+    "action": "JumpedTo",
     "actor": {
         "id": "http://localhost:18000/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
-    "eventTime": "2020-07-15T06:56:09.649Z",
-    "id": "urn:uuid:36428505-2138-423e-a515-5b865b332c80",
+    "eventTime": "2020-07-15T06:46:41.543Z",
+    "id": "urn:uuid:9929774a-8599-4d44-9262-01d63ba4c216",
     "object": {
         "duration": "PT3M15S",
         "extensions": {
@@ -19,7 +19,8 @@
         "type": "VideoObject"
     },
     "target": {
-        "currentTime": "PT3M14.407359S",
+        "currentTime": "PT3M14S",
+        "new_time": "PT3M15S",
         "id": "_:MediaLocation",
         "type": "MediaLocation"
     },

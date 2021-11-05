@@ -1,25 +1,45 @@
 {
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
-    "action": "Submitted",
+    "action": "Graded",
     "actor": {
-        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "id": "http://localhost:18000/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
     "eventTime": "2020-07-14T14:39:26.906Z",
     "id": "urn:uuid:129915b8-4455-46d9-9da5-ef0707fddc06",
     "object": {
         "extensions": {
-            "course_id":"course-v1:edX+DemoX+Demo_Course",
-            "attempts": 10,
-            "grade": 0,
-            "max_grade": 1,
-            "success": "incorrect"
+          "assignable": {
+            "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
+            "type": "Assessment"
+          },
+          "assignee": {
+            "id": "http://localhost:18000/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+            "type": "Person"
+          },
+          "count": 10,
+          "isPartOf": {
+            "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+            "type": "CourseOffering"
+          }
         },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
-        "type": "Assessment"
+        "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb/attempt/10",
+        "type": "Attempt"
     },
     "extensions": {
       "eventVersion": "1.0"
     },
-    "type": "AssessmentEvent"
+    "generated": {
+      "score": {
+        "attempts": 10,
+        "extensions": {
+          "success": "False"
+        },
+        "id": "_:score",
+        "scoreGiven": 0,
+        "maxScore": 1,
+        "type": "Score"
+      }
+    },
+    "type": "GradeEvent"
 }

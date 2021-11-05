@@ -2,20 +2,24 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
     "action": "NavigatedTo",
     "actor": {
-        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "id": "http://localhost:18000/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
     "eventTime": "2020-07-14T14:28:29.829Z",
     "id": "urn:uuid:47946874-7ce0-4465-9efe-9b2510c45310",
     "object": {
+        "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@sequential+block@19a30717eff543078a5d94ae9d6c18a5",
+        "type": "DigitalResourceCollection",
+        "name": "Unit",
         "extensions": {
-            "current_tab": 4,
-            "tab_count": 10,
-            "target_tab": 8,
-            "widget_placement": "top"
-        },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@sequential+block@19a30717eff543078a5d94ae9d6c18a5",
-        "type": "WebPage"
+          "isPartOf": {
+            "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+            "type": "CourseOffering"
+          },
+          "current_tab": 4,
+          "tab_count": 10,
+          "target": 8
+        }
     },
     "extensions": {
       "eventVersion": "1.0"
