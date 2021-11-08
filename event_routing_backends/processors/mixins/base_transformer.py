@@ -32,26 +32,6 @@ class BaseTransformerMixin:
         self.event = event.copy()
         self.transformed_event = {}
 
-    def extract_subdict_by_keys(self, base_dict, keys):
-        """
-        Extract a subdict from given dict.
-        Subdict would have only those keys provided in `keys` argument.
-        If given key is not present in provided dict it will be ignored.
-        Arguments:
-            base_dict (dict)    :  dictionay to extract keys from
-            keys (list)         :  list of keys need in extracted dict
-        Returns:
-            dict
-        """
-        # ignore the key if it is not in the original dict
-        keys_ignored = set(keys) - set(base_dict.keys())
-        if keys_ignored:
-            logger.info(
-                'Following keys are ignored: %s',
-                str(keys_ignored)
-            )
-        return {key: base_dict[key] for key in set(keys).intersection(base_dict.keys())}
-
     @staticmethod
     def find_nested(source_dict, key):
         """
@@ -206,7 +186,8 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-
+        if object_id is None or object_type is None:
+            return None
         return '{root_url}/{object_type}/{object_id}'.format(
             root_url=settings.LMS_ROOT_URL,
             object_type=object_type,

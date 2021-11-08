@@ -39,17 +39,23 @@ class CaliperTransformer(BaseTransformerMixin):
             'eventTime': convert_datetime_to_iso(self.get_data('timestamp', True)),
             'extensions': {}
         })
-        self.transformed_event['object'] = {
-            'extensions': {
-                'course_id': self.get_data('context.course_id')
-            }
-        }
+        self.transformed_event['object'] = {}
+        course_id = self.get_data('context.course_id')
+        if course_id is not None:
+            extensions = {"isPartOf": {}}
+            extensions['isPartOf']['id'] = self.get_object_iri('course', course_id)
+            extensions['isPartOf']['type'] = 'CourseOffering'
+            self.transformed_event['object']['extensions'] = {}
+            self.transformed_event['object']['extensions'].update(extensions)
 
     def _add_actor_info(self):
         """
         Add all generic information related to `actor`.
         """
         self.transformed_event['actor'] = {
-            'id': get_anonymous_user_id(self.extract_username_or_userid()),
+            'id': self.get_object_iri(
+                'user',
+                get_anonymous_user_id(self.extract_username_or_userid()),
+            ),
             'type': 'Person'
         }

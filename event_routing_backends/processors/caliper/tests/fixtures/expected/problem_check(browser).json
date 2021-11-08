@@ -2,16 +2,19 @@
     "@context": "http://purl.imsglobal.org/ctx/caliper/v1p2",
     "action": "Submitted",
     "actor": {
-        "id": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+        "id": "http://localhost:18000/user/32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
         "type": "Person"
     },
     "eventTime": "2020-07-14T14:39:26.580Z",
     "id": "urn:uuid:042bc7ee-ba16-41e8-80ce-5b50185edb67",
     "object": {
         "extensions": {
-            "course_id": "course-v1:edX+DemoX+Demo_Course"
+            "isPartOf": {
+              "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+              "type": "CourseOffering"
+            }
         },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
+        "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
         "type": "Assessment"
     },
     "extensions": {

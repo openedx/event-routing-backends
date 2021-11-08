@@ -30,11 +30,11 @@ from event_routing_backends.processors.caliper.registry import CaliperTransforme
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
 
 EVENTS_ACTION_MAP = {
-    'load_video': 'Retrieved',
-    'edx.video.loaded': 'Retrieved',
+    'load_video': 'Started',
+    'edx.video.loaded': 'Started',
 
-    'play_video': 'Started',
-    'edx.video.played': 'Started',
+    'play_video': 'Resumed',
+    'edx.video.played': 'Resumed',
 
     'stop_video': 'Ended',
     'edx.video.stopped': 'Ended',
@@ -81,24 +81,12 @@ class BaseVideoTransformer(CaliperTransformer):
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
         caliper_object.update({
-            'id': object_id,
+            'id': self.get_object_iri('xblock', object_id),
             'type': 'VideoObject',
             'duration': duration_isoformat(timedelta(
                     seconds=data.get('duration', 0)
             ))
         })
-        caliper_object['extensions'] = {'course_id': course_id}
-        extensions = self.extract_subdict_by_keys(
-            data, ['id', 'new_time', 'old_time', 'currentTime']
-        )
-
-        if 'currentTime' in extensions:
-            extensions['currentTime'] = convert_seconds_to_iso(extensions['currentTime'])
-        if 'new_time' in extensions:
-            extensions['new_time'] = convert_seconds_to_iso(seconds=extensions['new_time'])
-        if 'old_time' in extensions:
-            extensions['old_time'] = convert_seconds_to_iso(seconds=extensions['old_time'])
-        caliper_object['extensions'].update(extensions)
 
         return caliper_object
 
@@ -109,7 +97,7 @@ class LoadVideoTransformer(BaseVideoTransformer):
     """
     Transform the events fired when a video is loaded.
     """
-    type = 'Event'
+    type = 'MediaEvent'
 
 
 @CaliperTransformersRegistry.register('stop_video')
@@ -123,6 +111,29 @@ class StopVideoTransformer(BaseVideoTransformer):
     Please note that "complete_video" doesn't exist currently but is
     expected to be added.
     """
+    additional_fields = ('target',)
+
+    def get_target(self):
+        """
+        Return target for the caliper event.
+
+        Returns:
+            str
+        """
+
+        event_name = self.get_data('name', True)
+        if event_name in ['stop_video', 'edx.video.stopped']:
+            current_time = convert_seconds_to_iso(
+                seconds=self.get_data('data.currentTime')
+            )
+
+            return {
+                'id': '_:MediaLocation',
+                'type': 'MediaLocation',
+                'currentTime': current_time
+            }
+
+        return None
 
 
 @CaliperTransformersRegistry.register('play_video')
@@ -162,7 +173,7 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
         )
 
         return {
-            'id': self.transformed_event['object']['id'],
+            'id': '_:MediaLocation',
             'type': 'MediaLocation',
             'currentTime': current_time
         }
@@ -174,3 +185,26 @@ class SeekVideoTransformer(BaseVideoTransformer):
     """
     Transform the events fired when a video is seeked.
     """
+    additional_fields = ('target',)
+
+    def get_target(self):
+        """
+        Return target for the caliper event.
+
+        Returns:
+            str
+        """
+
+        current_time = convert_seconds_to_iso(
+            seconds=self.get_data('data.currentTime')
+        )
+        new_time = convert_seconds_to_iso(
+            seconds=self.get_data('data.new_time')
+        )
+
+        return {
+            'id': '_:MediaLocation',
+            'type': 'MediaLocation',
+            'currentTime': current_time,
+            'new_time': new_time
+        }
