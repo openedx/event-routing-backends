@@ -42,7 +42,11 @@ List of supported edx events can be found in `Supported_events <./event-mapping/
 Version information of mapping
 ------------------------------
 
-*Needs to be updated*
+Version of mapping of edx event onto xAPI or Caliper format, for each event, is included in the statement and event respectively. Version is a string of format "X.Y" where increment in X represents breaking changes and increment in Y represents addition of fields in the event json, both starting with zero.
+
+In xAPI statement, version is in value of the key ``https://github.com/edx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst`` in ``extensions`` of ``Context`` of the statement.
+
+In Caliper event, version is in value of the key ``eventVersion`` in ``extensions`` of the event.
 
 Installation
 ===============
