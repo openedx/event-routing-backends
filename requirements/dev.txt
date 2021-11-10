@@ -21,7 +21,7 @@ attrs==21.2.0
     # via
     #   -r requirements/quality.txt
     #   pytest
-backports.entry-points-selectable==1.1.0
+backports.entry-points-selectable==1.1.1
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -29,7 +29,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/quality.txt
     #   celery
-celery==5.1.2
+celery==5.2.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -48,9 +48,8 @@ charset-normalizer==2.0.7
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
-click==7.1.2
+click==8.0.3
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
     #   celery
@@ -185,11 +184,11 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.0
     # via -r requirements/quality.txt
-isort==5.9.3
+isort==5.10.1
     # via
     #   -r requirements/quality.txt
     #   pylint
-jinja2==3.0.2
+jinja2==3.0.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -201,7 +200,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-kombu==5.2.0
+kombu==5.2.1
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -219,7 +218,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.2.2.169
+newrelic==7.2.3.170
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -231,7 +230,7 @@ packaging==21.2
     #   tox
 path==16.2.0
     # via edx-i18n-tools
-pbr==5.6.0
+pbr==5.7.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
@@ -256,7 +255,7 @@ pluggy==1.0.0
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.21
+prompt-toolkit==3.0.22
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -264,7 +263,7 @@ psutil==5.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-py==1.10.0
+py==1.11.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -272,7 +271,7 @@ py==1.10.0
     #   tox
 pycodestyle==2.8.0
     # via -r requirements/quality.txt
-pycparser==2.20
+pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
