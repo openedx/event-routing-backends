@@ -10,7 +10,7 @@ aniso8601==9.0.1
     # via tincan
 billiard==3.6.4.0
     # via celery
-celery==5.1.2
+celery==5.2.0
     # via
     #   edx-celeryutils
     #   event-tracking
@@ -20,9 +20,8 @@ cffi==1.15.0
     # via cryptography
 charset-normalizer==2.0.7
     # via requests
-click==7.1.2
+click==8.0.3
     # via
-    #   -c requirements/constraints.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
@@ -85,25 +84,25 @@ idna==3.3
     # via requests
 isodate==0.6.0
     # via -r requirements/base.in
-jinja2==3.0.2
+jinja2==3.0.3
     # via code-annotations
 jsonfield==3.1.0
     # via
     #   -r requirements/base.in
     #   edx-celeryutils
-kombu==5.2.0
+kombu==5.2.1
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==7.2.2.169
+newrelic==7.2.3.170
     # via edx-django-utils
-pbr==5.6.0
+pbr==5.7.0
     # via stevedore
-prompt-toolkit==3.0.21
+prompt-toolkit==3.0.22
     # via click-repl
 psutil==5.8.0
     # via edx-django-utils
-pycparser==2.20
+pycparser==2.21
     # via cffi
 pymongo==3.12.1
     # via event-tracking
