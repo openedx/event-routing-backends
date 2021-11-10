@@ -105,6 +105,8 @@ def plugin_settings(settings):
                                 'edx.video.loaded',
                                 'play_video',
                                 'edx.video.played',
+                                'complete_video',
+                                'edx.video.completed',
                                 'stop_video',
                                 'edx.video.stopped',
                                 'pause_video',
