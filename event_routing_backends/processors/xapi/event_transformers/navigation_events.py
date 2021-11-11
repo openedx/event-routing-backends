@@ -42,7 +42,7 @@ class NavigationTransformersMixin(XApiTransformer, XApiVerbTransformerMixin):
     This class has the common attributes for all navigation events.
     """
     verb_map = VERB_MAP
-    event_version = 1.0
+    event_version = "1.0"
 
 
 @XApiTransformersRegistry.register('edx.ui.lms.link_clicked')
