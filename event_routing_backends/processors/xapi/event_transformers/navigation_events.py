@@ -1,7 +1,7 @@
 """
 Transformers for navigation related events.
 """
-from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap
+from tincan import Activity, ActivityDefinition, Extensions, LanguageMap
 
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
@@ -41,7 +41,6 @@ class NavigationTransformersMixin(XApiTransformer, XApiVerbTransformerMixin):
 
     This class has the common attributes for all navigation events.
     """
-    additional_fields = ('context', )
     verb_map = VERB_MAP
     event_version = 1.0
 
@@ -66,19 +65,6 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             ),
         )
 
-    def get_context(self):
-        """
-        Get context for xAPI transformed event.
-
-        Returns:
-            `Context`
-        """
-
-        context = Context(
-            contextActivities=self.get_context_activities()
-        )
-        return context
-
 
 @ XApiTransformersRegistry.register('edx.ui.lms.sequence.outline.selected')
 @ XApiTransformersRegistry.register('edx.ui.lms.outline.selected')
@@ -86,7 +72,6 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
     """
     xAPI transformer for Navigation events.
     """
-    additional_fields = ('context', )
 
     def get_object(self):
         """
@@ -103,18 +88,6 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
             ),
         )
 
-    def get_context(self):
-        """
-        Get context for xAPI transformed event.
-
-        Returns:
-            `Context`
-        """
-        context = Context(
-            contextActivities=self.get_context_activities()
-        )
-        return context
-
 
 @ XApiTransformersRegistry.register('edx.ui.lms.sequence.next_selected')
 @ XApiTransformersRegistry.register('edx.ui.lms.sequence.previous_selected')
@@ -123,7 +96,6 @@ class TabNavigationTransformer(NavigationTransformersMixin):
     """
     xAPI transformer for Navigation events.
     """
-    additional_fields = ('context', )
 
     def get_object(self):
         """
@@ -142,32 +114,29 @@ class TabNavigationTransformer(NavigationTransformersMixin):
             ),
         )
 
-    def get_context(self):
+    def get_context_extensions(self):
         """
-        Get context for xAPI transformed event.
+        Get extensions for xAPI transformed event Context.
 
         Returns:
-            `Context`
+            `Extensions`
         """
+        extensions = super().get_context_extensions()
         event_name = self.get_data('name', True)
         if event_name == 'edx.ui.lms.sequence.tab_selected':
-            extensions = Extensions({
+            extensions.update({
                 constants.XAPI_CONTEXT_STARTING_POSITION: self.get_data('data.current_tab'),
                 constants.XAPI_CONTEXT_ENDING_POSITION: self.get_data('data.target_tab'),
             })
         elif event_name == 'edx.ui.lms.sequence.next_selected':
-            extensions = Extensions({
+            extensions.update({
                 constants.XAPI_CONTEXT_STARTING_POSITION: self.get_data('data.current_tab'),
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'next unit',
             })
         else:
-            extensions = Extensions({
+            extensions.update({
                 constants.XAPI_CONTEXT_STARTING_POSITION: self.get_data('data.current_tab'),
                 constants.XAPI_CONTEXT_ENDING_POSITION: 'previous unit',
             })
 
-        context = Context(
-            contextActivities=self.get_context_activities()
-        )
-        context.extensions = extensions
-        return context
+        return extensions

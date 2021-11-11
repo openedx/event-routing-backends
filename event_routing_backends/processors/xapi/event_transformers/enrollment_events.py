@@ -14,8 +14,17 @@ class BaseEnrollmentTransformer(XApiTransformer):
     """
     Base transformer for enrollment events.
     """
-    additional_fields = ()
     event_version = 1.0
+
+    def get_context_activities(self):
+        """
+        Get context activities for xAPI transformed event.
+
+        Returns:
+            `ContextActivities`
+        """
+
+        return None
 
     def get_object(self):
         """

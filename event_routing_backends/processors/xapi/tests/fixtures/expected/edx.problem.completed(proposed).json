@@ -18,6 +18,9 @@
                     }
                 }
             ]
+        },
+        "extensions": {
+          "https://github.com/edx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst": 1.0
         }
     },
     "object": {

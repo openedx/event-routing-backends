@@ -4,7 +4,18 @@ xAPI Transformer Class
 import uuid
 
 from django.conf import settings
-from tincan import Activity, ActivityDefinition, ActivityList, Agent, ContextActivities, LanguageMap, Statement, Verb
+from tincan import (
+    Activity,
+    ActivityDefinition,
+    ActivityList,
+    Agent,
+    Context,
+    ContextActivities,
+    Extensions,
+    LanguageMap,
+    Statement,
+    Verb,
+)
 
 from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
@@ -39,9 +50,9 @@ class XApiTransformer(BaseTransformerMixin):
         """
         Transform the fields that are common for all events.
         """
-        # TODO: Move context registration in base transform
         self.transformed_event = {
             'actor': self.get_actor(),
+            'context': self.get_context(),
             'timestamp': self.get_timestamp(),
             'id': uuid.uuid4()
         }
@@ -93,6 +104,23 @@ class XApiTransformer(BaseTransformerMixin):
             )
         else:
             return None
+
+    def get_context(self):
+        """
+        Get context for xAPI transformed event.
+        Returns:
+            `Context`
+        """
+        context = Context(
+            extensions=self.get_context_extensions(),
+            contextActivities=self.get_context_activities()
+        )
+        return context
+
+    def get_context_extensions(self):
+        return Extensions({
+                constants.XAPI_EVENT_VERSION_KEY: self.event_version
+            })
 
 
 class XApiVerbTransformerMixin:
