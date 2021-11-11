@@ -1,7 +1,7 @@
 """
 Transformers for problem interaction events.
 """
-from tincan import Activity, ActivityDefinition, Context, Extensions, LanguageMap, Result
+from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result
 
 from event_routing_backends.helpers import get_problem_block_id
 from event_routing_backends.processors.xapi import constants
@@ -68,7 +68,6 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
     """
     Base Transformer for problem interaction events.
     """
-    additional_fields = ('context', )
     verb_map = VERB_MAP
     event_version = 1.0
 
@@ -93,19 +92,6 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
                 constants.XAPI_ACTIVITY_INTERACTION,
             ),
         )
-
-    def get_context(self):
-        """
-        Get context for xAPI transformed event.
-
-        Returns:
-            `Context`
-        """
-
-        context = Context(
-            contextActivities=self.get_context_activities()
-        )
-        return context
 
 
 @XApiTransformersRegistry.register('showanswer')
@@ -146,7 +132,7 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
     """
     Transform problem interaction related events into xAPI format.
     """
-    additional_fields = ('context', 'result')
+    additional_fields = ('result', )
 
     def get_result(self):
         """
@@ -172,7 +158,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
     """
     Transform problem interaction related events into xAPI format.
     """
-    additional_fields = ('context', 'result', )
+    additional_fields = ('result', )
 
     def get_object(self):
         """

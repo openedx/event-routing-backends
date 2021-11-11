@@ -23,7 +23,7 @@ The (soon to be) updated event names are as following:
 """
 
 from django.conf import settings
-from tincan import Activity, ActivityDefinition, Context, Extensions, Result
+from tincan import Activity, ActivityDefinition, Extensions, Result
 
 from event_routing_backends.helpers import convert_seconds_to_float, make_video_block_id
 from event_routing_backends.processors.xapi import constants
@@ -91,7 +91,6 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
     """
     Base transformer for video interaction events.
     """
-    additional_fields = ('context', )
     verb_map = VERB_MAP
     event_version = 1.0
 
@@ -119,21 +118,20 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
             ),
         )
 
-    def get_context(self):
+    def get_context_extensions(self):
         """
-        Get context for xAPI transformed event.
+        Get extensions for xAPI transformed event Context.
 
         Returns:
-            `Context`
+            `Extensions`
         """
-        context = Context(
-            contextActivities=self.get_context_activities(),
-            extensions=Extensions({
+
+        extensions = super().get_context_extensions()
+        extensions.update({
                 # TODO: Add completion threshold once its added in the platform.
-                constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_float(self.get_data('data.duration')),
+                constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_float(self.get_data('data.duration'))
             })
-        )
-        return context
+        return extensions
 
 
 @XApiTransformersRegistry.register('load_video')
@@ -142,17 +140,6 @@ class VideoLoadedTransformer(BaseVideoTransformer):
     """
     Transformer for the event generated when a video is loaded in the browser.
     """
-
-    def get_context(self):
-        """
-        Get context for xAPI transformed event.
-
-        Returns:
-            `Context`
-        """
-        context = super().get_context()
-
-        return context
 
 
 @XApiTransformersRegistry.register('play_video')

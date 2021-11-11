@@ -4,6 +4,11 @@
         "objectType": "Agent",
         "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
     },
+    "context": {
+        "extensions": {
+            "https://github.com/edx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst": 1.0
+        }
+    },
     "object": {
         "definition": {
             "extensions": {
