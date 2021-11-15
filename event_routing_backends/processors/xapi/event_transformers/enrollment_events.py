@@ -81,3 +81,25 @@ class CourseGradePassedFirstTimeTransformer(BaseEnrollmentTransformer):
         id=constants.XAPI_VERB_PASSED,
         display=LanguageMap({constants.EN: constants.PASSED}),
     )
+
+
+@XApiTransformersRegistry.register('edx.course.grade.now_passed')
+class CourseGradeNowPassedTransformer(BaseEnrollmentTransformer):
+    """
+    Transformers for event generated when learner pass course grade first time from a course.
+    """
+    verb = Verb(
+        id=constants.XAPI_VERB_PASSED,
+        display=LanguageMap({constants.EN: constants.PASSED}),
+    )
+
+
+@XApiTransformersRegistry.register('edx.course.grade.now_failed')
+class CourseGradeNowFailedTransformer(BaseEnrollmentTransformer):
+    """
+    Transformers for event generated when learner pass course grade first time from a course.
+    """
+    verb = Verb(
+        id=constants.XAPI_VERB_FAILED,
+        display=LanguageMap({constants.EN: constants.FAILED}),
+    )

@@ -113,7 +113,9 @@ def plugin_settings(settings):
                                 'edx.video.paused',
                                 'seek_video',
                                 'edx.video.position.changed',
-                                'edx.course.grade.passed.first_time'
+                                'edx.course.grade.passed.first_time',
+                                'edx.course.grade.now_passed',
+                                'edx.course.grade.now_failed'
                             ]
                         }
                     }
