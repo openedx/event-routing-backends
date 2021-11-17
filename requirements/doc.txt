@@ -275,8 +275,9 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==4.3.0
+sphinx==4.2.0
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/doc.in
     #   edx-sphinx-theme
 sphinxcontrib-applehelp==1.0.2

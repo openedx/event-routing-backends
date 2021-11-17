@@ -16,3 +16,6 @@
 # but diff-cover latest has a pin (pluggy<1.0.0a1)
 # Using the same version of diff-cover which is being used currently in edx-platform to avoid this conflict.
 diff-cover==4.0.0
+
+# greater version failing docs build
+sphinx==4.2.0
