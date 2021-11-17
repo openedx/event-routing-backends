@@ -12,7 +12,11 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-astroid==2.8.4
+asgiref==3.4.1
+    # via
+    #   -r requirements/quality.txt
+    #   django
+astroid==2.8.5
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -29,7 +33,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/quality.txt
     #   celery
-celery==5.2.0
+celery==5.2.1
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -83,7 +87,7 @@ code-annotations==1.2.0
     #   edx-toggles
 codecov==2.1.12
     # via -r requirements/ci.txt
-coverage[toml]==6.1.1
+coverage[toml]==6.1.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -103,7 +107,7 @@ distlib==0.3.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==2.2.24
+django==3.2.9
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -158,11 +162,11 @@ event-tracking==1.1.4
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==9.8.0
+faker==9.8.2
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-filelock==3.3.2
+filelock==3.4.0
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -200,7 +204,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-kombu==5.2.1
+kombu==5.2.2
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -218,7 +222,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.2.3.170
+newrelic==7.2.4.171
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -353,7 +357,7 @@ six==1.16.0
     #   python-dateutil
     #   tox
     #   virtualenv
-snowballstemmer==2.1.0
+snowballstemmer==2.2.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
@@ -392,7 +396,7 @@ tox==3.24.4
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==3.10.0.2
+typing-extensions==4.0.0
     # via
     #   -r requirements/quality.txt
     #   astroid
