@@ -8,9 +8,11 @@ amqp==5.0.6
     # via kombu
 aniso8601==9.0.1
     # via tincan
+asgiref==3.4.1
+    # via django
 billiard==3.6.4.0
     # via celery
-celery==5.2.0
+celery==5.2.1
     # via
     #   edx-celeryutils
     #   event-tracking
@@ -37,7 +39,7 @@ code-annotations==1.2.0
     # via edx-toggles
 cryptography==35.0.0
     # via django-fernet-fields
-django==2.2.24
+django==3.2.9
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -90,11 +92,11 @@ jsonfield==3.1.0
     # via
     #   -r requirements/base.in
     #   edx-celeryutils
-kombu==5.2.1
+kombu==5.2.2
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==7.2.3.170
+newrelic==7.2.4.171
     # via edx-django-utils
 pbr==5.7.0
     # via stevedore
