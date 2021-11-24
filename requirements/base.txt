@@ -37,7 +37,7 @@ click-repl==0.2.0
     # via celery
 code-annotations==1.2.0
     # via edx-toggles
-cryptography==35.0.0
+cryptography==36.0.0
     # via django-fernet-fields
 django==3.2.9
     # via
@@ -98,7 +98,7 @@ markupsafe==2.0.1
     # via jinja2
 newrelic==7.2.4.171
     # via edx-django-utils
-pbr==5.7.0
+pbr==5.8.0
     # via stevedore
 prompt-toolkit==3.0.22
     # via click-repl
