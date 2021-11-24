@@ -66,7 +66,7 @@ code-annotations==1.2.0
     #   edx-toggles
 coverage[toml]==6.1.2
     # via pytest-cov
-cryptography==35.0.0
+cryptography==36.0.0
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields
@@ -121,7 +121,7 @@ event-tracking==1.1.4
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==9.8.2
+faker==9.8.3
     # via factory-boy
 future==0.18.2
     # via
@@ -157,9 +157,9 @@ newrelic==7.2.4.171
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-packaging==21.2
+packaging==21.3
     # via pytest
-pbr==5.7.0
+pbr==5.8.0
     # via
     #   -r requirements/base.txt
     #   stevedore
@@ -183,7 +183,7 @@ pymongo==3.12.1
     # via
     #   -r requirements/base.txt
     #   event-tracking
-pyparsing==2.4.7
+pyparsing==3.0.6
     # via packaging
 pytest==6.2.5
     # via

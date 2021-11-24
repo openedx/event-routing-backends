@@ -16,7 +16,7 @@ asgiref==3.4.1
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.8.5
+astroid==2.8.6
     # via
     #   pylint
     #   pylint-celery
@@ -78,7 +78,7 @@ coverage[toml]==6.1.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==35.0.0
+cryptography==36.0.0
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
@@ -136,7 +136,7 @@ event-tracking==1.1.4
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==9.8.2
+faker==9.8.3
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -184,11 +184,11 @@ newrelic==7.2.4.171
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-packaging==21.2
+packaging==21.3
     # via
     #   -r requirements/test.txt
     #   pytest
-pbr==5.7.0
+pbr==5.8.0
     # via
     #   -r requirements/test.txt
     #   stevedore
@@ -236,7 +236,7 @@ pymongo==3.12.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
-pyparsing==2.4.7
+pyparsing==3.0.6
     # via
     #   -r requirements/test.txt
     #   packaging
