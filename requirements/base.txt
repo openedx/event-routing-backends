@@ -20,7 +20,7 @@ certifi==2021.10.8
     # via requests
 cffi==1.15.0
     # via cryptography
-charset-normalizer==2.0.7
+charset-normalizer==2.0.8
     # via requests
 click==8.0.3
     # via
@@ -100,13 +100,13 @@ newrelic==7.2.4.171
     # via edx-django-utils
 pbr==5.8.0
     # via stevedore
-prompt-toolkit==3.0.22
+prompt-toolkit==3.0.23
     # via click-repl
 psutil==5.8.0
     # via edx-django-utils
 pycparser==2.21
     # via cffi
-pymongo==3.12.1
+pymongo==3.12.2
     # via event-tracking
 python-dateutil==2.8.2
     # via -r requirements/base.in
