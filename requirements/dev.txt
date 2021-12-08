@@ -47,7 +47,7 @@ cffi==1.15.0
     # via
     #   -r requirements/quality.txt
     #   cryptography
-charset-normalizer==2.0.8
+charset-normalizer==2.0.9
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -107,7 +107,7 @@ distlib==0.3.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.9
+django==3.2.10
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -162,7 +162,7 @@ event-tracking==1.1.4
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==9.9.0
+faker==10.0.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -283,7 +283,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.10.0
     # via diff-cover
-pylint==2.12.1
+pylint==2.12.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -303,7 +303,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==3.12.2
+pymongo==3.12.3
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -319,7 +319,7 @@ pytest==6.2.5
     #   pytest-django
 pytest-cov==3.0.0
     # via -r requirements/quality.txt
-pytest-django==4.4.0
+pytest-django==4.5.2
     # via -r requirements/quality.txt
 python-dateutil==2.8.2
     # via
