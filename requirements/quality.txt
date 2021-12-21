@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-amqp==5.0.6
+amqp==5.0.9
     # via
     #   -r requirements/test.txt
     #   kombu
@@ -41,7 +41,7 @@ cffi==1.15.0
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.8
+charset-normalizer==2.0.9
     # via
     #   -r requirements/test.txt
     #   requests
@@ -78,13 +78,13 @@ coverage[toml]==6.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==36.0.0
+cryptography==36.0.1
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields
 ddt==1.4.4
     # via -r requirements/test.txt
-django==3.2.9
+django==3.2.10
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -98,12 +98,11 @@ django==3.2.9
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.2.0
+django-config-models==2.2.1
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
     #   -r requirements/test.txt
-    #   edx-django-utils
     #   edx-toggles
 django-fernet-fields==0.6
     # via -r requirements/test.txt
@@ -116,13 +115,13 @@ django-waffle==2.2.1
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.12.4
+djangorestframework==3.13.1
     # via
     #   -r requirements/test.txt
     #   django-config-models
 edx-celeryutils==1.1.1
     # via -r requirements/test.txt
-edx-django-utils==4.4.0
+edx-django-utils==2.0.4
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -136,7 +135,7 @@ event-tracking==1.1.4
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==9.9.0
+faker==10.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -152,7 +151,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-isodate==0.6.0
+isodate==0.6.1
     # via -r requirements/test.txt
 isort==5.10.1
     # via
@@ -170,7 +169,7 @@ kombu==5.2.2
     # via
     #   -r requirements/test.txt
     #   celery
-lazy-object-proxy==1.6.0
+lazy-object-proxy==1.7.1
     # via astroid
 markupsafe==2.0.1
     # via
@@ -198,11 +197,11 @@ pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.23
+prompt-toolkit==3.0.24
     # via
     #   -r requirements/test.txt
     #   click-repl
-psutil==5.8.0
+psutil==1.2.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -218,7 +217,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.12.1
+pylint==2.12.2
     # via
     #   edx-lint
     #   pylint-celery
@@ -232,7 +231,7 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pymongo==3.12.2
+pymongo==3.12.3
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -247,7 +246,7 @@ pytest==6.2.5
     #   pytest-django
 pytest-cov==3.0.0
     # via -r requirements/test.txt
-pytest-django==4.4.0
+pytest-django==4.5.2
     # via -r requirements/test.txt
 python-dateutil==2.8.2
     # via
@@ -262,6 +261,7 @@ pytz==2021.3
     #   -r requirements/test.txt
     #   celery
     #   django
+    #   djangorestframework
     #   event-tracking
     #   tincan
 pyyaml==6.0
@@ -288,7 +288,6 @@ stevedore==3.5.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-    #   edx-django-utils
 text-unidecode==1.3
     # via
     #   -r requirements/test.txt
@@ -301,7 +300,7 @@ toml==0.10.2
     #   -r requirements/test.txt
     #   pylint
     #   pytest
-tomli==1.2.2
+tomli==2.0.0
     # via
     #   -r requirements/test.txt
     #   coverage
