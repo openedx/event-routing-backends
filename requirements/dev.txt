@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-amqp==5.0.6
+amqp==5.0.9
     # via
     #   -r requirements/quality.txt
     #   kombu
@@ -47,7 +47,7 @@ cffi==1.15.0
     # via
     #   -r requirements/quality.txt
     #   cryptography
-charset-normalizer==2.0.8
+charset-normalizer==2.0.9
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -93,7 +93,7 @@ coverage[toml]==6.2
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==36.0.0
+cryptography==36.0.1
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields
@@ -103,11 +103,11 @@ diff-cover==4.0.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/dev.in
-distlib==0.3.3
+distlib==0.3.4
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.9
+django==3.2.10
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -140,13 +140,13 @@ django-waffle==2.2.1
     #   -r requirements/quality.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.12.4
+djangorestframework==3.13.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
 edx-celeryutils==1.1.1
     # via -r requirements/quality.txt
-edx-django-utils==4.4.0
+edx-django-utils==4.4.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -162,7 +162,7 @@ event-tracking==1.1.4
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==9.9.0
+faker==10.0.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -186,7 +186,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest
-isodate==0.6.0
+isodate==0.6.1
     # via -r requirements/quality.txt
 isort==5.10.1
     # via
@@ -208,7 +208,7 @@ kombu==5.2.2
     # via
     #   -r requirements/quality.txt
     #   celery
-lazy-object-proxy==1.6.0
+lazy-object-proxy==1.7.1
     # via
     #   -r requirements/quality.txt
     #   astroid
@@ -259,7 +259,7 @@ pluggy==1.0.0
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.23
+prompt-toolkit==3.0.24
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -283,7 +283,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.10.0
     # via diff-cover
-pylint==2.12.1
+pylint==2.12.2
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -303,7 +303,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==3.12.2
+pymongo==3.12.3
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -319,7 +319,7 @@ pytest==6.2.5
     #   pytest-django
 pytest-cov==3.0.0
     # via -r requirements/quality.txt
-pytest-django==4.4.0
+pytest-django==4.5.2
     # via -r requirements/quality.txt
 python-dateutil==2.8.2
     # via
@@ -334,6 +334,7 @@ pytz==2021.3
     #   -r requirements/quality.txt
     #   celery
     #   django
+    #   djangorestframework
     #   event-tracking
     #   tincan
 pyyaml==6.0
@@ -384,7 +385,7 @@ toml==0.10.2
     #   pylint
     #   pytest
     #   tox
-tomli==1.2.2
+tomli==2.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt

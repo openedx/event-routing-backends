@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-amqp==5.0.6
+amqp==5.0.9
     # via
     #   -r requirements/base.txt
     #   kombu
@@ -35,7 +35,7 @@ cffi==1.15.0
     # via
     #   -r requirements/base.txt
     #   cryptography
-charset-normalizer==2.0.8
+charset-normalizer==2.0.9
     # via
     #   -r requirements/base.txt
     #   requests
@@ -66,7 +66,7 @@ code-annotations==1.2.0
     #   edx-toggles
 coverage[toml]==6.2
     # via pytest-cov
-cryptography==36.0.0
+cryptography==36.0.1
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields
@@ -103,13 +103,13 @@ django-waffle==2.2.1
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.12.4
+djangorestframework==3.13.1
     # via
     #   -r requirements/base.txt
     #   django-config-models
 edx-celeryutils==1.1.1
     # via -r requirements/base.txt
-edx-django-utils==4.4.0
+edx-django-utils==4.4.1
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -121,7 +121,7 @@ event-tracking==1.1.4
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==9.9.0
+faker==10.0.0
     # via factory-boy
 future==0.18.2
     # via
@@ -133,7 +133,7 @@ idna==3.3
     #   requests
 iniconfig==1.1.1
     # via pytest
-isodate==0.6.0
+isodate==0.6.1
     # via -r requirements/base.txt
 jinja2==3.0.3
     # via
@@ -165,7 +165,7 @@ pbr==5.8.0
     #   stevedore
 pluggy==1.0.0
     # via pytest
-prompt-toolkit==3.0.23
+prompt-toolkit==3.0.24
     # via
     #   -r requirements/base.txt
     #   click-repl
@@ -179,7 +179,7 @@ pycparser==2.21
     # via
     #   -r requirements/base.txt
     #   cffi
-pymongo==3.12.2
+pymongo==3.12.3
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -191,7 +191,7 @@ pytest==6.2.5
     #   pytest-django
 pytest-cov==3.0.0
     # via -r requirements/test.in
-pytest-django==4.4.0
+pytest-django==4.5.2
     # via -r requirements/test.in
 python-dateutil==2.8.2
     # via
@@ -206,6 +206,7 @@ pytz==2021.3
     #   -r requirements/base.txt
     #   celery
     #   django
+    #   djangorestframework
     #   event-tracking
     #   tincan
 pyyaml==6.0
@@ -239,7 +240,7 @@ tincan==1.0.0
     # via -r requirements/base.txt
 toml==0.10.2
     # via pytest
-tomli==1.2.2
+tomli==2.0.0
     # via coverage
 urllib3==1.26.7
     # via
