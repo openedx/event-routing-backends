@@ -98,7 +98,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
-django-waffle==2.2.1
+django-waffle==2.3.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -121,7 +121,7 @@ event-tracking==1.1.4
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==11.1.0
+faker==11.3.0
     # via factory-boy
 future==0.18.2
     # via
@@ -213,7 +213,7 @@ pyyaml==6.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
-requests==2.27.0
+requests==2.27.1
     # via -r requirements/base.txt
 six==1.16.0
     # via
@@ -242,7 +242,7 @@ toml==0.10.2
     # via pytest
 tomli==2.0.0
     # via coverage
-urllib3==1.26.7
+urllib3==1.26.8
     # via
     #   -r requirements/base.txt
     #   requests
