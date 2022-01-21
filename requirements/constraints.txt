@@ -19,3 +19,6 @@ diff-cover==4.0.0
 
 # greater version failing docs build
 sphinx==4.2.0
+
+# Using the same version as of edx-celeryutils as it constraints click to version 7.1.2
+click==7.1.2
