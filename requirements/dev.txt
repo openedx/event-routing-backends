@@ -12,7 +12,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
-asgiref==3.4.1
+asgiref==3.5.0
     # via
     #   -r requirements/quality.txt
     #   django
@@ -83,7 +83,7 @@ code-annotations==1.2.0
     #   edx-toggles
 codecov==2.1.12
     # via -r requirements/ci.txt
-coverage[toml]==6.2
+coverage[toml]==6.3
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -118,7 +118,7 @@ django==3.2.11
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.2.2
+django-config-models==2.3.0
     # via -r requirements/quality.txt
 django-crum==0.7.9
     # via
@@ -140,9 +140,9 @@ djangorestframework==3.13.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
-edx-celeryutils==1.1.1
+edx-celeryutils==1.2.1
     # via -r requirements/quality.txt
-edx-django-utils==4.4.1
+edx-django-utils==4.4.2
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -218,7 +218,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.2.4.171
+newrelic==7.4.0.172
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -303,7 +303,7 @@ pymongo==3.12.3
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-pyparsing==3.0.6
+pyparsing==3.0.7
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
