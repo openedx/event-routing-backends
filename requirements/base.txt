@@ -8,7 +8,7 @@ amqp==5.0.9
     # via kombu
 aniso8601==9.0.1
     # via tincan
-asgiref==3.4.1
+asgiref==3.5.0
     # via django
 billiard==3.6.4.0
     # via celery
@@ -53,7 +53,7 @@ django==3.2.11
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.2.2
+django-config-models==2.3.0
     # via -r requirements/base.in
 django-crum==0.7.9
     # via
@@ -69,9 +69,9 @@ django-waffle==2.3.0
     #   edx-toggles
 djangorestframework==3.13.1
     # via django-config-models
-edx-celeryutils==1.1.1
+edx-celeryutils==1.2.1
     # via -r requirements/base.in
-edx-django-utils==4.4.1
+edx-django-utils==4.4.2
     # via
     #   django-config-models
     #   edx-toggles
@@ -96,7 +96,7 @@ kombu==5.2.3
     # via celery
 markupsafe==2.0.1
     # via jinja2
-newrelic==7.2.4.171
+newrelic==7.4.0.172
     # via edx-django-utils
 pbr==5.8.0
     # via stevedore

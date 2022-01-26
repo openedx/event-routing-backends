@@ -14,7 +14,7 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-asgiref==3.4.1
+asgiref==3.5.0
     # via
     #   -r requirements/test.txt
     #   django
@@ -71,7 +71,7 @@ code-annotations==1.2.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==6.2
+coverage[toml]==6.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -95,7 +95,7 @@ django==3.2.11
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.2.2
+django-config-models==2.3.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -125,9 +125,9 @@ docutils==0.17.1
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-celeryutils==1.1.1
+edx-celeryutils==1.2.1
     # via -r requirements/test.txt
-edx-django-utils==4.4.1
+edx-django-utils==4.4.2
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -180,7 +180,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.2.4.171
+newrelic==7.4.0.172
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -223,7 +223,7 @@ pymongo==3.12.3
     # via
     #   -r requirements/test.txt
     #   event-tracking
-pyparsing==3.0.6
+pyparsing==3.0.7
     # via
     #   -r requirements/test.txt
     #   packaging
