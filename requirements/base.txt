@@ -12,7 +12,7 @@ asgiref==3.5.0
     # via django
 billiard==3.6.4.0
     # via celery
-celery==5.2.3
+celery==5.0.4
     # via
     #   edx-celeryutils
     #   event-tracking
@@ -22,8 +22,9 @@ cffi==1.15.0
     # via cryptography
 charset-normalizer==2.0.10
     # via requests
-click==8.0.3
+click==7.1.2
     # via
+    #   -c requirements/constraints.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
@@ -38,14 +39,13 @@ click-repl==0.2.0
 code-annotations==1.2.0
     # via edx-toggles
 cryptography==36.0.1
-    # via django-fernet-fields
+    # via djfernet
 django==3.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
     #   django-config-models
     #   django-crum
-    #   django-fernet-fields
     #   django-model-utils
     #   djangorestframework
     #   edx-celeryutils
@@ -59,8 +59,6 @@ django-crum==0.7.9
     # via
     #   edx-django-utils
     #   edx-toggles
-django-fernet-fields==0.6
-    # via -r requirements/base.in
 django-model-utils==4.2.0
     # via edx-celeryutils
 django-waffle==2.3.0
@@ -69,6 +67,8 @@ django-waffle==2.3.0
     #   edx-toggles
 djangorestframework==3.13.1
     # via django-config-models
+djfernet==0.7.3
+    # via -r requirements/base.in
 edx-celeryutils==1.2.1
     # via -r requirements/base.in
 edx-django-utils==4.4.2
@@ -149,6 +149,3 @@ vine==5.0.0
     #   kombu
 wcwidth==0.2.5
     # via prompt-toolkit
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

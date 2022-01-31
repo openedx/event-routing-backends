@@ -30,7 +30,7 @@ billiard==3.6.4.0
     #   celery
 bleach==4.1.0
     # via readme-renderer
-celery==5.2.3
+celery==5.0.4
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -47,8 +47,9 @@ charset-normalizer==2.0.10
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.0.3
+click==7.1.2
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   celery
     #   click-didyoumean
@@ -78,7 +79,7 @@ coverage[toml]==6.3
 cryptography==36.0.1
     # via
     #   -r requirements/test.txt
-    #   django-fernet-fields
+    #   djfernet
 ddt==1.4.4
     # via -r requirements/test.txt
 django==3.2.11
@@ -87,7 +88,6 @@ django==3.2.11
     #   -r requirements/test.txt
     #   django-config-models
     #   django-crum
-    #   django-fernet-fields
     #   django-model-utils
     #   djangorestframework
     #   edx-celeryutils
@@ -102,8 +102,6 @@ django-crum==0.7.9
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-django-fernet-fields==0.6
-    # via -r requirements/test.txt
 django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
@@ -117,6 +115,8 @@ djangorestframework==3.13.1
     # via
     #   -r requirements/test.txt
     #   django-config-models
+djfernet==0.7.3
+    # via -r requirements/test.txt
 doc8==0.10.1
     # via -r requirements/doc.in
 docutils==0.17.1

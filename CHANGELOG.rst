@@ -16,6 +16,14 @@ Unreleased
 
 *
 
+[5.2.0]
+~~~~~~~
+
+* Added Support for Django4 and used djfernet instead of django-fernet-fields
+* Removed Django22, 30 and 31 support
+* Constrained "click" to 7.1.2 as edx-celeryutils constraints the version to this package 
+
+
 [4.1.1]
 ~~~~~~~
 
