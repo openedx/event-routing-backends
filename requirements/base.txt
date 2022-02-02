@@ -12,7 +12,7 @@ asgiref==3.5.0
     # via django
 billiard==3.6.4.0
     # via celery
-celery==5.0.4
+celery==5.2.3
     # via
     #   edx-celeryutils
     #   event-tracking
@@ -20,11 +20,10 @@ certifi==2021.10.8
     # via requests
 cffi==1.15.0
     # via cryptography
-charset-normalizer==2.0.10
+charset-normalizer==2.0.11
     # via requests
-click==7.1.2
+click==8.0.3
     # via
-    #   -c requirements/constraints.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
@@ -40,7 +39,7 @@ code-annotations==1.2.0
     # via edx-toggles
 cryptography==36.0.1
     # via djfernet
-django==3.2.11
+django==3.2.12
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -71,12 +70,12 @@ djfernet==0.7.3
     # via -r requirements/base.in
 edx-celeryutils==1.2.1
     # via -r requirements/base.in
-edx-django-utils==4.4.2
+edx-django-utils==4.5.0
     # via
     #   django-config-models
     #   edx-toggles
     #   event-tracking
-edx-toggles==4.2.0
+edx-toggles==4.3.1
     # via -r requirements/base.in
 event-tracking==1.1.4
     # via -r requirements/base.in
@@ -100,7 +99,7 @@ newrelic==7.4.0.172
     # via edx-django-utils
 pbr==5.8.0
     # via stevedore
-prompt-toolkit==3.0.24
+prompt-toolkit==3.0.26
     # via click-repl
 psutil==5.9.0
     # via edx-django-utils
@@ -149,3 +148,6 @@ vine==5.0.0
     #   kombu
 wcwidth==0.2.5
     # via prompt-toolkit
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

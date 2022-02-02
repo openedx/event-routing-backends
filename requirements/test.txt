@@ -22,7 +22,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/base.txt
     #   celery
-celery==5.0.4
+celery==5.2.3
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -35,13 +35,12 @@ cffi==1.15.0
     # via
     #   -r requirements/base.txt
     #   cryptography
-charset-normalizer==2.0.10
+charset-normalizer==2.0.11
     # via
     #   -r requirements/base.txt
     #   requests
-click==7.1.2
+click==8.0.3
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   celery
     #   click-didyoumean
@@ -65,7 +64,7 @@ code-annotations==1.2.0
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==6.3
+coverage[toml]==6.3.1
     # via pytest-cov
 cryptography==36.0.1
     # via
@@ -109,19 +108,19 @@ djfernet==0.7.3
     # via -r requirements/base.txt
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
-edx-django-utils==4.4.2
+edx-django-utils==4.5.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
     #   edx-toggles
     #   event-tracking
-edx-toggles==4.2.0
+edx-toggles==4.3.1
     # via -r requirements/base.txt
 event-tracking==1.1.4
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==11.3.0
+faker==12.0.0
     # via factory-boy
 future==0.18.2
     # via
@@ -165,7 +164,7 @@ pbr==5.8.0
     #   stevedore
 pluggy==1.0.0
     # via pytest
-prompt-toolkit==3.0.24
+prompt-toolkit==3.0.26
     # via
     #   -r requirements/base.txt
     #   click-repl
@@ -234,7 +233,6 @@ stevedore==3.5.0
 text-unidecode==1.3
     # via
     #   -r requirements/base.txt
-    #   faker
     #   python-slugify
 tincan==1.0.0
     # via -r requirements/base.txt
@@ -256,3 +254,6 @@ wcwidth==0.2.5
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
