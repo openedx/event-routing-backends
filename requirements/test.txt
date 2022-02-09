@@ -59,7 +59,7 @@ click-repl==0.2.0
     # via
     #   -r requirements/base.txt
     #   celery
-code-annotations==1.2.0
+code-annotations==1.3.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
@@ -104,7 +104,7 @@ djangorestframework==3.13.1
     # via
     #   -r requirements/base.txt
     #   django-config-models
-djfernet==0.7.3
+djfernet==0.7.4
     # via -r requirements/base.txt
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
@@ -120,7 +120,7 @@ event-tracking==1.1.4
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==12.0.0
+faker==12.1.0
     # via factory-boy
 future==0.18.2
     # via
@@ -158,13 +158,13 @@ newrelic==7.4.0.172
     #   edx-django-utils
 packaging==21.3
     # via pytest
-pbr==5.8.0
+pbr==5.8.1
     # via
     #   -r requirements/base.txt
     #   stevedore
 pluggy==1.0.0
     # via pytest
-prompt-toolkit==3.0.26
+prompt-toolkit==3.0.27
     # via
     #   -r requirements/base.txt
     #   click-repl
@@ -184,7 +184,7 @@ pymongo==3.12.3
     #   event-tracking
 pyparsing==3.0.7
     # via packaging
-pytest==6.2.5
+pytest==7.0.0
     # via
     #   pytest-cov
     #   pytest-django
@@ -236,10 +236,10 @@ text-unidecode==1.3
     #   python-slugify
 tincan==1.0.0
     # via -r requirements/base.txt
-toml==0.10.2
-    # via pytest
-tomli==2.0.0
-    # via coverage
+tomli==2.0.1
+    # via
+    #   coverage
+    #   pytest
 urllib3==1.26.8
     # via
     #   -r requirements/base.txt

@@ -35,7 +35,7 @@ click-plugins==1.1.1
     # via celery
 click-repl==0.2.0
     # via celery
-code-annotations==1.2.0
+code-annotations==1.3.0
     # via edx-toggles
 cryptography==36.0.1
     # via djfernet
@@ -66,7 +66,7 @@ django-waffle==2.3.0
     #   edx-toggles
 djangorestframework==3.13.1
     # via django-config-models
-djfernet==0.7.3
+djfernet==0.7.4
     # via -r requirements/base.in
 edx-celeryutils==1.2.1
     # via -r requirements/base.in
@@ -97,9 +97,9 @@ markupsafe==2.0.1
     # via jinja2
 newrelic==7.4.0.172
     # via edx-django-utils
-pbr==5.8.0
+pbr==5.8.1
     # via stevedore
-prompt-toolkit==3.0.26
+prompt-toolkit==3.0.27
     # via click-repl
 psutil==5.9.0
     # via edx-django-utils
