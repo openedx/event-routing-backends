@@ -41,7 +41,7 @@ cffi==1.15.0
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via
     #   -r requirements/test.txt
     #   requests
@@ -117,7 +117,7 @@ djangorestframework==3.13.1
     # via
     #   -r requirements/test.txt
     #   django-config-models
-djfernet==0.7.4
+djfernet==0.8.1
     # via -r requirements/test.txt
 edx-celeryutils==1.2.1
     # via -r requirements/test.txt
@@ -131,11 +131,11 @@ edx-lint==5.2.1
     # via -r requirements/quality.in
 edx-toggles==4.3.1
     # via -r requirements/test.txt
-event-tracking==1.1.4
+event-tracking==2.0.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==12.1.0
+faker==13.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -191,13 +191,13 @@ pbr==5.8.1
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==2.4.1
+platformdirs==2.5.0
     # via pylint
 pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.27
+prompt-toolkit==3.0.28
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -239,7 +239,7 @@ pyparsing==3.0.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.0.0
+pytest==7.0.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -302,7 +302,7 @@ tomli==2.0.1
     #   -r requirements/test.txt
     #   coverage
     #   pytest
-typing-extensions==4.0.1
+typing-extensions==4.1.1
     # via
     #   astroid
     #   pylint
