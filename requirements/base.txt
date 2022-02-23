@@ -22,7 +22,7 @@ cffi==1.15.0
     # via cryptography
 charset-normalizer==2.0.12
     # via requests
-click==8.0.3
+click==8.0.4
     # via
     #   celery
     #   click-didyoumean
@@ -93,7 +93,7 @@ jsonfield==3.1.0
     #   edx-celeryutils
 kombu==5.2.3
     # via celery
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via jinja2
 newrelic==7.4.0.172
     # via edx-django-utils
@@ -109,7 +109,7 @@ pymongo==3.12.3
     # via event-tracking
 python-dateutil==2.8.2
     # via -r requirements/base.in
-python-slugify==5.0.2
+python-slugify==6.1.0
     # via code-annotations
 pytz==2021.3
     # via
