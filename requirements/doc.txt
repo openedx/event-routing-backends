@@ -47,7 +47,7 @@ charset-normalizer==2.0.12
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.0.3
+click==8.0.4
     # via
     #   -r requirements/test.txt
     #   celery
@@ -71,7 +71,7 @@ code-annotations==1.3.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==6.3.1
+coverage[toml]==6.3.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -140,7 +140,7 @@ event-tracking==2.0.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.0.0
+faker==13.2.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -173,7 +173,7 @@ kombu==5.2.3
     # via
     #   -r requirements/test.txt
     #   celery
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -239,7 +239,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==5.0.2
+python-slugify==6.1.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
