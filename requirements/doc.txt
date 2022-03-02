@@ -136,11 +136,11 @@ edx-sphinx-theme==3.0.0
     # via -r requirements/doc.in
 edx-toggles==4.3.1
     # via -r requirements/test.txt
-event-tracking==2.0.0
+event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.2.0
+faker==13.3.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -179,7 +179,7 @@ markupsafe==2.1.0
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.4.0.172
+newrelic==7.6.0.173
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -239,7 +239,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==6.1.0
+python-slugify==6.1.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -262,7 +262,7 @@ requests==2.27.1
     # via
     #   -r requirements/test.txt
     #   sphinx
-restructuredtext-lint==1.3.2
+restructuredtext-lint==1.4.0
     # via doc8
 six==1.16.0
     # via
