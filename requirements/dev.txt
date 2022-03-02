@@ -153,11 +153,11 @@ edx-lint==5.2.1
     # via -r requirements/quality.txt
 edx-toggles==4.3.1
     # via -r requirements/quality.txt
-event-tracking==2.0.0
+event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==13.2.0
+faker==13.3.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -217,7 +217,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.4.0.172
+newrelic==7.6.0.173
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -227,7 +227,7 @@ packaging==21.3
     #   -r requirements/quality.txt
     #   pytest
     #   tox
-path==16.3.0
+path==16.4.0
     # via edx-i18n-tools
 pbr==5.8.1
     # via
@@ -320,7 +320,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/quality.txt
     #   faker
-python-slugify==6.1.0
+python-slugify==6.1.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -407,7 +407,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.13.1
+virtualenv==20.13.2
     # via
     #   -r requirements/ci.txt
     #   tox
