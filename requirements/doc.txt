@@ -6,7 +6,7 @@
 #
 alabaster==0.7.12
     # via sphinx
-amqp==5.0.9
+amqp==5.1.0
     # via
     #   -r requirements/test.txt
     #   kombu
@@ -140,7 +140,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.3.0
+faker==13.3.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -169,7 +169,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-kombu==5.2.3
+kombu==5.2.4
     # via
     #   -r requirements/test.txt
     #   celery
@@ -256,7 +256,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==32.0
+readme-renderer==33.0
     # via -r requirements/doc.in
 requests==2.27.1
     # via
