@@ -59,7 +59,7 @@ click-didyoumean==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-click-log==0.3.2
+click-log==0.4.0
     # via edx-lint
 click-plugins==1.1.1
     # via
@@ -78,7 +78,7 @@ coverage[toml]==6.3.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==36.0.1
+cryptography==36.0.2
     # via
     #   -r requirements/test.txt
     #   djfernet
@@ -135,7 +135,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.3.1
+faker==13.3.2
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -171,7 +171,7 @@ kombu==5.2.4
     #   celery
 lazy-object-proxy==1.7.1
     # via astroid
-markupsafe==2.1.0
+markupsafe==2.1.1
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -239,7 +239,7 @@ pyparsing==3.0.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.0.1
+pytest==7.1.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
