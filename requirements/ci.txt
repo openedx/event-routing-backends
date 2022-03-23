@@ -40,7 +40,7 @@ toml==0.10.2
     # via tox
 tox==3.24.5
     # via -r requirements/ci.in
-urllib3==1.26.8
+urllib3==1.26.9
     # via requests
-virtualenv==20.13.3
+virtualenv==20.13.4
     # via tox

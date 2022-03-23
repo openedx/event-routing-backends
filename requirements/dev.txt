@@ -141,7 +141,7 @@ djfernet==0.8.1
     # via -r requirements/quality.txt
 edx-celeryutils==1.2.1
     # via -r requirements/quality.txt
-edx-django-utils==4.5.0
+edx-django-utils==4.6.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -307,7 +307,7 @@ pyparsing==3.0.7
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   packaging
-pytest==7.1.0
+pytest==7.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -324,7 +324,7 @@ python-slugify==6.1.1
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2021.3
+pytz==2022.1
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -396,7 +396,7 @@ typing-extensions==4.1.1
     #   -r requirements/quality.txt
     #   astroid
     #   pylint
-urllib3==1.26.8
+urllib3==1.26.9
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -407,7 +407,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.13.3
+virtualenv==20.13.4
     # via
     #   -r requirements/ci.txt
     #   tox

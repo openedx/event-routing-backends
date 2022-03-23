@@ -126,7 +126,7 @@ docutils==0.17.1
     #   sphinx
 edx-celeryutils==1.2.1
     # via -r requirements/test.txt
-edx-django-utils==4.5.0
+edx-django-utils==4.6.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -226,7 +226,7 @@ pyparsing==3.0.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.1.0
+pytest==7.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -243,7 +243,7 @@ python-slugify==6.1.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2021.3
+pytz==2022.1
     # via
     #   -r requirements/test.txt
     #   babel
@@ -313,7 +313,7 @@ tomli==2.0.1
     #   -r requirements/test.txt
     #   coverage
     #   pytest
-urllib3==1.26.8
+urllib3==1.26.9
     # via
     #   -r requirements/test.txt
     #   requests
