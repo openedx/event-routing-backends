@@ -108,7 +108,7 @@ djfernet==0.8.1
     # via -r requirements/base.txt
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
-edx-django-utils==4.5.0
+edx-django-utils==4.6.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -184,7 +184,7 @@ pymongo==3.12.3
     #   event-tracking
 pyparsing==3.0.7
     # via packaging
-pytest==7.1.0
+pytest==7.1.1
     # via
     #   pytest-cov
     #   pytest-django
@@ -200,7 +200,7 @@ python-slugify==6.1.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
-pytz==2021.3
+pytz==2022.1
     # via
     #   -r requirements/base.txt
     #   celery
@@ -240,7 +240,7 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-urllib3==1.26.8
+urllib3==1.26.9
     # via
     #   -r requirements/base.txt
     #   requests
