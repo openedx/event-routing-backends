@@ -22,7 +22,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/base.txt
     #   celery
-celery==5.2.3
+celery==5.2.6
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -39,7 +39,7 @@ charset-normalizer==2.0.12
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.1.0
+click==8.1.2
     # via
     #   -r requirements/base.txt
     #   celery
@@ -152,7 +152,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==7.6.0.173
+newrelic==7.8.0.174
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -164,7 +164,7 @@ pbr==5.8.1
     #   stevedore
 pluggy==1.0.0
     # via pytest
-prompt-toolkit==3.0.28
+prompt-toolkit==3.0.29
     # via
     #   -r requirements/base.txt
     #   click-repl
@@ -254,6 +254,3 @@ wcwidth==0.2.5
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

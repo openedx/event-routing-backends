@@ -30,7 +30,7 @@ billiard==3.6.4.0
     #   celery
 bleach==4.1.0
     # via readme-renderer
-celery==5.2.3
+celery==5.2.6
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -47,7 +47,7 @@ charset-normalizer==2.0.12
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.1.0
+click==8.1.2
     # via
     #   -r requirements/test.txt
     #   celery
@@ -116,7 +116,7 @@ djangorestframework==3.13.1
     #   django-config-models
 djfernet==0.8.1
     # via -r requirements/test.txt
-doc8==0.10.1
+doc8==0.11.1
     # via -r requirements/doc.in
 docutils==0.17.1
     # via
@@ -179,7 +179,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.6.0.173
+newrelic==7.8.0.174
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -197,7 +197,7 @@ pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.28
+prompt-toolkit==3.0.29
     # via
     #   -r requirements/test.txt
     #   click-repl
