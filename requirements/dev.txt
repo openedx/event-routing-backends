@@ -29,7 +29,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/quality.txt
     #   celery
-celery==5.2.3
+celery==5.2.6
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -48,7 +48,7 @@ charset-normalizer==2.0.12
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
-click==8.1.0
+click==8.1.2
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -179,7 +179,7 @@ idna==3.3
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   requests
-inflect==5.4.0
+inflect==5.5.2
     # via jinja2-pluralize
 iniconfig==1.1.1
     # via
@@ -221,7 +221,7 @@ mccabe==0.7.0
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.6.0.173
+newrelic==7.8.0.174
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -258,7 +258,7 @@ pluggy==1.0.0
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.28
+prompt-toolkit==3.0.29
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -282,7 +282,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.11.2
     # via diff-cover
-pylint==2.13.3
+pylint==2.13.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
