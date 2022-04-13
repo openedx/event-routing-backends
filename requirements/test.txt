@@ -152,7 +152,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==7.8.0.174
+newrelic==7.10.0.175
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -182,7 +182,7 @@ pymongo==3.12.3
     # via
     #   -r requirements/base.txt
     #   event-tracking
-pyparsing==3.0.7
+pyparsing==3.0.8
     # via packaging
 pytest==7.1.1
     # via
