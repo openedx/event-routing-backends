@@ -6,7 +6,7 @@
 #
 alabaster==0.7.12
     # via sphinx
-amqp==5.1.0
+amqp==5.1.1
     # via
     #   -r requirements/test.txt
     #   kombu
@@ -255,7 +255,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==34.0
+readme-renderer==35.0
     # via -r requirements/doc.in
 requests==2.27.1
     # via
