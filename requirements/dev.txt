@@ -89,7 +89,7 @@ coverage[toml]==6.3.2
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==36.0.2
+cryptography==37.0.0
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -161,7 +161,7 @@ event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==13.3.4
+faker==13.4.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -280,9 +280,9 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.txt
-pygments==2.11.2
+pygments==2.12.0
     # via diff-cover
-pylint==2.13.5
+pylint==2.13.7
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -311,7 +311,7 @@ pyparsing==3.0.8
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   packaging
-pytest==7.1.1
+pytest==7.1.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
