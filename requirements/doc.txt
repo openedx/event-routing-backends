@@ -22,7 +22,7 @@ attrs==21.4.0
     # via
     #   -r requirements/test.txt
     #   pytest
-babel==2.9.1
+babel==2.10.1
     # via sphinx
 billiard==3.6.4.0
     # via
@@ -79,10 +79,11 @@ coverage[toml]==6.3.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==36.0.2
+cryptography==37.0.0
     # via
     #   -r requirements/test.txt
     #   djfernet
+    #   secretstorage
 ddt==1.4.4
     # via -r requirements/test.txt
 django==3.2.13
@@ -144,7 +145,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.3.4
+faker==13.4.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -168,6 +169,10 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.1
     # via
     #   -r requirements/test.txt
@@ -227,7 +232,7 @@ pycparser==2.21
     # via
     #   -r requirements/test.txt
     #   cffi
-pygments==2.11.2
+pygments==2.12.0
     # via
     #   doc8
     #   readme-renderer
@@ -241,7 +246,7 @@ pyparsing==3.0.8
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.1.1
+pytest==7.1.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -285,8 +290,10 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==12.2.0
+rich==12.3.0
     # via twine
+secretstorage==3.3.2
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
