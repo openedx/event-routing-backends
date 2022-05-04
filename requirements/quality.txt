@@ -12,11 +12,11 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-asgiref==3.5.0
+asgiref==3.5.1
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.11.3
+astroid==2.11.4
     # via
     #   pylint
     #   pylint-celery
@@ -45,7 +45,7 @@ charset-normalizer==2.0.12
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.1.2
+click==8.1.3
     # via
     #   -r requirements/test.txt
     #   celery
@@ -78,7 +78,7 @@ coverage[toml]==6.3.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==37.0.0
+cryptography==37.0.2
     # via
     #   -r requirements/test.txt
     #   djfernet
@@ -137,7 +137,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.4.0
+faker==13.7.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -159,7 +159,7 @@ isort==5.10.1
     # via
     #   -r requirements/quality.in
     #   pylint
-jinja2==3.1.1
+jinja2==3.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -219,7 +219,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.13.7
+pylint==2.13.8
     # via
     #   edx-lint
     #   pylint-celery
@@ -254,7 +254,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==6.1.1
+python-slugify==6.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -321,7 +321,7 @@ wcwidth==0.2.5
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-wrapt==1.14.0
+wrapt==1.14.1
     # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
