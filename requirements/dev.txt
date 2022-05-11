@@ -16,7 +16,7 @@ asgiref==3.5.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.11.4
+astroid==2.11.5
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -43,6 +43,7 @@ cffi==1.15.0
     # via
     #   -r requirements/quality.txt
     #   cryptography
+    #   pynacl
 charset-normalizer==2.0.12
     # via
     #   -r requirements/ci.txt
@@ -58,6 +59,7 @@ click==8.1.3
     #   click-plugins
     #   click-repl
     #   code-annotations
+    #   edx-django-utils
     #   edx-lint
     #   pip-tools
 click-didyoumean==0.3.0
@@ -145,7 +147,7 @@ djfernet==0.8.1
     # via -r requirements/quality.txt
 edx-celeryutils==1.2.1
     # via -r requirements/quality.txt
-edx-django-utils==4.6.0
+edx-django-utils==4.8.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -161,7 +163,7 @@ event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==13.7.0
+faker==13.11.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -233,7 +235,7 @@ packaging==21.3
     #   tox
 path==16.4.0
     # via edx-i18n-tools
-pbr==5.8.1
+pbr==5.9.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
@@ -306,7 +308,11 @@ pymongo==3.12.3
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-pyparsing==3.0.8
+pynacl==1.5.0
+    # via
+    #   -r requirements/quality.txt
+    #   edx-django-utils
+pyparsing==3.0.9
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
