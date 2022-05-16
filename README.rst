@@ -35,7 +35,7 @@ How To Contribute
 -----------------
 
 Contributions are very welcome.
-Please read `How To Contribute <https://github.com/edx/edx-platform/blob/master/CONTRIBUTING.rst>`_ for details.
+Please read `How To Contribute <https://github.com/edx/edx-platform/blob/master/CONTRIBUTING.rst>`__ for details.
 Even though they were written with ``edx-platform`` in mind, the guidelines
 should be followed for all Open edX projects.
 
@@ -57,11 +57,10 @@ If you're having trouble, we have discussion forums at https://discuss.openedx.o
 
 Our real-time conversations are on Slack. You can request a `Slack invitation`_, then join our `community Slack workspace`_.
 
-For more information about these options, see the `Getting Help`_ page.
+For more information about these options, see the `Getting Help <https://openedx.org/getting-help>`__ page.
 
 .. _Slack invitation: https://openedx-slack-invite.herokuapp.com/
 .. _community Slack workspace: https://openedx.slack.com/
-.. _Getting Help: https://openedx.org/getting-help
 
 .. |pypi-badge| image:: https://img.shields.io/pypi/v/event-routing-backends.svg
     :target: https://pypi.python.org/pypi/event-routing-backends/
