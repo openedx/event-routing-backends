@@ -393,9 +393,8 @@ contextActivities [ parent [ objectType ] ]                                     
 contextActivities [ parent [ id ] ]                                                <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                               http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]                      <name of course-run>
-extensions [ http://id.tincanapi.com/extension/s
-tarting-point ]                   data [current_tab]
-extensions [ http://http://id.tincanapi.com/extension/ending-point ]               "next unit"
+extensions [ http://id.tincanapi.com/extension/starting-point ]                    data [current_tab]
+extensions [ http://id.tincanapi.com/extension/ending-point ]                      "next unit"
 ================================================================================== =============================================
 
 edx.ui.lms.sequence.previous_selected
@@ -421,9 +420,8 @@ contextActivities [ parent [ objectType ] ]                                     
 contextActivities [ parent [ id ] ]                                                <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                               http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]                      <name of course-run>
-extensions [ http://id.tincanapi.com/extension/s
-tarting-point ]                   data [current_tab]
-extensions [ http://http://id.tincanapi.com/extension/ending-point ]               "previous unit"
+extensions [ http://id.tincanapi.com/extension/starting-point ]                    data [current_tab]
+extensions [ http://id.tincanapi.com/extension/ending-point ]                      "previous unit"
 ================================================================================== =============================================
 
 edx.ui.lms.sequence.tab_selected
@@ -449,9 +447,8 @@ contextActivities [ parent [ objectType ] ]                                     
 contextActivities [ parent [ id ] ]                                                <LMS_ROOT_URL>/course/<data [ course_id ]>
 contextActivities [ parent [ definition [ type ] ] ]                               http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ]                      <name of course-run>
-extensions [ http://id.tincanapi.com/extension/s
-tarting-point ]                   data [current_tab]
-extensions [ http://http://id.tincanapi.com/extension/ending-point ]               <data [ target_tab ]>
+extensions [ http://id.tincanapi.com/extension/starting-point ]                    data [current_tab]
+extensions [ http://id.tincanapi.com/extension/ending-point ]                      <data [ target_tab ]>
 ================================================================================== =============================================
 
 edx.ui.lms.link_clicked
