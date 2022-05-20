@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[5.2.1]
+~~~~~~~
+
+* Added `video_complete` event to xAPI backend and fixed broken links in documentation
+
 [5.2.0]
 ~~~~~~~
 
