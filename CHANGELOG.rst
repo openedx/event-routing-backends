@@ -69,24 +69,15 @@ This tag is a re-release of version 3.0.0. (Failed to bump internal version, tho
 [1.0.0] - 2020-11-09
 ~~~~~~~~~~~~~~~~~~~~
 
-Removed
---------
-
 * Dropped support for Python 3.5
 
 [0.2.0] - 2020-11-06
 ~~~~~~~~~~~~~~~~~~~~
-
-Added
-_____
 
 * caliper transformer backend
 * event routing backend
 
 [0.1.0] - 2020-09-22
 ~~~~~~~~~~~~~~~~~~~~
-
-Added
-_____
 
 * First release on PyPI.

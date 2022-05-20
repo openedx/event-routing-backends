@@ -37,7 +37,7 @@ Event consumers may never want to lose certain events even after a brief failure
 Supported events and mapping of edx events onto xAPI and Caliper formats
 ------------------------------------------------------------------------
 
-List of supported edx events can be found in `Supported_events <./event-mapping/Supported_events.rst>`_ along with their mapping onto xAPI and Caliper format.
+List of supported edx events can be found in `Supported_events <https://github.com/openedx/event-routing-backends/blob/master/docs/event-mapping/Supported_events.rst>`_ along with their mapping onto xAPI and Caliper format.
 
 Version information of mapping
 ------------------------------

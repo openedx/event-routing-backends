@@ -40,7 +40,7 @@ Set the Django setting ``CALIPER_EVENTS_ENABLED`` or ``XAPI_EVENTS_ENABLED`` to 
 Configure for testing
 ---------------------
 
-Follow instructions in `getting_started <docs/gettingstarted.rst>`_ doc. There is a chance some of this has already been done. Most of the code changes should just be copy and paste, but here are some suggested changes for debugging. It'll be easier to understand following instructions if you read `getting_started <docs/gettingstarted.rst>`_ doc first.
+Follow instructions in `getting started <docs/getting_started.rst>`_ doc. There is a chance some of this has already been done. Most of the code changes should just be copy and paste, but here are some suggested changes for debugging. It'll be easier to understand following instructions if you read `getting_started <docs/gettingstarted.rst>`_ doc first.
 
 Change router endpoint
 ~~~~~~~~~~~~~~~~~~~~~~
