@@ -14,7 +14,7 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-*
+* Rename toggle_warnings to toggle_warning for consistency with setting_warning.
 
 [5.2.1]
 ~~~~~~~
@@ -26,7 +26,7 @@ Unreleased
 
 * Added Support for Django4 and used djfernet instead of django-fernet-fields
 * Removed Django22, 30 and 31 support
-* Constrained "click" to 7.1.2 as edx-celeryutils constraints the version to this package 
+* Constrained "click" to 7.1.2 as edx-celeryutils constraints the version to this package
 
 
 [4.1.1]

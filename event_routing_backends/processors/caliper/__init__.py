@@ -11,7 +11,7 @@ from edx_toggles.toggles import SettingToggle
 # .. toggle_description: Allow sending events to external servers via Caliper.
 #   Toggle intended both for gating initial release and for shutting off all
 #   Caliper events in case of emergency.
-# .. toggle_warnings: Do not enable sending of Caliper events until there has
+# .. toggle_warning: Do not enable sending of Caliper events until there has
 #   been a thorough review of PII implications and safeguards put in place to
 #   prevent accidental leakage of novel event fields to third parties. See
 #   ARCHBOM-1655 for details.
