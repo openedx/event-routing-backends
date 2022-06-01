@@ -32,7 +32,7 @@ bleach==5.0.0
     # via readme-renderer
 build==0.8.0
     # via -r requirements/doc.in
-celery==5.2.6
+celery==5.2.7
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -85,6 +85,7 @@ cryptography==37.0.2
     # via
     #   -r requirements/test.txt
     #   djfernet
+    #   secretstorage
 ddt==1.5.0
     # via -r requirements/test.txt
 django==3.2.13
@@ -146,7 +147,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.11.1
+faker==13.12.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -170,6 +171,10 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
@@ -293,6 +298,8 @@ rfc3986==2.0.0
     # via twine
 rich==12.4.4
     # via twine
+secretstorage==3.3.2
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt

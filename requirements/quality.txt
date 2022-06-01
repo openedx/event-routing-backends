@@ -28,7 +28,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
-celery==5.2.6
+celery==5.2.7
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -139,7 +139,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==13.11.1
+faker==13.12.0
     # via
     #   -r requirements/test.txt
     #   factory-boy

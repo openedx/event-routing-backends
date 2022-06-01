@@ -29,7 +29,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/quality.txt
     #   celery
-celery==5.2.6
+celery==5.2.7
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -163,11 +163,11 @@ event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==13.11.1
+faker==13.12.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-filelock==3.7.0
+filelock==3.7.1
     # via
     #   -r requirements/ci.txt
     #   tox
