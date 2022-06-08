@@ -63,7 +63,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-model-utils==4.2.0
     # via edx-celeryutils
-django-waffle==2.4.1
+django-waffle==2.5.0
     # via
     #   edx-django-utils
     #   edx-toggles
