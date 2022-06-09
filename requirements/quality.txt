@@ -131,7 +131,7 @@ edx-django-utils==5.0.0
     #   django-config-models
     #   edx-toggles
     #   event-tracking
-edx-lint==5.2.2
+edx-lint==5.2.3
     # via -r requirements/quality.in
 edx-toggles==5.0.0
     # via -r requirements/test.txt
