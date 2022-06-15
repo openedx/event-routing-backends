@@ -122,7 +122,7 @@ event-tracking==2.1.0
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==13.12.1
+faker==13.13.0
     # via factory-boy
 future==0.18.2
     # via
@@ -154,7 +154,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==7.10.0.175
+newrelic==7.12.0.176
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -218,7 +218,7 @@ pyyaml==6.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
-requests==2.27.1
+requests==2.28.0
     # via -r requirements/base.txt
 six==1.16.0
     # via
