@@ -29,6 +29,10 @@ billiard==3.6.4.0
     # via
     #   -r requirements/quality.txt
     #   celery
+build==0.8.0
+    # via
+    #   -r requirements/pip-tools.txt
+    #   pip-tools
 celery==5.2.7
     # via
     #   -r requirements/quality.txt
@@ -91,7 +95,7 @@ coverage[toml]==6.4.1
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==37.0.3
+cryptography==37.0.2
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -163,7 +167,7 @@ event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==13.13.0
+faker==13.14.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -223,14 +227,16 @@ mccabe==0.7.0
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.12.0.176
+newrelic==7.14.0.177
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
 packaging==21.3
     # via
     #   -r requirements/ci.txt
+    #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
+    #   build
     #   pytest
     #   tox
 path==16.4.0
@@ -242,8 +248,8 @@ pbr==5.9.0
 pep517==0.12.0
     # via
     #   -r requirements/pip-tools.txt
-    #   pip-tools
-pip-tools==6.6.2
+    #   build
+pip-tools==6.7.0
     # via -r requirements/pip-tools.txt
 platformdirs==2.5.2
     # via
@@ -260,7 +266,7 @@ pluggy==1.0.0
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.29
+prompt-toolkit==3.0.30
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -315,6 +321,7 @@ pynacl==1.5.0
 pyparsing==3.0.9
     # via
     #   -r requirements/ci.txt
+    #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
     #   packaging
 pytest==7.1.2
@@ -390,6 +397,7 @@ tomli==2.0.1
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
+    #   build
     #   coverage
     #   pep517
     #   pylint
@@ -420,7 +428,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.14.1
+virtualenv==20.15.1
     # via
     #   -r requirements/ci.txt
     #   tox
