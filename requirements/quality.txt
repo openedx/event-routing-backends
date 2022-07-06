@@ -37,12 +37,12 @@ certifi==2022.6.15
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==1.15.0
+cffi==1.15.1
     # via
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==2.0.12
+charset-normalizer==2.1.0
     # via
     #   -r requirements/test.txt
     #   requests
@@ -80,7 +80,7 @@ coverage[toml]==6.4.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==37.0.2
+cryptography==37.0.4
     # via
     #   -r requirements/test.txt
     #   djfernet
@@ -88,7 +88,7 @@ ddt==1.5.0
     # via -r requirements/test.txt
 dill==0.3.5.1
     # via pylint
-django==3.2.13
+django==3.2.14
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -221,7 +221,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.14.3
+pylint==2.14.4
     # via
     #   edx-lint
     #   pylint-celery
@@ -276,7 +276,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-requests==2.28.0
+requests==2.28.1
     # via -r requirements/test.txt
 six==1.16.0
     # via
@@ -311,7 +311,7 @@ tomli==2.0.1
     #   pytest
 tomlkit==0.11.0
     # via pylint
-typing-extensions==4.2.0
+typing-extensions==4.3.0
     # via
     #   astroid
     #   pylint
