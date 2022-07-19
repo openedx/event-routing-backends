@@ -8,7 +8,7 @@ Caliper Key         Value
 type                Event
 Action              Activated
 ``Actor``
-id                  <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                  <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                Person
 ``Object``
 id                  <LMS_ROOT_URL>/course/<data [ course_id ]>
@@ -26,7 +26,7 @@ Caliper Key         Value
 type                Event
 Action              Deactivated
 ``Actor``
-id                  <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                  <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                Person
 ``Object``
 id                  <LMS_ROOT_URL>/course/<data [ course_id ]>
@@ -44,7 +44,7 @@ Caliper Key Value
 type        Event
 Action      Completed
 ``Actor``
-id          <LMS_ROOT_URL>/user/<anonymized-user-id>
+id          <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type        Person
 ``Object``
 id          <LMS_ROOT_URL>/course/<data [ course_id ]>
@@ -61,12 +61,12 @@ Caliper Key                      Value
 type                             GradeEvent
 Action                           Graded
 ``Actor``
-id                               <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                               <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                             Person
 ``Object``
-id                               <LMS_ROOT_URL>/xblock/<data [ problem_id ]> /user/<anonymized-user-id>/attempt/data [ attempts ]
+id                               <LMS_ROOT_URL>/xblock/<data [ problem_id ]> /user/<external_id[ LTI ]>/attempt/data [ attempts ]
 type                             Attempt
-assignee [ id ]                  <LMS_ROOT_URL>/user/<anonymized-user-id>
+assignee [ id ]                  <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 assignee [ type ]                Person
 assignable [ id ]                <LMS_ROOT_URL>/xblock/<data [ problem_id ]>
 assignable [ type ]              Assessment
@@ -91,7 +91,7 @@ Caliper Key     Value
 type            AssessmentEvent
 Action          Submitted
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              <LMS_ROOT_URL>/xblock/<data [ problem_id ]>
@@ -109,7 +109,7 @@ Caliper Key                      Value
 type                             Event
 Action                           Viewed
 ``Actor``
-id                               <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                               <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                             Person
 ``Object``
 id                               <LMS_ROOT_URL>/xblock/<data [ problem_id ]>/solution
@@ -128,7 +128,7 @@ Caliper Key                      Value
 type                             Event
 Action                           Viewed
 ``Actor``
-id                               <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                               <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                             Person
 ``Object``
 id                               <LMS_ROOT_URL>/xblock/<data [ problem_id ]>/hint/ <data [ hint_index ] >
@@ -147,7 +147,7 @@ Caliper Key     Value
 type            MediaEvent
 Action          Started
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
@@ -166,7 +166,7 @@ Caliper Key     Value
 type            MediaEvent
 Action          Resumed
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
@@ -189,7 +189,7 @@ Caliper Key     Value
 type            MediaEvent
 Action          Ended
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
@@ -212,7 +212,7 @@ Caliper Key     Value
 type            MediaEvent
 Action          Paused
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
@@ -235,7 +235,7 @@ Caliper Key          Value
 type                 MediaEvent
 Action               JumpedTo
 ``Actor``
-id                   <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                   <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                 Person
 ``Object``
 id                   <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
@@ -259,7 +259,7 @@ Caliper Key     Value
 type            Event
 Action          Completed
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
@@ -278,7 +278,7 @@ Caliper Key     Value
 type            NavigationEvent
 Action          NavigatedTo
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              data [ target_url ]
@@ -297,7 +297,7 @@ Caliper Key                Value
 type                       NavigationEvent
 Action                     NavigatedTo
 ``Actor``
-id                         <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                         <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                       Person
 ``Object``
 id                         <LMS_ROOT_URL>/xblock/<data [ id ]>
@@ -319,7 +319,7 @@ Caliper Key                Value
 type                       NavigationEvent
 Action                     NavigatedTo
 ``Actor``
-id                         <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                         <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                       Person
 ``Object``
 id                         <LMS_ROOT_URL>/xblock/<data [ id ]>
@@ -341,7 +341,7 @@ Caliper Key                Value
 type                       NavigationEvent
 Action                     NavigatedTo
 ``Actor``
-id                         <LMS_ROOT_URL>/user/<anonymized-user-id>
+id                         <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type                       Person
 ``Object``
 id                         <LMS_ROOT_URL>/xblock/<data [ id ]>
@@ -363,7 +363,7 @@ Caliper Key     Value
 type            NavigationEvent
 Action          NavigatedTo
 ``Actor``
-id              <LMS_ROOT_URL>/user/<anonymized-user-id>
+id              <LMS_ROOT_URL>/user/<external_id[ LTI ]>
 type            Person
 ``Object``
 id              data [ target_url ]
