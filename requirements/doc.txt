@@ -184,7 +184,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-keyring==23.6.0
+keyring==23.7.0
     # via twine
 kombu==5.2.4
     # via

@@ -221,7 +221,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.14.4
+pylint==2.14.5
     # via
     #   edx-lint
     #   pylint-celery
