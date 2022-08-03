@@ -18,7 +18,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/test.txt
     #   django
-attrs==21.4.0
+attrs==22.1.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -85,10 +85,9 @@ cryptography==37.0.4
     # via
     #   -r requirements/test.txt
     #   djfernet
-    #   secretstorage
 ddt==1.5.0
     # via -r requirements/test.txt
-django==3.2.14
+django==3.2.15
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -124,7 +123,9 @@ djangorestframework==3.13.1
 djfernet==0.8.1
     # via -r requirements/test.txt
 doc8==0.11.2
-    # via -r requirements/doc.in
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/doc.in
 docutils==0.17.1
     # via
     #   doc8
@@ -171,10 +172,6 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
-jeepney==0.8.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
@@ -210,7 +207,7 @@ pbr==5.9.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-pep517==0.12.0
+pep517==0.13.0
     # via build
 pkginfo==1.8.3
     # via twine
@@ -298,8 +295,6 @@ rfc3986==2.0.0
     # via twine
 rich==12.5.1
     # via twine
-secretstorage==3.3.2
-    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
