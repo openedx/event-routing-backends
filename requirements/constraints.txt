@@ -19,3 +19,7 @@ diff-cover==4.0.0
 
 # greater version failing docs build
 sphinx==4.2.0
+# Sphinx requires docutils<0.18 && doc8<1.0.0
+# This pin can be removed once sphinx constraint is removed.
+docutils<0.18
+doc8<1.0.0
