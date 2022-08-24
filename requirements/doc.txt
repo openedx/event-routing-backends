@@ -46,7 +46,7 @@ cffi==1.15.1
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==2.1.0
+charset-normalizer==2.1.1
     # via
     #   -r requirements/test.txt
     #   requests
@@ -85,6 +85,7 @@ cryptography==37.0.4
     # via
     #   -r requirements/test.txt
     #   djfernet
+    #   secretstorage
 ddt==1.6.0
     # via -r requirements/test.txt
 django==3.2.15
@@ -111,7 +112,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.6.0
+django-waffle==2.7.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -149,7 +150,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==14.0.0
+faker==14.1.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -173,6 +174,10 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
@@ -280,7 +285,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==36.0
+readme-renderer==37.0
     # via twine
 requests==2.28.1
     # via
@@ -296,6 +301,8 @@ rfc3986==2.0.0
     # via twine
 rich==12.5.1
     # via twine
+secretstorage==3.3.3
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
@@ -351,7 +358,7 @@ twine==4.0.1
     # via -r requirements/doc.in
 typing-extensions==4.3.0
     # via rich
-urllib3==1.26.11
+urllib3==1.26.12
     # via
     #   -r requirements/test.txt
     #   requests
