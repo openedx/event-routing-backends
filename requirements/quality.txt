@@ -42,7 +42,7 @@ cffi==1.15.1
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==2.1.0
+charset-normalizer==2.1.1
     # via
     #   -r requirements/test.txt
     #   requests
@@ -112,7 +112,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.6.0
+django-waffle==2.7.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -139,7 +139,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==14.0.0
+faker==14.1.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -315,7 +315,7 @@ typing-extensions==4.3.0
     # via
     #   astroid
     #   pylint
-urllib3==1.26.11
+urllib3==1.26.12
     # via
     #   -r requirements/test.txt
     #   requests
