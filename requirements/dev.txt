@@ -16,7 +16,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.11.7
+astroid==2.12.5
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -109,7 +109,7 @@ dill==0.3.5.1
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.3.5
+distlib==0.3.6
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -138,7 +138,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-waffle==2.7.0
+django-waffle==3.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -167,7 +167,7 @@ event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==14.1.0
+faker==14.1.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -286,13 +286,13 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==1.9.2
+pydantic==1.10.0
     # via inflect
 pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.13.0
     # via diff-cover
-pylint==2.14.5
+pylint==2.15.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -430,7 +430,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.16.3
+virtualenv==20.16.4
     # via
     #   -r requirements/ci.txt
     #   tox
