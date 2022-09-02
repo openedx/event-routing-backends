@@ -112,7 +112,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.7.0
+django-waffle==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -150,7 +150,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==14.1.0
+faker==14.1.1
     # via
     #   -r requirements/test.txt
     #   factory-boy

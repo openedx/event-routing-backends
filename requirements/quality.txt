@@ -16,7 +16,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.11.7
+astroid==2.12.5
     # via
     #   pylint
     #   pylint-celery
@@ -112,7 +112,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.7.0
+django-waffle==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -139,7 +139,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==14.1.0
+faker==14.1.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -221,7 +221,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.14.5
+pylint==2.15.0
     # via
     #   edx-lint
     #   pylint-celery
@@ -331,6 +331,3 @@ wcwidth==0.2.5
     #   prompt-toolkit
 wrapt==1.14.1
     # via astroid
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

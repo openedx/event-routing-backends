@@ -72,7 +72,7 @@ class HttpClient:
         if self.AUTH_SCHEME == RouterConfiguration.AUTH_BASIC:
             options.update({'auth': (self.username, self.password)})
         logger.debug('Sending caliper version of edx event "{}" to {}'.format(event_name, self.URL))
-        response = requests.post(**options)
+        response = requests.post(**options)   # pylint: disable=missing-timeout
 
         if not 200 <= response.status_code < 300:
             logger.warning(
