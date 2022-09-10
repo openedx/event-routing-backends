@@ -25,13 +25,13 @@ Decision
 
 Keeping in mind a large number of enterprise clients, we will store
 router configurations in `Django configuration models
-<https://github.com/edx/django-config-models>`__.
+<https://github.com/openedx/django-config-models>`__.
 
 Consequences
 ------------
 
 Storing configurations in `Django configuration
-models <https://github.com/edx/django-config-models>`__ will keep the
+models <https://github.com/openedx/django-config-models>`__ will keep the
 settings files cleaner.
 
 Django configuration models have built-in caching support which would

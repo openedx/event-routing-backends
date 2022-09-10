@@ -20,7 +20,7 @@
             ]
         },
         "extensions": {
-            "https://github.com/edx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst": "1.0",
+            "https://github.com/openedx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst": "1.0",
             "http://id.tincanapi.com/extension/ending-point": "next unit",
             "http://id.tincanapi.com/extension/starting-position": 4
         }

@@ -2,7 +2,7 @@
 How To Test
 ===========
 
-This is a rough guide of how to go about testing backends in edx-platform. It assumes you have devstack already up and running. If not, see `devstack docs <https://github.com/edx/devstack>`_.
+This is a rough guide of how to go about testing backends in edx-platform. It assumes you have devstack already up and running. If not, see `devstack docs <https://github.com/openedx/devstack>`_.
 
 
 Add edx-event-routing-backends to requirements
@@ -70,7 +70,7 @@ There are two ways you can filter events:
 
 - Event types can be filtered using `RegexFilter`_ in EVENT_TRACKING_BACKENDS.${backend_name}.OPTIONS.processors.OPTIONS
 
-.. _RegexFilter: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
+.. _RegexFilter: https://github.com/openedx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
 
 - Particular instances of event types can be filtered based on key, value pair in the serialized event dict. When setting up router in django admin, add key, value pair you want to match_params. If you want all instances of events to be sent, set match_params to empty dict: `match_params: {}`
 

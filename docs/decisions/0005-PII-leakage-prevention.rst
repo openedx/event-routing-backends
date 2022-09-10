@@ -26,4 +26,4 @@ Benefits
 
 #. Only the instances where this accessor is called, will need to be reviewed during code review, in order to check for potential PII leakage.
 
-.. _method: https://github.com/edx/event-routing-backends/blob/f430d4cf58bdab01e42fcc944241898606873d82/event_routing_backends/processors/mixins/base_transformer.py#L139
+.. _method: https://github.com/openedx/event-routing-backends/blob/f430d4cf58bdab01e42fcc944241898606873d82/event_routing_backends/processors/mixins/base_transformer.py#L139
