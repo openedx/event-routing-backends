@@ -26,7 +26,7 @@ class LrsClient:
         headers (str)     :     Any additional headers to be sent with event payload.
         """
 
-        self.URL = url
+        self.URL = url.split('?')[0] # the '.split('?')[0]' added by CampusIL
         self.AUTH_SCHEME = auth_scheme
         self.AUTH_KEY = auth_key
         self.VERSION = version
