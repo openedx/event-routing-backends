@@ -44,7 +44,7 @@ Version information of mapping
 
 Version of mapping of edx event onto xAPI or Caliper format, for each event, is included in the statement and event respectively. Version is a string of format "X.Y" where increment in X represents breaking changes and increment in Y represents addition of fields in the event json, both starting with zero.
 
-In xAPI statement, version is in value of the key ``https://github.com/edx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst`` in ``extensions`` of ``Context`` of the statement.
+In xAPI statement, version is in value of the key ``https://github.com/openedx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst`` in ``extensions`` of ``Context`` of the statement.
 
 In Caliper event, version is in value of the key ``eventVersion`` in ``extensions`` of the event.
 
@@ -216,28 +216,28 @@ A sample override for ``xapi`` backend is presented below. Here we are allowing 
         }
     }
 
-.. _event-tracking: https://github.com/edx/event-tracking
+.. _event-tracking: https://github.com/openedx/event-tracking
 
-.. _NameWhitelist: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/whitelist.py
+.. _NameWhitelist: https://github.com/openedx/event-tracking/blob/master/eventtracking/processors/whitelist.py
 
-.. _RegexFilter: https://github.com/edx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
+.. _RegexFilter: https://github.com/openedx/event-tracking/blob/master/eventtracking/processors/regex_filter.py
 
-.. _save_statement: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/xapi_lrs_client.py#L70
+.. _save_statement: https://github.com/openedx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/xapi_lrs_client.py#L70
 
-.. _post: https://github.com/edx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
+.. _post: https://github.com/openedx/event-routing-backends/blob/2ec15d054b3b1dd6072689aa470f3d805486526e/event_routing_backends/utils/http_client.py#L67
 
-.. _AsyncRoutingBackend: https://github.com/edx/event-tracking/blob/fccad3d118f594fe304ec48517e896447f15e782/eventtracking/backends/async_routing.py#L13
+.. _AsyncRoutingBackend: https://github.com/openedx/event-tracking/blob/fccad3d118f594fe304ec48517e896447f15e782/eventtracking/backends/async_routing.py#L13
 
-.. _CaliperProcessor: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/caliper/transformer_processor.py#L16
+.. _CaliperProcessor: https://github.com/openedx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/caliper/transformer_processor.py#L16
 
-.. _XApiProcessor: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/xapi/transformer_processor.py#L16
+.. _XApiProcessor: https://github.com/openedx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/xapi/transformer_processor.py#L16
 
-.. _CaliperEnvelopeProcessor: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/caliper/envelope_processor.py#L12
+.. _CaliperEnvelopeProcessor: https://github.com/openedx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/processors/caliper/envelope_processor.py#L12
 
-.. _EventsRouter: https://github.com/edx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/backends/events_router.py#L15
+.. _EventsRouter: https://github.com/openedx/event-routing-backends/blob/ac192ab6b4d1452ada37302d1481eea2f58aef19/event_routing_backends/backends/events_router.py#L15
 
-.. _business_critical_events: https://github.com/edx/event-routing-backends/blob/e375674156b347be833ad8c2479be2c4ff4b073f/event_routing_backends/helpers.py#L197
+.. _business_critical_events: https://github.com/openedx/event-routing-backends/blob/e375674156b347be833ad8c2479be2c4ff4b073f/event_routing_backends/helpers.py#L197
 
-.. _edx-celeryutils: https://github.com/edx/edx-celeryutils
+.. _edx-celeryutils: https://github.com/openedx/edx-celeryutils
 
-.. _commands: https://github.com/edx/edx-celeryutils/tree/master/celery_utils/management/commands
+.. _commands: https://github.com/openedx/edx-celeryutils/tree/master/celery_utils/management/commands

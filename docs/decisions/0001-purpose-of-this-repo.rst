@@ -31,7 +31,7 @@ Decision
 
 Among the components listed above, Asynchronous Routing Backend and the
 regular-expressions filter will be added in the core app (i.e.
-`event-tracking <https://github.com/edx/event-tracking>`__) while the
+`event-tracking <https://github.com/openedx/event-tracking>`__) while the
 other components, i.e. Caliper transformer backend, xAPI transformer
 backend and router, will be added in the current repo.
 

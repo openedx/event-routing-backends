@@ -15,7 +15,7 @@ Currently work to support xAPI and Caliper event formats is in progress.
 
 See `OEP 26`_ for background; the xAPI and Caliper subdocuments in particular include a specification of how LMS events will be translated to the format of the respective protocols.
 
-.. _event-tracking: https://github.com/edx/event-tracking
+.. _event-tracking: https://github.com/openedx/event-tracking
 .. _OEP 26: https://open-edx-proposals.readthedocs.io/en/latest/oep-0026-arch-realtime-events.html
 
 Documentation
@@ -35,7 +35,7 @@ How To Contribute
 -----------------
 
 Contributions are very welcome.
-Please read `How To Contribute <https://github.com/edx/edx-platform/blob/master/CONTRIBUTING.rst>`__ for details.
+Please read `How To Contribute <https://github.com/openedx/edx-platform/blob/master/CONTRIBUTING.rst>`__ for details.
 Even though they were written with ``edx-platform`` in mind, the guidelines
 should be followed for all Open edX projects.
 
@@ -66,8 +66,8 @@ For more information about these options, see the `Getting Help <https://openedx
     :target: https://pypi.python.org/pypi/event-routing-backends/
     :alt: PyPI
 
-.. |ci-badge| image:: https://github.com/edx/event-routing-backends/workflows/Python%20CI/badge.svg?branch=master
-    :target: https://github.com/edx/event-routing-backends/actions?query=workflow%3A%22Python+CI%22
+.. |ci-badge| image:: https://github.com/openedx/event-routing-backends/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/openedx/event-routing-backends/actions?query=workflow%3A%22Python+CI%22
     :alt: CI
 
 .. |codecov-badge| image:: https://codecov.io/github/edx/event-routing-backends/coverage.svg?branch=master
@@ -83,5 +83,5 @@ For more information about these options, see the `Getting Help <https://openedx
     :alt: Supported Python versions
 
 .. |license-badge| image:: https://img.shields.io/github/license/edx/event-routing-backends.svg
-    :target: https://github.com/edx/event-routing-backends/blob/master/LICENSE.txt
+    :target: https://github.com/openedx/event-routing-backends/blob/master/LICENSE.txt
     :alt: License

@@ -113,7 +113,7 @@ setup(
     long_description_content_type='text/x-rst',
     author='edX',
     author_email='oscm@edx.org',
-    url='https://github.com/edx/event-routing-backends',
+    url='https://github.com/openedx/event-routing-backends',
     packages=[
         'event_routing_backends',
     ],
