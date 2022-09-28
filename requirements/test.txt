@@ -27,7 +27,7 @@ celery==5.2.7
     #   -r requirements/base.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/base.txt
     #   requests
@@ -102,7 +102,7 @@ django-waffle==3.0.0
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.13.1
+djangorestframework==3.14.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -122,7 +122,7 @@ event-tracking==2.1.0
     # via -r requirements/base.txt
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==14.2.0
+faker==15.0.0
     # via factory-boy
 future==0.18.2
     # via
@@ -154,7 +154,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==8.1.0.180
+newrelic==8.2.0.181
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -227,7 +227,7 @@ six==1.16.0
     #   event-tracking
     #   isodate
     #   python-dateutil
-sqlparse==0.4.2
+sqlparse==0.4.3
     # via
     #   -r requirements/base.txt
     #   django

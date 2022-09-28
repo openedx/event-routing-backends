@@ -37,7 +37,7 @@ celery==5.2.7
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/test.txt
     #   requests
@@ -117,7 +117,7 @@ django-waffle==3.0.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.13.1
+djangorestframework==3.14.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -150,7 +150,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==14.2.0
+faker==15.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -174,7 +174,7 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
-jaraco-classes==3.2.2
+jaraco-classes==3.2.3
     # via keyring
 jeepney==0.8.0
     # via
@@ -203,7 +203,7 @@ mock==4.0.3
     # via -r requirements/test.txt
 more-itertools==8.14.0
     # via jaraco-classes
-newrelic==8.1.0.180
+newrelic==8.2.0.181
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -289,7 +289,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==37.1
+readme-renderer==37.2
     # via twine
 requests==2.28.1
     # via
@@ -335,7 +335,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlparse==0.4.2
+sqlparse==0.4.3
     # via
     #   -r requirements/test.txt
     #   django
