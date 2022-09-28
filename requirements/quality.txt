@@ -33,7 +33,7 @@ celery==5.2.7
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2022.9.14
+certifi==2022.9.24
     # via
     #   -r requirements/test.txt
     #   requests
@@ -117,7 +117,7 @@ django-waffle==3.0.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.13.1
+djangorestframework==3.14.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -139,7 +139,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==14.2.0
+faker==15.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -183,7 +183,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==8.1.0.180
+newrelic==8.2.0.181
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -288,7 +288,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via pydocstyle
-sqlparse==0.4.2
+sqlparse==0.4.3
     # via
     #   -r requirements/test.txt
     #   django
@@ -309,7 +309,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.11.4
+tomlkit==0.11.5
     # via pylint
 typing-extensions==4.3.0
     # via
