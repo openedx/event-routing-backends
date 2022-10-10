@@ -54,7 +54,6 @@ class XApiTransformer(BaseTransformerMixin):
             'actor': self.get_actor(),
             'context': self.get_context(),
             'timestamp': self.get_timestamp(),
-            'id': uuid.uuid4()
         }
 
     def get_actor(self):
