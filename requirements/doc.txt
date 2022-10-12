@@ -81,7 +81,7 @@ coverage[toml]==6.5.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==38.0.1
+cryptography==38.0.2
     # via
     #   -r requirements/test.txt
     #   djfernet
@@ -136,7 +136,7 @@ docutils==0.17.1
     #   sphinx
 edx-celeryutils==1.2.1
     # via -r requirements/test.txt
-edx-django-utils==5.1.0
+edx-django-utils==5.2.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -150,7 +150,7 @@ event-tracking==2.1.0
     # via -r requirements/test.txt
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==15.0.0
+faker==15.1.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -203,7 +203,7 @@ mock==4.0.3
     # via -r requirements/test.txt
 more-itertools==8.14.0
     # via jaraco-classes
-newrelic==8.2.0.181
+newrelic==8.2.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -297,7 +297,7 @@ requests==2.28.1
     #   requests-toolbelt
     #   sphinx
     #   twine
-requests-toolbelt==0.9.1
+requests-toolbelt==0.10.0
     # via twine
 restructuredtext-lint==1.4.0
     # via doc8
@@ -360,7 +360,7 @@ tomli==2.0.1
     #   pytest
 twine==4.0.1
     # via -r requirements/doc.in
-typing-extensions==4.3.0
+typing-extensions==4.4.0
     # via rich
 urllib3==1.26.12
     # via
@@ -379,7 +379,7 @@ wcwidth==0.2.5
     #   prompt-toolkit
 webencodings==0.5.1
     # via bleach
-zipp==3.8.1
+zipp==3.9.0
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
