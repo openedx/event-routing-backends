@@ -16,7 +16,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.12.10
+astroid==2.12.11
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -95,7 +95,7 @@ coverage[toml]==6.5.0
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==38.0.1
+cryptography==38.0.2
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -151,7 +151,7 @@ djfernet==0.8.1
     # via -r requirements/quality.txt
 edx-celeryutils==1.2.1
     # via -r requirements/quality.txt
-edx-django-utils==5.1.0
+edx-django-utils==5.2.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -167,7 +167,7 @@ event-tracking==2.1.0
     # via -r requirements/quality.txt
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==15.0.0
+faker==15.1.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -227,7 +227,7 @@ mccabe==0.7.0
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==8.2.0.181
+newrelic==8.2.1
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -249,7 +249,7 @@ pep517==0.13.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pip-tools==6.8.0
+pip-tools==6.9.0
     # via -r requirements/pip-tools.txt
 platformdirs==2.5.2
     # via
@@ -292,7 +292,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.13.0
     # via diff-cover
-pylint==2.15.3
+pylint==2.15.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -411,7 +411,7 @@ tox==3.26.0
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==4.3.0
+typing-extensions==4.4.0
     # via
     #   -r requirements/quality.txt
     #   astroid
