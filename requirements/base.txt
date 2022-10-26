@@ -98,9 +98,9 @@ kombu==5.2.4
     # via celery
 markupsafe==2.1.1
     # via jinja2
-newrelic==8.2.1
+newrelic==8.3.0
     # via edx-django-utils
-pbr==5.10.0
+pbr==5.11.0
     # via stevedore
 prompt-toolkit==3.0.31
     # via click-repl
@@ -136,7 +136,7 @@ six==1.16.0
     #   python-dateutil
 sqlparse==0.4.3
     # via django
-stevedore==4.0.1
+stevedore==4.1.0
     # via
     #   code-annotations
     #   edx-django-utils
