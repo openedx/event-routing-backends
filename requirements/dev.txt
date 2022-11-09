@@ -29,7 +29,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/quality.txt
     #   celery
-build==0.8.0
+build==0.9.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -95,7 +95,7 @@ coverage[toml]==6.5.0
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==38.0.1
+cryptography==38.0.3
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -165,13 +165,13 @@ edx-toggles==5.0.0
     # via -r requirements/quality.txt
 event-tracking==2.1.0
     # via -r requirements/quality.txt
-exceptiongroup==1.0.0rc9
+exceptiongroup==1.0.1
     # via
     #   -r requirements/quality.txt
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==15.1.1
+faker==15.3.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -217,7 +217,7 @@ kombu==5.2.4
     # via
     #   -r requirements/quality.txt
     #   celery
-lazy-object-proxy==1.7.1
+lazy-object-proxy==1.8.0
     # via
     #   -r requirements/quality.txt
     #   astroid
@@ -231,7 +231,7 @@ mccabe==0.7.0
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==8.3.0
+newrelic==8.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -255,7 +255,7 @@ pep517==0.13.0
     #   build
 pip-tools==6.9.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.5.2
+platformdirs==2.5.3
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -270,11 +270,11 @@ pluggy==1.0.0
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.31
+prompt-toolkit==3.0.32
     # via
     #   -r requirements/quality.txt
     #   click-repl
-psutil==5.9.3
+psutil==5.9.4
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -314,7 +314,7 @@ pylint-plugin-utils==0.7
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==3.12.3
+pymongo==3.13.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -345,7 +345,7 @@ python-slugify==6.1.2
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2022.5
+pytz==2022.6
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -403,7 +403,7 @@ tomli==2.0.1
     #   pylint
     #   pytest
     #   tox
-tomlkit==0.11.5
+tomlkit==0.11.6
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -438,7 +438,7 @@ wcwidth==0.2.5
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
-wheel==0.37.1
+wheel==0.38.3
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
