@@ -80,7 +80,7 @@ coverage[toml]==6.5.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==38.0.1
+cryptography==38.0.3
     # via
     #   -r requirements/test.txt
     #   djfernet
@@ -137,13 +137,13 @@ edx-toggles==5.0.0
     # via -r requirements/test.txt
 event-tracking==2.1.0
     # via -r requirements/test.txt
-exceptiongroup==1.0.0rc9
+exceptiongroup==1.0.1
     # via
     #   -r requirements/test.txt
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==15.1.1
+faker==15.3.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -177,7 +177,7 @@ kombu==5.2.4
     # via
     #   -r requirements/test.txt
     #   celery
-lazy-object-proxy==1.7.1
+lazy-object-proxy==1.8.0
     # via astroid
 markupsafe==2.1.1
     # via
@@ -187,7 +187,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==8.3.0
+newrelic==8.4.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -199,17 +199,17 @@ pbr==5.11.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==2.5.2
+platformdirs==2.5.3
     # via pylint
 pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.31
+prompt-toolkit==3.0.32
     # via
     #   -r requirements/test.txt
     #   click-repl
-psutil==5.9.3
+psutil==5.9.4
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -235,7 +235,7 @@ pylint-plugin-utils==0.7
     # via
     #   pylint-celery
     #   pylint-django
-pymongo==3.12.3
+pymongo==3.13.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -264,7 +264,7 @@ python-slugify==6.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2022.5
+pytz==2022.6
     # via
     #   -r requirements/test.txt
     #   celery
@@ -309,7 +309,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.11.5
+tomlkit==0.11.6
     # via pylint
 typing-extensions==4.4.0
     # via
