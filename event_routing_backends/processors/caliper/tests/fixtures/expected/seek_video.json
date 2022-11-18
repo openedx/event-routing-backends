@@ -19,12 +19,15 @@
         "type": "VideoObject"
     },
     "target": {
-      "id": "_:MediaLocation",
-      "new_time": "PT10S",
-      "type": "MediaLocation"
+      "id": "_:MediaLocation",      
+      "type": "MediaLocation",
+      "currentTime": "PT3M14.381S",
+      "extensions": {
+        "newTime": "PT10S"
+      }
     },
     "extensions": {
-      "eventVersion": "1.0"
+      "eventVersion": "1.0"      
     },
     "type": "MediaEvent"
 }

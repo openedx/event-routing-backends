@@ -7,7 +7,7 @@ from event_routing_backends.processors.caliper.event_transformers.problem_intera
     ProblemEventsTransformers,
 )
 from event_routing_backends.processors.caliper.event_transformers.video_events import (
-    PlayPauseVideoTransformer,
     SeekVideoTransformer,
-    StopVideoTransformer,
+    VideoSpeedChangedTransformer,
+    VideoTransformer,
 )

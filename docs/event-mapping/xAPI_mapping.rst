@@ -345,6 +345,146 @@ contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-ru
 extensions [ https://w3id.org/xapi/video/extensions/length ]  data [ duration ]
 ============================================================= ========================================================================================================
 
+edx.video.closed_captions.shown
+===============================
+
+================================================================= ========================================================================================================
+xAPI Key                                                          Value
+================================================================= ========================================================================================================
+``Actor``
+objectType                                                        Agent
+account [ homePage ]                                              <LMS_ROOT_URL>
+account [ name ]                                                  <external_id[ LTI ]>
+``Verb``
+id                                                                https://w3id.org/xapi/video/verbs/interacted
+display [ en-US ]                                                 interacted
+``Object``
+id                                                                <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+objectType                                                        Activity
+definition [ type ]                                               https://w3id.org/xapi/video/activity-type/video
+``Context``
+contextActivities [ parent [ objectType ] ]                       Activity
+contextActivities [ parent [ id ] ]                               <LMS_ROOT_URL>/course/<data [ course_id ]>
+contextActivities [ parent [ definition [ type ] ] ]              http://adlnet.gov/expapi/activities/course
+contextActivities [ parent [ definition [ name ][ en-US ] ] ]     <name of course-run>
+extensions [ https://w3id.org/xapi/video/extensions/length ]      <data [ duration ]>
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time ]        <data [ current_time ]>
+extensions [ https://w3id.org/xapi/video/extensions/cc-enabled ]  true
+================================================================= ========================================================================================================
+
+edx.video.closed_captions.hidden
+================================
+
+================================================================= ========================================================================================================
+xAPI Key                                                          Value
+================================================================= ========================================================================================================
+``Actor``
+objectType                                                        Agent
+account [ homePage ]                                              <LMS_ROOT_URL>
+account [ name ]                                                  <external_id[ LTI ]>
+``Verb``
+id                                                                https://w3id.org/xapi/video/verbs/interacted
+display [ en-US ]                                                 interacted
+``Object``
+id                                                                <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+objectType                                                        Activity
+definition [ type ]                                               https://w3id.org/xapi/video/activity-type/video
+``Context``
+contextActivities [ parent [ objectType ] ]                       Activity
+contextActivities [ parent [ id ] ]                               <LMS_ROOT_URL>/course/<data [ course_id ]>
+contextActivities [ parent [ definition [ type ] ] ]              http://adlnet.gov/expapi/activities/course
+contextActivities [ parent [ definition [ name ][ en-US ] ] ]     <name of course-run>
+extensions [ https://w3id.org/xapi/video/extensions/length ]      <data [ duration ]>
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time ]        <data [ current_time ]>
+extensions [ https://w3id.org/xapi/video/extensions/cc-enabled ]  false
+================================================================= ========================================================================================================
+
+edx.video.transcript.shown
+==========================
+
+================================================================= ========================================================================================================
+xAPI Key                                                          Value
+================================================================= ========================================================================================================
+``Actor``
+objectType                                                        Agent
+account [ homePage ]                                              <LMS_ROOT_URL>
+account [ name ]                                                  <external_id[ LTI ]>
+``Verb``
+id                                                                https://w3id.org/xapi/video/verbs/interacted
+display [ en-US ]                                                 interacted
+``Object``
+id                                                                <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+objectType                                                        Activity
+definition [ type ]                                               https://w3id.org/xapi/video/activity-type/video
+``Context``
+contextActivities [ parent [ objectType ] ]                       Activity
+contextActivities [ parent [ id ] ]                               <LMS_ROOT_URL>/course/<data [ course_id ]>
+contextActivities [ parent [ definition [ type ] ] ]              http://adlnet.gov/expapi/activities/course
+contextActivities [ parent [ definition [ name ][ en-US ] ] ]     <name of course-run>
+extensions [ https://w3id.org/xapi/video/extensions/length ]      <data [ duration ]>
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time ]        <data [ current_time ]>
+extensions [ https://w3id.org/xapi/video/extensions/cc-enabled ]  true
+================================================================= ========================================================================================================
+
+edx.video.transcript.hidden
+===========================
+
+================================================================= ========================================================================================================
+xAPI Key                                                          Value
+================================================================= ========================================================================================================
+``Actor``
+objectType                                                        Agent
+account [ homePage ]                                              <LMS_ROOT_URL>
+account [ name ]                                                  <external_id[ LTI ]>
+``Verb``
+id                                                                https://w3id.org/xapi/video/verbs/interacted
+display [ en-US ]                                                 interacted
+``Object``
+id                                                                <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+objectType                                                        Activity
+definition [ type ]                                               https://w3id.org/xapi/video/activity-type/video
+``Context``
+contextActivities [ parent [ objectType ] ]                       Activity
+contextActivities [ parent [ id ] ]                               <LMS_ROOT_URL>/course/<data [ course_id ]>
+contextActivities [ parent [ definition [ type ] ] ]              http://adlnet.gov/expapi/activities/course
+contextActivities [ parent [ definition [ name ][ en-US ] ] ]     <name of course-run>
+extensions [ https://w3id.org/xapi/video/extensions/length ]      <data [ duration ]>
+``Result``
+extensions [ https://w3id.org/xapi/video/extensions/time ]        <data [ current_time ]>
+extensions [ https://w3id.org/xapi/video/extensions/cc-enabled ]  false
+================================================================= ========================================================================================================
+
+speed_change_video
+==================
+
+================================================================= ========================================================================================================
+xAPI Key                                                          Value
+================================================================= ========================================================================================================
+``Actor``
+objectType                                                        Agent
+account [ homePage ]                                              <LMS_ROOT_URL>
+account [ name ]                                                  <external_id[ LTI ]>
+``Verb``
+id                                                                https://w3id.org/xapi/video/verbs/interacted
+display [ en-US ]                                                 interacted
+``Object``
+id                                                                <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+objectType                                                        Activity
+definition [ type ]                                               https://w3id.org/xapi/video/activity-type/video
+``Context``
+contextActivities [ parent [ objectType ] ]                       Activity
+contextActivities [ parent [ id ] ]                               <LMS_ROOT_URL>/course/<data [ course_id ]>
+contextActivities [ parent [ definition [ type ] ] ]              http://adlnet.gov/expapi/activities/course
+contextActivities [ parent [ definition [ name ][ en-US ] ] ]     <name of course-run>
+extensions [ https://w3id.org/xapi/video/extensions/length ]      <data [ duration ]>
+``Result``
+extensions [ https://w3id.org/xapi/openedx/extension/speed-from ]  <data [ old_speed ]>
+extensions [ https://w3id.org/xapi/openedx/extension/speed-to ]    <data [ new_speed ]>
+================================================================= ========================================================================================================
+
 edx.ui.lms.sequence.outline.selected
 ====================================
 

@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+* add support for video interaction events.
+
+[5.2.2]
+~~~~~~~
+
 * Rename toggle_warnings to toggle_warning for consistency with setting_warning.
 
 [5.2.1]

@@ -61,6 +61,17 @@ def plugin_settings(settings):
                                     'edx.video.paused',
                                     'seek_video',
                                     'edx.video.position.changed',
+                                    'hide_transcript',
+                                    'edx.video.transcript.hidden',
+                                    'show_transcript',
+                                    'edx.video.transcript.shown',
+                                    'speed_change_video',
+                                    'video_hide_cc_menu',
+                                    'edx.video.closed_captions.shown',
+                                    'edx.video.closed_captions.hidden',
+                                    'edx.video.language_menu.hidden',
+                                    'video_show_cc_menu',
+                                    'edx.video.language_menu.shown',
                                     'edx.course.grade.passed.first_time'
                                 ]
                             }

@@ -17,8 +17,10 @@ from event_routing_backends.processors.xapi.event_transformers.problem_interacti
     ProblemSubmittedTransformer,
 )
 from event_routing_backends.processors.xapi.event_transformers.video_events import (
+    VideoCCTransformers,
     VideoCompletedTransformer,
     VideoInteractionTransformers,
     VideoLoadedTransformer,
     VideoPositionChangedTransformer,
+    VideoSpeedChangedTransformer,
 )
