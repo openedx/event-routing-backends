@@ -16,7 +16,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.12.12
+astroid==2.12.13
     # via
     #   pylint
     #   pylint-celery
@@ -80,7 +80,7 @@ coverage[toml]==6.5.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==38.0.3
+cryptography==38.0.4
     # via
     #   -r requirements/test.txt
     #   djfernet
@@ -108,7 +108,7 @@ django-crum==0.7.9
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-django-model-utils==4.2.0
+django-model-utils==4.3.1
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -137,13 +137,13 @@ edx-toggles==5.0.0
     # via -r requirements/test.txt
 event-tracking==2.1.0
     # via -r requirements/test.txt
-exceptiongroup==1.0.1
+exceptiongroup==1.0.4
     # via
     #   -r requirements/test.txt
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==15.3.1
+faker==15.3.3
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -199,13 +199,13 @@ pbr==5.11.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==2.5.3
+platformdirs==2.5.4
     # via pylint
 pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.32
+prompt-toolkit==3.0.33
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -213,7 +213,7 @@ psutil==5.9.4
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pycodestyle==2.9.1
+pycodestyle==2.10.0
     # via -r requirements/quality.in
 pycparser==2.21
     # via
@@ -221,7 +221,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.15.5
+pylint==2.15.7
     # via
     #   edx-lint
     #   pylint-celery
@@ -260,7 +260,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==6.1.2
+python-slugify==7.0.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -292,7 +292,7 @@ sqlparse==0.4.3
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==4.1.0
+stevedore==4.1.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -315,7 +315,7 @@ typing-extensions==4.4.0
     # via
     #   astroid
     #   pylint
-urllib3==1.26.12
+urllib3==1.26.13
     # via
     #   -r requirements/test.txt
     #   requests
