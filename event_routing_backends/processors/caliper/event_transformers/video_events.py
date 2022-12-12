@@ -47,6 +47,18 @@ EVENTS_ACTION_MAP = {
 
     'seek_video': 'JumpedTo',
     'edx.video.position.changed': 'JumpedTo',
+
+    'hide_transcript': 'DisabledClosedCaptioning',
+    'edx.video.transcript.hidden': 'DisabledClosedCaptioning',
+    'edx.video.closed_captions.hidden': 'DisabledClosedCaptioning',
+    'video_hide_cc_menu': 'DisabledClosedCaptioning',
+
+    'show_transcript': 'EnabledClosedCaptioning',
+    'edx.video.transcript.shown': 'EnabledClosedCaptioning',
+    'edx.video.closed_captions.shown': 'EnabledClosedCaptioning',
+    'video_show_cc_menu': 'EnabledClosedCaptioning',
+
+    'speed_change_video': 'ChangedSpeed',
 }
 
 
@@ -55,6 +67,7 @@ class BaseVideoTransformer(CaliperTransformer):
     Base transformer for video interaction events.
     """
     type = 'MediaEvent'
+    additional_fields = ('target',)
 
     def get_action(self):
         """
@@ -70,7 +83,7 @@ class BaseVideoTransformer(CaliperTransformer):
         Return object for the caliper event.
 
         Returns:
-            str
+            dict
         """
         self.event_version = "1.0"
         self.backend_name = 'caliper'
@@ -90,86 +103,16 @@ class BaseVideoTransformer(CaliperTransformer):
 
         return caliper_object
 
-
-@CaliperTransformersRegistry.register('load_video')
-@CaliperTransformersRegistry.register('edx.video.loaded')
-class LoadVideoTransformer(BaseVideoTransformer):
-    """
-    Transform the events fired when a video is loaded.
-    """
-    type = 'MediaEvent'
-
-
-@CaliperTransformersRegistry.register('stop_video')
-@CaliperTransformersRegistry.register('edx.video.stopped')
-@CaliperTransformersRegistry.register('complete_video')
-@CaliperTransformersRegistry.register('edx.video.completed')
-class StopVideoTransformer(BaseVideoTransformer):
-    """
-    Transform the events fired when a video is completed.
-
-    Please note that "complete_video" doesn't exist currently but is
-    expected to be added.
-    """
-    additional_fields = ('target',)
-
     def get_target(self):
         """
         Return target for the caliper event.
-
-        Returns:
-            str
-        """
-
-        event_name = self.get_data('name', True)
-        if event_name in ['stop_video', 'edx.video.stopped']:
-            current_time = convert_seconds_to_iso(
-                seconds=self.get_data('data.currentTime')
-            )
-
-            return {
-                'id': '_:MediaLocation',
-                'type': 'MediaLocation',
-                'currentTime': current_time
-            }
-
-        return None
-
-
-@CaliperTransformersRegistry.register('play_video')
-@CaliperTransformersRegistry.register('edx.video.played')
-@CaliperTransformersRegistry.register('pause_video')
-@CaliperTransformersRegistry.register('edx.video.paused')
-class PlayPauseVideoTransformer(BaseVideoTransformer):
-    """
-    Transform the events fired when a video is played or paused.
-    """
-    additional_fields = ('target', )
-
-    def get_object(self):
-        """
-        Return transformed object for the caliper event.
 
         Returns:
             dict
         """
-        caliper_object = super().get_object()
 
-        # currentTime is included in the `target` of transformed event
-        # therefore no need to include it in the `extensions`.
-        caliper_object['extensions'].pop('currentTime', None)
-
-        return caliper_object
-
-    def get_target(self):
-        """
-        Return target for the caliper event.
-
-        Returns:
-            str
-        """
         current_time = convert_seconds_to_iso(
-            seconds=self.get_data('data.currentTime')
+            seconds=self.get_data('data.currentTime') or self.get_data('data.current_time')
         )
 
         return {
@@ -179,32 +122,69 @@ class PlayPauseVideoTransformer(BaseVideoTransformer):
         }
 
 
+@CaliperTransformersRegistry.register('load_video')
+@CaliperTransformersRegistry.register('edx.video.loaded')
+@CaliperTransformersRegistry.register('stop_video')
+@CaliperTransformersRegistry.register('edx.video.stopped')
+@CaliperTransformersRegistry.register('complete_video')
+@CaliperTransformersRegistry.register('edx.video.completed')
+@CaliperTransformersRegistry.register('play_video')
+@CaliperTransformersRegistry.register('edx.video.played')
+@CaliperTransformersRegistry.register('pause_video')
+@CaliperTransformersRegistry.register('edx.video.paused')
+@CaliperTransformersRegistry.register('hide_transcript')
+@CaliperTransformersRegistry.register('edx.video.transcript.hidden')
+@CaliperTransformersRegistry.register('edx.video.closed_captions.hidden')
+@CaliperTransformersRegistry.register('video_hide_cc_menu')
+@CaliperTransformersRegistry.register('show_transcript')
+@CaliperTransformersRegistry.register('edx.video.transcript.shown')
+@CaliperTransformersRegistry.register('edx.video.closed_captions.shown')
+@CaliperTransformersRegistry.register('video_show_cc_menu')
+class VideoTransformer(BaseVideoTransformer):
+    """
+    Transform the events fired when a video is loaded.
+    """
+
+
 @CaliperTransformersRegistry.register('seek_video')
 @CaliperTransformersRegistry.register('edx.video.position.changed')
 class SeekVideoTransformer(BaseVideoTransformer):
     """
     Transform the events fired when a video is seeked.
     """
-    additional_fields = ('target',)
 
     def get_target(self):
         """
-        Return target for the caliper event.
+        Return target location for the caliper event.
 
         Returns:
-            str
+            dict
         """
-
+        target = super().get_target()
         current_time = convert_seconds_to_iso(
-            seconds=self.get_data('data.currentTime')
+            seconds=self.get_data('data.currentTime') or self.get_data('data.old_time')
         )
         new_time = convert_seconds_to_iso(
             seconds=self.get_data('data.new_time')
         )
-
-        return {
-            'id': '_:MediaLocation',
-            'type': 'MediaLocation',
+        target.update({
             'currentTime': current_time,
-            'new_time': new_time
+            'extensions': {
+                'newTime': new_time,
+            }
+        })
+        return target
+
+
+@CaliperTransformersRegistry.register('speed_change_video')
+class VideoSpeedChangedTransformer(BaseVideoTransformer):
+    """
+    Transform the event fired when a video's speed is changed.
+    """
+    additional_fields = ('target', 'extensions',)
+
+    def get_extensions(self):
+        return {
+            'oldSpeed': self.get_data('old_speed'),
+            'newSpeed': self.get_data('new_speed'),
         }

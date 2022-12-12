@@ -5,9 +5,14 @@ NOTE: Currently Open edX only emits legacy events for video interaction i.e.
 - load_video
 - play_video
 - stop_video
-- complete_video (proposed)
+- complete_video
 - pause_video
 - seek_video
+- hide_transcript
+- show_transcript
+- speed_change_video
+- video_hide_cc_menu
+- video_show_cc_menu
 
 Currently, mobile apps emits these events using the new names but will be
 added in edx-platform too. Therefore, we are adding support for legacy event names
@@ -19,7 +24,11 @@ The (soon to be) updated event names are as following:
 - edx.video.stopped
 - edx.video.paused
 - edx.video.position.changed
-- edx.video.completed (proposed)
+- edx.video.completed
+- edx.video.transcript.hidden
+- edx.video.transcript.shown
+- edx.video.closed_captions.hidden
+- edx.video.closed_captions.shown
 """
 
 from django.conf import settings
@@ -39,7 +48,6 @@ VERB_MAP = {
         'id': constants.XAPI_VERB_INITIALIZED,
         'display': constants.INITIALIZED
     },
-
     'play_video': {
         'id': constants.XAPI_VERB_PLAYED,
         'display': constants.PLAYED
@@ -48,7 +56,6 @@ VERB_MAP = {
         'id': constants.XAPI_VERB_PLAYED,
         'display': constants.PLAYED
     },
-
     'stop_video': {
         'id': constants.XAPI_VERB_TERMINATED,
         'display': constants.TERMINATED
@@ -57,7 +64,6 @@ VERB_MAP = {
         'id': constants.XAPI_VERB_TERMINATED,
         'display': constants.TERMINATED
     },
-
     'complete_video': {
         'id': constants.XAPI_VERB_COMPLETED,
         'display': constants.COMPLETED
@@ -66,7 +72,6 @@ VERB_MAP = {
         'id': constants.XAPI_VERB_COMPLETED,
         'display': constants.COMPLETED
     },
-
     'pause_video': {
         'id': constants.XAPI_VERB_PAUSED,
         'display': constants.PAUSED
@@ -75,7 +80,6 @@ VERB_MAP = {
         'id': constants.XAPI_VERB_PAUSED,
         'display': constants.PAUSED
     },
-
     'seek_video': {
         'id': constants.XAPI_VERB_SEEKED,
         'display': constants.SEEKED
@@ -83,6 +87,42 @@ VERB_MAP = {
     'edx.video.position.changed': {
         'id': constants.XAPI_VERB_SEEKED,
         'display': constants.SEEKED
+    },
+    'hide_transcript': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'edx.video.transcript.hidden': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'show_transcript': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'edx.video.transcript.shown': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'speed_change_video': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'video_hide_cc_menu': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'video_show_cc_menu': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'edx.video.closed_captions.hidden': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
+    },
+    'edx.video.closed_captions.shown': {
+        'id': constants.XAPI_VERB_INTERACTED,
+        'display': constants.INTERACTED
     },
 }
 
@@ -168,6 +208,46 @@ class VideoInteractionTransformers(BaseVideoTransformer):
         )
 
 
+@XApiTransformersRegistry.register('hide_transcript')
+@XApiTransformersRegistry.register('video_hide_cc_menu')
+@XApiTransformersRegistry.register('edx.video.transcript.hidden')
+@XApiTransformersRegistry.register('show_transcript')
+@XApiTransformersRegistry.register('edx.video.transcript.shown')
+@XApiTransformersRegistry.register('edx.video.closed_captions.hidden')
+@XApiTransformersRegistry.register('edx.video.closed_captions.shown')
+@XApiTransformersRegistry.register('video_show_cc_menu')
+class VideoCCTransformers(BaseVideoTransformer):
+    """
+    Transformer for the events generated when CC enabled/disabled on videos
+    """
+    additional_fields = BaseVideoTransformer.additional_fields + ('result', )
+
+    def get_result(self):
+        """
+        Get result for xAPI transformed event.
+
+        Returns:
+            `Result`
+        """
+        event_name = self.get_data('name')
+        cc_enabled = bool(
+            event_name in [
+                'edx.video.closed_captions.shown',
+                'edx.video.transcript.shown',
+                'video_show_cc_menu',
+                'show_transcript',
+            ]
+         )
+        return Result(
+            extensions=Extensions({
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(
+                    self.get_data('data.currentTime') or self.get_data('data.current_time')
+                ),
+                constants.XAPI_RESULT_VIDEO_CC_ENABLED: cc_enabled
+            })
+        )
+
+
 @XApiTransformersRegistry.register('edx.video.completed')
 @XApiTransformersRegistry.register('complete_video')
 class VideoCompletedTransformer(BaseVideoTransformer):
@@ -211,5 +291,27 @@ class VideoPositionChangedTransformer(BaseVideoTransformer):
             extensions=Extensions({
                 constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_float(self.get_data('data.old_time')),
                 constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_float(self.get_data('data.new_time')),
+            }),
+        )
+
+
+@XApiTransformersRegistry.register('speed_change_video')
+class VideoSpeedChangedTransformer(BaseVideoTransformer):
+    """
+    Transformer for the events generated when speed of video is changed.
+    """
+    additional_fields = BaseVideoTransformer.additional_fields + ('result', )
+
+    def get_result(self):
+        """
+        Get result for xAPI transformed event.
+
+        Returns:
+            `Result`
+        """
+        return Result(
+            extensions=Extensions({
+                constants.XAPI_RESULT_VIDEO_SPEED_FROM: ''.join([self.get_data('data.old_speed'), 'x']),
+                constants.XAPI_RESULT_VIDEO_SPEED_TO: ''.join([self.get_data('data.new_speed'), 'x']),
             }),
         )

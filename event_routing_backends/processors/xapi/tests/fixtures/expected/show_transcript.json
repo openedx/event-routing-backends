@@ -1,0 +1,48 @@
+{
+    "id": "0b9e39477cf34507a7a48f74be381fdd",
+    "actor": {
+        "objectType": "Agent",
+        "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+                    "objectType": "Activity",
+                    "definition": {
+                      "name": {
+                        "en-US": "Demonstration Course"
+                      },
+                      "type": "http://adlnet.gov/expapi/activities/course"
+                    }
+                }
+            ]
+        },
+        "extensions": {
+            "https://github.com/openedx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst": "1.0",
+            "https://w3id.org/xapi/video/extensions/length": 194.0
+        }
+    },
+    "object": {
+        "definition": {
+            "type": "https://w3id.org/xapi/video/activity-type/video"
+        },
+        "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "objectType": "Activity"
+    },
+    "result": {
+        "extensions": {
+            "https://w3id.org/xapi/video/extensions/cc-enabled": true,
+            "https://w3id.org/xapi/video/extensions/time": 16.634
+        }
+    },
+    "timestamp": "2022-11-14T07:42:09.924740+00:00",
+    "verb": {
+        "display": {
+            "en": "interacted"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/interacted"
+    },
+    "version": "1.0.3"
+}

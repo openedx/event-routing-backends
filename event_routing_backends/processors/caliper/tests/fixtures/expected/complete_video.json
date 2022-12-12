@@ -18,6 +18,10 @@
         "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
         "type": "VideoObject"
     },
+    "target": {
+      "id": "_:MediaLocation",      
+      "type": "MediaLocation"
+    },
     "extensions": {
       "eventVersion": "1.0"
     },

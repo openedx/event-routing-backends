@@ -269,6 +269,123 @@ isPartOf [id]   <LMS_ROOT_URL>/course/<data [ course_id ]>
 isPartOf [type] CourseOffering
 =============== ========================================================================================================
 
+edx.video.closed_captions.shown
+===============================
+
+==================== ========================================================================================================
+Caliper Key          Value
+==================== ========================================================================================================
+type                 MediaEvent
+Action               EnabledClosedCaptioning
+``Actor``
+id                   <LMS_ROOT_URL>/user/<external_id[ LTI ]>
+type                 Person
+``Object``
+id                   <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+type                 VideoObject
+duration             data [ duration ]
+isPartOf [id]        <LMS_ROOT_URL>/course/<data [ course_id ]>
+isPartOf [type]      CourseOffering
+``Target``
+currentTime          data [ current_time ]
+id                   _:MediaLocation
+type                 MediaLocation
+==================== ========================================================================================================
+
+edx.video.closed_captions.hidden
+================================
+
+==================== ========================================================================================================
+Caliper Key          Value
+==================== ========================================================================================================
+type                 MediaEvent
+Action               DisabledClosedCaptioning
+``Actor``
+id                   <LMS_ROOT_URL>/user/<external_id[ LTI ]>
+type                 Person
+``Object``
+id                   <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+type                 VideoObject
+duration             data [ duration ]
+isPartOf [id]        <LMS_ROOT_URL>/course/<data [ course_id ]>
+isPartOf [type]      CourseOffering
+``Target``
+currentTime          data [ current_time ]
+id                   _:MediaLocation
+type                 MediaLocation
+==================== ========================================================================================================
+
+edx.video.transcript.shown
+==========================
+
+==================== ========================================================================================================
+Caliper Key          Value
+==================== ========================================================================================================
+type                 MediaEvent
+Action               EnabledClosedCaptioning
+``Actor``
+id                   <LMS_ROOT_URL>/user/<external_id[ LTI ]>
+type                 Person
+``Object``
+id                   <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+type                 VideoObject
+duration             data [ duration ]
+isPartOf [id]        <LMS_ROOT_URL>/course/<data [ course_id ]>
+isPartOf [type]      CourseOffering
+``Target``
+currentTime          data [ current_time ]
+id                   _:MediaLocation
+type                 MediaLocation
+==================== ========================================================================================================
+
+edx.video.transcript.hidden
+===========================
+
+==================== ========================================================================================================
+Caliper Key          Value
+==================== ========================================================================================================
+type                 MediaEvent
+Action               DisabledClosedCaptioning
+``Actor``
+id                   <LMS_ROOT_URL>/user/<external_id[ LTI ]>
+type                 Person
+``Object``
+id                   <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+type                 VideoObject
+duration             data [ duration ]
+isPartOf [id]        <LMS_ROOT_URL>/course/<data [ course_id ]>
+isPartOf [type]      CourseOffering
+``Target``
+currentTime          data [ current_time ]
+id                   _:MediaLocation
+type                 MediaLocation
+==================== ========================================================================================================
+
+speed_change_video
+==================
+
+====================== ========================================================================================================
+Caliper Key            Value
+====================== ========================================================================================================
+type                   MediaEvent
+Action                 ChangedSpeed
+``Actor``
+id                     <LMS_ROOT_URL>/user/<external_id[ LTI ]>
+type                   Person
+``Object``
+id                     <LMS_ROOT_URL>/xblock/block-v1:<context [ course_id ] minus "course-v1:">+type@video+block@<data [ id ]>
+type                   VideoObject
+duration               data [ duration ]
+isPartOf [id]          <LMS_ROOT_URL>/course/<data [ course_id ]>
+isPartOf [type]        CourseOffering
+``Target``
+currentTime            data [ current_time ]
+id                     _:MediaLocation
+type                   MediaLocation
+extensions [oldSpeed]   data [ old_speed ]
+extensions [newSpeed]   data [ new_speed ]
+====================== ========================================================================================================
+
 edx.ui.lms.sequence.outline.selected
 ====================================
 

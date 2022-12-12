@@ -18,6 +18,10 @@
         "type": "VideoObject",
         "duration": "P0D"
     },
+    "target": {
+      "id": "_:MediaLocation",      
+      "type": "MediaLocation"
+    },
     "extensions": {
       "eventVersion": "1.0"
     },
