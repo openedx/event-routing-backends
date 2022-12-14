@@ -38,7 +38,7 @@ celery==5.2.7
     #   -r requirements/quality.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2022.9.24
+certifi==2022.12.7
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -197,7 +197,7 @@ iniconfig==1.1.1
     #   pytest
 isodate==0.6.1
     # via -r requirements/quality.txt
-isort==5.10.1
+isort==5.11.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -231,11 +231,11 @@ mccabe==0.7.0
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==8.4.0
+newrelic==8.5.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-packaging==21.3
+packaging==22.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -255,7 +255,7 @@ pep517==0.13.0
     #   build
 pip-tools==6.11.0
     # via -r requirements/pip-tools.txt
-platformdirs==2.5.4
+platformdirs==2.6.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -322,12 +322,6 @@ pynacl==1.5.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-pyparsing==3.0.9
-    # via
-    #   -r requirements/ci.txt
-    #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
-    #   packaging
 pytest==7.2.0
     # via
     #   -r requirements/quality.txt
@@ -409,6 +403,7 @@ tomlkit==0.11.6
     #   pylint
 tox==3.27.1
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/ci.txt
     #   tox-battery
 tox-battery==0.6.1

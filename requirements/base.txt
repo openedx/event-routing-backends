@@ -16,7 +16,7 @@ celery==5.2.7
     # via
     #   edx-celeryutils
     #   event-tracking
-certifi==2022.9.24
+certifi==2022.12.7
     # via requests
 cffi==1.15.1
     # via
@@ -98,7 +98,7 @@ kombu==5.2.4
     # via celery
 markupsafe==2.1.1
     # via jinja2
-newrelic==8.4.0
+newrelic==8.5.0
     # via edx-django-utils
 pbr==5.11.0
     # via stevedore
