@@ -69,7 +69,6 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
     Base Transformer for problem interaction events.
     """
     verb_map = VERB_MAP
-    event_version = "1.0"
 
     def get_object(self):
         """

@@ -5,6 +5,7 @@ import logging
 
 from django.conf import settings
 
+from event_routing_backends import __version__
 from event_routing_backends.models import get_value_from_dotted_path
 
 logger = logging.getLogger(__name__)
@@ -19,7 +20,6 @@ class BaseTransformerMixin:
 
     required_fields = ()
     additional_fields = ()
-    event_version = None
     backend_name = None
 
     def __init__(self, event):
@@ -74,6 +74,19 @@ class BaseTransformerMixin:
         """
         return
 
+    @property
+    def transformer_version(self):
+        """
+        Version of transformer.
+
+        version of transformer package used to transform events
+        """
+
+        if getattr(settings, 'RUNNING_WITH_TEST_SETTINGS', False):
+            return "{}@{}".format("event-routing-backends", "1.1.1")
+        else:
+            return "{}@{}".format("event-routing-backends", __version__)
+
     def transform(self):
         """
         Transform the edX event.
@@ -99,7 +112,7 @@ class BaseTransformerMixin:
                 )
 
         if self.backend_name == 'caliper':
-            self.transformed_event['extensions']['eventVersion'] = self.event_version
+            self.transformed_event['extensions']['transformerVersion'] = self.transformer_version
 
         self.transformed_event = self.del_none(self.transformed_event)
 
@@ -117,6 +130,15 @@ class BaseTransformerMixin:
         if not username_or_id:
             username_or_id = self.get_data('data.username') or self.get_data('data.user_id')
         return username_or_id
+
+    def extract_sessionid(self):
+        """
+        Extracts sessionid of user from event either under context or data dictionaries
+
+        Returns:
+            str
+        """
+        return self.get_data('context.session') or self.get_data('data.session')
 
     def get_data(self, key, required=False):
         """

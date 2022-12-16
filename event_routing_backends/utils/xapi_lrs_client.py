@@ -23,7 +23,10 @@ class LrsClient:
         url (str)         :     URL for the event consumer.
         auth_scheme (str) :     Scheme used for authentication.
         auth_key (str)    :     API key used in the authorization header.
-        headers (str)     :     Any additional headers to be sent with event payload.
+        version (str)     :     Every request from a Client and every response from the LRS includes an HTTP header
+                                with the name X-Experience-API-Version and the version as the value.
+                                This parameter contains xAPI specification version of the statements
+                                being pushed or pulled from LRS
         """
 
         self.URL = url

@@ -22,7 +22,11 @@
         }
     },
     "extensions": {
-      "eventVersion": "1.0"
+      "transformerVersion": "event-routing-backends@1.1.1"
+    },
+    "session": {
+      "id": "http://localhost:18000/sessions/6ad0a24d8303f49d14409a669d430b6f",
+      "type": "Session"
     },
     "type": "NavigationEvent"
 }

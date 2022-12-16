@@ -16,7 +16,11 @@
         "name": "Solution"
     },
     "extensions": {
-      "eventVersion": "1.0"
+      "transformerVersion": "event-routing-backends@1.1.1"
+    },
+    "session": {
+        "id": "http://localhost:18000/sessions/993110e9c27848a545da74a74114158d",
+        "type": "Session"
     },
     "type": "Event"
 }

@@ -45,7 +45,6 @@ class EnrollmentEventTransformers(CaliperTransformer):
         Returns:
             dict
         """
-        self.event_version = "1.0"
         self.backend_name = 'caliper'
         course = get_course_from_id(self.get_data('context.course_id'))
 

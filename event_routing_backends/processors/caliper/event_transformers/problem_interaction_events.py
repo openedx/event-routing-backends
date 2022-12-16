@@ -119,7 +119,6 @@ class ProblemEventsTransformers(CaliperTransformer):
         Returns:
             dict
         """
-        self.event_version = "1.0"
         self.backend_name = 'caliper'
         object_id = None
         event_data = None

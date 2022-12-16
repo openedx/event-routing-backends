@@ -28,6 +28,7 @@ class CaliperTransformer(BaseTransformerMixin):
         """
         self._add_generic_fields()
         self._add_actor_info()
+        self._add_session_info()
 
     def _add_generic_fields(self):
         """
@@ -59,3 +60,17 @@ class CaliperTransformer(BaseTransformerMixin):
             ),
             'type': 'Person'
         }
+
+    def _add_session_info(self):
+        """
+        Add session info related to the event
+        """
+        sessionid = self.extract_sessionid()
+        if sessionid:
+            self.transformed_event['session'] = {
+                'id': self.get_object_iri(
+                    'sessions',
+                    sessionid,
+                ),
+                'type': 'Session'
+            }

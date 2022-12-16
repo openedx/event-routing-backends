@@ -20,7 +20,8 @@
             ]
         },
         "extensions": {
-            "https://github.com/openedx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst": "1.0",
+            "https://w3id.org/xapi/openedx/extension/transformer-version": "event-routing-backends@1.1.1",
+            "https://w3id.org/xapi/openedx/extensions/session-id": "6ad0a24d8303f49d14409a669d430b6f",
             "http://id.tincanapi.com/extension/ending-point": "previous unit",
             "http://id.tincanapi.com/extension/starting-position": 5
         }

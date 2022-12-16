@@ -85,7 +85,6 @@ class BaseVideoTransformer(CaliperTransformer):
         Returns:
             dict
         """
-        self.event_version = "1.0"
         self.backend_name = 'caliper'
         caliper_object = self.transformed_event['object']
         data = self.get_data('data')
