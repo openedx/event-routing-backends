@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-alabaster==0.7.12
+alabaster==0.7.13
     # via sphinx
 amqp==5.1.1
     # via
@@ -30,7 +30,7 @@ billiard==3.6.4.0
     #   celery
 bleach==5.0.1
     # via readme-renderer
-build==0.9.0
+build==0.10.0
     # via -r requirements/doc.in
 celery==5.2.7
     # via
@@ -46,7 +46,7 @@ cffi==1.15.1
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==2.1.1
+charset-normalizer==3.0.1
     # via
     #   -r requirements/test.txt
     #   requests
@@ -142,7 +142,7 @@ edx-django-utils==5.2.0
     #   django-config-models
     #   edx-toggles
     #   event-tracking
-edx-sphinx-theme==3.0.0
+edx-sphinx-theme==3.1.0
     # via -r requirements/doc.in
 edx-toggles==5.0.0
     # via -r requirements/test.txt
@@ -154,11 +154,11 @@ exceptiongroup==1.1.0
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==16.3.0
+faker==16.6.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
-future==0.18.2
+future==0.18.3
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -201,7 +201,7 @@ kombu==5.2.4
     # via
     #   -r requirements/test.txt
     #   celery
-markupsafe==2.1.1
+markupsafe==2.1.2
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -219,12 +219,10 @@ packaging==23.0
     #   build
     #   pytest
     #   sphinx
-pbr==5.11.0
+pbr==5.11.1
     # via
     #   -r requirements/test.txt
     #   stevedore
-pep517==0.13.0
-    # via build
 pkginfo==1.9.6
     # via twine
 pluggy==1.0.0
@@ -257,7 +255,9 @@ pynacl==1.5.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==7.2.0
+pyproject-hooks==1.0.0
+    # via build
+pytest==7.2.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -274,7 +274,7 @@ python-slugify==7.0.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2022.7
+pytz==2022.7.1
     # via
     #   -r requirements/test.txt
     #   babel
@@ -289,7 +289,7 @@ pyyaml==6.0
     #   code-annotations
 readme-renderer==37.3
     # via twine
-requests==2.28.1
+requests==2.28.2
     # via
     #   -r requirements/test.txt
     #   requests-toolbelt
@@ -301,7 +301,7 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.0.1
+rich==13.1.0
     # via twine
 secretstorage==3.3.3
     # via keyring
@@ -355,13 +355,13 @@ tomli==2.0.1
     #   -r requirements/test.txt
     #   build
     #   coverage
-    #   pep517
+    #   pyproject-hooks
     #   pytest
 twine==4.0.2
     # via -r requirements/doc.in
 typing-extensions==4.4.0
     # via rich
-urllib3==1.26.13
+urllib3==1.26.14
     # via
     #   -r requirements/test.txt
     #   requests
@@ -372,7 +372,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.2.5
+wcwidth==0.2.6
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
