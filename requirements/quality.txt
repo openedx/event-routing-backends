@@ -16,7 +16,7 @@ asgiref==3.6.0
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.13.3
+astroid==2.13.5
     # via
     #   pylint
     #   pylint-celery
@@ -157,7 +157,7 @@ iniconfig==2.0.0
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
-isort==5.11.4
+isort==5.12.0
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -252,7 +252,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==7.0.0
+python-slugify==8.0.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
