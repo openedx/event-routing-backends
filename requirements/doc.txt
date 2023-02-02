@@ -268,7 +268,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   faker
-python-slugify==7.0.0
+python-slugify==8.0.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -299,7 +299,7 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.2.0
+rich==13.3.1
     # via twine
 secretstorage==3.3.3
     # via keyring
@@ -324,7 +324,7 @@ sphinxcontrib-applehelp==1.0.4
     # via sphinx
 sphinxcontrib-devhelp==1.0.2
     # via sphinx
-sphinxcontrib-htmlhelp==2.0.0
+sphinxcontrib-htmlhelp==2.0.1
     # via sphinx
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
@@ -376,7 +376,7 @@ wcwidth==0.2.6
     #   prompt-toolkit
 webencodings==0.5.1
     # via bleach
-zipp==3.11.0
+zipp==3.12.0
     # via
     #   importlib-metadata
     #   importlib-resources
