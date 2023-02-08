@@ -68,7 +68,7 @@ code-annotations==1.3.0
     #   edx-toggles
 coverage[toml]==7.1.0
     # via pytest-cov
-cryptography==39.0.0
+cryptography==39.0.1
     # via
     #   -r requirements/base.txt
     #   djfernet
@@ -124,7 +124,7 @@ exceptiongroup==1.1.0
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==16.6.1
+faker==16.7.0
     # via factory-boy
 idna==3.4
     # via

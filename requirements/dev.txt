@@ -16,7 +16,7 @@ asgiref==3.6.0
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.13.5
+astroid==2.14.1
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -95,7 +95,7 @@ coverage[toml]==7.1.0
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==39.0.0
+cryptography==39.0.1
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -113,7 +113,7 @@ distlib==0.3.6
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.16
+django==3.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -171,7 +171,7 @@ exceptiongroup==1.1.0
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==16.6.1
+faker==16.7.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -247,7 +247,7 @@ pbr==5.11.1
     #   stevedore
 pip-tools==6.12.2
     # via -r requirements/pip-tools.txt
-platformdirs==2.6.2
+platformdirs==3.0.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -286,7 +286,7 @@ pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.14.0
     # via diff-cover
-pylint==2.15.10
+pylint==2.16.1
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -421,7 +421,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.17.1
+virtualenv==20.19.0
     # via
     #   -r requirements/ci.txt
     #   tox
