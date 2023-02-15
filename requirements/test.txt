@@ -68,7 +68,7 @@ code-annotations==1.3.0
     #   edx-toggles
 coverage[toml]==7.1.0
     # via pytest-cov
-cryptography==39.0.0
+cryptography==39.0.1
     # via
     #   -r requirements/base.txt
     #   djfernet
@@ -124,7 +124,7 @@ exceptiongroup==1.1.0
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==16.6.1
+faker==17.0.0
     # via factory-boy
 idna==3.4
     # via
@@ -152,7 +152,7 @@ markupsafe==2.1.2
     #   jinja2
 mock==5.0.1
     # via -r requirements/test.in
-newrelic==8.5.0
+newrelic==8.6.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -225,7 +225,7 @@ sqlparse==0.4.3
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==4.1.1
+stevedore==5.0.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
