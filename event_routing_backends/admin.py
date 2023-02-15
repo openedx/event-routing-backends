@@ -12,7 +12,7 @@ class RouterConfigurationAdmin(KeyedConfigurationModelAdmin):
     Admin model class for RouterConfiguration model.
     """
 
-    history_list_display = ('status')
+    history_list_display = 'status'
     change_form_template = 'admin/router_conf_change_form.html'
 
     def get_displayable_field_names(self):
