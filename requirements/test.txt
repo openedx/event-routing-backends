@@ -152,7 +152,7 @@ markupsafe==2.1.2
     #   jinja2
 mock==5.0.1
     # via -r requirements/test.in
-newrelic==8.6.0
+newrelic==8.7.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -164,7 +164,7 @@ pbr==5.11.1
     #   stevedore
 pluggy==1.0.0
     # via pytest
-prompt-toolkit==3.0.36
+prompt-toolkit==3.0.37
     # via
     #   -r requirements/base.txt
     #   click-repl

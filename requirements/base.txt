@@ -96,11 +96,11 @@ kombu==5.2.4
     # via celery
 markupsafe==2.1.2
     # via jinja2
-newrelic==8.6.0
+newrelic==8.7.0
     # via edx-django-utils
 pbr==5.11.1
     # via stevedore
-prompt-toolkit==3.0.36
+prompt-toolkit==3.0.37
     # via click-repl
 psutil==5.9.4
     # via edx-django-utils

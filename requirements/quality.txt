@@ -183,7 +183,7 @@ mccabe==0.7.0
     # via pylint
 mock==5.0.1
     # via -r requirements/test.txt
-newrelic==8.6.0
+newrelic==8.7.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -201,7 +201,7 @@ pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.36
+prompt-toolkit==3.0.37
     # via
     #   -r requirements/test.txt
     #   click-repl

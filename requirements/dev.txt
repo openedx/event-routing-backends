@@ -227,7 +227,7 @@ mccabe==0.7.0
     #   pylint
 mock==5.0.1
     # via -r requirements/quality.txt
-newrelic==8.6.0
+newrelic==8.7.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -262,7 +262,7 @@ pluggy==1.0.0
     #   tox
 polib==1.1.1
     # via edx-i18n-tools
-prompt-toolkit==3.0.36
+prompt-toolkit==3.0.37
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -280,7 +280,7 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==1.10.4
+pydantic==1.10.5
     # via inflect
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
