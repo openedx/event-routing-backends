@@ -89,7 +89,7 @@ detect_changed_source_translations:
 	cd event_routing_backends && i18n_tool changed
 
 pull_translations: ## pull translations from Transifex
-	tx pull -t -af --mode reviewed
+	tx pull -t -a -f --mode reviewed
 
 push_translations: ## push source translation files (.po) from Transifex
 	tx push -s
