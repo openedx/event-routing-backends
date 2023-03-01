@@ -15,13 +15,13 @@ Decision
 --------
 #. Versions of event transformers will be maintained and emitted as part of xAPI and Caliper events.
 
-#. The "transformer version" will be a concatenation of the name of the transformer ("event-routing-backends"), an @ symbol, and the version of the event-routing-backends package used to generate the event.
+#. The "transformer version" will be a concatenation of the name of the transformer ("event-routing-backends"), an @ symbol, and the symantic version of the event-routing-backends package used to generate the event.
 
-#. This combined version "event-routing-backends@v(X.Y)" can be found in ``context [ extensions [ transformerVersion ] ]`` for xAPI statement and in ``extensions [ transformerVersion ]`` for Caliper event.
+#. This combined version "event-routing-backends@v(X.Y)" can be found in ``context [ extensions [ https://w3id.org/xapi/openedx/extension/transformer-version ] ]`` for xAPI statement and in ``extensions [ transformerVersion ]`` for Caliper event.
 
-#. Transformer version number will be defined by two non-negative integers X and Y representing major and minor version respectively in the form: X.Y.
+#. Transformer version number will be the semantic version of the event-routing-backends package.
 
-#. Major version (X) will be incremented when:
+#. The event-routing-backends major version will be incremented when:
 
    #. Transformer is changed due to update in original specification (xAPI or Caliper).
 
@@ -29,7 +29,7 @@ Decision
 
    #. Value of a key is updated in the existing transformer.
 
-#. Minor version (Y) will be incremented when:
+#. The event-routing-backends minor version will be incremented when:
 
    #. A key is added to an existing transformer.
 
