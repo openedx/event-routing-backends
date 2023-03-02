@@ -13,11 +13,15 @@ Event transformers may undergo modification in future in response to consumer re
 
 Decision
 --------
-#. Versions of event transformers will be maintained and emitted as part of  xAPI and Caliper events.
+#. Versions of event transformers will be maintained and emitted as part of xAPI and Caliper events.
 
-#. Transformer version will be defined by two non-negative integers X and Y representing major and minor version respectively in the form: X.Y.
+#. The "transformer version" will be a concatenation of the name of the transformer ("event-routing-backends"), an @ symbol, and the symantic version of the event-routing-backends package used to generate the event.
 
-#. Major version (X) will be incremented when:
+#. This combined version "event-routing-backends@v(X.Y)" can be found in ``context [ extensions [ https://w3id.org/xapi/openedx/extension/transformer-version ] ]`` for xAPI statement and in ``extensions [ transformerVersion ]`` for Caliper event.
+
+#. Transformer version number will be the semantic version of the event-routing-backends package.
+
+#. The event-routing-backends major version will be incremented when:
 
    #. Transformer is changed due to update in original specification (xAPI or Caliper).
 
@@ -25,10 +29,13 @@ Decision
 
    #. Value of a key is updated in the existing transformer.
 
-#. Minor version (Y) will be incremented when:
+#. The event-routing-backends minor version will be incremented when:
 
    #. A key is added to an existing transformer.
 
 #. Change logs of transformers will be maintained for both xAPI and Caliper.
 
-#. This version (X.Y) can be found in `` context [ extensions [ eventVersion ] ]`` for xAPI statement and in ``extensions [ eventVersion ]`` for Caliper event.
+Changelog
+---------
+- Updated 2023-02-28 to change the format of the transformer version.
+   - The previous version named the key "eventVersion", but the actual implementation used URL key pointing to the event-routing-backends docs. It was decided that since the version number represents the actual version of the event-routing-backends package and not the version of a specific event, this rename could tackle both issues.
