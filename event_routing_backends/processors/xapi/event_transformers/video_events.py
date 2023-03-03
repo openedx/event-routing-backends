@@ -132,7 +132,6 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
     Base transformer for video interaction events.
     """
     verb_map = VERB_MAP
-    event_version = "1.0"
 
     def get_object(self):
         """

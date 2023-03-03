@@ -17,6 +17,9 @@ class TestCaliperTransformers(TransformersTestMixin, TestCase):
 
     registry = CaliperTransformersRegistry
 
+    def assert_correct_transformer_version(self, transformed_event, transformer_version):
+        self.assertEqual(transformed_event['extensions']['transformerVersion'], transformer_version)
+
     def compare_events(self, transformed_event, expected_event):
         """
         Test that transformed_event and expected_event are identical.

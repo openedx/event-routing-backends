@@ -43,7 +43,7 @@ class XApiTransformer(BaseTransformerMixin):
             `Statement`
         """
         transformed_props = super().transform()
-        transformed_props["version"] = constants.XAPI_TRANSFORMER_VERSION
+        transformed_props["version"] = constants.XAPI_SPECIFICATION_VERSION
         return Statement(**transformed_props)
 
     def base_transform(self):
@@ -119,7 +119,8 @@ class XApiTransformer(BaseTransformerMixin):
 
     def get_context_extensions(self):
         return Extensions({
-                constants.XAPI_EVENT_VERSION_KEY: self.event_version
+                constants.XAPI_TRANSFORMER_VERSION_KEY: self.transformer_version,
+                constants.XAPI_CONTEXT_SESSION_ID: self.extract_sessionid()
             })
 
 

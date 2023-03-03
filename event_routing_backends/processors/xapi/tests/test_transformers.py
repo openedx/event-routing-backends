@@ -7,6 +7,7 @@ import os
 from django.test import TestCase
 
 from event_routing_backends.processors.tests.transformers_test_mixin import TransformersTestMixin
+from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 
 
@@ -16,6 +17,12 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
     """
     EXCEPTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
     registry = XApiTransformersRegistry
+
+    def assert_correct_transformer_version(self, transformed_event, transformer_version):
+        self.assertEqual(
+            transformed_event.context.extensions[constants.XAPI_TRANSFORMER_VERSION_KEY],
+            transformer_version
+        )
 
     def compare_events(self, transformed_event, expected_event):
         """

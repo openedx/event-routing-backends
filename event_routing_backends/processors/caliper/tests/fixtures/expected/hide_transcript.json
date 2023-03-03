@@ -24,7 +24,11 @@
         "type": "MediaLocation"
     },
     "extensions": {
-      "eventVersion": "1.0"
+      "transformerVersion": "event-routing-backends@1.1.1"
+    },
+    "session": {
+      "id": "http://localhost:18000/sessions/95522acebdda19758bd98a456a640afa",
+      "type": "Session"
     },
     "type": "MediaEvent"
 }

@@ -47,6 +47,8 @@ CELERY_ALWAYS_EAGER = True
 
 XAPI_EVENTS_ENABLED = True
 
+RUNNING_WITH_TEST_SETTINGS = True
+
 EVENT_TRACKING_BACKENDS = {}
 
 _mock_third_party_modules()

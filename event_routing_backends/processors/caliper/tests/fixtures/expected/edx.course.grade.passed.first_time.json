@@ -13,7 +13,11 @@
         "name": "Demonstration Course"
     },
     "extensions": {
-      "eventVersion": "1.0"
+      "transformerVersion": "event-routing-backends@1.1.1"
+    },
+    "session": {
+        "id": "http://localhost:18000/sessions/44c2f6b53a6aaf210797a56391a443bc",
+        "type": "Session"
     },
     "type": "Event"
 }

@@ -13,7 +13,7 @@
         "name": "Demonstration Course"
     },
     "extensions": {
-      "eventVersion": "1.0"
+      "transformerVersion": "event-routing-backends@1.1.1"
     },
     "type": "Event"
 }

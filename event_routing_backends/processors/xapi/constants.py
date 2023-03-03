@@ -46,6 +46,7 @@ XAPI_CONTEXT_VIDEO_CC_LANGUAGE = 'https://w3id.org/xapi/video/extensions/cc-subt
 XAPI_CONTEXT_STARTING_POSITION = 'http://id.tincanapi.com/extension/starting-position'
 XAPI_CONTEXT_ENDING_POSITION = 'http://id.tincanapi.com/extension/ending-point'
 XAPI_CONTEXT_COMPLETION_THRESHOLD = 'https://w3id.org/xapi/video/extensions/completion-threshold'
+XAPI_CONTEXT_SESSION_ID = 'https://w3id.org/xapi/openedx/extensions/session-id'
 
 # xAPI result
 XAPI_RESULT_VIDEO_TIME = 'https://w3id.org/xapi/video/extensions/time'
@@ -55,9 +56,12 @@ XAPI_RESULT_VIDEO_SPEED_FROM = 'https://w3id.org/xapi/openedx/extension/speed-fr
 XAPI_RESULT_VIDEO_SPEED_TO = 'https://w3id.org/xapi/openedx/extension/speed-to'
 XAPI_RESULT_VIDEO_CC_ENABLED = 'https://w3id.org/xapi/video/extensions/cc-enabled'
 XAPI_RESULT_VIDEO_PROGRESS = 'https://w3id.org/xapi/video/extensions/progress'
-XAPI_TRANSFORMER_VERSION = '1.0.3'
-XAPI_EVENT_VERSION_KEY = \
-    'https://github.com/openedx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst'
+# Every request from a Client and every response from the LRS includes an HTTP header
+# with the name X-Experience-API-Version and the version as the value. This parameter contains
+# xAPI specification version of the statements being pushed or pulled from LRS
+# https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-About.md#Appendix1A
+XAPI_SPECIFICATION_VERSION = '1.0.3'
+XAPI_TRANSFORMER_VERSION_KEY = 'https://w3id.org/xapi/openedx/extension/transformer-version'
 
 # Languages
 EN = 'en'

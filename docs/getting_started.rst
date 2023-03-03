@@ -39,14 +39,14 @@ Supported events and mapping of edx events onto xAPI and Caliper formats
 
 List of supported edx events can be found in `Supported_events <https://github.com/openedx/event-routing-backends/blob/master/docs/event-mapping/Supported_events.rst>`_ along with their mapping onto xAPI and Caliper format.
 
-Version information of mapping
-------------------------------
+Version information of transformer
+----------------------------------
 
-Version of mapping of edx event onto xAPI or Caliper format, for each event, is included in the statement and event respectively. Version is a string of format "X.Y" where increment in X represents breaking changes and increment in Y represents addition of fields in the event json, both starting with zero.
+Version of transformer is semantic version of event-routing-backend prefixed with  `event-routing-backends@` included in the statement/event. Version is a string of format "event-routing-backend@X.Y.Z" where increment in X represents breaking changes and increment in Y represents addition/update of fields in the event/statement and Z represents bug fix or patched version.
 
-In xAPI statement, version is in value of the key ``https://github.com/openedx/event-routing-backends/blob/master/docs/xapi-extensions/eventVersion.rst`` in ``extensions`` of ``Context`` of the statement.
+In xAPI statement, version is in value of the key ``https://w3id.org/xapi/openedx/extension/transformer-version`` in ``extensions`` of ``Context`` of the statement.
 
-In Caliper event, version is in value of the key ``eventVersion`` in ``extensions`` of the event.
+In Caliper event, version is in value of the key ``transformerVersion`` in ``extensions`` of the event.
 
 Installation
 ===============

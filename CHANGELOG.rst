@@ -14,12 +14,14 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-* add support for video interaction events.
 
 [5.2.2]
 ~~~~~~~
 
 * Rename toggle_warnings to toggle_warning for consistency with setting_warning.
+* Added session id to all events
+* add support for video interaction events.
+* Replaced eventVersion with transformerVersion to include semantic version of event-routing-backend package.
 
 [5.2.1]
 ~~~~~~~
