@@ -16,7 +16,7 @@ asgiref==3.6.0
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==2.14.2
+astroid==2.15.0
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -48,7 +48,7 @@ cffi==1.15.1
     #   -r requirements/quality.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.0.1
+charset-normalizer==3.1.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -95,7 +95,7 @@ coverage[toml]==7.2.1
     #   -r requirements/quality.txt
     #   codecov
     #   pytest-cov
-cryptography==39.0.1
+cryptography==39.0.2
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -171,7 +171,7 @@ exceptiongroup==1.1.0
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/quality.txt
-faker==17.4.0
+faker==17.6.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -245,9 +245,9 @@ pbr==5.11.1
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==6.12.2
+pip-tools==6.12.3
     # via -r requirements/pip-tools.txt
-platformdirs==3.0.0
+platformdirs==3.1.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -286,7 +286,7 @@ pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.14.0
     # via diff-cover
-pylint==2.16.2
+pylint==2.16.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -318,7 +318,7 @@ pyproject-hooks==1.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pytest==7.2.1
+pytest==7.2.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
