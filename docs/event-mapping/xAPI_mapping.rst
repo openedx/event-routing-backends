@@ -8,7 +8,7 @@ xAPI Key                                                                    Valu
 ``Actor``
 objectType                                                                  Agent
 account [ homePage ]                                                        <LMS_ROOT_URL>
-account [ name ]                                                            <external_id[ LTI ]>
+account [ name ]                                                            <external_id[ XAPI ]>
 ``Verb``
 id                                                                          http://adlnet.gov/expapi/verbs/registered
 display [ en-US ]                                                           registered
@@ -29,7 +29,7 @@ xAPI Key                                                                    Valu
 ``Actor``
 objectType                                                                  Agent
 account [ homePage ]                                                        <LMS_ROOT_URL>
-account [ name ]                                                            <external_id[ LTI ]>
+account [ name ]                                                            <external_id[ XAPI ]>
 ``Verb``
 id                                                                          http://id.tincanapi.com/verb/unregistered
 display [ en-US ]                                                           unregistered
@@ -50,7 +50,7 @@ xAPI Key                     Value
 ``Actor``
 objectType                   Agent
 account [ homePage ]         <LMS_ROOT_URL>
-account [ name ]             <external_id[ LTI ]>
+account [ name ]             <external_id[ XAPI ]>
 ``Verb``
 id                           http://adlnet.gov/expapi/verbs/passed
 display [ en-US ]            passed
@@ -69,7 +69,7 @@ xAPI Key                                                                   Value
 ``Actor``
 objectType                                                                 Agent
 account [ homePage ]                                                       <LMS_ROOT_URL>
-account [ name ]                                                           <external_id[ LTI ]>
+account [ name ]                                                           <external_id[ XAPI ]>
 ``Verb``
 id                                                                         https://w3id.org/xapi/acrossx/verbs/evaluated
 display [ en-US ]                                                          evaluated
@@ -125,7 +125,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/attempted
 display [ en-US ]                                             attempted
@@ -149,7 +149,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/asked
 display [ en-US ]                                             asked
@@ -173,7 +173,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/asked
 display [ en-US ]                                             asked
@@ -197,7 +197,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/initialized
 display [ en-US ]                                             initialized
@@ -222,7 +222,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            https://w3id.org/xapi/video/verbs/played
 display [ en-US ]                                             played
@@ -247,7 +247,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            http://adlnet.gov/expapi/verbs/terminated
 display [ en-US ]                                             terminated
@@ -274,7 +274,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            https://w3id.org/xapi/video/verbs/paused
 display [ en-US ]                                             paused
@@ -301,7 +301,7 @@ xAPI Key                                                        Value
 ``Actor``
 objectType                                                      Agent
 account [ homePage ]                                            <LMS_ROOT_URL>
-account [ name ]                                                <external_id[ LTI ]>
+account [ name ]                                                <external_id[ XAPI ]>
 ``Verb``
 id                                                              https://w3id.org/xapi/video/verbs/seeked
 display [ en-US ]                                               seeked
@@ -329,7 +329,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            https://w3id.org/xapi/dod-isd/verbs/completed
 display [ en-US ]                                             completed
@@ -354,7 +354,7 @@ xAPI Key                                                          Value
 ``Actor``
 objectType                                                        Agent
 account [ homePage ]                                              <LMS_ROOT_URL>
-account [ name ]                                                  <external_id[ LTI ]>
+account [ name ]                                                  <external_id[ XAPI ]>
 ``Verb``
 id                                                                https://w3id.org/xapi/video/verbs/interacted
 display [ en-US ]                                                 interacted
@@ -382,7 +382,7 @@ xAPI Key                                                          Value
 ``Actor``
 objectType                                                        Agent
 account [ homePage ]                                              <LMS_ROOT_URL>
-account [ name ]                                                  <external_id[ LTI ]>
+account [ name ]                                                  <external_id[ XAPI ]>
 ``Verb``
 id                                                                https://w3id.org/xapi/video/verbs/interacted
 display [ en-US ]                                                 interacted
@@ -410,7 +410,7 @@ xAPI Key                                                          Value
 ``Actor``
 objectType                                                        Agent
 account [ homePage ]                                              <LMS_ROOT_URL>
-account [ name ]                                                  <external_id[ LTI ]>
+account [ name ]                                                  <external_id[ XAPI ]>
 ``Verb``
 id                                                                https://w3id.org/xapi/video/verbs/interacted
 display [ en-US ]                                                 interacted
@@ -438,7 +438,7 @@ xAPI Key                                                          Value
 ``Actor``
 objectType                                                        Agent
 account [ homePage ]                                              <LMS_ROOT_URL>
-account [ name ]                                                  <external_id[ LTI ]>
+account [ name ]                                                  <external_id[ XAPI ]>
 ``Verb``
 id                                                                https://w3id.org/xapi/video/verbs/interacted
 display [ en-US ]                                                 interacted
@@ -466,7 +466,7 @@ xAPI Key                                                          Value
 ``Actor``
 objectType                                                        Agent
 account [ homePage ]                                              <LMS_ROOT_URL>
-account [ name ]                                                  <external_id[ LTI ]>
+account [ name ]                                                  <external_id[ XAPI ]>
 ``Verb``
 id                                                                https://w3id.org/xapi/video/verbs/interacted
 display [ en-US ]                                                 interacted
@@ -494,7 +494,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                             Navigated
@@ -519,7 +519,7 @@ xAPI Key                                                                        
 ``Actor``
 objectType                                                                         Agent
 account [ homePage ]                                                               <LMS_ROOT_URL>
-account [ name ]                                                                   <external_id[ LTI ]>
+account [ name ]                                                                   <external_id[ XAPI ]>
 ``Verb``
 id                                                                                 https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                                                  Navigated
@@ -546,7 +546,7 @@ xAPI Key                                                                        
 ``Actor``
 objectType                                                                         Agent
 account [ homePage ]                                                               <LMS_ROOT_URL>
-account [ name ]                                                                   <external_id[ LTI ]>
+account [ name ]                                                                   <external_id[ XAPI ]>
 ``Verb``
 id                                                                                 https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                                                  Navigated
@@ -573,7 +573,7 @@ xAPI Key                                                                        
 ``Actor``
 objectType                                                                         Agent
 account [ homePage ]                                                               <LMS_ROOT_URL>
-account [ name ]                                                                   <external_id[ LTI ]>
+account [ name ]                                                                   <external_id[ XAPI ]>
 ``Verb``
 id                                                                                 https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                                                  Navigated
@@ -600,7 +600,7 @@ xAPI Key                                                      Value
 ``Actor``
 objectType                                                    Agent
 account [ homePage ]                                          <LMS_ROOT_URL>
-account [ name ]                                              <external_id[ LTI ]>
+account [ name ]                                              <external_id[ XAPI ]>
 ``Verb``
 id                                                            https://w3id.org/xapi/dod-isd/verbs/navigated
 display [ en-US ]                                             Navigated

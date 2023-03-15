@@ -14,6 +14,7 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+* Use proper externalId types XAPI and CALIPER instead of LTI
 
 [5.2.2]
 ~~~~~~~

@@ -29,6 +29,6 @@ class TestHelpers(TestCase):
     def test_get_anonymous_user_id_with_error(self, mocked_external_id):
         mocked_external_id.add_new_user_id.return_value = (None, False)
         with self.assertRaises(ValueError):
-            get_anonymous_user_id('edx')
+            get_anonymous_user_id('edx', 'XAPI')
 
-        self.assertIsNotNone(get_anonymous_user_id('12345678'))
+        self.assertIsNotNone(get_anonymous_user_id('12345678', 'XAPI'))

@@ -22,7 +22,7 @@ User = get_user_model()
 UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 
 
-def get_anonymous_user_id(username_or_id):
+def get_anonymous_user_id(username_or_id, external_type):
     """
     Generate anonymous user id.
 
@@ -31,6 +31,7 @@ def get_anonymous_user_id(username_or_id):
 
     Arguments:
         username_or_id (str):     username for the learner
+        external_type  (str):     external type id e.g caliper or xapi
 
     Returns:
         str
@@ -53,7 +54,7 @@ def get_anonymous_user_id(username_or_id):
 
         anonymous_id = str(uuid4())
     else:
-        type_name = ExternalIdType.LTI
+        type_name = getattr(ExternalIdType, external_type)
         external_id, _ = ExternalId.add_new_user_id(user, type_name)
         if not external_id:
             raise ValueError("External ID type: %s does not exist" % type_name)
