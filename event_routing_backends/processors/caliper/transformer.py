@@ -56,7 +56,7 @@ class CaliperTransformer(BaseTransformerMixin):
         self.transformed_event['actor'] = {
             'id': self.get_object_iri(
                 'user',
-                get_anonymous_user_id(self.extract_username_or_userid()),
+                get_anonymous_user_id(self.extract_username_or_userid(), 'CALIPER'),
             ),
             'type': 'Person'
         }

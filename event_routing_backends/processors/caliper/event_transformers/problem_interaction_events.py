@@ -135,7 +135,7 @@ class ProblemEventsTransformers(CaliperTransformer):
             )
         key = self.get_event_name_key()
 
-        anonymous_user_id = get_anonymous_user_id(self.extract_username_or_userid())
+        anonymous_user_id = get_anonymous_user_id(self.extract_username_or_userid(), 'CALIPER')
         if key == 'showanswer':
             iri_url = '{}/solution'.format(object_id)
         elif key == 'edx.problem.hint.demandhint_displayed':

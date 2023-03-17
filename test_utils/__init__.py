@@ -21,7 +21,7 @@ def _mock_third_party_modules():
     external_id.external_user_id = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
     external_user_ids_module = mock.MagicMock()
     external_user_ids_module.ExternalId.add_new_user_id.return_value = (external_id, True)
-    external_user_ids_module.ExternalIdType.LTI = 'lti'
+    external_user_ids_module.ExternalIdType.XAPI = 'xapi'
     sys.modules['openedx.core.djangoapps.external_user_ids.models'] = external_user_ids_module
 
     # mock course
