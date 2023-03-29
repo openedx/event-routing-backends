@@ -1,6 +1,7 @@
 """
 xAPI Transformer Class
 """
+import hashlib
 import uuid
 
 from django.conf import settings
@@ -17,7 +18,7 @@ from tincan import (
     Verb,
 )
 
-from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id
+from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, get_user_email
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.processors.xapi import constants
 
@@ -65,10 +66,19 @@ class XApiTransformer(BaseTransformerMixin):
             `Agent`
         """
 
-        user_uuid = get_anonymous_user_id(self.extract_username_or_userid(), 'XAPI')
-        return Agent(
-            account={"homePage": settings.LMS_ROOT_URL, "name": user_uuid}
-        )
+        if settings.XAPI_AGENT_IFI_TYPE == 'mbox':
+            email = get_user_email(self.extract_username_or_userid())
+            agent = Agent(mbox=email)
+        elif settings.XAPI_AGENT_IFI_TYPE == 'mbox_sha1sum':
+            email = get_user_email(self.extract_username_or_userid())
+            mbox_sha1sum = hashlib.sha1(email.encode('utf-8')).hexdigest()
+            agent = Agent(mbox_sha1sum=mbox_sha1sum)
+        else:
+            user_uuid = get_anonymous_user_id(self.extract_username_or_userid(), 'XAPI')
+            agent = Agent(
+                account={"homePage": settings.LMS_ROOT_URL, "name": user_uuid}
+            )
+        return agent
 
     def get_timestamp(self):
         """

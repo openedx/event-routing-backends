@@ -37,6 +37,14 @@ def _mock_third_party_modules():
     mocked_keys = mock.MagicMock()
     sys.modules['opaque_keys.edx.keys'] = mocked_keys
 
+    # mock retired user
+    mocked_user = mock.MagicMock()
+    mocked_user.username = 'edx_retired'
+    mocked_user.email = 'edx_retired@example.com'
+    mocked_models = mock.MagicMock()
+    mocked_models.get_potentially_retired_user_by_username.return_value = mocked_user
+    sys.modules['common.djangoapps.student.models'] = mocked_models
+
 
 def mocked_course_reverse(_, kwargs):
     """

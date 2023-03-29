@@ -6,12 +6,13 @@ from datetime import timedelta
 from urllib.parse import parse_qs, urlparse
 from uuid import uuid4
 
+# Imported from edx-platform
+# pylint: disable=import-error
+from common.djangoapps.student.models import get_potentially_retired_user_by_username
 from dateutil.parser import parse
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from isodate import duration_isoformat
-# Imported from edx-platform
-# pylint: disable=import-error
 from opaque_keys.edx.keys import CourseKey
 from openedx.core.djangoapps.content.course_overviews.api import get_course_overviews
 from openedx.core.djangoapps.external_user_ids.models import ExternalId, ExternalIdType
@@ -36,18 +37,7 @@ def get_anonymous_user_id(username_or_id, external_type):
     Returns:
         str
     """
-    user = user_id = username = None
-    if username_or_id:
-        try:
-            user_id = int(username_or_id)
-        except ValueError:
-            username = username_or_id
-
-    if username:
-        user = User.objects.filter(username=username).first()
-    elif user_id:
-        user = User.objects.filter(id=user_id).first()
-
+    user = get_user(username_or_id)
     if not user:
         logger.info('User with username "%s" does not exist. '
                     'Cannot generate anonymous ID', username_or_id)
@@ -62,6 +52,58 @@ def get_anonymous_user_id(username_or_id, external_type):
         anonymous_id = str(external_id.external_user_id)
 
     return anonymous_id
+
+
+def get_user(username_or_id):
+    """
+    Get user by username or user id.
+
+    Arguments:
+        username_or_id (str):     username or user id of the learner
+
+    Returns:
+        user object
+    """
+    user = user_id = username = None
+    if username_or_id:
+        try:
+            user_id = int(username_or_id)
+        except ValueError:
+            username = username_or_id
+
+    if username:
+        user = User.objects.filter(username=username).first()
+    elif user_id:
+        user = User.objects.filter(id=user_id).first()
+
+    if username and not user:
+        try:
+            user = get_potentially_retired_user_by_username(username)
+        except Exception as ex:  # pylint: disable=broad-except
+            logger.info('User with username "%s" does not exist.%s', username, ex)
+
+    return user
+
+
+def get_user_email(username_or_id):
+    """
+    Get user's email from username or user id.
+
+    Arguments:
+        username_or_id (str):     username for the learner
+
+    Returns:
+        str
+    """
+    user = get_user(username_or_id)
+
+    if not user:
+        logger.info('User with username "%s" does not exist.', username_or_id)
+        user_email = 'unknown@example.com'
+    else:
+        user_email = user.email
+
+    return user_email
 
 
 def get_course_from_id(course_id):
