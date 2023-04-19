@@ -51,4 +51,6 @@ RUNNING_WITH_TEST_SETTINGS = True
 
 EVENT_TRACKING_BACKENDS = {}
 
+XAPI_AGENT_IFI_TYPE = 'external_id'
+
 _mock_third_party_modules()

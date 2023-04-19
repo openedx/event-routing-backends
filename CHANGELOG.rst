@@ -15,6 +15,7 @@ Unreleased
 ~~~~~~~~~~
 
 * Use proper externalId types XAPI and CALIPER instead of LTI
+* Make user identifier in xAPI events configurable
 
 [5.2.2]
 ~~~~~~~

@@ -31,3 +31,7 @@ def plugin_settings(settings):
         'EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS',
         settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS
     )
+    settings.XAPI_AGENT_IFI_TYPE = settings.ENV_TOKENS.get(
+        'XAPI_AGENT_IFI_TYPE',
+        settings.XAPI_AGENT_IFI_TYPE
+    )

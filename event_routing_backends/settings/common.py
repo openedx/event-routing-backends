@@ -12,6 +12,33 @@ def plugin_settings(settings):
     settings.EVENT_ROUTING_BACKEND_MAX_RETRIES = 3
     settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
 
+    # .. setting_name: XAPI_AGENT_IFI_TYPE
+    # .. setting_default: 'external_id'
+    # .. setting_description: This setting can be used to specify the type of inverse functional identifier
+    #    for actor in xAPI statements. Possible values are 'external_id', 'mbox_sha1sum' and 'mbox'
+    #    when we set it to 'external_id' xAPI statement would represent actor like this
+    #    ```
+    #    {
+    #        "objectType": "Agent",
+    #        "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
+    #    }
+    #    ```
+    #    setting it to 'mbox' xAPI statement would represent actor like this
+    #    ```
+    #    {
+    #        "objectType": "Agent",
+    #        "mbox": "mailto:info@xapi.com"
+    #    }
+    #    ```
+    #    setting it to 'mbox_sha1sum' xAPI statement would represent actor like this
+    #    ```
+    #    {
+    #        "objectType": "Agent",
+    #        mbox_sha1sum: "f427d80dc332a166bf5f160ec15f009ce7e68c4c"
+    #    }
+    #    ```
+    settings.XAPI_AGENT_IFI_TYPE = 'external_id'
+
     # .. setting_name: EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS
     # .. setting_default: [
     #    'edx.course.enrollment.activated',

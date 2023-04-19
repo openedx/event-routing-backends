@@ -1,14 +1,17 @@
 """
 Test the transformers for all of the currently supported events into xAPI format.
 """
+import hashlib
 import json
 import os
 
 from django.test import TestCase
+from django.test.utils import override_settings
 
 from event_routing_backends.processors.tests.transformers_test_mixin import TransformersTestMixin
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
+from event_routing_backends.processors.xapi.transformer import XApiTransformer
 
 
 class TestXApiTransformers(TransformersTestMixin, TestCase):
@@ -41,3 +44,22 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
         expected_event.pop('id')
         transformed_event_json.pop('id')
         self.assertDictEqual(expected_event, transformed_event_json)
+
+    @override_settings(XAPI_AGENT_IFI_TYPE='mbox')
+    def test_xapi_agent_ifi_settings_mbox(self):
+        self.registry.register('test_event')(XApiTransformer)
+        raw_event = self.get_raw_event('edx.course.enrollment.activated.json')
+        transformed_event = self.registry.get_transformer(raw_event).transform()
+        action_json = transformed_event.actor.to_json()
+        self.assertEqual(action_json, json.dumps({"objectType": "Agent", "mbox": "mailto:edx@example.com"}))
+
+    @override_settings(XAPI_AGENT_IFI_TYPE='mbox_sha1sum')
+    def test_xapi_agent_ifi_settings_mbox_sha1sum(self):
+        self.registry.register('test_event')(XApiTransformer)
+        raw_event = self.get_raw_event('edx.course.enrollment.activated.json')
+        transformed_event = self.registry.get_transformer(raw_event).transform()
+        action_json = transformed_event.actor.to_json()
+        mbox_sha1sum = hashlib.sha1('edx@example.com'.encode('utf-8')).hexdigest()
+        self.assertEqual(
+            action_json, json.dumps({"objectType": "Agent", "mbox_sha1sum": mbox_sha1sum})
+        )

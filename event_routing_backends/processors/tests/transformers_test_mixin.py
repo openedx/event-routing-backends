@@ -41,7 +41,7 @@ class TransformersTestMixin:
     EXCEPTED_EVENTS_FIXTURES_PATH = None
 
     def setUp(self):
-        UserFactory.create(username='edx')
+        UserFactory.create(username='edx', email='edx@example.com')
 
     def get_raw_event(self, event_filename):
         """
