@@ -35,8 +35,7 @@ How To Contribute
 -----------------
 
 Contributions are very welcome.
-Please read `How To Contribute <https://github.com/openedx/edx-platform/blob/master/CONTRIBUTING.rst>`__ for details.
-Even though they were written with ``edx-platform`` in mind, the guidelines
+Please read `How To Contribute <https://github.com/openedx/.github/blob/master/CONTRIBUTING.md>`__ for details.
 should be followed for all Open edX projects.
 
 The pull request description template should be automatically applied if you are creating a pull request from GitHub. Otherwise you
