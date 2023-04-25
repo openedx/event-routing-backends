@@ -16,6 +16,8 @@ Unreleased
 
 * Use proper externalId types XAPI and CALIPER instead of LTI
 * Make user identifier in xAPI events configurable
+* Switch from ``edx-sphinx-theme`` to ``sphinx-book-theme`` since the former is
+  deprecated
 
 [5.2.2]
 ~~~~~~~
