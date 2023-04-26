@@ -153,7 +153,7 @@ exceptiongroup==1.1.1
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==18.4.0
+faker==18.5.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -163,7 +163,7 @@ idna==3.4
     #   requests
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==6.5.0
+importlib-metadata==6.6.0
     # via
     #   keyring
     #   twine
