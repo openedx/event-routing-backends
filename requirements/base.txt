@@ -124,7 +124,7 @@ pytz==2023.3
     #   tincan
 pyyaml==6.0
     # via code-annotations
-requests==2.28.2
+requests==2.29.0
     # via -r requirements/base.in
 six==1.16.0
     # via
