@@ -89,10 +89,11 @@ class TransformersTestMixin:
         Every transformer's test case will implement its own logic to test
         events transformation
         """
-    @patch('event_routing_backends.helpers.uuid4')
+    @patch('event_routing_backends.helpers.uuid')
     @ddt.data(*EVENT_FIXTURE_FILENAMES)
-    def test_event_transformer(self, event_filename, mocked_uuid4):
-        mocked_uuid4.return_value = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
+    def test_event_transformer(self, event_filename, mocked_uuid):
+        mocked_uuid.uuid4.return_value = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
+        mocked_uuid.uuid5.return_value = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
 
         # if an event's expected fixture doesn't exist, the test shouldn't fail.
         # evaluate transformation of only supported event fixtures.

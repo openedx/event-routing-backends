@@ -1,10 +1,10 @@
 """
 Helper utilities for event transformers.
 """
+import datetime
 import logging
-from datetime import timedelta
+import uuid
 from urllib.parse import parse_qs, urlparse
-from uuid import uuid4
 
 # Imported from edx-platform
 # pylint: disable=import-error
@@ -21,6 +21,25 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
+
+
+def get_uuid5(namespace_key, name):
+    """
+    Create a UUID5 string based on custom namesapce and name.
+
+    Arguments:
+    namespace_key (str):    key to be used to create a custom namespace
+    name  (str):            string for which we need to creat a UUID
+
+    Returns:
+        str
+
+    """
+    # We are not pulling base uuid from settings to avoid
+    # data discrepancies incase setting is changed inadvertently
+    base_uuid = uuid.UUID('6ba7b810-9dad-11d1-80b4-00c04fd430c8')
+    base_namespace = uuid.uuid5(base_uuid, namespace_key)
+    return uuid.uuid5(base_namespace, name)
 
 
 def get_anonymous_user_id(username_or_id, external_type):
@@ -42,7 +61,7 @@ def get_anonymous_user_id(username_or_id, external_type):
         logger.info('User with username "%s" does not exist. '
                     'Cannot generate anonymous ID', username_or_id)
 
-        anonymous_id = str(uuid4())
+        anonymous_id = str(uuid.uuid4())
     else:
         type_name = getattr(ExternalIdType, external_type)
         external_id, _ = ExternalId.add_new_user_id(user, type_name)
@@ -132,7 +151,7 @@ def convert_seconds_to_iso(seconds):
     """
     if seconds is None:
         return None
-    return duration_isoformat(timedelta(
+    return duration_isoformat(datetime.timedelta(
         seconds=seconds
     ))
 
