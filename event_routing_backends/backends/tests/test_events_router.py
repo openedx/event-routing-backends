@@ -84,13 +84,16 @@ class TestEventsRouter(TestCase):
 
     @patch('event_routing_backends.utils.http_client.requests.post')
     @patch('event_routing_backends.backends.events_router.logger')
-    def test_with_processor_exception(self, mocked_logger, mocked_post):
+    @patch('event_routing_backends.models.RouterConfiguration.get_enabled_routers')
+    def test_with_processor_exception(self, mocked_get_enabled_routers, mocked_logger, mocked_post):
         processors = [
             MagicMock(return_value=self.transformed_event),
             MagicMock(side_effect=EventEmissionExit, return_value=self.transformed_event),
             MagicMock(return_value=self.transformed_event),
         ]
         processors[1].side_effect = EventEmissionExit
+
+        mocked_get_enabled_routers.return_value = ['test']
 
         router = EventsRouter(processors=processors, backend_name='test')
         router.send(self.transformed_event)
@@ -143,7 +146,7 @@ class TestEventsRouter(TestCase):
 
         self.assertIn(
             call('Could not find any enabled router configuration for backend %s', 'test'),
-            mocked_logger.error.mock_calls
+            mocked_logger.info.mock_calls
         )
 
     @patch('event_routing_backends.utils.http_client.requests.post')
