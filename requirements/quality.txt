@@ -29,7 +29,7 @@ celery==5.2.7
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2022.12.7
+certifi==2023.5.7
     # via
     #   -r requirements/test.txt
     #   requests
@@ -84,7 +84,7 @@ ddt==1.6.0
     # via -r requirements/test.txt
 dill==0.3.6
     # via pylint
-django==3.2.18
+django==3.2.19
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -139,7 +139,7 @@ exceptiongroup==1.1.1
     #   pytest
 factory-boy==3.2.1
     # via -r requirements/test.txt
-faker==18.6.1
+faker==18.7.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -213,7 +213,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==2.17.3
+pylint==2.17.4
     # via
     #   edx-lint
     #   pylint-celery
@@ -264,7 +264,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-requests==2.29.0
+requests==2.30.0
     # via -r requirements/test.txt
 six==1.16.0
     # via
@@ -303,7 +303,7 @@ typing-extensions==4.5.0
     # via
     #   astroid
     #   pylint
-urllib3==1.26.15
+urllib3==2.0.2
     # via
     #   -r requirements/test.txt
     #   requests
