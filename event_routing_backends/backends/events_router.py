@@ -39,6 +39,12 @@ class EventsRouter:
         Arguments:
             event (dict):      original event dictionary
         """
+        routers = RouterConfiguration.get_enabled_routers(self.backend_name)
+
+        if not routers:
+            logger.info('Could not find any enabled router configuration for backend %s', self.backend_name)
+            return
+
         try:
             event_name = event['name']
         except TypeError as exc:
@@ -63,12 +69,6 @@ class EventsRouter:
             self.backend_name,
             processed_event
         )
-
-        routers = RouterConfiguration.get_enabled_routers(self.backend_name)
-
-        if not routers:
-            logger.error('Could not find any enabled router configuration for backend %s', self.backend_name)
-            return
 
         for router in routers:
             host = router.get_allowed_host(event)
