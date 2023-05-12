@@ -2,7 +2,6 @@
 xAPI Transformer Class
 """
 import hashlib
-import uuid
 
 from django.conf import settings
 from tincan import (
@@ -18,7 +17,7 @@ from tincan import (
     Verb,
 )
 
-from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, get_user_email
+from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, get_user_email, get_uuid5
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.processors.xapi import constants
 
@@ -51,12 +50,18 @@ class XApiTransformer(BaseTransformerMixin):
         """
         Transform the fields that are common for all events.
         """
+        actor = self.get_actor()
+        event_timestamp = self.get_timestamp()
         self.transformed_event = {
-            'actor': self.get_actor(),
+            'actor': actor,
             'context': self.get_context(),
-            'timestamp': self.get_timestamp(),
-            'id': uuid.uuid4()
+            'timestamp': event_timestamp,
         }
+        # Warning! changing anything in these 2 lines or changing the "base_uuid" can invalidate
+        # billions of rows in the database. Please have a community discussion first before introducing
+        # any change in generation of UUID.
+        uuid_str = f'{actor.to_json()}-{event_timestamp}'
+        self.transformed_event['id'] = get_uuid5(self.verb.to_json(), uuid_str)  # pylint: disable=no-member
 
     def get_actor(self):
         """
@@ -147,7 +152,8 @@ class XApiVerbTransformerMixin:
     """
     verb_map = None
 
-    def get_verb(self):
+    @property
+    def verb(self):
         """
         Get verb for xAPI transformed event.
 
