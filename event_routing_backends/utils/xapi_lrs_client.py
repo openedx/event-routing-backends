@@ -78,7 +78,7 @@ class LrsClient:
             # Tincan doesn't gracefully handle the response code we get from an LRS
             # when the event id already exists, causing many retries that will never
             # succeed, so we can eat this here.
-            if response.response.status_code == 409:
+            if response.response.status == 409:
                 logger.info('Event {} received a 409 error indicating the event id already exists.'.format(event_name))
             else:
                 logger.warning('{} request failed for sending xAPI statement of edx event "{}" to {}. '
