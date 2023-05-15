@@ -377,6 +377,26 @@ class TestEventsRouter(TestCase):
         with self.assertRaises(EventNotDispatched):
             client.send(event_name='test', statement_data={})
 
+    @patch('event_routing_backends.utils.xapi_lrs_client.logger')
+    def test_duplicate_xapi_event_id(self, mocked_logger):
+        """
+        Test that when we receive a 409 response when inserting an XAPI statement
+        we do not raise an exception, but do log it.
+        """
+        mock_duplicate_return = MagicMock()
+        mock_duplicate_return.success = False
+        mock_duplicate_return.response.status = 409
+
+        client = LrsClient({})
+        client.lrs_client = MagicMock()
+        client.lrs_client.save_statement.return_value = mock_duplicate_return
+
+        client.send(event_name='test', statement_data={})
+        self.assertIn(
+            call('Event test received a 409 error indicating the event id already exists.'),
+            mocked_logger.info.mock_calls
+        )
+
     def test_unsuccessful_routing_of_event_http(self):
         host_configurations = {
                         'url': 'http://test4.com',
