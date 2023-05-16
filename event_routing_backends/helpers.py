@@ -63,7 +63,17 @@ def get_anonymous_user_id(username_or_id, external_type):
 
         anonymous_id = str(uuid.uuid4())
     else:
-        type_name = getattr(ExternalIdType, external_type)
+        # Older versions of edx-platform do not have the XAPI or
+        # Caliper ExternalIdTypes, so we fall back to LTI here.
+        # Eventually this will be a problem when those instances
+        # upgrade and their actor id's all change, unless we
+        # eventually add a setting to force LTI here instead of the
+        # usual type.
+        try:
+            type_name = getattr(ExternalIdType, external_type)
+        except AttributeError:
+            type_name = ExternalIdType.LTI
+
         external_id, _ = ExternalId.add_new_user_id(user, type_name)
         if not external_id:
             raise ValueError("External ID type: %s does not exist" % type_name)
