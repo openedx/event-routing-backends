@@ -10,6 +10,7 @@ from event_routing_backends.processors.mixins.base_transformer_processor import 
 from event_routing_backends.processors.xapi import XAPI_EVENTS_ENABLED
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 
+logger = getLogger(__name__)
 xapi_logger = getLogger('xapi_tracking')
 
 
@@ -46,7 +47,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
         if transformed_event:
             event_json = transformed_event.to_json()
             xapi_logger.info(event_json)
-            xapi_logger.info('xAPI statement of edx event "{}" is: {}'.format(event["name"], event_json))
+            logger.debug('xAPI statement of edx event "{}" is: {}'.format(event["name"], event_json))
             return json.loads(event_json)
 
         return transformed_event

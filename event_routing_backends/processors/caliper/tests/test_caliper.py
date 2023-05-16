@@ -58,7 +58,7 @@ class TestCaliperProcessor(SimpleTestCase):
     @patch(
         'event_routing_backends.processors.caliper.transformer_processor.CaliperTransformersRegistry.get_transformer'
     )
-    @patch('event_routing_backends.processors.caliper.transformer_processor.caliper_logger')
+    @patch('event_routing_backends.processors.caliper.transformer_processor.logger')
     def test_send_method_with_successfull_flow(self, mocked_logger, mocked_get_transformer):
         transformed_event = {
             'transformed_key': 'transformed_value'
@@ -76,7 +76,7 @@ class TestCaliperProcessor(SimpleTestCase):
                     json.dumps(transformed_event)
                 )
             ),
-            mocked_logger.info.mock_calls
+            mocked_logger.debug.mock_calls
         )
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')

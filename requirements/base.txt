@@ -8,6 +8,8 @@ amqp==5.1.1
     # via kombu
 aniso8601==9.0.1
     # via tincan
+apache-libcloud==3.7.0
+    # via -r requirements/base.in
 asgiref==3.7.2
     # via django
 backports-zoneinfo[tzdata]==0.2.1
@@ -86,6 +88,8 @@ edx-toggles==5.0.0
     # via -r requirements/base.in
 event-tracking==2.1.0
     # via -r requirements/base.in
+fasteners==0.18
+    # via -r requirements/base.in
 idna==3.4
     # via requests
 isodate==0.6.1
@@ -130,7 +134,9 @@ pytz==2023.3
 pyyaml==6.0
     # via code-annotations
 requests==2.31.0
-    # via -r requirements/base.in
+    # via
+    #   -r requirements/base.in
+    #   apache-libcloud
 six==1.16.0
     # via
     #   click-repl
@@ -155,7 +161,7 @@ tzdata==2023.3
     # via
     #   backports-zoneinfo
     #   celery
-urllib3==2.0.2
+urllib3==2.0.3
     # via requests
 vine==5.0.0
     # via

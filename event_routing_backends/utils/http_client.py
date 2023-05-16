@@ -49,6 +49,42 @@ class HttpClient:
             }
         return {}
 
+    def bulk_send(self, events):
+        """
+        Send the list of events to a configured remote.
+
+        Arguments:
+            events (list[dict]) :   list of event payloads to send to host.
+
+        Returns:
+            requests.Response object
+        """
+        headers = self.HEADERS.copy()
+        headers.update(self.get_auth_header())
+
+        options = self.options.copy()
+        options.update({
+            'url': self.URL,
+            'json': events,
+            'headers': headers,
+        })
+        if self.AUTH_SCHEME == RouterConfiguration.AUTH_BASIC:
+            options.update({'auth': (self.username, self.password)})
+        logger.debug('Sending caliper version of {} edx events to {}'.format(len(events), self.URL))
+        response = requests.post(**options)   # pylint: disable=missing-timeout
+
+        if not 200 <= response.status_code < 300:
+            logger.warning(
+                '{} request failed for sending Caliper version of {} edx events to {}.Response code: {}. '
+                'Response: '
+                '{}'.format(
+                    response.request.method,
+                    len(events), self.URL,
+                    response.status_code,
+                    response.text
+                ))
+            raise EventNotDispatched
+
     def send(self, event, event_name):
         """
         Send the event to configured remote.

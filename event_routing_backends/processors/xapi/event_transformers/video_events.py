@@ -141,9 +141,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
             `Activity`
         """
         course_id = self.get_data('context.course_id', True)
-
         video_id = self.get_data('data.id', True)
-
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
 
         return Activity(
@@ -200,9 +198,10 @@ class VideoInteractionTransformers(BaseVideoTransformer):
         Returns:
             `Result`
         """
+        current_time = self.get_data('data.current_time') or self.get_data('data.currentTime')
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(self.get_data('data.currentTime'))
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(current_time)
             })
         )
 
@@ -237,11 +236,11 @@ class VideoCCTransformers(BaseVideoTransformer):
                 'show_transcript',
             ]
          )
+        current_time = self.get_data('data.current_time') or self.get_data('data.currentTime')
+
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(
-                    self.get_data('data.currentTime') or self.get_data('data.current_time')
-                ),
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_float(current_time),
                 constants.XAPI_RESULT_VIDEO_CC_ENABLED: cc_enabled
             })
         )

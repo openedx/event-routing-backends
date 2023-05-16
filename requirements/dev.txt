@@ -12,6 +12,8 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
+apache-libcloud==3.7.0
+    # via -r requirements/quality.txt
 asgiref==3.7.2
     # via
     #   -r requirements/quality.txt
@@ -170,6 +172,8 @@ faker==18.10.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
+fasteners==0.18
+    # via -r requirements/quality.txt
 filelock==3.12.0
     # via
     #   -r requirements/ci.txt
@@ -274,7 +278,7 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==1.10.8
+pydantic==1.10.9
     # via inflect
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
@@ -343,7 +347,9 @@ pyyaml==6.0
     #   code-annotations
     #   edx-i18n-tools
 requests==2.31.0
-    # via -r requirements/quality.txt
+    # via
+    #   -r requirements/quality.txt
+    #   apache-libcloud
 six==1.16.0
     # via
     #   -r requirements/ci.txt
@@ -408,7 +414,7 @@ tzdata==2023.3
     #   -r requirements/quality.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.0.2
+urllib3==2.0.3
     # via
     #   -r requirements/quality.txt
     #   requests

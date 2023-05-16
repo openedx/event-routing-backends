@@ -73,17 +73,16 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
     def get_object(self):
         """
         Get object for xAPI transformed event.
-
         Returns:
             `Activity`
         """
         object_id = None
         data = self.get_data('data')
         if data and isinstance(data, dict):
-            object_id = data.get('problem_id', data.get('module_id', None))
+            object_id = self.get_data('data.problem_id') or self.get_data('data.module_id', True)
 
         event_name = self.get_data('name', True)
-        # TODO: Add definition[name] of problem once it is added in the event.
+
         return Activity(
             id=object_id,
             definition=ActivityDefinition(
@@ -133,6 +132,17 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
     """
     additional_fields = ('result', )
 
+    def get_object(self):
+        """
+        Get object for xAPI transformed event.
+
+        Returns:
+            `Activity`
+        """
+        xapi_object = super().get_object()
+        xapi_object.id = self.get_object_iri('xblock', xapi_object.id)
+        return xapi_object
+
     def get_result(self):
         """
         Get result for xAPI transformed event.
@@ -170,9 +180,11 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
 
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
-        if self.get_data('context.event_source') == 'browser':
+        event_source = self.get_data('context.event_source') or self.get_data('event_source')
+        referer = self.get_data('referer') or self.get_data('context.referer', True)
+        if event_source == 'browser':
             block_id = get_problem_block_id(
-                self.get_data('context.referer', True),
+                referer,
                 self.get_data('data'),
                 self.get_data('context.course_id')
             )
@@ -235,7 +247,8 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             Result
         """
         # Do not transform result if the event is generated from browser
-        if self.get_data('context.event_source') == 'browser':
+        source = self.get_data('event_source') or self.get_data('context.event_source')
+        if source == 'browser':
             return None
 
         event_data = self.get_data('data')

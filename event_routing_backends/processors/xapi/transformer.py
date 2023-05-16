@@ -162,7 +162,8 @@ class XApiVerbTransformerMixin:
         """
         event_name = self.get_data('name', True)
 
-        if self.get_data('context.event_source') == 'browser' and event_name == 'problem_check':
+        event_source = self.get_data('event_source') or self.get_data('context.event_source')
+        if event_source == 'browser' and event_name == 'problem_check':
             verb = self.verb_map['problem_check_browser']
         else:
             verb = self.verb_map[event_name]
