@@ -122,7 +122,7 @@ exceptiongroup==1.1.1
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==18.7.0
+faker==18.9.0
     # via factory-boy
 idna==3.4
     # via
@@ -223,7 +223,7 @@ sqlparse==0.4.4
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.0.0
+stevedore==5.1.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
