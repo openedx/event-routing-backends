@@ -71,7 +71,7 @@ def get_anonymous_user_id(username_or_id, external_type):
         # usual type.
         try:
             type_name = getattr(ExternalIdType, external_type)
-        except AttributeError:
+        except AttributeError:  # pragma: no cover
             type_name = ExternalIdType.LTI
 
         external_id, _ = ExternalId.add_new_user_id(user, type_name)
