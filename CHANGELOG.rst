@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[5.3.1]
+~~~~~~~
+
+* Allow External ID type to fall back to LTI on older versions of edx-platform
+  to preserve backward compatibility
 
 [5.3.0]
 ~~~~~~~
