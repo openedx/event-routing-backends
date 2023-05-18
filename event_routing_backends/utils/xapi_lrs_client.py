@@ -75,7 +75,13 @@ class LrsClient:
 
         response = self.lrs_client.save_statement(statement_data)
         if not response.success:
-            logger.warning('{} request failed for sending xAPI statement of edx event "{}" to {}. '
-                           'Response code: {}. Response: {}'.format(response.request.method, event_name, self.URL,
-                                                                    response.response.code, response.data))
-            raise EventNotDispatched
+            # Tincan doesn't gracefully handle the response code we get from an LRS
+            # when the event id already exists, causing many retries that will never
+            # succeed, so we can eat this here.
+            if response.response.status == 409:
+                logger.info('Event {} received a 409 error indicating the event id already exists.'.format(event_name))
+            else:
+                logger.warning('{} request failed for sending xAPI statement of edx event "{}" to {}. '
+                               'Response code: {}. Response: {}'.format(response.request.method, event_name, self.URL,
+                                                                        response.response.code, response.data))
+                raise EventNotDispatched
