@@ -1,0 +1,5 @@
+Campus IL Notes:
+
+The routing events feature deployment/usage for the CampusIL:
+In the current version of this plugin we need to use the exceptions.py exceptions clases. 
+The exception classes vileus need to be moved to the .../site-packages/eventtracking/processors/exceptions.pyends/processors/exceptions.py
