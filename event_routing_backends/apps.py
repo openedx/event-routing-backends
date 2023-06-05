@@ -35,5 +35,6 @@ class EventRoutingBackendsConfig(AppConfig):
         """
         super().ready()
         # pylint: disable=import-outside-toplevel, unused-import
+        from event_routing_backends import signals  # noqa: F401
         from event_routing_backends.processors.caliper import event_transformers as caliper_event_transformers
         from event_routing_backends.processors.xapi import event_transformers as xapi_event_transformers
