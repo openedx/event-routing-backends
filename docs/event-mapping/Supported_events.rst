@@ -9,6 +9,7 @@ Enrollment events
 
 * `edx.course.enrollment.activated`_  | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.enrollment.activated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-enrollment-activated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.enrollment.activated.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-enrollment-activated>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.enrollment.activated.json>`__
 * `edx.course.enrollment.deactivated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.enrollment.deactivated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-enrollment-deactivated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.enrollment.deactivated.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-enrollment-deactivated>`__  , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.enrollment.deactivated.json>`__
+* `edx.course.enrollment.mode_changed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.enrollment.mode_changed.json>`__ | xAPI `map <./xAPI_mapping.rst#edxcourseenrollmentmode_changed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.enrollment.mode_changed.json>`__
 
 Course grading events
 -----------------------
@@ -50,6 +51,7 @@ Course navigation events
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.deactivated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
+.. _edx.course.enrollment.mode_changed: https://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-mode-changed
 .. _edx.grades.problem.submitted: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-problem-submitted
 .. _problem_check: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#problem-check
 .. _showanswer: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#showanswer

@@ -50,9 +50,10 @@ class BaseEnrollmentTransformer(XApiTransformer):
 
 
 @XApiTransformersRegistry.register('edx.course.enrollment.activated')
+@XApiTransformersRegistry.register('edx.course.enrollment.mode_changed')
 class EnrollmentActivatedTransformer(BaseEnrollmentTransformer):
     """
-    Transformers for event generated when learner enrolls in a course.
+    Transformers for event generated when learner enrolls or gets the enrollment mode changed in a course.
     """
     verb = Verb(
         id=constants.XAPI_VERB_REGISTERED,

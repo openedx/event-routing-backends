@@ -14,6 +14,10 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[5.4.0]
+
+* Add support for the ``edx.course.enrollment.mode_changed`` event
+
 [5.3.1]
 ~~~~~~~
 
