@@ -1,0 +1,34 @@
+{
+    "id": "6d1f033b-3f70-458c-b53a-e6bb63cbaef9",
+    "actor": {
+        "objectType": "Agent",
+        "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
+    },
+    "context": {
+        "extensions": {
+            "https://w3id.org/xapi/openedx/extension/transformer-version": "event-routing-backends@1.1.1",
+            "https://w3id.org/xapi/openedx/extensions/session-id": "44c2f6b53a6aaf210797a56391a443bc"
+        }
+    },
+    "object": {
+        "definition": {
+            "extensions": {
+              "https://w3id.org/xapi/acrossx/extensions/type": "audit"
+            },
+            "name": {
+                "en": "Demonstration Course"
+            },
+            "type": "http://adlnet.gov/expapi/activities/course"
+        },
+        "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-07-15T06:36:01.917775+00:00",
+    "verb": {
+        "display": {
+            "en": "registered"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/registered"
+    },
+    "version": "1.0.3"
+}

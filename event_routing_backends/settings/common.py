@@ -61,12 +61,13 @@ def plugin_settings(settings):
             'OPTIONS': {
                 'backend_name': 'xapi',
                 'processors': [
-                        {
-                            'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
-                            'OPTIONS': {
+                    {
+                        'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
+                        'OPTIONS': {
                                 'whitelist': [
                                     'edx.course.enrollment.activated',
                                     'edx.course.enrollment.deactivated',
+                                    'edx.course.enrollment.mode_changed',
                                     'edx.ui.lms.link_clicked',
                                     'edx.ui.lms.sequence.outline.selected',
                                     'edx.ui.lms.outline.selected',
@@ -101,8 +102,8 @@ def plugin_settings(settings):
                                     'edx.video.language_menu.shown',
                                     'edx.course.grade.passed.first_time'
                                 ]
-                            }
-                        },
+                        }
+                    },
                 ],
                 'backends': {
                     'xapi': {

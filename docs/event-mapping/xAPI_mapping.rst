@@ -41,6 +41,27 @@ definition [ name ][ en-US ]                                                <nam
 definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ mode ]>
 =========================================================================== ==========================================
 
+edx.course.enrollment.mode_changed
+==================================
+
+=========================================================================== ==========================================
+xAPI Key                                                                    Value
+=========================================================================== ==========================================
+``Actor``
+objectType                                                                  Agent
+account [ homePage ]                                                        <LMS_ROOT_URL>
+account [ name ]                                                            <external_id[ XAPI ]>
+``Verb``
+id                                                                          http://adlnet.gov/expapi/verbs/registered
+display [ en-US ]                                                           registered
+``Object``
+id                                                                          <LMS_ROOT_URL>/course/<data [ course_id ]>
+objectType                                                                  Activity
+definition [ type ]                                                         http://adlnet.gov/expapi/activities/course
+definition [ name ][ en-US ]                                                <name of course-run>
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ mode ]>
+=========================================================================== ==========================================
+
 edx.course.grade.passed.first_time
 ==================================
 
