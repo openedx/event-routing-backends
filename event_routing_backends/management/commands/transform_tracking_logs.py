@@ -248,7 +248,7 @@ class Command(BaseCommand):
         if dest_driver != "LRS":
             validate_destination(dest_driver, dest_container, dest_prefix, source_file_list)
         else:
-            print(f"Source files found: {source_file_list}")
+            print(f"Found {len(source_file_list)} source files: ", *source_file_list, sep="\n")
 
         sender = QueuedSender(
             dest_driver,

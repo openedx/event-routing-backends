@@ -108,7 +108,6 @@ class QueuedSender:
         """
         if self.destination == "LRS":
             print(f"Sending {len(self.event_queue)} events to LRS...")
-            print(self.router)
             self.router.bulk_send(self.event_queue)
         else:
             print("Skipping send, we're storing with libcloud instead of an LRS.")
