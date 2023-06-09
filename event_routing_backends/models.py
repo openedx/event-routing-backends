@@ -44,7 +44,7 @@ def get_value_from_dotted_path(dict_obj, dotted_key):
     try:
         for key in nested_keys:
             result = result[key]
-    except KeyError:
+    except (KeyError, TypeError):
         return None
     return result
 
