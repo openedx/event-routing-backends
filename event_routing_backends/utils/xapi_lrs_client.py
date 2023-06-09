@@ -72,7 +72,14 @@ class LrsClient:
         """
         logger.debug('Sending {} xAPI statements to {}'.format(len(statement_data), self.URL))
 
-        response = self.lrs_client.save_statements(statement_data)
+        valid_statement_data = [statement for statement in statement_data if "id" in statement["object"]]
+
+        invalid_statement_data = [statement for statement in statement_data if "id" not in statement["object"]]
+
+        logger.debug(f"Invalid statements: {invalid_statement_data}")
+
+        response = self.lrs_client.save_statements(valid_statement_data)
+
 
         if not response.success:
             if response.response.code == 409:
