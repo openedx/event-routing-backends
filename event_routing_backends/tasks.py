@@ -87,7 +87,7 @@ def send_event(task, event_name, event, router_type, host_config):
                                                        'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
 
 
-@shared_task(bind=True, base=LoggedPersistOnFailureTask)
+@shared_task(bind=True)
 def dispatch_bulk_events(self, events, router_type, host_config):
     """
     Send a batch of events to the same configured client.
