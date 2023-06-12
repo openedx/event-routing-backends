@@ -6,11 +6,15 @@ import os
 from io import BytesIO
 from textwrap import dedent
 
+import requests
 from django.core.management.base import BaseCommand
 from libcloud.storage.providers import get_driver
 from libcloud.storage.types import Provider
 
 from event_routing_backends.management.commands.helpers.queued_sender import QueuedSender
+
+# Number of bytes to download at a time, this is 2 MB
+CHUNK_SIZE = 1024 * 1024 * 2
 
 
 def transform_tracking_logs(
@@ -32,8 +36,17 @@ def transform_tracking_logs(
     for file in source.iterate_container_objects(container, source_prefix):
         # Download the file as a stream of characters to save on memory
         print(f"Streaming file {file}...")
+
+        last_successful_byte = 0
         line = ""
-        for chunk in source.download_object_as_stream(file):
+        end_byte = last_successful_byte + CHUNK_SIZE
+
+        while last_successful_byte <= int(file.size):
+            chunk = source.download_object_range_as_stream(
+                file,
+                start_bytes=last_successful_byte,
+                end_bytes= end_byte
+            )
             chunk = chunk.decode('utf-8')
 
             # Loop through this chunk, if we find a newline it's time to process
@@ -45,6 +58,7 @@ def transform_tracking_logs(
                 else:
                     line += char
 
+            last_successful_byte = end_byte
         # Sometimes the file doesn't end with a newline, we try to use
         # any remaining bytes as a final line.
         if line:

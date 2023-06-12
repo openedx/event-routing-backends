@@ -151,7 +151,7 @@ def command_options():
         yield option
 
 
-def get_raw_log_stream(_):
+def get_raw_log_stream(_, start_bytes, end_bytes):
     """
     Return raw event json parsed from current fixtures
     """
@@ -160,8 +160,9 @@ def get_raw_log_stream(_):
 
     tracking_log_path = '{test_dir}/fixtures/tracking.log'.format(test_dir=TEST_DIR_PATH)
 
-    with open(tracking_log_path, "rb", buffering=10) as current:
-        yield current.read()
+    with open(tracking_log_path, "rb") as current:
+        current.seek(start_bytes)
+        return current.read(end_bytes - start_bytes)
 
 
 @pytest.mark.parametrize("command_opts", command_options())
@@ -182,7 +183,7 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
 
     # Fake finding one log file in each container, it will be loaded and parsed twice
     mm.return_value.iterate_container_objects.return_value = [mock_log_object]
-    mm.return_value.download_object_as_stream = get_raw_log_stream
+    mm.return_value.download_object_range_as_stream = get_raw_log_stream
     mock_libcloud_get_driver.return_value = mm
 
     mm2 = MagicMock()
