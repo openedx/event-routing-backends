@@ -55,7 +55,7 @@ def command_options():
             "source_config": LOCAL_CONFIG,
             "batch_size": 1,
             "sleep_between_batches_secs": 0,
-            "chunk_size": 1024, # We use this to override the default size of bytes to download
+            "chunk_size": 1024,  # We use this to override the default size of bytes to download
             "expected_results": {
                 "expected_batches_sent": 2,
                 "log_lines": [
@@ -183,7 +183,6 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
 
     expected_results = command_opts.pop("expected_results")
     transform_tracking_logs.CHUNK_SIZE = command_opts.pop("chunk_size", 1024*1024*2)
-
 
     mm = MagicMock()
 

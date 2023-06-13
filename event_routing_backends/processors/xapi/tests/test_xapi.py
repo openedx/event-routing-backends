@@ -79,7 +79,6 @@ class TestXApiProcessor(SimpleTestCase):
 
         self.assertNotIn(call(transformed_event.to_json()), mocked_logger.mock_calls)
 
-
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_with_no_registry(self, mocked_logger):
         backend = XApiProcessor()

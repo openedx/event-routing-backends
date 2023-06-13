@@ -126,7 +126,6 @@ class TestCaliperProcessor(SimpleTestCase):
             mocked_caliper_logger.info.mock_calls
         )
 
-
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_with_no_registry(self, mocked_logger):
         backend = CaliperProcessor()
