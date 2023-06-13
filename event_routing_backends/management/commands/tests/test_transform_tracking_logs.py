@@ -2,6 +2,7 @@
 Tests for the transform_tracking_logs management command.
 """
 import json
+import os
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -151,15 +152,21 @@ def command_options():
         yield option
 
 
-def get_raw_log_stream(_, start_bytes, end_bytes):
+def _get_tracking_log_file_path():
+    TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+    return '{test_dir}/fixtures/tracking.log'.format(test_dir=TEST_DIR_PATH)
+
+
+def _get_raw_log_size():
+    tracking_log_path = _get_tracking_log_file_path()
+    return os.path.getsize(tracking_log_path)
+
+
+def _get_raw_log_stream(_, start_bytes, end_bytes):
     """
     Return raw event json parsed from current fixtures
     """
-    import os
-    TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
-
-    tracking_log_path = '{test_dir}/fixtures/tracking.log'.format(test_dir=TEST_DIR_PATH)
-
+    tracking_log_path = _get_tracking_log_file_path()
     with open(tracking_log_path, "rb") as current:
         current.seek(start_bytes)
         yield current.read(end_bytes - start_bytes)
@@ -179,11 +186,11 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
     mock_log_object = MagicMock()
     mock_log_object.__str__.return_value = "tracking.log"
     mock_log_object.name = "tracking.log"
-    mock_log_object.size = "1024"
+    mock_log_object.size = _get_raw_log_size()
 
     # Fake finding one log file in each container, it will be loaded and parsed twice
     mm.return_value.iterate_container_objects.return_value = [mock_log_object]
-    mm.return_value.download_object_range_as_stream = get_raw_log_stream
+    mm.return_value.download_object_range_as_stream = _get_raw_log_stream
     mock_libcloud_get_driver.return_value = mm
 
     mm2 = MagicMock()

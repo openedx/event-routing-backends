@@ -6,7 +6,6 @@ import os
 from io import BytesIO
 from textwrap import dedent
 
-import requests
 from django.core.management.base import BaseCommand
 from libcloud.storage.providers import get_driver
 from libcloud.storage.types import Provider
@@ -41,22 +40,26 @@ def transform_tracking_logs(
         line = ""
         end_byte = last_successful_byte + CHUNK_SIZE
 
-        while last_successful_byte <= int(file.size):
-            chunk = source.download_object_range_as_stream(
+        if end_byte > file.size:
+            end_byte = file.size
+
+        while last_successful_byte < int(file.size):
+            chunks = source.download_object_range_as_stream(
                 file,
                 start_bytes=last_successful_byte,
-                end_bytes= end_byte
+                end_bytes=end_byte
             )
-            chunk = next(chunk).decode('utf-8')
+            for chunk in chunks:
+                chunk = chunk.decode('utf-8')
 
-            # Loop through this chunk, if we find a newline it's time to process
-            # otherwise just keep appending.
-            for char in chunk:
-                if char == "\n" and line:
-                    sender.transform_and_queue(line)
-                    line = ""
-                else:
-                    line += char
+                # Loop through this chunk, if we find a newline it's time to process
+                # otherwise just keep appending.
+                for char in chunk:
+                    if char == "\n" and line:
+                        sender.transform_and_queue(line)
+                        line = ""
+                    else:
+                        line += char
 
             last_successful_byte = end_byte
         # Sometimes the file doesn't end with a newline, we try to use
