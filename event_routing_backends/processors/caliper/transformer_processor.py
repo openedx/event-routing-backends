@@ -6,7 +6,7 @@ from logging import getLogger
 
 from eventtracking.processors.exceptions import NoBackendEnabled
 
-from event_routing_backends.processors.caliper import CALIPER_EVENTS_ENABLED
+from event_routing_backends.processors.caliper import CALIPER_EVENT_LOGGING_ENABLED, CALIPER_EVENTS_ENABLED
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.mixins.base_transformer_processor import BaseTransformerProcessorMixin
 
@@ -46,7 +46,10 @@ class CaliperProcessor(BaseTransformerProcessorMixin):
 
         if transformed_event:
             json_event = json.dumps(transformed_event)
-            caliper_logger.info(json_event)
+
+            if CALIPER_EVENT_LOGGING_ENABLED.is_enabled():
+                caliper_logger.info(json_event)
+
             logger.debug('Caliper version of edx event "{}" is: {}'.format(
                 event["name"],
                 json_event

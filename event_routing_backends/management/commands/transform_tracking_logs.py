@@ -38,12 +38,13 @@ def transform_tracking_logs(
 
         last_successful_byte = 0
         line = ""
-        end_byte = last_successful_byte + CHUNK_SIZE
-
-        if end_byte > file.size:
-            end_byte = file.size
 
         while last_successful_byte < int(file.size):
+            end_byte = last_successful_byte + CHUNK_SIZE
+
+            if end_byte > file.size:
+                end_byte = file.size
+
             chunks = source.download_object_range_as_stream(
                 file,
                 start_bytes=last_successful_byte,

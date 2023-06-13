@@ -19,9 +19,17 @@ def plugin_settings(settings):
         'CALIPER_EVENTS_ENABLED',
         settings.CALIPER_EVENTS_ENABLED
     )
+    settings.CALIPER_EVENT_LOGGING_ENABLED = settings.ENV_TOKENS.get(
+        'CALIPER_EVENT_LOGGING_ENABLED',
+        settings.CALIPER_EVENT_LOGGING_ENABLED
+    )
     settings.XAPI_EVENTS_ENABLED = settings.ENV_TOKENS.get(
         'XAPI_EVENTS_ENABLED',
         settings.XAPI_EVENTS_ENABLED
+    )
+    settings.XAPI_EVENT_LOGGING_ENABLED = settings.ENV_TOKENS.get(
+        'XAPI_EVENT_LOGGING_ENABLED',
+        settings.XAPI_EVENT_LOGGING_ENABLED
     )
     settings.EVENT_TRACKING_BACKENDS = settings.ENV_TOKENS.get(
         'EVENT_TRACKING_BACKENDS',

@@ -8,7 +8,9 @@ def plugin_settings(settings):
     Adds default settings for the event_routing_backends app.
     """
     settings.CALIPER_EVENTS_ENABLED = False
+    settings.CALIPER_EVENT_LOGGING_ENABLED = False
     settings.XAPI_EVENTS_ENABLED = True
+    settings.XAPI_EVENT_LOGGING_ENABLED = True
     settings.EVENT_ROUTING_BACKEND_MAX_RETRIES = 3
     settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
 

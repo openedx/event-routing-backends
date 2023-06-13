@@ -7,7 +7,7 @@ from logging import getLogger
 from eventtracking.processors.exceptions import NoBackendEnabled
 
 from event_routing_backends.processors.mixins.base_transformer_processor import BaseTransformerProcessorMixin
-from event_routing_backends.processors.xapi import XAPI_EVENTS_ENABLED
+from event_routing_backends.processors.xapi import XAPI_EVENT_LOGGING_ENABLED, XAPI_EVENTS_ENABLED
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 
 logger = getLogger(__name__)
@@ -46,7 +46,10 @@ class XApiProcessor(BaseTransformerProcessorMixin):
 
         if transformed_event:
             event_json = transformed_event.to_json()
-            xapi_logger.info(event_json)
+
+            if XAPI_EVENT_LOGGING_ENABLED.is_enabled():
+                xapi_logger.info(event_json)
+
             logger.debug('xAPI statement of edx event "{}" is: {}'.format(event["name"], event_json))
             return json.loads(event_json)
 

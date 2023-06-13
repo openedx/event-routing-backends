@@ -59,7 +59,13 @@ class TestCaliperProcessor(SimpleTestCase):
         'event_routing_backends.processors.caliper.transformer_processor.CaliperTransformersRegistry.get_transformer'
     )
     @patch('event_routing_backends.processors.caliper.transformer_processor.logger')
-    def test_send_method_with_successfull_flow(self, mocked_logger, mocked_get_transformer):
+    @patch('event_routing_backends.processors.caliper.transformer_processor.caliper_logger')
+    def test_send_method_with_successfull_flow(
+        self,
+        mocked_caliper_logger,
+        mocked_logger,
+        mocked_get_transformer
+    ):
         transformed_event = {
             'transformed_key': 'transformed_value'
         }
@@ -78,6 +84,48 @@ class TestCaliperProcessor(SimpleTestCase):
             ),
             mocked_logger.debug.mock_calls
         )
+
+        self.assertIn(
+            call(json.dumps(transformed_event)),
+            mocked_caliper_logger.info.mock_calls
+        )
+
+    @override_settings(CALIPER_EVENT_LOGGING_ENABLED=False)
+    @patch(
+        'event_routing_backends.processors.caliper.transformer_processor.CaliperTransformersRegistry.get_transformer'
+    )
+    @patch('event_routing_backends.processors.caliper.transformer_processor.logger')
+    @patch('event_routing_backends.processors.caliper.transformer_processor.caliper_logger')
+    def test_send_method_with_successfull_flow_logging_disabled(
+        self,
+        mocked_caliper_logger,
+        mocked_logger,
+        mocked_get_transformer
+    ):
+        transformed_event = {
+            'transformed_key': 'transformed_value'
+        }
+        mocked_transformer = MagicMock()
+        mocked_transformer.transform.return_value = transformed_event
+        mocked_get_transformer.return_value = mocked_transformer
+
+        self.processor(self.sample_event)
+
+        self.assertIn(
+            call(
+                'Caliper version of edx event "{}" is: {}'.format(
+                    self.sample_event.get('name'),
+                    json.dumps(transformed_event)
+                )
+            ),
+            mocked_logger.debug.mock_calls
+        )
+
+        self.assertNotIn(
+            call(json.dumps(transformed_event)),
+            mocked_caliper_logger.info.mock_calls
+        )
+
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_with_no_registry(self, mocked_logger):

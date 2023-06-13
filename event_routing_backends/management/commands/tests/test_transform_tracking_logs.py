@@ -9,6 +9,7 @@ import pytest
 from django.core.management import call_command
 from libcloud.storage.types import ContainerDoesNotExistError
 
+import event_routing_backends.management.commands.transform_tracking_logs as transform_tracking_logs
 from event_routing_backends.management.commands.helpers.queued_sender import QueuedSender
 from event_routing_backends.management.commands.transform_tracking_logs import (
     get_dest_config_from_options,
@@ -54,6 +55,7 @@ def command_options():
             "source_config": LOCAL_CONFIG,
             "batch_size": 1,
             "sleep_between_batches_secs": 0,
+            "chunk_size": 1024, # We use this to override the default size of bytes to download
             "expected_results": {
                 "expected_batches_sent": 2,
                 "log_lines": [
@@ -180,6 +182,8 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
     mock_libcloud_provider, mock_libcloud_get_driver, mock_eventsrouter = mock_common_calls
 
     expected_results = command_opts.pop("expected_results")
+    transform_tracking_logs.CHUNK_SIZE = command_opts.pop("chunk_size", 1024*1024*2)
+
 
     mm = MagicMock()
 
