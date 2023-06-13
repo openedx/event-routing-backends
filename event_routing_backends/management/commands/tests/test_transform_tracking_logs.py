@@ -162,7 +162,7 @@ def get_raw_log_stream(_, start_bytes, end_bytes):
 
     with open(tracking_log_path, "rb") as current:
         current.seek(start_bytes)
-        return current.read(end_bytes - start_bytes)
+        yield current.read(end_bytes - start_bytes)
 
 
 @pytest.mark.parametrize("command_opts", command_options())
