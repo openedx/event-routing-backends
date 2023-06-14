@@ -146,7 +146,12 @@ def get_course_from_id(course_id):
         Course
     """
     course_key = CourseKey.from_string(course_id)
-    return get_course_overviews([course_key])[0]
+    course_overviews = get_course_overviews([course_key])
+    if course_overviews:
+        return course_overviews[0]
+    return {
+        "display_name": "Unknown Course",
+    }
 
 
 def convert_seconds_to_iso(seconds):
