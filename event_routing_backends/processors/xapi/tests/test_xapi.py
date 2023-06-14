@@ -66,6 +66,21 @@ class TestXApiProcessor(SimpleTestCase):
 
         self.assertIn(call(transformed_event.to_json()), mocked_logger.mock_calls)
 
+    @patch(
+        'event_routing_backends.processors.xapi.transformer_processor.XApiTransformersRegistry.get_transformer'
+    )
+    @patch('event_routing_backends.processors.xapi.transformer_processor.xapi_logger')
+    def test_send_method_with_invalid_object(self, mocked_logger, mocked_get_transformer):
+        transformed_event = Statement()
+        mocked_transformer = MagicMock()
+        mocked_transformer.transform.return_value = transformed_event
+        mocked_get_transformer.return_value = mocked_transformer
+
+        with self.assertRaises(EventEmissionExit):
+            self.processor(self.sample_event)
+
+        self.assertNotIn(call(transformed_event.to_json()), mocked_logger.mock_calls)
+
     @override_settings(XAPI_EVENT_LOGGING_ENABLED=False)
     @patch(
         'event_routing_backends.processors.xapi.transformer_processor.XApiTransformersRegistry.get_transformer'

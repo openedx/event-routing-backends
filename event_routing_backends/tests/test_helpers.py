@@ -8,6 +8,7 @@ from django.test import TestCase
 from event_routing_backends.helpers import (
     get_anonymous_user_id,
     get_block_id_from_event_referrer,
+    get_course_from_id,
     get_user_email,
     get_uuid5,
 )
@@ -73,3 +74,9 @@ class TestHelpers(TestCase):
         name = f'{another_actor}-{timestamp}'
         uuid_3 = get_uuid5(verb, name)
         self.assertNotEqual(uuid_1, uuid_3)
+
+    @patch('event_routing_backends.helpers.get_course_overviews')
+    def test_get_course_from_id(self, mock_get_course_overviews):
+        mock_get_course_overviews.return_value = []
+        course = get_course_from_id("foo")
+        self.assertEqual(course["display_name"], "Unknown Course")
