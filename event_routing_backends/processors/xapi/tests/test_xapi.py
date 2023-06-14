@@ -1,12 +1,13 @@
 """
 Test the xAPI processor.
 """
+import uuid
 
 from django.test import SimpleTestCase
 from django.test.utils import override_settings
 from eventtracking.processors.exceptions import EventEmissionExit, NoBackendEnabled
 from mock import MagicMock, call, patch, sentinel
-from tincan import Statement
+from tincan import Activity, Statement
 
 from event_routing_backends.processors.xapi.transformer_processor import XApiProcessor
 
@@ -56,6 +57,7 @@ class TestXApiProcessor(SimpleTestCase):
     @patch('event_routing_backends.processors.xapi.transformer_processor.xapi_logger')
     def test_send_method_with_successfull_flow(self, mocked_logger, mocked_get_transformer):
         transformed_event = Statement()
+        transformed_event.object = Activity(id=str(uuid.uuid4()))
         mocked_transformer = MagicMock()
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer
@@ -71,6 +73,7 @@ class TestXApiProcessor(SimpleTestCase):
     @patch('event_routing_backends.processors.xapi.transformer_processor.xapi_logger')
     def test_send_method_with_successfull_flow_no_logger(self, mocked_logger, mocked_get_transformer):
         transformed_event = Statement()
+        transformed_event.object = Activity(id=str(uuid.uuid4()))
         mocked_transformer = MagicMock()
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer

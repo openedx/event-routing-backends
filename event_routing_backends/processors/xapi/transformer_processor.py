@@ -47,6 +47,10 @@ class XApiProcessor(BaseTransformerProcessorMixin):
         if transformed_event:
             event_json = transformed_event.to_json()
 
+            if not transformed_event.object or not transformed_event.object.id:
+                logger.debug('xAPI statement of edx event "{}" has no object id: {}'.format(event["name"], event_json))
+                return None
+
             if XAPI_EVENT_LOGGING_ENABLED.is_enabled():
                 xapi_logger.info(event_json)
 
