@@ -70,6 +70,10 @@ Two types of configuration are needed for the plugin:
 
 By default, both ``xapi`` and ``caliper`` backends are already configured along with filters that allow all the supported events. ``caliper`` backend is disabled by default and can be enabled by setting ``CALIPER_EVENTS_ENABLED`` to ``True`` in plugin settings.
 
+Additionally separate log streams for xAPI and Caliper are generated as events are transformed and can be configured to be saved or ignored. These can be configured as described in the `Django docs <https://docs.djangoproject.com/en/4.2/topics/logging/>`_ for the ``xapi_tracking`` and ``caliper_tracking`` loggers.
+
+
+
 Router configuration
 --------------------
 

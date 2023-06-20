@@ -83,4 +83,56 @@ def send_event(task, event_name, event, router_type, host_config):
             exc_info=True
         )
         raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
+                         max_retries=getattr(settings, ''
+                                                       'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
+
+
+@shared_task(bind=True)
+def dispatch_bulk_events(self, events, router_type, host_config):
+    """
+    Send a batch of events to the same configured client.
+
+    Arguments:
+        self (object)       : celery task object to perform celery actions
+        events (list[dict]) : list of event dictionaries to be delivered.
+        router_type (str)   : decides the client to use for sending the event
+        host_config (dict)  : contains configurations for the host.
+    """
+    bulk_send_events(self, events, router_type, host_config)
+
+
+def bulk_send_events(task, events, router_type, host_config):
+    """
+    Send event to configured client.
+
+    Arguments:
+        task (object)       : celery task object to perform celery actions
+        events (list[dict]) : list of event dictionaries to be delivered.
+        router_type (str)   : decides the client to use for sending the event
+        host_config (dict)  : contains configurations for the host.
+    """
+    try:
+        client_class = ROUTER_STRATEGY_MAPPING[router_type]
+    except KeyError:
+        logger.error('Unsupported routing strategy detected: {}'.format(router_type))
+        return
+
+    try:
+        client = client_class(**host_config)
+        client.bulk_send(events)
+        logger.debug(
+            'Successfully bulk dispatched transformed versions of {} events using client: {}'.format(
+                len(events),
+                client_class
+            )
+        )
+    except EventNotDispatched as exc:
+        logger.exception(
+            'Exception occurred while trying to bulk dispatch {} events using client: {}'.format(
+                len(events),
+                client_class
+            ),
+            exc_info=True
+        )
+        raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
                          max_retries=getattr(settings, 'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))

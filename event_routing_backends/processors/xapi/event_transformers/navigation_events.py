@@ -58,7 +58,7 @@ class LinkClickedTransformer(NavigationTransformersMixin):
             `Activity`
         """
         return Activity(
-            id=self.get_data('data.target_url'),
+            id=self.get_data('data.target_url', True),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_LINK
             ),

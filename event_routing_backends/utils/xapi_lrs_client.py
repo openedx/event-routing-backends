@@ -60,6 +60,30 @@ class LrsClient:
 
         return None
 
+    def bulk_send(self, statement_data):
+        """
+        Send a batch of xAPI statements to configured remote.
+
+        Arguments:
+            statement_data (List[Statement]) : a list of transformed xAPI statements
+
+        Returns:
+            requests.Response object
+        """
+        logger.debug('Sending {} xAPI statements to {}'.format(len(statement_data), self.URL))
+
+        response = self.lrs_client.save_statements(statement_data)
+
+        if not response.success:
+            if response.response.code == 409:
+                logger.warning(f"Duplicate event id found in: {response.request.content}")
+            else:
+                logger.warning(f"Failed request: {response.request.content}")
+                logger.warning('{} request failed for sending xAPI statement of edx events to {}. '
+                               'Response code: {}. Response: {}'.format(response.request.method, self.URL,
+                                                                        response.response.code, response.data))
+                raise EventNotDispatched
+
     def send(self, statement_data, event_name):
         """
         Send the xAPI statement to configured remote.

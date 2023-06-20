@@ -24,7 +24,9 @@ class TestPluginSettings(TestCase):
         self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS)
         self.assertIn('edx.course.enrollment.activated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
+        self.assertFalse(settings.CALIPER_EVENT_LOGGING_ENABLED)
         self.assertTrue(settings.XAPI_EVENTS_ENABLED)
+        self.assertTrue(settings.XAPI_EVENT_LOGGING_ENABLED)
 
     def test_devstack_settings(self):
         """
@@ -35,7 +37,9 @@ class TestPluginSettings(TestCase):
         self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS)
         self.assertIn('edx.course.enrollment.deactivated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
+        self.assertFalse(settings.CALIPER_EVENT_LOGGING_ENABLED)
         self.assertTrue(settings.XAPI_EVENTS_ENABLED)
+        self.assertTrue(settings.XAPI_EVENT_LOGGING_ENABLED)
 
     def test_production_settings(self):
         """
@@ -44,11 +48,15 @@ class TestPluginSettings(TestCase):
         settings.ENV_TOKENS = {
             'EVENT_TRACKING_BACKENDS': None,
             'CALIPER_EVENTS_ENABLED': False,
+            'CALIPER_EVENT_LOGGING_ENABLED': True,
             'XAPI_EVENTS_ENABLED': False,
+            'XAPI_EVENT_LOGGING_ENABLED': True,
             'EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS': [],
         }
         production_setttings.plugin_settings(settings)
         self.assertIsNone(settings.EVENT_TRACKING_BACKENDS)
         self.assertFalse(bool(settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS))
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
+        self.assertTrue(settings.CALIPER_EVENT_LOGGING_ENABLED)
         self.assertFalse(settings.XAPI_EVENTS_ENABLED)
+        self.assertTrue(settings.XAPI_EVENT_LOGGING_ENABLED)

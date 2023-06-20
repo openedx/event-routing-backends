@@ -12,6 +12,8 @@ aniso8601==9.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
+apache-libcloud==3.7.0
+    # via -r requirements/test.txt
 asgiref==3.7.2
     # via
     #   -r requirements/test.txt
@@ -148,6 +150,8 @@ faker==18.10.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
+fasteners==0.18
+    # via -r requirements/test.txt
 idna==3.4
     # via
     #   -r requirements/test.txt
@@ -270,7 +274,9 @@ pyyaml==6.0
     #   -r requirements/test.txt
     #   code-annotations
 requests==2.31.0
-    # via -r requirements/test.txt
+    # via
+    #   -r requirements/test.txt
+    #   apache-libcloud
 six==1.16.0
     # via
     #   -r requirements/test.txt
@@ -316,7 +322,7 @@ tzdata==2023.3
     #   -r requirements/test.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.0.2
+urllib3==2.0.3
     # via
     #   -r requirements/test.txt
     #   requests

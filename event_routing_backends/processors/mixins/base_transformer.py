@@ -126,9 +126,11 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-        username_or_id = self.get_data('context.username') or self.get_data('context.user_id')
+        username_or_id = self.get_data('username') or self.get_data('user_id')
         if not username_or_id:
             username_or_id = self.get_data('data.username') or self.get_data('data.user_id')
+            if not username_or_id:
+                username_or_id = self.get_data('context.username') or self.get_data('context.user_id')
         return username_or_id
 
     def extract_sessionid(self):
@@ -138,7 +140,7 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-        return self.get_data('context.session') or self.get_data('data.session')
+        return self.get_data('session') or self.get_data('context.session') or self.get_data('data.session')
 
     def get_data(self, key, required=False):
         """
@@ -210,6 +212,7 @@ class BaseTransformerMixin:
         """
         if object_id is None or object_type is None:
             return None
+
         return '{root_url}/{object_type}/{object_id}'.format(
             root_url=settings.LMS_ROOT_URL,
             object_type=object_type,

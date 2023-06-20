@@ -28,7 +28,7 @@
         "definition": {
             "type": "http://adlnet.gov/expapi/activities/question"
         },
-        "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
+        "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
         "objectType": "Activity"
     },
     "result": {

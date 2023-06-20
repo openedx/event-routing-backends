@@ -40,17 +40,12 @@ LOCALE_PATHS = [
 ]
 
 SECRET_KEY = 'insecure-secret-key'
-
 LMS_ROOT_URL = 'http://localhost:18000'
-
 CELERY_ALWAYS_EAGER = True
-
 XAPI_EVENTS_ENABLED = True
-
+XAPI_EVENT_LOGGING_ENABLED = False
 RUNNING_WITH_TEST_SETTINGS = True
-
 EVENT_TRACKING_BACKENDS = {}
-
 XAPI_AGENT_IFI_TYPE = 'external_id'
 
 _mock_third_party_modules()
