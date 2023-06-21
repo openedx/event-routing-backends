@@ -27,7 +27,7 @@ billiard==4.1.0
     # via
     #   -r requirements/base.txt
     #   celery
-celery==5.3.0
+celery==5.3.1
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -62,7 +62,7 @@ click-plugins==1.1.1
     # via
     #   -r requirements/base.txt
     #   celery
-click-repl==0.2.0
+click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
@@ -129,7 +129,7 @@ exceptiongroup==1.1.1
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==18.10.1
+faker==18.11.1
     # via factory-boy
 fasteners==0.18
     # via -r requirements/base.txt
@@ -149,7 +149,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
-kombu==5.3.0
+kombu==5.3.1
     # via
     #   -r requirements/base.txt
     #   celery
@@ -191,7 +191,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==7.3.1
+pytest==7.3.2
     # via
     #   pytest-cov
     #   pytest-django
@@ -226,7 +226,6 @@ requests==2.31.0
 six==1.16.0
     # via
     #   -r requirements/base.txt
-    #   click-repl
     #   event-tracking
     #   isodate
     #   python-dateutil
