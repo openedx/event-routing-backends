@@ -255,8 +255,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 'min': 0,
                 'max': event_data.get('max_grade', None),
                 'raw': event_data.get('grade', None),
-                'scaled': event_data.get('grade', None) / event_data.get('max_grade', None)
-                if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
+                'scaled': event_data.get('grade', None) / event_data.get('max_grade', None) if event_data.get('max_grade', None) is not None and event_data.get('max_grade', None) is not 0 and event_data.get('grade', None) is not None else None
             },
             response=response
         )

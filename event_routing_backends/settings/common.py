@@ -127,20 +127,20 @@ def plugin_settings(settings):
                         "ENGINE": "event_routing_backends.backends.events_router.EventsRouter",
                         "OPTIONS": {
                             "processors": [
-                                {
-                                    "ENGINE":
-                                        "event_routing_backends.processors."
-                                        "caliper.transformer_processor.CaliperProcessor",
-                                    "OPTIONS": {}
-                                },
-                                {
-                                    "ENGINE":
-                                        "event_routing_backends.processors."
-                                        "caliper.envelope_processor.CaliperEnvelopeProcessor",
-                                    "OPTIONS": {
-                                        "sensor_id": settings.LMS_ROOT_URL
-                                    }
-                                }
+                                # {
+                                #     "ENGINE":
+                                #         "event_routing_backends.processors."
+                                #         "caliper.transformer_processor.CaliperProcessor",
+                                #     "OPTIONS": {}
+                                # },
+                                # {
+                                #     "ENGINE":
+                                #         "event_routing_backends.processors."
+                                #         "caliper.envelope_processor.CaliperEnvelopeProcessor",
+                                #     "OPTIONS": {
+                                #         "sensor_id": settings.LMS_ROOT_URL
+                                #     }
+                                # }
                             ],
                             "backend_name": "caliper"
                         }

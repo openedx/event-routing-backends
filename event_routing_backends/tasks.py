@@ -10,6 +10,8 @@ from event_routing_backends.processors.transformer_utils.exceptions import Event
 from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
 
+from event_routing_backends.campus_il.helpers import moe_service
+
 logger = get_task_logger(__name__)
 
 ROUTER_STRATEGY_MAPPING = {
@@ -68,6 +70,7 @@ def send_event(task, event_name, event, router_type, host_config):
     try:
         client = client_class(**host_config)
         client.send(event, event_name)
+        moe_service.sent_event(event, event_name)
         logger.debug(
             'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(
                 event_name,
