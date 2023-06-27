@@ -73,6 +73,8 @@ class EventsRouter:
         for router in routers:
             host = router.get_allowed_host(event)
 
+            logger.info(f'qwer3 host = {host}')
+            
             router_url = router.route_url
             if not host:
                 logger.info(
@@ -106,14 +108,16 @@ class EventsRouter:
                         event_name,
                         updated_event,
                         host['router_type'],
-                        host['host_configurations']
+                        host['host_configurations'],
+                        host['external_service']
                     )
                 else:
                     dispatch_event.delay(
                         event_name,
                         updated_event,
                         host['router_type'],
-                        host['host_configurations']
+                        host['host_configurations'],
+                        host['external_service']
                     )
 
     def process_event(self, event):

@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from event_routing_backends.campus_il.configuration import config
 
 class APIMOEService():
+    service_config = {}
     
     @property
     def token(self):
@@ -13,7 +14,7 @@ class APIMOEService():
 
         # Token not found in cache or expired, refresh it
         token_expiration_minutes = int(config.Get("API_HOST_TOKEN_EXPIRATION"))
-        token = self.__refresh_token()
+        token = self.__refresh_token(self.service_config)
         expiry = datetime.now() + timedelta(minutes=token_expiration_minutes)  # Assuming token expires in 1 hour
 
         # Save the refreshed token and its expiry time in cache
@@ -27,7 +28,7 @@ class APIMOEService():
     def __init__(self, cache):
         self.cache = cache
         
-    def __refresh_token(self):
+    def __refresh_token(self, service_config):
        
         # Client ID and secret
         client_id = config.Get("API_HOST_CLIENT_ID")
@@ -44,7 +45,9 @@ class APIMOEService():
         }
 
         # Endpoint URL
-        endpoint = f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_TOKEN_URL")}?grant_type={grant_type}&client_id={client_id}&client_secret={client_secret}&scope={scope}&token_type={token_type}'
+        endpoint = service_config.get("endpoints", {}).get("token", 
+            f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_TOKEN_URL")}?grant_type={grant_type}&client_id={client_id}&client_secret={client_secret}&scope={scope}&token_type={token_type}')
+        #endpoint = f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_TOKEN_URL")}?grant_type={grant_type}&client_id={client_id}&client_secret={client_secret}&scope={scope}&token_type={token_type}'
 
         access_token = None
         try:
@@ -64,7 +67,8 @@ class APIMOEService():
         
         return access_token
 
-    def send_statment(self, events):
+    def send_statment(self, events, service_config):
+        self.service_config = service_config
         
         # Request headers
         headers = {
@@ -73,7 +77,8 @@ class APIMOEService():
         }
 
         # Endpoint URL
-        endpoint = f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_STATEMENTS_URL")}'
+        endpoint = service_config.get("endpoints", {}).get("statements", 
+            f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_STATEMENTS_URL")}')
 
         post_data = events
         response_data = None
