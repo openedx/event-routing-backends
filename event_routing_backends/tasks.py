@@ -9,6 +9,9 @@ from django.conf import settings
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
+from event_routing_backends.models import RouterConfiguration
+
+from event_routing_backends.campus_il.helpers import moe_service
 
 logger = get_task_logger(__name__)
 
@@ -19,7 +22,7 @@ ROUTER_STRATEGY_MAPPING = {
 
 
 @shared_task(bind=True, base=LoggedPersistOnFailureTask)
-def dispatch_event_persistent(self, event_name, event, router_type, host_config):
+def dispatch_event_persistent(self, event_name, event, router_type, host_config, external_service):
     """
     Send event to configured client.
 
@@ -30,11 +33,11 @@ def dispatch_event_persistent(self, event_name, event, router_type, host_config)
         router_type (str)   : decides the client to use for sending the event
         host_config (dict)  : contains configurations for the host.
     """
-    send_event(self, event_name, event, router_type, host_config)
+    send_event(self, event_name, event, router_type, host_config, external_service)
 
 
 @shared_task(bind=True,)
-def dispatch_event(self, event_name, event, router_type, host_config):
+def dispatch_event(self, event_name, event, router_type, host_config, external_service):
     """
     Send event to configured client.
 
@@ -45,10 +48,10 @@ def dispatch_event(self, event_name, event, router_type, host_config):
         router_type (str)   : decides the client to use for sending the event
         host_config (dict)  : contains configurations for the host.
     """
-    send_event(self, event_name, event, router_type, host_config)
+    send_event(self, event_name, event, router_type, host_config, external_service)
 
 
-def send_event(task, event_name, event, router_type, host_config):
+def send_event(task, event_name, event, router_type, host_config, external_service):
     """
     Send event to configured client.
 
@@ -68,6 +71,12 @@ def send_event(task, event_name, event, router_type, host_config):
     try:
         client = client_class(**host_config)
         client.send(event, event_name)
+        logger.info(f'qwer1 before send')
+        logger.info(f'qwer1 event: {event}')
+        logger.info(f'qwer1 host_config: {external_service}')
+        
+        moe_service.sent_event(event, event_name, external_service)
+        logger.info(f'qwer1 after send')
         logger.debug(
             'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(
                 event_name,

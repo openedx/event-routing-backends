@@ -15,6 +15,8 @@ from isodate import duration_isoformat
 from opaque_keys.edx.keys import CourseKey
 from openedx.core.djangoapps.content.course_overviews.api import get_course_overviews
 from openedx.core.djangoapps.external_user_ids.models import ExternalId, ExternalIdType
+from common.djangoapps.student.models import anonymous_id_for_user
+from social_django.models import UserSocialAuth
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -53,13 +55,21 @@ def get_anonymous_user_id(username_or_id):
 
         anonymous_id = str(uuid4())
     else:
-        type_name = ExternalIdType.LTI
-        external_id, _ = ExternalId.add_new_user_id(user, type_name)
-        if not external_id:
-            raise ValueError("External ID type: %s does not exist" % type_name)
+        # type_name = ExternalIdType.LTI
+        # external_id, _ = ExternalId.add_new_user_id(user, type_name)
+        # if not external_id:
+        #     raise ValueError("External ID type: %s does not exist" % type_name)
 
-        anonymous_id = str(external_id.external_user_id)
-
+        # anonymous_id = str(external_id.external_user_id)
+        
+        anonymous_id = None
+        social_auth = UserSocialAuth.objects.filter(user__id=user.id, provider='tpa-saml', uid__startswith='moe-edu-idm:').first()
+        if social_auth is not None:
+            anonymous_id = social_auth.uid.split(':')[1]
+        else:
+            anonymous_id = anonymous_id_for_user(user, None, save=False)
+        
+    logger.info(f'qwer11 anonymous_id: {anonymous_id}')
     return anonymous_id
 
 
