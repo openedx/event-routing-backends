@@ -125,7 +125,7 @@ edx-toggles==5.0.0
     # via -r requirements/base.txt
 event-tracking==2.1.0
     # via -r requirements/base.txt
-exceptiongroup==1.1.1
+exceptiongroup==1.1.2
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
@@ -171,7 +171,7 @@ pbr==5.11.1
     #   stevedore
 pluggy==1.2.0
     # via pytest
-prompt-toolkit==3.0.38
+prompt-toolkit==3.0.39
     # via
     #   -r requirements/base.txt
     #   click-repl
@@ -248,7 +248,7 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-typing-extensions==4.6.3
+typing-extensions==4.7.1
     # via
     #   -r requirements/base.txt
     #   asgiref

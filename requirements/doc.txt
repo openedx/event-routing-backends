@@ -95,7 +95,7 @@ cryptography==41.0.1
     #   secretstorage
 ddt==1.6.0
     # via -r requirements/test.txt
-django==3.2.19
+django==3.2.20
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -154,7 +154,7 @@ edx-toggles==5.0.0
     # via -r requirements/test.txt
 event-tracking==2.1.0
     # via -r requirements/test.txt
-exceptiongroup==1.1.1
+exceptiongroup==1.1.2
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -238,7 +238,7 @@ pluggy==1.2.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.38
+prompt-toolkit==3.0.39
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -375,7 +375,7 @@ tomli==2.0.1
     #   pytest
 twine==4.0.2
     # via -r requirements/doc.in
-typing-extensions==4.6.3
+typing-extensions==4.7.1
     # via
     #   -r requirements/test.txt
     #   asgiref

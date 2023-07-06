@@ -12,6 +12,8 @@ aniso8601==9.0.1
     # via
     #   -r requirements/quality.txt
     #   tincan
+annotated-types==0.5.0
+    # via pydantic
 apache-libcloud==3.7.0
     # via -r requirements/quality.txt
 asgiref==3.7.2
@@ -110,7 +112,7 @@ distlib==0.3.6
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.19
+django==3.2.20
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -162,7 +164,7 @@ edx-toggles==5.0.0
     # via -r requirements/quality.txt
 event-tracking==2.1.0
     # via -r requirements/quality.txt
-exceptiongroup==1.1.1
+exceptiongroup==1.1.2
     # via
     #   -r requirements/quality.txt
     #   pytest
@@ -183,7 +185,7 @@ idna==3.4
     # via
     #   -r requirements/quality.txt
     #   requests
-inflect==6.0.4
+inflect==7.0.0
     # via jinja2-pluralize
 iniconfig==2.0.0
     # via
@@ -243,7 +245,7 @@ pbr==5.11.1
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==6.13.0
+pip-tools==6.14.0
     # via -r requirements/pip-tools.txt
 platformdirs==3.8.0
     # via
@@ -260,7 +262,7 @@ pluggy==1.2.0
     #   tox
 polib==1.2.0
     # via edx-i18n-tools
-prompt-toolkit==3.0.38
+prompt-toolkit==3.0.39
     # via
     #   -r requirements/quality.txt
     #   click-repl
@@ -278,8 +280,10 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==1.10.9
+pydantic==2.0.1
     # via inflect
+pydantic-core==2.0.2
+    # via pydantic
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.15.1
@@ -385,6 +389,7 @@ tomli==2.0.1
     #   -r requirements/quality.txt
     #   build
     #   coverage
+    #   pip-tools
     #   pylint
     #   pyproject-hooks
     #   pytest
@@ -400,13 +405,16 @@ tox==3.28.0
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-typing-extensions==4.6.3
+typing-extensions==4.7.1
     # via
     #   -r requirements/quality.txt
+    #   annotated-types
     #   asgiref
     #   astroid
+    #   inflect
     #   kombu
     #   pydantic
+    #   pydantic-core
     #   pylint
 tzdata==2023.3
     # via
