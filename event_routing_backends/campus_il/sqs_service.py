@@ -25,29 +25,32 @@ class SQSService():
         except Exception as e:
             logging.error(f"Failed to clear SQS queue.\nException: {e}")
 
-    # Send JSON to the queue
+     # Send JSON to the queue
     def sent_data(self, data):
         json_payload = json.dumps(data)
-        
+    
         try:
-            # Send the JSON payload to the SQS queue
+            # Send the JSON payload with the unique MessageId to the SQS queue
             response = self.sqs_service.send_message(
                 QueueUrl=self.queue_url,
-                MessageBody=json_payload
+                MessageBody=json_payload,
+                #DelaySeconds=5,
+                #MessageGroupId='MOE_statments_group',  # Optional: Set a MessageGroupId for message ordering
             )
-            logging.info(f"Data sent SQS, response: {response}.")
+            
+            logging.info(f"Data sent to SQS. Response: {response}.")
             return response
         except Exception as e:
             logging.error(f"Failed to send SQS data {data}.\nException: {e}")
     
     # Get JSON from the queue
-    def get_data(self, amount=1):
+    def get_data(self, amount=1, visibility_timeout=0):
         try:
             # Receive a message from the queue
             return self.sqs_service.receive_message(
                 QueueUrl=self.queue_url,
                 MaxNumberOfMessages=amount,
-                VisibilityTimeout=0,
+                VisibilityTimeout=visibility_timeout,
                 WaitTimeSeconds=0
             )
         except Exception as e:
@@ -60,13 +63,13 @@ class SQSService():
                 QueueUrl=self.queue_url,
                 ReceiptHandle=receipt_handle
             )
-            logging.info(f"Deleted SQS data, MessageId: {response}.")
+            logging.info(f"Deleted SQS data, Response: {response}.")
             return response
         except Exception as e:
             logging.error(f"Failed to delete SQS data.\nException: {e}")
     
     # Get amount of items in queue
-    def get_total_count(self, amount=1):
+    def get_total_count(self):
         try:
             # Receive a message from the queue
             response = self.sqs_service.get_queue_attributes(
@@ -75,4 +78,4 @@ class SQSService():
             )
             return int(response['Attributes']['ApproximateNumberOfMessages'])
         except Exception as e:
-            logging.error(f"Failed to get SQS data.\nException: {e}")
+            logging.error(f"Failed to get total count SQS data.\nException: {e}")

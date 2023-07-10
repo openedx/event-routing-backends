@@ -1,4 +1,4 @@
-import logging, json
+import logging, json, re
 from enum import Enum
 from tokenize import String
 from event_routing_backends.campus_il.configuration import config
@@ -6,7 +6,10 @@ from event_routing_backends.campus_il.configuration import config
 class FieldTypes(Enum):
     TEXT = 'Text'
     LANG = 'Language'
-    
+    DURATION = 'Duration'
+    IDENTIFIER = 'identifier'
+    OBJ = 'Object'
+
 class MOEMapping():
 
     def __init__(self):
@@ -25,11 +28,10 @@ class MOEMapping():
             "actor": {
                 "objectType": event["actor"]["object_type"],
                 "account": self.__add_field_if_exist(event["actor"]["account"], {
-                    "homePage": FieldTypes.TEXT,
+                    "homePage": FieldTypes.IDENTIFIER,
                     "name": FieldTypes.TEXT,
                 })
             },
-            
             
             "verb": {
                 "id": event["verb"]["id"],
@@ -52,10 +54,11 @@ class MOEMapping():
         
         # add result
         if "result" in event:
+            
             external_event["result"] = self.__add_field_if_exist(event["result"], {
                     "success": FieldTypes.TEXT,
                     "completion": FieldTypes.TEXT,
-                    "duration": FieldTypes.TEXT,
+                    "duration": FieldTypes.DURATION,
                 })
             if "score" in event["result"]:
                 external_event["result"]["score"] = self.__add_field_if_exist(event["result"]["score"], {
@@ -66,7 +69,7 @@ class MOEMapping():
                 })
             if "extensions" in event["result"]:
                 external_event["result"]["extensions"] = event["result"]["extensions"]
-
+        
         # add context
         if "context" in event:
             for parent in event.get("context", {}).get("contextActivities", {}).get("parent", []):
@@ -80,7 +83,7 @@ class MOEMapping():
                             "type": FieldTypes.TEXT,
                         })
                 external_event.setdefault("context", {}).setdefault("contextActivities", {}).setdefault("parent", []).append(_parent)  
-              
+            
         # Convert to JSON string
         external_event = self.__map_fields_data(external_event)
 
@@ -91,6 +94,8 @@ class MOEMapping():
 
         # Create a mapping dictionary for verbs
         verb_mapping = {
+            "http://adlnet.gov/expapi/verbs/registered": "https://lxp.education.gov.il/xapi/moe/verbs/join",
+            "http://id.tincanapi.com/verb/unregistered": "https://lxp.education.gov.il/xapi/moe/verbs/leave",
             "http://adlnet.gov/expapi/verbs/attempted": "https://lxp.education.gov.il/xapi/moe/verbs/attempted",
             "http://adlnet.gov/expapi/verbs/answered": "https://lxp.education.gov.il/xapi/moe/verbs/answered",
             "https://w3id.org/xapi/acrossx/verbs/evaluated": "https://lxp.education.gov.il/xapi/moe/verbs/scored",
@@ -127,19 +132,25 @@ class MOEMapping():
     
     def __add_field_if_exist(self, section, fieldsTypes):
         _output = {}
+        _extensions_section = 'extensions'
         
         for field_name, field_type in fieldsTypes.items():
             if field_name in section:
                 #if field_type is FieldTypes.OBJ:
                 #    _output[field_name] = self.__add_field_if_exist(section[field_name])
                 if field_type is FieldTypes.LANG:
-                    _output[field_name] = self.__gt_object_definition_name(section[field_name])
+                    _output[field_name] = self.__get_object_definition_name(section[field_name])
+                elif field_type is FieldTypes.IDENTIFIER:
+                    _output[field_name] = self.__get_user_id_identifier(section["name"])
                 else:
                     _output[field_name] = section[field_name]
+            elif field_type is FieldTypes.DURATION:
+                _seconds = int(section.get(_extensions_section, {}).get(config.Get("MAPPING_EXTENSIONS_TIME"), 0))
+                _output[field_name] = self.__convert_seconds_to_hms(_seconds)
         
         return _output
     
-    def __gt_object_definition_name(self, value):
+    def __get_object_definition_name(self, value):
         _output = {}
         
         if type(value) is dict:
@@ -148,3 +159,25 @@ class MOEMapping():
                 _output[_lang] = value[key]
         
         return _output
+    
+    def __get_user_id_identifier(self, number):
+        if re.match(r'^[0-9a-fA-F]+$', number):
+            return config.Get("MAPPING_IDENTIFIER_CAMPUSIL")
+        elif re.match(r'^[0-9]+$', number):
+            return config.Get("MAPPING_IDENTIFIER_MOE")
+        else:
+            return config.Get("MAPPING_IDENTIFIER_UNKNOWN")
+    
+    def __convert_seconds_to_hms(self, seconds):
+        seconds = 0 if seconds is None else seconds
+        
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        seconds = seconds % 60
+
+        hours_str = f'{hours}H' if hours > 0 else ''
+        minutes_str = f'{minutes:02d}M' if minutes > 0 else ''
+        seconds_str = f'{seconds:02d}.00S'
+        
+        duration_string = f"PT{hours_str}{minutes_str}{seconds_str}"
+        return duration_string
