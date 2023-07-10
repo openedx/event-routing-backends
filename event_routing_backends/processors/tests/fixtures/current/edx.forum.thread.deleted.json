@@ -1,0 +1,34 @@
+{
+    "name": "edx.forum.thread.deleted",
+    "timestamp": "2023-07-10T09:23:10.354202+00:00",
+    "data": {
+        "body": "<p>Description of another thread in test topic</p>",
+        "content_type": "Post",
+        "own_content": true,
+        "commentable_id": "856d38cd-a139-4346-bef9-4147a2e4b7bf",
+        "target_username": "xiajul10",
+        "title_truncated": false,
+        "title": "Another thread in test topic",
+        "id": "64abcdfee68f35002fd013c6",
+        "url": "http://apps.local.overhang.io:2002/",
+        "user_forums_roles": [
+            "Student"
+        ],
+        "user_course_roles": []
+    },
+    "context": {
+        "session": "054c9ddcb76d2096f862e66bda3bc308",
+        "user_id": 16,
+        "username": "xiajul10",
+        "ip": "172.18.0.1",
+        "host": "local.overhang.io:8000",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/114.0",
+        "path": "/api/discussion/v1/threads/64abcdfee68f35002fd013c6/",
+        "referer": "http://apps.local.overhang.io:2002/",
+        "accept_language": "en-US,en;q=0.5",
+        "client_id": null,
+        "course_id": "course-v1:testX+XAPI101+2019_T2",
+        "org_id": "testX",
+        "enterprise_uuid": ""
+    }
+}
