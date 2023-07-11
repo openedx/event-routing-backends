@@ -21,10 +21,6 @@ The (soon to be) updated event names are as following:
 - edx.video.position.changed
 - edx.video.completed (proposed)
 """
-from datetime import timedelta
-
-from isodate import duration_isoformat
-
 from event_routing_backends.helpers import convert_seconds_to_iso, make_video_block_id
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
 from event_routing_backends.processors.caliper.transformer import CaliperTransformer
@@ -95,9 +91,9 @@ class BaseVideoTransformer(CaliperTransformer):
         caliper_object.update({
             'id': self.get_object_iri('xblock', object_id),
             'type': 'VideoObject',
-            'duration': duration_isoformat(timedelta(
-                    seconds=data.get('duration', 0)
-            ))
+            'duration': convert_seconds_to_iso(
+                seconds=data.get('duration', 0)
+            )
         })
 
         return caliper_object
