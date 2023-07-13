@@ -25,15 +25,15 @@ class MOE():
     
     def sent_event(self, event, event_name, service_config):
         event = self.map_service.map_event(event=event)
-        logger.info(f"MOE event prepared: {event}")
-        logger.info(f'MOE event verb type: {event["verb"]["id"]}')
+        logger.info(f"MOE: event prepared: {event}")
+        logger.info(f'MOE: event verb type: {event["verb"]["id"]}')
         response_data = self.sqs_service.sent_data(event)
-        logger.info(f"MOE event '{event_name}' sent. Response: {response_data}")
+        logger.info(f"MOE: event '{event_name}' sent. Response: {response_data}")
         
     # sending all sqs events to moe lrs service
     def sent_sqs_events_moe(self, task_data):
-        logger.info(f'Got data from the task: {task_data}')
-        logger.info(f'Start events send from SQS to MOE LRS')
+        logger.info(f'MOE: Got data from the task: {task_data}')
+        logger.info(f'MOE: Start events send from SQS to MOE LRS')
         event = None
         is_have_events = True
         
@@ -51,29 +51,29 @@ class MOE():
                         event = message['Body']
 
                         # send to MOE
-                        logger.info(f'Got event from SQS start send the event to MOE: {event}')
+                        logger.info(f'MOE: Got event from SQS start send the event to MOE: {event}')
                         response_moe = self.api_service.send_statment(events_str=f'[{event}]')
-                        logger.info(f'Sent event to MOE, response: {response_moe}')
+                        logger.info(f'MOE: Sent event to MOE, response: {response_moe}')
                         is_guid_list = self.__is_list_of_guid_strings(response_moe)
 
                         if is_guid_list:
                             try:
                                 # delete from queue of SQS
                                 self.sqs_service.delete_data(receipt_handle)
-                                logger.info(f'Event deleted from SQS: {event}')
+                                logger.info(f'MOE: Event deleted from SQS: {event}')
                             except Exception as e:
-                                logger.error(f'Event deletion from SQS is FAILED!/nEvent: {event}, Exception: {e}') 
+                                logger.error(f'MOE: Event deletion from SQS is FAILED!/nEvent: {event}, Exception: {e}') 
                                 #TODO: ADD EMAIL SEND TO THE ADMIN
                         else:
-                            logger.error(f'Sending event to MOE is FAILED!/nMOE response: {response_moe}/nEvent: {event}')
+                            logger.error(f'MOE: Sending event to MOE is FAILED!/nMOE response: {response_moe}/nEvent: {event}')
                             #TODO: ADD EMAIL SEND TO THE ADMIN
                 else:
                     is_have_events = False
 
                 _total_items = self.sqs_service.get_total_count()
-                logger.info(f'Total item in SQS: {_total_items}')
+                logger.info(f'MOE: Total item in SQS: {_total_items}')
             except Exception as e:
-                logger.error(f'Getting events from SQS is FAILED!/nException: {e}')
+                logger.error(f'MOE: Getting events from SQS is FAILED!/nException: {e}')
                         
     def __is_guid_string(self, string):
         # Regex pattern to match GUID format

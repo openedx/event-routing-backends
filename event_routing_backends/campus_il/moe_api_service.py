@@ -59,7 +59,7 @@ class APIMOEService():
             
             #logging.info(f"Access token: {access_token}")
         except Exception as e:
-            logging.info(f"Failed to obtain access token. Exception: {e}")
+            logging.info(f"MOE: Failed to obtain access token. Exception: {e}")
         
         return access_token
 
@@ -84,8 +84,8 @@ class APIMOEService():
             # Get the response data
             response_data = response.json()
 
-            logging.info(f"response data: {response_data}")
+            logging.info(f"MOE: Response data: {response_data}")
         except Exception as e:
-            logging.error(f"Failed to send event to MOE. Exception: {e}")
+            logging.error(f"MOE: Failed to send event to MOE. Exception: {e}")
         
         return response_data
