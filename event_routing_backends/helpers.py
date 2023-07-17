@@ -68,8 +68,7 @@ def get_anonymous_user_id(username_or_id):
             anonymous_id = social_auth.uid.split(':')[1]
         else:
             anonymous_id = anonymous_id_for_user(user, None, save=False)
-        
-    logger.info(f'qwer11 anonymous_id: {anonymous_id}')
+    
     return anonymous_id
 
 

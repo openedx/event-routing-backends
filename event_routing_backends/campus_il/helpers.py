@@ -109,4 +109,3 @@ cache = {}
 
 # MOE service that will adapt and send event to the MOE server
 moe_service = MOE(cache)
-

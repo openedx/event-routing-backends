@@ -23,7 +23,7 @@ class SQSService():
         try:
             return self.sqs_service.purge_queue(QueueUrl=self.queue_url)
         except Exception as e:
-            logging.error(f"Failed to clear SQS queue.\nException: {e}")
+            logging.error(f"SQS: Failed to clear SQS queue.\nException: {e}")
 
      # Send JSON to the queue
     def sent_data(self, data):
@@ -38,10 +38,10 @@ class SQSService():
                 #MessageGroupId='MOE_statments_group',  # Optional: Set a MessageGroupId for message ordering
             )
             
-            logging.info(f"Data sent to SQS. Response: {response}.")
+            logging.info(f"SQS: Data sent to SQS. Response: {response}.")
             return response
         except Exception as e:
-            logging.error(f"Failed to send SQS data {data}.\nException: {e}")
+            logging.error(f"SQS: Failed to send SQS data {data}.\nException: {e}")
     
     # Get JSON from the queue
     def get_data(self, amount=1, visibility_timeout=0):
@@ -54,7 +54,7 @@ class SQSService():
                 WaitTimeSeconds=0
             )
         except Exception as e:
-            logging.error(f"Failed to get SQS data.\nException: {e}")
+            logging.error(f"SQS: Failed to get SQS data.\nException: {e}")
     
     # Delete the message from the queue 
     def delete_data(self, receipt_handle):
@@ -63,10 +63,10 @@ class SQSService():
                 QueueUrl=self.queue_url,
                 ReceiptHandle=receipt_handle
             )
-            logging.info(f"Deleted SQS data, Response: {response}.")
+            logging.info(f"SQS: Deleted SQS data, Response: {response}.")
             return response
         except Exception as e:
-            logging.error(f"Failed to delete SQS data.\nException: {e}")
+            logging.error(f"SQS: Failed to delete SQS data.\nException: {e}")
     
     # Get amount of items in queue
     def get_total_count(self):
@@ -78,4 +78,4 @@ class SQSService():
             )
             return int(response['Attributes']['ApproximateNumberOfMessages'])
         except Exception as e:
-            logging.error(f"Failed to get total count SQS data.\nException: {e}")
+            logging.error(f"SQS: Failed to get total count SQS data.\nException: {e}")
