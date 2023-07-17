@@ -72,9 +72,6 @@ class EventsRouter:
 
         for router in routers:
             host = router.get_allowed_host(event)
-
-            logger.info(f'qwer3 host = {host}')
-            
             router_url = router.route_url
             if not host:
                 logger.info(

@@ -1,12 +1,17 @@
-import logging, json
+import logging, json, re
 from enum import Enum
 from tokenize import String
 from event_routing_backends.campus_il.configuration import config
+from common.djangoapps.student.models import CourseAccessRole
+from social_django.models import UserSocialAuth
 
 class FieldTypes(Enum):
     TEXT = 'Text'
     LANG = 'Language'
-    
+    DURATION = 'Duration'
+    IDENTIFIER = 'identifier'
+    OBJ = 'Object'
+
 class MOEMapping():
 
     def __init__(self):
@@ -14,7 +19,7 @@ class MOEMapping():
 
     def map_event(self, event=None, event_str = ''):
         event = json.loads(event_str) if event_str else event
-
+        logging.info(f'qwer111 CampusIL event: {event}')
         # Mapping logic to convert to external organization JSON format
         external_event = {
             "id": event.get("id", ""),
@@ -23,13 +28,12 @@ class MOEMapping():
             
             
             "actor": {
-                "objectType": event["actor"]["object_type"],
+                "objectType": event["actor"].get("object_type", event["actor"]["objectType"]),
                 "account": self.__add_field_if_exist(event["actor"]["account"], {
-                    "homePage": FieldTypes.TEXT,
+                    "homePage": FieldTypes.IDENTIFIER,
                     "name": FieldTypes.TEXT,
                 })
             },
-            
             
             "verb": {
                 "id": event["verb"]["id"],
@@ -38,7 +42,7 @@ class MOEMapping():
 
          
             "object": {
-                "objectType": event["object"]["object_type"],
+                "objectType": event["object"].get("object_type", event["object"]["objectType"]),
                 "id": event["object"]["id"],
                 "definition": self.__add_field_if_exist(event["object"]["definition"], {
                     "type": FieldTypes.TEXT,
@@ -52,10 +56,11 @@ class MOEMapping():
         
         # add result
         if "result" in event:
+            
             external_event["result"] = self.__add_field_if_exist(event["result"], {
                     "success": FieldTypes.TEXT,
                     "completion": FieldTypes.TEXT,
-                    "duration": FieldTypes.TEXT,
+                    "duration": FieldTypes.DURATION,
                 })
             if "score" in event["result"]:
                 external_event["result"]["score"] = self.__add_field_if_exist(event["result"]["score"], {
@@ -66,7 +71,7 @@ class MOEMapping():
                 })
             if "extensions" in event["result"]:
                 external_event["result"]["extensions"] = event["result"]["extensions"]
-
+        
         # add context
         if "context" in event:
             for parent in event.get("context", {}).get("contextActivities", {}).get("parent", []):
@@ -80,7 +85,10 @@ class MOEMapping():
                             "type": FieldTypes.TEXT,
                         })
                 external_event.setdefault("context", {}).setdefault("contextActivities", {}).setdefault("parent", []).append(_parent)  
-              
+        
+        # add instructor information
+        external_event.setdefault("context", {})["instructor"] = self.__get_intrsuctor_node("ccx-v1:TO+CO777+Month_777+ccx@9")
+        
         # Convert to JSON string
         external_event = self.__map_fields_data(external_event)
 
@@ -91,6 +99,8 @@ class MOEMapping():
 
         # Create a mapping dictionary for verbs
         verb_mapping = {
+            "http://adlnet.gov/expapi/verbs/registered": "https://lxp.education.gov.il/xapi/moe/verbs/join",
+            "http://id.tincanapi.com/verb/unregistered": "https://lxp.education.gov.il/xapi/moe/verbs/leave",
             "http://adlnet.gov/expapi/verbs/attempted": "https://lxp.education.gov.il/xapi/moe/verbs/attempted",
             "http://adlnet.gov/expapi/verbs/answered": "https://lxp.education.gov.il/xapi/moe/verbs/answered",
             "https://w3id.org/xapi/acrossx/verbs/evaluated": "https://lxp.education.gov.il/xapi/moe/verbs/scored",
@@ -127,19 +137,25 @@ class MOEMapping():
     
     def __add_field_if_exist(self, section, fieldsTypes):
         _output = {}
+        _extensions_section = 'extensions'
         
         for field_name, field_type in fieldsTypes.items():
             if field_name in section:
                 #if field_type is FieldTypes.OBJ:
                 #    _output[field_name] = self.__add_field_if_exist(section[field_name])
                 if field_type is FieldTypes.LANG:
-                    _output[field_name] = self.__gt_object_definition_name(section[field_name])
+                    _output[field_name] = self.__get_object_definition_name(section[field_name])
+                elif field_type is FieldTypes.IDENTIFIER:
+                    _output[field_name] = self.__get_user_id_identifier(section["name"])
                 else:
                     _output[field_name] = section[field_name]
+            elif field_type is FieldTypes.DURATION:
+                _seconds = int(section.get(_extensions_section, {}).get(config.Get("MAPPING_EXTENSIONS_TIME"), 0))
+                _output[field_name] = self.__convert_seconds_to_hms(_seconds)
         
         return _output
     
-    def __gt_object_definition_name(self, value):
+    def __get_object_definition_name(self, value):
         _output = {}
         
         if type(value) is dict:
@@ -148,3 +164,55 @@ class MOEMapping():
                 _output[_lang] = value[key]
         
         return _output
+    
+    def __get_user_id_identifier(self, number):
+        if re.match(r'^[0-9]+$', number):
+            return config.Get("MAPPING_IDENTIFIER_MOE")
+        elif re.match(r'^[0-9a-fA-F]+$', number):
+            return config.Get("MAPPING_IDENTIFIER_CAMPUSIL")
+        else:
+            return config.Get("MAPPING_IDENTIFIER_UNKNOWN")
+    
+    def __convert_seconds_to_hms(self, seconds):
+        seconds = 0 if seconds is None else seconds
+        
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        seconds = seconds % 60
+
+        hours_str = f'{hours}H' if hours > 0 else ''
+        minutes_str = f'{minutes:02d}M' if minutes > 0 else ''
+        seconds_str = f'{seconds:02d}.00S'
+        
+        duration_string = f"PT{hours_str}{minutes_str}{seconds_str}"
+        return duration_string
+    
+    def __get_intrsuctor_node(self, course_id):
+        
+        teacher_course_role = CourseAccessRole.objects.filter(
+            course_id=course_id,
+            role='staff',
+        ).exclude(
+            user__email__endswith='campus.gov.il'
+        ).first()
+        
+        logging.info(f"Teacher of CCX: {teacher_course_role}")
+        
+        # get teacher's IDM
+        if teacher_course_role:
+            social_auth = UserSocialAuth.objects.filter(user__id=teacher_course_role.user.id, provider='tpa-saml', uid__startswith='moe-edu-idm:').first()
+            
+            logging.info(f"Teacher of CCX social_auth: {social_auth}")
+            if social_auth:
+                anonymous_id = social_auth.uid.split(':')[1]
+                logging.info(f"Teacher of CCX anonymous_id: {anonymous_id}")
+                
+                return {
+                    "objectType": "Agent",
+                    "account": {
+                        "homePage": config.Get("MAPPING_IDENTIFIER_MOE"),
+                        "name": anonymous_id
+                    }
+                }
+        
+        return None

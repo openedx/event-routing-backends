@@ -70,13 +70,14 @@ def send_event(task, event_name, event, router_type, host_config, external_servi
 
     try:
         client = client_class(**host_config)
-        client.send(event, event_name)
-        logger.info(f'qwer1 before send')
-        logger.info(f'qwer1 event: {event}')
-        logger.info(f'qwer1 host_config: {external_service}')
+        # send event to the main configured LRS
+        if external_service.get("isSendToLRS", True):
+            client.send(event, event_name)
         
-        moe_service.sent_event(event, event_name, external_service)
-        logger.info(f'qwer1 after send')
+        # send event to AWS SQS configured service
+        if external_service.get("isSendToSQS", True):
+            moe_service.sent_event(event, event_name, external_service)
+        
         logger.debug(
             'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(
                 event_name,
