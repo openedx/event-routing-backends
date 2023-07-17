@@ -7,6 +7,7 @@ from django.contrib import admin
 from event_routing_backends.models import RouterConfiguration
 
 
+@admin.register(RouterConfiguration)
 class RouterConfigurationAdmin(KeyedConfigurationModelAdmin):
     """
     Admin model class for RouterConfiguration model.
@@ -20,6 +21,3 @@ class RouterConfigurationAdmin(KeyedConfigurationModelAdmin):
         Get the list display.
         """
         return ['backend_name', 'enabled', 'route_url', 'configurations']
-
-
-admin.site.register(RouterConfiguration, RouterConfigurationAdmin)
