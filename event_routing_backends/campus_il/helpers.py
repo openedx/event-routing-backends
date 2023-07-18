@@ -1,7 +1,6 @@
 import re
 
-from celery.task import periodic_task, task
-from celery.schedules import crontab
+from openedx.core.lib.celery import APP
 
 from event_routing_backends.campus_il.configuration import config
 from event_routing_backends.campus_il.moe_api_service import APIMOEService
@@ -92,15 +91,7 @@ class MOE():
                 return False
         return True
 
-cron_grade_settings = {
-        'minute': '*/1',
-        'hour': '*',
-        'day_of_week': '*',
-        'day_of_month': '*',
-        'month_of_year': '*',
-    }
-
-@periodic_task(run_every=crontab(**cron_grade_settings))
+@APP.task
 def sent_sqs_events_to_moe_static(**data):
     moe_service.sent_sqs_events_moe(data)
 
