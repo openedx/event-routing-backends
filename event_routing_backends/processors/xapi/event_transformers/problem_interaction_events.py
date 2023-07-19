@@ -151,13 +151,17 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
             `Result`
         """
         event_data = self.get_data('data')
+        if event_data['weighted_possible'] > 0:
+            scaled = event_data['weighted_earned']/event_data['weighted_possible']
+        else:
+            scaled = 0
         return Result(
             success=event_data['weighted_earned'] >= event_data['weighted_possible'],
             score={
                 'min': 0,
                 'max': event_data['weighted_possible'],
                 'raw': event_data['weighted_earned'],
-                'scaled': event_data['weighted_earned']/event_data['weighted_possible']
+                'scaled': scaled
             }
         )
 
@@ -261,14 +265,23 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         else:
             response = event_data.get('answers', None)
 
+        max_grade = event_data.get('max_grade', None)
+        grade = event_data.get('grade', None)
+        scaled = None
+
+        if max_grade is not None and grade is not None:
+            if max_grade > 0:
+                scaled = grade / max_grade
+            else:
+                scaled = 0
+
         return Result(
             success=event_data.get('success', None) == 'correct',
             score={
                 'min': 0,
-                'max': event_data.get('max_grade', None),
-                'raw': event_data.get('grade', None),
-                'scaled': event_data.get('grade', None) / event_data.get('max_grade', None)
-                if event_data.get('max_grade', None) is not None and event_data.get('grade', None) is not None else None
+                'max': max_grade,
+                'raw': grade,
+                'scaled': scaled,
             },
             response=response
         )
