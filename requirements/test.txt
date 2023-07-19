@@ -45,7 +45,7 @@ charset-normalizer==3.2.0
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.1.4
+click==8.1.6
     # via
     #   -r requirements/base.txt
     #   celery
@@ -129,7 +129,7 @@ exceptiongroup==1.1.2
     # via pytest
 factory-boy==3.2.1
     # via -r requirements/test.in
-faker==19.0.0
+faker==19.1.0
     # via factory-boy
 fasteners==0.18
     # via -r requirements/base.txt
@@ -215,7 +215,7 @@ pytz==2023.3
     #   djangorestframework
     #   event-tracking
     #   tincan
-pyyaml==6.0
+pyyaml==6.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
