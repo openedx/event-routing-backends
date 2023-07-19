@@ -6,6 +6,13 @@ from event_routing_backends.processors.xapi.event_transformers.enrollment_events
     EnrollmentActivatedTransformer,
     EnrollmentDeactivatedTransformer,
 )
+from event_routing_backends.processors.xapi.event_transformers.forum_events import (
+    ThreadCreatedTransformer,
+    ThreadDeletedTransformer,
+    ThreadEditedTransformer,
+    ThreadViewedTransformer,
+    ThreadVotedTransformer,
+)
 from event_routing_backends.processors.xapi.event_transformers.navigation_events import (
     LinkClickedTransformer,
     OutlineSelectedTransformer,

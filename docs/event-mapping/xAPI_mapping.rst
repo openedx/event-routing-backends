@@ -635,3 +635,100 @@ contextActivities [ parent [ id ] ]                           <LMS_ROOT_URL>/cou
 contextActivities [ parent [ definition [ type ] ] ]          http://adlnet.gov/expapi/activities/course
 contextActivities [ parent [ definition [ name ][ en-US ] ] ] <name of course-run>
 ============================================================= =============================================
+
+edx.forum.thread.created
+========================
+
+=========================================================================== ======================================================
+xAPI Key                                                                    Value
+=========================================================================== ======================================================
+``Actor``
+objectType                                                                  Agent
+account [ homePage ]                                                        <LMS_ROOT_URL>
+account [ name ]                                                            <external_id[ XAPI ]>
+``Verb``
+id                                                                          https://w3id.org/xapi/acrossx/verbs/posted
+display [ en-US ]                                                           posted
+``Object``
+id                                                                          <LMS_ROOT_URL>/api/discussion/v1/threads/<data [ id ]>
+objectType                                                                  Activity
+definition [ type ]                                                         http://id.tincanapi.com/activitytype/discussion
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ thread_type ]>
+=========================================================================== ======================================================
+
+edx.forum.thread.edited
+=======================
+
+=========================================================================== ======================================================
+xAPI Key                                                                    Value
+=========================================================================== ======================================================
+``Actor``
+objectType                                                                  Agent
+account [ homePage ]                                                        <LMS_ROOT_URL>
+account [ name ]                                                            <external_id[ XAPI ]>
+``Verb``
+id                                                                          https://w3id.org/xapi/acrossx/verbs/edited
+display [ en-US ]                                                           edited
+``Object``
+id                                                                          <LMS_ROOT_URL>/api/discussion/v1/threads/<data [ id ]>
+objectType                                                                  Activity
+definition [ type ]                                                         http://id.tincanapi.com/activitytype/discussion
+=========================================================================== ======================================================
+
+edx.forum.thread.deleted
+========================
+
+=========================================================================== ======================================================
+xAPI Key                                                                    Value
+=========================================================================== ======================================================
+``Actor``
+objectType                                                                  Agent
+account [ homePage ]                                                        <LMS_ROOT_URL>
+account [ name ]                                                            <external_id[ XAPI ]>
+``Verb``
+id                                                                          https://w3id.org/xapi/dod-isd/verbs/deleted
+display [ en-US ]                                                           deleted
+``Object``
+id                                                                          <LMS_ROOT_URL>/api/discussion/v1/threads/<data [ id ]>
+objectType                                                                  Activity
+definition [ type ]                                                         http://id.tincanapi.com/activitytype/discussion
+=========================================================================== ======================================================
+
+edx.forum.thread.viewed
+=======================
+
+=========================================================================== =======================================================
+xAPI Key                                                                    Value
+=========================================================================== =======================================================
+``Actor``
+objectType                                                                  Agent
+account [ homePage ]                                                        <LMS_ROOT_URL>
+account [ name ]                                                            <external_id[ XAPI ]>
+``Verb``
+id                                                                          http://id.tincanapi.com/verb/viewed
+display [ en-US ]                                                           viewed
+``Object``
+id                                                                          <LMS_ROOT_URL>/api/discussion/v1/comments/<data [ id ]>
+objectType                                                                  Activity
+definition [ type ]                                                         http://id.tincanapi.com/activitytype/discussion
+=========================================================================== =======================================================
+
+edx.forum.thread.created
+========================
+
+=========================================================================== ======================================================
+xAPI Key                                                                    Value
+=========================================================================== ======================================================
+``Actor``
+objectType                                                                  Agent
+account [ homePage ]                                                        <LMS_ROOT_URL>
+account [ name ]                                                            <external_id[ XAPI ]>
+``Verb``
+id                                                                          https://w3id.org/xapi/openedx/verb/voted
+display [ en-US ]                                                           voted
+``Object``
+id                                                                          <LMS_ROOT_URL>/api/discussion/v1/threads/<data [ id ]>
+objectType                                                                  Activity
+definition [ type ]                                                         http://id.tincanapi.com/activitytype/discussion
+definition [ extensions [ https://w3id.org/xapi/acrossx/extensions/type ] ] <data [ vote_value ]>
+=========================================================================== ======================================================

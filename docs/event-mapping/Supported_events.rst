@@ -48,6 +48,15 @@ Course navigation events
 * `edx.ui.lms.sequence.tab_selected`_  | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.sequence.tab_selected.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-ui-lms-sequence-tab-selected>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.sequence.tab_selected.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-ui-lms-sequence-tab-selected>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.sequence.tab_selected.json>`__
 * `edx.ui.lms.link_clicked`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.ui.lms.link_clicked.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-ui-lms-link-clicked>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.ui.lms.link_clicked.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-ui-lms-link-clicked>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.ui.lms.link_clicked.json>`__
 
+Forum events
+-----------------
+
+* `edx.forum.thread.created`_  | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.thread.created.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-forum-thread-created>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.thread.created.json>`__
+* `edx.forum.thread.edited`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.thread.edited.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-forum-thread-edited>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.thread.edited.json>`__
+* `edx.forum.thread.viewed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.thread.viewed.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-forum-thread-viewed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.thread.viewed.json>`__
+* `edx.forum.thread.deleted`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.thread.deleted.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-forum-thread-deleted>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.thread.deleted.json>`__
+* `edx.forum.thread.voted`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.thread.voted.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-forum-thread-voted>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.thread.voted.json>`__
+
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.deactivated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
@@ -71,3 +80,8 @@ Course navigation events
 .. _edx.video.transcript.shown: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#show-transcript-edx-video-transcript-shown
 .. _edx.video.transcript.hidden: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#hide-transcript-edx-video-transcript-hidden
 .. _speed_change_video: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#speed-change-video
+.. _edx.forum.thread.created: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-thread-created
+.. _edx.forum.thread.edited: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-thread-edited
+.. _edx.forum.thread.viewed: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-thread-viewed
+.. _edx.forum.thread.deleted: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-thread-deleted
+.. _edx.forum.thread.voted: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-thread-voted
