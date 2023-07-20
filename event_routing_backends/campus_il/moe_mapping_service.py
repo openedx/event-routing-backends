@@ -4,6 +4,7 @@ from tokenize import String
 from event_routing_backends.campus_il.configuration import config
 from common.djangoapps.student.models import CourseAccessRole
 from social_django.models import UserSocialAuth
+from openedx.core.djangoapps.bookmarks.models import XBlockCache
 
 class FieldTypes(Enum):
     TEXT = 'Text'
@@ -11,6 +12,10 @@ class FieldTypes(Enum):
     DURATION = 'Duration'
     IDENTIFIER = 'identifier'
     OBJ = 'Object'
+    
+class IdsType(Enum):
+    COURSE = 'Course'
+    BLOCK = 'Block'
 
 class MOEMapping():
 
@@ -19,7 +24,12 @@ class MOEMapping():
 
     def map_event(self, event=None, event_str = ''):
         event = json.loads(event_str) if event_str else event
+        
+        _course_id = self.__get_course_block_id(event, IdsType.COURSE)
+        _block_id = self.__get_course_block_id(event, IdsType.BLOCK)
         logging.info(f'qwer111 CampusIL event: {event}')
+        logging.info(f'qwer111 CampusIL course_id: {_course_id}, block_id: {_block_id}')
+        
         # Mapping logic to convert to external organization JSON format
         external_event = {
             "id": event.get("id", ""),
@@ -28,12 +38,13 @@ class MOEMapping():
             
             
             "actor": {
-                "objectType": event["actor"].get("object_type", event["actor"]["objectType"]),
+                "objectType": event["actor"].get("object_type", event["actor"].get("objectType", {})),
                 "account": self.__add_field_if_exist(event["actor"]["account"], {
                     "homePage": FieldTypes.IDENTIFIER,
                     "name": FieldTypes.TEXT,
                 })
             },
+            
             
             "verb": {
                 "id": event["verb"]["id"],
@@ -42,13 +53,13 @@ class MOEMapping():
 
          
             "object": {
-                "objectType": event["object"].get("object_type", event["object"]["objectType"]),
+                "objectType": event["object"].get("object_type", event["object"].get("objectType", {})),
                 "id": event["object"]["id"],
                 "definition": self.__add_field_if_exist(event["object"]["definition"], {
                     "type": FieldTypes.TEXT,
                     "name": FieldTypes.LANG,
                     "description": FieldTypes.LANG
-                })
+                }, course_id=_course_id, block_id=_block_id)
             },
             #result
             #context
@@ -87,7 +98,9 @@ class MOEMapping():
                 external_event.setdefault("context", {}).setdefault("contextActivities", {}).setdefault("parent", []).append(_parent)  
         
         # add instructor information
-        external_event.setdefault("context", {})["instructor"] = self.__get_intrsuctor_node("ccx-v1:TO+CO777+Month_777+ccx@9")
+        _instructorNode = self.__get_intrsuctor_node(_course_id)
+        if _instructorNode:
+            external_event.setdefault("context", {})["instructor"] = _instructorNode
         
         # Convert to JSON string
         external_event = self.__map_fields_data(external_event)
@@ -135,7 +148,7 @@ class MOEMapping():
 
         return mapped_data
     
-    def __add_field_if_exist(self, section, fieldsTypes):
+    def __add_field_if_exist(self, section, fieldsTypes, course_id=None, block_id=None):
         _output = {}
         _extensions_section = 'extensions'
         
@@ -152,6 +165,8 @@ class MOEMapping():
             elif field_type is FieldTypes.DURATION:
                 _seconds = int(section.get(_extensions_section, {}).get(config.Get("MAPPING_EXTENSIONS_TIME"), 0))
                 _output[field_name] = self.__convert_seconds_to_hms(_seconds)
+            elif field_type is FieldTypes.LANG and course_id and block_id:
+                _output[field_name] = { "en": self.__get_block_title(course_id, block_id) }
         
         return _output
     
@@ -188,7 +203,7 @@ class MOEMapping():
         return duration_string
     
     def __get_intrsuctor_node(self, course_id):
-        
+        logging.info(f'qwer1 course_id: {course_id}')
         teacher_course_role = CourseAccessRole.objects.filter(
             course_id=course_id,
             role='staff',
@@ -216,3 +231,25 @@ class MOEMapping():
                 }
         
         return None
+    
+    # prepare course id or block id of the event
+    def __get_course_block_id(self, event, id_type:IdsType):
+        _url = None
+        
+        if id_type is IdsType.COURSE:
+            _parents_arr = event.get("context", {}).get("contextActivities", {}).get("parent", None)
+            if _parents_arr and len(_parents_arr) > 0:
+                _url = _parents_arr[0]["id"]
+        elif id_type is IdsType.BLOCK:
+            _object = event.get("object", None)
+            if _object:
+                _url = _object["id"]
+        
+        return _url.split("/")[-1]
+    
+    # get xblock title
+    def __get_block_title(self, course_key, usage_key):
+    
+        block_cache = XBlockCache.objects.filter(course_key=course_key, usage_key=usage_key).first()
+        return block_cache.display_name if block_cache else None
+    

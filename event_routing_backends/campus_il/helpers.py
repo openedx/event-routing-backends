@@ -27,6 +27,7 @@ class MOE():
         logger.info(f"MOE: event prepared: {event}")
         logger.info(f'MOE: event verb type: {event["verb"]["id"]}')
         response_data = self.sqs_service.sent_data(event)
+        #moe_service.sent_sqs_events_moe("static")
         logger.info(f"MOE: event '{event_name}' sent. Response: {response_data}")
         
     # sending all sqs events to moe lrs service
@@ -73,6 +74,7 @@ class MOE():
                 logger.info(f'MOE: Total item in SQS: {_total_items}')
             except Exception as e:
                 logger.error(f'MOE: Getting events from SQS is FAILED!/nException: {e}')
+                #TODO: ADD EMAIL SEND TO THE ADMIN
                         
     def __is_guid_string(self, string):
         # Regex pattern to match GUID format
