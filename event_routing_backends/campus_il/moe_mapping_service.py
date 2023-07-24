@@ -10,7 +10,7 @@ class FieldTypes(Enum):
     TEXT = 'Text'
     LANG = 'Language'
     DURATION = 'Duration'
-    IDENTIFIER = 'identifier'
+    IDENTIFIER = 'Identifier'
     OBJ = 'Object'
     
 class IdsType(Enum):
@@ -18,17 +18,37 @@ class IdsType(Enum):
     BLOCK = 'Block'
 
 class MOEMapping():
+    
+    # Create a mapping dictionary for verbs
+    verb_mapping = {
+        "http://adlnet.gov/expapi/verbs/registered": "https://lxp.education.gov.il/xapi/moe/verbs/join",
+        "http://id.tincanapi.com/verb/unregistered": "https://lxp.education.gov.il/xapi/moe/verbs/leave",
+        "http://adlnet.gov/expapi/verbs/attempted": "https://lxp.education.gov.il/xapi/moe/verbs/attempted",
+        "http://adlnet.gov/expapi/verbs/answered": "https://lxp.education.gov.il/xapi/moe/verbs/answered",
+        "https://w3id.org/xapi/acrossx/verbs/evaluated": "https://lxp.education.gov.il/xapi/moe/verbs/scored",
+        "http://adlnet.gov/expapi/verbs/completed": "https://lxp.education.gov.il/xapi/moe/verbs/completed",
+        "https://w3id.org/xapi/video/verbs/played": "https://lxp.education.gov.il/xapi/moe/verbs/played",
+        "https://w3id.org/xapi/video/verbs/paused": "https://lxp.education.gov.il/xapi/moe/verbs/paused",
+        "https://w3id.org/xapi/video/verbs/seeked": "https://lxp.education.gov.il/xapi/moe/verbs/watched"
+    }
 
+    # Create a mapping dictionary for activities
+    activity_mapping = {
+        "http://adlnet.gov/expapi/activities/question": "https://lxp.education.gov.il/xapi/moe/activities/question",
+        "https://w3id.org/xapi/video/activity-type/video": "https://lxp.education.gov.il/xapi/moe/activities/video",
+        "http://adlnet.gov/expapi/activities/course": "https://lxp.education.gov.il/xapi/moe/activities/course"
+    }
+        
     def __init__(self):
         pass
 
     def map_event(self, event=None, event_str = ''):
         event = json.loads(event_str) if event_str else event
+        #logging.info(f'qwer111 CampusIL event: {event}')
         
         _course_id = self.__get_course_block_id(event, IdsType.COURSE)
         _block_id = self.__get_course_block_id(event, IdsType.BLOCK)
-        logging.info(f'qwer111 CampusIL event: {event}')
-        logging.info(f'qwer111 CampusIL course_id: {_course_id}, block_id: {_block_id}')
+        #logging.info(f'qwer111 CampusIL course_id: {_course_id}, block_id: {_block_id}')
         
         # Mapping logic to convert to external organization JSON format
         external_event = {
@@ -107,28 +127,10 @@ class MOEMapping():
 
         return external_event
 
+    def is_relevant_event(self, verb_id):
+        return verb_id in self.verb_mapping
 
-    def __map_fields_data(sel, event):
-
-        # Create a mapping dictionary for verbs
-        verb_mapping = {
-            "http://adlnet.gov/expapi/verbs/registered": "https://lxp.education.gov.il/xapi/moe/verbs/join",
-            "http://id.tincanapi.com/verb/unregistered": "https://lxp.education.gov.il/xapi/moe/verbs/leave",
-            "http://adlnet.gov/expapi/verbs/attempted": "https://lxp.education.gov.il/xapi/moe/verbs/attempted",
-            "http://adlnet.gov/expapi/verbs/answered": "https://lxp.education.gov.il/xapi/moe/verbs/answered",
-            "https://w3id.org/xapi/acrossx/verbs/evaluated": "https://lxp.education.gov.il/xapi/moe/verbs/scored",
-            "http://adlnet.gov/expapi/verbs/completed": "https://lxp.education.gov.il/xapi/moe/verbs/completed",
-            "https://w3id.org/xapi/video/verbs/played": "https://lxp.education.gov.il/xapi/moe/verbs/played",
-            "https://w3id.org/xapi/video/verbs/paused": "https://lxp.education.gov.il/xapi/moe/verbs/paused",
-            "https://w3id.org/xapi/video/verbs/seeked": "https://lxp.education.gov.il/xapi/moe/verbs/watched"
-        }
-
-        # Create a mapping dictionary for activities
-        activity_mapping = {
-            "http://adlnet.gov/expapi/activities/question": "https://lxp.education.gov.il/xapi/moe/activities/question",
-            "https://w3id.org/xapi/video/activity-type/video": "https://lxp.education.gov.il/xapi/moe/activities/video",
-            "http://adlnet.gov/expapi/activities/course": "https://lxp.education.gov.il/xapi/moe/activities/course"
-        }
+    def __map_fields_data(self, event):
 
         # Perform the mapping
         mapped_data = event.copy()
@@ -136,15 +138,15 @@ class MOEMapping():
         # Map the verb
         if "verb" in event:
             verb_id = event["verb"]["id"]
-            if verb_id in verb_mapping:
-                mapped_data["verb"]["id"] = verb_mapping[verb_id]
+            if verb_id in self.verb_mapping:
+                mapped_data["verb"]["id"] = self.verb_mapping[verb_id]
 
         # Map the activity
         if "object" in event:
             if "id" in event["object"]:
                 activity_id = event["object"]["id"]
-                if activity_id in activity_mapping:
-                    mapped_data["object"]["id"] = activity_mapping[activity_id]
+                if activity_id in self.activity_mapping:
+                    mapped_data["object"]["id"] = self.activity_mapping[activity_id]
 
         return mapped_data
     
@@ -203,7 +205,7 @@ class MOEMapping():
         return duration_string
     
     def __get_intrsuctor_node(self, course_id):
-        logging.info(f'qwer1 course_id: {course_id}')
+        #logging.info(f'qwer1 course_id: {course_id}')
         teacher_course_role = CourseAccessRole.objects.filter(
             course_id=course_id,
             role='staff',
@@ -211,16 +213,16 @@ class MOEMapping():
             user__email__endswith='campus.gov.il'
         ).first()
         
-        logging.info(f"Teacher of CCX: {teacher_course_role}")
+        #logging.info(f"MOE: Teacher of CCX: {teacher_course_role}")
         
         # get teacher's IDM
         if teacher_course_role:
             social_auth = UserSocialAuth.objects.filter(user__id=teacher_course_role.user.id, provider='tpa-saml', uid__startswith='moe-edu-idm:').first()
             
-            logging.info(f"Teacher of CCX social_auth: {social_auth}")
+            #logging.info(f"MOE: Teacher of CCX social_auth: {social_auth}")
             if social_auth:
                 anonymous_id = social_auth.uid.split(':')[1]
-                logging.info(f"Teacher of CCX anonymous_id: {anonymous_id}")
+                #logging.info(f"MOE: Teacher of CCX anonymous_id: {anonymous_id}")
                 
                 return {
                     "objectType": "Agent",
@@ -234,16 +236,20 @@ class MOEMapping():
     
     # prepare course id or block id of the event
     def __get_course_block_id(self, event, id_type:IdsType):
-        _url = None
+        _url = ''
         
         if id_type is IdsType.COURSE:
-            _parents_arr = event.get("context", {}).get("contextActivities", {}).get("parent", None)
-            if _parents_arr and len(_parents_arr) > 0:
-                _url = _parents_arr[0]["id"]
-        elif id_type is IdsType.BLOCK:
+            _type = event.get("object", {}).get("definition", {}).get("type", None)
+            if _type and _type == "http://adlnet.gov/expapi/activities/course":
+                _url = event.get("object").get("id", None)
+            else:
+                _parents_arr = event.get("context", {}).get("contextActivities", {}).get("parent", None)
+                if _parents_arr and len(_parents_arr) > 0:
+                    _url = _parents_arr[0]["id"]
+        elif id_type is IdsType.BLOCK:    
             _object = event.get("object", None)
-            if _object:
-                _url = _object["id"]
+            if _object and "block-v1" in _object["id"]:
+                _url = _object["id"] 
         
         return _url.split("/")[-1]
     

@@ -23,12 +23,22 @@ class MOE():
         self.sqs_service = SQSService()
     
     def sent_event(self, event, event_name, service_config):
+        _event = event["verb"]["id"]
+        logger.info(f'MOE: event verb type: {_event}')
+        
+        # check that the event is relevant for MOE, it's check the list of the relevant events
+        if not self.map_service.is_relevant_event(_event):
+            logger.info(f'MOE: event verb type is not relevant for MOE LRS.')
+            return False
+        
         event = self.map_service.map_event(event=event)
         logger.info(f"MOE: event prepared: {event}")
-        logger.info(f'MOE: event verb type: {event["verb"]["id"]}')
+        
         response_data = self.sqs_service.sent_data(event)
-        #moe_service.sent_sqs_events_moe("static")
         logger.info(f"MOE: event '{event_name}' sent. Response: {response_data}")
+        
+        #moe_service.sent_sqs_events_moe("static")
+        return True
         
     # sending all sqs events to moe lrs service
     def sent_sqs_events_moe(self, task_data):
