@@ -11,14 +11,22 @@ from celery.utils.log import get_task_logger
 logger = get_task_logger(__name__)
 
 class MOE():
-
-    cache = None
+    
+    __instance = None
+    __cache = {}
+    
     api_service = None
     map_service = None
     
-    def __init__(self, cache):
-        self.cache = cache
-        self.api_service = APIMOEService(self.cache)
+    
+
+    def __new__(cls, *args, **kwargs):
+        if cls.__instance is None:
+            cls.__instance = super().__new__(cls, *args, **kwargs)
+        return cls.__instance
+    
+    def __init__(self):
+        self.api_service = APIMOEService(self.__cache)
         self.map_service = MOEMapping()
         self.sqs_service = SQSService()
     
@@ -108,14 +116,14 @@ class MOE():
 
 @APP.task
 def sent_sqs_events_to_moe_static(**data):
-    moe_service.sent_sqs_events_moe(data)
+    MOE().sent_sqs_events_moe(data)
 
 @APP.task
 def clear_sqs_events_static(**data):
-    moe_service.clear_sqs_events(data)
+    MOE().clear_sqs_events(data)
     
 # Cache dictionary to store data and it expiration time
-cache = {}
+#cache = {}
 
 # MOE service that will adapt and send event to the MOE server
-moe_service = MOE(cache)
+#moe_service = MOE(cache)

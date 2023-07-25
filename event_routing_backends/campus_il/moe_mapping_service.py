@@ -208,9 +208,9 @@ class MOEMapping():
     def __get_intrsuctor_node(self, course_id):
         #logging.info(f'qwer1 course_id: {course_id}')
         cache_key = f'{config.Get("MAPPING_CACHE_INSTRUCTOR_PREFIX")}_{course_id}'
-        logging.info(f'qwer1 cache_key: {cache_key}')
+        #logging.info(f'qwer1 cache_key: {cache_key}')
         anonymous_id = cache.get(cache_key)
-        logging.info(f'qwer1 loaded frop cache anonymous_id: {anonymous_id}')
+        #logging.info(f'qwer1 loaded from cache anonymous_id: {anonymous_id}')
         
         if not anonymous_id:
             teacher_course_role = CourseAccessRole.objects.filter(
@@ -230,8 +230,7 @@ class MOEMapping():
                 if social_auth:
                     anonymous_id = social_auth.uid.split(':')[1]
                     logging.info(f'qwer1 save to cache: key={cache_key}, value={anonymous_id}')
-                    #cache.add(cache_key, anonymous_id, config.Get("MAPPING_CACHE_EXPIRATION")) #in seconds
-                    cache.add(cache_key, anonymous_id, 60)
+                    cache.add(cache_key, anonymous_id, int(config.Get("MAPPING_CACHE_EXPIRATION"))) #in seconds
         
         if anonymous_id:
             #logging.info(f"MOE: Teacher of CCX anonymous_id: {anonymous_id}")
@@ -273,7 +272,16 @@ class MOEMapping():
     
     # get xblock title
     def __get_block_title(self, course_key, usage_key):
-    
-        block_cache = XBlockCache.objects.filter(usage_key=usage_key).first()
-        return block_cache.display_name if block_cache else None
+        cache_key = f'{config.Get("MAPPING_CACHE_BLOCK_PREFIX")}_{usage_key}'
+        block_title = cache.get(cache_key)
+        #logging.info(f'qwer1 using {cache_key} loaded from cache block_title: {block_title}')
+        
+        if not block_title:
+            block_cache = XBlockCache.objects.filter(usage_key=usage_key).first()
+            block_title = block_cache.display_name if block_cache else None
+            cache.add(cache_key, block_title, int(config.Get("MAPPING_CACHE_EXPIRATION"))) #in seconds
+
+            #logging.info(f'qwer1 added to cache: key {cache_key}, value {block_title}')
+            
+        return block_title
     
