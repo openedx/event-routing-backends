@@ -1,0 +1,160 @@
+{
+   "name":"problem_check",
+   "context":{
+      "course_id":"course-v1:edX+DemoX+Demo_Course",
+      "course_user_tags":{
+         
+      },
+      "user_id":8,
+      "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4/handler/xmodule_handler/problem_check",
+      "org_id":"edX",
+      "enterprise_uuid":"",
+      "module":{
+         "display_name":"Multiple Choice Questions",
+         "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4"
+      },
+      "asides":{
+         
+      }
+   },
+   "username":"staff",
+   "session":"97662bef7c463c187b8fd91e0f580468",
+   "ip":"172.18.0.1",
+   "agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0",
+   "host":"localhost:18000",
+   "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@54bb9b142c6c4c22afc62bcb628f0e68?exam_access=&format=Homework&recheck_access=1&show_bookmark=0&show_title=0&view=student_view",
+   "accept_language":"en-US,en;q=0.5",
+   "event":{
+      "state":{
+         "seed":1,
+         "student_answers":{
+            "a0effb954cca4759994f1ac9e9434bf4_2_1":"blue",
+            "a0effb954cca4759994f1ac9e9434bf4_4_1":[
+               "choice_0",
+               "choice_2"
+            ],
+            "a0effb954cca4759994f1ac9e9434bf4_3_1":"choice_3"
+         },
+         "has_saved_answers":false,
+         "correct_map":{
+            "a0effb954cca4759994f1ac9e9434bf4_2_1":{
+               "correctness":"correct",
+               "npoints":null,
+               "msg":"",
+               "hint":"",
+               "hintmode":null,
+               "queuestate":null,
+               "answervariable":null
+            },
+            "a0effb954cca4759994f1ac9e9434bf4_3_1":{
+               "correctness":"incorrect",
+               "npoints":null,
+               "msg":"",
+               "hint":"",
+               "hintmode":null,
+               "queuestate":null,
+               "answervariable":null
+            },
+            "a0effb954cca4759994f1ac9e9434bf4_4_1":{
+               "correctness":"correct",
+               "npoints":null,
+               "msg":"",
+               "hint":"",
+               "hintmode":null,
+               "queuestate":null,
+               "answervariable":null
+            }
+         },
+         "input_state":{
+            "a0effb954cca4759994f1ac9e9434bf4_2_1":{
+               
+            },
+            "a0effb954cca4759994f1ac9e9434bf4_3_1":{
+               
+            },
+            "a0effb954cca4759994f1ac9e9434bf4_4_1":{
+               
+            }
+         },
+         "done":true
+      },
+      "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4",
+      "answers":{
+         "a0effb954cca4759994f1ac9e9434bf4_2_1":"blue",
+         "a0effb954cca4759994f1ac9e9434bf4_4_1":[
+            "choice_0",
+            "choice_2"
+         ],
+         "a0effb954cca4759994f1ac9e9434bf4_3_1":"choice_2"
+      },
+      "grade":3,
+      "max_grade":3,
+      "correct_map":{
+         "a0effb954cca4759994f1ac9e9434bf4_2_1":{
+            "correctness":"correct",
+            "npoints":null,
+            "msg":"",
+            "hint":"",
+            "hintmode":null,
+            "queuestate":null,
+            "answervariable":null
+         },
+         "a0effb954cca4759994f1ac9e9434bf4_3_1":{
+            "correctness":"correct",
+            "npoints":null,
+            "msg":"",
+            "hint":"",
+            "hintmode":null,
+            "queuestate":null,
+            "answervariable":null
+         },
+         "a0effb954cca4759994f1ac9e9434bf4_4_1":{
+            "correctness":"correct",
+            "npoints":null,
+            "msg":"",
+            "hint":"",
+            "hintmode":null,
+            "queuestate":null,
+            "answervariable":null
+         }
+      },
+      "success":"correct",
+      "attempts":3,
+      "submission":{
+         "a0effb954cca4759994f1ac9e9434bf4_2_1":{
+            "question":"What color is the open ocean on a sunny day?",
+            "answer":"blue",
+            "response_type":"optionresponse",
+            "input_type":"optioninput",
+            "correct":true,
+            "variant":"",
+            "group_label":""
+         },
+         "a0effb954cca4759994f1ac9e9434bf4_4_1":{
+            "question":"Which of the following are musical instruments?",
+            "answer":[
+               "a piano",
+               "a guitar"
+            ],
+            "response_type":"choiceresponse",
+            "input_type":"checkboxgroup",
+            "correct":true,
+            "variant":"",
+            "group_label":""
+         },
+         "a0effb954cca4759994f1ac9e9434bf4_3_1":{
+            "question":"Which piece of furniture is built for sitting?",
+            "answer":"a chair",
+            "response_type":"multiplechoiceresponse",
+            "input_type":"choicegroup",
+            "correct":true,
+            "variant":"",
+            "group_label":""
+         }
+      }
+   },
+   "time":"2023-08-03T06:32:31.431355+00:00",
+   "event_type":"problem_check",
+   "event_source":"server",
+   "page":"x_module"
+}
