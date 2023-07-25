@@ -1,0 +1,45 @@
+{
+  "id": "6d1f033b-3f70-458c-b53a-e6bb63cbaef9",
+  "result": {"score": {"min": 0.0}, "success": false},
+  "version": "1.0.3",
+  "actor": {
+    "objectType": "Agent",
+    "account": {
+      "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+      "homePage": "http://localhost:18000"
+    }
+  },
+  "verb": {
+    "id": "https://w3id.org/xapi/acrossx/verbs/evaluated",
+    "display": {
+      "en": "evaluated"
+    }
+  },
+  "object": {
+    "objectType": "Activity",
+    "definition": {
+      "type": "http://adlnet.gov/expapi/activities/cmi.interaction",
+      "interactionType": "choice"
+    }
+  },
+  "context": {
+    "contextActivities": {
+      "parent": [
+        {
+          "id": "http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+          "objectType": "Activity",
+          "definition": {
+            "name": {
+              "en-US": "Demonstration Course"
+            },
+            "type": "http://adlnet.gov/expapi/activities/course"
+          }
+        }
+      ]
+    },
+    "extensions": {
+      "https://w3id.org/xapi/openedx/extension/transformer-version": "event-routing-backends@1.1.1",
+      "https://w3id.org/xapi/openedx/extensions/session-id": "2c65c4e9e6a637feb42426fd35b5dac3"
+    }
+  }
+}
