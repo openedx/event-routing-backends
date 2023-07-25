@@ -85,6 +85,9 @@ class MOE():
             except Exception as e:
                 logger.error(f'MOE: Getting events from SQS is FAILED!/nException: {e}')
                 #TODO: ADD EMAIL SEND TO THE ADMIN
+    
+    def clear_sqs_events(self, task_data):
+        self.sqs_service.clear_queue()
                         
     def __is_guid_string(self, string):
         # Regex pattern to match GUID format
@@ -107,6 +110,10 @@ class MOE():
 def sent_sqs_events_to_moe_static(**data):
     moe_service.sent_sqs_events_moe(data)
 
+@APP.task
+def clear_sqs_events_static(**data):
+    moe_service.clear_sqs_events(data)
+    
 # Cache dictionary to store data and it expiration time
 cache = {}
 

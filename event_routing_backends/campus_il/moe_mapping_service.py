@@ -5,6 +5,7 @@ from event_routing_backends.campus_il.configuration import config
 from common.djangoapps.student.models import CourseAccessRole
 from social_django.models import UserSocialAuth
 from openedx.core.djangoapps.bookmarks.models import XBlockCache
+from django.core.cache import cache
 
 class FieldTypes(Enum):
     TEXT = 'Text'
@@ -48,7 +49,7 @@ class MOEMapping():
         
         _course_id = self.__get_course_block_id(event, IdsType.COURSE)
         _block_id = self.__get_course_block_id(event, IdsType.BLOCK)
-        #logging.info(f'qwer111 CampusIL course_id: {_course_id}, block_id: {_block_id}')
+        logging.info(f'MOE: Mapping CampusIL course_id: {_course_id}, block_id: {_block_id}')
         
         # Mapping logic to convert to external organization JSON format
         external_event = {
@@ -206,36 +207,47 @@ class MOEMapping():
     
     def __get_intrsuctor_node(self, course_id):
         #logging.info(f'qwer1 course_id: {course_id}')
-        teacher_course_role = CourseAccessRole.objects.filter(
-            course_id=course_id,
-            role='staff',
-        ).exclude(
-            user__email__endswith='campus.gov.il'
-        ).first()
+        cache_key = f'{config.Get("MAPPING_CACHE_INSTRUCTOR_PREFIX")}_{course_id}'
+        logging.info(f'qwer1 cache_key: {cache_key}')
+        anonymous_id = cache.get(cache_key)
+        logging.info(f'qwer1 loaded frop cache anonymous_id: {anonymous_id}')
         
-        #logging.info(f"MOE: Teacher of CCX: {teacher_course_role}")
+        if not anonymous_id:
+            teacher_course_role = CourseAccessRole.objects.filter(
+                course_id=course_id,
+                role='staff',
+            ).exclude(
+                user__email__endswith='campus.gov.il'
+            ).first()
         
-        # get teacher's IDM
-        if teacher_course_role:
-            social_auth = UserSocialAuth.objects.filter(user__id=teacher_course_role.user.id, provider='tpa-saml', uid__startswith='moe-edu-idm:').first()
-            
-            #logging.info(f"MOE: Teacher of CCX social_auth: {social_auth}")
-            if social_auth:
-                anonymous_id = social_auth.uid.split(':')[1]
-                #logging.info(f"MOE: Teacher of CCX anonymous_id: {anonymous_id}")
+            #logging.info(f"MOE: Teacher of CCX: {teacher_course_role}")
+        
+            # get teacher's IDM
+            if teacher_course_role:
+                social_auth = UserSocialAuth.objects.filter(user__id=teacher_course_role.user.id, provider='tpa-saml', uid__startswith='moe-edu-idm:').first()
                 
-                return {
-                    "objectType": "Agent",
-                    "account": {
-                        "homePage": config.Get("MAPPING_IDENTIFIER_MOE"),
-                        "name": anonymous_id
-                    }
+                #logging.info(f"MOE: Teacher of CCX social_auth: {social_auth}")
+                if social_auth:
+                    anonymous_id = social_auth.uid.split(':')[1]
+                    logging.info(f'qwer1 save to cache: key={cache_key}, value={anonymous_id}')
+                    #cache.add(cache_key, anonymous_id, config.Get("MAPPING_CACHE_EXPIRATION")) #in seconds
+                    cache.add(cache_key, anonymous_id, 60)
+        
+        if anonymous_id:
+            #logging.info(f"MOE: Teacher of CCX anonymous_id: {anonymous_id}")
+            return {
+                "objectType": "Agent",
+                "account": {
+                    "homePage": config.Get("MAPPING_IDENTIFIER_MOE"),
+                    "name": anonymous_id
                 }
+            }
         
         return None
     
     # prepare course id or block id of the event
     def __get_course_block_id(self, event, id_type:IdsType):
+        _output = ''
         _url = ''
         
         if id_type is IdsType.COURSE:
@@ -246,16 +258,22 @@ class MOEMapping():
                 _parents_arr = event.get("context", {}).get("contextActivities", {}).get("parent", None)
                 if _parents_arr and len(_parents_arr) > 0:
                     _url = _parents_arr[0]["id"]
+            
+            _output = _url.split("/")[-1]
         elif id_type is IdsType.BLOCK:    
             _object = event.get("object", None)
             if _object and "block-v1" in _object["id"]:
-                _url = _object["id"] 
-        
-        return _url.split("/")[-1]
+                _url = _object["id"]
+            
+            _output = _url.split("/")[-1]
+            _output = re.sub(r'\+ccx@\d+', '', _output)
+            _output = _output[4:] if _output.startswith('ccx-') else _output
+            
+        return _output
     
     # get xblock title
     def __get_block_title(self, course_key, usage_key):
     
-        block_cache = XBlockCache.objects.filter(course_key=course_key, usage_key=usage_key).first()
+        block_cache = XBlockCache.objects.filter(usage_key=usage_key).first()
         return block_cache.display_name if block_cache else None
     
