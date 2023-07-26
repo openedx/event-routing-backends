@@ -46,7 +46,7 @@ celery==5.3.1
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2023.5.7
+certifi==2023.7.22
     # via
     #   -r requirements/test.txt
     #   requests
@@ -59,7 +59,7 @@ charset-normalizer==3.2.0
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.1.4
+click==8.1.6
     # via
     #   -r requirements/test.txt
     #   celery
@@ -80,7 +80,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==1.3.0
+code-annotations==1.5.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
@@ -102,13 +102,14 @@ django==3.2.20
     #   django-config-models
     #   django-crum
     #   django-model-utils
+    #   django-waffle
     #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.3.0
+django-config-models==2.4.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -119,7 +120,7 @@ django-model-utils==4.3.1
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==3.0.0
+django-waffle==4.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -144,7 +145,7 @@ docutils==0.17.1
     #   sphinx
 edx-celeryutils==1.2.2
     # via -r requirements/test.txt
-edx-django-utils==5.5.0
+edx-django-utils==5.6.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -158,9 +159,9 @@ exceptiongroup==1.1.2
     # via
     #   -r requirements/test.txt
     #   pytest
-factory-boy==3.2.1
+factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==19.0.0
+faker==19.2.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -215,7 +216,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.1.0
     # via -r requirements/test.txt
-more-itertools==9.1.0
+more-itertools==10.0.0
     # via jaraco-classes
 newrelic==8.8.1
     # via
@@ -296,7 +297,7 @@ pytz==2023.3
     #   djangorestframework
     #   event-tracking
     #   tincan
-pyyaml==6.0
+pyyaml==6.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -388,7 +389,7 @@ tzdata==2023.3
     #   -r requirements/test.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.0.3
+urllib3==2.0.4
     # via
     #   -r requirements/test.txt
     #   requests
@@ -405,7 +406,7 @@ wcwidth==0.2.6
     #   prompt-toolkit
 webencodings==0.5.1
     # via bleach
-zipp==3.16.0
+zipp==3.16.2
     # via
     #   importlib-metadata
     #   importlib-resources
