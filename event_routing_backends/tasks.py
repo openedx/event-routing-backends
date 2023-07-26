@@ -11,7 +11,7 @@ from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
 from event_routing_backends.models import RouterConfiguration
 
-from event_routing_backends.campus_il.helpers import moe_service
+from event_routing_backends.campus_il.helpers import MOE
 
 logger = get_task_logger(__name__)
 
@@ -76,7 +76,7 @@ def send_event(task, event_name, event, router_type, host_config, external_servi
         
         # send event to AWS SQS configured service
         if external_service.get("isSendToSQS", True):
-            moe_service.sent_event(event, event_name, external_service)
+            MOE().sent_event(event, event_name, external_service)
         
         logger.debug(
             'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(

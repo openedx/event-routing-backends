@@ -11,24 +11,42 @@ from celery.utils.log import get_task_logger
 logger = get_task_logger(__name__)
 
 class MOE():
-
-    cache = None
+    
+    __instance = None
+    __cache = {}
+    
     api_service = None
     map_service = None
     
-    def __init__(self, cache):
-        self.cache = cache
-        self.api_service = APIMOEService(self.cache)
+    
+
+    def __new__(cls, *args, **kwargs):
+        if cls.__instance is None:
+            cls.__instance = super().__new__(cls, *args, **kwargs)
+        return cls.__instance
+    
+    def __init__(self):
+        self.api_service = APIMOEService(self.__cache)
         self.map_service = MOEMapping()
         self.sqs_service = SQSService()
     
     def sent_event(self, event, event_name, service_config):
+        _event = event["verb"]["id"]
+        logger.info(f'MOE: event verb type: {_event}')
+        
+        # check that the event is relevant for MOE, it's check the list of the relevant events
+        if not self.map_service.is_relevant_event(_event):
+            logger.info(f'MOE: event verb type is not relevant for MOE LRS.')
+            return False
+        
         event = self.map_service.map_event(event=event)
         logger.info(f"MOE: event prepared: {event}")
-        logger.info(f'MOE: event verb type: {event["verb"]["id"]}')
+        
         response_data = self.sqs_service.sent_data(event)
-        #moe_service.sent_sqs_events_moe("static")
         logger.info(f"MOE: event '{event_name}' sent. Response: {response_data}")
+        
+        #moe_service.sent_sqs_events_moe("static")
+        return True
         
     # sending all sqs events to moe lrs service
     def sent_sqs_events_moe(self, task_data):
@@ -75,6 +93,9 @@ class MOE():
             except Exception as e:
                 logger.error(f'MOE: Getting events from SQS is FAILED!/nException: {e}')
                 #TODO: ADD EMAIL SEND TO THE ADMIN
+    
+    def clear_sqs_events(self, task_data):
+        self.sqs_service.clear_queue()
                         
     def __is_guid_string(self, string):
         # Regex pattern to match GUID format
@@ -95,10 +116,14 @@ class MOE():
 
 @APP.task
 def sent_sqs_events_to_moe_static(**data):
-    moe_service.sent_sqs_events_moe(data)
+    MOE().sent_sqs_events_moe(data)
 
+@APP.task
+def clear_sqs_events_static(**data):
+    MOE().clear_sqs_events(data)
+    
 # Cache dictionary to store data and it expiration time
-cache = {}
+#cache = {}
 
 # MOE service that will adapt and send event to the MOE server
-moe_service = MOE(cache)
+#moe_service = MOE(cache)
