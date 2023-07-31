@@ -30,7 +30,6 @@ class BaseTransformerMixin:
             event (dict)    :   event to be transformed
         """
         self.event = event.copy()
-        self.transformed_event = {}
 
     @staticmethod
     def find_nested(source_dict, key):
@@ -65,14 +64,17 @@ class BaseTransformerMixin:
 
         return _find_nested(source_dict)
 
-    def base_transform(self):
+    def base_transform(self, transformed_event):
         """
         Transform the fields that are common for all events.
 
         Other classes can override this method to add common transformation
         code for events.
+
+        Returns:
+            ANY
         """
-        return
+        return transformed_event or {}
 
     @property
     def transformer_version(self):
@@ -92,18 +94,18 @@ class BaseTransformerMixin:
         Transform the edX event.
 
         Returns:
-            dict
+            ANY
         """
-        self.base_transform()
+        transformed_event = self.base_transform({})
 
         transforming_fields = self.required_fields + self.additional_fields
         for key in transforming_fields:
             if hasattr(self, key):
                 value = getattr(self, key)
-                self.transformed_event[key] = value
+                transformed_event[key] = value
             elif hasattr(self, f'get_{key}'):
                 value = getattr(self, f'get_{key}')()
-                self.transformed_event[key] = value
+                transformed_event[key] = value
             else:
                 raise ValueError(
                     'Cannot find value for "{}" in transformer {} for the edx event "{}"'.format(
@@ -111,12 +113,9 @@ class BaseTransformerMixin:
                     )
                 )
 
-        if self.backend_name == 'caliper':
-            self.transformed_event['extensions']['transformerVersion'] = self.transformer_version
+        transformed_event = self.del_none(transformed_event)
 
-        self.transformed_event = self.del_none(self.transformed_event)
-
-        return self.transformed_event
+        return transformed_event
 
     def extract_username_or_userid(self):
         """
@@ -218,3 +217,12 @@ class BaseTransformerMixin:
             object_type=object_type,
             object_id=object_id
         )
+
+    def get_object(self):
+        """
+        Return object for the event.
+
+        Returns:
+            dict
+        """
+        return {}

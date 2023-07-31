@@ -50,10 +50,11 @@ class EnrollmentEventTransformers(CaliperTransformer):
 
         # TODO: replace with anonymous enrollment id?
         course_root_url = self.get_object_iri('course', self.get_data('data.course_id', True))
-        caliper_object = {
+        caliper_object = super().get_object()
+        caliper_object.update({
             'id': course_root_url,
             'type': 'CourseOffering',
             'name': course['display_name'],
             'extensions': {'mode': self.get_data('data.mode')} if self.get_data('data.mode') is not None else None,
-        }
+        })
         return caliper_object
