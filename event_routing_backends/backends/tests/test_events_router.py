@@ -642,7 +642,14 @@ class TestEventsRouter(TestCase):
             mocked_logger.info.mock_calls
         )
 
-    def test_unsuccessful_routing_of_event_http(self):
+    @patch('event_routing_backends.utils.http_client.requests.post')
+    def test_unsuccessful_routing_of_event_http(self, mocked_post):
+        mock_response = MagicMock()
+        mock_response.status_code = 500
+        mock_response.request.method = "POST"
+        mock_response.text = "Fake Server Error"
+        mocked_post.return_value = mock_response
+
         host_configurations = {
                         'url': 'http://test4.com',
                         'auth_scheme': 'bearer',
