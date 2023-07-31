@@ -79,7 +79,7 @@ class EventsRouter:
                     'Processing edx event "{}" for router with backend {}'.format(event_name, self.backend_name)
                 )
 
-                processed_event = self.process_event(event)
+                processed_events = self.process_event(event)
             except (EventEmissionExit, ValueError):
                 logger.error(
                     'Could not process edx event "%s" for backend %s\'s router',
@@ -90,10 +90,10 @@ class EventsRouter:
                 continue
 
             logger.debug(
-                'Successfully processed edx event "%s" for router with backend %s. Processed event: %s',
+                'Successfully processed edx event "%s" for router with backend %s. Processed events: %s',
                 event_name,
                 self.backend_name,
-                processed_event
+                processed_events
             )
 
             for router in routers:
@@ -107,11 +107,13 @@ class EventsRouter:
                     )
                 else:
                     host = self.configure_host(host, router)
-                    updated_event = self.overwrite_event_data(processed_event, host, event_name)
-                    is_business_critical = event_name in business_critical_events
-                    if router_pk not in route_events:
-                        route_events[router_pk] = [(event_name, updated_event, host, is_business_critical),]
-                    else:
+
+                    if processed_events and router_pk not in route_events:
+                        route_events[router_pk] = []
+
+                    for processed_event in processed_events:
+                        updated_event = self.overwrite_event_data(processed_event, host, event_name)
+                        is_business_critical = event_name in business_critical_events
                         route_events[router_pk].append((event_name, updated_event, host, is_business_critical))
 
         return route_events
@@ -176,17 +178,19 @@ class EventsRouter:
         """
         Process the event through this router's processors.
 
+        This single event may produce multiple processed events, and so we return a list of events here.
+
         Arguments:
             event (dict):      Event to be processed
 
         Returns
-            dict
+            list of ANY
         """
-        event = event.copy()
+        events = [event.copy()]
         for processor in self.processors:
-            event = processor(event)
+            events = processor(events)
 
-        return event
+        return events
 
     def overwrite_event_data(self, event, host, event_name):
         """
