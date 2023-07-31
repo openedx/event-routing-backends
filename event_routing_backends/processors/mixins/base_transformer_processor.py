@@ -18,33 +18,37 @@ class BaseTransformerProcessorMixin:
 
     registry = None
 
-    def __call__(self, event):
+    def __call__(self, events):
         """
-        Transform and then route the event to the configured routers.
+        Transform the given events, and return the transformed events.
 
         Arguments:
-            event (dict):   Event to be transformed and delivered.
+            event (list of dicts):   Events to be transformed.
 
         Returns:
-            transformed event (dict)
+            transformed events (list of ANY)
 
         Raises:
             EventEmissionExit except.on:  if no transformer is registered for an event.
             ANY exception: if raised.
         """
-        transformed_event = self.transform_event(event)
-
-        if transformed_event:
-            return transformed_event
-
-        raise EventEmissionExit
+        returned_events = []
+        for event in events:
+            transformed_event = self.transform_event(event)
+            if not transformed_event:
+                raise EventEmissionExit
+            if isinstance(transformed_event, list):
+                returned_events += transformed_event
+            else:
+                returned_events.append(transformed_event)
+        return returned_events
 
     def transform_event(self, event):
         """
         Transform the event.
 
-        Transformer method can return transformed event in any data structure format
-        (dict or any custom class) but the configured router(s) MUST support it.
+        Transformer method can return transformed events in any data structure format
+        (dict, list, or any custom class) but the configured router(s) MUST support it.
 
         Arguments:
             event (dict):   Event to be transformed.

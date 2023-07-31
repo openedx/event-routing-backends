@@ -34,7 +34,7 @@ class XApiProcessor(BaseTransformerProcessorMixin):
             event (dict):   Event to be transformed.
 
         Returns:
-            dict:           transformed event
+            ANY:            transformed event
 
         Raises:
             Any Exception
