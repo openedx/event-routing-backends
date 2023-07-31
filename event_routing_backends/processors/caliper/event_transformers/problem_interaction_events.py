@@ -149,7 +149,7 @@ class ProblemEventsTransformers(CaliperTransformer):
         else:
             iri_url = object_id
 
-        caliper_object = self.transformed_event['object']
+        caliper_object = super().get_object()
         caliper_object.update({
             'id': self.get_object_iri('xblock', iri_url),
             'type': OBJECT_TYPE_MAP.get(key, 'Attempt'),

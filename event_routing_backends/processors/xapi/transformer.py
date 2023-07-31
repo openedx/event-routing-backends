@@ -46,22 +46,28 @@ class XApiTransformer(BaseTransformerMixin):
         transformed_props["version"] = constants.XAPI_SPECIFICATION_VERSION
         return Statement(**transformed_props)
 
-    def base_transform(self):
+    def base_transform(self, transformed_event):
         """
         Transform the fields that are common for all events.
         """
+        transformed_event = super().base_transform(transformed_event)
         actor = self.get_actor()
         event_timestamp = self.get_timestamp()
-        self.transformed_event = {
+        transformed_event.update({
             'actor': actor,
             'context': self.get_context(),
             'timestamp': event_timestamp,
-        }
+        })
+        transformed_event['actor'] = self.get_actor()
+        transformed_event['context'] = self.get_context()
+        transformed_event['timestamp'] = self.get_timestamp()
+
         # Warning! changing anything in these 2 lines or changing the "base_uuid" can invalidate
         # billions of rows in the database. Please have a community discussion first before introducing
         # any change in generation of UUID.
         uuid_str = f'{actor.to_json()}-{event_timestamp}'
-        self.transformed_event['id'] = get_uuid5(self.verb.to_json(), uuid_str)  # pylint: disable=no-member
+        transformed_event['id'] = get_uuid5(self.verb.to_json(), uuid_str)  # pylint: disable=no-member
+        return transformed_event
 
     def get_actor(self):
         """

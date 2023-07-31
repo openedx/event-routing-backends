@@ -39,7 +39,7 @@ class NavigationEventsTransformers(CaliperTransformer):
             dict
         """
         self.backend_name = 'caliper'
-        caliper_object = self.transformed_event['object']
+        caliper_object = super().get_object()
 
         data = self.get_data('data')
         extensions = {}
