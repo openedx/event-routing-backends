@@ -10,6 +10,9 @@ from event_routing_backends.processors.xapi.event_transformers.forum_events impo
     ThreadCreatedTransformer,
     ThreadDeletedTransformer,
     ThreadEditedTransformer,
+    ThreadResponseCreatedTransformer,
+    ThreadResponseReportedTransformer,
+    ThreadResponseUnReportedTransformer,
     ThreadViewedTransformer,
     ThreadVotedTransformer,
 )
