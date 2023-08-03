@@ -5,6 +5,7 @@ import json
 import os
 from io import BytesIO
 from textwrap import dedent
+from time import sleep
 
 from django.core.management.base import BaseCommand
 from libcloud.storage.providers import get_driver
@@ -14,6 +15,37 @@ from event_routing_backends.management.commands.helpers.queued_sender import Que
 
 # Number of bytes to download at a time, this is 2 MB
 CHUNK_SIZE = 1024 * 1024 * 2
+
+
+def _get_chunks(source, file, start_byte, end_byte):
+    """
+    Fetch a chunk from the upstream source, retry 3 times if necessary.
+
+    Often an upstream provider like S3 will fail occasionally on big jobs. This
+    tries to handle any of those cases gracefully.
+    """
+    chunks = None
+    # Skipping coverage here because it wants to test a branch that will never
+    # be hit (for -> return)
+    for try_number in range(1, 4):  # pragma: no cover
+        try:
+            chunks = source.download_object_range_as_stream(
+                file,
+                start_bytes=start_byte,
+                end_bytes=end_byte
+            )
+            break
+        # Catching all exceptions here because there's no telling what all
+        # the possible errors from different libcloud providers are.
+        except Exception as e:  # pylint: disable=broad-exception-caught
+            print(e)
+            if try_number == 3:
+                print(f"Try {try_number}: Error occurred downloading, giving up.")
+                raise
+            print(f"Try {try_number}: Error occurred downloading source file chunk. Trying again in 1 second.")
+            sleep(1)
+
+    return chunks
 
 
 def transform_tracking_logs(
@@ -45,11 +77,8 @@ def transform_tracking_logs(
             if end_byte > file.size:
                 end_byte = file.size
 
-            chunks = source.download_object_range_as_stream(
-                file,
-                start_bytes=last_successful_byte,
-                end_bytes=end_byte
-            )
+            chunks = _get_chunks(source, file, last_successful_byte, end_byte)
+
             for chunk in chunks:
                 chunk = chunk.decode('utf-8')
 

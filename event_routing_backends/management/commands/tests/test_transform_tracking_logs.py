@@ -12,6 +12,7 @@ from libcloud.storage.types import ContainerDoesNotExistError
 import event_routing_backends.management.commands.transform_tracking_logs as transform_tracking_logs
 from event_routing_backends.management.commands.helpers.queued_sender import QueuedSender
 from event_routing_backends.management.commands.transform_tracking_logs import (
+    _get_chunks,
     get_dest_config_from_options,
     get_libcloud_drivers,
     get_source_config_from_options,
@@ -394,3 +395,30 @@ def test_get_dest_config_lrs():
     assert config is None
     assert container is None
     assert prefix is None
+
+
+def test_get_chunks():
+    """
+    Tests the retry functionality of the get_chunks function.
+    """
+    fake_source = MagicMock()
+    fake_source.download_object_range_as_stream.return_value = "abc"
+
+    # Check that we got the expected return value
+    assert _get_chunks(fake_source, "", 0, 1) == "abc"
+    # Check that we broke out of the retry loop as expected
+    assert fake_source.download_object_range_as_stream.call_count == 1
+
+    fake_source_err = MagicMock()
+    fake_source_err.download_object_range_as_stream.side_effect = Exception("boom")
+
+    # Speed up our test, don't wait for the sleep
+    with patch("event_routing_backends.management.commands.transform_tracking_logs.sleep"):
+        with pytest.raises(Exception) as e:
+            _get_chunks(fake_source_err, "", 0, 1)
+
+    # Make sure we're getting the error we expect
+    assert "boom" in str(e)
+
+    # Make sure we got the correct number of retries
+    assert fake_source_err.download_object_range_as_stream.call_count == 3
