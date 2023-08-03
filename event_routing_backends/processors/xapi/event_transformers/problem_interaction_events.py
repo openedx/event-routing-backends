@@ -151,16 +151,19 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
             `Result`
         """
         event_data = self.get_data('data')
-        if event_data['weighted_possible'] > 0:
-            scaled = event_data['weighted_earned']/event_data['weighted_possible']
+        weighted_possible = event_data['weighted_possible'] or 0
+        weighted_earned = event_data['weighted_earned'] or 0
+
+        if weighted_possible > 0:
+            scaled = weighted_earned/weighted_possible
         else:
             scaled = 0
         return Result(
-            success=event_data['weighted_earned'] >= event_data['weighted_possible'],
+            success=weighted_earned >= weighted_possible,
             score={
                 'min': 0,
-                'max': event_data['weighted_possible'],
-                'raw': event_data['weighted_earned'],
+                'max': weighted_possible,
+                'raw': weighted_earned,
                 'scaled': scaled
             }
         )
