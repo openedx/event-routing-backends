@@ -1,0 +1,36 @@
+{
+    "name": "edx.forum.thread.reported",
+    "timestamp": "2023-07-10T09:23:10.354202+00:00",
+    "data": {
+        "body": "<p>This is description of post</p>",
+        "truncated": false,
+        "content_type": "Post",
+        "commentable_id": "7d6d6f11-537b-47c6-8575-ad3e315c0e06",
+        "thread_type": "discussion",
+        "group_id": null,
+        "target_username": "xiajul19",
+        "title_truncated": false,
+        "title": "title of post",
+        "id": "64b7b2bee68f35003369092d",
+        "url": "http://apps.local.overhang.io:2002/",
+        "user_forums_roles": [
+            "Student"
+        ],
+        "user_course_roles": []
+    },
+    "context": {
+        "session": "6241e4561684e7ecc8fe1ef1d496ecb8",
+        "user_id": 17,
+        "username": "xiajul19",
+        "ip": "172.18.0.1",
+        "host": "local.overhang.io:8000",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/114.0",
+        "path": "/api/discussion/v1/threads/64b7b2bee68f35003369092d/",
+        "referer": "http://apps.local.overhang.io:2002/",
+        "accept_language": "en-US,en;q=0.5",
+        "client_id": null,
+        "course_id": "course-v1:testX+XAPI101+2019_T2",
+        "org_id": "testX",
+        "enterprise_uuid": ""
+    }
+}

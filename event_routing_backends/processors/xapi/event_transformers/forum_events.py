@@ -26,7 +26,7 @@ class BaseForumThreadTransformer(XApiTransformer):
         object_path = self.get_data('context.path', True).rstrip('/').replace(object_id, '').rstrip('/')
 
         return Activity(
-            id='{lms_root_url}/{object_path}/{object_id}'.format(
+            id='{lms_root_url}{object_path}/{object_id}'.format(
                     lms_root_url=settings.LMS_ROOT_URL,
                     object_path=object_path,
                     object_id=object_id
@@ -62,9 +62,10 @@ class ThreadCreatedTransformer(BaseForumThreadTransformer):
 
 
 @XApiTransformersRegistry.register('edx.forum.thread.edited')
+@XApiTransformersRegistry.register('edx.forum.response.edited')
 class ThreadEditedTransformer(BaseForumThreadTransformer):
     """
-    Transformers for event generated when learner modifies a thread in discussion forum.
+    Transformers for event generated when learner modifies a thread/response in discussion forum.
     """
     verb = Verb(
         id=constants.XAPI_VERB_EDITED,
@@ -84,9 +85,10 @@ class ThreadViewedTransformer(BaseForumThreadTransformer):
 
 
 @XApiTransformersRegistry.register('edx.forum.thread.deleted')
+@XApiTransformersRegistry.register('edx.forum.response.deleted')
 class ThreadDeletedTransformer(BaseForumThreadTransformer):
     """
-    Transformers for event generated when learner deletes a thread in discussion forum.
+    Transformers for event generated when learner deletes a thread/response in discussion forum.
     """
     verb = Verb(
         id=constants.XAPI_VERB_DELETED,
@@ -95,9 +97,10 @@ class ThreadDeletedTransformer(BaseForumThreadTransformer):
 
 
 @XApiTransformersRegistry.register('edx.forum.thread.voted')
+@XApiTransformersRegistry.register('edx.forum.response.voted')
 class ThreadVotedTransformer(BaseForumThreadTransformer):
     """
-    Transformers for event generated when learner votes on a thread in discussion forum.
+    Transformers for event generated when learner votes on a thread/response in discussion forum.
     """
     verb = Verb(
         id=constants.XAPI_VERB_VOTED,
@@ -116,3 +119,41 @@ class ThreadVotedTransformer(BaseForumThreadTransformer):
             constants.XAPI_ACTIVITY_MODE: self.get_data('vote_value')
         })
         return extensions
+
+
+@XApiTransformersRegistry.register('edx.forum.response.created')
+class ThreadResponseCreatedTransformer(BaseForumThreadTransformer):
+    """
+    Transformer for event generated when learner creates a response
+    under a thread in discussion forum.
+    """
+    verb = Verb(
+        id=constants.XAPI_VERB_POSTED,
+        display=LanguageMap({constants.EN: constants.POSTED}),
+    )
+
+
+@XApiTransformersRegistry.register('edx.forum.thread.reported')
+@XApiTransformersRegistry.register('edx.forum.response.reported')
+class ThreadResponseReportedTransformer(BaseForumThreadTransformer):
+    """
+    Transformer for event generated when learner reports a thread or response
+    to a thread as inappropriate.
+    """
+    verb = Verb(
+        id=constants.XAPI_VERB_REPORTED,
+        display=LanguageMap({constants.EN: constants.REPORTED}),
+    )
+
+
+@XApiTransformersRegistry.register('edx.forum.thread.unreported')
+@XApiTransformersRegistry.register('edx.forum.response.unreported')
+class ThreadResponseUnReportedTransformer(BaseForumThreadTransformer):
+    """
+    Transformer for event generated when learner unreports a thread or response
+    to a thread which was earlier reported as inappropriate.
+    """
+    verb = Verb(
+        id=constants.XAPI_VERB_UNREPORTED,
+        display=LanguageMap({constants.EN: constants.UNREPORTED}),
+    )

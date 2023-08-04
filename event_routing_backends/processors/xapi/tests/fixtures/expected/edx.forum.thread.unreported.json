@@ -21,23 +21,22 @@
         },
         "extensions": {
             "https://w3id.org/xapi/openedx/extension/transformer-version": "event-routing-backends@1.1.1",
-            "https://w3id.org/xapi/openedx/extensions/session-id": "054c9ddcb76d2096f862e66bda3bc308",
-            "https://w3id.org/xapi/acrossx/extensions/type": "discussion"
+            "https://w3id.org/xapi/openedx/extensions/session-id": "6241e4561684e7ecc8fe1ef1d496ecb8"
         }
     },
     "object": {
         "definition": {
             "type": "http://id.tincanapi.com/activitytype/discussion"
         },
-        "id": "http://localhost:18000/api/discussion/v1/threads/64abcdfee68f35002fd013c6",
+        "id": "http://localhost:18000/api/discussion/v1/threads/64b7b2bee68f35003369092d",
         "objectType": "Activity"
     },
     "timestamp": "2023-07-10T09:23:10.354202+00:00",
     "verb": {
         "display": {
-            "en": "posted"
+            "en": "unreported"
         },
-        "id": "https://w3id.org/xapi/acrossx/verbs/posted"
+        "id": "https://w3id.org/xapi/openedx/verb/unreported"
     },
     "version": "1.0.3"
 }
