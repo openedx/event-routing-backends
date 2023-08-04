@@ -13,6 +13,8 @@ def plugin_settings(settings):
     settings.XAPI_EVENT_LOGGING_ENABLED = True
     settings.EVENT_ROUTING_BACKEND_MAX_RETRIES = 3
     settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
+    settings.EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_MAX_RETRIES = 3
+    settings.EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_COUNTDOWN = 1
 
     # .. setting_name: XAPI_AGENT_IFI_TYPE
     # .. setting_default: 'external_id'
