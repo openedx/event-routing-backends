@@ -7,6 +7,7 @@ from io import BytesIO
 from textwrap import dedent
 from time import sleep
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from libcloud.storage.providers import get_driver
 from libcloud.storage.types import Provider
@@ -25,9 +26,12 @@ def _get_chunks(source, file, start_byte, end_byte):
     tries to handle any of those cases gracefully.
     """
     chunks = None
+    num_retries = getattr(settings, 'EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_MAX_RETRIES', 3)
+    retry_countdown = getattr(settings, 'EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_COUNTDOWN', 1)
+
     # Skipping coverage here because it wants to test a branch that will never
     # be hit (for -> return)
-    for try_number in range(1, 4):  # pragma: no cover
+    for try_number in range(1, num_retries+1):  # pragma: no cover
         try:
             chunks = source.download_object_range_as_stream(
                 file,
@@ -39,11 +43,11 @@ def _get_chunks(source, file, start_byte, end_byte):
         # the possible errors from different libcloud providers are.
         except Exception as e:  # pylint: disable=broad-exception-caught
             print(e)
-            if try_number == 3:
+            if try_number == num_retries:
                 print(f"Try {try_number}: Error occurred downloading, giving up.")
                 raise
             print(f"Try {try_number}: Error occurred downloading source file chunk. Trying again in 1 second.")
-            sleep(1)
+            sleep(retry_countdown)
 
     return chunks
 
