@@ -6,7 +6,13 @@ from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result
 from event_routing_backends.helpers import get_problem_block_id
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
-from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
+from event_routing_backends.processors.xapi.statements import GroupActivity
+from event_routing_backends.processors.xapi.transformer import (
+    OneToManyChildXApiTransformerMixin,
+    OneToManyXApiTransformerMixin,
+    XApiTransformer,
+    XApiVerbTransformerMixin,
+)
 
 # map open edx problems interation types to xAPI valid interaction types
 INTERACTION_TYPES_MAP = {
@@ -76,19 +82,41 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
+        object_id = self.get_object_id()
+        definition = self.get_object_definition()
+        return Activity(
+            id=object_id,
+            definition=definition,
+        )
+
+    def get_object_id(self):
+        """
+        Returns the object.id
+
+        Returns:
+            str
+        """
         object_id = None
         data = self.get_data('data')
         if data and isinstance(data, dict):
             object_id = self.get_data('data.problem_id') or self.get_data('data.module_id', True)
+        else:
+            object_id = self.get_data('usage_key')
 
+        return object_id
+
+    def get_object_definition(self):
+        """
+        Returns the definition portion of the object stanza.
+
+        Returns:
+            ActivityDefinition
+        """
         event_name = self.get_data('name', True)
 
-        return Activity(
-            id=object_id,
-            definition=ActivityDefinition(
-                type=EVENT_OBJECT_DEFINITION_TYPE[event_name] if event_name in EVENT_OBJECT_DEFINITION_TYPE else
-                constants.XAPI_ACTIVITY_INTERACTION,
-            ),
+        return ActivityDefinition(
+            type=EVENT_OBJECT_DEFINITION_TYPE[event_name] if event_name in EVENT_OBJECT_DEFINITION_TYPE else
+            constants.XAPI_ACTIVITY_INTERACTION,
         )
 
 
@@ -169,10 +197,16 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
         )
 
 
-@XApiTransformersRegistry.register('problem_check')
-class ProblemCheckTransformer(BaseProblemsTransformer):
+class BaseProblemCheckTransformer(BaseProblemsTransformer):
     """
-    Transform problem interaction related events into xAPI format.
+    Transform problem check events into one or more xAPI statements.
+
+    If there is only one question in the source event problem, then transform() returns a single Activity.
+
+    But if there are multiple questions in the source event problem, transform() will return:
+
+    * 1 parent GroupActivity
+    * N "child" Activity which reference the parent, where N>=0
     """
     additional_fields = ('result', )
 
@@ -201,19 +235,33 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             if xapi_object.id:
                 xapi_object.id = self.get_object_iri('xblock', xapi_object.id)
 
+        return xapi_object
+
+    def get_object_definition(self):
+        """
+        Returns the definition portion of the object stanza.
+
+        Returns:
+            ActivityDefinition
+        """
+        definition = super().get_object_definition()
+
         if self.get_data('data.attempts'):
-            xapi_object.definition.extensions = Extensions({
+            definition.extensions = Extensions({
                 constants.XAPI_ACTIVITY_ATTEMPT: self.get_data('data.attempts')
             })
         interaction_type = self._get_interaction_type()
+        display_name = self.get_data('display_name')
         submission = self._get_submission()
         if submission:
-            interaction_type = INTERACTION_TYPES_MAP[submission['response_type']]
-            xapi_object.definition.description = LanguageMap({constants.EN_US: submission['question']})
+            interaction_type = INTERACTION_TYPES_MAP.get(submission.get('response_type'), DEFAULT_INTERACTION_TYPE)
+            definition.description = LanguageMap({constants.EN_US: submission['question']})
+        elif display_name:
+            definition.name = LanguageMap({constants.EN_US: display_name})
 
-        xapi_object.definition.interaction_type = interaction_type
+        definition.interaction_type = interaction_type
 
-        return xapi_object
+        return definition
 
     def _get_submission(self):
         """
@@ -265,11 +313,13 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
         submission = self._get_submission()
         if submission:
             response = submission["answer"]
+            correct = submission.get("correct")
         else:
             response = event_data.get('answers', None)
+            correct = self.get_data('success') == 'correct'
 
-        max_grade = event_data.get('max_grade', None)
-        grade = event_data.get('grade', None)
+        max_grade = self.get_data('max_grade')
+        grade = self.get_data('grade')
         scaled = None
 
         if max_grade is not None and grade is not None:
@@ -279,7 +329,7 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
                 scaled = 0
 
         return Result(
-            success=event_data.get('success', None) == 'correct',
+            success=correct,
             score={
                 'min': 0,
                 'max': max_grade,
@@ -288,3 +338,120 @@ class ProblemCheckTransformer(BaseProblemsTransformer):
             },
             response=response
         )
+
+
+@XApiTransformersRegistry.register('problem_check')
+class ProblemCheckTransformer(OneToManyXApiTransformerMixin, BaseProblemCheckTransformer):
+    """
+    Transform problem check events into one or more xAPI statements.
+
+    If there is only one question in the source event problem, then transform() returns a single Activity.
+
+    But if there are multiple questions in the source event problem, transform() will return:
+
+    * 1 parent GroupActivity
+    * N "child" Activity which reference the parent, where N>=0
+    """
+    @property
+    def child_transformer_class(self):
+        """
+        Returns the ProblemCheckChildTransformer class.
+
+        Returns:
+            Type
+        """
+        return ProblemCheckChildTransformer
+
+    def get_child_ids(self):
+        """
+        Returns the list of "child" event IDs.
+
+        In this context, "child" events relate to multiple submissions to sub-questions in the problem.
+
+        If <1 children are found on this event, then <1 child events are returned in the list.
+        Otherwise, we say that "this event has no children", and so this method returns an empty list.
+
+        Returns:
+            list of strings
+        """
+        submissions = self.get_data('submission') or {}
+        child_ids = submissions.keys()
+        if len(child_ids) > 1:
+            return child_ids
+        return []
+
+    def get_object(self):
+        """
+        Get object for xAPI transformed event or group of events.
+
+        Returns:
+            `Activity` or `GroupActivity`
+        """
+        activity = super().get_object()
+        definition = self.get_object_definition()
+
+        if self.get_child_ids():
+            activity = GroupActivity(
+                id=activity.id,
+                definition=definition,
+            )
+
+        return activity
+
+    def get_object_definition(self):
+        """
+        Returns the definition portion of the object stanza.
+
+        Returns:
+            ActivityDefinition
+        """
+        definition = super().get_object_definition()
+
+        if self.get_child_ids():
+            definition.interaction_type = DEFAULT_INTERACTION_TYPE
+
+        return definition
+
+
+class ProblemCheckChildTransformer(OneToManyChildXApiTransformerMixin, BaseProblemCheckTransformer):
+    """
+    Transformer for subproblems of a multi-question problem_check event.
+    """
+    def _get_submission(self):
+        """
+        Return this child's submission data from the event data, if valid.
+
+        Returns:
+            dict
+        """
+        submissions = self.get_data('submission') or {}
+        return submissions.get(self.child_id)
+
+    def get_object_id(self):
+        """
+        Returns the child object.id, which it creates from the parent object.id
+        and the child_id.
+
+        Returns:
+            str
+        """
+        object_id = super().get_object_id() or ""
+        object_id = '@'.join([
+            *object_id.split('@')[:-1],
+            self.child_id,
+        ])
+        return object_id
+
+    def get_result(self):
+        """
+        Get result for the xAPI transformed child event.
+
+        Returns:
+            `Result`
+        """
+        result = super().get_result()
+        # Don't report the score on child events; only the parent knows the score.
+        result.score = None
+        submission = self._get_submission() or {}
+        result.response = submission.get('answer')
+        return result

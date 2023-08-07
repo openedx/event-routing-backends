@@ -14,6 +14,7 @@ from tincan import (
     Extensions,
     LanguageMap,
     Statement,
+    StatementRef,
     Verb,
 )
 
@@ -177,4 +178,120 @@ class XApiVerbTransformerMixin:
         return Verb(
             id=verb['id'],
             display=LanguageMap({constants.EN: verb['display']})
+        )
+
+
+class OneToManyXApiTransformerMixin:
+    """
+    Abstract mixin that helps transform a single input event into:
+
+    * 1 parent xAPI event, plus
+    * N "child" xAPI events, where N>=0
+    """
+    @property
+    def child_transformer_class(self):
+        """
+        Abstract property which returns the transformer class to use when transforming the child events.
+
+        Should inherit from OneToManyChildXApiTransformerMixin.
+
+        Returns:
+            Type
+        """
+        raise NotImplementedError
+
+    def get_child_ids(self):
+        """
+        Abstract method which returns the list of "child" event IDs from the parent event data.
+
+        Returns:
+            list of strings
+        """
+        raise NotImplementedError
+
+    def transform(self):
+        """
+        Transform the edX event into a list of events, if there is child data.
+
+        If transform_child_events() is Falsey, then only the parent event is returned.
+        Otherwise, returns a list containing the parent event, followed by any child events.
+
+        Returns:
+            ANY, or list of ANY
+        """
+        parent_event = super().transform()
+        child_events = self.transform_children(parent_event)
+        if child_events:
+            return [parent_event, *child_events]
+        return parent_event
+
+    def transform_children(self, parent):
+        """
+        Transform the children of the parent xAPI event.
+
+
+        Returns:
+            list of ANY
+        """
+        child_ids = self.get_child_ids()
+        ChildTransformer = self.child_transformer_class
+        return [
+            ChildTransformer(
+                child_id=child_id,
+                parent=parent,
+                event=self.event,
+            ).transform() for child_id in child_ids
+        ]
+
+
+class OneToManyChildXApiTransformerMixin:
+    """
+    Mixin for processing child xAPI events from a parent transformer.
+
+    This class handles initialization, and adds methods for the expected stanzas in the transformed child event.
+
+    The parent event transformer should inherit from OneToManyXApiTransformer.
+    """
+    def __init__(self, parent, child_id, *args, **kwargs):
+        """
+        Stores the parent event transformer, and this child's identifier,
+        for use when transforming the child data.
+        """
+        super().__init__(*args, **kwargs)
+        self.parent = parent
+        self.child_id = child_id
+
+    def get_context(self):
+        """
+        Returns the context for the xAPI transformed child event.
+
+        Returns:
+            `Context`
+        """
+        return Context(
+            extensions=self.get_context_extensions(),
+            contextActivities=self.get_context_activities(),
+            statement=self.get_context_statement(),
+        )
+
+    def get_context_activities(self):
+        """
+        Get context activities for xAPI transformed event.
+
+        Returns:
+            `ContextActivities`
+        """
+        return ContextActivities(
+            parent=ActivityList([self.parent.object]),
+            grouping=ActivityList(self.parent.context.context_activities.parent),
+        )
+
+    def get_context_statement(self):
+        """
+        Returns a StatementRef that refers to the parent event.
+        Returns:
+            `StatementRef`
+        """
+        return StatementRef(
+            id=self.parent.id,
         )
