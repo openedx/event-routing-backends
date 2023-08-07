@@ -32,6 +32,28 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
         Test that transformed_event and expected_event are identical.
 
         Arguments:
+            transformed_event (dict or list)
+            expected_event (dict or list)
+
+        Raises:
+            AssertionError:     Raised if the two events are not same.
+        """
+        # Compare lists of events
+        if isinstance(expected_event, list):
+            assert isinstance(transformed_event, list)
+            assert len(transformed_event) == len(expected_event)
+            for idx, e_event in enumerate(expected_event):
+                self._compare_events(transformed_event[idx], e_event)
+
+        # Compare single events
+        else:
+            self._compare_events(transformed_event, expected_event)
+
+    def _compare_events(self, transformed_event, expected_event):
+        """
+        Test that transformed_event and expected_event are identical.
+
+        Arguments:
             transformed_event (dict)
             expected_event (dict)
 

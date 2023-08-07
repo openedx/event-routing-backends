@@ -26,6 +26,7 @@
     },
     "object": {
         "definition": {
+            "interactionType": "other",
             "type": "http://adlnet.gov/expapi/activities/cmi.interaction"
         },
         "id": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@sequential+block@ef37eb3cf1724e38b7f88a9ce85a4842",

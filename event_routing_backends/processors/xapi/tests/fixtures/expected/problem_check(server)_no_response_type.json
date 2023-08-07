@@ -29,6 +29,7 @@
             "extensions":{
               "http://id.tincanapi.com/extension/attempt-id": 10
             },
+            "name": {"en-US": "Checkboxes"},
             "interactionType": "other",
             "type": "http://adlnet.gov/expapi/activities/cmi.interaction"
         },
