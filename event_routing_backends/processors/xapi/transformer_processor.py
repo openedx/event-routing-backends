@@ -42,9 +42,15 @@ class XApiProcessor(BaseTransformerProcessorMixin):
         if not XAPI_EVENTS_ENABLED.is_enabled():
             raise NoBackendEnabled
 
-        transformed_event = super().transform_event(event)
+        transformed_events = super().transform_event(event)
+        if not transformed_events:
+            return None
 
-        if transformed_event:
+        if not isinstance(transformed_events, list):
+            transformed_events = [transformed_events]
+
+        returned_events = []
+        for transformed_event in transformed_events:
             event_json = transformed_event.to_json()
 
             if not transformed_event.object or not transformed_event.object.id:
@@ -55,6 +61,6 @@ class XApiProcessor(BaseTransformerProcessorMixin):
                 xapi_logger.info(event_json)
 
             logger.debug('xAPI statement of edx event "{}" is: {}'.format(event["name"], event_json))
-            return json.loads(event_json)
+            returned_events.append(json.loads(event_json))
 
-        return transformed_event
+        return returned_events

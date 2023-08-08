@@ -66,9 +66,9 @@ class TestCaliperProcessor(SimpleTestCase):
         mocked_logger,
         mocked_get_transformer
     ):
-        transformed_event = [{
+        transformed_event = {
             'transformed_key': 'transformed_value'
-        }]
+        }
         mocked_transformer = MagicMock()
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer
@@ -102,9 +102,9 @@ class TestCaliperProcessor(SimpleTestCase):
         mocked_logger,
         mocked_get_transformer
     ):
-        transformed_event = [{
+        transformed_event = {
             'transformed_key': 'transformed_value'
-        }]
+        }
         mocked_transformer = MagicMock()
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer
