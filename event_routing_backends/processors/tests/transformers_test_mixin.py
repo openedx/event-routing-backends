@@ -5,6 +5,7 @@ import json
 import os
 from abc import abstractmethod
 from unittest.mock import patch
+from uuid import UUID
 
 import ddt
 from django.contrib.auth import get_user_model
@@ -89,11 +90,12 @@ class TransformersTestMixin:
         Every transformer's test case will implement its own logic to test
         events transformation
         """
-    @patch('event_routing_backends.helpers.uuid')
+    @patch('event_routing_backends.helpers.uuid.uuid4')
     @ddt.data(*EVENT_FIXTURE_FILENAMES)
-    def test_event_transformer(self, event_filename, mocked_uuid):
-        mocked_uuid.uuid4.return_value = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
-        mocked_uuid.uuid5.return_value = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
+    def test_event_transformer(self, event_filename, mocked_uuid4):
+        # Used to generate the anonymized actor.name,
+        # which in turn is used to generate the event UUID.
+        mocked_uuid4.return_value = UUID('32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb')
 
         # if an event's expected fixture doesn't exist, the test shouldn't fail.
         # evaluate transformation of only supported event fixtures.
