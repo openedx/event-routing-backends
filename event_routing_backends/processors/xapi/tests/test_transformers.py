@@ -42,8 +42,13 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
         if isinstance(expected_event, list):
             assert isinstance(transformed_event, list)
             assert len(transformed_event) == len(expected_event)
+            event_ids = set()
             for idx, e_event in enumerate(expected_event):
+                event_ids.add(transformed_event[idx].id)
                 self._compare_events(transformed_event[idx], e_event)
+
+            # Ensure a unique event ID was applied for the parent + child events
+            assert len(event_ids) == len(transformed_event)
 
         # Compare single events
         else:

@@ -52,23 +52,31 @@ class XApiTransformer(BaseTransformerMixin):
         Transform the fields that are common for all events.
         """
         transformed_event = super().base_transform(transformed_event)
-        actor = self.get_actor()
-        event_timestamp = self.get_timestamp()
         transformed_event.update({
-            'actor': actor,
+            'id': self.get_event_id(),
+            'actor': self.get_actor(),
             'context': self.get_context(),
-            'timestamp': event_timestamp,
+            'timestamp': self.get_timestamp(),
         })
-        transformed_event['actor'] = self.get_actor()
-        transformed_event['context'] = self.get_context()
-        transformed_event['timestamp'] = self.get_timestamp()
+        return transformed_event
 
+    def get_event_id(self):
+        """
+        Generates the UUID for this event.
+
+        Uses the actor, event timestamp, and verb to generate a UUID for this event
+        which will be the same even if this event is re-processed.
+
+        Returns:
+            UUID
+        """
         # Warning! changing anything in these 2 lines or changing the "base_uuid" can invalidate
         # billions of rows in the database. Please have a community discussion first before introducing
         # any change in generation of UUID.
+        actor = self.get_actor()
+        event_timestamp = self.get_timestamp()
         uuid_str = f'{actor.to_json()}-{event_timestamp}'
-        transformed_event['id'] = get_uuid5(self.verb.to_json(), uuid_str)  # pylint: disable=no-member
-        return transformed_event
+        return get_uuid5(self.verb.to_json(), uuid_str)  # pylint: disable=no-member
 
     def get_actor(self):
         """
@@ -260,6 +268,26 @@ class OneToManyChildXApiTransformerMixin:
         super().__init__(*args, **kwargs)
         self.parent = parent
         self.child_id = child_id
+
+    def get_event_id(self):
+        """
+        Generates the UUID for this event.
+
+        Uses the actor, event timestamp, verb, and child_id to generate a UUID for this child event
+        which ensures a unique event ID for each child event which also differs from the parent event,
+        which will be the same even if this event is re-processed.
+
+        Returns:
+            UUID
+        """
+        # Warning! changing anything in these 2 lines or changing the "base_uuid" can invalidate
+        # billions of rows in the database. Please have a community discussion first before introducing
+        # any change in generation of UUID.
+        actor = self.get_actor()
+        event_timestamp = self.get_timestamp()
+        name = f'{actor.to_json()}-{event_timestamp}'
+        namespace_key = f'{self.verb.to_json()}-{self.child_id}'
+        return get_uuid5(namespace_key, name)
 
     def get_context(self):
         """
