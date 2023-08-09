@@ -94,7 +94,7 @@ coverage[toml]==7.2.7
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==41.0.2
+cryptography==41.0.3
     # via
     #   -r requirements/quality.txt
     #   djfernet
@@ -127,7 +127,7 @@ django==3.2.20
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.4.0
+django-config-models==2.5.0
     # via -r requirements/quality.txt
 django-crum==0.7.9
     # via
@@ -149,21 +149,21 @@ djangorestframework==3.14.0
     #   django-config-models
 djfernet==0.8.1
     # via -r requirements/quality.txt
-edx-celeryutils==1.2.2
+edx-celeryutils==1.2.3
     # via -r requirements/quality.txt
-edx-django-utils==5.6.0
+edx-django-utils==5.7.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
     #   edx-toggles
     #   event-tracking
-edx-i18n-tools==1.0.0
+edx-i18n-tools==1.1.0
     # via -r requirements/dev.in
 edx-lint==5.3.4
     # via -r requirements/quality.txt
-edx-toggles==5.0.0
+edx-toggles==5.1.0
     # via -r requirements/quality.txt
-event-tracking==2.1.0
+event-tracking==2.2.0
     # via -r requirements/quality.txt
 exceptiongroup==1.1.2
     # via
@@ -171,7 +171,7 @@ exceptiongroup==1.1.2
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==19.2.0
+faker==19.3.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -228,7 +228,7 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==8.8.1
+newrelic==8.9.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -246,9 +246,9 @@ pbr==5.11.1
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==7.1.0
+pip-tools==7.3.0
     # via -r requirements/pip-tools.txt
-platformdirs==3.9.1
+platformdirs==3.10.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -275,7 +275,7 @@ py==1.11.0
     # via
     #   -r requirements/ci.txt
     #   tox
-pycodestyle==2.10.0
+pycodestyle==2.11.0
     # via -r requirements/quality.txt
 pycparser==2.21
     # via
@@ -287,9 +287,9 @@ pydantic-core==2.4.0
     # via pydantic
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
-pygments==2.15.1
+pygments==2.16.1
     # via diff-cover
-pylint==2.17.4
+pylint==2.17.5
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -395,7 +395,7 @@ tomli==2.0.1
     #   pyproject-hooks
     #   pytest
     #   tox
-tomlkit==0.11.8
+tomlkit==0.12.1
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -441,7 +441,7 @@ wcwidth==0.2.6
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
-wheel==0.41.0
+wheel==0.41.1
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
