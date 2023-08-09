@@ -5,6 +5,8 @@ from event_routing_backends.campus_il.configuration import config
 
 class APIMOEService():
     
+    #%% Props / Vars section
+    
     @property
     def token(self):
         # Check if token is in cache and not expired
@@ -26,7 +28,39 @@ class APIMOEService():
 
     def __init__(self, cache):
         self.cache = cache
+    
+    
+    #%% Public section
+    
+    def send_statment(self, events = None, events_str = None):
+        # Request headers
+        headers = {
+            "Authorization": f'{config.Get("API_HOST_TOKEN_TYPE")} {self.token}',
+            "Content-Type": config.Get("API_HOST_STATEMENTS_CONTENT_TYPE")
+        }
+
+        # Endpoint URL
+        endpoint = f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_STATEMENTS_URL")}'
+
+        #post_data = events
+        response_data = None
         
+        try:
+            # Send the request
+            response = requests.post(endpoint, headers=headers, json=events, data=events_str)
+            
+            # Get the response data
+            response_data = response.json()
+
+            logging.info(f"MOE: Response data: {response_data}")
+        except Exception as e:
+            logging.error(f"MOE: Failed to send event to MOE. Exception: {e}")
+        
+        return response_data
+    
+    
+    #%% Private section
+    
     def __refresh_token(self):
        
         # Client ID and secret
@@ -62,30 +96,3 @@ class APIMOEService():
             logging.info(f"MOE: Failed to obtain access token. Exception: {e}")
         
         return access_token
-
-    def send_statment(self, events = None, events_str = None):
-        
-        # Request headers
-        headers = {
-            "Authorization": f'{config.Get("API_HOST_TOKEN_TYPE")} {self.token}',
-            "Content-Type": config.Get("API_HOST_STATEMENTS_CONTENT_TYPE")
-        }
-
-        # Endpoint URL
-        endpoint = f'https://{config.Get("API_HOST_NAME")}/{config.Get("API_HOST_STATEMENTS_URL")}'
-
-        #post_data = events
-        response_data = None
-        
-        try:
-            # Send the request
-            response = requests.post(endpoint, headers=headers, json=events, data=events_str)
-            
-            # Get the response data
-            response_data = response.json()
-
-            logging.info(f"MOE: Response data: {response_data}")
-        except Exception as e:
-            logging.error(f"MOE: Failed to send event to MOE. Exception: {e}")
-        
-        return response_data

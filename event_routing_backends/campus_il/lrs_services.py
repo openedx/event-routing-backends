@@ -3,6 +3,7 @@ import requests
 from datetime import datetime, timedelta
 from event_routing_backends.campus_il.configuration import config
 
+# NOT IN USE TODAY !!!!!!!!!!!!
 class LRSServices():
     external_services = []
     

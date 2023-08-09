@@ -19,6 +19,7 @@ class IdsType(Enum):
     BLOCK = 'Block'
 
 class MOEMapping():
+    #%% Props / Vars section
     
     # Create a mapping dictionary for verbs
     verb_mapping = {
@@ -36,13 +37,18 @@ class MOEMapping():
     # Create a mapping dictionary for activities
     activity_mapping = {
         "http://adlnet.gov/expapi/activities/question": "https://lxp.education.gov.il/xapi/moe/activities/question",
+        "http://adlnet.gov/expapi/activities/cmi.interaction": "https://lxp.education.gov.il/xapi/moe/activities/question",
         "https://w3id.org/xapi/video/activity-type/video": "https://lxp.education.gov.il/xapi/moe/activities/video",
         "http://adlnet.gov/expapi/activities/course": "https://lxp.education.gov.il/xapi/moe/activities/course"
     }
-        
+    
+    #%% Init section    
+    
     def __init__(self):
         pass
 
+    #%% Public section
+    
     def map_event(self, event=None, event_str = ''):
         event = json.loads(event_str) if event_str else event
         #logging.info(f'qwer111 CampusIL event: {event}')
@@ -72,7 +78,7 @@ class MOEMapping():
                 "display": event["verb"]["display"]
             },
 
-         
+        
             "object": {
                 "objectType": event["object"].get("object_type", event["object"].get("objectType", {})),
                 "id": event["object"]["id"],
@@ -127,10 +133,14 @@ class MOEMapping():
         external_event = self.__map_fields_data(external_event)
 
         return external_event
-
+    
     def is_relevant_event(self, verb_id):
         return verb_id in self.verb_mapping
-
+ 
+ 
+    #%% Private section
+    
+    # map event's verb and object to MOE event verb and object
     def __map_fields_data(self, event):
 
         # Perform the mapping
@@ -143,12 +153,10 @@ class MOEMapping():
                 mapped_data["verb"]["id"] = self.verb_mapping[verb_id]
 
         # Map the activity
-        if "object" in event:
-            if "id" in event["object"]:
-                activity_id = event["object"]["id"]
-                if activity_id in self.activity_mapping:
-                    mapped_data["object"]["id"] = self.activity_mapping[activity_id]
-
+        _activity_type = event.get("object", {}).get("definition", {}).get("type", None)
+        if _activity_type and _activity_type in self.activity_mapping:
+            event["object"]["definition"]["type"] = self.activity_mapping[_activity_type]
+        
         return mapped_data
     
     def __add_field_if_exist(self, section, fieldsTypes, course_id=None, block_id=None):

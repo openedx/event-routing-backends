@@ -12,13 +12,14 @@ logger = get_task_logger(__name__)
 
 class MOE():
     
+    #%% Props / Vars section
     __instance = None
     __cache = {}
     
     api_service = None
     map_service = None
     
-    
+    #%% Init section
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
@@ -29,6 +30,8 @@ class MOE():
         self.api_service = APIMOEService(self.__cache)
         self.map_service = MOEMapping()
         self.sqs_service = SQSService()
+    
+    #%% Public section
     
     def sent_event(self, event, event_name, service_config):
         _event = event["verb"]["id"]
@@ -96,7 +99,9 @@ class MOE():
     
     def clear_sqs_events(self, task_data):
         self.sqs_service.clear_queue()
-                        
+        
+    #%% Private section                
+    
     def __is_guid_string(self, string):
         # Regex pattern to match GUID format
         guid_pattern = r'^\{?[A-F0-9]{8}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{4}-[A-F0-9]{12}\}?$'
@@ -121,7 +126,7 @@ def sent_sqs_events_to_moe_static(**data):
 @APP.task
 def clear_sqs_events_static(**data):
     MOE().clear_sqs_events(data)
-    
+
 # Cache dictionary to store data and it expiration time
 #cache = {}
 
