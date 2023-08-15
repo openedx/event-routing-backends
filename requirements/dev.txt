@@ -147,7 +147,7 @@ djangorestframework==3.14.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
-djfernet==0.8.1
+django-fernet-fields-v2==0.9
     # via -r requirements/quality.txt
 edx-celeryutils==1.2.2
     # via -r requirements/quality.txt
