@@ -13,6 +13,9 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[5.5.6]
+
+* upgrading deprecated `djfernet` with `django-fernet-fields-v2`
 
 [5.4.0]
 

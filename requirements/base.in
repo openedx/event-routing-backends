@@ -7,7 +7,7 @@ pytz
 requests
 python-dateutil
 jsonfield
-djfernet
+django-fernet-fields-v2
 django-config-models
 edx-toggles               # For SettingToggle class
 tincan
