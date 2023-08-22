@@ -46,10 +46,13 @@ class TestHelpers(TestCase):
     @patch('event_routing_backends.helpers.ExternalId')
     def test_get_anonymous_user_id_with_error(self, mocked_external_id):
         mocked_external_id.add_new_user_id.return_value = (None, False)
+        # Test that a failure to add an external id raises an error
         with self.assertRaises(ValueError):
             get_anonymous_user_id('edx', 'XAPI')
 
-        self.assertIsNotNone(get_anonymous_user_id('12345678', 'XAPI'))
+        # Test that an unknown user raises this error
+        with self.assertRaises(ValueError):
+            get_anonymous_user_id('12345678', 'XAPI')
 
     def test_get_uuid5(self):
         actor = '''{

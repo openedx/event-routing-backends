@@ -51,34 +51,34 @@ def get_anonymous_user_id(username_or_id, external_type):
 
     Arguments:
         username_or_id (str):     username for the learner
-        external_type  (str):     external type id e.g caliper or xapi
+        external_type  (str):     external type id e.g. caliper or xapi
 
     Returns:
         str
     """
     user = get_user(username_or_id)
     if not user:
-        logger.info('User with username "%s" does not exist. '
-                    'Cannot generate anonymous ID', username_or_id)
+        logger.warning('User with username "%s" does not exist. '
+                       'Cannot generate anonymous ID', username_or_id)
 
-        anonymous_id = str(uuid.uuid4())
-    else:
-        # Older versions of edx-platform do not have the XAPI or
-        # Caliper ExternalIdTypes, so we fall back to LTI here.
-        # Eventually this will be a problem when those instances
-        # upgrade and their actor id's all change, unless we
-        # eventually add a setting to force LTI here instead of the
-        # usual type.
-        try:
-            type_name = getattr(ExternalIdType, external_type)
-        except AttributeError:  # pragma: no cover
-            type_name = ExternalIdType.LTI
+        raise ValueError(f"User with username {username_or_id} does not exist.")
 
-        external_id, _ = ExternalId.add_new_user_id(user, type_name)
-        if not external_id:
-            raise ValueError("External ID type: %s does not exist" % type_name)
+    # Older versions of edx-platform do not have the XAPI or
+    # Caliper ExternalIdTypes, so we fall back to LTI here.
+    # Eventually this will be a problem when those instances
+    # upgrade and their actor id's all change, unless we
+    # eventually add a setting to force LTI here instead of the
+    # usual type.
+    try:
+        type_name = getattr(ExternalIdType, external_type)
+    except AttributeError:  # pragma: no cover
+        type_name = ExternalIdType.LTI
 
-        anonymous_id = str(external_id.external_user_id)
+    external_id, _ = ExternalId.add_new_user_id(user, type_name)
+    if not external_id:
+        raise ValueError("External ID type: %s does not exist" % type_name)
+
+    anonymous_id = str(external_id.external_user_id)
 
     return anonymous_id
 
