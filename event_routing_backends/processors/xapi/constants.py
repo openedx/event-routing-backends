@@ -23,6 +23,7 @@ XAPI_VERB_REPORTED = 'https://w3id.org/xapi/acrossx/verbs/reported'
 XAPI_VERB_UNREPORTED = 'https://w3id.org/xapi/openedx/verb/unreported'
 XAPI_VERB_EARNED = 'http://id.tincanapi.com/verb/earned'
 
+XAPI_VERB_PROGRESSED = 'http://adlnet.gov/expapi/verbs/progressed'
 XAPI_VERB_TERMINATED = 'http://adlnet.gov/expapi/verbs/terminated'
 XAPI_VERB_ASKED = 'http://adlnet.gov/expapi/verbs/asked'
 
@@ -53,6 +54,8 @@ XAPI_ACTIVITY_GRADE = 'http://www.tincanapi.co.uk/extensions/result/classificati
 XAPI_ACTIVITY_TIMED_ASSESSMENT = 'https://w3id.org/xapi/openedx/activity/timed-assessment'
 XAPI_ACTIVITY_PRACTICE_ASSESSMENT = 'https://w3id.org/xapi/openedx/activity/practice-assessment'
 XAPI_ACTIVITY_PROCTORED_ASSESSMENT = 'https://w3id.org/xapi/openedx/activity/proctored-assessment'
+XAPI_ACTIVITY_PROGRESS = 'https://w3id.org/xapi/cmi5/result/extensions/progress'
+
 # xAPI context
 XAPI_CONTEXT_VIDEO_LENGTH = 'https://w3id.org/xapi/video/extensions/length'
 XAPI_CONTEXT_VIDEO_CC_LANGUAGE = 'https://w3id.org/xapi/video/extensions/cc-subtitle-lang'
@@ -112,6 +115,7 @@ VOTED = 'voted'
 REPORTED = 'reported'
 UNREPORTED = 'unreported'
 EARNED = 'earned'
+PROGRESSED = 'progressed'
 
 TERMINATED = 'terminated'
 NAVIGATED = 'navigated'

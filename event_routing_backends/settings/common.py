@@ -80,6 +80,7 @@ def plugin_settings(settings):
                                     'edx.special_exam.practice.attempt.submitted',
                                     'edx.special_exam.proctored.attempt.created',
                                     'edx.special_exam.proctored.attempt.submitted',
+                                    'edx.completion.block_completion.changed',
                                     'edx.forum.thread.created',
                                     'edx.forum.thread.deleted',
                                     'edx.forum.thread.edited',

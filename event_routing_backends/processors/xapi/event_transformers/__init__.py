@@ -2,6 +2,7 @@
 All xAPI transformers.
 """
 
+from event_routing_backends.processors.xapi.event_transformers.completion_events import CompletionCreatedTransformer
 from event_routing_backends.processors.xapi.event_transformers.enrollment_events import (
     EnrollmentActivatedTransformer,
     EnrollmentDeactivatedTransformer,

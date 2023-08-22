@@ -14,9 +14,13 @@ Enrollment events
 Course grading events
 -----------------------
 
-* edx.course.grade.passed.first_time | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.passed.first_time.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__
+* `edx.course.grade.passed.first_time`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.passed.first_time.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__
 * `edx.grades.subsection.grade_calculated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.subsection.grade_calculated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-subsection-grade-calculated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.subsection.grade_calculated.json>`__
 * `edx.grades.course.grade_calculated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.course.grade_calculated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-course-grade-calculated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.course.grade_calculated.json>`__
+
+Completion events
+
+* `edx.completion.block_completion.changed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.completion.block_completion.changed.json>`___ | xAPI `map <./xAPI_mapping.rst#edx-completion-block-completion-changed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.completion.block_completion.changed.json>`__
 
 Problem interaction events
 ---------------------------
@@ -84,8 +88,10 @@ Exam events
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.deactivated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.mode_changed: https://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-mode-changed
+.. _edx.course.grade.passed.first_time: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-course-grade-passed-first-time
 .. _edx.grades.subsection.grade_calculated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-subsection-grade-calculated
 .. _edx.grades.course.grade_calculated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-course-grade-calculated
+.. _edx.completion.block_completion.changed: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-completion-block-completion-changed
 .. _edx.grades.problem.submitted: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-problem-submitted
 .. _problem_check: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#problem-check
 .. _showanswer: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#showanswer
