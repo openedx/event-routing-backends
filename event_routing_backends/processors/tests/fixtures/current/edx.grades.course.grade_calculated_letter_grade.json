@@ -1,0 +1,37 @@
+{
+  "name": "edx.grades.course.grade_calculated",
+  "context": {
+    "course_id": "course-v1:edX+DemoX+Demo_Course",
+    "course_user_tags": {},
+    "user_id": 3,
+    "path": "/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@185ffd73e23843168ca02e8d070ffcf2/handler/xmodule_handler/problem_check",
+    "org_id": "edX",
+    "enterprise_uuid": "",
+    "module": {
+      "display_name": "Checkboxes",
+      "usage_key": "block-v1:edX+DemoX+Demo_Course+type@problem+block@185ffd73e23843168ca02e8d070ffcf2"
+    }
+  },
+  "username": "edX",
+  "session": "056aca2a1c6b76742b283e73d3424453",
+  "ip": "172.19.0.1",
+  "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+  "host": "localhost:18000",
+  "referer": "http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@ea9e33c0ad15445195f96d3c42ebc9f0?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=Homework",
+  "accept_language": "en-US,en;q=0.9,es;q=0.8",
+  "data": {
+    "user_id": "3",
+    "course_id": "course-v1:edX+DemoX+Demo_Course",
+    "course_version": "64e64c6835fe1d2093ba4d69",
+    "percent_grade": 1.0,
+    "letter_grade": "Pass",
+    "course_edited_timestamp": "2023-08-23 18:14:00.070241+00:00",
+    "event_transaction_id": "a47772a0-3c7f-4a0e-9c11-7e903a03e503",
+    "event_transaction_type": "edx.grades.problem.submitted",
+    "grading_policy_hash": "ChVp0lHGQGCevD0t4njna/C44zQ="
+  },
+  "time": "2023-08-23T20:37:45.526615+00:00",
+  "event_type": "edx.grades.course.grade_calculated",
+  "event_source": "server",
+  "page": null
+}
