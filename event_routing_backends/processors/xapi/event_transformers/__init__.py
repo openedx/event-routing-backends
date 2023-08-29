@@ -16,6 +16,10 @@ from event_routing_backends.processors.xapi.event_transformers.forum_events impo
     ThreadViewedTransformer,
     ThreadVotedTransformer,
 )
+from event_routing_backends.processors.xapi.event_transformers.grading_events import (
+    CourseGradedTransformer,
+    SubsectionGradedTransformer,
+)
 from event_routing_backends.processors.xapi.event_transformers.navigation_events import (
     LinkClickedTransformer,
     OutlineSelectedTransformer,

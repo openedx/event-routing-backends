@@ -72,6 +72,8 @@ def plugin_settings(settings):
                                     'edx.course.enrollment.activated',
                                     'edx.course.enrollment.deactivated',
                                     'edx.course.enrollment.mode_changed',
+                                    'edx.grades.subsection.grade_calculated',
+                                    'edx.grades.course.grade_calculated',
                                     'edx.forum.thread.created',
                                     'edx.forum.thread.deleted',
                                     'edx.forum.thread.edited',
