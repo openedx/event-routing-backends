@@ -6,6 +6,14 @@ from event_routing_backends.processors.xapi.event_transformers.enrollment_events
     EnrollmentActivatedTransformer,
     EnrollmentDeactivatedTransformer,
 )
+from event_routing_backends.processors.xapi.event_transformers.exam_events import (
+    PracticeExamCreatedTransformer,
+    PracticeExamSubmittedTransformer,
+    ProctoredExamCreatedTransformer,
+    ProctoredExamSubmittedTransformer,
+    TimedExamCreatedTransformer,
+    TimedExamSubmittedTransformer,
+)
 from event_routing_backends.processors.xapi.event_transformers.forum_events import (
     ThreadCreatedTransformer,
     ThreadDeletedTransformer,

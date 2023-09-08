@@ -114,4 +114,13 @@ class TransformersTestMixin:
                     self.registry.get_transformer(original_event).transform()
             else:
                 actual_transformed_event = self.registry.get_transformer(original_event).transform()
-                self.compare_events(actual_transformed_event, expected_event)
+                try:
+                    self.compare_events(actual_transformed_event, expected_event)
+                except Exception as e:  # pragma: no cover
+                    with open(f"test_output/generated.{event_filename}.json", "w") as actual_transformed_event_file:
+                        actual_transformed_event_file.write(actual_transformed_event.to_json())
+
+                    with open(f"test_output/expected.{event_filename}.json", "w") as expected_event_file:
+                        json.dump(expected_event, expected_event_file, indent=4)
+
+                    raise e

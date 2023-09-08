@@ -63,3 +63,5 @@ requirements/private.in
 requirements/private.txt
 
 .idea
+
+test_output/
