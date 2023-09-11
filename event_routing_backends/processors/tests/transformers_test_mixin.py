@@ -7,6 +7,7 @@ from abc import abstractmethod
 from unittest.mock import patch
 
 import ddt
+import pytest
 from django.contrib.auth import get_user_model
 from django.test.utils import override_settings
 
@@ -108,6 +109,9 @@ class TransformersTestMixin:
         with open(expected_event_file_path, encoding='utf-8') as expected:
             expected_event = json.loads(expected.read())
 
-            actual_transformed_event = self.registry.get_transformer(original_event).transform()
-
-            self.compare_events(actual_transformed_event, expected_event)
+            if "anonymous" in event_filename:
+                with pytest.raises(ValueError):
+                    self.registry.get_transformer(original_event).transform()
+            else:
+                actual_transformed_event = self.registry.get_transformer(original_event).transform()
+                self.compare_events(actual_transformed_event, expected_event)
