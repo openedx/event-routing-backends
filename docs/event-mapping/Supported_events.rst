@@ -15,6 +15,8 @@ Course grading events
 -----------------------
 
 * edx.course.grade.passed.first_time | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.passed.first_time.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__
+* `edx.grades.subsection.grade_calculated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.subsection.grade_calculated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-subsection-grade-calculated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.subsection.grade_calculated.json>`__
+* `edx.grades.course.grade_calculated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.course.grade_calculated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-course-grade-calculated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.course.grade_calculated.json>`__
 
 Problem interaction events
 ---------------------------
@@ -64,11 +66,18 @@ Forum events
 * `edx.forum.response.voted`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.response.voted.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.response.voted>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.response.voted.json>`__
 * `edx.forum.response.reported`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.response.reported.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.response.reported>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.response.reported.json>`__
 * `edx.forum.response.unreported`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.response.unreported.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.response.unreported>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.response.unreported.json>`__
+* `edx.forum.comment.created`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.comment.created.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.comment.created>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.comment.created.json>`__
+* `edx.forum.comment.edited`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.comment.edited.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.comment.edited>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.comment.edited.json>`__
+* `edx.forum.comment.deleted`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.comment.deleted.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.comment.deleted>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.comment.deleted.json>`__
+* `edx.forum.comment.reported`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.comment.reported.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.comment.reported>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.comment.reported.json>`__
+* `edx.forum.comment.unreported`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.forum.comment.unreported.json>`__ | xAPI `map <./xAPI_mapping.rst#edx.forum.comment.unreported>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.forum.comment.unreported.json>`__
 
 
 .. _edx.course.enrollment.activated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.deactivated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated
 .. _edx.course.enrollment.mode_changed: https://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-mode-changed
+.. _edx.grades.subsection.grade_calculated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-subsection-grade-calculated
+.. _edx.grades.course.grade_calculated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-course-grade-calculated
 .. _edx.grades.problem.submitted: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-problem-submitted
 .. _problem_check: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#problem-check
 .. _showanswer: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#showanswer
@@ -101,3 +110,8 @@ Forum events
 .. _edx.forum.response.voted: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-response-voted
 .. _edx.forum.response.reported: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-response-reported
 .. _edx.forum.response.unreported: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-response-unreported
+.. _edx.forum.comment.created: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-comment-created
+.. _edx.forum.comment.edited: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-comment-edited
+.. _edx.forum.comment.deleted: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-comment-deleted
+.. _edx.forum.comment.reported: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-comment-reported
+.. _edx.forum.comment.unreported: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/tracking_logs/student_event_types.html#edx-forum-comment-unreported

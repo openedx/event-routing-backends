@@ -63,9 +63,11 @@ class ThreadCreatedTransformer(BaseForumThreadTransformer):
 
 @XApiTransformersRegistry.register('edx.forum.thread.edited')
 @XApiTransformersRegistry.register('edx.forum.response.edited')
+@XApiTransformersRegistry.register('edx.forum.comment.edited')
 class ThreadEditedTransformer(BaseForumThreadTransformer):
     """
-    Transformers for event generated when learner modifies a thread/response in discussion forum.
+    Transformers for event generated when learner modifies a
+    thread/response/comment in discussion forum.
     """
     verb = Verb(
         id=constants.XAPI_VERB_EDITED,
@@ -86,9 +88,11 @@ class ThreadViewedTransformer(BaseForumThreadTransformer):
 
 @XApiTransformersRegistry.register('edx.forum.thread.deleted')
 @XApiTransformersRegistry.register('edx.forum.response.deleted')
+@XApiTransformersRegistry.register('edx.forum.comment.deleted')
 class ThreadDeletedTransformer(BaseForumThreadTransformer):
     """
-    Transformers for event generated when learner deletes a thread/response in discussion forum.
+    Transformers for event generated when learner deletes a
+    thread/response/comment in discussion forum.
     """
     verb = Verb(
         id=constants.XAPI_VERB_DELETED,
@@ -122,10 +126,11 @@ class ThreadVotedTransformer(BaseForumThreadTransformer):
 
 
 @XApiTransformersRegistry.register('edx.forum.response.created')
+@XApiTransformersRegistry.register('edx.forum.comment.created')
 class ThreadResponseCreatedTransformer(BaseForumThreadTransformer):
     """
     Transformer for event generated when learner creates a response
-    under a thread in discussion forum.
+    or comment under a thread in discussion forum.
     """
     verb = Verb(
         id=constants.XAPI_VERB_POSTED,
@@ -135,10 +140,11 @@ class ThreadResponseCreatedTransformer(BaseForumThreadTransformer):
 
 @XApiTransformersRegistry.register('edx.forum.thread.reported')
 @XApiTransformersRegistry.register('edx.forum.response.reported')
+@XApiTransformersRegistry.register('edx.forum.comment.reported')
 class ThreadResponseReportedTransformer(BaseForumThreadTransformer):
     """
-    Transformer for event generated when learner reports a thread or response
-    to a thread as inappropriate.
+    Transformer for event generated when learner reports a thread,
+    response or comment as inappropriate.
     """
     verb = Verb(
         id=constants.XAPI_VERB_REPORTED,
@@ -148,10 +154,11 @@ class ThreadResponseReportedTransformer(BaseForumThreadTransformer):
 
 @XApiTransformersRegistry.register('edx.forum.thread.unreported')
 @XApiTransformersRegistry.register('edx.forum.response.unreported')
+@XApiTransformersRegistry.register('edx.forum.comment.unreported')
 class ThreadResponseUnReportedTransformer(BaseForumThreadTransformer):
     """
-    Transformer for event generated when learner unreports a thread or response
-    to a thread which was earlier reported as inappropriate.
+    Transformer for event generated when learner unreports a thread,
+    response or comment which was earlier reported as inappropriate.
     """
     verb = Verb(
         id=constants.XAPI_VERB_UNREPORTED,

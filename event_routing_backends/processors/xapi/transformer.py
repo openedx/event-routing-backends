@@ -92,7 +92,7 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             str
         """
-        return self.get_data('timestamp')
+        return self.get_data('timestamp') or self.get_data('time')
 
     def get_context_activities(self):
         """
