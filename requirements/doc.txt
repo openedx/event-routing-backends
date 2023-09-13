@@ -37,9 +37,7 @@ billiard==4.1.0
     # via
     #   -r requirements/test.txt
     #   celery
-bleach==6.0.0
-    # via readme-renderer
-build==1.0.0
+build==1.0.3
     # via -r requirements/doc.in
 celery==5.3.4
     # via
@@ -84,7 +82,7 @@ code-annotations==1.5.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.3.0
+coverage[toml]==7.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -162,7 +160,7 @@ exceptiongroup==1.1.3
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==19.3.1
+faker==19.6.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -224,6 +222,8 @@ newrelic==9.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
+nh3==0.2.14
+    # via readme-renderer
 packaging==23.1
     # via
     #   -r requirements/test.txt
@@ -273,7 +273,7 @@ pynacl==1.5.0
     #   edx-django-utils
 pyproject-hooks==1.0.0
     # via build
-pytest==7.4.1
+pytest==7.4.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -303,7 +303,7 @@ pyyaml==6.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==41.0
+readme-renderer==42.0
     # via twine
 requests==2.31.0
     # via
@@ -325,7 +325,6 @@ secretstorage==3.3.3
 six==1.16.0
     # via
     #   -r requirements/test.txt
-    #   bleach
     #   event-tracking
     #   isodate
     #   python-dateutil
@@ -406,8 +405,6 @@ wcwidth==0.2.6
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-webencodings==0.5.1
-    # via bleach
 zipp==3.16.2
     # via
     #   importlib-metadata
