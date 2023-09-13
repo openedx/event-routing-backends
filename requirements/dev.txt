@@ -34,7 +34,7 @@ billiard==4.1.0
     # via
     #   -r requirements/quality.txt
     #   celery
-build==1.0.0
+build==1.0.3
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -90,7 +90,7 @@ code-annotations==1.5.0
     #   -r requirements/quality.txt
     #   edx-lint
     #   edx-toggles
-coverage[toml]==7.3.0
+coverage[toml]==7.3.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -172,7 +172,7 @@ exceptiongroup==1.1.3
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==19.3.1
+faker==19.6.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -326,7 +326,7 @@ pyproject-hooks==1.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pytest==7.4.1
+pytest==7.4.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -440,7 +440,7 @@ vine==5.0.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.24.4
+virtualenv==20.24.5
     # via
     #   -r requirements/ci.txt
     #   tox
