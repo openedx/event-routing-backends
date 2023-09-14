@@ -13,8 +13,8 @@ jobs:
    call-upgrade-python-requirements-workflow:
     with:
        branch: ${{ github.event.inputs.branch }}
-       team_reviewers: 'axim-aximprovements'
-       email_address: 'aximimprovements@axim.org'
+       team_reviewers: 'edly'
+       email_address: 'admin@edly.io'
        send_success_notification: false
     secrets:
        requirements_bot_github_token: ${{ secrets.REQUIREMENTS_BOT_GITHUB_TOKEN }}
