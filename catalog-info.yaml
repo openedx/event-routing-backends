@@ -15,7 +15,7 @@ metadata:
 spec:
 
   # (Required) This can be a group(`group:<group_name>` or a user(`user:<github_username>`)
-  owner: "group:edly"
+  owner: 'user:ziafazal'
 
   # (Required) Acceptable Type Values: service, website, library
   type: 'library'
