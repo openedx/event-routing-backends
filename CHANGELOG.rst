@@ -13,6 +13,14 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[6.1.0]
+
+* Add support for exam attempts events
+
+[6.0.0]
+
+* Do not send events for unknown users
+
 [5.5.6]
 
 * upgrading deprecated `djfernet` with `django-fernet-fields-v2`

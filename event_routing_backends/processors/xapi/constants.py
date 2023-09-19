@@ -50,6 +50,9 @@ XAPI_ACTIVITY_MODE = 'https://w3id.org/xapi/acrossx/extensions/type'
 XAPI_ACTIVITY_ATTEMPT = 'http://id.tincanapi.com/extension/attempt-id'
 XAPI_ACTIVITY_GRADE_CLASSIFICATION = 'http://www.tincanapi.co.uk/activitytypes/grade_classification'
 XAPI_ACTIVITY_GRADE = 'http://www.tincanapi.co.uk/extensions/result/classification'
+XAPI_ACTIVITY_TIMED_ASSESSMENT = 'https://w3id.org/xapi/openedx/activity/timed-assessment'
+XAPI_ACTIVITY_PRACTICE_ASSESSMENT = 'https://w3id.org/xapi/openedx/activity/practice-assessment'
+XAPI_ACTIVITY_PROCTORED_ASSESSMENT = 'https://w3id.org/xapi/openedx/activity/proctored-assessment'
 # xAPI context
 XAPI_CONTEXT_VIDEO_LENGTH = 'https://w3id.org/xapi/video/extensions/length'
 XAPI_CONTEXT_VIDEO_CC_LANGUAGE = 'https://w3id.org/xapi/video/extensions/cc-subtitle-lang'
@@ -57,6 +60,15 @@ XAPI_CONTEXT_STARTING_POSITION = 'http://id.tincanapi.com/extension/starting-pos
 XAPI_CONTEXT_ENDING_POSITION = 'http://id.tincanapi.com/extension/ending-point'
 XAPI_CONTEXT_COMPLETION_THRESHOLD = 'https://w3id.org/xapi/video/extensions/completion-threshold'
 XAPI_CONTEXT_SESSION_ID = 'https://w3id.org/xapi/openedx/extensions/session-id'
+
+XAPI_ACTIVITY_TIME_LIMIT = 'https://w3id.org/xapi/acrossx/extensions/time-limit'
+
+XAPI_ACTIVITY_EXAM_ATTEMPT = 'http://adlnet.gov/expapi/activities/attempt'
+
+XAPI_CONTEXT_ATTEMPT_STARTED = 'https://w3id.org/xapi/openedx/extension/attempt-started'
+XAPI_CONTEXT_ATTEMPT_COMPLETED = 'https://w3id.org/xapi/openedx/extension/attempt-completed'
+XAPI_CONTEXT_DURATION = 'http://id.tincanapi.com/extension/duration'
+XAPI_CONTEXT_CODE = 'https://w3id.org/xapi/openedx/extension/code'
 
 # xAPI result
 XAPI_RESULT_VIDEO_TIME = 'https://w3id.org/xapi/video/extensions/time'
