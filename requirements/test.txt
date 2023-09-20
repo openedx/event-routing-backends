@@ -73,7 +73,7 @@ code-annotations==1.5.0
     #   edx-toggles
 coverage[toml]==7.3.1
     # via pytest-cov
-cryptography==41.0.3
+cryptography==41.0.4
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -133,7 +133,7 @@ factory-boy==3.3.0
     # via -r requirements/test.in
 faker==19.6.1
     # via factory-boy
-fasteners==0.18
+fasteners==0.19
     # via -r requirements/base.txt
 idna==3.4
     # via
@@ -250,7 +250,7 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   -r requirements/base.txt
     #   asgiref

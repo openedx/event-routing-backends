@@ -83,7 +83,7 @@ coverage[toml]==7.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==41.0.3
+cryptography==41.0.4
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -152,7 +152,7 @@ faker==19.6.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fasteners==0.18
+fasteners==0.19
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -311,7 +311,7 @@ tomli==2.0.1
     #   pytest
 tomlkit==0.12.1
     # via pylint
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   -r requirements/test.txt
     #   asgiref
