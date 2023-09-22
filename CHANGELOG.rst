@@ -13,6 +13,10 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[6.2.0]
+
+* Add support for completion events
+
 [6.1.0]
 
 * Add support for exam attempts events
