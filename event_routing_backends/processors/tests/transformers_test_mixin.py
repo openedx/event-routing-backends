@@ -120,7 +120,16 @@ class TransformersTestMixin:
                     self.compare_events(actual_transformed_event, expected_event)
                 except Exception as e:  # pragma: no cover
                     with open(f"test_output/generated.{event_filename}.json", "w") as actual_transformed_event_file:
-                        actual_transformed_event_file.write(actual_transformed_event.to_json())
+                        try:
+                            actual_transformed_event_file.write(actual_transformed_event.to_json())
+                        # Lists of events will trigger this exception and need to be transformed together
+                        except AttributeError:
+                            actual_transformed_event_file.write("[")
+                            out_events = []
+                            for event in actual_transformed_event:
+                                out_events.append(event.to_json())
+                            actual_transformed_event_file.write(",".join(out_events))
+                            actual_transformed_event_file.write("]")
 
                     with open(f"test_output/expected.{event_filename}.json", "w") as expected_event_file:
                         json.dump(expected_event, expected_event_file, indent=4)
