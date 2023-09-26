@@ -32,17 +32,40 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
         Test that transformed_event and expected_event are identical.
 
         Arguments:
+            transformed_event (dict or list)
+            expected_event (dict or list)
+
+        Raises:
+            AssertionError:     Raised if the two events are not same.
+        """
+        # Compare lists of events
+        if isinstance(expected_event, list):
+            assert isinstance(transformed_event, list)
+            assert len(transformed_event) == len(expected_event)
+            event_ids = set()
+            for idx, e_event in enumerate(expected_event):
+                event_ids.add(transformed_event[idx].id)
+                self._compare_events(transformed_event[idx], e_event)
+
+            # Ensure a unique event ID was applied for the parent + child events
+            assert len(event_ids) == len(transformed_event)
+
+        # Compare single events
+        else:
+            self._compare_events(transformed_event, expected_event)
+
+    def _compare_events(self, transformed_event, expected_event):
+        """
+        Test that transformed_event and expected_event are identical.
+
+        Arguments:
             transformed_event (dict)
             expected_event (dict)
 
         Raises:
             AssertionError:     Raised if the two events are not same.
         """
-        # id is a randomly generated UUID therefore not comparing that
         transformed_event_json = json.loads(transformed_event.to_json())
-        self.assertIn('id', transformed_event_json)
-        expected_event.pop('id')
-        transformed_event_json.pop('id')
         self.assertDictEqual(expected_event, transformed_event_json)
 
     @override_settings(XAPI_AGENT_IFI_TYPE='mbox')

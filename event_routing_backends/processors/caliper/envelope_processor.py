@@ -19,19 +19,22 @@ class CaliperEnvelopeProcessor:
         """
         self.sensor_id = sensor_id
 
-    def __call__(self, event):
+    def __call__(self, events):
         """
-        Envelope the caliper transformed event.
+        Envelope the caliper transformed events.
 
         Arguments:
-            event (dict):   IMS Caliper compliant event dict
+            events (list of dicts):   List of IMS Caliper compliant event dicts
 
         Returns:
-            dict
+            list of dicts
         """
-        return {
-            'sensor': self.sensor_id,
-            'sendTime': convert_datetime_to_iso(datetime.now(UTC)),
-            'data': [event],
-            'dataVersion': CALIPER_EVENT_CONTEXT
-        }
+        enveloped_events = []
+        for event in events:
+            enveloped_events.append({
+                'sensor': self.sensor_id,
+                'sendTime': convert_datetime_to_iso(datetime.now(UTC)),
+                'data': [event],
+                'dataVersion': CALIPER_EVENT_CONTEXT
+            })
+        return enveloped_events

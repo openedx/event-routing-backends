@@ -82,7 +82,7 @@ class BaseVideoTransformer(CaliperTransformer):
             dict
         """
         self.backend_name = 'caliper'
-        caliper_object = self.transformed_event['object']
+        caliper_object = super().get_object()
         data = self.get_data('data')
         course_id = self.get_data('context.course_id', True)
         video_id = self.get_data('data.id', True)
@@ -176,10 +176,12 @@ class VideoSpeedChangedTransformer(BaseVideoTransformer):
     """
     Transform the event fired when a video's speed is changed.
     """
-    additional_fields = ('target', 'extensions',)
+    additional_fields = ('target',)
 
     def get_extensions(self):
-        return {
+        extensions = super().get_extensions()
+        extensions.update({
             'oldSpeed': self.get_data('old_speed'),
             'newSpeed': self.get_data('new_speed'),
-        }
+        })
+        return extensions

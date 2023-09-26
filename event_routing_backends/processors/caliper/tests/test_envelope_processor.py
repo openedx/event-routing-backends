@@ -30,10 +30,10 @@ class TestCaliperEnvelopeProcessor(TestCase):
     def test_caliper_envelope_processor(self, mocked_datetime):
         mocked_datetime.now.return_value = FROZEN_TIME
 
-        result = CaliperEnvelopeProcessor(sensor_id=self.sensor_id)(self.sample_event)
-        self.assertEqual(result, {
+        result = CaliperEnvelopeProcessor(sensor_id=self.sensor_id)([self.sample_event])
+        self.assertEqual(result, [{
             'sensor': self.sensor_id,
             'sendTime': convert_datetime_to_iso(str(FROZEN_TIME)),
             'data': [self.sample_event],
             'dataVersion': CALIPER_EVENT_CONTEXT
-        })
+        }])

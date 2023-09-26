@@ -1,5 +1,5 @@
 {
-    "id": "6d1f033b-3f70-458c-b53a-e6bb63cbaef9",
+    "id": "c9c7da1a-0cf0-5161-9bf5-35c61091f826",
     "actor": {
         "objectType": "Agent",
         "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
@@ -29,6 +29,7 @@
             "extensions":{
               "http://id.tincanapi.com/extension/attempt-id": 10
             },
+            "name": {"en-US": "Checkboxes"},
             "interactionType": "other",
             "type": "http://adlnet.gov/expapi/activities/cmi.interaction"
         },

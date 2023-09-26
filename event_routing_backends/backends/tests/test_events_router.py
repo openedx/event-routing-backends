@@ -153,9 +153,9 @@ class TestEventsRouter(TestCase):
     @patch('event_routing_backends.models.RouterConfiguration.get_enabled_routers')
     def test_with_processor_exception(self, mocked_get_enabled_routers, mocked_logger, mocked_post):
         processors = [
-            MagicMock(return_value=self.transformed_event),
-            MagicMock(side_effect=EventEmissionExit, return_value=self.transformed_event),
-            MagicMock(return_value=self.transformed_event),
+            MagicMock(return_value=[self.transformed_event]),
+            MagicMock(side_effect=EventEmissionExit, return_value=[self.transformed_event]),
+            MagicMock(return_value=[self.transformed_event]),
         ]
         processors[1].side_effect = EventEmissionExit
 
@@ -164,8 +164,8 @@ class TestEventsRouter(TestCase):
         router = EventsRouter(processors=processors, backend_name='test')
         router.send(self.transformed_event)
 
-        processors[0].assert_called_once_with(self.transformed_event)
-        processors[1].assert_called_once_with(self.transformed_event)
+        processors[0].assert_called_once_with([self.transformed_event])
+        processors[1].assert_called_once_with([self.transformed_event])
         processors[2].assert_not_called()
 
         mocked_post.assert_not_called()
@@ -642,7 +642,14 @@ class TestEventsRouter(TestCase):
             mocked_logger.info.mock_calls
         )
 
-    def test_unsuccessful_routing_of_event_http(self):
+    @patch('event_routing_backends.utils.http_client.requests.post')
+    def test_unsuccessful_routing_of_event_http(self, mocked_post):
+        mock_response = MagicMock()
+        mock_response.status_code = 500
+        mock_response.request.method = "POST"
+        mock_response.text = "Fake Server Error"
+        mocked_post.return_value = mock_response
+
         host_configurations = {
                         'url': 'http://test4.com',
                         'auth_scheme': 'bearer',

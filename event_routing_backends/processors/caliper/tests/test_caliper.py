@@ -35,7 +35,7 @@ class TestCaliperProcessor(SimpleTestCase):
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_send_method_with_no_transformer_implemented(self, mocked_logger):
         with self.assertRaises(EventEmissionExit):
-            self.processor(self.sample_event)
+            self.processor([self.sample_event])
 
         mocked_logger.error.assert_called_once_with(
             'Could not get transformer for %s event.',
@@ -49,7 +49,7 @@ class TestCaliperProcessor(SimpleTestCase):
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_send_method_with_unknown_exception(self, mocked_logger, _):
         with self.assertRaises(ValueError):
-            self.processor(self.sample_event)
+            self.processor([self.sample_event])
 
         mocked_logger.exception.assert_called_once_with(
             'There was an error while trying to transform event "sentinel.name" using CaliperProcessor'
@@ -73,7 +73,7 @@ class TestCaliperProcessor(SimpleTestCase):
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer
 
-        self.processor(self.sample_event)
+        self.processor([self.sample_event])
 
         self.assertIn(
             call(
@@ -109,7 +109,7 @@ class TestCaliperProcessor(SimpleTestCase):
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer
 
-        self.processor(self.sample_event)
+        self.processor([self.sample_event])
 
         self.assertIn(
             call(
@@ -131,5 +131,5 @@ class TestCaliperProcessor(SimpleTestCase):
         backend = CaliperProcessor()
         backend.registry = None
         with self.assertRaises(EventEmissionExit):
-            self.assertIsNone(backend(self.sample_event))
+            self.assertIsNone(backend([self.sample_event]))
         mocked_logger.exception.assert_called_once()
