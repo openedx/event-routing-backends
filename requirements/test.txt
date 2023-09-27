@@ -73,7 +73,7 @@ code-annotations==1.5.0
     #   edx-toggles
 coverage[toml]==7.3.1
     # via pytest-cov
-cryptography==41.0.3
+cryptography==41.0.4
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -93,7 +93,7 @@ ddt==1.6.0
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.5.0
+django-config-models==2.5.1
     # via -r requirements/base.txt
 django-crum==0.7.9
     # via
@@ -131,9 +131,9 @@ exceptiongroup==1.1.3
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==19.6.1
+faker==19.6.2
     # via factory-boy
-fasteners==0.18
+fasteners==0.19
     # via -r requirements/base.txt
 idna==3.4
     # via
@@ -161,7 +161,7 @@ markupsafe==2.1.3
     #   jinja2
 mock==5.1.0
     # via -r requirements/test.in
-newrelic==9.0.0
+newrelic==9.1.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -250,7 +250,7 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   -r requirements/base.txt
     #   asgiref
@@ -261,7 +261,7 @@ tzdata==2023.3
     #   -r requirements/base.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.0.4
+urllib3==2.0.5
     # via
     #   -r requirements/base.txt
     #   requests

@@ -86,7 +86,7 @@ coverage[toml]==7.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==41.0.3
+cryptography==41.0.4
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -108,7 +108,7 @@ django==3.2.21
     #   edx-toggles
     #   event-tracking
     #   jsonfield
-django-config-models==2.5.0
+django-config-models==2.5.1
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -160,11 +160,11 @@ exceptiongroup==1.1.3
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==19.6.1
+faker==19.6.2
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fasteners==0.18
+fasteners==0.19
     # via -r requirements/test.txt
 idna==3.4
     # via
@@ -177,7 +177,7 @@ importlib-metadata==6.8.0
     #   build
     #   keyring
     #   twine
-importlib-resources==6.0.1
+importlib-resources==6.1.0
     # via keyring
 iniconfig==2.0.0
     # via
@@ -218,7 +218,7 @@ mock==5.1.0
     # via -r requirements/test.txt
 more-itertools==10.1.0
     # via jaraco-classes
-newrelic==9.0.0
+newrelic==9.1.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -318,7 +318,7 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.5.2
+rich==13.5.3
     # via twine
 secretstorage==3.3.3
     # via keyring
@@ -377,7 +377,7 @@ tomli==2.0.1
     #   pytest
 twine==4.0.2
     # via -r requirements/doc.in
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   -r requirements/test.txt
     #   asgiref
@@ -390,7 +390,7 @@ tzdata==2023.3
     #   -r requirements/test.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.0.4
+urllib3==2.0.5
     # via
     #   -r requirements/test.txt
     #   requests
@@ -405,7 +405,7 @@ wcwidth==0.2.6
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-zipp==3.16.2
+zipp==3.17.0
     # via
     #   importlib-metadata
     #   importlib-resources
