@@ -149,9 +149,7 @@ def get_course_from_id(course_id):
     course_overviews = get_course_overviews([course_key])
     if course_overviews:
         return course_overviews[0]
-    return {
-        "display_name": "Unknown Course",
-    }
+    raise ValueError(f"Course with id {course_id} does not exist.")
 
 
 def convert_seconds_to_iso(seconds):

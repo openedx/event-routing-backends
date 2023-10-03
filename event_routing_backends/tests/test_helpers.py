@@ -79,7 +79,7 @@ class TestHelpers(TestCase):
         self.assertNotEqual(uuid_1, uuid_3)
 
     @patch('event_routing_backends.helpers.get_course_overviews')
-    def test_get_course_from_id(self, mock_get_course_overviews):
+    def test_get_course_from_id_unknown_course(self, mock_get_course_overviews):
         mock_get_course_overviews.return_value = []
-        course = get_course_from_id("foo")
-        self.assertEqual(course["display_name"], "Unknown Course")
+        with self.assertRaises(ValueError):
+            get_course_from_id("foo")
