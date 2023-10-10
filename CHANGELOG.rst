@@ -13,6 +13,14 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[7.0.1]
+
+* Do not send events for unknown courses
+
+[7.0.0]
+
+* Multi-question problem_check tracking log statements will now be split into one xAPI statement for each question
+
 [6.2.0]
 
 * Add support for completion events
