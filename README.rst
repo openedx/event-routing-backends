@@ -47,7 +47,7 @@ can find it at `ISSUE_TEMPLATE.md <.github/ISSUE_TEMPLATE.md>`_.
 Reporting Security Issues
 -------------------------
 
-Please do not report security issues in public. Please email security@edx.org.
+Please do not report security issues in public. Please email security@openedx.org.
 
 Getting Help
 ------------
