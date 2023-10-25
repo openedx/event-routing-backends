@@ -17,7 +17,7 @@ class EventsRouter:
     Router to send events to hosts using requests library.
     """
 
-    def __init__(self, processors=None, backend_name=None):
+    def __init__(self, processors=None, backend_name=None, sync=False):
         """
         Initialize the router.
 
@@ -27,6 +27,7 @@ class EventsRouter:
         """
         self.processors = processors if processors else []
         self.backend_name = backend_name
+        self.sync = sync
 
     def configure_host(self, host, router):
         """
@@ -159,19 +160,22 @@ class EventsRouter:
 
         for events_for_route in event_routes.values():
             for event_name, updated_event, host, is_business_critical in events_for_route:
+                func = dispatch_event_persistent if is_business_critical else dispatch_event
+                if not self.sync:
+                    func = func.delay
                 if is_business_critical:
-                    dispatch_event_persistent.delay(
+                    func(
                         event_name,
                         updated_event,
                         host['router_type'],
-                        host['host_configurations']
+                        host['host_configurations'],
                     )
                 else:
-                    dispatch_event.delay(
+                    func(
                         event_name,
                         updated_event,
                         host['router_type'],
-                        host['host_configurations']
+                        host['host_configurations'],
                     )
 
     def process_event(self, event):

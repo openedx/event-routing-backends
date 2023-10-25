@@ -62,7 +62,7 @@ def plugin_settings(settings):
 
     settings.EVENT_TRACKING_BACKENDS.update({
         'xapi': {
-            'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
+            'ENGINE': 'eventtracking.backends.event_bus.EventBusRoutingBackend',
             'OPTIONS': {
                 'backend_name': 'xapi',
                 'processors': [
@@ -149,6 +149,7 @@ def plugin_settings(settings):
                                 }
                             ],
                             'backend_name': 'xapi',
+                            'sync': True,
                         }
                     }
                 },
