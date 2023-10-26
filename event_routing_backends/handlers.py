@@ -40,4 +40,4 @@ def send_tracking_log_to_backends(sender, signal, **kwargs):
         except EventEmissionExit:
             logger.info("[EventEmissionExit] skipping event {}".format(event["name"]))
             return
-        send_event(name, processed_event)
+        send_event(name, processed_event, raise_on_error=True)
