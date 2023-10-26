@@ -40,12 +40,12 @@ def send_tracking_log_to_backends(sender, signal, **kwargs):
 
     tracker = get_tracker()
 
-    backends = [backend for backend in tracker.backends.values() if isinstance(backend, EventBusRoutingBackend)]
-    for backend in backends:
+    engines = {name: engine for name,engine in tracker.backends.items() if isinstance(engine, EventBusRoutingBackend)}
+    for name, engine in engines.items():
         try:
-            processed_event = backend.process_event(event)
+            processed_event = engine.process_event(event)
             logger.info('Successfully processed event "{}"'.format(event["name"]))
         except EventEmissionExit:
             logger.info("[EventEmissionExit] skipping event {}".format(event["name"]))
             return
-        send_event(backend.backend_name, processed_event)
+        send_event(name, processed_event)
