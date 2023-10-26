@@ -156,7 +156,7 @@ def plugin_settings(settings):
             },
         },
         "caliper": {
-            "ENGINE": "eventtracking.backends.async_routing.AsyncRoutingBackend",
+            "ENGINE": "eventtracking.backends.event_bus.EventBusRoutingBackend",
             "OPTIONS": {
                 "backend_name": "caliper",
                 "processors": [
@@ -214,7 +214,8 @@ def plugin_settings(settings):
                                     }
                                 }
                             ],
-                            "backend_name": "caliper"
+                            "backend_name": "caliper",
+                            'sync': True,
                         }
                     }
                 }
