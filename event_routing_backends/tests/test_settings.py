@@ -20,8 +20,7 @@ class TestPluginSettings(TestCase):
         Test common settings
         """
         common_settings.plugin_settings(settings)
-        self.assertIn('xapi', settings.EVENT_TRACKING_BACKENDS)
-        self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn('event_bus', settings.EVENT_TRACKING_BACKENDS)
         self.assertIn('edx.course.enrollment.activated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
         self.assertFalse(settings.CALIPER_EVENT_LOGGING_ENABLED)
@@ -33,8 +32,7 @@ class TestPluginSettings(TestCase):
         Test devstack settings
         """
         devstack_settings.plugin_settings(settings)
-        self.assertIn('xapi', settings.EVENT_TRACKING_BACKENDS)
-        self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn('event_bus', settings.EVENT_TRACKING_BACKENDS)
         self.assertIn('edx.course.enrollment.deactivated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
         self.assertFalse(settings.CALIPER_EVENT_LOGGING_ENABLED)

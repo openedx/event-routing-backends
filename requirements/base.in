@@ -11,8 +11,8 @@ django-fernet-fields-v2
 django-config-models
 edx-toggles               # For SettingToggle class
 tincan
-event-tracking
+git+https://github.com/edunext/event-tracking@cag/add-openedx-event-signal
 edx-celeryutils
 apache-libcloud           # For bulk event log loading
 fasteners                 # Locking tools, required by apache-libcloud, but somehow not installed with it
-openedx-events
+git+https://github.com/edunext/openedx-events@cag/add-openedx-event-signal
