@@ -24,6 +24,7 @@ class EventsRouter:
         Arguments:
             processors (list):   list of processor instances
             backend_name (str):  name of the router backend
+            sync (bool):         whether to send events synchronously or in celery tasks
         """
         self.processors = processors if processors else []
         self.backend_name = backend_name

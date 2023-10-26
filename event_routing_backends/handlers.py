@@ -10,7 +10,6 @@ from eventtracking.tasks import send_event
 from eventtracking.tracker import get_tracker
 from openedx_events.analytics.signals import TRACKING_EVENT_EMITTED
 
-from eventtracking.backends.event_bus import EVENT_BUS_SOURCE
 
 from eventtracking.backends.event_bus import EventBusRoutingBackend
 
@@ -22,13 +21,6 @@ def send_tracking_log_to_backends(sender, signal, **kwargs):
     """
     Listen for the TRACKING_EVENT_EMITTED signal and send the event to the enabled backend.
     """
-    metadata = kwargs.get("metadata")
-    if EVENT_BUS_SOURCE != metadata.source:
-        # This event cannot be processed by the same service that produced it.
-        # We need to wait for the event to be processed by the event bus.
-        logger.info("Event in same source, skipping event")
-        return
-
     tracking_log = kwargs.get("tracking_log")
 
     event = {
