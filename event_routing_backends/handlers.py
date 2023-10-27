@@ -19,7 +19,7 @@ def send_tracking_log_to_backends(
     sender, signal, **kwargs
 ):  # pylint: disable=unused-argument
     """
-    Listen for the TRACKING_EVENT_EMITTED signal and send the event to the enabled backend.
+    Listen for the TRACKING_EVENT_EMITTED signal and send the event to the enabled backends.
     """
     tracking_log = kwargs.get("tracking_log")
 
@@ -44,4 +44,3 @@ def send_tracking_log_to_backends(
             send_event(name, processed_event, True)
         except EventEmissionExit:
             logger.info("[EventEmissionExit] skipping event {}".format(event["name"]))
-            return
