@@ -162,8 +162,7 @@ class EventsRouter:
         for events_for_route in event_routes.values():
             for event_name, updated_event, host, is_business_critical in events_for_route:
                 func = dispatch_event_persistent if is_business_critical else dispatch_event
-                if not self.sync:
-                    func = func.delay
+                func = func if self.sync else func.delay
                 if is_business_critical:
                     func(
                         event_name,

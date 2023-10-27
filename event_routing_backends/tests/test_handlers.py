@@ -2,12 +2,11 @@
 Test handlers for signals emitted by the analytics app
 """
 
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 from django.test import TestCase
 from django.test.utils import override_settings
 from eventtracking.django.django_tracker import DjangoTracker
-from eventtracking.processors.exceptions import EventEmissionExit
 from openedx_events.analytics.data import TrackingLogData
 
 from event_routing_backends.handlers import send_tracking_log_to_backends
@@ -64,15 +63,28 @@ class TestHandlers(TestCase):
             True,
         )
 
+    @override_settings(
+        EVENT_TRACKING_BACKENDS={
+            "event_bus": {
+                "ENGINE": "eventtracking.backends.event_bus.EventBusRoutingBackend",
+                "OPTIONS": {
+                    "processors": [
+                        {
+                            "ENGINE": "eventtracking.processors.whitelist.NameWhitelistProcessor",
+                            "OPTIONS": {
+                                "whitelist": ["no_test_name"]
+                            }
+                        }
+                    ],
+                },
+            },
+        }
+    )
     @patch("event_routing_backends.handlers.get_tracker")
     @patch("event_routing_backends.handlers.isinstance")
-    @patch(
-        "event_routing_backends.handlers.send_event",
-        **{"return_value.raiseError.side_effect": EventEmissionExit()}
-    )
     @patch("event_routing_backends.handlers.logger")
     def test_send_tracking_log_to_backends_error(
-        self, mock_logger, mock_send_event, mock_is_instance, mock_get_tracker
+        self, mock_logger, mock_is_instance, mock_get_tracker
     ):
         """
         Test for send_tracking_log_to_backends
@@ -95,6 +107,6 @@ class TestHandlers(TestCase):
 
         assert x is None
 
-        # mock_logger.info.assert_called_once_with(
-        #     "[EventEmissionExit] skipping event {}".format("test_name")
-        # )
+        mock_logger.info.assert_called_once_with(
+            "[EventEmissionExit] skipping event {}".format("test_name")
+        )
