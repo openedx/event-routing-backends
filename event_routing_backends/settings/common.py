@@ -174,7 +174,7 @@ def plugin_settings(settings):
                 ],
                 "backends": {
                     'xapi': {
-                        'ENGINE': 'event_routing_backends.backends.events_router.EventsRouter',
+                        'ENGINE': 'event_routing_backends.backends.async_events_router.AsyncEventsRouter',
                         'OPTIONS': {
                             'processors': [
                                 {
@@ -184,11 +184,10 @@ def plugin_settings(settings):
                                 }
                             ],
                             'backend_name': 'xapi',
-                            'sync': True,
                         }
                     },
                     "caliper": {
-                        "ENGINE": "event_routing_backends.backends.events_router.EventsRouter",
+                        "ENGINE": "event_routing_backends.backends.async_events_router.AsyncEventsRouter",
                         "OPTIONS": {
                             "processors": [
                                 {
@@ -207,7 +206,6 @@ def plugin_settings(settings):
                                 }
                             ],
                             "backend_name": "caliper",
-                            'sync': True,
                         }
                     }
                 }

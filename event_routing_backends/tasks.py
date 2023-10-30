@@ -82,6 +82,8 @@ def send_event(task, event_name, event, router_type, host_config):
             ),
             exc_info=True
         )
+        if not task:
+            raise exc
         raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
                          max_retries=getattr(settings, ''
                                                        'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
@@ -134,5 +136,7 @@ def bulk_send_events(task, events, router_type, host_config):
             ),
             exc_info=True
         )
+        if not task:
+            raise exc
         raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
                          max_retries=getattr(settings, 'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))

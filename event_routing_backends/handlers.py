@@ -7,19 +7,18 @@ import logging
 from django.dispatch import receiver
 from eventtracking.backends.event_bus import EventBusRoutingBackend
 from eventtracking.processors.exceptions import EventEmissionExit
-from eventtracking.tasks import send_event
 from eventtracking.tracker import get_tracker
-from openedx_events.analytics.signals import TRACKING_EVENT_EMITTED
+from openedx_events.analytics.signals import TRACKING_LOG_EVENT_EMITTED
 
 logger = logging.getLogger(__name__)
 
 
-@receiver(TRACKING_EVENT_EMITTED)
+@receiver(TRACKING_LOG_EVENT_EMITTED)
 def send_tracking_log_to_backends(
     sender, signal, **kwargs
 ):  # pylint: disable=unused-argument
     """
-    Listen for the TRACKING_EVENT_EMITTED signal and send the event to the enabled backends.
+    Listen for the TRACKING_LOG_EVENT_EMITTED signal and send the event to the enabled backends.
     """
     tracking_log = kwargs.get("tracking_log")
 
@@ -41,6 +40,6 @@ def send_tracking_log_to_backends(
         try:
             processed_event = engine.process_event(event)
             logger.info('Successfully processed event "{}"'.format(event["name"]))
-            send_event(name, processed_event, True)
+            engine.send_to_backends(processed_event.copy())
         except EventEmissionExit:
             logger.info("[EventEmissionExit] skipping event {}".format(event["name"]))

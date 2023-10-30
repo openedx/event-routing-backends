@@ -7,7 +7,6 @@ from eventtracking.processors.exceptions import EventEmissionExit
 
 from event_routing_backends.helpers import get_business_critical_events
 from event_routing_backends.models import RouterConfiguration
-from event_routing_backends.tasks import dispatch_bulk_events, dispatch_event, dispatch_event_persistent
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +16,7 @@ class EventsRouter:
     Router to send events to hosts using requests library.
     """
 
-    def __init__(self, processors=None, backend_name=None, sync=False):
+    def __init__(self, processors=None, backend_name=None):
         """
         Initialize the router.
 
@@ -28,7 +27,6 @@ class EventsRouter:
         """
         self.processors = processors if processors else []
         self.backend_name = backend_name
-        self.sync = sync
 
     def configure_host(self, host, router):
         """
@@ -140,7 +138,7 @@ class EventsRouter:
                 prepared_events.append(updated_event)
 
             if prepared_events:  # pragma: no cover
-                dispatch_bulk_events.delay(
+                self.dispatch_bulk_events(
                     prepared_events,
                     host['router_type'],
                     host['host_configurations']
@@ -161,17 +159,18 @@ class EventsRouter:
 
         for events_for_route in event_routes.values():
             for event_name, updated_event, host, is_business_critical in events_for_route:
-                func = dispatch_event_persistent if is_business_critical else dispatch_event
-                func = func if self.sync else func.delay
+                from event_routing_backends.backends.sync_events_router import SyncEventsRouter
+                #if event_name == 'edx.course.enrollment.activated' and self.__class__ == SyncEventsRouter:
+                #    raise ValueError(f"event_name {event_name}, host {host}, is_business_critical {is_business_critical}")
                 if is_business_critical:
-                    func(
+                    self.dispatch_event_persistent(
                         event_name,
                         updated_event,
                         host['router_type'],
                         host['host_configurations'],
                     )
                 else:
-                    func(
+                    self.dispatch_event(
                         event_name,
                         updated_event,
                         host['router_type'],
@@ -219,3 +218,38 @@ class EventsRouter:
                 host['override_args']
             ))
         return event
+
+    def dispatch_event(self, event_name, updated_event, router_type, host_configurations):
+        """
+        Dispatch the event to the configured router.
+
+        Arguments:
+            event_name (str):           name of the original event.
+            updated_event (dict):       processed event dictionary
+            router_type (str):          type of the router
+            host_configurations (dict): host configurations dict
+        """
+        raise NotImplementedError('dispatch_event is not implemented')
+
+    def dispatch_bulk_events(self, events, router_type, host_configurations):
+        """
+        Dispatch the a list of events to the configured router in bulk.
+
+        Arguments:
+            events (list[dict]):        list of processed event dictionaries
+            router_type (str):          type of the router
+            host_configurations (dict): host configurations dict
+        """
+        raise NotImplementedError('dispatch_bulk_events is not implemented')
+
+    def dispatch_event_persistent(self, event_name, updated_event, router_type, host_configurations):
+        """
+        Dispatch the event to the configured router providing persistent storage.
+
+        Arguments:
+            event_name (str):           name of the original event.
+            updated_event (dict):       processed event dictionary
+            router_type (str):          type of the router
+            host_configurations (dict): host configurations dict
+        """
+        raise NotImplementedError('dispatch_event_persistent is not implemented')
