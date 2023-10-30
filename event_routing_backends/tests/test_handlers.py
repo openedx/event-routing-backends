@@ -2,7 +2,7 @@
 Test handlers for signals emitted by the analytics app
 """
 
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch
 
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -26,22 +26,15 @@ class TestHandlers(TestCase):
         }
     )
     @patch("event_routing_backends.handlers.get_tracker")
-    @patch("event_routing_backends.handlers.isinstance")
     def test_send_tracking_log_to_backends(
-        self, mock_isinstance, mock_get_tracker
+        self, mock_get_tracker
     ):
         """
         Test for send_tracking_log_to_backends
         """
         tracker = DjangoTracker()
         mock_get_tracker.return_value = tracker
-
         mock_backend = Mock()
-
-        tracker.backends["event_bus"].send_to_backends = mock_backend
-
-        # mock_isinstance.return_value = True
-
         tracker.backends["event_bus"].send_to_backends = mock_backend
 
         send_tracking_log_to_backends(
@@ -63,6 +56,7 @@ class TestHandlers(TestCase):
                 "context": {},
             }
         )
+
     @override_settings(
         EVENT_TRACKING_BACKENDS={
             "event_bus": {

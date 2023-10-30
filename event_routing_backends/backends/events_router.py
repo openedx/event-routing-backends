@@ -159,9 +159,6 @@ class EventsRouter:
 
         for events_for_route in event_routes.values():
             for event_name, updated_event, host, is_business_critical in events_for_route:
-                from event_routing_backends.backends.sync_events_router import SyncEventsRouter
-                #if event_name == 'edx.course.enrollment.activated' and self.__class__ == SyncEventsRouter:
-                #    raise ValueError(f"event_name {event_name}, host {host}, is_business_critical {is_business_critical}")
                 if is_business_critical:
                     self.dispatch_event_persistent(
                         event_name,

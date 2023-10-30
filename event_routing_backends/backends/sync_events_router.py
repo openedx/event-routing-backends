@@ -1,15 +1,16 @@
 """
 Generic router to send events to hosts.
 """
-from event_routing_backends.tasks import send_event, bulk_send_events
 from event_routing_backends.backends.events_router import EventsRouter
+from event_routing_backends.tasks import bulk_send_events, send_event
+
 
 class SyncEventsRouter(EventsRouter):
     """
     Router to send events to hosts via celery using requests library.
     """
 
-    def dispatch_event(self, event_name, event, router_type, host_configurations):
+    def dispatch_event(self, event_name, updated_event, router_type, host_configurations):
         """
         Dispatch the event to the configured router.
 
@@ -19,7 +20,7 @@ class SyncEventsRouter(EventsRouter):
             router_type (str):          type of the router
             host_configurations (dict): host configurations dict
         """
-        send_event(None, event_name, event, router_type, host_configurations)
+        send_event(None, event_name, updated_event, router_type, host_configurations)
 
     def dispatch_bulk_events(self, events, router_type, host_configurations):
         """
@@ -32,7 +33,7 @@ class SyncEventsRouter(EventsRouter):
         """
         bulk_send_events(None, events, router_type, host_configurations)
 
-    def dispatch_event_persistent(self, event_name, event, router_type, host_configurations):
+    def dispatch_event_persistent(self, event_name, updated_event, router_type, host_configurations):
         """
         Dispatch the event to the configured router providing persistent storage.
 
@@ -42,4 +43,4 @@ class SyncEventsRouter(EventsRouter):
             router_type (str):          type of the router
             host_configurations (dict): host configurations dict
         """
-        self.dispatch_event(event_name, event, router_type, host_configurations)
+        self.dispatch_event(event_name, updated_event, router_type, host_configurations)

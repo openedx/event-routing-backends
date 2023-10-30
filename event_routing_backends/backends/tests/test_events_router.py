@@ -1,7 +1,7 @@
 """
 Test the EventsRouter
 """
-from unittest.mock import MagicMock, call, patch, sentinel, Mock
+from unittest.mock import MagicMock, call, patch, sentinel
 
 import ddt
 from django.conf import settings
@@ -214,7 +214,6 @@ class TestEventsRouter(TestCase):
             mocked_logger.info.mock_calls
         )
 
-
     def test_with_non_dict_event(self):
         RouterConfigurationFactory.create(
             backend_name=RouterConfiguration.XAPI_BACKEND,
@@ -226,7 +225,6 @@ class TestEventsRouter(TestCase):
         transformed_event = Statement()
         with self.assertRaises(ValueError):
             router.send(transformed_event)
-
 
     def test_unsuccessful_routing_of_event(self):
         host_configurations = {
@@ -260,9 +258,8 @@ class TestEventsRouter(TestCase):
         )
 
 
-
 @ddt.ddt
-class TestAsyncEventsRouter(TestEventsRouter):
+class TestAsyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-tests
     """
     Test the AsyncEventsRouter
     """
@@ -803,7 +800,7 @@ class TestAsyncEventsRouter(TestEventsRouter):
 
 
 @ddt.ddt
-class TestSyncEventsRouter(TestEventsRouter):
+class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-tests
     """
     Test the SyncEventsRouter
     """
