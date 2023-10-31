@@ -19,6 +19,18 @@ def send_tracking_log_to_backends(
 ):  # pylint: disable=unused-argument
     """
     Listen for the TRACKING_LOG_EVENT_EMITTED signal and send the event to the enabled backends.
+
+    The process is the following:
+
+    1. Unserialize the tracking log from the signal.
+    2. Get the tracker instance to get the enabled backends (mongo, event_bus, logger, etc).
+    3. Get the event bus backends as those are the interested in the signals and multiple can be configured.
+    4. Process the event with the event bus backend.
+    5. Send the processed event to the different event bus backends configured. Any event bus backend can be configured
+    with multiples backends (xAPI or Caliper).
+
+    This allows us to only send the tracking log to the event bus once and then the event bus will send it to the
+    different configured backends.
     """
     tracking_log = kwargs.get("tracking_log")
 

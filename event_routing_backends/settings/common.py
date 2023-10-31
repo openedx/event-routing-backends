@@ -60,8 +60,6 @@ def plugin_settings(settings):
         'edx.course.grade.passed.first_time'
     ]
 
-    settings.EVENT_TRACKING_BACKENDS_EVENT_BUS_ENABLED = True
-
     settings.WHITELIST_EVENTS = {
         'xapi': [
             'edx.course.enrollment.activated',

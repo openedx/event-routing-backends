@@ -1,5 +1,8 @@
 """
-Generic async router to send events to hosts via celery.
+Events router to send events to hosts via celery.
+
+This events router will trigger a celery task to send the events to the
+configured hosts.
 """
 from event_routing_backends.backends.events_router import EventsRouter
 from event_routing_backends.tasks import dispatch_bulk_events, dispatch_event, dispatch_event_persistent
