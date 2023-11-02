@@ -40,6 +40,7 @@ class SyncEventsRouter(EventsRouter):
     def dispatch_event_persistent(self, event_name, updated_event, router_type, host_configurations):
         """
         Dispatch the event to the configured router providing persistent storage.
+        In this case, the event bus is expected to provide the persistent storage layer.
 
         Arguments:
             event_name (str):           name of the original event.

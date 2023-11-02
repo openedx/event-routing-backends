@@ -53,11 +53,11 @@ def send_event(task, event_name, event, router_type, host_config):
     Send event to configured client.
 
     Arguments:
-        task (object)       : celery task object to perform celery actions
-        event_name (str)    : name of the original event
-        event (dict)        : event dictionary to be delivered.
-        router_type (str)   : decides the client to use for sending the event
-        host_config (dict)  : contains configurations for the host.
+        task (object, optional) : celery task object to perform celery actions
+        event_name (str)        : name of the original event
+        event (dict)            : event dictionary to be delivered.
+        router_type (str)       : decides the client to use for sending the event
+        host_config (dict)      : contains configurations for the host.
     """
     try:
         client_class = ROUTER_STRATEGY_MAPPING[router_type]
@@ -82,6 +82,9 @@ def send_event(task, event_name, event, router_type, host_config):
             ),
             exc_info=True
         )
+        # If this function is called synchronously, we want to raise the exception
+        # to inform about errors. If it's called asynchronously, we want to retry
+        # the celery task till it succeeds or reaches max retries.
         if not task:
             raise exc
         raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
@@ -108,10 +111,10 @@ def bulk_send_events(task, events, router_type, host_config):
     Send event to configured client.
 
     Arguments:
-        task (object)       : celery task object to perform celery actions
-        events (list[dict]) : list of event dictionaries to be delivered.
-        router_type (str)   : decides the client to use for sending the event
-        host_config (dict)  : contains configurations for the host.
+        task (object, optional) : celery task object to perform celery actions
+        events (list[dict])     : list of event dictionaries to be delivered.
+        router_type (str)       : decides the client to use for sending the event
+        host_config (dict)      : contains configurations for the host.
     """
     try:
         client_class = ROUTER_STRATEGY_MAPPING[router_type]
@@ -136,6 +139,9 @@ def bulk_send_events(task, events, router_type, host_config):
             ),
             exc_info=True
         )
+        # If this function is called synchronously, we want to raise the exception
+        # to inform about errors. If it's called asynchronously, we want to retry
+        # the celery task till it succeeds or reaches max retries.
         if not task:
             raise exc
         raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
