@@ -804,6 +804,27 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
     """
     Test the SyncEventsRouter
     """
+    @patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', {
+        'AUTH_HEADERS': MagicMock(side_effect=EventNotDispatched)
+    })
+    @patch('event_routing_backends.utils.http_client.requests.post')
+    def test_generic_exception_business_critical_event(self, mocked_post):
+        RouterConfigurationFactory.create(
+            backend_name=RouterConfiguration.XAPI_BACKEND,
+            enabled=True,
+            route_url='http://test3.com',
+            auth_scheme=RouterConfiguration.AUTH_BEARER,
+            auth_key='test_key',
+            configurations=ROUTER_CONFIG_FIXTURE[0]
+        )
+
+        router = SyncEventsRouter(processors=[], backend_name=RouterConfiguration.CALIPER_BACKEND)
+        event_data = self.transformed_event.copy()
+        business_critical_events = get_business_critical_events()
+        event_data['name'] = business_critical_events[0]
+
+        router.send(event_data)
+        mocked_post.assert_not_called()
 
     @ddt.data(
         (RouterConfiguration.AUTH_BASIC,
@@ -894,6 +915,8 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
         mocked_post.return_value = mock_response
 
         router = SyncEventsRouter(processors=[], backend_name=backend_name)
+
+        self.transformed_event["name"] = get_business_critical_events()[0]
 
         with patch.dict('event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING', MOCKED_MAP):
             router.send(self.transformed_event)
@@ -1078,3 +1101,48 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
 
         # test mocked oauth client
         mocked_oauth_client.assert_not_called()
+
+    @patch('event_routing_backends.utils.xapi_lrs_client.RemoteLRS')
+    @ddt.unpack
+    def test_failed_bulk_routing(self, mocked_remote_lrs):
+        mock_response = MagicMock()
+        mock_response.success = False
+        mock_response.data = "Fake response data"
+        mock_response.response.code = 500
+        mock_response.request.method = "POST"
+        mock_response.request.content = "Fake request content"
+
+        mocked_remote_lrs.return_value.save_statements.return_value = mock_response
+        RouterConfigurationFactory.create(
+            backend_name=RouterConfiguration.XAPI_BACKEND,
+            enabled=True,
+            route_url='http://test3.com',
+            configurations=ROUTER_CONFIG_FIXTURE[2]
+        )
+
+        router = SyncEventsRouter(processors=[], backend_name=RouterConfiguration.XAPI_BACKEND)
+        with self.assertRaises(EventNotDispatched):
+            router.bulk_send([self.transformed_event])
+
+    @patch('event_routing_backends.utils.xapi_lrs_client.RemoteLRS')
+    @ddt.unpack
+    def test_failed_routing(self, mocked_remote_lrs):
+        mock_response = MagicMock()
+        mock_response.success = False
+        mock_response.data = "Fake response data"
+        mock_response.response.code = 500
+        mock_response.request.method = "POST"
+        mock_response.request.content = "Fake request content"
+        mocked_remote_lrs.side_effect = EventNotDispatched
+
+        mocked_remote_lrs.return_value.save_statements.return_value = mock_response
+        RouterConfigurationFactory.create(
+            backend_name=RouterConfiguration.XAPI_BACKEND,
+            enabled=True,
+            route_url='http://test3.com',
+            configurations=ROUTER_CONFIG_FIXTURE[2]
+        )
+
+        router = SyncEventsRouter(processors=[], backend_name=RouterConfiguration.XAPI_BACKEND)
+        with self.assertRaises(EventNotDispatched):
+            router.send(self.transformed_event)
