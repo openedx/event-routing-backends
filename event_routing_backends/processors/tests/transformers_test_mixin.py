@@ -119,6 +119,7 @@ class TransformersTestMixin:
                 try:
                     self.compare_events(actual_transformed_event, expected_event)
                 except Exception as e:  # pragma: no cover
+                    print("Comparison failed, writing output to test_output for debugging")
                     with open(f"test_output/generated.{event_filename}.json", "w") as actual_transformed_event_file:
                         try:
                             actual_transformed_event_file.write(actual_transformed_event.to_json())

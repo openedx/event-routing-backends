@@ -118,7 +118,7 @@
 },
 {
   "id": "fd898be3-1b7e-5273-a83f-02cb95cbb91d",
-  "result": {"response": "['a window']", "success": false},
+  "result": {"response": "[\"a window\"]", "success": false},
   "version": "1.0.3",
   "actor": {
     "objectType": "Agent",

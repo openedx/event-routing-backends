@@ -1,6 +1,8 @@
-"""
+""""
 Transformers for problem interaction events.
 """
+import json
+
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result
 
 from event_routing_backends.helpers import get_problem_block_id
@@ -315,6 +317,15 @@ class BaseProblemCheckTransformer(BaseProblemsTransformer):
             response = submission["answer"]
             correct = submission.get("correct")
         else:
+            # The submission key didn't exist until March 2014, prior to that
+            # there was usually a version of the answer in the "answers" key,
+            # but it is very flaky (sometimes containing xml, and without the
+            # appended variant identifier that we get for free in the
+            # submission. We don't attempt to work around those issues here due
+            # to how few and how old those events are and how complicated the
+            # parsing is. Should we ever find it necessary to make a better
+            # parser for them, Insights had a good effort here:
+            # https://github.com/openedx/edx-analytics-pipeline/blob/master/edx/analytics/tasks/insights/answer_dist.py#L260C36-L260C36
             response = event_data.get('answers', None)
             correct = self.get_data('success') == 'correct'
 
@@ -328,7 +339,17 @@ class BaseProblemCheckTransformer(BaseProblemsTransformer):
             else:
                 scaled = 0
 
-        return Result(
+        # Some problems can provide a list of responses answers, but
+        # the Result type wants a string for "response". So we dump those
+        # to JSON here to provide a parsable version of the response instead
+        # of getting the __repr__ of the list, which is what Result will
+        # generate by default.
+        if isinstance(response, list):
+            cls = JSONEncodedResult
+        else:
+            cls = Result
+
+        return cls(
             success=correct,
             score={
                 'min': 0,
@@ -455,3 +476,30 @@ class ProblemCheckChildTransformer(OneToManyChildXApiTransformerMixin, BaseProbl
         submission = self._get_submission() or {}
         result.response = submission.get('answer')
         return result
+
+
+class JSONEncodedResult(Result):
+    """
+    This is a workaround for a TinCan issue where it will coerce a value passed
+    in for a `response` to str. This breaks our ability to serialize list
+    responses into JSON, so we override it here.
+    """
+    @property
+    def response(self):
+        """Response for Result
+
+        :setter: Tries to JSON dump the list value.
+        :setter type: list
+        :rtype: str
+        """
+        return self._response
+
+    @response.setter
+    def response(self, value):
+        """
+        Ensures the list is serialized as JSON.
+        """
+        if not isinstance(value, list):
+            raise ValueError(f"JSONEncodedResult only accepts lists, {type(value)} given.")
+
+        self._response = json.dumps(value)

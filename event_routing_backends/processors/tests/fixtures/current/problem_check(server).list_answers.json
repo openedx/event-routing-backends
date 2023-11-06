@@ -1,0 +1,187 @@
+{
+  "name": "problem_check",
+  "context": {
+    "course_id": "course-v1:edX+DemoX+Demo_Course",
+    "course_user_tags": {},
+    "user_id": 6,
+    "path": "/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4/handler/xmodule_handler/problem_check",
+    "org_id": "edX",
+    "enterprise_uuid": "",
+    "module": {
+      "display_name": "Multiple Choice Questions",
+      "usage_key": "block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4"
+    },
+    "asides": {}
+  },
+  "username": "tacotuesday",
+  "session": "9885dd163f65eed1fe88759c186b4ac3",
+  "ip": "192.168.1.1",
+  "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0",
+  "host": "local.overhang.io",
+  "referer": "http://local.overhang.io/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@54bb9b142c6c4c22afc62bcb628f0e68?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=Homework",
+  "accept_language": "en-US,en;q=0.5",
+  "event": {
+    "state": {
+      "seed": 1,
+      "student_answers": {
+        "a0effb954cca4759994f1ac9e9434bf4_4_1": [
+          "choice_0",
+          "choice_1",
+          "choice_2"
+        ],
+        "a0effb954cca4759994f1ac9e9434bf4_2_1": "blue",
+        "a0effb954cca4759994f1ac9e9434bf4_3_1": "choice_2"
+      },
+      "has_saved_answers": false,
+      "correct_map": {
+        "a0effb954cca4759994f1ac9e9434bf4_2_1": {
+          "correctness": "correct",
+          "npoints": null,
+          "msg": "",
+          "hint": "",
+          "hintmode": null,
+          "queuestate": null,
+          "answervariable": null
+        },
+        "a0effb954cca4759994f1ac9e9434bf4_3_1": {
+          "correctness": "correct",
+          "npoints": null,
+          "msg": "",
+          "hint": "",
+          "hintmode": null,
+          "queuestate": null,
+          "answervariable": null
+        },
+        "a0effb954cca4759994f1ac9e9434bf4_4_1": {
+          "correctness": "incorrect",
+          "npoints": null,
+          "msg": "",
+          "hint": "",
+          "hintmode": null,
+          "queuestate": null,
+          "answervariable": null
+        }
+      },
+      "input_state": {
+        "a0effb954cca4759994f1ac9e9434bf4_2_1": {},
+        "a0effb954cca4759994f1ac9e9434bf4_3_1": {},
+        "a0effb954cca4759994f1ac9e9434bf4_4_1": {},
+        "a0effb954cca4759994f1ac9e9434bf4_5_1": {}
+      },
+      "done": true
+    },
+    "problem_id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4",
+    "answers": {
+      "a0effb954cca4759994f1ac9e9434bf4_4_1": [
+        "choice_0",
+        "choice_1",
+        "choice_2"
+      ],
+      "a0effb954cca4759994f1ac9e9434bf4_5_1": [
+        "choice_0",
+        "choice_1",
+        "choice_2",
+        "choice_3",
+        "choice_4",
+        "choice_5"
+      ],
+      "a0effb954cca4759994f1ac9e9434bf4_2_1": "blue",
+      "a0effb954cca4759994f1ac9e9434bf4_3_1": "choice_2"
+    },
+    "grade": 2,
+    "max_grade": 4,
+    "correct_map": {
+      "a0effb954cca4759994f1ac9e9434bf4_2_1": {
+        "correctness": "correct",
+        "npoints": null,
+        "msg": "",
+        "hint": "",
+        "hintmode": null,
+        "queuestate": null,
+        "answervariable": null
+      },
+      "a0effb954cca4759994f1ac9e9434bf4_3_1": {
+        "correctness": "correct",
+        "npoints": null,
+        "msg": "",
+        "hint": "",
+        "hintmode": null,
+        "queuestate": null,
+        "answervariable": null
+      },
+      "a0effb954cca4759994f1ac9e9434bf4_4_1": {
+        "correctness": "incorrect",
+        "npoints": null,
+        "msg": "",
+        "hint": "",
+        "hintmode": null,
+        "queuestate": null,
+        "answervariable": null
+      },
+      "a0effb954cca4759994f1ac9e9434bf4_5_1": {
+        "correctness": "incorrect",
+        "npoints": null,
+        "msg": "",
+        "hint": "",
+        "hintmode": null,
+        "queuestate": null,
+        "answervariable": null
+      }
+    },
+    "success": "incorrect",
+    "attempts": 9,
+    "submission": {
+      "a0effb954cca4759994f1ac9e9434bf4_4_1": {
+        "question": "",
+        "answer": [
+          "a piano",
+          "a tree",
+          "a guitar"
+        ],
+        "response_type": "choiceresponse",
+        "input_type": "checkboxgroup",
+        "correct": false,
+        "variant": "",
+        "group_label": ""
+      },
+      "a0effb954cca4759994f1ac9e9434bf4_5_1": {
+        "question": "",
+        "answer": [
+          "Un emprunt \u00e0 l'anglais ou anglicisme",
+          "Un type de demande",
+          "Quelque chose de rapide, d'instantan\u00e9",
+          "Une question structur\u00e9e et pr\u00e9cise",
+          "Un type de poisson",
+          "I\"M SWP' \"SDF\""
+        ],
+        "response_type": "choiceresponse",
+        "input_type": "checkboxgroup",
+        "correct": false,
+        "variant": "",
+        "group_label": ""
+      },
+      "a0effb954cca4759994f1ac9e9434bf4_2_1": {
+        "question": "",
+        "answer": "blue",
+        "response_type": "optionresponse",
+        "input_type": "optioninput",
+        "correct": true,
+        "variant": "",
+        "group_label": ""
+      },
+      "a0effb954cca4759994f1ac9e9434bf4_3_1": {
+        "question": "",
+        "answer": "a chair",
+        "response_type": "multiplechoiceresponse",
+        "input_type": "choicegroup",
+        "correct": true,
+        "variant": "",
+        "group_label": ""
+      }
+    }
+  },
+  "time": "2023-11-03T16:31:50.023274+00:00",
+  "event_type": "problem_check",
+  "event_source": "server",
+  "page": "x_module"
+}
