@@ -325,7 +325,7 @@ class BaseProblemCheckTransformer(BaseProblemsTransformer):
             # to how few and how old those events are and how complicated the
             # parsing is. Should we ever find it necessary to make a better
             # parser for them, Insights had a good effort here:
-            # https://github.com/openedx/edx-analytics-pipeline/blob/master/edx/analytics/tasks/insights/answer_dist.py#L260C36-L260C36
+            # https://github.com/openedx/edx-analytics-pipeline/blob/8d96f93/edx/analytics/tasks/insights/answer_dist.py#L260C36-L260C36
             response = event_data.get('answers', None)
             correct = self.get_data('success') == 'correct'
 

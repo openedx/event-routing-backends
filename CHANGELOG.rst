@@ -13,6 +13,14 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+
+[7.0.2]
+
+* Ensure lists of answers in problem_check are properly serialized to JSON so they
+  can be parsed downstream
+
+  **Note: Old events cannot be updated, the log must be replayed (if possible).**
+
 [7.0.1]
 
 * Do not send events for unknown courses
