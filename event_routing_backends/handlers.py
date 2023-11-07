@@ -3,6 +3,9 @@ This module contains the handlers for signals emitted by the analytics app.
 """
 import json
 import logging
+import sched
+import time
+import sys
 
 from django.dispatch import receiver
 from eventtracking.backends.event_bus import EventBusRoutingBackend
@@ -12,6 +15,11 @@ from openedx_events.analytics.signals import TRACKING_LOG_EVENT_EMITTED
 
 logger = logging.getLogger(__name__)
 
+scheduler = sched.scheduler(time.time, time.sleep)
+
+
+def send_batch():
+    print("Sending events in batch")
 
 @receiver(TRACKING_LOG_EVENT_EMITTED)
 def send_tracking_log_to_backends(
@@ -55,3 +63,15 @@ def send_tracking_log_to_backends(
             engine.send_to_backends(processed_event.copy())
         except EventEmissionExit:
             logger.info("[EventEmissionExit] skipping event {}".format(event["name"]))
+
+
+
+def repeat_task():
+    print("Repeat task")
+    scheduler.enter(5, 1, send_batch)
+    scheduler.enter(5, 1, repeat_task, ())
+
+
+if "consume_events" in sys.argv:
+    repeat_task()
+    scheduler.run()
