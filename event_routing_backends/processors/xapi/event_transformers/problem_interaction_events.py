@@ -1,4 +1,4 @@
-""""
+"""
 Transformers for problem interaction events.
 """
 import json
