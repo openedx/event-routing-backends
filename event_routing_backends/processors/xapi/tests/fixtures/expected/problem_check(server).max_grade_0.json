@@ -39,7 +39,7 @@
         "objectType": "Activity"
     },
     "result": {
-        "response": "['a correct answer', 'an incorrect answer']",
+        "response": "[\"a correct answer\", \"an incorrect answer\"]",
         "score": {
             "max": 0,
             "min": 0,

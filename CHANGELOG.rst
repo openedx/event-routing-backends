@@ -13,31 +13,47 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+
+[7.0.2]
+~~~~~~~
+
+* Ensure lists of answers in problem_check are properly serialized to JSON so they
+  can be parsed downstream
+
+  **Note: Old events cannot be updated, the log must be replayed (if possible).**
+
 [7.0.1]
+~~~~~~~
 
 * Do not send events for unknown courses
 
 [7.0.0]
+~~~~~~~
 
 * Multi-question problem_check tracking log statements will now be split into one xAPI statement for each question
 
 [6.2.0]
+~~~~~~~
 
 * Add support for completion events
 
 [6.1.0]
+~~~~~~~
 
 * Add support for exam attempts events
 
 [6.0.0]
+~~~~~~~
 
 * Do not send events for unknown users
 
 [5.5.6]
+~~~~~~~
 
 * upgrading deprecated `djfernet` with `django-fernet-fields-v2`
 
 [5.4.0]
+~~~~~~~
 
 * Add support for the ``edx.course.enrollment.mode_changed`` event
 

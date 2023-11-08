@@ -116,7 +116,7 @@
 },
 {
   "id": "19ff71b6-3e82-5dda-886d-f98182d61b90",
-  "result": {"response": "['a piano', 'a guitar']", "success": true},
+  "result": {"response": "[\"a piano\", \"a guitar\"]", "success": true},
   "version": "1.0.3",
   "actor": {
     "objectType": "Agent",
