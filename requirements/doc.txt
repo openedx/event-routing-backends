@@ -108,6 +108,7 @@ django==3.2.21
     #   edx-toggles
     #   event-tracking
     #   jsonfield
+    #   openedx-filters
 django-config-models==2.5.0
     # via -r requirements/test.txt
 django-crum==0.7.9
@@ -224,6 +225,8 @@ newrelic==9.0.0
     #   edx-django-utils
 nh3==0.2.14
     # via readme-renderer
+openedx-filters==1.6.0
+    # via -r requirements/test.txt
 packaging==23.1
     # via
     #   -r requirements/test.txt

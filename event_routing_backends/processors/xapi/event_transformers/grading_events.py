@@ -4,6 +4,7 @@ Transformers for grading related events.
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result, Verb
 
 from event_routing_backends.helpers import get_course_from_id
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -15,13 +16,14 @@ class SubsectionGradedTransformer(XApiTransformer):
     Transformer for event generated when an subsection is graded.
     """
 
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_EARNED,
         display=LanguageMap({constants.EN: constants.EARNED}),
     )
 
     additional_fields = ("result",)
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.grading_events.subsection_graded.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event related to subsection grading.
@@ -69,13 +71,14 @@ class CourseGradedTransformer(XApiTransformer):
     Transformer for event generated when an course is graded.
     """
 
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_EARNED,
         display=LanguageMap({constants.EN: constants.EARNED}),
     )
 
     additional_fields = ("result",)
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.grading_events.course_graded.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event related to course grading.

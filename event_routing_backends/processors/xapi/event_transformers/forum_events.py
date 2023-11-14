@@ -4,6 +4,7 @@ Transformers for forum related events.
 from django.conf import settings
 from tincan import Activity, ActivityDefinition, LanguageMap, Verb
 
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -14,6 +15,7 @@ class BaseForumThreadTransformer(XApiTransformer):
     Base transformer for forum thread events.
     """
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.forum_events.base_forum_thread.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event related to a thread.
@@ -42,7 +44,7 @@ class ThreadCreatedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner creates a thread in discussion forum.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_POSTED,
         display=LanguageMap({constants.EN: constants.POSTED}),
     )
@@ -69,7 +71,7 @@ class ThreadEditedTransformer(BaseForumThreadTransformer):
     Transformers for event generated when learner modifies a
     thread/response/comment in discussion forum.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_EDITED,
         display=LanguageMap({constants.EN: constants.EDITED}),
     )
@@ -80,7 +82,7 @@ class ThreadViewedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner viewes a thread in discussion forum.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_VIEWED,
         display=LanguageMap({constants.EN: constants.VIEWED}),
     )
@@ -94,7 +96,7 @@ class ThreadDeletedTransformer(BaseForumThreadTransformer):
     Transformers for event generated when learner deletes a
     thread/response/comment in discussion forum.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_DELETED,
         display=LanguageMap({constants.EN: constants.DELETED}),
     )
@@ -106,7 +108,7 @@ class ThreadVotedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner votes on a thread/response in discussion forum.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_VOTED,
         display=LanguageMap({constants.EN: constants.VOTED}),
     )
@@ -132,7 +134,7 @@ class ThreadResponseCreatedTransformer(BaseForumThreadTransformer):
     Transformer for event generated when learner creates a response
     or comment under a thread in discussion forum.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_POSTED,
         display=LanguageMap({constants.EN: constants.POSTED}),
     )
@@ -146,7 +148,7 @@ class ThreadResponseReportedTransformer(BaseForumThreadTransformer):
     Transformer for event generated when learner reports a thread,
     response or comment as inappropriate.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_REPORTED,
         display=LanguageMap({constants.EN: constants.REPORTED}),
     )
@@ -160,7 +162,7 @@ class ThreadResponseUnReportedTransformer(BaseForumThreadTransformer):
     Transformer for event generated when learner unreports a thread,
     response or comment which was earlier reported as inappropriate.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_UNREPORTED,
         display=LanguageMap({constants.EN: constants.UNREPORTED}),
     )

@@ -3,6 +3,7 @@ Transformers for navigation related events.
 """
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap
 
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -50,6 +51,7 @@ class LinkClickedTransformer(NavigationTransformersMixin):
     xAPI transformer for event generated when user clicks a link.
     """
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.navigation_events.link_clicked.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event.
@@ -72,6 +74,7 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
     xAPI transformer for Navigation events.
     """
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.navigation_events.outline_selected.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event.
@@ -96,6 +99,7 @@ class TabNavigationTransformer(NavigationTransformersMixin):
     xAPI transformer for Navigation events.
     """
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.navigation_events.tab_navigation.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event.

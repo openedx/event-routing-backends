@@ -8,3 +8,7 @@
 .wy-table-responsive {
     overflow: visible !important;
 }
+
+.bd-page-width {
+    max-width: 96rem;
+}

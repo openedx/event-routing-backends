@@ -35,6 +35,7 @@ from django.conf import settings
 from tincan import Activity, ActivityDefinition, Extensions, Result
 
 from event_routing_backends.helpers import convert_seconds_to_float, make_video_block_id
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
@@ -133,6 +134,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
     """
     verb_map = VERB_MAP
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.video_events.base_video.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event.

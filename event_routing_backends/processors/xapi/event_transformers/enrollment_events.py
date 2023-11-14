@@ -5,6 +5,7 @@ Transformers for enrollment related events.
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Verb
 
 from event_routing_backends.helpers import get_course_from_id
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -25,6 +26,7 @@ class BaseEnrollmentTransformer(XApiTransformer):
 
         return None
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.enrollment_events.base_enrollment.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event.
@@ -55,7 +57,7 @@ class EnrollmentActivatedTransformer(BaseEnrollmentTransformer):
     """
     Transformers for event generated when learner enrolls or gets the enrollment mode changed in a course.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_REGISTERED,
         display=LanguageMap({constants.EN: constants.REGISTERED}),
     )
@@ -66,7 +68,7 @@ class EnrollmentDeactivatedTransformer(BaseEnrollmentTransformer):
     """
     Transformers for event generated when learner un-enrolls from a course.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_UNREGISTERED,
         display=LanguageMap({constants.EN: constants.UNREGISTERED}),
     )
@@ -77,7 +79,7 @@ class CourseGradePassedFirstTimeTransformer(BaseEnrollmentTransformer):
     """
     Transformers for event generated when learner pass course grade first time from a course.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_PASSED,
         display=LanguageMap({constants.EN: constants.PASSED}),
     )
@@ -88,7 +90,7 @@ class CourseGradeNowPassedTransformer(BaseEnrollmentTransformer):
     """
     Transformers for event generated when learner pass course grade first time from a course.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_PASSED,
         display=LanguageMap({constants.EN: constants.PASSED}),
     )
@@ -99,7 +101,7 @@ class CourseGradeNowFailedTransformer(BaseEnrollmentTransformer):
     """
     Transformers for event generated when learner pass course grade first time from a course.
     """
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_FAILED,
         display=LanguageMap({constants.EN: constants.FAILED}),
     )

@@ -3,6 +3,7 @@ Transformers for forum related events.
 """
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result, Verb
 
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -14,13 +15,16 @@ class CompletionCreatedTransformer(XApiTransformer):
     Transformers for event generated when an student completion is created or updated.
     """
 
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_PROGRESSED,
         display=LanguageMap({constants.EN: constants.PROGRESSED}),
     )
 
     additional_fields = ('result', )
 
+    @openedx_filter(
+        filter_type="event_routing_backends.processors.xapi.completion_events.completion_created.get_object",
+    )
     def get_object(self):
         """
         Get object for xAPI transformed event related to a thread.
