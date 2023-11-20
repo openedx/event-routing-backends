@@ -93,6 +93,7 @@ ddt==1.6.0
     #   edx-toggles
     #   event-tracking
     #   jsonfield
+    #   openedx-filters
 django-config-models==2.5.0
     # via -r requirements/base.txt
 django-crum==0.7.9
@@ -165,6 +166,8 @@ newrelic==9.0.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
+openedx-filters==1.6.0
+    # via -r requirements/base.txt
 packaging==23.1
     # via pytest
 pbr==5.11.1

@@ -20,6 +20,7 @@ from tincan import (
 
 from event_routing_backends.helpers import get_anonymous_user_id, get_course_from_id, get_user_email, get_uuid5
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 
 
@@ -76,8 +77,9 @@ class XApiTransformer(BaseTransformerMixin):
         actor = self.get_actor()
         event_timestamp = self.get_timestamp()
         uuid_str = f'{actor.to_json()}-{event_timestamp}'
-        return get_uuid5(self.verb.to_json(), uuid_str)  # pylint: disable=no-member
+        return get_uuid5(self.get_verb().to_json(), uuid_str)
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.transformer.xapi_transformer.get_actor")
     def get_actor(self):
         """
         Return `Agent` object for the event.
@@ -99,6 +101,14 @@ class XApiTransformer(BaseTransformerMixin):
                 account={"homePage": settings.LMS_ROOT_URL, "name": user_uuid}
             )
         return agent
+
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.transformer.xapi_transformer.get_verb")
+    def get_verb(self):
+        """
+        This intercepts the super verb value or the attribute class `_verb` in order to allow the openedx
+        filters implementation.
+        """
+        return super().get_verb() if hasattr(super(), "get_verb") else self._verb  # pylint: disable=no-member
 
     def get_timestamp(self):
         """
@@ -167,8 +177,7 @@ class XApiVerbTransformerMixin:
     """
     verb_map = None
 
-    @property
-    def verb(self):
+    def get_verb(self):
         """
         Get verb for xAPI transformed event.
 
@@ -260,6 +269,7 @@ class OneToManyChildXApiTransformerMixin:
 
     The parent event transformer should inherit from OneToManyXApiTransformer.
     """
+
     def __init__(self, parent, child_id, *args, **kwargs):
         """
         Stores the parent event transformer, and this child's identifier,
@@ -286,7 +296,7 @@ class OneToManyChildXApiTransformerMixin:
         actor = self.get_actor()
         event_timestamp = self.get_timestamp()
         name = f'{actor.to_json()}-{event_timestamp}'
-        namespace_key = f'{self.verb.to_json()}-{self.child_id}'
+        namespace_key = f'{self.get_verb().to_json()}-{self.child_id}'
         return get_uuid5(namespace_key, name)
 
     def get_context(self):

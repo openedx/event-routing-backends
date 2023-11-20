@@ -231,6 +231,10 @@ html_favicon = "https://logos.openedx.org/open-edx-favicon.ico"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = [
+    'theme_overrides.css',
+]
+
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.

@@ -6,6 +6,7 @@ import json
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result
 
 from event_routing_backends.helpers import get_problem_block_id
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.statements import GroupActivity
@@ -78,6 +79,9 @@ class BaseProblemsTransformer(XApiTransformer, XApiVerbTransformerMixin):
     """
     verb_map = VERB_MAP
 
+    @openedx_filter(
+        filter_type="event_routing_backends.processors.xapi.problem_interaction_events.base_problems.get_object",
+    )
     def get_object(self):
         """
         Get object for xAPI transformed event.
@@ -212,6 +216,9 @@ class BaseProblemCheckTransformer(BaseProblemsTransformer):
     """
     additional_fields = ('result', )
 
+    @openedx_filter(
+        filter_type="event_routing_backends.processors.xapi.problem_interaction_events.base_problem_check.get_object",
+    )
     def get_object(self):
         """
         Get object for xAPI transformed event.

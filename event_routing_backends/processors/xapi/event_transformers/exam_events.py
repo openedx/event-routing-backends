@@ -4,6 +4,7 @@ Transformers for enrollment related events.
 
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Verb
 
+from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
@@ -16,6 +17,7 @@ class BaseExamTransformer(XApiTransformer):
 
     exam_type_activity = None
 
+    @openedx_filter(filter_type="event_routing_backends.processors.xapi.exam_events.base_exam.get_object")
     def get_object(self):
         """
         Get object for xAPI transformed event.
@@ -101,7 +103,7 @@ class InitializedMixin:
     Base transformer for initialized exam events
     """
 
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_INITIALIZED,
         display=LanguageMap({constants.EN: constants.INITIALIZED}),
     )
@@ -112,7 +114,7 @@ class TerminatedMixin:
     Base transformer for terminated exam events
     """
 
-    verb = Verb(
+    _verb = Verb(
         id=constants.XAPI_VERB_TERMINATED,
         display=LanguageMap({constants.EN: constants.TERMINATED}),
     )

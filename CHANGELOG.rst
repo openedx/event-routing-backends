@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[7.1.0]
+~~~~~~~
+
+* Add support for openedx-filter that basically allows to extend or change the standard behavior
+
 [7.0.2]
 ~~~~~~~
 
