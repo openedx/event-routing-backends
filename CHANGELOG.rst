@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[7.2.0]
+~~~~~~~
+
+* Add support for usernames that are numeric.
+
 [7.1.0]
 ~~~~~~~
 

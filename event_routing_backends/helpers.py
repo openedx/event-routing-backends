@@ -93,17 +93,16 @@ def get_user(username_or_id):
     Returns:
         user object
     """
-    user = user_id = username = None
-    if username_or_id:
-        try:
-            user_id = int(username_or_id)
-        except ValueError:
-            username = username_or_id
+    user = username = None
 
-    if username:
+    if not username_or_id:
+        return None
+
+    try:
+        user = User.objects.get(id=int(username_or_id))
+    except (User.DoesNotExist, ValueError):
+        username = username_or_id
         user = User.objects.filter(username=username).first()
-    elif user_id:
-        user = User.objects.filter(id=user_id).first()
 
     if username and not user:
         try:
