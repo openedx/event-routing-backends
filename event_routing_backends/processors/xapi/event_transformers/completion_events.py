@@ -1,7 +1,7 @@
 """
-Transformers for forum related events.
+Transformers for completion related events.
 """
-from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result, Verb
+from tincan import Activity, ActivityDefinition, LanguageMap, Verb
 
 from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
 from event_routing_backends.processors.xapi import constants
@@ -9,46 +9,50 @@ from event_routing_backends.processors.xapi.registry import XApiTransformersRegi
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
 
 
-@XApiTransformersRegistry.register("edx.completion.block_completion.changed")
-class CompletionCreatedTransformer(XApiTransformer):
+class BaseCompletionTransformer(XApiTransformer):
     """
-    Transformers for event generated when an student completion is created or updated.
+    Base transformer for completion events.
     """
-
     _verb = Verb(
-        id=constants.XAPI_VERB_PROGRESSED,
-        display=LanguageMap({constants.EN: constants.PROGRESSED}),
+        id=constants.XAPI_VERB_COMPLETED,
+        display=LanguageMap({constants.EN: constants.COMPLETED}),
     )
-
-    additional_fields = ('result', )
+    object_type = None
 
     @openedx_filter(
-        filter_type="event_routing_backends.processors.xapi.completion_events.completion_created.get_object",
+        filter_type="event_routing_backends.processors.xapi.completion_events.base_completion.get_object",
     )
     def get_object(self):
         """
-        Get object for xAPI transformed event related to a thread.
+        Get object for xAPI transformed event.
 
         Returns:
             `Activity`
         """
+        if not self.object_type:
+            raise NotImplementedError()
+
         return Activity(
             id=self.get_object_iri("xblock", self.get_data("data.block_id")),
             definition=ActivityDefinition(
-                type=constants.XAPI_ACTIVITY_RESOURCE,
+                type=self.object_type,
             ),
         )
 
-    def get_result(self):
-        """
-        Get result for xAPI transformed event related to a thread.
 
-        Returns:
-            `Result`
-        """
-        return Result(
-            completion=self.get_data("data.completion") == 1.0,
-            extensions=Extensions(
-                {constants.XAPI_ACTIVITY_PROGRESS: self.get_data("data.completion")*100}
-            ),
-        )
+@XApiTransformersRegistry.register("edx.completion_aggregator.completion.chapter")
+@XApiTransformersRegistry.register("edx.completion_aggregator.completion.sequential")
+@XApiTransformersRegistry.register("edx.completion_aggregator.completion.vertical")
+class ModuleCompletionTransformer(BaseCompletionTransformer):
+    """
+    Transformer for events generated when a user completes a section, subsection or unit.
+    """
+    object_type = constants.XAPI_ACTIVITY_MODULE
+
+
+@XApiTransformersRegistry.register("edx.completion_aggregator.completion.course")
+class CourseCompletionTransformer(BaseCompletionTransformer):
+    """
+    Transformer for event generated when a user completes a course.
+    """
+    object_type = constants.XAPI_ACTIVITY_COURSE

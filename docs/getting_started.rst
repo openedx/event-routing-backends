@@ -236,7 +236,7 @@ xAPI Filters
 +-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 | event_routing_backends.processors.xapi.transformer.xapi_transformer.get_verb                    | Intercepts and allows to modify the xAPI actor field, this affects all xAPI events |
 +-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
-| event_routing_backends.processors.xapi.completion_events.completion_created.get_object          | Allows to modify the xAPI object field, this just affects completion events        |
+| event_routing_backends.processors.xapi.completion_events.base_completion.get_object             | Allows to modify the xAPI object field, this just affects completion events        |
 +-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 | event_routing_backends.processors.xapi.enrollment_events.base_enrollment.get_object             | Allows to modify the xAPI object field, this just affects enrollment events        |
 +-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
@@ -259,6 +259,8 @@ xAPI Filters
 | event_routing_backends.processors.xapi.problem_interaction_events.base_problem_check.get_object | Allows to modify the xAPI object field, this just affects problem_check events     |
 +-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 | event_routing_backends.processors.xapi.video_events.base_video.get_object                       | Allows to modify the xAPI object field, this affects all video events              |
++-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+| event_routing_backends.processors.xapi.progress_events.base_progress.get_object                 | Allows to modify the xAPI object field, this affects all progress events           |
 +-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------+
 
 .. _event-tracking: https://github.com/openedx/event-tracking

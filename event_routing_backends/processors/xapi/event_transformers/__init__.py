@@ -2,7 +2,10 @@
 All xAPI transformers.
 """
 
-from event_routing_backends.processors.xapi.event_transformers.completion_events import CompletionCreatedTransformer
+from event_routing_backends.processors.xapi.event_transformers.completion_events import (
+    CourseCompletionTransformer,
+    ModuleCompletionTransformer,
+)
 from event_routing_backends.processors.xapi.event_transformers.enrollment_events import (
     EnrollmentActivatedTransformer,
     EnrollmentDeactivatedTransformer,
@@ -38,6 +41,11 @@ from event_routing_backends.processors.xapi.event_transformers.problem_interacti
     ProblemCheckTransformer,
     ProblemEventsTransformer,
     ProblemSubmittedTransformer,
+)
+from event_routing_backends.processors.xapi.event_transformers.progress_events import (
+    CompletionCreatedTransformer,
+    CourseProgressTransformer,
+    ModuleProgressTransformer,
 )
 from event_routing_backends.processors.xapi.event_transformers.video_events import (
     VideoCCTransformers,

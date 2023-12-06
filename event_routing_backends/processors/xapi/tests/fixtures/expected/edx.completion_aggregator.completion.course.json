@@ -1,0 +1,45 @@
+{
+   "actor": {
+      "objectType": "Agent",
+      "account": {
+         "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb",
+         "homePage": "http://localhost:18000"
+      }
+   },
+   "id":"484fe8d7-7a5b-52ff-a0ab-3d3d8c1a8b27",
+   "object":{
+      "id":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@course+block@course",
+      "definition":{
+         "type":"http://adlnet.gov/expapi/activities/course"
+      },
+      "objectType":"Activity"
+   },
+   "verb":{
+      "id":"http://adlnet.gov/expapi/verbs/completed",
+      "display":{
+         "en":"completed"
+      }
+   },
+   "version":"1.0.3",
+   "context":{
+      "contextActivities":{
+         "parent":[
+            {
+               "id":"http://localhost:18000/course/course-v1:edX+DemoX+Demo_Course",
+               "objectType":"Activity",
+               "definition":{
+                  "name":{
+                     "en-US":"Demonstration Course"
+                  },
+                  "type":"http://adlnet.gov/expapi/activities/course"
+               }
+            }
+         ]
+      },
+      "extensions":{
+         "https://w3id.org/xapi/openedx/extension/transformer-version":"event-routing-backends@1.1.1",
+         "https://w3id.org/xapi/openedx/extensions/session-id":"056aca2a1c6b76742b283e73d3424453"
+      }
+   },
+   "timestamp":"2023-12-05T21:34:52.909063+00:00"
+}
