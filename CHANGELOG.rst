@@ -17,7 +17,7 @@ Unreleased
 [8.0.0]
 ~~~~~~~
 
-* Add transformer argument to openedx dynamic filter.
+* **BREAKING CHANGE**: Add transformer argument to openedx dynamic filter.
 
 [7.2.0]
 ~~~~~~~
