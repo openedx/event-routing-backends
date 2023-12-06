@@ -41,6 +41,7 @@ def openedx_filter(filter_type):
             dynamic_filter = ProcessorBaseFilter.generate_dynamic_filter(filter_type=filter_type)
 
             return dynamic_filter.run_filter(
+                transformer=args[0],
                 result=func(*args, **kwargs),
             )
 

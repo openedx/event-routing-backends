@@ -1,6 +1,6 @@
 """Test cases for the filters file."""
 from django.test import TestCase
-from mock import patch
+from mock import Mock, patch
 from openedx_filters.tooling import OpenEdxPublicFilter
 
 from event_routing_backends.processors.openedx_filters.exceptions import InvalidFilterType
@@ -17,7 +17,7 @@ class TestProcessorBaseFilter(TestCase):
         Expected behavior:
             - InvalidFilterType exception is raised
         """
-        self.assertRaises(InvalidFilterType, ProcessorBaseFilter.run_filter, "dummy_value")
+        self.assertRaises(InvalidFilterType, ProcessorBaseFilter.run_filter, Mock(), "dummy_value")
 
     @patch.object(OpenEdxPublicFilter, "run_pipeline")
     def test_expected_value(self, run_pipeline_mock):
@@ -28,13 +28,14 @@ class TestProcessorBaseFilter(TestCase):
             - run_pipeline is called with the right key and value
             - run_filter returns the value of the result key
         """
+        transformer = Mock()
         run_pipeline_mock.return_value = {
             "result": "expected_value"
         }
         input_value = "dummy_value"
         openedx_filter = ProcessorBaseFilter.generate_dynamic_filter(filter_type="test_filter")
 
-        result = openedx_filter.run_filter(result=input_value)
+        result = openedx_filter.run_filter(transformer=transformer, result=input_value)
 
-        run_pipeline_mock.assert_called_once_with(result=input_value)
+        run_pipeline_mock.assert_called_once_with(transformer=transformer, result=input_value)
         self.assertEqual(run_pipeline_mock()["result"], result)
