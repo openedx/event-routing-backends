@@ -20,7 +20,7 @@ asgiref==3.7.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.0.1
+astroid==3.0.2
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -103,16 +103,16 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.3.2
+coverage[toml]==7.4.0
     # via
     #   -r requirements/quality.txt
     #   coverage
     #   pytest-cov
-cryptography==41.0.7
+cryptography==42.0.0
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
-ddt==1.7.0
+ddt==1.7.1
     # via -r requirements/quality.txt
 diff-cover==4.0.0
     # via
@@ -122,7 +122,7 @@ dill==0.3.7
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.3.7
+distlib==0.3.8
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -156,7 +156,7 @@ django-model-utils==4.3.1
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-waffle==4.0.0
+django-waffle==4.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -167,7 +167,7 @@ djangorestframework==3.14.0
     #   django-config-models
 edx-celeryutils==1.2.3
     # via -r requirements/quality.txt
-edx-django-utils==5.9.0
+edx-django-utils==5.10.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -187,7 +187,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==20.1.0
+faker==22.5.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -202,7 +202,7 @@ idna==3.6
     # via
     #   -r requirements/quality.txt
     #   requests
-importlib-metadata==7.0.0
+importlib-metadata==7.0.1
     # via
     #   -r requirements/pip-tools.txt
     #   build
@@ -214,11 +214,11 @@ iniconfig==2.0.0
     #   pytest
 isodate==0.6.1
     # via -r requirements/quality.txt
-isort==5.12.0
+isort==5.13.2
     # via
     #   -r requirements/quality.txt
     #   pylint
-jinja2==3.1.2
+jinja2==3.1.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -230,13 +230,13 @@ jsonfield==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-kombu==5.3.4
+kombu==5.3.5
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml==4.9.3
+lxml==5.1.0
     # via edx-i18n-tools
-markupsafe==2.1.3
+markupsafe==2.1.4
     # via
     #   -r requirements/quality.txt
     #   jinja2
@@ -246,7 +246,7 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==9.3.0
+newrelic==9.5.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -285,11 +285,11 @@ pluggy==1.3.0
     #   tox
 polib==1.2.0
     # via edx-i18n-tools
-prompt-toolkit==3.0.41
+prompt-toolkit==3.0.43
     # via
     #   -r requirements/quality.txt
     #   click-repl
-psutil==5.9.6
+psutil==5.9.8
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -299,15 +299,15 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==2.5.2
+pydantic==2.5.3
     # via inflect
-pydantic-core==2.14.5
+pydantic-core==2.14.6
     # via pydantic
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.17.2
     # via diff-cover
-pylint==3.0.2
+pylint==3.0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -343,7 +343,7 @@ pyproject-hooks==1.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pytest==7.4.3
+pytest==7.4.4
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -420,9 +420,9 @@ tomlkit==0.12.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.11.4
+tox==4.12.1
     # via -r requirements/ci.txt
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via
     #   -r requirements/quality.txt
     #   annotated-types
@@ -434,7 +434,7 @@ typing-extensions==4.8.0
     #   pydantic
     #   pydantic-core
     #   pylint
-tzdata==2023.3
+tzdata==2023.4
     # via
     #   -r requirements/quality.txt
     #   backports-zoneinfo
@@ -453,7 +453,7 @@ virtualenv==20.25.0
     # via
     #   -r requirements/ci.txt
     #   tox
-wcwidth==0.2.12
+wcwidth==0.2.13
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
