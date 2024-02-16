@@ -1,0 +1,48 @@
+{
+    "id": "203e182c-6a2d-5458-9c61-a271297d459a",
+    "actor": {
+        "objectType": "Agent",
+        "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "http://localhost:18000/course/ccx-v1:edX+DemoX+Demo_Course+ccx@1",
+                    "objectType": "Activity",
+                    "definition": {
+                      "name": {
+                        "en-US": "Demonstration Course"
+                      },
+                      "type": "http://adlnet.gov/expapi/activities/course"
+                    }
+                }
+            ]
+        },
+        "extensions": {
+            "https://w3id.org/xapi/openedx/extension/transformer-version": "event-routing-backends@1.1.1",
+            "https://w3id.org/xapi/openedx/extensions/session-id": "993110e9c27848a545da74a74114158d",
+            "https://w3id.org/xapi/video/extensions/length": 195.0
+        }
+    },
+    "object": {
+        "definition": {
+            "type": "https://w3id.org/xapi/video/activity-type/video"
+        },
+        "id": "http://localhost:18000/xblock/ccx-block-v1:edX+DemoX+Demo_Course+ccx@1+type@video+block@0b9e39477cf34507a7a48f74be381fdd",
+        "objectType": "Activity"
+    },
+    "result": {
+        "extensions": {
+            "https://w3id.org/xapi/video/extensions/time": 0.033
+        }
+    },
+    "timestamp": "2020-07-15T06:52:55.057099+00:00",
+    "verb": {
+        "display": {
+            "en": "played"
+        },
+        "id": "https://w3id.org/xapi/video/verbs/played"
+    },
+    "version": "1.0.3"
+}

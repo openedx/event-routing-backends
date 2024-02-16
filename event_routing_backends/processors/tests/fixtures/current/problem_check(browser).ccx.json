@@ -1,0 +1,21 @@
+{
+    "context": {
+        "accept_language": "en-US,en;q=0.9",
+        "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+        "client_id": "667522224.1583394645",
+        "course_id": "ccx-v1:edX+DemoX+Demo_Course+ccx@1",
+        "event_source": "browser",
+        "host": "localhost:18000",
+        "ip": "172.18.0.1",
+        "org_id": "edX",
+        "page": "http://localhost:18000/courses/ccx-block-v1:edX+DemoX+Demo_Course+ccx@1/courseware/8b66dcd2d6134eda9355089ece4f39f6/ef37eb3cf1724e38b7f88a9ce85a4842/?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40sequential%2Bblock%40ef37eb3cf1724e38b7f88a9ce85a4842",
+        "path": "/event",
+        "referer": "http://localhost:18000/xblock/ccx-block-v1:edX+DemoX+Demo_Course+ccx@1+type@vertical+block@e3601c0abee6427d8c17e6d6f8fdddd1?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view",
+        "session": "6ad0a24d8303f49d14409a669d430b6f",
+        "user_id": 3,
+        "username": "edx"
+    },
+    "data": "input_3fc5461f86764ad7bdbdf6cbdde61e66_2_1%5B%5D=choice_0&input_3fc5461f86764ad7bdbdf6cbdde61e66_2_1%5B%5D=choice_2",
+    "name": "problem_check",
+    "timestamp": "2020-07-14T14:39:26.580443+00:00"
+}
