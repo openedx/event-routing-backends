@@ -20,15 +20,18 @@ asgiref==3.7.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.0.1
+astroid==3.0.3
     # via
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
+attrs==23.2.0
+    # via
+    #   -r requirements/quality.txt
+    #   openedx-events
 backports-zoneinfo[tzdata]==0.2.1
     # via
     #   -r requirements/quality.txt
-    #   backports-zoneinfo
     #   celery
     #   kombu
 billiard==4.2.0
@@ -48,7 +51,7 @@ celery==5.3.6
     #   -r requirements/quality.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2023.11.17
+certifi==2024.2.2
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -94,7 +97,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/quality.txt
     #   celery
-code-annotations==1.5.0
+code-annotations==1.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -103,30 +106,29 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.3.2
+coverage[toml]==7.4.1
     # via
     #   -r requirements/quality.txt
-    #   coverage
     #   pytest-cov
-cryptography==41.0.7
+cryptography==42.0.3
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
-ddt==1.7.0
+ddt==1.7.1
     # via -r requirements/quality.txt
 diff-cover==4.0.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/dev.in
-dill==0.3.7
+dill==0.3.8
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.3.7
+distlib==0.3.8
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==3.2.23
+django==3.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -142,6 +144,7 @@ django==3.2.23
     #   edx-toggles
     #   event-tracking
     #   jsonfield
+    #   openedx-events
     #   openedx-filters
 django-config-models==2.5.1
     # via -r requirements/quality.txt
@@ -152,11 +155,11 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields-v2==0.9
     # via -r requirements/quality.txt
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-waffle==4.0.0
+django-waffle==4.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -165,21 +168,28 @@ djangorestframework==3.14.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
-edx-celeryutils==1.2.3
+edx-celeryutils==1.2.5
     # via -r requirements/quality.txt
-edx-django-utils==5.9.0
+edx-django-utils==5.10.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
     #   edx-toggles
     #   event-tracking
+    #   openedx-events
 edx-i18n-tools==1.3.0
     # via -r requirements/dev.in
 edx-lint==5.3.6
     # via -r requirements/quality.txt
-edx-toggles==5.1.0
-    # via -r requirements/quality.txt
-event-tracking==2.2.0
+edx-opaque-keys[django]==2.5.1
+    # via
+    #   -r requirements/quality.txt
+    #   openedx-events
+edx-toggles==5.1.1
+    # via
+    #   -r requirements/quality.txt
+    #   event-tracking
+event-tracking==2.3.0
     # via -r requirements/quality.txt
 exceptiongroup==1.2.0
     # via
@@ -187,10 +197,14 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==20.1.0
+faker==23.2.1
     # via
     #   -r requirements/quality.txt
     #   factory-boy
+fastavro==1.9.4
+    # via
+    #   -r requirements/quality.txt
+    #   openedx-events
 fasteners==0.19
     # via -r requirements/quality.txt
 filelock==3.13.1
@@ -202,7 +216,7 @@ idna==3.6
     # via
     #   -r requirements/quality.txt
     #   requests
-importlib-metadata==7.0.0
+importlib-metadata==7.0.1
     # via
     #   -r requirements/pip-tools.txt
     #   build
@@ -214,11 +228,11 @@ iniconfig==2.0.0
     #   pytest
 isodate==0.6.1
     # via -r requirements/quality.txt
-isort==5.12.0
+isort==5.13.2
     # via
     #   -r requirements/quality.txt
     #   pylint
-jinja2==3.1.2
+jinja2==3.1.3
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -230,13 +244,13 @@ jsonfield==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-kombu==5.3.4
+kombu==5.3.5
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml==4.9.3
+lxml==5.1.0
     # via edx-i18n-tools
-markupsafe==2.1.3
+markupsafe==2.1.5
     # via
     #   -r requirements/quality.txt
     #   jinja2
@@ -246,10 +260,14 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==9.3.0
+newrelic==9.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
+openedx-events==9.5.1
+    # via
+    #   -r requirements/quality.txt
+    #   event-tracking
 openedx-filters==1.6.0
     # via -r requirements/quality.txt
 packaging==23.2
@@ -261,22 +279,22 @@ packaging==23.2
     #   pyproject-api
     #   pytest
     #   tox
-path==16.9.0
+path==16.10.0
     # via edx-i18n-tools
 pbr==6.0.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pip-tools==7.3.0
+pip-tools==7.4.0
     # via -r requirements/pip-tools.txt
-platformdirs==4.1.0
+platformdirs==4.2.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   pylint
     #   tox
     #   virtualenv
-pluggy==1.3.0
+pluggy==1.4.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -285,11 +303,11 @@ pluggy==1.3.0
     #   tox
 polib==1.2.0
     # via edx-i18n-tools
-prompt-toolkit==3.0.41
+prompt-toolkit==3.0.43
     # via
     #   -r requirements/quality.txt
     #   click-repl
-psutil==5.9.6
+psutil==5.9.8
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -299,15 +317,15 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==2.5.2
+pydantic==2.6.1
     # via inflect
-pydantic-core==2.14.5
+pydantic-core==2.16.2
     # via pydantic
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.17.2
     # via diff-cover
-pylint==3.0.2
+pylint==3.0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -330,6 +348,7 @@ pylint-plugin-utils==0.8.2
 pymongo==3.13.0
     # via
     #   -r requirements/quality.txt
+    #   edx-opaque-keys
     #   event-tracking
 pynacl==1.5.0
     # via
@@ -343,25 +362,26 @@ pyproject-hooks==1.0.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
-pytest==7.4.3
+    #   pip-tools
+pytest==8.0.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
     #   pytest-django
 pytest-cov==4.1.0
     # via -r requirements/quality.txt
-pytest-django==4.7.0
+pytest-django==4.8.0
     # via -r requirements/quality.txt
 python-dateutil==2.8.2
     # via
     #   -r requirements/quality.txt
     #   celery
     #   faker
-python-slugify==8.0.1
+python-slugify==8.0.4
     # via
     #   -r requirements/quality.txt
     #   code-annotations
-pytz==2023.3.post1
+pytz==2024.1
     # via
     #   -r requirements/quality.txt
     #   django
@@ -397,6 +417,7 @@ stevedore==5.1.0
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-django-utils
+    #   edx-opaque-keys
 text-unidecode==1.3
     # via
     #   -r requirements/quality.txt
@@ -420,26 +441,27 @@ tomlkit==0.12.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.11.4
+tox==4.12.1
     # via -r requirements/ci.txt
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via
     #   -r requirements/quality.txt
     #   annotated-types
     #   asgiref
     #   astroid
+    #   edx-opaque-keys
     #   faker
     #   inflect
     #   kombu
     #   pydantic
     #   pydantic-core
     #   pylint
-tzdata==2023.3
+tzdata==2024.1
     # via
     #   -r requirements/quality.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.1.0
+urllib3==2.2.0
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -453,7 +475,7 @@ virtualenv==20.25.0
     # via
     #   -r requirements/ci.txt
     #   tox
-wcwidth==0.2.12
+wcwidth==0.2.13
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit

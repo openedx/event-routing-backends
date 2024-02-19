@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[8.1.0]
+~~~~~~~
+
+* Add support to consume tracking logs from the event bus.
+
 [8.0.0]
 ~~~~~~~
 
