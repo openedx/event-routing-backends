@@ -107,7 +107,7 @@ def get_user(username_or_id):
     if username and not user:
         try:
             user = get_potentially_retired_user_by_username(username)
-        except Exception as ex:  # pylint: disable=broad-except
+        except Exception as ex:
             logger.info('User with username "%s" does not exist.%s', username, ex)
 
     return user
