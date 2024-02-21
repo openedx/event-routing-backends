@@ -259,7 +259,7 @@ class TestEventsRouter(TestCase):
 
 
 @ddt.ddt
-class TestAsyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-tests
+class TestAsyncEventsRouter(TestEventsRouter):
     """
     Test the AsyncEventsRouter
     """
@@ -800,7 +800,7 @@ class TestAsyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-
 
 
 @ddt.ddt
-class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-tests
+class TestSyncEventsRouter(TestEventsRouter):
     """
     Test the SyncEventsRouter
     """
