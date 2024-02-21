@@ -64,7 +64,7 @@ class TestXApiProcessor(SimpleTestCase):
 
         self.processor([self.sample_event])
 
-        self.assertIn(call(transformed_event.to_json()), mocked_logger.mock_calls)
+        self.assertIn(call.info(transformed_event.to_json()), mocked_logger.mock_calls)
 
     @patch(
         'event_routing_backends.processors.xapi.transformer_processor.XApiTransformersRegistry.get_transformer'
