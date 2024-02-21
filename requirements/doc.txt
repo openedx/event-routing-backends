@@ -95,6 +95,7 @@ cryptography==42.0.4
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
+    #   secretstorage
 ddt==1.7.1
     # via -r requirements/test.txt
 django==3.2.24
