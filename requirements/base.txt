@@ -48,7 +48,7 @@ click-repl==0.3.0
     # via celery
 code-annotations==1.6.0
     # via edx-toggles
-cryptography==42.0.3
+cryptography==42.0.4
     # via django-fernet-fields-v2
 django==3.2.24
     # via
@@ -119,7 +119,7 @@ markupsafe==2.1.5
     # via jinja2
 newrelic==9.6.0
     # via edx-django-utils
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via event-tracking
 openedx-filters==1.6.0
     # via -r requirements/base.in
@@ -181,7 +181,7 @@ tzdata==2024.1
     # via
     #   backports-zoneinfo
     #   celery
-urllib3==2.2.0
+urllib3==2.2.1
     # via requests
 vine==5.1.0
     # via
