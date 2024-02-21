@@ -71,6 +71,7 @@ class TestXApiProcessor(SimpleTestCase):
     )
     @patch('event_routing_backends.processors.xapi.transformer_processor.xapi_logger')
     def test_send_method_with_event_list_successfull_flow(self, mocked_logger, mocked_get_transformer):
+
         transformed_event = Statement()
         transformed_event.object = Activity(id=str(uuid.uuid4()))
         mocked_transformer = MagicMock()
@@ -78,7 +79,6 @@ class TestXApiProcessor(SimpleTestCase):
         mocked_get_transformer.return_value = mocked_transformer
 
         self.processor([self.sample_event])
-
         self.assertIn(call(transformed_event.to_json()), mocked_logger.mock_calls)
 
     @patch(
