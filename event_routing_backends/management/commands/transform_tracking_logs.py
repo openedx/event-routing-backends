@@ -41,7 +41,7 @@ def _get_chunks(source, file, start_byte, end_byte):
             break
         # Catching all exceptions here because there's no telling what all
         # the possible errors from different libcloud providers are.
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-except
             print(e)
             if try_number == num_retries:
                 print(f"Try {try_number}: Error occurred downloading, giving up.")

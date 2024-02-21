@@ -15,7 +15,9 @@ def plugin_settings(settings):
     settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
     settings.EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_MAX_RETRIES = 3
     settings.EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_COUNTDOWN = 1
-
+    settings.EVENT_ROUTING_BACKEND_BATCHING_ENABLED = True
+    settings.EVENT_ROUTING_BACKEND_BATCH_SIZE = 100
+    settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL = 60
     # .. setting_name: XAPI_AGENT_IFI_TYPE
     # .. setting_default: 'external_id'
     # .. setting_description: This setting can be used to specify the type of inverse functional identifier

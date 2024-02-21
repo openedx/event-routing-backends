@@ -25,6 +25,10 @@ astroid==3.0.3
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
+async-timeout==4.0.3
+    # via
+    #   -r requirements/quality.txt
+    #   redis
 attrs==23.2.0
     # via
     #   -r requirements/quality.txt
@@ -106,11 +110,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.4.1
+coverage[toml]==7.4.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==42.0.3
+cryptography==42.0.4
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -136,6 +140,7 @@ django==3.2.24
     #   django-crum
     #   django-fernet-fields-v2
     #   django-model-utils
+    #   django-redis
     #   django-waffle
     #   djangorestframework
     #   edx-celeryutils
@@ -159,6 +164,8 @@ django-model-utils==4.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
+django-redis==5.4.0
+    # via -r requirements/quality.txt
 django-waffle==4.1.0
     # via
     #   -r requirements/quality.txt
@@ -264,7 +271,7 @@ newrelic==9.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -363,7 +370,7 @@ pyproject-hooks==1.0.0
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==8.0.0
+pytest==8.0.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -393,6 +400,10 @@ pyyaml==6.0.1
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
+redis==5.0.1
+    # via
+    #   -r requirements/quality.txt
+    #   django-redis
 requests==2.31.0
     # via
     #   -r requirements/quality.txt
@@ -441,7 +452,7 @@ tomlkit==0.12.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.12.1
+tox==4.13.0
     # via -r requirements/ci.txt
 typing-extensions==4.9.0
     # via
@@ -461,7 +472,7 @@ tzdata==2024.1
     #   -r requirements/quality.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.2.0
+urllib3==2.2.1
     # via
     #   -r requirements/quality.txt
     #   requests

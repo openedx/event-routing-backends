@@ -18,6 +18,10 @@ asgiref==3.7.2
     # via
     #   -r requirements/base.txt
     #   django
+async-timeout==4.0.3
+    # via
+    #   -r requirements/base.txt
+    #   redis
 attrs==23.2.0
     # via
     #   -r requirements/base.txt
@@ -75,9 +79,9 @@ code-annotations==1.6.0
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.4.1
+coverage[toml]==7.4.2
     # via pytest-cov
-cryptography==42.0.3
+cryptography==42.0.4
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -90,6 +94,7 @@ ddt==1.7.1
     #   django-crum
     #   django-fernet-fields-v2
     #   django-model-utils
+    #   django-redis
     #   django-waffle
     #   djangorestframework
     #   edx-celeryutils
@@ -112,6 +117,8 @@ django-model-utils==4.4.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
+django-redis==5.4.0
+    # via -r requirements/base.txt
 django-waffle==4.1.0
     # via
     #   -r requirements/base.txt
@@ -182,7 +189,7 @@ newrelic==9.6.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -217,7 +224,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==8.0.0
+pytest==8.0.1
     # via
     #   pytest-cov
     #   pytest-django
@@ -245,6 +252,10 @@ pyyaml==6.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
+redis==5.0.1
+    # via
+    #   -r requirements/base.txt
+    #   django-redis
 requests==2.31.0
     # via
     #   -r requirements/base.txt
@@ -287,7 +298,7 @@ tzdata==2024.1
     #   -r requirements/base.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.2.0
+urllib3==2.2.1
     # via
     #   -r requirements/base.txt
     #   requests
