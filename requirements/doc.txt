@@ -87,15 +87,14 @@ code-annotations==1.6.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.4.1
+coverage[toml]==7.4.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==42.0.3
+cryptography==42.0.4
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
-    #   secretstorage
 ddt==1.7.1
     # via -r requirements/test.txt
 django==3.2.24
@@ -205,10 +204,6 @@ isodate==0.6.1
     # via -r requirements/test.txt
 jaraco-classes==3.3.1
     # via keyring
-jeepney==0.8.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.3
     # via
     #   -r requirements/test.txt
@@ -242,7 +237,7 @@ newrelic==9.6.0
     #   edx-django-utils
 nh3==0.2.15
     # via readme-renderer
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -345,8 +340,6 @@ rfc3986==2.0.0
     # via twine
 rich==13.7.0
     # via twine
-secretstorage==3.3.3
-    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt

@@ -84,11 +84,11 @@ code-annotations==1.6.0
     #   -r requirements/test.txt
     #   edx-lint
     #   edx-toggles
-coverage[toml]==7.4.1
+coverage[toml]==7.4.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==42.0.3
+cryptography==42.0.4
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -210,7 +210,7 @@ newrelic==9.6.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via
     #   -r requirements/test.txt
     #   event-tracking
