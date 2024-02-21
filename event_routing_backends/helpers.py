@@ -23,6 +23,7 @@ User = get_user_model()
 UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 BLOCK_ID_FORMAT = '{block_version}:{course_id}+type@{block_type}+block@{block_id}'
 
+
 def get_uuid5(namespace_key, name):
     """
     Create a UUID5 string based on custom namesapce and name.
@@ -323,6 +324,7 @@ def get_business_critical_events():
         'edx.course.enrollment.deactivated',
         'edx.course.grade.passed.first_time'
     ])
+
 
 def get_block_version(course_id):
     """
