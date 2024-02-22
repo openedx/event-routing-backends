@@ -800,7 +800,7 @@ class TestAsyncEventsRouter(TestEventsRouter):
 
 
 @ddt.ddt
-class TestSyncEventsRouter(TestEventsRouter):
+class TestSyncEventsRouter(TestEventsRouter):   # pylint: disable=E7603
     """
     Test the SyncEventsRouter
     """
