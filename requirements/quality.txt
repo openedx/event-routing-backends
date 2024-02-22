@@ -365,3 +365,7 @@ wcwidth==0.2.13
     #   prompt-toolkit
 wheel==0.42.0
     # via -r requirements/quality.in
+
+# The following packages are considered to be unsafe in a requirements file:
+setuptools==69.1.0
+    # via -r requirements/quality.in
