@@ -252,7 +252,7 @@ def get_block_id_from_event_data(data, course_id):
                 block_id=data_array[1]
             )
         else:
-            block_id = None
+            block_id = None  # pragma: no cover
     else:
         block_id = None
 
