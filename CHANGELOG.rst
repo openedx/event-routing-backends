@@ -14,6 +14,10 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[8.1.1]
+
+* Dinamically get the xblock version from the event.
+
 [8.1.0]
 ~~~~~~~
 
