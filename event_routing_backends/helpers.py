@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 User = get_user_model()
 
 UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
+BLOCK_ID_FORMAT = '{block_version}:{course_id}+type@{block_type}+block@{block_id}'
 
 
 def get_uuid5(namespace_key, name):
@@ -242,8 +243,16 @@ def get_block_id_from_event_data(data, course_id):
     if data is not None and course_id is not None:
         data_array = data.split('_')
         course_id_array = course_id.split(':')
-        block_id = "block-v1:{}+type@problem+block@{}".format(course_id_array[1], data_array[1]) \
-            if len(data_array) > 1 and len(course_id_array) > 1 else None
+        block_version = get_block_version(course_id)
+        if len(data_array) > 1 and len(course_id_array) > 1:
+            block_id = BLOCK_ID_FORMAT.format(
+                block_version=block_version,
+                course_id=course_id_array[1],
+                block_type='problem',
+                block_id=data_array[1]
+            )
+        else:
+            block_id = None  # pragma: no cover
     else:
         block_id = None
 
@@ -272,25 +281,24 @@ def get_problem_block_id(referrer, data, course_id):
     return block_id
 
 
-def make_video_block_id(video_id, course_id, video_block_name='video', block_version='block-v1'):
+def make_video_block_id(video_id, course_id):
     """
     Return formatted video block id for provided video and course.
 
     Arguments:
         video_id        (str) : id for the video object
         course_id       (str) : course key string
-        video_block_name(str) : video block prefix to generate video id
-        block_version   (str) : xBlock version
 
     Returns:
         str
     """
     course_id_array = course_id.split(':')
-    return '{block_version}:{course_id}+type@{video_block_name}+block@{video_id}'.format(
+    block_version = get_block_version(course_id)
+    return BLOCK_ID_FORMAT.format(
         block_version=block_version,
         course_id=course_id_array[1],
-        video_block_name=video_block_name,
-        video_id=video_id
+        block_type='video',
+        block_id=video_id
     )
 
 
@@ -316,3 +324,21 @@ def get_business_critical_events():
         'edx.course.enrollment.deactivated',
         'edx.course.grade.passed.first_time'
     ])
+
+
+def get_block_version(course_id):
+    """
+    Return versioned block id.
+
+    Arguments:
+        course_id (str):    course id
+        block_id (str):     block id
+
+    Returns:
+        str
+    """
+    course_id_array = course_id.split(':')
+    block_version = "block-{0}".format(course_id_array[0].split("-")[-1])
+    if "ccx" in course_id_array[0]:
+        block_version = "ccx-{block_version}".format(block_version=block_version)
+    return block_version
