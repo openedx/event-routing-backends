@@ -20,7 +20,7 @@ asgiref==3.7.2
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.0.3
+astroid==3.1.0
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -42,7 +42,7 @@ build==1.0.3
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-cachetools==5.3.2
+cachetools==5.3.3
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -106,15 +106,15 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.4.1
+coverage[toml]==7.4.3
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==42.0.3
+cryptography==42.0.5
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
-ddt==1.7.1
+ddt==1.7.2
     # via -r requirements/quality.txt
 diff-cover==4.0.0
     # via
@@ -197,7 +197,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==23.2.1
+faker==23.3.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -260,11 +260,11 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==9.6.0
+newrelic==9.7.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -317,15 +317,15 @@ pycparser==2.21
     # via
     #   -r requirements/quality.txt
     #   cffi
-pydantic==2.6.1
+pydantic==2.6.3
     # via inflect
-pydantic-core==2.16.2
+pydantic-core==2.16.3
     # via pydantic
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.17.2
     # via diff-cover
-pylint==3.0.3
+pylint==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -363,7 +363,7 @@ pyproject-hooks==1.0.0
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==8.0.0
+pytest==8.0.2
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -412,7 +412,7 @@ sqlparse==0.4.4
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==5.1.0
+stevedore==5.2.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -437,13 +437,13 @@ tomli==2.0.1
     #   pyproject-hooks
     #   pytest
     #   tox
-tomlkit==0.12.3
+tomlkit==0.12.4
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.12.1
+tox==4.13.0
     # via -r requirements/ci.txt
-typing-extensions==4.9.0
+typing-extensions==4.10.0
     # via
     #   -r requirements/quality.txt
     #   annotated-types
@@ -461,7 +461,7 @@ tzdata==2024.1
     #   -r requirements/quality.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.2.0
+urllib3==2.2.1
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -471,7 +471,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.25.0
+virtualenv==20.25.1
     # via
     #   -r requirements/ci.txt
     #   tox
