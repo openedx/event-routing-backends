@@ -15,12 +15,14 @@ Course grading events
 -----------------------
 
 * `edx.course.grade.passed.first_time`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.passed.first_time.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-grade-passed-first-time>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.passed.first_time.json>`__
+* `edx.course.grade.now_passed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.now_passed.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-grade-now-passed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.now_passed.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-grade-now-passed>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.now_passed.json>`__
+* `edx.course.grade.now_failed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.course.grade.now_failed.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-course-grade-now-failed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.course.grade.now_failed.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-course-grade-now-failed>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.course.grade.now_failed.json>`__
 * `edx.grades.subsection.grade_calculated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.subsection.grade_calculated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-subsection-grade-calculated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.subsection.grade_calculated.json>`__
 * `edx.grades.course.grade_calculated`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.course.grade_calculated.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-course-grade-calculated>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.course.grade_calculated.json>`__
 
 Completion events
 
-* `edx.completion.block_completion.changed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.completion.block_completion.changed.json>`___ | xAPI `map <./xAPI_mapping.rst#edx-completion-block-completion-changed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.completion.block_completion.changed.json>`__
+* `edx.completion.block_completion.changed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.completion.block_completion.changed.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-completion-block-completion-changed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.completion.block_completion.changed.json>`__
 
 Problem interaction events
 ---------------------------
@@ -92,6 +94,8 @@ Exam events
 .. _edx.grades.subsection.grade_calculated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-subsection-grade-calculated
 .. _edx.grades.course.grade_calculated: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-course-grade-calculated
 .. _edx.completion.block_completion.changed: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-completion-block-completion-changed
+.. _edx.course.grade.now_passed: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-grade-now-passed
+.. _edx.course.grade.now_failed: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-grade-now-failed
 .. _edx.grades.problem.submitted: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-problem-submitted
 .. _problem_check: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#problem-check
 .. _showanswer: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#showanswer
