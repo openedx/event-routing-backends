@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django_redis import get_redis_connection
+from eventtracking.backends.logger import DateTimeJSONEncoder
 from eventtracking.processors.exceptions import EventEmissionExit
 
 from event_routing_backends.helpers import get_business_critical_events
@@ -15,6 +16,7 @@ from event_routing_backends.models import RouterConfiguration
 logger = logging.getLogger(__name__)
 
 EVENTS_ROUTER_QUEUE_FORMAT = 'events_router_queue_{}'
+EVENTS_ROUTER_DEAD_QUEUE_FORMAT = 'dead_queue_{}'
 EVENTS_ROUTER_LAST_SENT_FORMAT = 'last_sent_{}'
 
 
@@ -34,6 +36,7 @@ class EventsRouter:
         self.processors = processors if processors else []
         self.backend_name = backend_name
         self.queue_name = EVENTS_ROUTER_QUEUE_FORMAT.format(self.backend_name)
+        self.dead_queue = EVENTS_ROUTER_DEAD_QUEUE_FORMAT.format(self.backend_name)
         self.last_sent_key = EVENTS_ROUTER_LAST_SENT_FORMAT.format(self.backend_name)
 
     def configure_host(self, host, router):
@@ -126,6 +129,17 @@ class EventsRouter:
 
         return route_events
 
+    def get_failed_events(self):
+        """
+        Get failed events from the dead queue.
+        """
+        redis = get_redis_connection()
+        n = redis.llen(self.dead_queue)
+        if not n:
+            return []
+        failed_events = redis.rpop(self.dead_queue, n)
+        return [json.loads(event.decode('utf-8')) for event in failed_events]
+
     def bulk_send(self, events):
         """
         Send the event to configured routers after processing it.
@@ -179,8 +193,8 @@ class EventsRouter:
                     ),
                     exc_info=True
                 )
-                logger.info('Re sending the batched events to the queue.')
-                redis.lpush(self.queue_name, *batch)
+                logger.info(f'Pushing failed events to the dead queue: {self.dead_queue}')
+                redis.lpush(self.dead_queue, *batch)
             return
 
         event_routes = self.prepare_to_send([event])
@@ -207,7 +221,7 @@ class EventsRouter:
 
         """
         event["timestamp"] = event["timestamp"].isoformat()
-        queue_size = redis.lpush(self.queue_name, json.dumps(event))
+        queue_size = redis.lpush(self.queue_name, json.dumps(event, cls=DateTimeJSONEncoder))
         logger.info(f'Event {event["name"]} has been queued for batching. Queue size: {queue_size}')
 
         if queue_size >= settings.EVENT_ROUTING_BACKEND_BATCH_SIZE or self.time_to_send(redis):

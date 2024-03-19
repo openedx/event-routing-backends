@@ -328,9 +328,9 @@ class TestEventsRouter(TestCase):
             exc_info=True
         )
         mock_logger.info.assert_called_once_with(
-            'Re sending the batched events to the queue.'
+            f'Pushing failed events to the dead queue: {router.dead_queue}'
         )
-        redis_mock.lpush.assert_called_once_with(router.queue_name, *[1])
+        redis_mock.lpush.assert_called_once_with(router.dead_queue, *[1])
 
     @override_settings(
         EVENT_ROUTING_BACKEND_BATCH_INTERVAL=1,
@@ -1230,3 +1230,29 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
         router = SyncEventsRouter(processors=[], backend_name=RouterConfiguration.XAPI_BACKEND)
         with self.assertRaises(EventNotDispatched):
             router.send(self.transformed_event)
+
+    @patch('event_routing_backends.backends.events_router.get_redis_connection')
+    def test_get_failed_events(self, mock_get_redis_connection):
+        redis_mock = MagicMock()
+        mock_get_redis_connection.return_value = redis_mock
+        redis_mock.llen.return_value = 1
+        redis_mock.rpop.return_value = [json.dumps({'name': 'test', 'data': {'key': 'value'}}).encode('utf-8')]
+
+        router = SyncEventsRouter(processors=[], backend_name='test')
+        router.get_failed_events()
+
+        redis_mock.llen.assert_called_once_with(router.dead_queue)
+        redis_mock.rpop.assert_called_once_with(router.dead_queue, 1)
+
+
+    @patch('event_routing_backends.backends.events_router.get_redis_connection')
+    def test_get_failed_events_empty(self, mock_get_redis_connection):
+        redis_mock = MagicMock()
+        mock_get_redis_connection.return_value = redis_mock
+        redis_mock.llen.return_value = 0
+
+        router = SyncEventsRouter(processors=[], backend_name='test')
+        events = router.get_failed_events()
+
+        redis_mock.llen.assert_called_once_with(router.dead_queue)
+        self.assertEqual(events, [])
