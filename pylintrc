@@ -381,4 +381,7 @@ import-graph =
 ext-import-graph = 
 int-import-graph = 
 
+[EXCEPTIONS]
+overgeneral-exceptions = builtins.Exception
+
 # 056eb70bf90e13f94ca9ae8ac1fa84836c7139ba
