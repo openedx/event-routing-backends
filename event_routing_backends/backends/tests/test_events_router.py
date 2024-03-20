@@ -1244,7 +1244,6 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
         redis_mock.llen.assert_called_once_with(router.dead_queue)
         redis_mock.rpop.assert_called_once_with(router.dead_queue, 1)
 
-
     @patch('event_routing_backends.backends.events_router.get_redis_connection')
     def test_get_failed_events_empty(self, mock_get_redis_connection):
         redis_mock = MagicMock()

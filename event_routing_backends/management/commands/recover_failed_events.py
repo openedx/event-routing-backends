@@ -7,7 +7,6 @@ from textwrap import dedent
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from eventtracking.backends.async_routing import AsyncRoutingBackend
 from eventtracking.backends.event_bus import EventBusRoutingBackend
 from eventtracking.tracker import get_tracker
 
