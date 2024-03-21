@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from eventtracking.backends.event_bus import EventBusRoutingBackend
 from eventtracking.tracker import get_tracker
+
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 
 logger = logging.getLogger(__name__)
@@ -67,16 +68,20 @@ class Command(BaseCommand):
                 logger.info("Skipping backend: {}".format(name))
                 continue
             for backend_name, backend in engine.backends.items():
-                while failed_events:=backend.get_failed_events(batch_size):
-                    logger.info("Recovering {} failed events for backend {}".format(len(failed_events), backend_name))
+                while failed_events := backend.get_failed_events(batch_size):
+                    logger.info(
+                        "Recovering {} failed events for backend {}".format(
+                            len(failed_events), backend_name
+                        )
+                    )
                     for event in failed_events:
                         try:
                             backend.send(event)
                             success += 1
-                        except EventNotDispatched as e:
+                        except EventNotDispatched:
                             logger.error("Malformed event: {}".format(event["name"]))
                             malformed += 1
-                        except Exception as e:
+                        except Exception as e:  # pylint: disable=broad-except
                             # Backend can still be in a bad state, so we need to catch all exceptions
                             logger.error("Failed to send event: {}".format(e))
                             failed += 1

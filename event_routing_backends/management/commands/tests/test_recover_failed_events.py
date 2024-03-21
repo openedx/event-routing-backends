@@ -8,6 +8,7 @@ from django.core.management import call_command
 from django.test import TestCase
 from django.test.utils import override_settings
 from eventtracking.django.django_tracker import DjangoTracker
+
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 
 XAPI_PROCESSOR = {
@@ -81,7 +82,9 @@ class TestRecoverFailedEvents(TestCase):
         "event_routing_backends.management.commands.recover_failed_events.get_tracker"
     )
     @patch("event_routing_backends.management.commands.recover_failed_events.logger")
-    def test_send_tracking_log_to_backends_with_exception(self, mock_logger, mock_get_tracker):
+    def test_send_tracking_log_to_backends_with_exception(
+        self, mock_logger, mock_get_tracker
+    ):
         """
         Test for send_tracking_log_to_backends
         """
@@ -94,7 +97,6 @@ class TestRecoverFailedEvents(TestCase):
 
         call_command("recover_failed_events", transformer_type="all")
 
-        #mock_logger.error.assert_called_once_with("Malformed event: {}".format("test"))
         mock_logger.error.assert_called_once_with("Failed to send event: Error")
 
     @override_settings(
@@ -111,7 +113,9 @@ class TestRecoverFailedEvents(TestCase):
         "event_routing_backends.management.commands.recover_failed_events.get_tracker"
     )
     @patch("event_routing_backends.management.commands.recover_failed_events.logger")
-    def test_send_tracking_log_to_backends_with_event_exception(self, mock_logger, mock_get_tracker):
+    def test_send_tracking_log_to_backends_with_event_exception(
+        self, mock_logger, mock_get_tracker
+    ):
         """
         Test for send_tracking_log_to_backends
         """
