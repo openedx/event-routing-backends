@@ -129,15 +129,14 @@ class EventsRouter:
 
         return route_events
 
-    def get_failed_events(self):
+    def get_failed_events(self, batch_size):
         """
         Get failed events from the dead queue.
         """
         redis = get_redis_connection()
-        n = redis.llen(self.dead_queue)
-        if not n:
+        failed_events = redis.rpop(self.dead_queue, batch_size)
+        if not failed_events:
             return []
-        failed_events = redis.rpop(self.dead_queue, n)
         return [json.loads(event.decode('utf-8')) for event in failed_events]
 
     def bulk_send(self, events):

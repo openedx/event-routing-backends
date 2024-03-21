@@ -1235,23 +1235,20 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
     def test_get_failed_events(self, mock_get_redis_connection):
         redis_mock = MagicMock()
         mock_get_redis_connection.return_value = redis_mock
-        redis_mock.llen.return_value = 1
         redis_mock.rpop.return_value = [json.dumps({'name': 'test', 'data': {'key': 'value'}}).encode('utf-8')]
 
         router = SyncEventsRouter(processors=[], backend_name='test')
-        router.get_failed_events()
+        router.get_failed_events(1)
 
-        redis_mock.llen.assert_called_once_with(router.dead_queue)
         redis_mock.rpop.assert_called_once_with(router.dead_queue, 1)
 
     @patch('event_routing_backends.backends.events_router.get_redis_connection')
     def test_get_failed_events_empty(self, mock_get_redis_connection):
         redis_mock = MagicMock()
         mock_get_redis_connection.return_value = redis_mock
-        redis_mock.llen.return_value = 0
+        redis_mock.rpop.return_value = None
 
         router = SyncEventsRouter(processors=[], backend_name='test')
-        events = router.get_failed_events()
+        events = router.get_failed_events(1)
 
-        redis_mock.llen.assert_called_once_with(router.dead_queue)
         self.assertEqual(events, [])
