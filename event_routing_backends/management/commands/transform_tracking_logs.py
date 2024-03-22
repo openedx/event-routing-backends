@@ -78,8 +78,7 @@ def transform_tracking_logs(
         while last_successful_byte < int(file.size):
             end_byte = last_successful_byte + CHUNK_SIZE
 
-            if end_byte > file.size:
-                end_byte = file.size
+            end_byte = min(end_byte, file.size)
 
             chunks = _get_chunks(source, file, last_successful_byte, end_byte)
 
