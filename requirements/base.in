@@ -16,3 +16,4 @@ edx-celeryutils
 apache-libcloud           # For bulk event log loading
 fasteners                 # Locking tools, required by apache-libcloud, but somehow not installed with it
 openedx-filters
+django-redis

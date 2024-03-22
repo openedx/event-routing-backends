@@ -15,7 +15,26 @@ def plugin_settings(settings):
     settings.EVENT_ROUTING_BACKEND_COUNTDOWN = 30
     settings.EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_MAX_RETRIES = 3
     settings.EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_COUNTDOWN = 1
-
+    # .. toggle_name: EVENT_ROUTING_BACKEND_BATCHING_ENABLED
+    # .. toggle_implementation: DjangoSetting
+    # .. toggle_default: False
+    # .. toggle_use_cases: opt_in
+    # .. toggle_creation_date: 2024-04-19
+    # .. toggle_description: This setting can be used to enable or disable batching of events
+    #    to be sent to the event routing backend. If enabled, events will be batched and sent
+    #    to the event routing backend in batches of EVENT_ROUTING_BACKEND_BATCH_SIZE
+    settings.EVENT_ROUTING_BACKEND_BATCHING_ENABLED = False
+    # .. setting_name: EVENT_ROUTING_BACKEND_BATCH_SIZE
+    # .. setting_default: 100
+    # .. setting_description: This setting can be used to specify the size of the batch of events
+    #    to be sent to the event routing backend. This setting is only used if EVENT_ROUTING_BACKEND_BATCHING_ENABLED
+    settings.EVENT_ROUTING_BACKEND_BATCH_SIZE = 100
+    # .. setting_name: EVENT_ROUTING_BACKEND_BATCH_INTERVAL
+    # .. setting_default: 60
+    # .. setting_description: This setting can be used to specify the interval in seconds after which
+    #    the batch of events will be sent to the event routing backend. This setting is only used if
+    #    EVENT_ROUTING_BACKEND_BATCHING_ENABLED.
+    settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL = 60
     # .. setting_name: XAPI_AGENT_IFI_TYPE
     # .. setting_default: 'external_id'
     # .. setting_description: This setting can be used to specify the type of inverse functional identifier

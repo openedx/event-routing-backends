@@ -12,6 +12,8 @@ apache-libcloud==3.8.0
     # via -r requirements/base.in
 asgiref==3.7.2
     # via django
+async-timeout==4.0.3
+    # via redis
 attrs==23.2.0
     # via openedx-events
 backports-zoneinfo[tzdata]==0.2.1
@@ -48,7 +50,7 @@ click-repl==0.3.0
     # via celery
 code-annotations==1.6.0
     # via edx-toggles
-cryptography==42.0.3
+cryptography==42.0.4
     # via django-fernet-fields-v2
 django==3.2.24
     # via
@@ -58,6 +60,7 @@ django==3.2.24
     #   django-crum
     #   django-fernet-fields-v2
     #   django-model-utils
+    #   django-redis
     #   django-waffle
     #   djangorestframework
     #   edx-celeryutils
@@ -77,6 +80,8 @@ django-fernet-fields-v2==0.9
     # via -r requirements/base.in
 django-model-utils==4.4.0
     # via edx-celeryutils
+django-redis==5.4.0
+    # via -r requirements/base.in
 django-waffle==4.1.0
     # via
     #   edx-django-utils
@@ -119,7 +124,7 @@ markupsafe==2.1.5
     # via jinja2
 newrelic==9.6.0
     # via edx-django-utils
-openedx-events==9.5.1
+openedx-events==9.5.2
     # via event-tracking
 openedx-filters==1.6.0
     # via -r requirements/base.in
@@ -152,6 +157,8 @@ pytz==2024.1
     #   tincan
 pyyaml==6.0.1
     # via code-annotations
+redis==5.0.1
+    # via django-redis
 requests==2.31.0
     # via
     #   -r requirements/base.in
@@ -181,7 +188,7 @@ tzdata==2024.1
     # via
     #   backports-zoneinfo
     #   celery
-urllib3==2.2.0
+urllib3==2.2.1
     # via requests
 vine==5.1.0
     # via

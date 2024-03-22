@@ -1,11 +1,14 @@
 """
 Test the EventsRouter
 """
+import datetime
+import json
+from copy import copy
 from unittest.mock import MagicMock, call, patch, sentinel
 
 import ddt
 from django.conf import settings
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from edx_django_utils.cache.utils import TieredCache
 from eventtracking.processors.exceptions import EventEmissionExit
 from tincan.statement import Statement
@@ -256,6 +259,87 @@ class TestEventsRouter(TestCase):
             call('Event test received a 409 error indicating the event id already exists.'),
             mocked_logger.info.mock_calls
         )
+
+    @override_settings(
+        EVENT_ROUTING_BACKEND_BATCHING_ENABLED=True,
+        EVENT_ROUTING_BACKEND_BATCH_SIZE=2
+    )
+    @patch('event_routing_backends.backends.events_router.get_redis_connection')
+    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.backends.events_router.EventsRouter.bulk_send')
+    def test_queue_event(self, mock_bulk_send, mock_logger, mock_get_redis_connection):
+        router = EventsRouter(processors=[], backend_name='test')
+        redis_mock = MagicMock()
+        mock_get_redis_connection.return_value = redis_mock
+        redis_mock.lpush.return_value = None
+        event1 = copy(self.transformed_event)
+        event1["timestamp"] = datetime.datetime.now()
+        event2 = copy(self.transformed_event)
+        event2["timestamp"] = datetime.datetime.now()
+        events = [event1, event2]
+        formatted_events = []
+        for event in events:
+            formatted_event = copy(event)
+            formatted_event["timestamp"] = formatted_event["timestamp"].isoformat()
+            formatted_events.append(json.dumps(formatted_event).encode('utf-8'))
+
+        redis_mock.rpop.return_value = formatted_events
+        redis_mock.lpush.return_value = 1
+        redis_mock.get.return_value.decode.return_value = datetime.datetime.now().isoformat()
+
+        router.send(event1)
+        redis_mock.lpush.return_value = 2
+        router.send(event2)
+
+        redis_mock.lpush.assert_any_call(router.queue_name, json.dumps(event1))
+        redis_mock.rpop.assert_any_call(router.queue_name, settings.EVENT_ROUTING_BACKEND_BATCH_SIZE)
+        mock_logger.info.assert_any_call(
+            f"Event {self.transformed_event['name']} has been queued for batching. Queue size: 1"
+        )
+        mock_bulk_send.assert_any_call(events)
+
+    @override_settings(
+        EVENT_ROUTING_BACKEND_BATCHING_ENABLED=True,
+        EVENT_ROUTING_BACKEND_BATCH_SIZE=2
+    )
+    @patch('event_routing_backends.backends.events_router.get_redis_connection')
+    @patch('event_routing_backends.backends.events_router.logger')
+    @patch('event_routing_backends.backends.events_router.EventsRouter.bulk_send')
+    @patch('event_routing_backends.backends.events_router.EventsRouter.queue_event')
+    def test_send_event_with_bulk_exception(
+        self,
+        mock_queue_event,
+        mock_bulk_send,
+        mock_logger,
+        mock_get_redis_connection
+    ):
+        router = EventsRouter(processors=[], backend_name='test')
+        redis_mock = MagicMock()
+        mock_get_redis_connection.return_value = redis_mock
+        mock_queue_event.return_value = [1]
+        mock_bulk_send.side_effect = EventNotDispatched
+
+        router.send(self.transformed_event)
+
+        mock_logger.exception.assert_called_once_with(
+            'Exception occurred while trying to bulk dispatch {} events.'.format(
+                1
+            ),
+            exc_info=True
+        )
+        mock_logger.info.assert_called_once_with(
+            f'Pushing failed events to the dead queue: {router.dead_queue}'
+        )
+        redis_mock.lpush.assert_called_once_with(router.dead_queue, *[1])
+
+    @override_settings(
+        EVENT_ROUTING_BACKEND_BATCH_INTERVAL=1,
+    )
+    def test_time_to_send_no_data(self):
+        router = EventsRouter(processors=[], backend_name='test')
+        redis_mock = MagicMock()
+        redis_mock.get.return_value = None
+        self.assertTrue(router.time_to_send(redis_mock))
 
 
 @ddt.ddt
@@ -1146,3 +1230,25 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
         router = SyncEventsRouter(processors=[], backend_name=RouterConfiguration.XAPI_BACKEND)
         with self.assertRaises(EventNotDispatched):
             router.send(self.transformed_event)
+
+    @patch('event_routing_backends.backends.events_router.get_redis_connection')
+    def test_get_failed_events(self, mock_get_redis_connection):
+        redis_mock = MagicMock()
+        mock_get_redis_connection.return_value = redis_mock
+        redis_mock.rpop.return_value = [json.dumps({'name': 'test', 'data': {'key': 'value'}}).encode('utf-8')]
+
+        router = SyncEventsRouter(processors=[], backend_name='test')
+        router.get_failed_events(1)
+
+        redis_mock.rpop.assert_called_once_with(router.dead_queue, 1)
+
+    @patch('event_routing_backends.backends.events_router.get_redis_connection')
+    def test_get_failed_events_empty(self, mock_get_redis_connection):
+        redis_mock = MagicMock()
+        mock_get_redis_connection.return_value = redis_mock
+        redis_mock.rpop.return_value = None
+
+        router = SyncEventsRouter(processors=[], backend_name='test')
+        events = router.get_failed_events(1)
+
+        self.assertEqual(events, [])
