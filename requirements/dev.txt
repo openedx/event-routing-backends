@@ -16,7 +16,7 @@ annotated-types==0.6.0
     # via pydantic
 apache-libcloud==3.8.0
     # via -r requirements/quality.txt
-asgiref==3.7.2
+asgiref==3.8.1
     # via
     #   -r requirements/quality.txt
     #   django
@@ -173,7 +173,7 @@ django-waffle==4.1.0
     #   -r requirements/quality.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.15.0
+djangorestframework==3.15.1
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -198,7 +198,7 @@ edx-toggles==5.1.1
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-event-tracking==2.3.0
+event-tracking==2.3.1
     # via -r requirements/quality.txt
 exceptiongroup==1.2.0
     # via
@@ -401,7 +401,7 @@ pyyaml==6.0.1
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==5.0.1
+redis==5.0.3
     # via
     #   -r requirements/quality.txt
     #   django-redis
@@ -453,7 +453,7 @@ tomlkit==0.12.4
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.14.1
+tox==4.14.2
     # via -r requirements/ci.txt
 typing-extensions==4.10.0
     # via

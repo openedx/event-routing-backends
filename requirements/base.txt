@@ -10,7 +10,7 @@ aniso8601==9.0.1
     # via tincan
 apache-libcloud==3.8.0
     # via -r requirements/base.in
-asgiref==3.7.2
+asgiref==3.8.1
     # via django
 async-timeout==4.0.3
     # via redis
@@ -88,7 +88,7 @@ django-waffle==4.1.0
     # via
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.15.0
+djangorestframework==3.15.1
     # via django-config-models
 edx-celeryutils==1.2.5
     # via -r requirements/base.in
@@ -104,7 +104,7 @@ edx-toggles==5.1.1
     # via
     #   -r requirements/base.in
     #   event-tracking
-event-tracking==2.3.0
+event-tracking==2.3.1
     # via -r requirements/base.in
 fastavro==1.9.4
     # via openedx-events
@@ -157,7 +157,7 @@ pytz==2024.1
     #   tincan
 pyyaml==6.0.1
     # via code-annotations
-redis==5.0.1
+redis==5.0.3
     # via django-redis
 requests==2.31.0
     # via

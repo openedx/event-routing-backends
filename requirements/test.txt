@@ -14,7 +14,7 @@ aniso8601==9.0.1
     #   tincan
 apache-libcloud==3.8.0
     # via -r requirements/base.txt
-asgiref==3.7.2
+asgiref==3.8.1
     # via
     #   -r requirements/base.txt
     #   django
@@ -126,7 +126,7 @@ django-waffle==4.1.0
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.15.0
+djangorestframework==3.15.1
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -147,7 +147,7 @@ edx-toggles==5.1.1
     # via
     #   -r requirements/base.txt
     #   event-tracking
-event-tracking==2.3.0
+event-tracking==2.3.1
     # via -r requirements/base.txt
 exceptiongroup==1.2.0
     # via pytest
@@ -252,7 +252,7 @@ pyyaml==6.0.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
-redis==5.0.1
+redis==5.0.3
     # via
     #   -r requirements/base.txt
     #   django-redis
