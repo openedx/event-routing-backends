@@ -49,5 +49,46 @@ EVENT_TRACKING_BACKENDS = {}
 XAPI_AGENT_IFI_TYPE = 'external_id'
 EVENT_ROUTING_BACKEND_BATCHING_ENABLED = False
 EVENT_ROUTING_BACKEND_BATCH_INTERVAL = 100
-
+EVENT_TRACKING_ENABLED = True
+EVENT_TRACKING_BACKENDS = {
+    "xapi": {
+        "ENGINE": "eventtracking.backends.async_routing.AsyncRoutingBackend",
+        "OPTIONS": {
+            "backends": {
+                "xapi": {
+                    "ENGINE": "event_routing_backends.backends.async_events_router.AsyncEventsRouter",
+                    "OPTIONS": {
+                        "processors": [
+                            {
+                                "ENGINE": "event_routing_backends.processors.xapi.transformer_processor.XApiProcessor",
+                                "OPTIONS": {},
+                            }
+                        ],
+                        "backend_name": "xapi",
+                    },
+                },
+            },
+        },
+    },
+    "caliper": {
+        "ENGINE": "eventtracking.backends.async_routing.AsyncRoutingBackend",
+        "OPTIONS": {
+            "backends": {
+                "caliper": {
+                    "ENGINE": "event_routing_backends.backends.async_events_router.AsyncEventsRouter",
+                    "OPTIONS": {
+                        "processors": [
+                            {
+                                "ENGINE": "event_routing_backends.processors."
+                                "caliper.transformer_processor.CaliperProcessor",
+                                "OPTIONS": {},
+                            },
+                        ],
+                        "backend_name": "caliper",
+                    },
+                },
+            }
+        },
+    },
+}
 _mock_third_party_modules()

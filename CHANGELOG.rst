@@ -14,6 +14,10 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[8.3.0]
+
+* Allow to use any configured engine to replay tracking logs
+
 [8.2.0]
 
 * Add support for batching for EventsRouter.
