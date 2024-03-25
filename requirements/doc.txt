@@ -34,8 +34,9 @@ babel==2.14.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
-backports-zoneinfo[tzdata]==0.2.1
+backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   celery
     #   django
@@ -106,7 +107,6 @@ ddt==1.7.2
 django==4.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -r requirements/test.txt
     #   django-config-models
     #   django-crum
     #   django-fernet-fields-v2
@@ -214,10 +214,6 @@ isodate==0.6.1
     # via -r requirements/test.txt
 jaraco-classes==3.3.1
     # via keyring
-jeepney==0.8.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.3
     # via
     #   -r requirements/test.txt
@@ -356,8 +352,6 @@ rfc3986==2.0.0
     # via twine
 rich==13.7.1
     # via twine
-secretstorage==3.3.3
-    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
@@ -449,4 +443,5 @@ zipp==3.18.1
     #   importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools
+setuptools==69.2.0
+    # via sphinx

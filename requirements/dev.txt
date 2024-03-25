@@ -33,8 +33,9 @@ attrs==23.2.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-backports-zoneinfo[tzdata]==0.2.1
+backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
     #   celery
     #   django
@@ -494,6 +495,7 @@ wcwidth==0.2.13
 wheel==0.43.0
     # via
     #   -r requirements/pip-tools.txt
+    #   -r requirements/quality.txt
     #   pip-tools
 zipp==3.18.1
     # via
