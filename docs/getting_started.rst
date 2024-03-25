@@ -220,6 +220,46 @@ A sample override for ``xapi`` backend is presented below. Here we are allowing 
         }
     }
 
+Batching Configuration
+----------------------
+
+Batching of events can be configured using the following settings:
+
+#. ``EVENT_ROUTING_BACKEND_BATCHING_ENABLED``: If set to ``True``, events will be batched before being routed. Default is ``False``.
+#. ``EVENT_ROUTING_BACKEND_BATCH_SIZE``: Maximum number of events to be batched together. Default is 100.
+#. ``EVENT_ROUTING_BACKEND_BATCH_INTERVAL``: Time interval (in seconds) after which events will be ent, whether or not the batch size criteria is met. Default is 60 seconds.
+
+Batching is done in the ``EventsRouter`` backend. If ``EVENT_ROUTING_BACKEND_BATCHING_ENABLED`` is set to ``True``, then events will be batched together and routed to the configured routers after the specified interval or when the batch size is reached, whichever happens first.
+
+In case of downtimes or network issues, events will be queued again to avoid data loss. However, there is no guarantee that the events will be routed in the same order as they were received.
+
+Event bus configuration
+-----------------------
+
+The event bus backend can be configured as the producer of the events. In that case, the events will be consumed from the event bus and routed to the configured routers via event bus consumers. The event bus backend can be configured in your edx-platform settings as follows:
+
+.. code-block:: python
+
+    EVENT_TRACKING_BACKENDS["xapi"]["ENGINE"] = "eventtracking.backends.event_bus.EventBusRoutingBackend"
+    EVENT_TRACKING_BACKENDS["xapi"]["OPTIONS"]["backends"]["xapi"]["ENGINE"] = "event_routing_backends.backends.sync_events_router.SyncEventsRouter"
+    EVENT_TRACKING_BACKENDS["xapi"]["OPTIONS"].pop("backend_name")
+    if "openedx_events" not in INSTALLED_APPS:
+        INSTALLED_APPS.append("openedx_events")
+    SEND_TRACKING_EVENT_EMITTED_SIGNAL = True
+    EVENT_BUS_PRODUCER_CONFIG = {
+        "org.openedx.analytics.tracking.event.emitted.v1": {
+            "analytics": {
+                "event_key_field": "tracking_log.name", "enabled": True
+            }
+        }
+    }
+
+Once the event bus producer has been configured, the event bus consumer can be started using the following command:
+
+.. code-block:: bash
+
+    ./manage.py lms consume_events -t analytics -g event_routing_backends --extra '{"consumer_name": "event_routing_backends"}'
+
 OpenEdx Filters
 ===============
 

@@ -1,0 +1,43 @@
+{
+    "id": "2a1f0f7c-6636-52df-913b-59e2f197a58e",
+    "actor": {
+        "objectType": "Agent",
+        "account": {"homePage": "http://localhost:18000", "name": "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"}
+    },
+    "context": {
+        "contextActivities": {
+            "parent": [
+                {
+                    "id": "http://localhost:18000/course/ccx-v1:edX+DemoX+Demo_Course+ccx@1",
+                    "objectType": "Activity",
+                    "definition": {
+                      "name": {
+                        "en-US": "Demonstration Course"
+                      },
+                      "type": "http://adlnet.gov/expapi/activities/course"
+                    }
+                }
+            ]
+        },
+        "extensions": {
+            "https://w3id.org/xapi/openedx/extension/transformer-version": "event-routing-backends@1.1.1",
+            "https://w3id.org/xapi/openedx/extensions/session-id": "6ad0a24d8303f49d14409a669d430b6f"
+        }
+    },
+    "object": {
+        "definition": {
+            "interactionType": "other",
+            "type": "http://adlnet.gov/expapi/activities/cmi.interaction"
+        },
+        "id": "http://localhost:18000/xblock/ccx-block-v1:edX+DemoX+Demo_Course+ccx@1+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
+        "objectType": "Activity"
+    },
+    "timestamp": "2020-07-14T14:39:26.580443+00:00",
+    "verb": {
+        "display": {
+            "en": "attempted"
+        },
+        "id": "http://adlnet.gov/expapi/verbs/attempted"
+    },
+    "version": "1.0.3"
+}

@@ -41,7 +41,7 @@ def _get_chunks(source, file, start_byte, end_byte):
             break
         # Catching all exceptions here because there's no telling what all
         # the possible errors from different libcloud providers are.
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-except
             print(e)
             if try_number == num_retries:
                 print(f"Try {try_number}: Error occurred downloading, giving up.")
@@ -78,8 +78,7 @@ def transform_tracking_logs(
         while last_successful_byte < int(file.size):
             end_byte = last_successful_byte + CHUNK_SIZE
 
-            if end_byte > file.size:
-                end_byte = file.size
+            end_byte = min(end_byte, file.size)
 
             chunks = _get_chunks(source, file, last_successful_byte, end_byte)
 

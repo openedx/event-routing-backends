@@ -18,10 +18,14 @@ aniso8601==9.0.1
     #   tincan
 apache-libcloud==3.8.0
     # via -r requirements/test.txt
-asgiref==3.7.2
+asgiref==3.8.1
     # via
     #   -r requirements/test.txt
     #   django
+async-timeout==4.0.3
+    # via
+    #   -r requirements/test.txt
+    #   redis
 attrs==23.2.0
     # via
     #   -r requirements/test.txt
@@ -35,6 +39,8 @@ backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   celery
+    #   django
+    #   djangorestframework
     #   kombu
 beautifulsoup4==4.12.3
     # via pydata-sphinx-theme
@@ -42,7 +48,7 @@ billiard==4.2.0
     # via
     #   -r requirements/test.txt
     #   celery
-build==1.0.3
+build==1.1.1
     # via -r requirements/doc.in
 celery==5.3.6
     # via
@@ -83,21 +89,22 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==1.6.0
+code-annotations==1.7.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.4.2
+coverage[toml]==7.4.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==42.0.4
+cryptography==42.0.5
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
-ddt==1.7.1
+    #   secretstorage
+ddt==1.7.2
     # via -r requirements/test.txt
-django==3.2.24
+django==4.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -105,6 +112,7 @@ django==3.2.24
     #   django-crum
     #   django-fernet-fields-v2
     #   django-model-utils
+    #   django-redis
     #   django-waffle
     #   djangorestframework
     #   edx-celeryutils
@@ -127,12 +135,14 @@ django-model-utils==4.4.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
+django-redis==5.4.0
+    # via -r requirements/test.txt
 django-waffle==4.1.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.14.0
+djangorestframework==3.15.1
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -150,7 +160,7 @@ docutils==0.17.1
     #   sphinx
 edx-celeryutils==1.2.5
     # via -r requirements/test.txt
-edx-django-utils==5.10.1
+edx-django-utils==5.11.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -165,7 +175,7 @@ edx-toggles==5.1.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
-event-tracking==2.3.0
+event-tracking==2.3.1
     # via -r requirements/test.txt
 exceptiongroup==1.2.0
     # via
@@ -173,7 +183,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==23.2.1
+faker==24.3.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -189,12 +199,13 @@ idna==3.6
     #   requests
 imagesize==1.4.1
     # via sphinx
-importlib-metadata==7.0.1
+importlib-metadata==6.11.0
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   build
     #   keyring
     #   twine
-importlib-resources==6.1.1
+importlib-resources==6.4.0
     # via keyring
 iniconfig==2.0.0
     # via
@@ -213,7 +224,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-keyring==24.3.0
+keyring==24.3.1
     # via twine
 kombu==5.3.5
     # via
@@ -231,7 +242,7 @@ mock==5.1.0
     # via -r requirements/test.txt
 more-itertools==10.2.0
     # via jaraco-classes
-newrelic==9.6.0
+newrelic==9.7.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -243,7 +254,7 @@ openedx-events==9.5.2
     #   event-tracking
 openedx-filters==1.6.0
     # via -r requirements/test.txt
-packaging==23.2
+packaging==24.0
     # via
     #   -r requirements/test.txt
     #   build
@@ -254,7 +265,7 @@ pbr==6.0.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-pkginfo==1.9.6
+pkginfo==1.10.0
     # via twine
 pluggy==1.4.0
     # via
@@ -293,7 +304,7 @@ pynacl==1.5.0
     #   edx-django-utils
 pyproject-hooks==1.0.0
     # via build
-pytest==8.0.1
+pytest==8.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -302,7 +313,7 @@ pytest-cov==4.1.0
     # via -r requirements/test.txt
 pytest-django==4.8.0
     # via -r requirements/test.txt
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
     # via
     #   -r requirements/test.txt
     #   celery
@@ -315,16 +326,18 @@ pytz==2024.1
     # via
     #   -r requirements/test.txt
     #   babel
-    #   django
-    #   djangorestframework
     #   event-tracking
     #   tincan
 pyyaml==6.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==42.0
+readme-renderer==43.0
     # via twine
+redis==5.0.3
+    # via
+    #   -r requirements/test.txt
+    #   django-redis
 requests==2.31.0
     # via
     #   -r requirements/test.txt
@@ -338,7 +351,7 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==13.7.0
+rich==13.7.1
     # via twine
 six==1.16.0
     # via
@@ -374,7 +387,7 @@ sqlparse==0.4.4
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.1.0
+stevedore==5.2.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -396,7 +409,7 @@ tomli==2.0.1
     #   pytest
 twine==5.0.0
     # via -r requirements/doc.in
-typing-extensions==4.9.0
+typing-extensions==4.10.0
     # via
     #   -r requirements/test.txt
     #   asgiref
@@ -425,7 +438,7 @@ wcwidth==0.2.13
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-zipp==3.17.0
+zipp==3.18.1
     # via
     #   importlib-metadata
     #   importlib-resources

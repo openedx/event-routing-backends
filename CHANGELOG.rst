@@ -14,6 +14,22 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[8.3.0]
+
+* Allow to use any configured engine to replay tracking logs
+
+[8.2.0]
+
+* Add support for batching for EventsRouter.
+
+[8.1.2]
+
+* Add grade.now_* events to the xAPI supported events list.
+
+[8.1.1]
+
+* Dinamically get the xblock version from the event.
+
 [8.1.0]
 ~~~~~~~
 

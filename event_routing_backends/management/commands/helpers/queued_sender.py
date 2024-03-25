@@ -7,11 +7,9 @@ import os
 from io import BytesIO
 from time import sleep
 
-from event_routing_backends.backends.events_router import EventsRouter
+from eventtracking.tracker import get_tracker
+
 from event_routing_backends.management.commands.helpers.event_log_parser import parse_json_event
-from event_routing_backends.models import RouterConfiguration
-from event_routing_backends.processors.caliper.transformer_processor import CaliperProcessor
-from event_routing_backends.processors.xapi.transformer_processor import XApiProcessor
 
 
 class QueuedSender:
@@ -43,23 +41,15 @@ class QueuedSender:
         self.unparsable_lines = 0
         self.batches_sent = 0
 
-        if self.transformer_type == "xapi":
-            self.router = EventsRouter(
-                backend_name=RouterConfiguration.XAPI_BACKEND,
-                processors=[XApiProcessor()]
-            )
-        else:
-            self.router = EventsRouter(
-                backend_name=RouterConfiguration.CALIPER_BACKEND,
-                processors=[CaliperProcessor()]
-            )
+        self.tracker = get_tracker()
+        self.engine = self.tracker.backends[self.transformer_type]
 
     def is_known_event(self, event):
         """
         Check whether any processor cares about this event.
         """
         if "name" in event:
-            for processor in self.router.processors:
+            for processor in self.engine.processors:
                 if event["name"] in processor.registry.mapping:
                     return True
         return False
@@ -108,7 +98,8 @@ class QueuedSender:
         """
         if self.destination == "LRS":
             print(f"Sending {len(self.event_queue)} events to LRS...")
-            self.router.bulk_send(self.event_queue)
+            for backend in self.engine.backends.values():
+                backend.bulk_send(self.event_queue)
         else:
             print("Skipping send, we're storing with libcloud instead of an LRS.")
 
@@ -133,7 +124,7 @@ class QueuedSender:
 
         out = BytesIO()
         for event in self.event_queue:
-            transformed_event = self.router.processors[0](event)
+            transformed_event = self.engine.processors[0](event)
             out.write(str.encode(json.dumps(transformed_event)))
             out.write(str.encode("\n"))
         out.seek(0)
