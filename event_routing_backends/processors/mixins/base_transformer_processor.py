@@ -34,13 +34,30 @@ class BaseTransformerProcessorMixin:
         """
         returned_events = []
         for event in events:
-            transformed_event = self.transform_event(event)
-            if not transformed_event:
-                raise EventEmissionExit
-            if isinstance(transformed_event, list):
-                returned_events += transformed_event
-            else:
-                returned_events.append(transformed_event)
+            try:
+                transformed_event = self.transform_event(event)
+                if not transformed_event:
+                    pass
+                elif isinstance(transformed_event, list):
+                    for e in transformed_event:
+                        if e not in returned_events:
+                            returned_events.append(e)
+                        else:
+                            logger.warning("Duplicate event returned in list!")
+                    returned_events += transformed_event
+                else:
+                    if e not in returned_events:
+                        returned_events.append(transformed_event)
+                    else:
+                        logger.warning("Duplicate event returned in single!")
+
+            # If there's not a transformer implemented for this event
+            # just skip it
+            except NoTransformerImplemented:
+                pass
+            # If the backend isn't enabled at all, early out
+            except NoBackendEnabled:
+                raise EventEmissionExit()
         return returned_events
 
     def transform_event(self, event):
