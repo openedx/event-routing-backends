@@ -224,6 +224,10 @@ class EventsRouter:
         logger.info(f'Event {event["name"]} has been queued for batching. Queue size: {queue_size}')
 
         if queue_size >= settings.EVENT_ROUTING_BACKEND_BATCH_SIZE or self.time_to_send(redis):
+            logger.info(f"{self.queue_name} queue size is {queue_size}")
+            dead_queue_size = redis.llen(self.dead_queue)
+            logger.info(f"{self.queue_name} queue size is {queue_size}")
+            logger.info(f"{self.dead_queue} queue size is {dead_queue_size}")
             batch = redis.rpop(self.queue_name, queue_size)
             return batch
 
