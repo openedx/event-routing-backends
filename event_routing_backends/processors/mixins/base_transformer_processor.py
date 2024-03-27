@@ -44,9 +44,8 @@ class BaseTransformerProcessorMixin:
                             returned_events.append(e)
                         else:
                             logger.warning("Duplicate event returned in list!")
-                    returned_events += transformed_event
                 else:
-                    if e not in returned_events:
+                    if transformed_event not in returned_events:
                         returned_events.append(transformed_event)
                     else:
                         logger.warning("Duplicate event returned in single!")
