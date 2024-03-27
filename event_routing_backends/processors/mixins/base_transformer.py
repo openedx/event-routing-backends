@@ -175,9 +175,7 @@ class BaseTransformerMixin:
             result = None
 
         if result is None:
-            if not required:
-                logger.warning('Could not get value for %s in event "%s"', key, self.event.get('name', None))
-            else:
+            if required:
                 raise ValueError(
                     'Could not get value for {} in event "{}"'.format(key, self.event.get('name', None))
                 )

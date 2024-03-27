@@ -29,13 +29,11 @@ class TestCaliperProcessor(SimpleTestCase):
 
     @override_settings(CALIPER_EVENTS_ENABLED=False)
     def test_skip_event_when_disabled(self):
-        with self.assertRaises(NoBackendEnabled):
-            self.processor(self.sample_event)
+        self.assertFalse(self.processor(self.sample_event))
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_send_method_with_no_transformer_implemented(self, mocked_logger):
-        with self.assertRaises(EventEmissionExit):
-            self.processor([self.sample_event])
+        self.assertFalse(self.processor([self.sample_event]))
 
         mocked_logger.error.assert_called_once_with(
             'Could not get transformer for %s event.',
@@ -130,6 +128,5 @@ class TestCaliperProcessor(SimpleTestCase):
     def test_with_no_registry(self, mocked_logger):
         backend = CaliperProcessor()
         backend.registry = None
-        with self.assertRaises(EventEmissionExit):
-            self.assertIsNone(backend([self.sample_event]))
+        self.assertFalse(backend([self.sample_event]))
         mocked_logger.exception.assert_called_once()
