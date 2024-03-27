@@ -76,7 +76,7 @@ click==8.1.7
     #   click-repl
     #   code-annotations
     #   edx-django-utils
-click-didyoumean==0.3.0
+click-didyoumean==0.3.1
     # via
     #   -r requirements/test.txt
     #   celery
@@ -182,7 +182,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==24.3.0
+faker==24.4.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -214,6 +214,10 @@ isodate==0.6.1
     # via -r requirements/test.txt
 jaraco-classes==3.3.1
     # via keyring
+jaraco-context==4.3.0
+    # via keyring
+jaraco-functools==4.0.0
+    # via keyring
 jeepney==0.8.0
     # via
     #   keyring
@@ -227,7 +231,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-keyring==24.3.1
+keyring==25.0.0
     # via twine
 kombu==5.3.5
     # via
@@ -244,12 +248,14 @@ mdurl==0.1.2
 mock==5.1.0
     # via -r requirements/test.txt
 more-itertools==10.2.0
-    # via jaraco-classes
+    # via
+    #   jaraco-classes
+    #   jaraco-functools
 newrelic==9.7.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-nh3==0.2.15
+nh3==0.2.17
     # via readme-renderer
 openedx-events==9.5.2
     # via
@@ -312,7 +318,7 @@ pytest==8.1.1
     #   -r requirements/test.txt
     #   pytest-cov
     #   pytest-django
-pytest-cov==4.1.0
+pytest-cov==5.0.0
     # via -r requirements/test.txt
 pytest-django==4.8.0
     # via -r requirements/test.txt
