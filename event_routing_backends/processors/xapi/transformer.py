@@ -59,6 +59,7 @@ class XApiTransformer(BaseTransformerMixin):
             'context': self.get_context(),
             'timestamp': self.get_timestamp(),
         })
+        print(f"Generated event id {transformed_event.get('id')}")
         return transformed_event
 
     def get_event_id(self):
