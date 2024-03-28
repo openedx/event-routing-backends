@@ -183,9 +183,6 @@ class EventsRouter:
                 return
 
             try:
-                logger.info("------------------------")
-                logger.info(batch)
-                logger.info("------------------------")
                 redis.set(self.last_sent_key, datetime.now().isoformat())
                 self.bulk_send([json.loads(queued_event.decode('utf-8')) for queued_event in batch])
             except Exception:  # pylint: disable=broad-except
@@ -222,7 +219,10 @@ class EventsRouter:
         Queue the event to be sent to configured routers.
 
         """
+        import traceback
         event["timestamp"] = event["timestamp"].isoformat()
+        logger.info(f'Queueing event ts: {event["timestamp"]}')
+        traceback.print_stack()
         queue_size = redis.lpush(self.queue_name, json.dumps(event, cls=DateTimeJSONEncoder))
         logger.info(f'Event {event["name"]} has been queued for batching. Queue size: {queue_size}')
 
@@ -244,7 +244,12 @@ class EventsRouter:
         if not last_sent:
             return True
         time_passed = (datetime.now() - datetime.fromisoformat(last_sent.decode('utf-8')))
-        return time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
+        ready = time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
+
+        if ready:
+            logger.info(f'Time to send: {time_passed} elapsed since last send.')
+
+        return ready
 
     def process_event(self, event):
         """
