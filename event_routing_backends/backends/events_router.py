@@ -183,6 +183,9 @@ class EventsRouter:
                 return
 
             try:
+                logger.info("------------------------")
+                logger.info(batch)
+                logger.info("------------------------")
                 redis.set(self.last_sent_key, datetime.now().isoformat())
                 self.bulk_send([json.loads(queued_event.decode('utf-8')) for queued_event in batch])
             except Exception:  # pylint: disable=broad-except
