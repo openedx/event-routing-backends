@@ -224,7 +224,14 @@ class EventsRouter:
         logger.info(f'Event {event["name"]} has been queued for batching. Queue size: {queue_size}')
 
         if queue_size >= settings.EVENT_ROUTING_BACKEND_BATCH_SIZE or self.time_to_send(redis):
+            dead_queue_size = redis.llen(self.dead_queue)
+            logger.info(f"{self.queue_name} queue size is {queue_size}")
+            logger.info(f"{self.dead_queue} queue size is {dead_queue_size}")
             batch = redis.rpop(self.queue_name, queue_size)
+
+            # FIXME: Deduplicate list, it looks like things are currently being queued twice
+            #  in the case of event bus, possibly once for xapi and once for caliper
+            batch = [i for n, i in enumerate(batch) if i not in batch[n + 1:]]
             return batch
 
         return None
@@ -237,7 +244,12 @@ class EventsRouter:
         if not last_sent:
             return True
         time_passed = (datetime.now() - datetime.fromisoformat(last_sent.decode('utf-8')))
-        return time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
+        ready = time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
+
+        if ready:
+            logger.info(f'Time to send: {time_passed} elapsed since last send.')
+
+        return ready
 
     def process_event(self, event):
         """
