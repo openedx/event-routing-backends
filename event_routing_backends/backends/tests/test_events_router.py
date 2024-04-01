@@ -275,13 +275,16 @@ class TestEventsRouter(TestCase):
         event1 = copy(self.transformed_event)
         event1["timestamp"] = datetime.datetime.now()
         event2 = copy(self.transformed_event)
-        event2["timestamp"] = datetime.datetime.now()
+        event2_emission = datetime.datetime.now()
+        event2["timestamp"] = event2_emission
         events = [event1, event2]
         formatted_events = []
         for event in events:
             formatted_event = copy(event)
-            formatted_event["timestamp"] = formatted_event["timestamp"].isoformat()
+            formatted_event["timestamp"] = event["timestamp"].isoformat()
             formatted_events.append(json.dumps(formatted_event).encode('utf-8'))
+
+        event2["timestamp"] = event2_emission.isoformat()
 
         redis_mock.rpop.return_value = formatted_events
         redis_mock.lpush.return_value = 1
