@@ -225,6 +225,17 @@ class EventsRouter:
 
         if queue_size >= settings.EVENT_ROUTING_BACKEND_BATCH_SIZE or self.time_to_send(redis):
             batch = redis.rpop(self.queue_name, queue_size)
+
+            orig_size = len(batch)
+            # Deduplicate list, in some misconfigured cases tracking events can be emitted to the
+            # bus twice, causing them to be processed twice, which LRSs will reject.
+            # See: https://github.com/openedx/event-routing-backends/issues/410
+            batch = [i for n, i in enumerate(batch) if i not in batch[n + 1:]]
+            final_size = len(batch)
+
+            if final_size != orig_size:  # pragma: no cover
+                logger.warning(f"{orig_size - final_size} duplicate events in event-routing-backends batch queue! "
+                               f"This is a likely due to misconfiguration of EVENT_TRACKING_BACKENDS.")
             return batch
 
         return None
@@ -237,7 +248,9 @@ class EventsRouter:
         if not last_sent:
             return True
         time_passed = (datetime.now() - datetime.fromisoformat(last_sent.decode('utf-8')))
-        return time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
+        ready = time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
+
+        return ready
 
     def process_event(self, event):
         """

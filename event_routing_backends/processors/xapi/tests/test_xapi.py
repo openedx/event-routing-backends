@@ -5,7 +5,6 @@ import uuid
 
 from django.test import SimpleTestCase
 from django.test.utils import override_settings
-from eventtracking.processors.exceptions import EventEmissionExit, NoBackendEnabled
 from mock import MagicMock, call, patch, sentinel
 from tincan import Activity, Statement
 
@@ -25,13 +24,11 @@ class TestXApiProcessor(SimpleTestCase):
 
     @override_settings(XAPI_EVENTS_ENABLED=False)
     def test_skip_event_when_disabled(self):
-        with self.assertRaises(NoBackendEnabled):
-            self.processor(self.sample_event)
+        self.assertFalse(self.processor(self.sample_event))
 
     @patch('event_routing_backends.processors.mixins.base_transformer_processor.logger')
     def test_send_method_with_no_transformer_implemented(self, mocked_logger):
-        with self.assertRaises(EventEmissionExit):
-            self.processor([self.sample_event])
+        self.assertFalse(self.processor([self.sample_event]))
 
         mocked_logger.error.assert_called_once_with(
             'Could not get transformer for %s event.',
@@ -91,9 +88,7 @@ class TestXApiProcessor(SimpleTestCase):
         mocked_transformer.transform.return_value = transformed_event
         mocked_get_transformer.return_value = mocked_transformer
 
-        with self.assertRaises(EventEmissionExit):
-            self.processor([self.sample_event])
-
+        self.assertFalse(self.processor([self.sample_event]))
         self.assertNotIn(call(transformed_event.to_json()), mocked_logger.mock_calls)
 
     @override_settings(XAPI_EVENT_LOGGING_ENABLED=False)
@@ -116,6 +111,5 @@ class TestXApiProcessor(SimpleTestCase):
     def test_with_no_registry(self, mocked_logger):
         backend = XApiProcessor()
         backend.registry = None
-        with self.assertRaises(EventEmissionExit):
-            self.assertIsNone(backend([self.sample_event]))
+        self.assertFalse(backend([self.sample_event]))
         mocked_logger.exception.assert_called_once()

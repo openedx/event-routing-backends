@@ -3,7 +3,7 @@ Base Processor Mixin for transformer processors.
 """
 from logging import getLogger
 
-from eventtracking.processors.exceptions import EventEmissionExit, NoTransformerImplemented
+from eventtracking.processors.exceptions import NoBackendEnabled, NoTransformerImplemented
 
 logger = getLogger(__name__)
 
@@ -34,13 +34,18 @@ class BaseTransformerProcessorMixin:
         """
         returned_events = []
         for event in events:
-            transformed_event = self.transform_event(event)
-            if not transformed_event:
-                raise EventEmissionExit
-            if isinstance(transformed_event, list):
-                returned_events += transformed_event
-            else:
-                returned_events.append(transformed_event)
+            try:
+                transformed_event = self.transform_event(event)
+                if not transformed_event:
+                    pass
+                elif isinstance(transformed_event, list):
+                    returned_events += transformed_event
+                else:
+                    returned_events.append(transformed_event)
+
+            # If the backend isn't enabled at all, early out
+            except NoBackendEnabled:
+                break
         return returned_events
 
     def transform_event(self, event):
@@ -60,7 +65,6 @@ class BaseTransformerProcessorMixin:
 
         try:
             transformed_event = self.get_transformed_event(event)
-
         except NoTransformerImplemented:
             logger.error('Could not get transformer for %s event.', event_name)
             return None
