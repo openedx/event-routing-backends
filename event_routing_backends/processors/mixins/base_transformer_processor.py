@@ -43,10 +43,6 @@ class BaseTransformerProcessorMixin:
                 else:
                     returned_events.append(transformed_event)
 
-            # If there's not a transformer implemented for this event
-            # just skip it
-            except NoTransformerImplemented:
-                pass
             # If the backend isn't enabled at all, early out
             except NoBackendEnabled:
                 break
@@ -69,10 +65,6 @@ class BaseTransformerProcessorMixin:
 
         try:
             transformed_event = self.get_transformed_event(event)
-
-        except NoBackendEnabled:
-            return None
-
         except NoTransformerImplemented:
             logger.error('Could not get transformer for %s event.', event_name)
             return None
