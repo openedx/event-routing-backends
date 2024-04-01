@@ -233,7 +233,7 @@ class EventsRouter:
             batch = [i for n, i in enumerate(batch) if i not in batch[n + 1:]]
             final_size = len(batch)
 
-            if final_size != orig_size:
+            if final_size != orig_size:  # pragma: no cover
                 logger.warning(f"{orig_size - final_size} duplicate events in event-routing-backends batch queue! "
                                f"This is a likely due to misconfiguration of EVENT_TRACKING_BACKENDS.")
             return batch
@@ -249,9 +249,6 @@ class EventsRouter:
             return True
         time_passed = (datetime.now() - datetime.fromisoformat(last_sent.decode('utf-8')))
         ready = time_passed > timedelta(seconds=settings.EVENT_ROUTING_BACKEND_BATCH_INTERVAL)
-
-        if ready:
-            logger.info(f'Time to send: {time_passed} elapsed since last send.')
 
         return ready
 
