@@ -173,18 +173,23 @@ def plugin_settings(settings):
         'edx.course.grade.now_failed'
     ]
 
-    settings.EVENT_BUS_TRACKING_LOGS = set(allowed_xapi_events + allowed_caliper_events)
+    allowed_events = set(allowed_xapi_events + allowed_caliper_events)
+
+    # Operators can configure the event bus allowed events via EVENT_BUS_TRACKING_LOGS and by default
+    # we are allowing the supported events by xAPI and Caliper so that operators don't need to configure
+    # the events manually.
+    settings.EVENT_BUS_TRACKING_LOGS = allowed_events
 
     settings.EVENT_TRACKING_BACKENDS.update({
-        'xapi': {
+        'event_transformer': {
             'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
             'OPTIONS': {
-                'backend_name': 'xapi',
+                'backend_name': 'events',
                 'processors': [
                     {
                         'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
                         'OPTIONS': {
-                                'whitelist': allowed_xapi_events
+                            'whitelist': allowed_events
                         }
                     },
                 ],
@@ -194,6 +199,12 @@ def plugin_settings(settings):
                         'OPTIONS': {
                             'processors': [
                                 {
+                                    'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
+                                    'OPTIONS': {
+                                        'whitelist': allowed_xapi_events
+                                    }
+                                },
+                                {
                                     'ENGINE':
                                         'event_routing_backends.processors.xapi.transformer_processor.XApiProcessor',
                                     'OPTIONS': {}
@@ -201,27 +212,17 @@ def plugin_settings(settings):
                             ],
                             'backend_name': 'xapi',
                         }
-                    }
-                },
-            },
-        },
-        "caliper": {
-            "ENGINE": "eventtracking.backends.async_routing.AsyncRoutingBackend",
-            "OPTIONS": {
-                "backend_name": "caliper",
-                "processors": [
-                    {
-                        "ENGINE": "eventtracking.processors.whitelist.NameWhitelistProcessor",
-                        "OPTIONS": {
-                            "whitelist": allowed_caliper_events
-                        }
-                    }
-                ],
-                "backends": {
+                    },
                     "caliper": {
                         'ENGINE': 'event_routing_backends.backends.async_events_router.AsyncEventsRouter',
                         "OPTIONS": {
                             "processors": [
+                                {
+                                    "ENGINE": "eventtracking.processors.whitelist.NameWhitelistProcessor",
+                                    "OPTIONS": {
+                                        "whitelist": allowed_caliper_events
+                                    }
+                                },
                                 {
                                     "ENGINE":
                                         "event_routing_backends.processors."
@@ -240,7 +241,7 @@ def plugin_settings(settings):
                             "backend_name": "caliper"
                         }
                     }
-                }
-            }
-        }
+                },
+            },
+        },
     })

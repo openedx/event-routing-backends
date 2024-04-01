@@ -51,7 +51,7 @@ EVENT_ROUTING_BACKEND_BATCHING_ENABLED = False
 EVENT_ROUTING_BACKEND_BATCH_INTERVAL = 100
 EVENT_TRACKING_ENABLED = True
 EVENT_TRACKING_BACKENDS = {
-    "xapi": {
+    "event_transformer": {
         "ENGINE": "eventtracking.backends.async_routing.AsyncRoutingBackend",
         "OPTIONS": {
             "backends": {
@@ -67,13 +67,6 @@ EVENT_TRACKING_BACKENDS = {
                         "backend_name": "xapi",
                     },
                 },
-            },
-        },
-    },
-    "caliper": {
-        "ENGINE": "eventtracking.backends.async_routing.AsyncRoutingBackend",
-        "OPTIONS": {
-            "backends": {
                 "caliper": {
                     "ENGINE": "event_routing_backends.backends.async_events_router.AsyncEventsRouter",
                     "OPTIONS": {
@@ -87,7 +80,7 @@ EVENT_TRACKING_BACKENDS = {
                         "backend_name": "caliper",
                     },
                 },
-            }
+            },
         },
     },
 }

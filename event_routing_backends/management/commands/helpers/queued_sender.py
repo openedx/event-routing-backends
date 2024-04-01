@@ -42,7 +42,8 @@ class QueuedSender:
         self.batches_sent = 0
 
         self.tracker = get_tracker()
-        self.engine = self.tracker.backends[self.transformer_type]
+        self.engine = self.tracker.backends["event_transformer"]
+        self.backend = self.engine.backends[self.transformer_type]
 
     def is_known_event(self, event):
         """
@@ -98,8 +99,7 @@ class QueuedSender:
         """
         if self.destination == "LRS":
             print(f"Sending {len(self.event_queue)} events to LRS...")
-            for backend in self.engine.backends.values():
-                backend.bulk_send(self.event_queue)
+            self.backend.bulk_send(self.event_queue)
         else:
             print("Skipping send, we're storing with libcloud instead of an LRS.")
 

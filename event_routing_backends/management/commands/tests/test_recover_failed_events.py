@@ -43,7 +43,7 @@ class Mocker:
 class TestRecoverFailedEvents(TestCase):
     @override_settings(
         EVENT_TRACKING_BACKENDS={
-            "event_bus": {
+            "event_transformer": {
                 "ENGINE": "eventtracking.backends.event_bus.EventBusRoutingBackend",
                 "OPTIONS": {
                     "backends": {"xapi": XAPI_PROCESSOR},
@@ -61,16 +61,16 @@ class TestRecoverFailedEvents(TestCase):
         tracker = DjangoTracker()
         mock_get_tracker.return_value = tracker
         mock_backend = Mock()
-        tracker.backends["event_bus"].backends["xapi"] = mock_backend
+        tracker.backends["event_transformer"].backends["xapi"] = mock_backend
         mock_backend.get_failed_events = Mocker().custom_get_failed_events
 
-        call_command("recover_failed_events", transformer_type="all")
+        call_command("recover_failed_events", transformer_type="xapi")
 
         mock_backend.send.assert_called_once_with({"name": "test"})
 
     @override_settings(
         EVENT_TRACKING_BACKENDS={
-            "event_bus": {
+            "event_transformer": {
                 "ENGINE": "eventtracking.backends.event_bus.EventBusRoutingBackend",
                 "OPTIONS": {
                     "backends": {"xapi": XAPI_PROCESSOR},
@@ -91,17 +91,17 @@ class TestRecoverFailedEvents(TestCase):
         tracker = DjangoTracker()
         mock_get_tracker.return_value = tracker
         mock_backend = Mock()
-        tracker.backends["event_bus"].backends["xapi"] = mock_backend
+        tracker.backends["event_transformer"].backends["xapi"] = mock_backend
         mock_backend.get_failed_events = Mocker().custom_get_failed_events
         mock_backend.send.side_effect = Exception("Error")
 
-        call_command("recover_failed_events", transformer_type="all")
+        call_command("recover_failed_events", transformer_type="xapi")
 
         mock_logger.error.assert_called_once_with("Failed to send event: Error")
 
     @override_settings(
         EVENT_TRACKING_BACKENDS={
-            "event_bus": {
+            "event_transformer": {
                 "ENGINE": "eventtracking.backends.event_bus.EventBusRoutingBackend",
                 "OPTIONS": {
                     "backends": {"xapi": XAPI_PROCESSOR},
@@ -122,17 +122,17 @@ class TestRecoverFailedEvents(TestCase):
         tracker = DjangoTracker()
         mock_get_tracker.return_value = tracker
         mock_backend = Mock()
-        tracker.backends["event_bus"].backends["xapi"] = mock_backend
+        tracker.backends["event_transformer"].backends["xapi"] = mock_backend
         mock_backend.get_failed_events = Mocker().custom_get_failed_events
         mock_backend.send.side_effect = EventNotDispatched("Error")
 
-        call_command("recover_failed_events", transformer_type="all")
+        call_command("recover_failed_events", transformer_type="xapi")
 
         mock_logger.error.assert_called_once_with("Malformed event: {}".format("test"))
 
     @override_settings(
         EVENT_TRACKING_BACKENDS={
-            "event_bus": {
+            "event_transformer": {
                 "ENGINE": "eventtracking.backends.event_bus.EventBusRoutingBackend",
                 "OPTIONS": {
                     "backends": {"xapi": XAPI_PROCESSOR},
@@ -156,35 +156,9 @@ class TestRecoverFailedEvents(TestCase):
         tracker = DjangoTracker()
         mock_get_tracker.return_value = tracker
         mock_backend = Mock()
-        tracker.backends["xapi"].backends["xapi"] = mock_backend
+        tracker.backends["event_transformer"].backends["xapi"] = mock_backend
         mock_backend.get_failed_events.return_value = []
 
         call_command("recover_failed_events", transformer_type="xapi")
 
         mock_backend.send.assert_not_called()
-
-    @override_settings(
-        EVENT_TRACKING_BACKENDS={
-            "event_bus": {
-                "ENGINE": "eventtracking.backends.logger.LoggerBackend",
-                "OPTIONS": {},
-            },
-        }
-    )
-    @patch(
-        "event_routing_backends.management.commands.recover_failed_events.get_tracker"
-    )
-    @patch("event_routing_backends.management.commands.recover_failed_events.logger")
-    def test_send_tracking_log_to_backends_no_engines(
-        self, mock_logger, mock_get_tracker
-    ):
-        """
-        Test for send_tracking_log_to_backends
-        """
-        tracker = DjangoTracker()
-        mock_get_tracker.return_value = tracker
-
-        call_command("recover_failed_events", transformer_type="all")
-
-        mock_logger.info.assert_any_call("Recovering failed events")
-        mock_logger.info.assert_any_call("No compatible backend found.")
