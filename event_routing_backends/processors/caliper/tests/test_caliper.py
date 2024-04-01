@@ -5,7 +5,6 @@ import json
 
 from django.test import SimpleTestCase
 from django.test.utils import override_settings
-from eventtracking.processors.exceptions import EventEmissionExit, NoBackendEnabled
 from mock import MagicMock, call, patch, sentinel
 
 from event_routing_backends.processors.caliper.transformer_processor import CaliperProcessor

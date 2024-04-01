@@ -5,7 +5,6 @@ import uuid
 
 from django.test import SimpleTestCase
 from django.test.utils import override_settings
-from eventtracking.processors.exceptions import EventEmissionExit, NoBackendEnabled
 from mock import MagicMock, call, patch, sentinel
 from tincan import Activity, Statement
 
