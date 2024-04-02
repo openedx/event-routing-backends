@@ -14,6 +14,12 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[9.0.0]
+~~~~~~~
+
+* **BREAKING CHANGE**: Use a single entry point for all event routing backends.
+  which allows to easily switch bettwen celery and the event bus for the backends.
+
 [8.3.0]
 
 * Allow to use any configured engine to replay tracking logs
