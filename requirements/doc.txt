@@ -174,7 +174,7 @@ edx-toggles==5.1.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
-event-tracking==2.3.1
+event-tracking==2.3.2
     # via -r requirements/test.txt
 exceptiongroup==1.2.0
     # via
