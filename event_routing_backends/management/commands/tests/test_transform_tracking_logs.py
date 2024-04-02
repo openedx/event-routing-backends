@@ -211,8 +211,8 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
     mm2.registry.mapping = {"problem_check": 1}
     # Fake a process response that can be serialized to json
     mm2.return_value = {"foo": "bar"}
-    tracker.backends["xapi"].processors = [mm2]
-    for backend in tracker.backends["xapi"].backends.values():
+    tracker.backends["event_transformer"].processors = [mm2]
+    for backend in tracker.backends["event_transformer"].backends.values():
         backend.bulk_send = MagicMock()
 
     call_command(

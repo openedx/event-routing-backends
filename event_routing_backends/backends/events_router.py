@@ -219,7 +219,8 @@ class EventsRouter:
         Queue the event to be sent to configured routers.
 
         """
-        event["timestamp"] = event["timestamp"].isoformat()
+        if isinstance(event["timestamp"], datetime):
+            event["timestamp"] = event["timestamp"].isoformat()
         queue_size = redis.lpush(self.queue_name, json.dumps(event, cls=DateTimeJSONEncoder))
         logger.info(f'Event {event["name"]} has been queued for batching. Queue size: {queue_size}')
 

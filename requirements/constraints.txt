@@ -23,3 +23,4 @@ sphinx==4.2.0
 # This pin can be removed once sphinx constraint is removed.
 docutils<0.18
 doc8<1.0.0
+event-tracking>=2.3.2

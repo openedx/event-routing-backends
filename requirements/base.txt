@@ -104,7 +104,7 @@ edx-toggles==5.1.1
     # via
     #   -r requirements/base.in
     #   event-tracking
-event-tracking==2.3.1
+event-tracking==2.3.2
     # via -r requirements/base.in
 fastavro==1.9.4
     # via openedx-events
