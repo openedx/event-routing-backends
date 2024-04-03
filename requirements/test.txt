@@ -106,7 +106,7 @@ ddt==1.7.2
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.5.1
+django-config-models==2.6.0
     # via -r requirements/base.txt
 django-crum==0.7.9
     # via
@@ -115,7 +115,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields-v2==0.9
     # via -r requirements/base.txt
-django-model-utils==4.4.0
+django-model-utils==4.5.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -130,9 +130,9 @@ djangorestframework==3.15.1
     # via
     #   -r requirements/base.txt
     #   django-config-models
-edx-celeryutils==1.2.5
+edx-celeryutils==1.3.0
     # via -r requirements/base.txt
-edx-django-utils==5.11.0
+edx-django-utils==5.12.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -148,7 +148,9 @@ edx-toggles==5.1.1
     #   -r requirements/base.txt
     #   event-tracking
 event-tracking==2.3.2
-    # via -r requirements/base.txt
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/base.txt
 exceptiongroup==1.2.0
     # via pytest
 factory-boy==3.3.0
@@ -177,7 +179,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
-kombu==5.3.5
+kombu==5.3.6
     # via
     #   -r requirements/base.txt
     #   celery
@@ -187,11 +189,11 @@ markupsafe==2.1.5
     #   jinja2
 mock==5.1.0
     # via -r requirements/test.in
-newrelic==9.7.1
+newrelic==9.8.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.5.2
+openedx-events==9.6.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -213,7 +215,7 @@ psutil==5.9.8
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pycparser==2.21
+pycparser==2.22
     # via
     #   -r requirements/base.txt
     #   cffi
@@ -312,3 +314,10 @@ wcwidth==0.2.13
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
+wheel==0.43.0
+    # via
+    #   -r requirements/base.txt
+    #   django-config-models
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

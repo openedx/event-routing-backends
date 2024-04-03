@@ -47,7 +47,7 @@ billiard==4.2.0
     # via
     #   -r requirements/test.txt
     #   celery
-build==1.1.1
+build==1.2.1
     # via -r requirements/doc.in
 celery==5.3.6
     # via
@@ -121,7 +121,7 @@ django==4.2.11
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.5.1
+django-config-models==2.6.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -130,7 +130,7 @@ django-crum==0.7.9
     #   edx-toggles
 django-fernet-fields-v2==0.9
     # via -r requirements/test.txt
-django-model-utils==4.4.0
+django-model-utils==4.5.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -157,9 +157,9 @@ docutils==0.17.1
     #   readme-renderer
     #   restructuredtext-lint
     #   sphinx
-edx-celeryutils==1.2.5
+edx-celeryutils==1.3.0
     # via -r requirements/test.txt
-edx-django-utils==5.11.0
+edx-django-utils==5.12.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -175,7 +175,9 @@ edx-toggles==5.1.1
     #   -r requirements/test.txt
     #   event-tracking
 event-tracking==2.3.2
-    # via -r requirements/test.txt
+    # via
+    #   -c requirements/constraints.txt
+    #   -r requirements/test.txt
 exceptiongroup==1.2.0
     # via
     #   -r requirements/test.txt
@@ -212,7 +214,7 @@ iniconfig==2.0.0
     #   pytest
 isodate==0.6.1
     # via -r requirements/test.txt
-jaraco-classes==3.3.1
+jaraco-classes==3.4.0
     # via keyring
 jaraco-context==4.3.0
     # via keyring
@@ -231,9 +233,9 @@ jsonfield==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-keyring==25.0.0
+keyring==25.1.0
     # via twine
-kombu==5.3.5
+kombu==5.3.6
     # via
     #   -r requirements/test.txt
     #   celery
@@ -251,13 +253,13 @@ more-itertools==10.2.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-newrelic==9.7.1
+newrelic==9.8.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.17
     # via readme-renderer
-openedx-events==9.5.2
+openedx-events==9.6.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -288,7 +290,7 @@ psutil==5.9.8
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pycparser==2.21
+pycparser==2.22
     # via
     #   -r requirements/test.txt
     #   cffi
@@ -449,6 +451,10 @@ wcwidth==0.2.13
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
+wheel==0.43.0
+    # via
+    #   -r requirements/test.txt
+    #   django-config-models
 zipp==3.18.1
     # via
     #   importlib-metadata
