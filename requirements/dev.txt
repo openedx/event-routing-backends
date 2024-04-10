@@ -101,7 +101,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/quality.txt
     #   celery
-code-annotations==1.7.0
+code-annotations==1.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -151,7 +151,7 @@ django==4.2.11
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.6.0
+django-config-models==2.7.0
     # via -r requirements/quality.txt
 django-crum==0.7.9
     # via
@@ -192,11 +192,11 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/quality.txt
     #   openedx-events
-edx-toggles==5.1.1
+edx-toggles==5.2.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-event-tracking==2.3.2
+event-tracking==2.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
@@ -206,7 +206,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/quality.txt
-faker==24.4.0
+faker==24.8.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -216,7 +216,7 @@ fastavro==1.9.4
     #   openedx-events
 fasteners==0.19
     # via -r requirements/quality.txt
-filelock==3.13.3
+filelock==3.13.4
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -277,7 +277,7 @@ newrelic==9.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.6.0
+openedx-events==9.7.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -292,7 +292,7 @@ packaging==24.0
     #   pyproject-api
     #   pytest
     #   tox
-path==16.10.0
+path==16.14.0
     # via edx-i18n-tools
 pbr==6.0.0
     # via
@@ -456,7 +456,7 @@ tox==4.14.2
     # via -r requirements/ci.txt
 typeguard==4.2.1
     # via inflect
-typing-extensions==4.10.0
+typing-extensions==4.11.0
     # via
     #   -r requirements/quality.txt
     #   asgiref
@@ -493,8 +493,6 @@ wcwidth==0.2.13
 wheel==0.43.0
     # via
     #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
-    #   django-config-models
     #   pip-tools
 zipp==3.18.1
     # via

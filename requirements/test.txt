@@ -76,7 +76,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
-code-annotations==1.7.0
+code-annotations==1.8.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
@@ -106,7 +106,7 @@ ddt==1.7.2
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.6.0
+django-config-models==2.7.0
     # via -r requirements/base.txt
 django-crum==0.7.9
     # via
@@ -143,11 +143,11 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/base.txt
     #   openedx-events
-edx-toggles==5.1.1
+edx-toggles==5.2.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-event-tracking==2.3.2
+event-tracking==2.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
@@ -155,7 +155,7 @@ exceptiongroup==1.2.0
     # via pytest
 factory-boy==3.3.0
     # via -r requirements/test.in
-faker==24.4.0
+faker==24.8.0
     # via factory-boy
 fastavro==1.9.4
     # via
@@ -193,7 +193,7 @@ newrelic==9.8.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.6.0
+openedx-events==9.7.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -288,7 +288,7 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-typing-extensions==4.10.0
+typing-extensions==4.11.0
     # via
     #   -r requirements/base.txt
     #   asgiref
@@ -314,10 +314,3 @@ wcwidth==0.2.13
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
-wheel==0.43.0
-    # via
-    #   -r requirements/base.txt
-    #   django-config-models
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

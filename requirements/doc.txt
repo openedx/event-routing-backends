@@ -34,6 +34,8 @@ babel==2.14.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
+backports-tarfile==1.0.0
+    # via jaraco-context
 backports-zoneinfo[tzdata]==0.2.1
     # via
     #   -r requirements/test.txt
@@ -88,7 +90,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==1.7.0
+code-annotations==1.8.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
@@ -121,7 +123,7 @@ django==4.2.11
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.6.0
+django-config-models==2.7.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -170,11 +172,11 @@ edx-opaque-keys[django]==2.5.1
     # via
     #   -r requirements/test.txt
     #   openedx-events
-edx-toggles==5.1.1
+edx-toggles==5.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-event-tracking==2.3.2
+event-tracking==2.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
@@ -184,7 +186,7 @@ exceptiongroup==1.2.0
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==24.4.0
+faker==24.8.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -216,7 +218,7 @@ isodate==0.6.1
     # via -r requirements/test.txt
 jaraco-classes==3.4.0
     # via keyring
-jaraco-context==4.3.0
+jaraco-context==5.3.0
     # via keyring
 jaraco-functools==4.0.0
     # via keyring
@@ -259,7 +261,7 @@ newrelic==9.8.0
     #   edx-django-utils
 nh3==0.2.17
     # via readme-renderer
-openedx-events==9.6.0
+openedx-events==9.7.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -422,7 +424,7 @@ tomli==2.0.1
     #   pytest
 twine==5.0.0
     # via -r requirements/doc.in
-typing-extensions==4.10.0
+typing-extensions==4.11.0
     # via
     #   -r requirements/test.txt
     #   asgiref
@@ -451,10 +453,6 @@ wcwidth==0.2.13
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-wheel==0.43.0
-    # via
-    #   -r requirements/test.txt
-    #   django-config-models
 zipp==3.18.1
     # via
     #   importlib-metadata
