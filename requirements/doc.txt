@@ -34,6 +34,8 @@ babel==2.14.0
     # via
     #   pydata-sphinx-theme
     #   sphinx
+backports-tarfile==1.1.1
+    # via jaraco-context
 backports-zoneinfo[tzdata]==0.2.1
     # via
     #   -r requirements/test.txt
@@ -49,7 +51,7 @@ billiard==4.2.0
     #   celery
 build==1.2.1
     # via -r requirements/doc.in
-celery==5.3.6
+celery==5.4.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -88,11 +90,11 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==1.7.0
+code-annotations==1.8.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.4.4
+coverage[toml]==7.5.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -121,7 +123,7 @@ django==4.2.11
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.6.0
+django-config-models==2.7.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -166,25 +168,25 @@ edx-django-utils==5.12.0
     #   edx-toggles
     #   event-tracking
     #   openedx-events
-edx-opaque-keys[django]==2.5.1
+edx-opaque-keys[django]==2.8.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-edx-toggles==5.1.1
+edx-toggles==5.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-event-tracking==2.3.2
+event-tracking==2.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via
     #   -r requirements/test.txt
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==24.4.0
+faker==24.11.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -194,7 +196,7 @@ fastavro==1.9.4
     #   openedx-events
 fasteners==0.19
     # via -r requirements/test.txt
-idna==3.6
+idna==3.7
     # via
     #   -r requirements/test.txt
     #   requests
@@ -216,9 +218,9 @@ isodate==0.6.1
     # via -r requirements/test.txt
 jaraco-classes==3.4.0
     # via keyring
-jaraco-context==4.3.0
+jaraco-context==5.3.0
     # via keyring
-jaraco-functools==4.0.0
+jaraco-functools==4.0.1
     # via keyring
 jeepney==0.8.0
     # via
@@ -235,7 +237,7 @@ jsonfield==3.1.0
     #   edx-celeryutils
 keyring==25.1.0
     # via twine
-kombu==5.3.6
+kombu==5.3.7
     # via
     #   -r requirements/test.txt
     #   celery
@@ -253,17 +255,17 @@ more-itertools==10.2.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.17
     # via readme-renderer
-openedx-events==9.6.0
+openedx-events==9.9.2
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==1.6.0
+openedx-filters==1.8.1
     # via -r requirements/test.txt
 packaging==24.0
     # via
@@ -278,7 +280,7 @@ pbr==6.0.0
     #   stevedore
 pkginfo==1.10.0
     # via twine
-pluggy==1.4.0
+pluggy==1.5.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -345,7 +347,7 @@ pyyaml==6.0.1
     #   code-annotations
 readme-renderer==43.0
     # via twine
-redis==5.0.3
+redis==5.0.4
     # via
     #   -r requirements/test.txt
     #   django-redis
@@ -396,7 +398,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via
     #   -r requirements/test.txt
     #   django
@@ -422,7 +424,7 @@ tomli==2.0.1
     #   pytest
 twine==5.0.0
     # via -r requirements/doc.in
-typing-extensions==4.10.0
+typing-extensions==4.11.0
     # via
     #   -r requirements/test.txt
     #   asgiref
@@ -451,10 +453,6 @@ wcwidth==0.2.13
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-wheel==0.43.0
-    # via
-    #   -r requirements/test.txt
-    #   django-config-models
 zipp==3.18.1
     # via
     #   importlib-metadata
