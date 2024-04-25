@@ -184,7 +184,7 @@ def plugin_settings(settings):
         'event_transformer': {
             'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
             'OPTIONS': {
-                'backend_name': 'events',
+                'backend_name': 'event_transformer',
                 'processors': [
                     {
                         'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',

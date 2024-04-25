@@ -14,6 +14,10 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[9.0.1]
+
+* Fix an issue with the event routing backend async task to not find the event-tracking backend.
+
 [9.0.0]
 ~~~~~~~
 
