@@ -27,6 +27,11 @@ class BaseForumThreadTransformer(XApiTransformer):
         object_id = self.get_data('data.id', True)
         object_path = self.get_data('context.path', True).rstrip('/').replace(object_id, '').rstrip('/')
 
+        kwargs = {}
+
+        if self.get_data('data.title'):
+            kwargs['name'] = LanguageMap({constants.EN: self.get_data('data.title')})
+
         return Activity(
             id='{lms_root_url}{object_path}/{object_id}'.format(
                     lms_root_url=settings.LMS_ROOT_URL,
@@ -35,8 +40,30 @@ class BaseForumThreadTransformer(XApiTransformer):
                 ),
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_DISCUSSION,
+                **kwargs
             )
         )
+
+    def get_context_activities(self):
+        context_activities = super().get_context_activities()
+
+        discussion = self.get_data('data.discussion.id')
+        if not discussion:
+            return context_activities
+
+        context_activities.grouping = [
+            Activity(
+                id='{lms_root_url}/api/discussion/v1/threads/{discussion_id}'.format(
+                    lms_root_url=settings.LMS_ROOT_URL,
+                    discussion_id=discussion
+                ),
+                definition=ActivityDefinition(
+                    type=constants.XAPI_ACTIVITY_DISCUSSION,
+                )
+            )
+        ]
+
+        return context_activities
 
 
 @XApiTransformersRegistry.register('edx.forum.thread.created')

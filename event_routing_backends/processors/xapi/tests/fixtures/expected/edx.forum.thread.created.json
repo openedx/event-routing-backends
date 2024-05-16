@@ -27,6 +27,7 @@
     },
     "object": {
         "definition": {
+            "name": {"en": "Another thread in test topic"},
             "type": "http://id.tincanapi.com/activitytype/discussion"
         },
         "id": "http://localhost:18000/api/discussion/v1/threads/64abcdfee68f35002fd013c6",

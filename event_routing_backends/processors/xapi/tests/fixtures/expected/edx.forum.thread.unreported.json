@@ -26,6 +26,7 @@
     },
     "object": {
         "definition": {
+            "name": {"en": "title of post"},
             "type": "http://id.tincanapi.com/activitytype/discussion"
         },
         "id": "http://localhost:18000/api/discussion/v1/threads/64b7b2bee68f35003369092d",
