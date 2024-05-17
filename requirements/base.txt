@@ -16,8 +16,9 @@ async-timeout==4.0.3
     # via redis
 attrs==23.2.0
     # via openedx-events
-backports-zoneinfo[tzdata]==0.2.1
+backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   celery
     #   django
     #   djangorestframework
@@ -72,7 +73,7 @@ django==4.2.11
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.6.0
+django-config-models==2.7.0
     # via -r requirements/base.in
 django-crum==0.7.9
     # via
@@ -199,8 +200,6 @@ vine==5.1.0
     #   kombu
 wcwidth==0.2.13
     # via prompt-toolkit
-wheel==0.43.0
-    # via django-config-models
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

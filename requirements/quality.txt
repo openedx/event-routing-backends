@@ -30,8 +30,9 @@ attrs==23.2.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
-backports-zoneinfo[tzdata]==0.2.1
+backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     # via
+    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   celery
     #   django
@@ -119,7 +120,7 @@ django==4.2.11
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.6.0
+django-config-models==2.7.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -376,9 +377,8 @@ wcwidth==0.2.13
     #   -r requirements/test.txt
     #   prompt-toolkit
 wheel==0.43.0
-    # via
-    #   -r requirements/test.txt
-    #   django-config-models
+    # via -r requirements/quality.in
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools
+setuptools==69.2.0
+    # via -r requirements/quality.in
