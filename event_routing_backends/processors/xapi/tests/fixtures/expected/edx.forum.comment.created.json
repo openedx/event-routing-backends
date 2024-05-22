@@ -17,6 +17,15 @@
                       "type": "http://adlnet.gov/expapi/activities/course"
                     }
                 }
+            ],
+            "grouping": [
+                {
+                    "id": "http://localhost:18000/api/discussion/v1/threads/64d1df0887e82a002b35a6f7",
+                    "objectType": "Activity",
+                    "definition": {
+                        "type": "http://id.tincanapi.com/activitytype/discussion"
+                    }
+                }
             ]
         },
         "extensions": {
