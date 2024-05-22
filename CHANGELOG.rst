@@ -14,6 +14,14 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[9.2.0]
+
+* Add discussion reference to comments and responses xAPI events
+
+[9.1.0]
+
+* Add python 3.11 and 3.12 support
+
 [9.0.1]
 
 * Fix an issue with the event routing backend async task to not find the event-tracking backend.
