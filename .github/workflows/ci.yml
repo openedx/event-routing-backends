@@ -46,3 +46,11 @@ jobs:
       env:
         TOXENV: ${{ matrix.toxenv }}
       run: tox
+
+    - name: Run Coverage
+      if: matrix.python-version == '3.8' && matrix.toxenv=='django42'
+      uses: codecov/codecov-action@v4
+      with:
+        flags: unittests
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}
