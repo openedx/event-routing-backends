@@ -1,0 +1,23 @@
+name: Code Coverage Fork
+
+on:
+  - pull_request_target
+
+jobs:
+  run_tests:
+    name: tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ 'ubuntu-20.04' ]
+        python-version: ['3.8', '3.11', '3.12']
+        toxenv: [ 'django42' ]
+
+    steps:
+    - name: Run Coverage
+      if: matrix.python-version == '3.8' && matrix.toxenv=='django42'
+      uses: codecov/codecov-action@v4
+      with:
+        flags: unittests
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}
