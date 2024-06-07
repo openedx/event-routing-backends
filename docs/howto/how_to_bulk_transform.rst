@@ -82,16 +82,21 @@ Examples
     # Recursively transform any files whose names start with "tracking" from a "logs" directory in the
     # MINIO bucket "logs" to all configured LRSs
     python manage.py lms transform_tracking_logs \
-    --source_provider LOCAL \
-    --source_config '{"key": "/openedx/data", "container": "logs", "prefix":"tracking"}' \
-    --destination_provider MINIO --destination_config '{"key": "openedx", "secret": "minio secret key", "container": "openedx", "prefix": "transformed_logs/2023-06-01/", "host": "files.local.overhang.io", "secure": false}' \
+    --source_provider MINIO \
+    --source_config '{"key": "openedx", "secret": "[minio secret key]", "container": "openedx", "prefix": "tracking", "host": "minio", "port": 9000, "secure": false}' \
+    --destination_provider LRS \
     --transformer_type xapi
 
     python manage.py lms transform_tracking_logs \
-    --transformer_type xapi
     --source_provider S3 \
-    --source_config '{"key": "AWS key", "secret": "AWS secret", "container": "logs", "prefix":"tracking"}' \
-    --destination_provider LRS
+    --source_config '{"key": "openedx", "secret": "[minio secret key]", "container": "openedx", "prefix": "tracking", "host": "minio", "port": 9000, "secure": false}' \
+    --destination_provider LRS \
+    --transformer_type xapi
+
+You can also run these commands using a tutor wrapper:
+
+::
+    tutor local run lms python manage.py lms .....
 
 **Files to Files**
 
