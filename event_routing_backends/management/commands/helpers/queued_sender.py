@@ -51,7 +51,9 @@ class QueuedSender:
         """
         if "name" in event:
             for processor in self.engine.processors:
-                if event["name"] in processor.registry.mapping:
+                if hasattr(processor, 'whitelist') and event["name"] in processor.whitelist:
+                    return True
+                elif hasattr(processor, 'registry') and event["name"] in processor.registry.mapping:
                     return True
         return False
 

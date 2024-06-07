@@ -76,6 +76,7 @@ def command_options():
                     "Sending to LRS!"
                 ]
             },
+            "registry_mapping": {"problem_check": 1},
         },
         # Remote file to LRS dry run no batch size
         {
@@ -94,6 +95,7 @@ def command_options():
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 0 batches.",
                 ]
             },
+            "registry_mapping": {"problem_check": 1},
         },
         # Remote file to LRS, default batch size
         {
@@ -112,6 +114,7 @@ def command_options():
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 1 batches.",
                 ]
             },
+            "whitelist": ["problem_check"]
         },
         # Local file to remote file
         {
@@ -135,6 +138,7 @@ def command_options():
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 2 batches.",
                 ]
             },
+            "whitelist": ["problem_check"]
         },
         # Remote file dry run
         {
@@ -157,6 +161,7 @@ def command_options():
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 0 batches.",
                 ]
             },
+            "whitelist": ["problem_check"]
         },
     ]
 
@@ -208,7 +213,12 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
 
     mm2 = MagicMock()
     # Fake a router mapping so some events in the log are actually processed
-    mm2.registry.mapping = {"problem_check": 1}
+    import logging
+    logger = logging.getLogger()
+    if command_opts.get("registry_mapping"):
+        mm2.registry.mapping = command_opts.pop("registry_mapping")
+    if command_opts.get("whitelist"):
+        mm2.whitelist = command_opts.pop("whitelist")
     # Fake a process response that can be serialized to json
     mm2.return_value = {"foo": "bar"}
     tracker.backends["event_transformer"].processors = [mm2]
