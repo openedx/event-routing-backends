@@ -213,8 +213,6 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
 
     mm2 = MagicMock()
     # Fake a router mapping so some events in the log are actually processed
-    import logging
-    logger = logging.getLogger()
     if command_opts.get("registry_mapping"):
         mm2.registry.mapping = command_opts.pop("registry_mapping")
     if command_opts.get("whitelist"):
