@@ -13,6 +13,9 @@ Change Log
 
 Unreleased
 ~~~~~~~~~~
+[9.2.1]
+
+* Add support for either 'whitelist' or 'registry.mapping' options (whitelist introduced in v9.0.0)
 
 [9.2.0]
 
