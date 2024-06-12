@@ -2,6 +2,8 @@
 Default settings for the event_routing_backends app.
 """
 
+from ..utils.settings import event_tracking_backends_config
+
 
 def plugin_settings(settings):
     """
@@ -77,7 +79,15 @@ def plugin_settings(settings):
         'edx.course.enrollment.deactivated',
         'edx.course.grade.passed.first_time'
     ]
-    allowed_xapi_events = [
+    # .. setting_name: EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS
+    # .. setting_default: [
+    #    'edx.course.enrollment.activated',
+    #    'edx.course.enrollment.deactivated',
+    #    'edx.course.grade.passed.first_time',
+    #    ...
+    #    ]
+    # .. setting_description: Contains the full list of events to be processed by the xAPI backend.
+    settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS = [
         'edx.course.enrollment.activated',
         'edx.course.enrollment.deactivated',
         'edx.course.enrollment.mode_changed',
@@ -144,7 +154,15 @@ def plugin_settings(settings):
         'edx.course.grade.now_passed',
         'edx.course.grade.now_failed',
     ]
-    allowed_caliper_events = [
+    # .. setting_name: EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS
+    # .. setting_default: [
+    #    'edx.course.enrollment.activated',
+    #    'edx.course.enrollment.deactivated',
+    #    'edx.course.grade.passed.first_time',
+    #    ...
+    #    ]
+    # .. setting_description: Contains the full list of events to be processed by the Caliper backend.
+    settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS = [
         'edx.course.enrollment.activated',
         'edx.course.enrollment.deactivated',
         'edx.ui.lms.link_clicked',
@@ -173,75 +191,15 @@ def plugin_settings(settings):
         'edx.course.grade.now_failed'
     ]
 
-    allowed_events = set(allowed_xapi_events + allowed_caliper_events)
-
     # Operators can configure the event bus allowed events via EVENT_BUS_TRACKING_LOGS and by default
     # we are allowing the supported events by xAPI and Caliper so that operators don't need to configure
     # the events manually.
-    settings.EVENT_BUS_TRACKING_LOGS = allowed_events
+    settings.EVENT_BUS_TRACKING_LOGS = set(
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS +
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS
+    )
 
-    settings.EVENT_TRACKING_BACKENDS.update({
-        'event_transformer': {
-            'ENGINE': 'eventtracking.backends.async_routing.AsyncRoutingBackend',
-            'OPTIONS': {
-                'backend_name': 'event_transformer',
-                'processors': [
-                    {
-                        'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
-                        'OPTIONS': {
-                            'whitelist': allowed_events
-                        }
-                    },
-                ],
-                'backends': {
-                    'xapi': {
-                        'ENGINE': 'event_routing_backends.backends.async_events_router.AsyncEventsRouter',
-                        'OPTIONS': {
-                            'processors': [
-                                {
-                                    'ENGINE': 'eventtracking.processors.whitelist.NameWhitelistProcessor',
-                                    'OPTIONS': {
-                                        'whitelist': allowed_xapi_events
-                                    }
-                                },
-                                {
-                                    'ENGINE':
-                                        'event_routing_backends.processors.xapi.transformer_processor.XApiProcessor',
-                                    'OPTIONS': {}
-                                }
-                            ],
-                            'backend_name': 'xapi',
-                        }
-                    },
-                    "caliper": {
-                        'ENGINE': 'event_routing_backends.backends.async_events_router.AsyncEventsRouter',
-                        "OPTIONS": {
-                            "processors": [
-                                {
-                                    "ENGINE": "eventtracking.processors.whitelist.NameWhitelistProcessor",
-                                    "OPTIONS": {
-                                        "whitelist": allowed_caliper_events
-                                    }
-                                },
-                                {
-                                    "ENGINE":
-                                        "event_routing_backends.processors."
-                                        "caliper.transformer_processor.CaliperProcessor",
-                                    "OPTIONS": {}
-                                },
-                                {
-                                    "ENGINE":
-                                        "event_routing_backends.processors."
-                                        "caliper.envelope_processor.CaliperEnvelopeProcessor",
-                                    "OPTIONS": {
-                                        "sensor_id": settings.LMS_ROOT_URL
-                                    }
-                                }
-                            ],
-                            "backend_name": "caliper"
-                        }
-                    }
-                },
-            },
-        },
-    })
+    settings.EVENT_TRACKING_BACKENDS.update(event_tracking_backends_config(
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS,
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
+    ))
