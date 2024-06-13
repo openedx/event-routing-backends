@@ -40,7 +40,7 @@ class TransformersTestMixin:
     maxDiff = None
 
     registry = None
-    EXCEPTED_EVENTS_FIXTURES_PATH = None
+    EXPECTED_EVENTS_FIXTURES_PATH = None
 
     def setUp(self):
         UserFactory.create(username='edx', email='edx@example.com')
@@ -101,7 +101,7 @@ class TransformersTestMixin:
         # if an event's expected fixture doesn't exist, the test shouldn't fail.
         # evaluate transformation of only supported event fixtures.
         expected_event_file_path = '{expected_events_fixtures_path}/{event_filename}'.format(
-            expected_events_fixtures_path=self.EXCEPTED_EVENTS_FIXTURES_PATH, event_filename=event_filename
+            expected_events_fixtures_path=self.EXPECTED_EVENTS_FIXTURES_PATH, event_filename=event_filename
         )
 
         if not os.path.isfile(expected_event_file_path):

@@ -161,7 +161,7 @@ def get_course_from_id(course_id):
         Course
     """
     if not get_course_overviews:
-        raise ImportError("Could not course_overviews.api from edx-platform.")  # pragma: no cover
+        raise ImportError("Could not import course_overviews.api from edx-platform.")  # pragma: no cover
 
     course_key = CourseKey.from_string(course_id)
     course_overviews = get_course_overviews([course_key])

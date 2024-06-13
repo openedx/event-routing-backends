@@ -13,7 +13,7 @@ class TestCaliperTransformers(TransformersTestMixin, TestCase):
     """
     Test that supported events are transformed into Caliper format correctly.
     """
-    EXCEPTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
+    EXPECTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
 
     registry = CaliperTransformersRegistry
 

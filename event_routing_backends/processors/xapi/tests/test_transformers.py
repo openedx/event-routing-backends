@@ -18,7 +18,7 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
     """
     Test that supported events are transformed into xAPI format correctly.
     """
-    EXCEPTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
+    EXPECTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
     registry = XApiTransformersRegistry
 
     def assert_correct_transformer_version(self, transformed_event, transformer_version):
