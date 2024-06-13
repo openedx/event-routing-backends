@@ -2,6 +2,7 @@
 Mixin for testing transformers for all of the currently supported events
 """
 import json
+import logging
 import os
 from abc import abstractmethod
 from unittest.mock import patch
@@ -16,15 +17,22 @@ from event_routing_backends import __version__
 from event_routing_backends.processors.mixins.base_transformer import BaseTransformerMixin
 from event_routing_backends.tests.factories import UserFactory
 
+logger = logging.getLogger(__name__)
 User = get_user_model()
 
 TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
-EVENT_FIXTURE_FILENAMES = [
-    event_file_name for event_file_name in os.listdir(
-        f'{TEST_DIR_PATH}/fixtures/current/'
-    ) if event_file_name.endswith(".json")
-]
+try:
+    EVENT_FIXTURE_FILENAMES = [
+        event_file_name for event_file_name in os.listdir(
+            f'{TEST_DIR_PATH}/fixtures/current/'
+        ) if event_file_name.endswith(".json")
+    ]
+
+except FileNotFoundError as exc:  # pragma: no cover
+    # This exception may happen when these test mixins are used outside of the ERB package.
+    logger.exception(exc)
+    EVENT_FIXTURE_FILENAMES = []
 
 
 class DummyTransformer(BaseTransformerMixin):
