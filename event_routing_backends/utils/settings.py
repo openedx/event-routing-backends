@@ -4,10 +4,8 @@ Helper utilities for event transformer settings.
 
 from typing import List
 
-from django.conf import settings
 
-
-def event_tracking_backends_config(allowed_xapi_events: List[str], allowed_caliper_events: List[str]) -> dict:
+def event_tracking_backends_config(settings, allowed_xapi_events: List[str], allowed_caliper_events: List[str]) -> dict:
     """
     Return the recommended settings.EVENT_TRACKING_BACKENDS configuration.
 

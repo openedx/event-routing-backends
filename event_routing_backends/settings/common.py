@@ -200,6 +200,7 @@ def plugin_settings(settings):
     )
 
     settings.EVENT_TRACKING_BACKENDS.update(event_tracking_backends_config(
+        settings,
         settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS,
         settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
     ))
