@@ -87,7 +87,10 @@ def plugin_settings(settings):
     #    ...
     #    ]
     # .. setting_description: Contains the full list of events to be processed by the xAPI backend.
-    settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS = [
+    #    If this setting has already been initialized, we append to the existing list.
+    if not hasattr(settings, 'EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS'):
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS = []
+    settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS += [
         'edx.course.enrollment.activated',
         'edx.course.enrollment.deactivated',
         'edx.course.enrollment.mode_changed',
@@ -162,7 +165,10 @@ def plugin_settings(settings):
     #    ...
     #    ]
     # .. setting_description: Contains the full list of events to be processed by the Caliper backend.
-    settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS = [
+    #    If this setting has already been initialized, we append to the existing list.
+    if not hasattr(settings, 'EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS'):
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS = []
+    settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS += [
         'edx.course.enrollment.activated',
         'edx.course.enrollment.deactivated',
         'edx.ui.lms.link_clicked',
