@@ -205,6 +205,8 @@ def plugin_settings(settings):
         settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS
     )
 
+    if not hasattr(settings, 'EVENT_TRACKING_BACKENDS') or not settings.EVENT_TRACKING_BACKENDS:
+        settings.EVENT_TRACKING_BACKENDS = {}
     settings.EVENT_TRACKING_BACKENDS.update(event_tracking_backends_config(
         settings,
         settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS,

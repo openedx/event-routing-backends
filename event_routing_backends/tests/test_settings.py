@@ -3,7 +3,7 @@ Test plugin settings for commond, devstack and production environments
 """
 
 from django.conf import settings
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from event_routing_backends.settings import common as common_settings
 from event_routing_backends.settings import devstack as devstack_settings
@@ -82,3 +82,16 @@ class TestPluginSettings(TestCase):
         self.assertTrue(settings.CALIPER_EVENT_LOGGING_ENABLED)
         self.assertFalse(settings.XAPI_EVENTS_ENABLED)
         self.assertTrue(settings.XAPI_EVENT_LOGGING_ENABLED)
+
+    @override_settings(
+        EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS=["my.event.1"],
+        EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS=["my.event.2"],
+    )
+    def test_settings_append_events(self):
+        common_settings.plugin_settings(settings)
+
+        self.assertGreater(len(settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS), 1)
+        self.assertIn("my.event.1", settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS)
+
+        self.assertGreater(len(settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS), 1)
+        self.assertIn("my.event.2", settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS)
