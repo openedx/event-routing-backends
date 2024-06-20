@@ -6,16 +6,26 @@ import os
 from django.test import TestCase
 
 from event_routing_backends.processors.caliper.registry import CaliperTransformersRegistry
-from event_routing_backends.processors.tests.transformers_test_mixin import TransformersTestMixin
+from event_routing_backends.processors.tests.transformers_test_mixin import (
+    TransformersFixturesTestMixin,
+    TransformersTestMixin,
+)
 
 
-class TestCaliperTransformers(TransformersTestMixin, TestCase):
+class CaliperTransformersFixturesTestMixin(TransformersFixturesTestMixin):
     """
-    Test that supported events are transformed into Caliper format correctly.
-    """
-    EXCEPTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
+    Mixin for testing Caliper event transformers.
 
+    This mixin is split into its own class so it can be used by packages outside of ERB.
+    """
     registry = CaliperTransformersRegistry
+
+    @property
+    def expected_events_fixture_path(self):
+        """
+        Return the path to the expected transformed events fixture files.
+        """
+        return '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
 
     def assert_correct_transformer_version(self, transformed_event, transformer_version):
         self.assertEqual(transformed_event['extensions']['transformerVersion'], transformer_version)
@@ -36,3 +46,9 @@ class TestCaliperTransformers(TransformersTestMixin, TestCase):
         expected_event.pop('id')
         transformed_event.pop('id')
         self.assertDictEqual(expected_event, transformed_event)
+
+
+class TestCaliperTransformers(CaliperTransformersFixturesTestMixin, TransformersTestMixin, TestCase):
+    """
+    Test that supported events are transformed into Caliper format correctly.
+    """

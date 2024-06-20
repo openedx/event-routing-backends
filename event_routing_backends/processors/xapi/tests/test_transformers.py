@@ -8,18 +8,29 @@ import os
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from event_routing_backends.processors.tests.transformers_test_mixin import TransformersTestMixin
+from event_routing_backends.processors.tests.transformers_test_mixin import (
+    TransformersFixturesTestMixin,
+    TransformersTestMixin,
+)
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer
 
 
-class TestXApiTransformers(TransformersTestMixin, TestCase):
+class XApiTransformersFixturesTestMixin(TransformersFixturesTestMixin):
     """
-    Test that supported events are transformed into xAPI format correctly.
+    Mixin for testing xAPI event transformers.
+
+    This mixin is split into its own class so it can be used by packages outside of ERB.
     """
-    EXCEPTED_EVENTS_FIXTURES_PATH = '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
     registry = XApiTransformersRegistry
+
+    @property
+    def expected_events_fixture_path(self):
+        """
+        Return the path to the expected transformed events fixture files.
+        """
+        return '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
 
     def assert_correct_transformer_version(self, transformed_event, transformer_version):
         self.assertEqual(
@@ -67,6 +78,12 @@ class TestXApiTransformers(TransformersTestMixin, TestCase):
         """
         transformed_event_json = json.loads(transformed_event.to_json())
         self.assertDictEqual(expected_event, transformed_event_json)
+
+
+class TestXApiTransformers(XApiTransformersFixturesTestMixin, TransformersTestMixin, TestCase):
+    """
+    Test xApi event transforms and settings.
+    """
 
     @override_settings(XAPI_AGENT_IFI_TYPE='mbox')
     def test_xapi_agent_ifi_settings_mbox(self):

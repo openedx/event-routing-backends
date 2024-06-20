@@ -11,8 +11,10 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
-Unreleased
-~~~~~~~~~~
+[9.3.0]
+
+* Support use of ERB for transforming non-openedx events
+
 [9.2.1]
 
 * Add support for either 'whitelist' or 'registry.mapping' options (whitelist introduced in v9.0.0)

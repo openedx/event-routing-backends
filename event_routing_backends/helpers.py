@@ -6,20 +6,29 @@ import logging
 import uuid
 from urllib.parse import parse_qs, urlparse
 
-# Imported from edx-platform
-# pylint: disable=import-error
-from common.djangoapps.student.models import get_potentially_retired_user_by_username
 from dateutil.parser import parse
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from isodate import duration_isoformat
 from opaque_keys.edx.keys import CourseKey
-from openedx.core.djangoapps.content.course_overviews.api import get_course_overviews
-from openedx.core.djangoapps.external_user_ids.models import ExternalId, ExternalIdType
 
 logger = logging.getLogger(__name__)
-User = get_user_model()
 
+# Imported from edx-platform
+try:
+    from common.djangoapps.student.models import get_potentially_retired_user_by_username
+    from openedx.core.djangoapps.content.course_overviews.api import get_course_overviews
+    from openedx.core.djangoapps.external_user_ids.models import ExternalId, ExternalIdType
+except ImportError as exc:  # pragma: no cover
+    logger.exception(exc)
+
+    get_potentially_retired_user_by_username = None
+    get_course_overviews = None
+    ExternalId = None
+    ExternalIdType = None
+
+
+User = get_user_model()
 UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 BLOCK_ID_FORMAT = '{block_version}:{course_id}+type@{block_type}+block@{block_id}'
 
@@ -57,6 +66,9 @@ def get_anonymous_user_id(username_or_id, external_type):
     Returns:
         str
     """
+    if not (ExternalId and ExternalIdType):
+        raise ImportError("Could not import external_user_ids from edx-platform.")  # pragma: no cover
+
     user = get_user(username_or_id)
     if not user:
         logger.warning('User with username "%s" does not exist. '
@@ -94,6 +106,9 @@ def get_user(username_or_id):
     Returns:
         user object
     """
+    if not get_potentially_retired_user_by_username:
+        raise ImportError("Could not import student.models from edx-platform.")  # pragma: no cover
+
     user = username = None
 
     if not username_or_id:
@@ -145,6 +160,9 @@ def get_course_from_id(course_id):
     Returns:
         Course
     """
+    if not get_course_overviews:
+        raise ImportError("Could not import course_overviews.api from edx-platform.")  # pragma: no cover
+
     course_key = CourseKey.from_string(course_id)
     course_overviews = get_course_overviews([course_key])
     if course_overviews:
