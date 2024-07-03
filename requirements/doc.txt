@@ -95,7 +95,7 @@ code-annotations==1.8.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.5.3
+coverage[toml]==7.5.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -144,7 +144,7 @@ django-waffle==4.1.0
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.15.1
+djangorestframework==3.15.2
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -173,7 +173,7 @@ edx-django-utils==5.14.2
     #   edx-toggles
     #   event-tracking
     #   openedx-events
-edx-opaque-keys[django]==2.9.0
+edx-opaque-keys[django]==2.10.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -192,7 +192,7 @@ exceptiongroup==1.2.1
     #   pytest
 factory-boy==3.3.0
     # via -r requirements/test.txt
-faker==25.5.0
+faker==26.0.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -257,23 +257,23 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.1.0
     # via -r requirements/test.txt
-more-itertools==10.2.0
+more-itertools==10.3.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-newrelic==9.10.0
+newrelic==9.11.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.17
     # via readme-renderer
-openedx-events==9.10.0
+openedx-events==9.11.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==1.8.1
+openedx-filters==1.9.0
     # via -r requirements/test.txt
-packaging==24.0
+packaging==24.1
     # via
     #   -r requirements/test.txt
     #   build
@@ -284,17 +284,17 @@ pbr==6.0.0
     # via
     #   -r requirements/test.txt
     #   stevedore
-pkginfo==1.11.0
+pkginfo==1.10.0
     # via twine
 pluggy==1.5.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.46
+prompt-toolkit==3.0.47
     # via
     #   -r requirements/test.txt
     #   click-repl
-psutil==5.9.8
+psutil==6.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -353,7 +353,7 @@ pyyaml==6.0.1
     #   code-annotations
 readme-renderer==43.0
     # via twine
-redis==5.0.4
+redis==5.0.7
     # via
     #   -r requirements/test.txt
     #   django-redis
@@ -428,9 +428,9 @@ tomli==2.0.1
     #   build
     #   coverage
     #   pytest
-twine==5.1.0
+twine==5.1.1
     # via -r requirements/doc.in
-typing-extensions==4.12.1
+typing-extensions==4.12.2
     # via
     #   -r requirements/test.txt
     #   asgiref
@@ -443,7 +443,7 @@ tzdata==2024.1
     #   -r requirements/test.txt
     #   backports-zoneinfo
     #   celery
-urllib3==2.2.1
+urllib3==2.2.2
     # via
     #   -r requirements/test.txt
     #   requests
