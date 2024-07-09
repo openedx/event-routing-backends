@@ -23,6 +23,8 @@ sphinx==4.2.0
 # This pin can be removed once sphinx constraint is removed.
 docutils<0.18
 doc8<1.0.0
-event-tracking>=2.3.2
+# event-tracking has a breaking change at 2.4.1 version so openedx master release can't connect to mongo.
+# see https://github.com/openedx/tutor-contrib-aspects/issues/891
+event-tracking>=2.3.2,<2.4.1
 # it is not availablein python3.9
 backports.zoneinfo;python_version<"3.9"
