@@ -67,8 +67,8 @@ class LinkClickedTransformer(NavigationTransformersMixin):
         )
 
 
-@ XApiTransformersRegistry.register('edx.ui.lms.sequence.outline.selected')
-@ XApiTransformersRegistry.register('edx.ui.lms.outline.selected')
+@XApiTransformersRegistry.register('edx.ui.lms.sequence.outline.selected')
+@XApiTransformersRegistry.register('edx.ui.lms.outline.selected')
 class OutlineSelectedTransformer(NavigationTransformersMixin):
     """
     xAPI transformer for Navigation events.
@@ -91,9 +91,9 @@ class OutlineSelectedTransformer(NavigationTransformersMixin):
         )
 
 
-@ XApiTransformersRegistry.register('edx.ui.lms.sequence.next_selected')
-@ XApiTransformersRegistry.register('edx.ui.lms.sequence.previous_selected')
-@ XApiTransformersRegistry.register('edx.ui.lms.sequence.tab_selected')
+@XApiTransformersRegistry.register('edx.ui.lms.sequence.next_selected')
+@XApiTransformersRegistry.register('edx.ui.lms.sequence.previous_selected')
+@XApiTransformersRegistry.register('edx.ui.lms.sequence.tab_selected')
 class TabNavigationTransformer(NavigationTransformersMixin):
     """
     xAPI transformer for Navigation events.
