@@ -103,7 +103,6 @@ edx-toggles==5.2.0
 event-tracking==2.4.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -c requirements/constraints.txt
     #   -r requirements/base.in
 fastavro==1.9.5
     # via openedx-events

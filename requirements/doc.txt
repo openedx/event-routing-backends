@@ -6,7 +6,7 @@
 #
 accessible-pygments==0.0.5
     # via pydata-sphinx-theme
-alabaster==0.7.16
+alabaster==1.0.0
     # via sphinx
 amqp==5.2.0
     # via
@@ -91,7 +91,6 @@ cryptography==43.0.0
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
-    #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
 django==4.2.15
@@ -136,13 +135,10 @@ djangorestframework==3.15.2
     # via
     #   -r requirements/test.txt
     #   django-config-models
-doc8==0.11.2
+doc8==1.1.1
+    # via -r requirements/doc.in
+docutils==0.20.1
     # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/doc.in
-docutils==0.17.1
-    # via
-    #   -c requirements/constraints.txt
     #   doc8
     #   pydata-sphinx-theme
     #   readme-renderer
@@ -173,7 +169,6 @@ edx-toggles==5.2.0
 event-tracking==2.4.0
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
-    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
 factory-boy==3.3.1
     # via -r requirements/test.txt
@@ -209,10 +204,6 @@ jaraco-context==6.0.1
     # via keyring
 jaraco-functools==4.0.2
     # via keyring
-jeepney==0.8.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.4
     # via
     #   -r requirements/test.txt
@@ -283,7 +274,7 @@ pycparser==2.22
     # via
     #   -r requirements/test.txt
     #   cffi
-pydata-sphinx-theme==0.13.3
+pydata-sphinx-theme==0.15.4
     # via sphinx-book-theme
 pygments==2.18.0
     # via
@@ -352,8 +343,6 @@ rfc3986==2.0.0
     # via twine
 rich==13.8.0
     # via twine
-secretstorage==3.3.3
-    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
@@ -365,13 +354,12 @@ snowballstemmer==2.2.0
     # via sphinx
 soupsieve==2.6
     # via beautifulsoup4
-sphinx==4.2.0
+sphinx==8.0.2
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/doc.in
     #   pydata-sphinx-theme
     #   sphinx-book-theme
-sphinx-book-theme==1.0.1
+sphinx-book-theme==1.1.3
     # via -r requirements/doc.in
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
@@ -430,6 +418,3 @@ wcwidth==0.2.13
     #   prompt-toolkit
 zipp==3.20.1
     # via importlib-metadata
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools

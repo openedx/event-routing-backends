@@ -65,3 +65,5 @@ requirements/private.txt
 .idea
 
 test_output/
+env/
+.python-version
