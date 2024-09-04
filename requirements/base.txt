@@ -20,7 +20,7 @@ celery==5.4.0
     # via
     #   edx-celeryutils
     #   event-tracking
-certifi==2024.7.4
+certifi==2024.8.30
     # via requests
 cffi==1.17.0
     # via
@@ -44,9 +44,9 @@ click-repl==0.3.0
     # via celery
 code-annotations==1.8.0
     # via edx-toggles
-cryptography==43.0.0
+cryptography==43.0.1
     # via django-fernet-fields-v2
-django==4.2.15
+django==4.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
