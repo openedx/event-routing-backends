@@ -75,7 +75,7 @@ class LrsClient:
         response = self.lrs_client.save_statements(statement_data)
 
         if not response.success:
-            if response.response.code == 409:
+            if response.response.code == 409 or response.response.code == 204:
                 logger.warning(f"Duplicate event id found in: {response.request.content}")
             else:
                 logger.warning(f"Failed request: {response.request.content}")
