@@ -6,6 +6,7 @@ import logging
 import uuid
 from urllib.parse import parse_qs, urlparse
 
+from functools import lru_cache
 from dateutil.parser import parse
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -51,7 +52,7 @@ def get_uuid5(namespace_key, name):
     base_namespace = uuid.uuid5(base_uuid, namespace_key)
     return uuid.uuid5(base_namespace, name)
 
-
+@lru_cache
 def get_anonymous_user_id(username_or_id, external_type):
     """
     Generate anonymous user id.
@@ -94,7 +95,6 @@ def get_anonymous_user_id(username_or_id, external_type):
     anonymous_id = str(external_id.external_user_id)
 
     return anonymous_id
-
 
 def get_user(username_or_id):
     """
@@ -149,7 +149,7 @@ def get_user_email(username_or_id):
 
     return user_email
 
-
+@lru_cache
 def get_course_from_id(course_id):
     """
     Get Course object using the `course_id`.
