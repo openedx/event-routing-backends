@@ -143,6 +143,6 @@ def bulk_send_events(task, events, router_type, host_config):
         # to inform about errors. If it's called asynchronously, we want to retry
         # the celery task till it succeeds or reaches max retries.
         if not task:
-            raise exc
+            return
         raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
                          max_retries=getattr(settings, 'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
