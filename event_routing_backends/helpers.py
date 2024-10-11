@@ -52,7 +52,7 @@ def get_uuid5(namespace_key, name):
     base_namespace = uuid.uuid5(base_uuid, namespace_key)
     return uuid.uuid5(base_namespace, name)
 
-# TODO: cache this one
+@lru_cache
 def get_anonymous_user_id(username_or_id, external_type):
     """
     Generate anonymous user id.
@@ -96,7 +96,6 @@ def get_anonymous_user_id(username_or_id, external_type):
 
     return anonymous_id
 
-@lru_cache
 def get_user(username_or_id):
     """
     Get user by username or user id.
