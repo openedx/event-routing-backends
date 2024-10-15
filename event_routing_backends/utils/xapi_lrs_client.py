@@ -77,7 +77,9 @@ class LrsClient:
         try:
             response = self.lrs_client.save_statements(statement_data)
         except JSONDecodeError:
-            logger.warning(f"JSON Decode Error, this may indicate that all sent events are already stored: {statement_data}")
+            logger.warning(
+                f"JSON Decode Error, this may indicate that all sent events are already stored: {statement_data}"
+            )
 
         if not response:
             return
