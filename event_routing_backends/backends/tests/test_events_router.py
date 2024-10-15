@@ -77,6 +77,7 @@ class TestEventsRouter(TestCase):
         }
 
         self.transformed_event = {
+            'id': 'some-random-uuid',
             'name': str(sentinel.name),
             'transformed': True,
             'event_time': '2020-01-01T12:12:12.000000+00:00',
@@ -126,6 +127,7 @@ class TestEventsRouter(TestCase):
 
         self.bulk_transformed_events = [
             {
+                'id': 'some-uuid-1',
                 'name': str(sentinel.name),
                 'transformed': True,
                 'event_time': '2020-01-01T12:12:12.000000+00:00',
@@ -134,6 +136,7 @@ class TestEventsRouter(TestCase):
                 },
             },
             {
+                'id': 'some-uuid-2',
                 'name': str(sentinel.name),
                 'transformed': True,
                 'event_time': '2020-01-01T12:12:12.000000+00:01',
@@ -142,6 +145,7 @@ class TestEventsRouter(TestCase):
                 },
             },
             {
+                'id': 'some-uuid-3',
                 'name': str(sentinel.name),
                 'transformed': True,
                 'event_time': '2020-01-01T12:12:12.000000+00:02',
