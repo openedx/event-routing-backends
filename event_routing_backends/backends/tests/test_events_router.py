@@ -5,7 +5,7 @@ import datetime
 import json
 from copy import copy
 from unittest.mock import MagicMock, call, patch, sentinel
-
+from json import JSONDecodeError
 import ddt
 from django.conf import settings
 from django.test import TestCase, override_settings
@@ -258,6 +258,22 @@ class TestEventsRouter(TestCase):
         self.assertIn(
             call('Event test received a 409 error indicating the event id already exists.'),
             mocked_logger.info.mock_calls
+        )
+
+    @patch('event_routing_backends.utils.xapi_lrs_client.logger')
+    def test_duplicate_xapi_event_id_json(self, mocked_logger):
+        """
+        Test that when we receive a 409 response when inserting an XAPI statement
+        we do not raise an exception, but do log it.
+        """
+        client = LrsClient({})
+        client.lrs_client = MagicMock()
+        client.lrs_client.save_statements.side_effect = JSONDecodeError(msg="msg", doc="...", pos=0)
+
+        client.bulk_send(statement_data=[])
+        self.assertIn(
+            call('Events already in LRS: []'),
+            mocked_logger.warning.mock_calls
         )
 
     @override_settings(
