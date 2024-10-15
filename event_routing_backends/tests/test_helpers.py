@@ -53,7 +53,7 @@ class TestHelpers(TestCase):
         mocked_external_id.add_new_user_id.return_value = (None, False)
         # Test that a failure to add an external id raises an error
         with self.assertRaises(ValueError):
-            get_anonymous_user_id('edx', 'XAPI')
+            get_anonymous_user_id('edx2', 'XAPI')
 
         # Test that an unknown user raises this error
         with self.assertRaises(ValueError):
