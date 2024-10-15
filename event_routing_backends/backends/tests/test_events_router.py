@@ -4,8 +4,9 @@ Test the EventsRouter
 import datetime
 import json
 from copy import copy
-from unittest.mock import MagicMock, call, patch, sentinel
 from json import JSONDecodeError
+from unittest.mock import MagicMock, call, patch, sentinel
+
 import ddt
 from django.conf import settings
 from django.test import TestCase, override_settings
