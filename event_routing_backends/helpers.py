@@ -4,6 +4,7 @@ Helper utilities for event transformers.
 import datetime
 import logging
 import uuid
+from functools import lru_cache
 from urllib.parse import parse_qs, urlparse
 
 from dateutil.parser import parse
@@ -52,6 +53,7 @@ def get_uuid5(namespace_key, name):
     return uuid.uuid5(base_namespace, name)
 
 
+@lru_cache
 def get_anonymous_user_id(username_or_id, external_type):
     """
     Generate anonymous user id.
@@ -150,6 +152,7 @@ def get_user_email(username_or_id):
     return user_email
 
 
+@lru_cache
 def get_course_from_id(course_id):
     """
     Get Course object using the `course_id`.
