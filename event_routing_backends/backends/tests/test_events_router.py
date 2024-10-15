@@ -854,6 +854,7 @@ class TestAsyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-
             router.bulk_send(self.bulk_transformed_events)
 
         overridden_events = self.bulk_transformed_events.copy()
+        # Remove duplicated events from expected call
         overridden_events.pop()
 
         for event in overridden_events:
@@ -1159,6 +1160,7 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
             router.bulk_send(self.bulk_transformed_events)
 
         overridden_events = self.bulk_transformed_events.copy()
+        # Remove duplicated events from expected call
         overridden_events.pop()
 
         for event in overridden_events:
