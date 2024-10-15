@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from libcloud.storage.providers import get_driver
 from libcloud.storage.types import Provider
+
 from event_routing_backends.management.commands.helpers.queued_sender import QueuedSender
 
 # Number of bytes to download at a time, this is 2 MB

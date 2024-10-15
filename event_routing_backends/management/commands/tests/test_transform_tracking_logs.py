@@ -179,14 +179,13 @@ def _get_raw_log_size():
     return os.path.getsize(tracking_log_path)
 
 
-def _get_raw_log_stream(_, start_bytes, end_bytes):
+def _get_raw_log_stream(_, start_bytes, chunk_size):
     """
     Return raw event json parsed from current fixtures
     """
     tracking_log_path = _get_tracking_log_file_path()
     with open(tracking_log_path, "rb") as current:
-        current.seek(start_bytes)
-        yield current.read(end_bytes - start_bytes)
+        yield current.read()
 
 
 @pytest.mark.parametrize("command_opts", command_options())
@@ -421,7 +420,7 @@ def test_get_chunks():
     fake_source.download_object_range_as_stream.return_value = "abc"
 
     # Check that we got the expected return value
-    assert _get_chunks(fake_source, "", 0, 1) == "abc"
+    assert _get_chunks(fake_source, "") == "abc"
     # Check that we broke out of the retry loop as expected
     assert fake_source.download_object_range_as_stream.call_count == 1
 
@@ -431,7 +430,7 @@ def test_get_chunks():
     # Speed up our test, don't wait for the sleep
     with patch("event_routing_backends.management.commands.transform_tracking_logs.sleep"):
         with pytest.raises(Exception) as e:
-            _get_chunks(fake_source_err, "", 0, 1)
+            _get_chunks(fake_source_err, "")
 
     # Make sure we're getting the error we expect
     assert "boom" in str(e)
