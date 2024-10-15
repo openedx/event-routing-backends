@@ -263,8 +263,8 @@ class TestEventsRouter(TestCase):
     @patch('event_routing_backends.utils.xapi_lrs_client.logger')
     def test_duplicate_xapi_event_id_json(self, mocked_logger):
         """
-        Test that when we receive a 409 response when inserting an XAPI statement
-        we do not raise an exception, but do log it.
+        Test that when we receive a 204 response (and the LRSClient fails to parse to JSON
+        the response) when bulk inserting XAPI statements it may indicates all events are already stored.
         """
         client = LrsClient({})
         client.lrs_client = MagicMock()
@@ -272,7 +272,7 @@ class TestEventsRouter(TestCase):
 
         client.bulk_send(statement_data=[])
         self.assertIn(
-            call('Events already in LRS: []'),
+            call('JSON Decode Error, this may indicate that all sent events are already stored: []'),
             mocked_logger.warning.mock_calls
         )
 
