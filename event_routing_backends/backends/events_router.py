@@ -155,8 +155,13 @@ class EventsRouter:
         for events_for_route in event_routes.values():
             prepared_events = []
             host = None
+            ids = set()
             for _, updated_event, host, _ in events_for_route:
+                if updated_event["id"] in ids:
+                    logger.info(f"Found duplicated event {updated_event['id']}")
+                    continue
                 prepared_events.append(updated_event)
+                ids.add(updated_event["id"])
 
             if prepared_events:  # pragma: no cover
                 self.dispatch_bulk_events(

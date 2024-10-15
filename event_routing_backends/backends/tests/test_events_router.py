@@ -77,6 +77,7 @@ class TestEventsRouter(TestCase):
         }
 
         self.transformed_event = {
+            'id': 'some-random-uuid',
             'name': str(sentinel.name),
             'transformed': True,
             'event_time': '2020-01-01T12:12:12.000000+00:00',
@@ -126,6 +127,7 @@ class TestEventsRouter(TestCase):
 
         self.bulk_transformed_events = [
             {
+                'id': 'some-uuid-1',
                 'name': str(sentinel.name),
                 'transformed': True,
                 'event_time': '2020-01-01T12:12:12.000000+00:00',
@@ -134,6 +136,7 @@ class TestEventsRouter(TestCase):
                 },
             },
             {
+                'id': 'some-uuid-2',
                 'name': str(sentinel.name),
                 'transformed': True,
                 'event_time': '2020-01-01T12:12:12.000000+00:01',
@@ -142,6 +145,16 @@ class TestEventsRouter(TestCase):
                 },
             },
             {
+                'id': 'some-uuid-3',
+                'name': str(sentinel.name),
+                'transformed': True,
+                'event_time': '2020-01-01T12:12:12.000000+00:02',
+                'data': {
+                    'key': 'value 2'
+                },
+            },
+            {
+                'id': 'some-uuid-3',
                 'name': str(sentinel.name),
                 'transformed': True,
                 'event_time': '2020-01-01T12:12:12.000000+00:02',
@@ -841,6 +854,8 @@ class TestAsyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-
             router.bulk_send(self.bulk_transformed_events)
 
         overridden_events = self.bulk_transformed_events.copy()
+        # Remove duplicated events from expected call
+        overridden_events.pop()
 
         for event in overridden_events:
             event['new_key'] = 'new_value'
@@ -1145,6 +1160,8 @@ class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-t
             router.bulk_send(self.bulk_transformed_events)
 
         overridden_events = self.bulk_transformed_events.copy()
+        # Remove duplicated events from expected call
+        overridden_events.pop()
 
         for event in overridden_events:
             event['new_key'] = 'new_value'
