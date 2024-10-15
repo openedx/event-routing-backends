@@ -80,7 +80,7 @@ class LrsClient:
             return
 
         if not response.success:
-            if response.response.code == 409 or response.response.code == 204:
+            if response.response.code == 409:
                 logger.warning(f"Duplicate event id found in: {response.request.content}")
             else:
                 logger.warning(f"Failed request: {response.request.content}")
