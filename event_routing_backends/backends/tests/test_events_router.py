@@ -4,6 +4,7 @@ Test the EventsRouter
 import datetime
 import json
 from copy import copy
+from json import JSONDecodeError
 from unittest.mock import MagicMock, call, patch, sentinel
 
 import ddt
@@ -271,6 +272,22 @@ class TestEventsRouter(TestCase):
         self.assertIn(
             call('Event test received a 409 error indicating the event id already exists.'),
             mocked_logger.info.mock_calls
+        )
+
+    @patch('event_routing_backends.utils.xapi_lrs_client.logger')
+    def test_duplicate_xapi_event_id_json(self, mocked_logger):
+        """
+        Test that when we receive a 204 response (and the LRSClient fails to parse to JSON
+        the response) when bulk inserting XAPI statements it may indicates all events are already stored.
+        """
+        client = LrsClient({})
+        client.lrs_client = MagicMock()
+        client.lrs_client.save_statements.side_effect = JSONDecodeError(msg="msg", doc="...", pos=0)
+
+        client.bulk_send(statement_data=[])
+        self.assertIn(
+            call('JSON Decode Error, this may indicate that all sent events are already stored: []'),
+            mocked_logger.warning.mock_calls
         )
 
     @override_settings(
