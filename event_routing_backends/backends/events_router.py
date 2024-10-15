@@ -157,7 +157,7 @@ class EventsRouter:
             host = None
             ids = set()
             for _, updated_event, host, _ in events_for_route:
-                if updated_event["id"] in set():
+                if updated_event["id"] in ids:
                     logger.info(f"Found duplicated event {updated_event['id']}")
                     continue
                 prepared_events.append(updated_event)
