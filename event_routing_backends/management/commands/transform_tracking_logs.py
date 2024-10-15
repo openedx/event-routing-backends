@@ -18,7 +18,7 @@ from event_routing_backends.management.commands.helpers.queued_sender import Que
 CHUNK_SIZE = 1024 * 1024 * 2
 
 
-def _get_chunks(source, file, start_byte, end_byte):
+def _get_chunks(source, file):
     """
     Fetch a chunk from the upstream source, retry 3 times if necessary.
 
@@ -35,8 +35,8 @@ def _get_chunks(source, file, start_byte, end_byte):
         try:
             chunks = source.download_object_range_as_stream(
                 file,
-                start_bytes=start_byte,
-                end_bytes=end_byte
+                start_bytes=0,
+                chunk_size=CHUNK_SIZE
             )
             break
         # Catching all exceptions here because there's no telling what all
@@ -72,29 +72,22 @@ def transform_tracking_logs(
         # Download the file as a stream of characters to save on memory
         print(f"Streaming file {file}...")
 
-        last_successful_byte = 0
         line = ""
 
-        while last_successful_byte < int(file.size):
-            end_byte = last_successful_byte + CHUNK_SIZE
+        chunks = _get_chunks(source, file)
 
-            end_byte = min(end_byte, file.size)
+        for chunk in chunks:
+            chunk = chunk.decode('utf-8')
 
-            chunks = _get_chunks(source, file, last_successful_byte, end_byte)
+            # Loop through this chunk, if we find a newline it's time to process
+            # otherwise just keep appending.
+            for char in chunk:
+                if char == "\n" and line:
+                    sender.transform_and_queue(line)
+                    line = ""
+                else:
+                    line += char
 
-            for chunk in chunks:
-                chunk = chunk.decode('utf-8')
-
-                # Loop through this chunk, if we find a newline it's time to process
-                # otherwise just keep appending.
-                for char in chunk:
-                    if char == "\n" and line:
-                        sender.transform_and_queue(line)
-                        line = ""
-                    else:
-                        line += char
-
-            last_successful_byte = end_byte
         # Sometimes the file doesn't end with a newline, we try to use
         # any remaining bytes as a final line.
         if line:
