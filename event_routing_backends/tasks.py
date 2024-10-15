@@ -5,6 +5,7 @@ from celery import shared_task
 from celery.utils.log import get_task_logger
 from celery_utils.persist_on_failure import LoggedPersistOnFailureTask
 from django.conf import settings
+
 from event_routing_backends.processors.transformer_utils.exceptions import EventNotDispatched
 from event_routing_backends.utils.http_client import HttpClient
 from event_routing_backends.utils.xapi_lrs_client import LrsClient
