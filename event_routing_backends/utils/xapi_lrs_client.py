@@ -1,6 +1,7 @@
 """
 An LRS client for xAPI stores.
 """
+from json.decoder import JSONDecodeError
 from logging import getLogger
 
 from tincan.remote_lrs import RemoteLRS
@@ -72,7 +73,11 @@ class LrsClient:
         """
         logger.debug('Sending {} xAPI statements to {}'.format(len(statement_data), self.URL))
 
-        response = self.lrs_client.save_statements(statement_data)
+        try:
+            response = self.lrs_client.save_statements(statement_data)
+        except JSONDecodeError as e:
+            logger.warning(f"Events already in LRS: {response.request.content}")
+            return
 
         if not response.success:
             if response.response.code == 409 or response.response.code == 204:
