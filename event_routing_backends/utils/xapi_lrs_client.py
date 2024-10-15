@@ -72,11 +72,14 @@ class LrsClient:
             requests.Response object
         """
         logger.debug('Sending {} xAPI statements to {}'.format(len(statement_data), self.URL))
+        response = None
 
         try:
             response = self.lrs_client.save_statements(statement_data)
-        except JSONDecodeError as e:
+        except JSONDecodeError:
             logger.warning(f"Events already in LRS: {response.request.content}")
+
+        if not response:
             return
 
         if not response.success:
