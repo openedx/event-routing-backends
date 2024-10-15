@@ -4,9 +4,9 @@ Helper utilities for event transformers.
 import datetime
 import logging
 import uuid
+from functools import lru_cache
 from urllib.parse import parse_qs, urlparse
 
-from functools import lru_cache
 from dateutil.parser import parse
 from django.conf import settings
 from django.contrib.auth import get_user_model
