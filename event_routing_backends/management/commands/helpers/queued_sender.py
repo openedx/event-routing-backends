@@ -16,7 +16,7 @@ class QueuedSender:
     """
     Handles queuing and sending events to the destination.
     """
-    def __init__(
+    def __init__(  # pylint: disable=too-many-positional-arguments
         self,
         destination,
         destination_container,

@@ -1,6 +1,6 @@
 # pylintrc tweaks for use with edx_lint.
 [MASTER]
-ignore = migrations
+ignore = migrations,tests
 load-plugins = edx_lint.pylint,pylint_django,pylint_celery
 
 [MESSAGES CONTROL]

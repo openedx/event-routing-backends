@@ -17,7 +17,15 @@ class LrsClient:
     An LRS client for xAPI stores.
     """
 
-    def __init__(self, url=None, version=None, auth_scheme=None, auth_key=None, username=None, password=None):
+    def __init__(  # pylint: disable=too-many-positional-arguments
+        self,
+        url=None,
+        version=None,
+        auth_scheme=None,
+        auth_key=None,
+        username=None,
+        password=None
+    ):
         """
         Initialize the client with provided configurations.
 
