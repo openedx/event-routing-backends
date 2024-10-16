@@ -1,6 +1,7 @@
 """
 A generic HTTP Client.
 """
+
 from logging import getLogger
 
 import requests
@@ -18,13 +19,13 @@ class HttpClient:
 
     def __init__(  # pylint: disable=too-many-positional-arguments
         self,
-        url='',
-        auth_scheme='',
-        auth_key='',
+        url="",
+        auth_scheme="",
+        auth_key="",
         headers=None,
         username=None,
         password=None,
-        **options
+        **options,
     ):
         """
         Initialize the client with provided configurations.
@@ -53,9 +54,7 @@ class HttpClient:
             dict
         """
         if self.AUTH_SCHEME == RouterConfiguration.AUTH_BEARER:
-            return {
-                'Authorization': f'{self.AUTH_SCHEME} {self.AUTH_KEY}'
-            }
+            return {"Authorization": f"{self.AUTH_SCHEME} {self.AUTH_KEY}"}
         return {}
 
     def bulk_send(self, events):
@@ -72,26 +71,30 @@ class HttpClient:
         headers.update(self.get_auth_header())
 
         options = self.options.copy()
-        options.update({
-            'url': self.URL,
-            'json': events,
-            'headers': headers,
-        })
+        options.update(
+            {
+                "url": self.URL,
+                "json": events,
+                "headers": headers,
+            }
+        )
         if self.AUTH_SCHEME == RouterConfiguration.AUTH_BASIC:
-            options.update({'auth': (self.username, self.password)})
-        logger.debug('Sending caliper version of {} edx events to {}'.format(len(events), self.URL))
-        response = requests.post(**options)   # pylint: disable=missing-timeout
+            options.update({"auth": (self.username, self.password)})
+        logger.debug("Sending caliper version of {} edx events to {}".format(len(events), self.URL))
+        response = requests.post(**options)  # pylint: disable=missing-timeout
 
         if not 200 <= response.status_code < 300:
             logger.warning(
-                '{} request failed for sending Caliper version of {} edx events to {}.Response code: {}. '
-                'Response: '
-                '{}'.format(
+                "{} request failed for sending Caliper version of {} edx events to {}.Response code: {}. "
+                "Response: "
+                "{}".format(
                     response.request.method,
-                    len(events), self.URL,
+                    len(events),
+                    self.URL,
                     response.status_code,
-                    response.text
-                ))
+                    response.text,
+                )
+            )
             raise EventNotDispatched
 
     def send(self, event, event_name):
@@ -109,23 +112,27 @@ class HttpClient:
         headers.update(self.get_auth_header())
 
         options = self.options.copy()
-        options.update({
-            'url': self.URL,
-            'json': event,
-            'headers': headers,
-        })
+        options.update(
+            {
+                "url": self.URL,
+                "json": event,
+                "headers": headers,
+            }
+        )
         if self.AUTH_SCHEME == RouterConfiguration.AUTH_BASIC:
-            options.update({'auth': (self.username, self.password)})
+            options.update({"auth": (self.username, self.password)})
         logger.debug('Sending caliper version of edx event "{}" to {}'.format(event_name, self.URL))
-        response = requests.post(**options)   # pylint: disable=missing-timeout
+        response = requests.post(**options)  # pylint: disable=missing-timeout
 
         if not 200 <= response.status_code < 300:
             logger.warning(
                 '{} request failed for sending Caliper version of edx event "{}" to {}.Response code: {}. Response: '
-                '{}'.format(
+                "{}".format(
                     response.request.method,
-                    event_name, self.URL,
+                    event_name,
+                    self.URL,
                     response.status_code,
-                    response.text
-                ))
+                    response.text,
+                )
+            )
             raise EventNotDispatched

@@ -13,6 +13,7 @@ class TestXAPIEventTransformers(SimpleTestCase):
     """
     These cases are covered by the fixtures, but coverage doesn't think so.
     """
+
     def test_jsonencodedresult_list(self):
         test_data = ["foo", "b'ar", 'test"ing', 2]
         result = JSONEncodedResult()

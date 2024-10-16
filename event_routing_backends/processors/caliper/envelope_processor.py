@@ -1,6 +1,7 @@
 """
 Envelope the caliper transformed event.
 """
+
 from datetime import datetime
 
 from pytz import UTC
@@ -13,6 +14,7 @@ class CaliperEnvelopeProcessor:
     """
     Envelope the caliper transformed event.
     """
+
     def __init__(self, sensor_id):
         """
         Initialize the processor.
@@ -31,10 +33,12 @@ class CaliperEnvelopeProcessor:
         """
         enveloped_events = []
         for event in events:
-            enveloped_events.append({
-                'sensor': self.sensor_id,
-                'sendTime': convert_datetime_to_iso(datetime.now(UTC)),
-                'data': [event],
-                'dataVersion': CALIPER_EVENT_CONTEXT
-            })
+            enveloped_events.append(
+                {
+                    "sensor": self.sensor_id,
+                    "sendTime": convert_datetime_to_iso(datetime.now(UTC)),
+                    "data": [event],
+                    "dataVersion": CALIPER_EVENT_CONTEXT,
+                }
+            )
         return enveloped_events

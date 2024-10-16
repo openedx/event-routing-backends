@@ -8,13 +8,13 @@ import event_routing_backends.utils.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('event_routing_backends', '0002_auto_20210503_0648'),
+        ("event_routing_backends", "0002_auto_20210503_0648"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='routerconfiguration',
-            name='configurations',
+            model_name="routerconfiguration",
+            name="configurations",
             field=event_routing_backends.utils.fields.EncryptedJSONField(),
         ),
     ]

@@ -62,7 +62,7 @@ def plugin_settings(settings):
     #        mbox_sha1sum: "f427d80dc332a166bf5f160ec15f009ce7e68c4c"
     #    }
     #    ```
-    settings.XAPI_AGENT_IFI_TYPE = 'external_id'
+    settings.XAPI_AGENT_IFI_TYPE = "external_id"
 
     # .. setting_name: EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS
     # .. setting_default: [
@@ -75,9 +75,9 @@ def plugin_settings(settings):
     #    in case multiple attempts to rout them to relevant LRS are failed. Once persisted we can retry sending
     #    them once issues are resolved.
     settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS = [
-        'edx.course.enrollment.activated',
-        'edx.course.enrollment.deactivated',
-        'edx.course.grade.passed.first_time'
+        "edx.course.enrollment.activated",
+        "edx.course.enrollment.deactivated",
+        "edx.course.grade.passed.first_time",
     ]
     # .. setting_name: EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS
     # .. setting_default: [
@@ -88,74 +88,74 @@ def plugin_settings(settings):
     #    ]
     # .. setting_description: Contains the full list of events to be processed by the xAPI backend.
     #    If this setting has already been initialized, we append to the existing list.
-    if not hasattr(settings, 'EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS'):
+    if not hasattr(settings, "EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS"):
         settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS = []
     settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS += [
-        'edx.course.enrollment.activated',
-        'edx.course.enrollment.deactivated',
-        'edx.course.enrollment.mode_changed',
-        'edx.grades.subsection.grade_calculated',
-        'edx.grades.course.grade_calculated',
-        'edx.special_exam.timed.attempt.created',
-        'edx.special_exam.timed.attempt.submitted',
-        'edx.special_exam.practice.attempt.created',
-        'edx.special_exam.practice.attempt.submitted',
-        'edx.special_exam.proctored.attempt.created',
-        'edx.special_exam.proctored.attempt.submitted',
-        'edx.completion.block_completion.changed',
-        'edx.forum.thread.created',
-        'edx.forum.thread.deleted',
-        'edx.forum.thread.edited',
-        'edx.forum.thread.viewed',
-        'edx.forum.thread.reported',
-        'edx.forum.thread.unreported',
-        'edx.forum.thread.voted',
-        'edx.forum.response.created',
-        'edx.forum.response.deleted',
-        'edx.forum.response.edited',
-        'edx.forum.response.reported',
-        'edx.forum.response.unreported',
-        'edx.forum.response.voted',
-        'edx.forum.comment.created',
-        'edx.forum.comment.deleted',
-        'edx.forum.comment.edited',
-        'edx.forum.comment.reported',
-        'edx.forum.comment.unreported',
-        'edx.ui.lms.link_clicked',
-        'edx.ui.lms.sequence.outline.selected',
-        'edx.ui.lms.outline.selected',
-        'edx.ui.lms.sequence.next_selected',
-        'edx.ui.lms.sequence.previous_selected',
-        'edx.ui.lms.sequence.tab_selected',
-        'showanswer',
-        'edx.problem.hint.demandhint_displayed',
-        'problem_check',
-        'load_video',
-        'edx.video.loaded',
-        'play_video',
-        'edx.video.played',
-        'complete_video',
-        'edx.video.completed',
-        'stop_video',
-        'edx.video.stopped',
-        'pause_video',
-        'edx.video.paused',
-        'seek_video',
-        'edx.video.position.changed',
-        'hide_transcript',
-        'edx.video.transcript.hidden',
-        'show_transcript',
-        'edx.video.transcript.shown',
-        'speed_change_video',
-        'video_hide_cc_menu',
-        'edx.video.closed_captions.shown',
-        'edx.video.closed_captions.hidden',
-        'edx.video.language_menu.hidden',
-        'video_show_cc_menu',
-        'edx.video.language_menu.shown',
-        'edx.course.grade.passed.first_time',
-        'edx.course.grade.now_passed',
-        'edx.course.grade.now_failed',
+        "edx.course.enrollment.activated",
+        "edx.course.enrollment.deactivated",
+        "edx.course.enrollment.mode_changed",
+        "edx.grades.subsection.grade_calculated",
+        "edx.grades.course.grade_calculated",
+        "edx.special_exam.timed.attempt.created",
+        "edx.special_exam.timed.attempt.submitted",
+        "edx.special_exam.practice.attempt.created",
+        "edx.special_exam.practice.attempt.submitted",
+        "edx.special_exam.proctored.attempt.created",
+        "edx.special_exam.proctored.attempt.submitted",
+        "edx.completion.block_completion.changed",
+        "edx.forum.thread.created",
+        "edx.forum.thread.deleted",
+        "edx.forum.thread.edited",
+        "edx.forum.thread.viewed",
+        "edx.forum.thread.reported",
+        "edx.forum.thread.unreported",
+        "edx.forum.thread.voted",
+        "edx.forum.response.created",
+        "edx.forum.response.deleted",
+        "edx.forum.response.edited",
+        "edx.forum.response.reported",
+        "edx.forum.response.unreported",
+        "edx.forum.response.voted",
+        "edx.forum.comment.created",
+        "edx.forum.comment.deleted",
+        "edx.forum.comment.edited",
+        "edx.forum.comment.reported",
+        "edx.forum.comment.unreported",
+        "edx.ui.lms.link_clicked",
+        "edx.ui.lms.sequence.outline.selected",
+        "edx.ui.lms.outline.selected",
+        "edx.ui.lms.sequence.next_selected",
+        "edx.ui.lms.sequence.previous_selected",
+        "edx.ui.lms.sequence.tab_selected",
+        "showanswer",
+        "edx.problem.hint.demandhint_displayed",
+        "problem_check",
+        "load_video",
+        "edx.video.loaded",
+        "play_video",
+        "edx.video.played",
+        "complete_video",
+        "edx.video.completed",
+        "stop_video",
+        "edx.video.stopped",
+        "pause_video",
+        "edx.video.paused",
+        "seek_video",
+        "edx.video.position.changed",
+        "hide_transcript",
+        "edx.video.transcript.hidden",
+        "show_transcript",
+        "edx.video.transcript.shown",
+        "speed_change_video",
+        "video_hide_cc_menu",
+        "edx.video.closed_captions.shown",
+        "edx.video.closed_captions.hidden",
+        "edx.video.language_menu.hidden",
+        "video_show_cc_menu",
+        "edx.video.language_menu.shown",
+        "edx.course.grade.passed.first_time",
+        "edx.course.grade.now_passed",
+        "edx.course.grade.now_failed",
     ]
     # .. setting_name: EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS
     # .. setting_default: [
@@ -166,49 +166,50 @@ def plugin_settings(settings):
     #    ]
     # .. setting_description: Contains the full list of events to be processed by the Caliper backend.
     #    If this setting has already been initialized, we append to the existing list.
-    if not hasattr(settings, 'EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS'):
+    if not hasattr(settings, "EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS"):
         settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS = []
     settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS += [
-        'edx.course.enrollment.activated',
-        'edx.course.enrollment.deactivated',
-        'edx.ui.lms.link_clicked',
-        'edx.ui.lms.sequence.outline.selected',
-        'edx.ui.lms.outline.selected',
-        'edx.ui.lms.sequence.next_selected',
-        'edx.ui.lms.sequence.previous_selected',
-        'edx.ui.lms.sequence.tab_selected',
-        'showanswer',
-        'edx.problem.hint.demandhint_displayed',
-        'problem_check',
-        'load_video',
-        'edx.video.loaded',
-        'play_video',
-        'edx.video.played',
-        'complete_video',
-        'edx.video.completed',
-        'stop_video',
-        'edx.video.stopped',
-        'pause_video',
-        'edx.video.paused',
-        'seek_video',
-        'edx.video.position.changed',
-        'edx.course.grade.passed.first_time',
-        'edx.course.grade.now_passed',
-        'edx.course.grade.now_failed'
+        "edx.course.enrollment.activated",
+        "edx.course.enrollment.deactivated",
+        "edx.ui.lms.link_clicked",
+        "edx.ui.lms.sequence.outline.selected",
+        "edx.ui.lms.outline.selected",
+        "edx.ui.lms.sequence.next_selected",
+        "edx.ui.lms.sequence.previous_selected",
+        "edx.ui.lms.sequence.tab_selected",
+        "showanswer",
+        "edx.problem.hint.demandhint_displayed",
+        "problem_check",
+        "load_video",
+        "edx.video.loaded",
+        "play_video",
+        "edx.video.played",
+        "complete_video",
+        "edx.video.completed",
+        "stop_video",
+        "edx.video.stopped",
+        "pause_video",
+        "edx.video.paused",
+        "seek_video",
+        "edx.video.position.changed",
+        "edx.course.grade.passed.first_time",
+        "edx.course.grade.now_passed",
+        "edx.course.grade.now_failed",
     ]
 
     # Operators can configure the event bus allowed events via EVENT_BUS_TRACKING_LOGS and by default
     # we are allowing the supported events by xAPI and Caliper so that operators don't need to configure
     # the events manually.
     settings.EVENT_BUS_TRACKING_LOGS = set(
-        settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS +
-        settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS
+        settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS + settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS
     )
 
-    if not hasattr(settings, 'EVENT_TRACKING_BACKENDS') or not settings.EVENT_TRACKING_BACKENDS:
+    if not hasattr(settings, "EVENT_TRACKING_BACKENDS") or not settings.EVENT_TRACKING_BACKENDS:
         settings.EVENT_TRACKING_BACKENDS = {}
-    settings.EVENT_TRACKING_BACKENDS.update(event_tracking_backends_config(
-        settings,
-        settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS,
-        settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
-    ))
+    settings.EVENT_TRACKING_BACKENDS.update(
+        event_tracking_backends_config(
+            settings,
+            settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS,
+            settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
+        )
+    )

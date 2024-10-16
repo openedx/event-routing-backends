@@ -1,6 +1,7 @@
 """
 Registry to keep track of event transformers
 """
+
 from logging import getLogger
 
 from eventtracking.processors.exceptions import NoTransformerImplemented
@@ -15,6 +16,7 @@ class TransformerRegistry:
     Every Registry that inherits this registry MUST has its own `mapping`
     class attribute to avoid conflicts.
     """
+
     mapping = {}
 
     @classmethod
@@ -25,12 +27,8 @@ class TransformerRegistry:
         Raises:
             AttributeError
         """
-        if 'mapping' not in cls.__dict__:
-            raise AttributeError(
-                '{} registry must has its own "mapping" class attribute.'.format(
-                    cls.__name__
-                )
-            )
+        if "mapping" not in cls.__dict__:
+            raise AttributeError('{} registry must has its own "mapping" class attribute.'.format(cls.__name__))
 
     @classmethod
     def register(cls, event_key):
@@ -51,20 +49,19 @@ class TransformerRegistry:
             """
             if event_key in cls.mapping:
                 logger.info(
-                    'Overriding the existing transformer {old_transformer} for event '
-                    '{event_name} with {new_transformer}'.format(
+                    "Overriding the existing transformer {old_transformer} for event "
+                    "{event_name} with {new_transformer}".format(
                         old_transformer=cls.mapping[event_key],
                         new_transformer=transformer,
-                        event_name=event_key
+                        event_name=event_key,
                     )
                 )
                 cls.mapping[event_key] = transformer
 
             else:
                 logger.debug(
-                    'Registered transformer {transformer} for event {event_name} '.format(
-                        transformer=transformer,
-                        event_name=event_key
+                    "Registered transformer {transformer} for event {event_name} ".format(
+                        transformer=transformer, event_name=event_key
                     )
                 )
                 cls.mapping[event_key] = transformer
@@ -86,7 +83,7 @@ class TransformerRegistry:
         Raises:
             `NoTransformerImplemented`:  if matching transformer is not found.
         """
-        event_name = event.get('name')
+        event_name = event.get("name")
         try:
             return cls.mapping[event_name](event)
         except KeyError as error:

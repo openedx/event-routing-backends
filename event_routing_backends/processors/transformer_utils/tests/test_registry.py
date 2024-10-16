@@ -1,6 +1,7 @@
 """
 Test the TransformerRegistry
 """
+
 from unittest.mock import MagicMock
 
 import ddt
@@ -20,18 +21,20 @@ class TestTransformerRegistry(TestCase):
             pass
 
         with self.assertRaises(AttributeError):
-            WithoutRegistry.register('test.key')(MagicMock())
+            WithoutRegistry.register("test.key")(MagicMock())
 
     def test_override_register(self):
         mocked_transformer = MagicMock()
         mocked_transformer2 = MagicMock()
 
-        TransformerRegistry.register('test.key')(mocked_transformer)
-        self.assertEqual(TransformerRegistry.get_transformer({
-            'name': 'test.key'
-        }), mocked_transformer())
+        TransformerRegistry.register("test.key")(mocked_transformer)
+        self.assertEqual(
+            TransformerRegistry.get_transformer({"name": "test.key"}),
+            mocked_transformer(),
+        )
 
-        TransformerRegistry.register('test.key')(mocked_transformer2)
-        self.assertEqual(TransformerRegistry.get_transformer({
-            'name': 'test.key'
-        }), mocked_transformer2())
+        TransformerRegistry.register("test.key")(mocked_transformer2)
+        self.assertEqual(
+            TransformerRegistry.get_transformer({"name": "test.key"}),
+            mocked_transformer2(),
+        )

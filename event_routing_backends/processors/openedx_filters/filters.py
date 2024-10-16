@@ -2,6 +2,7 @@
 Processors filters, this file aims to contain all the filters that could modify the
 standard transformer results by implementing external pipeline steps.
 """
+
 from openedx_filters.tooling import OpenEdxPublicFilter
 
 from event_routing_backends.processors.openedx_filters.exceptions import InvalidFilterType

@@ -5,6 +5,7 @@ This router is expected to be used with the event bus, which
 can be configured to use this router to send events to hosts
 in the same thread as it process the events.
 """
+
 from event_routing_backends.backends.events_router import EventsRouter
 from event_routing_backends.tasks import bulk_send_events, send_event
 

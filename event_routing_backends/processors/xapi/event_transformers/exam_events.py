@@ -33,11 +33,7 @@ class BaseExamTransformer(XApiTransformer):
                 type=self.exam_type_activity,
                 name=LanguageMap(**({constants.EN: self.get_data("event.exam_name")})),
                 extensions=Extensions(
-                    {
-                        constants.XAPI_ACTIVITY_TIME_LIMIT: self.get_data(
-                            "event.exam_default_time_limit_mins"
-                        )
-                    }
+                    {constants.XAPI_ACTIVITY_TIME_LIMIT: self.get_data("event.exam_default_time_limit_mins")}
                 ),
             ),
         )
@@ -53,18 +49,10 @@ class BaseExamTransformer(XApiTransformer):
                     name=LanguageMap({constants.EN: self.get_data("event.exam_name")}),
                     extensions=Extensions(
                         {
-                            constants.XAPI_CONTEXT_ATTEMPT_STARTED: self.get_data(
-                                "event.attempt_started_at"
-                            ),
-                            constants.XAPI_CONTEXT_ATTEMPT_COMPLETED: self.get_data(
-                                "event.attempt_completed_at"
-                            ),
-                            constants.XAPI_CONTEXT_DURATION: self.get_data(
-                                "event.attempt_event_elapsed_time_secs"
-                            ),
-                            constants.XAPI_ACTIVITY_ATTEMPT: self.get_data(
-                                "event.attempt_id"
-                            ),
+                            constants.XAPI_CONTEXT_ATTEMPT_STARTED: self.get_data("event.attempt_started_at"),
+                            constants.XAPI_CONTEXT_ATTEMPT_COMPLETED: self.get_data("event.attempt_completed_at"),
+                            constants.XAPI_CONTEXT_DURATION: self.get_data("event.attempt_event_elapsed_time_secs"),
+                            constants.XAPI_ACTIVITY_ATTEMPT: self.get_data("event.attempt_id"),
                         }
                     ),
                 ),

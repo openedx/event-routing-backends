@@ -1,6 +1,7 @@
 """
 Transformers for forum related events.
 """
+
 from django.conf import settings
 from tincan import Activity, ActivityDefinition, LanguageMap, Verb
 
@@ -24,53 +25,50 @@ class BaseForumThreadTransformer(XApiTransformer):
             `Activity`
         """
 
-        object_id = self.get_data('data.id', True)
-        object_path = self.get_data('context.path', True).rstrip('/').replace(object_id, '').rstrip('/')
+        object_id = self.get_data("data.id", True)
+        object_path = self.get_data("context.path", True).rstrip("/").replace(object_id, "").rstrip("/")
 
         kwargs = {}
 
-        if self.get_data('data.title'):
-            kwargs['name'] = LanguageMap({constants.EN: self.get_data('data.title')})
+        if self.get_data("data.title"):
+            kwargs["name"] = LanguageMap({constants.EN: self.get_data("data.title")})
 
         return Activity(
-            id='{lms_root_url}{object_path}/{object_id}'.format(
-                    lms_root_url=settings.LMS_ROOT_URL,
-                    object_path=object_path,
-                    object_id=object_id
-                ),
-            definition=ActivityDefinition(
-                type=constants.XAPI_ACTIVITY_DISCUSSION,
-                **kwargs
-            )
+            id="{lms_root_url}{object_path}/{object_id}".format(
+                lms_root_url=settings.LMS_ROOT_URL,
+                object_path=object_path,
+                object_id=object_id,
+            ),
+            definition=ActivityDefinition(type=constants.XAPI_ACTIVITY_DISCUSSION, **kwargs),
         )
 
     def get_context_activities(self):
         context_activities = super().get_context_activities()
 
-        discussion = self.get_data('data.discussion.id')
+        discussion = self.get_data("data.discussion.id")
         if not discussion:
             return context_activities
 
         context_activities.grouping = [
             Activity(
-                id='{lms_root_url}/api/discussion/v1/threads/{discussion_id}'.format(
-                    lms_root_url=settings.LMS_ROOT_URL,
-                    discussion_id=discussion
+                id="{lms_root_url}/api/discussion/v1/threads/{discussion_id}".format(
+                    lms_root_url=settings.LMS_ROOT_URL, discussion_id=discussion
                 ),
                 definition=ActivityDefinition(
                     type=constants.XAPI_ACTIVITY_DISCUSSION,
-                )
+                ),
             )
         ]
 
         return context_activities
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.created')
+@XApiTransformersRegistry.register("edx.forum.thread.created")
 class ThreadCreatedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner creates a thread in discussion forum.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_POSTED,
         display=LanguageMap({constants.EN: constants.POSTED}),
@@ -84,57 +82,59 @@ class ThreadCreatedTransformer(BaseForumThreadTransformer):
             `Extensions`
         """
         extensions = super().get_context_extensions()
-        extensions.update({
-            constants.XAPI_ACTIVITY_MODE: self.get_data('thread_type')
-        })
+        extensions.update({constants.XAPI_ACTIVITY_MODE: self.get_data("thread_type")})
         return extensions
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.edited')
-@XApiTransformersRegistry.register('edx.forum.response.edited')
-@XApiTransformersRegistry.register('edx.forum.comment.edited')
+@XApiTransformersRegistry.register("edx.forum.thread.edited")
+@XApiTransformersRegistry.register("edx.forum.response.edited")
+@XApiTransformersRegistry.register("edx.forum.comment.edited")
 class ThreadEditedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner modifies a
     thread/response/comment in discussion forum.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_EDITED,
         display=LanguageMap({constants.EN: constants.EDITED}),
     )
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.viewed')
+@XApiTransformersRegistry.register("edx.forum.thread.viewed")
 class ThreadViewedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner viewes a thread in discussion forum.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_VIEWED,
         display=LanguageMap({constants.EN: constants.VIEWED}),
     )
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.deleted')
-@XApiTransformersRegistry.register('edx.forum.response.deleted')
-@XApiTransformersRegistry.register('edx.forum.comment.deleted')
+@XApiTransformersRegistry.register("edx.forum.thread.deleted")
+@XApiTransformersRegistry.register("edx.forum.response.deleted")
+@XApiTransformersRegistry.register("edx.forum.comment.deleted")
 class ThreadDeletedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner deletes a
     thread/response/comment in discussion forum.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_DELETED,
         display=LanguageMap({constants.EN: constants.DELETED}),
     )
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.voted')
-@XApiTransformersRegistry.register('edx.forum.response.voted')
+@XApiTransformersRegistry.register("edx.forum.thread.voted")
+@XApiTransformersRegistry.register("edx.forum.response.voted")
 class ThreadVotedTransformer(BaseForumThreadTransformer):
     """
     Transformers for event generated when learner votes on a thread/response in discussion forum.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_VOTED,
         display=LanguageMap({constants.EN: constants.VOTED}),
@@ -148,47 +148,48 @@ class ThreadVotedTransformer(BaseForumThreadTransformer):
             `Extensions`
         """
         extensions = super().get_context_extensions()
-        extensions.update({
-            constants.XAPI_ACTIVITY_MODE: self.get_data('vote_value')
-        })
+        extensions.update({constants.XAPI_ACTIVITY_MODE: self.get_data("vote_value")})
         return extensions
 
 
-@XApiTransformersRegistry.register('edx.forum.response.created')
-@XApiTransformersRegistry.register('edx.forum.comment.created')
+@XApiTransformersRegistry.register("edx.forum.response.created")
+@XApiTransformersRegistry.register("edx.forum.comment.created")
 class ThreadResponseCreatedTransformer(BaseForumThreadTransformer):
     """
     Transformer for event generated when learner creates a response
     or comment under a thread in discussion forum.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_POSTED,
         display=LanguageMap({constants.EN: constants.POSTED}),
     )
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.reported')
-@XApiTransformersRegistry.register('edx.forum.response.reported')
-@XApiTransformersRegistry.register('edx.forum.comment.reported')
+@XApiTransformersRegistry.register("edx.forum.thread.reported")
+@XApiTransformersRegistry.register("edx.forum.response.reported")
+@XApiTransformersRegistry.register("edx.forum.comment.reported")
 class ThreadResponseReportedTransformer(BaseForumThreadTransformer):
     """
     Transformer for event generated when learner reports a thread,
     response or comment as inappropriate.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_REPORTED,
         display=LanguageMap({constants.EN: constants.REPORTED}),
     )
 
 
-@XApiTransformersRegistry.register('edx.forum.thread.unreported')
-@XApiTransformersRegistry.register('edx.forum.response.unreported')
-@XApiTransformersRegistry.register('edx.forum.comment.unreported')
+@XApiTransformersRegistry.register("edx.forum.thread.unreported")
+@XApiTransformersRegistry.register("edx.forum.response.unreported")
+@XApiTransformersRegistry.register("edx.forum.comment.unreported")
 class ThreadResponseUnReportedTransformer(BaseForumThreadTransformer):
     """
     Transformer for event generated when learner unreports a thread,
     response or comment which was earlier reported as inappropriate.
     """
+
     _verb = Verb(
         id=constants.XAPI_VERB_UNREPORTED,
         display=LanguageMap({constants.EN: constants.UNREPORTED}),

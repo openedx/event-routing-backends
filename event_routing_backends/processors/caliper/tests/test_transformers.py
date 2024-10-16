@@ -1,6 +1,7 @@
 """
 Test the transformers for all of the currently supported events into Caliper format.
 """
+
 import os
 
 from django.test import TestCase
@@ -18,6 +19,7 @@ class CaliperTransformersFixturesTestMixin(TransformersFixturesTestMixin):
 
     This mixin is split into its own class so it can be used by packages outside of ERB.
     """
+
     registry = CaliperTransformersRegistry
 
     @property
@@ -25,10 +27,10 @@ class CaliperTransformersFixturesTestMixin(TransformersFixturesTestMixin):
         """
         Return the path to the expected transformed events fixture files.
         """
-        return '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
+        return "{}/fixtures/expected".format(os.path.dirname(os.path.abspath(__file__)))
 
     def assert_correct_transformer_version(self, transformed_event, transformer_version):
-        self.assertEqual(transformed_event['extensions']['transformerVersion'], transformer_version)
+        self.assertEqual(transformed_event["extensions"]["transformerVersion"], transformer_version)
 
     def compare_events(self, transformed_event, expected_event):
         """
@@ -42,9 +44,9 @@ class CaliperTransformersFixturesTestMixin(TransformersFixturesTestMixin):
             AssertionError:     Raised if the two events are not same.
         """
         # id is a randomly generated UUID therefore not comparing that
-        self.assertIn('id', transformed_event)
-        expected_event.pop('id')
-        transformed_event.pop('id')
+        self.assertIn("id", transformed_event)
+        expected_event.pop("id")
+        transformed_event.pop("id")
         self.assertDictEqual(expected_event, transformed_event)
 
 

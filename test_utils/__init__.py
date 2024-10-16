@@ -8,6 +8,7 @@ in multiple test modules (i.e. factoryboy factories, base test classes).
 
 So this package is the place to put them.
 """
+
 import sys
 from unittest import mock
 
@@ -18,36 +19,39 @@ def _mock_third_party_modules():
     """
     # mock external_user_ids module
     external_id = mock.MagicMock()
-    external_id.external_user_id = '32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb'
+    external_id.external_user_id = "32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb"
     external_user_ids_module = mock.MagicMock()
-    external_user_ids_module.ExternalId.add_new_user_id.return_value = (external_id, True)
-    external_user_ids_module.ExternalIdType.XAPI = 'xapi'
-    sys.modules['openedx.core.djangoapps.external_user_ids.models'] = external_user_ids_module
+    external_user_ids_module.ExternalId.add_new_user_id.return_value = (
+        external_id,
+        True,
+    )
+    external_user_ids_module.ExternalIdType.XAPI = "xapi"
+    sys.modules["openedx.core.djangoapps.external_user_ids.models"] = external_user_ids_module
 
     # mock course
     mocked_course = {
-        'display_name': 'Demonstration Course',
+        "display_name": "Demonstration Course",
     }
 
     mocked_courses = mock.MagicMock()
     mocked_courses.get_course_overviews.return_value = [mocked_course]
-    sys.modules['openedx.core.djangoapps.content.course_overviews.api'] = mocked_courses
+    sys.modules["openedx.core.djangoapps.content.course_overviews.api"] = mocked_courses
 
     # mock opaque keys module
     mocked_keys = mock.MagicMock()
-    sys.modules['opaque_keys.edx.keys'] = mocked_keys
+    sys.modules["opaque_keys.edx.keys"] = mocked_keys
 
     # mock retired user
     mocked_user = mock.MagicMock()
-    mocked_user.username = 'edx_retired'
-    mocked_user.email = 'edx_retired@example.com'
+    mocked_user.username = "edx_retired"
+    mocked_user.email = "edx_retired@example.com"
     mocked_models = mock.MagicMock()
     mocked_models.get_potentially_retired_user_by_username.return_value = mocked_user
-    sys.modules['common.djangoapps.student.models'] = mocked_models
+    sys.modules["common.djangoapps.student.models"] = mocked_models
 
 
 def mocked_course_reverse(_, kwargs):
     """
     Return the reverse method to return course root URL.
     """
-    return '/courses/{}/'.format(kwargs.get('course_id'))
+    return "/courses/{}/".format(kwargs.get("course_id"))

@@ -11,21 +11,21 @@ class EventRoutingBackendsConfig(AppConfig):
     Configuration for the event_routing_backends Django application.
     """
 
-    name = 'event_routing_backends'
+    name = "event_routing_backends"
     verbose_name = "Event Routing Backends"
 
     plugin_app = {
         PluginSettings.CONFIG: {
-            'lms.djangoapp': {
-                'production': {PluginSettings.RELATIVE_PATH: 'settings.production'},
-                'common': {PluginSettings.RELATIVE_PATH: 'settings.common'},
-                'devstack': {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
+            "lms.djangoapp": {
+                "production": {PluginSettings.RELATIVE_PATH: "settings.production"},
+                "common": {PluginSettings.RELATIVE_PATH: "settings.common"},
+                "devstack": {PluginSettings.RELATIVE_PATH: "settings.devstack"},
             },
-            'cms.djangoapp': {
-                'production': {PluginSettings.RELATIVE_PATH: 'settings.production'},
-                'common': {PluginSettings.RELATIVE_PATH: 'settings.common'},
-                'devstack': {PluginSettings.RELATIVE_PATH: 'settings.devstack'},
-            }
+            "cms.djangoapp": {
+                "production": {PluginSettings.RELATIVE_PATH: "settings.production"},
+                "common": {PluginSettings.RELATIVE_PATH: "settings.common"},
+                "devstack": {PluginSettings.RELATIVE_PATH: "settings.devstack"},
+            },
         }
     }
 

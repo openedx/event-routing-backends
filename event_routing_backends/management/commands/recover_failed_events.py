@@ -57,11 +57,7 @@ class Command(BaseCommand):
         failed = 0
 
         while failed_events := backend.get_failed_events(batch_size):
-            logger.info(
-                "Recovering {} failed events for backend {}".format(
-                    len(failed_events), transformer_type
-                )
-            )
+            logger.info("Recovering {} failed events for backend {}".format(len(failed_events), transformer_type))
             for event in failed_events:
                 try:
                     backend.send(event)

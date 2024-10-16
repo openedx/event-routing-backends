@@ -1,6 +1,7 @@
 """
 Transformers for grading related events.
 """
+
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result, Verb
 
 from event_routing_backends.helpers import get_course_from_id
@@ -95,9 +96,7 @@ class CourseGradedTransformer(XApiTransformer):
             id=object_id,
             definition=ActivityDefinition(
                 type=constants.XAPI_ACTIVITY_COURSE,
-                name=LanguageMap(
-                    **({constants.EN: display_name} if display_name is not None else {})
-                ),
+                name=LanguageMap(**({constants.EN: display_name} if display_name is not None else {})),
             ),
         )
 
@@ -121,9 +120,5 @@ class CourseGradedTransformer(XApiTransformer):
                 "raw": weighted_earned,
                 "scaled": weighted_earned,
             },
-            extensions=Extensions(
-                {
-                    constants.XAPI_ACTIVITY_GRADE_CLASSIFICATION: letter_grade
-                }
-            ),
+            extensions=Extensions({constants.XAPI_ACTIVITY_GRADE_CLASSIFICATION: letter_grade}),
         )

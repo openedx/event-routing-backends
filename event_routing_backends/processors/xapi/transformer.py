@@ -1,6 +1,7 @@
 """
 xAPI Transformer Class
 """
+
 import hashlib
 
 from django.conf import settings
@@ -28,9 +29,10 @@ class XApiTransformer(BaseTransformerMixin):
     """
     xAPI Transformer Class
     """
+
     required_fields = (
-        'object',
-        'verb',
+        "object",
+        "verb",
     )
 
     def transform(self):
@@ -53,12 +55,14 @@ class XApiTransformer(BaseTransformerMixin):
         Transform the fields that are common for all events.
         """
         transformed_event = super().base_transform(transformed_event)
-        transformed_event.update({
-            'id': self.get_event_id(),
-            'actor': self.get_actor(),
-            'context': self.get_context(),
-            'timestamp': self.get_timestamp(),
-        })
+        transformed_event.update(
+            {
+                "id": self.get_event_id(),
+                "actor": self.get_actor(),
+                "context": self.get_context(),
+                "timestamp": self.get_timestamp(),
+            }
+        )
         return transformed_event
 
     def get_event_id(self):
@@ -76,7 +80,7 @@ class XApiTransformer(BaseTransformerMixin):
         # any change in generation of UUID.
         actor = self.get_actor()
         event_timestamp = self.get_timestamp()
-        uuid_str = f'{actor.to_json()}-{event_timestamp}'
+        uuid_str = f"{actor.to_json()}-{event_timestamp}"
         return get_uuid5(self.get_verb().to_json(), uuid_str)
 
     @openedx_filter(filter_type="event_routing_backends.processors.xapi.transformer.xapi_transformer.get_actor")
@@ -88,18 +92,16 @@ class XApiTransformer(BaseTransformerMixin):
             `Agent`
         """
 
-        if settings.XAPI_AGENT_IFI_TYPE == 'mbox':
+        if settings.XAPI_AGENT_IFI_TYPE == "mbox":
             email = get_user_email(self.extract_username_or_userid())
             agent = Agent(mbox=email)
-        elif settings.XAPI_AGENT_IFI_TYPE == 'mbox_sha1sum':
+        elif settings.XAPI_AGENT_IFI_TYPE == "mbox_sha1sum":
             email = get_user_email(self.extract_username_or_userid())
-            mbox_sha1sum = hashlib.sha1(email.encode('utf-8')).hexdigest()
+            mbox_sha1sum = hashlib.sha1(email.encode("utf-8")).hexdigest()
             agent = Agent(mbox_sha1sum=mbox_sha1sum)
         else:
-            user_uuid = get_anonymous_user_id(self.extract_username_or_userid(), 'XAPI')
-            agent = Agent(
-                account={"homePage": settings.LMS_ROOT_URL, "name": user_uuid}
-            )
+            user_uuid = get_anonymous_user_id(self.extract_username_or_userid(), "XAPI")
+            agent = Agent(account={"homePage": settings.LMS_ROOT_URL, "name": user_uuid})
         return agent
 
     @openedx_filter(filter_type="event_routing_backends.processors.xapi.transformer.xapi_transformer.get_verb")
@@ -117,7 +119,7 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             str
         """
-        return self.get_data('timestamp') or self.get_data('time')
+        return self.get_data("timestamp") or self.get_data("time")
 
     def get_context_activities(self):
         """
@@ -126,17 +128,14 @@ class XApiTransformer(BaseTransformerMixin):
         Returns:
             `ContextActivities`
         """
-        if self.get_data('context.course_id') is not None:
-            course = get_course_from_id(self.get_data('context.course_id'))
+        if self.get_data("context.course_id") is not None:
+            course = get_course_from_id(self.get_data("context.course_id"))
             course_name = LanguageMap({constants.EN_US: course["display_name"]})
             parent_activities = [
                 Activity(
-                    id=self.get_object_iri('course', self.get_data('context.course_id')),
+                    id=self.get_object_iri("course", self.get_data("context.course_id")),
                     object_type=constants.XAPI_ACTIVITY_COURSE,
-                    definition=ActivityDefinition(
-                        type=constants.XAPI_ACTIVITY_COURSE,
-                        name=course_name
-                    )
+                    definition=ActivityDefinition(type=constants.XAPI_ACTIVITY_COURSE, name=course_name),
                 ),
             ]
             return ContextActivities(
@@ -153,15 +152,17 @@ class XApiTransformer(BaseTransformerMixin):
         """
         context = Context(
             extensions=self.get_context_extensions(),
-            contextActivities=self.get_context_activities()
+            contextActivities=self.get_context_activities(),
         )
         return context
 
     def get_context_extensions(self):
-        return Extensions({
+        return Extensions(
+            {
                 constants.XAPI_TRANSFORMER_VERSION_KEY: self.transformer_version,
-                constants.XAPI_CONTEXT_SESSION_ID: self.extract_sessionid()
-            })
+                constants.XAPI_CONTEXT_SESSION_ID: self.extract_sessionid(),
+            }
+        )
 
 
 class XApiVerbTransformerMixin:
@@ -175,6 +176,7 @@ class XApiVerbTransformerMixin:
     This is helpful in base transformer class which are going to be
     transforming multiple transformers.
     """
+
     verb_map = None
 
     def get_verb(self):
@@ -184,18 +186,15 @@ class XApiVerbTransformerMixin:
         Returns:
             `Verb`
         """
-        event_name = self.get_data('name', True)
+        event_name = self.get_data("name", True)
 
-        event_source = self.get_data('event_source') or self.get_data('context.event_source')
-        if event_source == 'browser' and event_name == 'problem_check':
-            verb = self.verb_map['problem_check_browser']
+        event_source = self.get_data("event_source") or self.get_data("context.event_source")
+        if event_source == "browser" and event_name == "problem_check":
+            verb = self.verb_map["problem_check_browser"]
         else:
             verb = self.verb_map[event_name]
 
-        return Verb(
-            id=verb['id'],
-            display=LanguageMap({constants.EN: verb['display']})
-        )
+        return Verb(id=verb["id"], display=LanguageMap({constants.EN: verb["display"]}))
 
 
 class OneToManyXApiTransformerMixin:
@@ -205,6 +204,7 @@ class OneToManyXApiTransformerMixin:
     * 1 parent xAPI event, plus
     * N "child" xAPI events, where N>=0
     """
+
     @property
     def child_transformer_class(self):
         """
@@ -257,7 +257,8 @@ class OneToManyXApiTransformerMixin:
                 child_id=child_id,
                 parent=parent,
                 event=self.event,
-            ).transform() for child_id in child_ids
+            ).transform()
+            for child_id in child_ids
         ]
 
 
@@ -295,8 +296,8 @@ class OneToManyChildXApiTransformerMixin:
         # any change in generation of UUID.
         actor = self.get_actor()
         event_timestamp = self.get_timestamp()
-        name = f'{actor.to_json()}-{event_timestamp}'
-        namespace_key = f'{self.get_verb().to_json()}-{self.child_id}'
+        name = f"{actor.to_json()}-{event_timestamp}"
+        namespace_key = f"{self.get_verb().to_json()}-{self.child_id}"
         return get_uuid5(namespace_key, name)
 
     def get_context(self):

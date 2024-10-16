@@ -6,19 +6,29 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('event_routing_backends', '0001_initial'),
+        ("event_routing_backends", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='routerconfiguration',
-            name='route_url',
-            field=models.CharField(default='', help_text='Route Url of the tracking backend on which this router should be applied.<br/>Please note that this field is <b>case sensitive.</b>', max_length=255, verbose_name='Route url'),
+            model_name="routerconfiguration",
+            name="route_url",
+            field=models.CharField(
+                default="",
+                help_text="Route Url of the tracking backend on which this router should be applied.<br/>Please note that this field is <b>case sensitive.</b>",
+                max_length=255,
+                verbose_name="Route url",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='routerconfiguration',
-            name='backend_name',
-            field=models.CharField(db_index=True, help_text='Name of the tracking backend on which this router should be applied.<br/>Please note that this field is <b>case sensitive.</b>', max_length=50, verbose_name='Backend name'),
+            model_name="routerconfiguration",
+            name="backend_name",
+            field=models.CharField(
+                db_index=True,
+                help_text="Name of the tracking backend on which this router should be applied.<br/>Please note that this field is <b>case sensitive.</b>",
+                max_length=50,
+                verbose_name="Backend name",
+            ),
         ),
     ]

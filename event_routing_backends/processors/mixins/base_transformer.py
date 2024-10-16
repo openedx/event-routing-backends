@@ -1,6 +1,7 @@
 """
 Base Transformer Mixin to add or transform common data values.
 """
+
 import logging
 
 from django.conf import settings
@@ -43,6 +44,7 @@ class BaseTransformerMixin:
         Returns:
             ANY
         """
+
         def _find_nested(event_dict):
             """
             Inner recursive method to find the key in dict.
@@ -84,7 +86,7 @@ class BaseTransformerMixin:
         version of transformer package used to transform events
         """
 
-        if getattr(settings, 'RUNNING_WITH_TEST_SETTINGS', False):
+        if getattr(settings, "RUNNING_WITH_TEST_SETTINGS", False):
             return "{}@{}".format("event-routing-backends", "1.1.1")
         else:
             return "{}@{}".format("event-routing-backends", __version__)
@@ -103,13 +105,13 @@ class BaseTransformerMixin:
             if hasattr(self, key):
                 value = getattr(self, key)
                 transformed_event[key] = value
-            elif hasattr(self, f'get_{key}'):
-                value = getattr(self, f'get_{key}')()
+            elif hasattr(self, f"get_{key}"):
+                value = getattr(self, f"get_{key}")()
                 transformed_event[key] = value
             else:
                 raise ValueError(
                     'Cannot find value for "{}" in transformer {} for the edx event "{}"'.format(
-                        key, self.__class__.__name__, self.get_data('name', True)
+                        key, self.__class__.__name__, self.get_data("name", True)
                     )
                 )
 
@@ -125,11 +127,11 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-        username_or_id = self.get_data('username') or self.get_data('user_id')
+        username_or_id = self.get_data("username") or self.get_data("user_id")
         if not username_or_id:
-            username_or_id = self.get_data('data.username') or self.get_data('data.user_id')
+            username_or_id = self.get_data("data.username") or self.get_data("data.user_id")
             if not username_or_id:
-                username_or_id = self.get_data('context.username') or self.get_data('context.user_id')
+                username_or_id = self.get_data("context.username") or self.get_data("context.user_id")
         return username_or_id
 
     def extract_sessionid(self):
@@ -139,7 +141,7 @@ class BaseTransformerMixin:
         Returns:
             str
         """
-        return self.get_data('session') or self.get_data('context.session') or self.get_data('data.session')
+        return self.get_data("session") or self.get_data("context.session") or self.get_data("data.session")
 
     def get_data(self, key, required=False):
         """
@@ -166,7 +168,7 @@ class BaseTransformerMixin:
                     }
                 }
         """
-        if '.' in key:
+        if "." in key:
             result = get_value_from_dotted_path(self.event, key)
         else:
             result = BaseTransformerMixin.find_nested(self.event, key)
@@ -176,9 +178,7 @@ class BaseTransformerMixin:
 
         if result is None:
             if required:
-                raise ValueError(
-                    'Could not get value for {} in event "{}"'.format(key, self.event.get('name', None))
-                )
+                raise ValueError('Could not get value for {} in event "{}"'.format(key, self.event.get("name", None)))
 
         return result
 
@@ -210,10 +210,8 @@ class BaseTransformerMixin:
         if object_id is None or object_type is None:
             return None
 
-        return '{root_url}/{object_type}/{object_id}'.format(
-            root_url=settings.LMS_ROOT_URL,
-            object_type=object_type,
-            object_id=object_id
+        return "{root_url}/{object_type}/{object_id}".format(
+            root_url=settings.LMS_ROOT_URL, object_type=object_type, object_id=object_id
         )
 
     def get_object(self):

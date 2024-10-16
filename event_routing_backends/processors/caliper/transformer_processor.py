@@ -1,6 +1,7 @@
 """
 Caliper processor for transforming and routing events.
 """
+
 import json
 from logging import getLogger
 
@@ -11,7 +12,7 @@ from event_routing_backends.processors.caliper.registry import CaliperTransforme
 from event_routing_backends.processors.mixins.base_transformer_processor import BaseTransformerProcessorMixin
 
 logger = getLogger(__name__)
-caliper_logger = getLogger('caliper_tracking')
+caliper_logger = getLogger("caliper_tracking")
 
 
 class CaliperProcessor(BaseTransformerProcessorMixin):
@@ -50,9 +51,6 @@ class CaliperProcessor(BaseTransformerProcessorMixin):
             if CALIPER_EVENT_LOGGING_ENABLED.is_enabled():
                 caliper_logger.info(json_event)
 
-            logger.debug('Caliper version of edx event "{}" is: {}'.format(
-                event["name"],
-                json_event
-            ))
+            logger.debug('Caliper version of edx event "{}" is: {}'.format(event["name"], json_event))
 
         return transformed_event

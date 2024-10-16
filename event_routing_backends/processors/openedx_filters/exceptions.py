@@ -1,6 +1,7 @@
 """
 Custom processors exceptions thrown by filters.
 """
+
 from openedx_filters.exceptions import OpenEdxFilterException
 
 

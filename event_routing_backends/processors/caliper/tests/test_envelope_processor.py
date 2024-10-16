@@ -1,6 +1,7 @@
 """
 Test the CaliperEnvelopeProcessor.
 """
+
 from datetime import datetime
 from unittest import TestCase
 from unittest.mock import patch, sentinel
@@ -21,19 +22,22 @@ class TestCaliperEnvelopeProcessor(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.sample_event = {
-            'name': str(sentinel.name)
-        }
-        self.sensor_id = 'http://test.sensor.com'
+        self.sample_event = {"name": str(sentinel.name)}
+        self.sensor_id = "http://test.sensor.com"
 
-    @patch('event_routing_backends.processors.caliper.envelope_processor.datetime')
+    @patch("event_routing_backends.processors.caliper.envelope_processor.datetime")
     def test_caliper_envelope_processor(self, mocked_datetime):
         mocked_datetime.now.return_value = FROZEN_TIME
 
         result = CaliperEnvelopeProcessor(sensor_id=self.sensor_id)([self.sample_event])
-        self.assertEqual(result, [{
-            'sensor': self.sensor_id,
-            'sendTime': convert_datetime_to_iso(str(FROZEN_TIME)),
-            'data': [self.sample_event],
-            'dataVersion': CALIPER_EVENT_CONTEXT
-        }])
+        self.assertEqual(
+            result,
+            [
+                {
+                    "sensor": self.sensor_id,
+                    "sendTime": convert_datetime_to_iso(str(FROZEN_TIME)),
+                    "data": [self.sample_event],
+                    "dataVersion": CALIPER_EVENT_CONTEXT,
+                }
+            ],
+        )

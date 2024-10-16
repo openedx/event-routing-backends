@@ -1,6 +1,7 @@
 """
 Mixin for testing transformers for all of the currently supported events
 """
+
 import json
 import logging
 import os
@@ -24,9 +25,9 @@ TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 
 try:
     EVENT_FIXTURE_FILENAMES = [
-        event_file_name for event_file_name in os.listdir(
-            f'{TEST_DIR_PATH}/fixtures/current/'
-        ) if event_file_name.endswith(".json")
+        event_file_name
+        for event_file_name in os.listdir(f"{TEST_DIR_PATH}/fixtures/current/")
+        if event_file_name.endswith(".json")
     ]
 
 except FileNotFoundError as exc:  # pragma: no cover
@@ -36,13 +37,14 @@ except FileNotFoundError as exc:  # pragma: no cover
 
 
 class DummyTransformer(BaseTransformerMixin):
-    required_fields = ('does_not_exist',)
+    required_fields = ("does_not_exist",)
 
 
 class TransformersFixturesTestMixin:
     """
     Mixin to help test event transforms using "raw" and "expected" fixture data.
     """
+
     # no limit to diff in the output of tests
     maxDiff = None
 
@@ -50,7 +52,7 @@ class TransformersFixturesTestMixin:
 
     def setUp(self):
         super().setUp()
-        UserFactory.create(username='edx', email='edx@example.com')
+        UserFactory.create(username="edx", email="edx@example.com")
 
     @property
     def raw_events_fixture_path(self):
@@ -72,10 +74,10 @@ class TransformersFixturesTestMixin:
         """
         base_event_filename = os.path.basename(event_filename)
 
-        input_event_file_path = '{test_dir}/{event_filename}'.format(
+        input_event_file_path = "{test_dir}/{event_filename}".format(
             test_dir=self.raw_events_fixture_path, event_filename=base_event_filename
         )
-        with open(input_event_file_path, encoding='utf-8') as current:
+        with open(input_event_file_path, encoding="utf-8") as current:
             data = json.loads(current.read())
         return data
 
@@ -96,7 +98,7 @@ class TransformersFixturesTestMixin:
         Writes errors to test_out/ for analysis.
         """
         original_event = self.get_raw_event(raw_event_file)
-        with open(expected_event_file, encoding='utf-8') as expected:
+        with open(expected_event_file, encoding="utf-8") as expected:
             expected_event = json.loads(expected.read())
 
             event_filename = os.path.basename(raw_event_file)
@@ -132,47 +134,45 @@ class TransformersTestMixin:
     """
     Tests that supported events are transformed correctly.
     """
+
     def test_with_no_field_transformer(self):
-        self.registry.register('test_event')(DummyTransformer)
+        self.registry.register("test_event")(DummyTransformer)
         with self.assertRaises(ValueError):
-            self.registry.get_transformer({
-                'name': 'test_event'
-            }).transform()
+            self.registry.get_transformer({"name": "test_event"}).transform()
 
     def test_required_field_transformer(self):
-        self.registry.register('test_event')(DummyTransformer)
+        self.registry.register("test_event")(DummyTransformer)
         with self.assertRaises(ValueError):
-            self.registry.get_transformer({
-                 "name": "edx.course.enrollment.activated"
-            }).transform()
+            self.registry.get_transformer({"name": "edx.course.enrollment.activated"}).transform()
 
     @override_settings(RUNNING_WITH_TEST_SETTINGS=True)
     def test_transformer_version_with_test_settings(self):
-        self.registry.register('test_event')(DummyTransformer)
-        raw_event = self.get_raw_event('edx.course.enrollment.activated.json')
+        self.registry.register("test_event")(DummyTransformer)
+        raw_event = self.get_raw_event("edx.course.enrollment.activated.json")
         transformed_event = self.registry.get_transformer(raw_event).transform()
-        self.assert_correct_transformer_version(transformed_event, 'event-routing-backends@1.1.1')
+        self.assert_correct_transformer_version(transformed_event, "event-routing-backends@1.1.1")
 
     @override_settings(RUNNING_WITH_TEST_SETTINGS=False)
     def test_transformer_version(self):
-        self.registry.register('test_event')(DummyTransformer)
-        raw_event = self.get_raw_event('edx.course.enrollment.activated.json')
+        self.registry.register("test_event")(DummyTransformer)
+        raw_event = self.get_raw_event("edx.course.enrollment.activated.json")
         transformed_event = self.registry.get_transformer(raw_event).transform()
-        self.assert_correct_transformer_version(transformed_event, 'event-routing-backends@{}'.format(__version__))
+        self.assert_correct_transformer_version(transformed_event, "event-routing-backends@{}".format(__version__))
 
-    @patch('event_routing_backends.helpers.uuid.uuid4')
+    @patch("event_routing_backends.helpers.uuid.uuid4")
     @ddt.data(*EVENT_FIXTURE_FILENAMES)
     def test_event_transformer(self, raw_event_file_path, mocked_uuid4):
         # Used to generate the anonymized actor.name,
         # which in turn is used to generate the event UUID.
-        mocked_uuid4.return_value = UUID('32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb')
+        mocked_uuid4.return_value = UUID("32e08e30-f8ae-4ce2-94a8-c2bfe38a70cb")
 
         # if an event's expected fixture doesn't exist, the test shouldn't fail.
         # evaluate transformation of only supported event fixtures.
         base_event_filename = os.path.basename(raw_event_file_path)
 
-        expected_event_file_path = '{expected_events_fixture_path}/{event_filename}'.format(
-            expected_events_fixture_path=self.expected_events_fixture_path, event_filename=base_event_filename
+        expected_event_file_path = "{expected_events_fixture_path}/{event_filename}".format(
+            expected_events_fixture_path=self.expected_events_fixture_path,
+            event_filename=base_event_filename,
         )
 
         if not os.path.isfile(expected_event_file_path):

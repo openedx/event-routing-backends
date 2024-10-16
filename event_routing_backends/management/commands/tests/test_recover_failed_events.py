@@ -51,9 +51,7 @@ class TestRecoverFailedEvents(TestCase):
             },
         }
     )
-    @patch(
-        "event_routing_backends.management.commands.recover_failed_events.get_tracker"
-    )
+    @patch("event_routing_backends.management.commands.recover_failed_events.get_tracker")
     def test_send_tracking_log_to_backends(self, mock_get_tracker):
         """
         Test for send_tracking_log_to_backends
@@ -78,13 +76,9 @@ class TestRecoverFailedEvents(TestCase):
             },
         }
     )
-    @patch(
-        "event_routing_backends.management.commands.recover_failed_events.get_tracker"
-    )
+    @patch("event_routing_backends.management.commands.recover_failed_events.get_tracker")
     @patch("event_routing_backends.management.commands.recover_failed_events.logger")
-    def test_send_tracking_log_to_backends_with_exception(
-        self, mock_logger, mock_get_tracker
-    ):
+    def test_send_tracking_log_to_backends_with_exception(self, mock_logger, mock_get_tracker):
         """
         Test for send_tracking_log_to_backends
         """
@@ -109,13 +103,9 @@ class TestRecoverFailedEvents(TestCase):
             },
         }
     )
-    @patch(
-        "event_routing_backends.management.commands.recover_failed_events.get_tracker"
-    )
+    @patch("event_routing_backends.management.commands.recover_failed_events.get_tracker")
     @patch("event_routing_backends.management.commands.recover_failed_events.logger")
-    def test_send_tracking_log_to_backends_with_event_exception(
-        self, mock_logger, mock_get_tracker
-    ):
+    def test_send_tracking_log_to_backends_with_event_exception(self, mock_logger, mock_get_tracker):
         """
         Test for send_tracking_log_to_backends
         """
@@ -146,9 +136,7 @@ class TestRecoverFailedEvents(TestCase):
             },
         }
     )
-    @patch(
-        "event_routing_backends.management.commands.recover_failed_events.get_tracker"
-    )
+    @patch("event_routing_backends.management.commands.recover_failed_events.get_tracker")
     def test_send_tracking_log_to_backends_no_failed_events(self, mock_get_tracker):
         """
         Test for send_tracking_log_to_backends

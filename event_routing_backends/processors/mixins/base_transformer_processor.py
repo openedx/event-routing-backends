@@ -1,6 +1,7 @@
 """
 Base Processor Mixin for transformer processors.
 """
+
 from logging import getLogger
 
 from eventtracking.processors.exceptions import NoBackendEnabled, NoTransformerImplemented
@@ -61,21 +62,19 @@ class BaseTransformerProcessorMixin:
         Returns:
             ANY:           transformed event
         """
-        event_name = event.get('name')
+        event_name = event.get("name")
 
         try:
             transformed_event = self.get_transformed_event(event)
         except NoTransformerImplemented:
-            logger.error('Could not get transformer for %s event.', event_name)
+            logger.error("Could not get transformer for %s event.", event_name)
             return None
 
         except Exception as ex:
             logger.exception(
                 'There was an error while trying to transform event "{event}" using'
-                ' {processor} processor. Error: {error}'.format(
-                    event=event_name,
-                    processor=self.__class__.__name__,
-                    error=ex
+                " {processor} processor. Error: {error}".format(
+                    event=event_name, processor=self.__class__.__name__, error=ex
                 )
             )
             raise
@@ -99,10 +98,11 @@ class BaseTransformerProcessorMixin:
             NoTransformerImplemented
         """
         if not self.registry:
-            logger.exception('Cannot transform event "{event}". Transformer class '
-                             '"{transformer}" must have its own "registry" set.'.format(
-                                    event=event['name'],
-                                    transformer=self.__class__.__name__
-                                ))
+            logger.exception(
+                'Cannot transform event "{event}". Transformer class '
+                '"{transformer}" must have its own "registry" set.'.format(
+                    event=event["name"], transformer=self.__class__.__name__
+                )
+            )
             return None
         return self.registry.get_transformer(event).transform()
