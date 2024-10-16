@@ -31,6 +31,8 @@ billiard==4.2.1
     # via
     #   -r requirements/quality.txt
     #   celery
+black==24.10.0
+    # via -r requirements/dev.in
 build==1.2.2.post1
     # via
     #   -r requirements/pip-tools.txt
@@ -66,6 +68,7 @@ click==8.1.7
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
+    #   black
     #   celery
     #   click-didyoumean
     #   click-log
@@ -253,6 +256,8 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
+mypy-extensions==1.0.0
+    # via black
 newrelic==10.2.0
     # via
     #   -r requirements/quality.txt
@@ -268,12 +273,15 @@ packaging==24.1
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
+    #   black
     #   build
     #   pyproject-api
     #   pytest
     #   tox
 path==16.16.0
     # via edx-i18n-tools
+pathspec==0.12.1
+    # via black
 pbr==6.1.0
     # via
     #   -r requirements/quality.txt
@@ -284,6 +292,7 @@ platformdirs==4.3.6
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
+    #   black
     #   pylint
     #   tox
     #   virtualenv

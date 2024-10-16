@@ -73,6 +73,10 @@ test-all: quality pii_check ## run tests on every supported Python/Django combin
 
 validate: quality pii_check test ## run tests and quality checks
 
+format: ## Format code automatically
+	black .
+	isort .
+
 selfcheck: ## check that the Makefile is well-formed
 	@echo "The Makefile is well-formed."
 
