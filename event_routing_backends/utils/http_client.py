@@ -16,7 +16,16 @@ class HttpClient:
     A generic HTTP Client.
     """
 
-    def __init__(self, url='', auth_scheme='', auth_key='', headers=None, username=None, password=None, **options):
+    def __init__(  # pylint: disable=too-many-positional-arguments
+        self,
+        url='',
+        auth_scheme='',
+        auth_key='',
+        headers=None,
+        username=None,
+        password=None,
+        **options
+    ):
         """
         Initialize the client with provided configurations.
 
