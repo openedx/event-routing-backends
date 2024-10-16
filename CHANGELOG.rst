@@ -11,6 +11,10 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[9.3.2]
+
+* Fixes issues with gzip files and duplicated events
+
 [9.3.0]
 
 * Support use of ERB for transforming non-openedx events
