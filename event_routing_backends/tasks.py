@@ -1,6 +1,7 @@
 """
 Celery tasks.
 """
+
 from celery import shared_task
 from celery.utils.log import get_task_logger
 from celery_utils.persist_on_failure import LoggedPersistOnFailureTask
@@ -13,8 +14,8 @@ from event_routing_backends.utils.xapi_lrs_client import LrsClient
 logger = get_task_logger(__name__)
 
 ROUTER_STRATEGY_MAPPING = {
-    'AUTH_HEADERS': HttpClient,
-    'XAPI_LRS': LrsClient,
+    "AUTH_HEADERS": HttpClient,
+    "XAPI_LRS": LrsClient,
 }
 
 
@@ -33,7 +34,9 @@ def dispatch_event_persistent(self, event_name, event, router_type, host_config)
     send_event(self, event_name, event, router_type, host_config)
 
 
-@shared_task(bind=True,)
+@shared_task(
+    bind=True,
+)
 def dispatch_event(self, event_name, event, router_type, host_config):
     """
     Send event to configured client.
@@ -62,7 +65,7 @@ def send_event(task, event_name, event, router_type, host_config):
     try:
         client_class = ROUTER_STRATEGY_MAPPING[router_type]
     except KeyError:
-        logger.error('Unsupported routing strategy detected: {}'.format(router_type))
+        logger.error("Unsupported routing strategy detected: {}".format(router_type))
         return
 
     try:
@@ -70,26 +73,26 @@ def send_event(task, event_name, event, router_type, host_config):
         client.send(event, event_name)
         logger.debug(
             'Successfully dispatched transformed version of edx event "{}" using client: {}'.format(
-                event_name,
-                client_class
+                event_name, client_class
             )
         )
     except EventNotDispatched as exc:
         logger.exception(
             'Exception occurred while trying to dispatch edx event "{}" using client: {}'.format(
-                event_name,
-                client_class
+                event_name, client_class
             ),
-            exc_info=True
+            exc_info=True,
         )
         # If this function is called synchronously, we want to raise the exception
         # to inform about errors. If it's called asynchronously, we want to retry
         # the celery task till it succeeds or reaches max retries.
         if not task:
             raise exc
-        raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
-                         max_retries=getattr(settings, ''
-                                                       'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
+        raise task.retry(
+            exc=exc,
+            countdown=getattr(settings, "EVENT_ROUTING_BACKEND_COUNTDOWN", 30),
+            max_retries=getattr(settings, "EVENT_ROUTING_BACKEND_MAX_RETRIES", 3),
+        )
 
 
 @shared_task(bind=True)
@@ -119,30 +122,31 @@ def bulk_send_events(task, events, router_type, host_config):
     try:
         client_class = ROUTER_STRATEGY_MAPPING[router_type]
     except KeyError:
-        logger.error('Unsupported routing strategy detected: {}'.format(router_type))
+        logger.error("Unsupported routing strategy detected: {}".format(router_type))
         return
 
     try:
         client = client_class(**host_config)
         client.bulk_send(events)
         logger.debug(
-            'Successfully bulk dispatched transformed versions of {} events using client: {}'.format(
-                len(events),
-                client_class
+            "Successfully bulk dispatched transformed versions of {} events using client: {}".format(
+                len(events), client_class
             )
         )
     except EventNotDispatched as exc:
         logger.exception(
-            'Exception occurred while trying to bulk dispatch {} events using client: {}'.format(
-                len(events),
-                client_class
+            "Exception occurred while trying to bulk dispatch {} events using client: {}".format(
+                len(events), client_class
             ),
-            exc_info=True
+            exc_info=True,
         )
         # If this function is called synchronously, we want to raise the exception
         # to inform about errors. If it's called asynchronously, we want to retry
         # the celery task till it succeeds or reaches max retries.
         if not task:
             raise exc
-        raise task.retry(exc=exc, countdown=getattr(settings, 'EVENT_ROUTING_BACKEND_COUNTDOWN', 30),
-                         max_retries=getattr(settings, 'EVENT_ROUTING_BACKEND_MAX_RETRIES', 3))
+        raise task.retry(
+            exc=exc,
+            countdown=getattr(settings, "EVENT_ROUTING_BACKEND_COUNTDOWN", 30),
+            max_retries=getattr(settings, "EVENT_ROUTING_BACKEND_MAX_RETRIES", 3),
+        )

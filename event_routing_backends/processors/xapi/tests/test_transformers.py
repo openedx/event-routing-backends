@@ -1,6 +1,7 @@
 """
 Test the transformers for all of the currently supported events into xAPI format.
 """
+
 import hashlib
 import json
 import os
@@ -23,6 +24,7 @@ class XApiTransformersFixturesTestMixin(TransformersFixturesTestMixin):
 
     This mixin is split into its own class so it can be used by packages outside of ERB.
     """
+
     registry = XApiTransformersRegistry
 
     @property
@@ -30,12 +32,12 @@ class XApiTransformersFixturesTestMixin(TransformersFixturesTestMixin):
         """
         Return the path to the expected transformed events fixture files.
         """
-        return '{}/fixtures/expected'.format(os.path.dirname(os.path.abspath(__file__)))
+        return "{}/fixtures/expected".format(os.path.dirname(os.path.abspath(__file__)))
 
     def assert_correct_transformer_version(self, transformed_event, transformer_version):
         self.assertEqual(
             transformed_event.context.extensions[constants.XAPI_TRANSFORMER_VERSION_KEY],
-            transformer_version
+            transformer_version,
         )
 
     def compare_events(self, transformed_event, expected_event):
@@ -85,21 +87,25 @@ class TestXApiTransformers(XApiTransformersFixturesTestMixin, TransformersTestMi
     Test xApi event transforms and settings.
     """
 
-    @override_settings(XAPI_AGENT_IFI_TYPE='mbox')
+    @override_settings(XAPI_AGENT_IFI_TYPE="mbox")
     def test_xapi_agent_ifi_settings_mbox(self):
-        self.registry.register('test_event')(XApiTransformer)
-        raw_event = self.get_raw_event('edx.course.enrollment.activated.json')
+        self.registry.register("test_event")(XApiTransformer)
+        raw_event = self.get_raw_event("edx.course.enrollment.activated.json")
         transformed_event = self.registry.get_transformer(raw_event).transform()
         action_json = transformed_event.actor.to_json()
-        self.assertEqual(action_json, json.dumps({"objectType": "Agent", "mbox": "mailto:edx@example.com"}))
-
-    @override_settings(XAPI_AGENT_IFI_TYPE='mbox_sha1sum')
-    def test_xapi_agent_ifi_settings_mbox_sha1sum(self):
-        self.registry.register('test_event')(XApiTransformer)
-        raw_event = self.get_raw_event('edx.course.enrollment.activated.json')
-        transformed_event = self.registry.get_transformer(raw_event).transform()
-        action_json = transformed_event.actor.to_json()
-        mbox_sha1sum = hashlib.sha1('edx@example.com'.encode('utf-8')).hexdigest()
         self.assertEqual(
-            action_json, json.dumps({"objectType": "Agent", "mbox_sha1sum": mbox_sha1sum})
+            action_json,
+            json.dumps({"objectType": "Agent", "mbox": "mailto:edx@example.com"}),
+        )
+
+    @override_settings(XAPI_AGENT_IFI_TYPE="mbox_sha1sum")
+    def test_xapi_agent_ifi_settings_mbox_sha1sum(self):
+        self.registry.register("test_event")(XApiTransformer)
+        raw_event = self.get_raw_event("edx.course.enrollment.activated.json")
+        transformed_event = self.registry.get_transformer(raw_event).transform()
+        action_json = transformed_event.actor.to_json()
+        mbox_sha1sum = hashlib.sha1("edx@example.com".encode("utf-8")).hexdigest()
+        self.assertEqual(
+            action_json,
+            json.dumps({"objectType": "Agent", "mbox_sha1sum": mbox_sha1sum}),
         )

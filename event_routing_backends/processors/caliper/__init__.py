@@ -2,7 +2,6 @@
 Caliper processors and spec implementation.
 """
 
-
 from edx_toggles.toggles import SettingToggle
 
 # .. toggle_name: CALIPER_EVENTS_ENABLED

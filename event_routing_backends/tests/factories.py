@@ -1,6 +1,7 @@
 """
 Factories needed for unit tests in the app
 """
+
 from django.contrib.auth import get_user_model
 from factory.django import DjangoModelFactory
 

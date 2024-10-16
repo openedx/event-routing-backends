@@ -1,6 +1,7 @@
 """
 Decorators that helps to implement the Processor filter functionality.
 """
+
 import functools
 
 from event_routing_backends.processors.openedx_filters.filters import ProcessorBaseFilter
@@ -35,6 +36,7 @@ def openedx_filter(filter_type):
 
         3. More details about filters https://github.com/openedx/openedx-filters/
     """
+
     def wrapper(func):
         @functools.wraps(func)
         def inner_wrapper(*args, **kwargs):

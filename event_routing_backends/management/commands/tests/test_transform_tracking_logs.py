@@ -1,6 +1,7 @@
 """
 Tests for the transform_tracking_logs management command.
 """
+
 import json
 import os
 from unittest.mock import MagicMock, patch
@@ -31,15 +32,17 @@ tracker = get_tracker()
 
 
 LOCAL_CONFIG = json.dumps({"key": "/openedx/", "container": "data", "prefix": ""})
-REMOTE_CONFIG = json.dumps({
-    "key": "api key",
-    "secret": "api secret key",
-    "prefix": "/xapi_statements/",
-    "container": "test_bucket",
-    "secure": False,
-    "host": "127.0.0.1",
-    "port": 9191
-})
+REMOTE_CONFIG = json.dumps(
+    {
+        "key": "api key",
+        "secret": "api secret key",
+        "prefix": "/xapi_statements/",
+        "container": "test_bucket",
+        "secure": False,
+        "host": "127.0.0.1",
+        "port": 9191,
+    }
+)
 
 
 @pytest.fixture
@@ -48,8 +51,8 @@ def mock_common_calls():
     Mock out calls that we test elsewhere and aren't relevant to the command tests.
     """
     command_path = "event_routing_backends.management.commands.transform_tracking_logs"
-    with patch(command_path+".Provider") as mock_libcloud_provider:
-        with patch(command_path+".get_driver") as mock_libcloud_get_driver:
+    with patch(command_path + ".Provider") as mock_libcloud_provider:
+        with patch(command_path + ".get_driver") as mock_libcloud_get_driver:
             yield mock_libcloud_provider, mock_libcloud_get_driver
 
 
@@ -73,8 +76,8 @@ def command_options():
                     "Max queue size of 1 reached, sending.",
                     "Sending 1 events to LRS...",
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 3 batches.",
-                    "Sending to LRS!"
-                ]
+                    "Sending to LRS!",
+                ],
             },
             "registry_mapping": {"problem_check": 1},
         },
@@ -93,7 +96,7 @@ def command_options():
                     "Finalizing 2 events to LRS",
                     "Dry run, skipping final storage.",
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 0 batches.",
-                ]
+                ],
             },
             "registry_mapping": {"problem_check": 1},
         },
@@ -112,9 +115,9 @@ def command_options():
                     "Sending to LRS!",
                     "Sending 2 events to LRS...",
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 1 batches.",
-                ]
+                ],
             },
-            "whitelist": ["problem_check"]
+            "whitelist": ["problem_check"],
         },
         # Local file to remote file
         {
@@ -136,9 +139,9 @@ def command_options():
                     "Storing 2 events to libcloud destination test_bucket/xapi_statements/",
                     "Storing 0 events to libcloud destination test_bucket/xapi_statements/",
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 2 batches.",
-                ]
+                ],
             },
-            "whitelist": ["problem_check"]
+            "whitelist": ["problem_check"],
         },
         # Remote file dry run
         {
@@ -159,9 +162,9 @@ def command_options():
                     "Dry run, skipping, but still clearing the queue.",
                     "Dry run, skipping final storage.",
                     "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 0 batches.",
-                ]
+                ],
             },
-            "whitelist": ["problem_check"]
+            "whitelist": ["problem_check"],
         },
     ]
 
@@ -171,7 +174,7 @@ def command_options():
 
 def _get_tracking_log_file_path():
     TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
-    return '{test_dir}/fixtures/tracking.log'.format(test_dir=TEST_DIR_PATH)
+    return "{test_dir}/fixtures/tracking.log".format(test_dir=TEST_DIR_PATH)
 
 
 def _get_raw_log_size():
@@ -196,7 +199,7 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
     mock_libcloud_provider, mock_libcloud_get_driver = mock_common_calls
 
     expected_results = command_opts.pop("expected_results")
-    transform_tracking_logs.CHUNK_SIZE = command_opts.pop("chunk_size", 1024*1024*2)
+    transform_tracking_logs.CHUNK_SIZE = command_opts.pop("chunk_size", 1024 * 1024 * 2)
 
     mm = MagicMock()
 
@@ -222,10 +225,7 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
     for backend in tracker.backends["event_transformer"].backends.values():
         backend.bulk_send = MagicMock()
 
-    call_command(
-        'transform_tracking_logs',
-        **command_opts
-    )
+    call_command("transform_tracking_logs", **command_opts)
 
     captured = capsys.readouterr()
     print(captured.out)
@@ -294,7 +294,8 @@ def test_queued_sender_container_does_not_exist(mock_common_calls, caplog):
     """
     mock_destination = MagicMock()
     mock_destination.get_container.side_effect = ContainerDoesNotExistError(
-        "Container 'fake_container' doesn't exist.", None, "fake")
+        "Container 'fake_container' doesn't exist.", None, "fake"
+    )
     with pytest.raises(ContainerDoesNotExistError):
         qs = QueuedSender(mock_destination, "fake_container", "fake_prefix", "xapi")
         qs.queued_lines = ["fake"]
@@ -360,8 +361,10 @@ def test_required_dest_libcloud_keys(capsys):
 
     captured = capsys.readouterr()
     print(captured.out)
-    assert "If not using the 'LRS' destination, the following keys must be defined in destination_config: " \
-           "'prefix', 'container'" in captured.out
+    assert (
+        "If not using the 'LRS' destination, the following keys must be defined in destination_config: "
+        "'prefix', 'container'" in captured.out
+    )
 
 
 def test_get_source_config():
@@ -371,7 +374,7 @@ def test_get_source_config():
     options = {
         "key": "fake test key",
         "container": "fake container",
-        "prefix": "fake prefix"
+        "prefix": "fake prefix",
     }
 
     config, container, prefix = get_source_config_from_options(json.dumps(options))
@@ -389,7 +392,7 @@ def test_get_dest_config():
     options = {
         "key": "fake test key",
         "container": "fake container",
-        "prefix": "fake prefix"
+        "prefix": "fake prefix",
     }
 
     config, container, prefix = get_dest_config_from_options("fake provider", json.dumps(options))

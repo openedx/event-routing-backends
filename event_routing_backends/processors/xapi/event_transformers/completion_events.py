@@ -1,6 +1,7 @@
 """
 Transformers for forum related events.
 """
+
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result, Verb
 
 from event_routing_backends.processors.openedx_filters.decorators import openedx_filter
@@ -20,7 +21,7 @@ class CompletionCreatedTransformer(XApiTransformer):
         display=LanguageMap({constants.EN: constants.PROGRESSED}),
     )
 
-    additional_fields = ('result', )
+    additional_fields = ("result",)
 
     @openedx_filter(
         filter_type="event_routing_backends.processors.xapi.completion_events.completion_created.get_object",
@@ -48,7 +49,5 @@ class CompletionCreatedTransformer(XApiTransformer):
         """
         return Result(
             completion=self.get_data("data.completion") == 1.0,
-            extensions=Extensions(
-                {constants.XAPI_ACTIVITY_PROGRESS: self.get_data("data.completion")*100}
-            ),
+            extensions=Extensions({constants.XAPI_ACTIVITY_PROGRESS: self.get_data("data.completion") * 100}),
         )

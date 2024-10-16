@@ -18,35 +18,35 @@ def root(*args):
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'default.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "default.db",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "",
+        "PORT": "",
     }
 }
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'event_routing_backends',
-    'celery_utils',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "event_routing_backends",
+    "celery_utils",
 )
 
 LOCALE_PATHS = [
-    root('event_routing_backends', 'conf', 'locale'),
+    root("event_routing_backends", "conf", "locale"),
 ]
 
-SECRET_KEY = 'insecure-secret-key'
-LMS_ROOT_URL = 'http://localhost:18000'
+SECRET_KEY = "insecure-secret-key"
+LMS_ROOT_URL = "http://localhost:18000"
 CELERY_ALWAYS_EAGER = True
 XAPI_EVENTS_ENABLED = True
 XAPI_EVENT_LOGGING_ENABLED = False
 RUNNING_WITH_TEST_SETTINGS = True
 EVENT_TRACKING_BACKENDS = {}
-XAPI_AGENT_IFI_TYPE = 'external_id'
+XAPI_AGENT_IFI_TYPE = "external_id"
 EVENT_ROUTING_BACKEND_BATCHING_ENABLED = False
 EVENT_ROUTING_BACKEND_BATCH_INTERVAL = 100
 EVENT_TRACKING_ENABLED = True

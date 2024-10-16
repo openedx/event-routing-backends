@@ -1,6 +1,7 @@
 """
 Management command for transforming tracking log files.
 """
+
 import json
 import os
 from io import BytesIO
@@ -26,18 +27,14 @@ def _get_chunks(source, file):
     tries to handle any of those cases gracefully.
     """
     chunks = None
-    num_retries = getattr(settings, 'EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_MAX_RETRIES', 3)
-    retry_countdown = getattr(settings, 'EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_COUNTDOWN', 1)
+    num_retries = getattr(settings, "EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_MAX_RETRIES", 3)
+    retry_countdown = getattr(settings, "EVENT_ROUTING_BACKEND_BULK_DOWNLOAD_COUNTDOWN", 1)
 
     # Skipping coverage here because it wants to test a branch that will never
     # be hit (for -> return)
-    for try_number in range(1, num_retries+1):  # pragma: no cover
+    for try_number in range(1, num_retries + 1):  # pragma: no cover
         try:
-            chunks = source.download_object_range_as_stream(
-                file,
-                start_bytes=0,
-                chunk_size=CHUNK_SIZE
-            )
+            chunks = source.download_object_range_as_stream(file, start_bytes=0, chunk_size=CHUNK_SIZE)
             break
         # Catching all exceptions here because there's no telling what all
         # the possible errors from different libcloud providers are.
@@ -52,12 +49,7 @@ def _get_chunks(source, file):
     return chunks
 
 
-def transform_tracking_logs(
-    source,
-    source_container,
-    source_prefix,
-    sender
-):
+def transform_tracking_logs(source, source_container, source_prefix, sender):
     """
     Transform one or more tracking log files from the given source to the given destination.
     """
@@ -77,7 +69,7 @@ def transform_tracking_logs(
         chunks = _get_chunks(source, file)
 
         for chunk in chunks:
-            chunk = chunk.decode('utf-8')
+            chunk = chunk.decode("utf-8")
 
             # Loop through this chunk, if we find a newline it's time to process
             # otherwise just keep appending.
@@ -123,8 +115,10 @@ def get_dest_config_from_options(destination_provider, dest_config_options):
             dest_container = dest_config.pop("container")
             dest_prefix = dest_config.pop("prefix")
         except KeyError as e:
-            print("If not using the 'LRS' destination, the following keys must be defined in "
-                  "destination_config: 'prefix', 'container'")
+            print(
+                "If not using the 'LRS' destination, the following keys must be defined in "
+                "destination_config: 'prefix', 'container'"
+            )
             raise e
     else:
         dest_config = dest_container = dest_prefix = None
@@ -151,11 +145,7 @@ def validate_destination(driver, container_name, prefix, source_objects):
     container = driver.get_container(container_name)
     full_path = f"{prefix}/manifest.log"
     file_list = "\n".join(source_objects)
-    driver.upload_object_via_stream(
-        iterator=BytesIO(file_list.encode()),
-        container=container,
-        object_name=full_path
-    )
+    driver.upload_object_via_stream(iterator=BytesIO(file_list.encode()), container=container, object_name=full_path)
     print(f"Wrote source file list to '{container_name}/{full_path}'")
 
 
@@ -189,69 +179,70 @@ class Command(BaseCommand):
     """
     Transform tracking logs to an LRS or other output destination.
     """
+
     help = dedent(__doc__).strip()
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--source_provider',
+            "--source_provider",
             type=str,
             help="An Apache Libcloud 'provider constant' from: "
-                 "https://libcloud.readthedocs.io/en/stable/storage/supported_providers.html . "
-                 "Ex: LOCAL for local storage or S3 for AWS S3.",
+            "https://libcloud.readthedocs.io/en/stable/storage/supported_providers.html . "
+            "Ex: LOCAL for local storage or S3 for AWS S3.",
             required=True,
         )
         parser.add_argument(
-            '--source_config',
+            "--source_config",
             type=str,
             help="A JSON dictionary of configuration for the source provider. Leave"
-                 "blank the destination_provider is 'LRS'. See the Libcloud docs for the necessary options"
-                 "for your destination. If your destination (S3, MinIO, etc) needs a 'bucket' or 'container' add them "
-                 "to the config here under the key 'container'. If your source needs a prefix (ex: directory path, "
-                 "or wildcard beginning of a filename), add it here under the key 'prefix'. If no prefix is given, "
-                 "all files in the given location will be attempted!",
+            "blank the destination_provider is 'LRS'. See the Libcloud docs for the necessary options"
+            "for your destination. If your destination (S3, MinIO, etc) needs a 'bucket' or 'container' add them "
+            "to the config here under the key 'container'. If your source needs a prefix (ex: directory path, "
+            "or wildcard beginning of a filename), add it here under the key 'prefix'. If no prefix is given, "
+            "all files in the given location will be attempted!",
             required=True,
         )
         parser.add_argument(
-            '--destination_provider',
+            "--destination_provider",
             type=str,
             default="LRS",
             help="Either 'LRS' to use the default configured xAPI and/or Caliper servers"
-                 "or an Apache Libcloud 'provider constant' from this list: "
-                 "https://libcloud.readthedocs.io/en/stable/storage/supported_providers.html . "
-                 "Ex: LOCAL for local storage or S3 for AWS S3.",
+            "or an Apache Libcloud 'provider constant' from this list: "
+            "https://libcloud.readthedocs.io/en/stable/storage/supported_providers.html . "
+            "Ex: LOCAL for local storage or S3 for AWS S3.",
         )
         parser.add_argument(
-            '--destination_config',
+            "--destination_config",
             type=str,
             help="A JSON dictionary of configuration for the destination provider. Not needed for the 'LRS' "
-                 "destination_provider. See the Libcloud docs for the necessary options for your destination. If your "
-                 "destination (S3, MinIO, etc) needs a 'bucket' or 'container' add them to the config here under the "
-                 "key 'container'. If your destination needs a prefix (ex: directory path), add it here under the key "
-                 "'prefix'. If no prefix is given, the output file(s) will be written to the base path.",
+            "destination_provider. See the Libcloud docs for the necessary options for your destination. If your "
+            "destination (S3, MinIO, etc) needs a 'bucket' or 'container' add them to the config here under the "
+            "key 'container'. If your destination needs a prefix (ex: directory path), add it here under the key "
+            "'prefix'. If no prefix is given, the output file(s) will be written to the base path.",
         )
         parser.add_argument(
-            '--transformer_type',
+            "--transformer_type",
             choices=["xapi", "caliper"],
             required=True,
             help="The type of transformation to do, only one can be done at a time.",
         )
         parser.add_argument(
-            '--batch_size',
+            "--batch_size",
             type=int,
             default=10000,
             help="How many events to send at a time. For the LRS destination this will be one POST per this many "
-                 "events, for all other destinations a new file will be created containing up to this many events. "
-                 "This helps reduce memory usage in the script and increases helps with LRS performance.",
+            "events, for all other destinations a new file will be created containing up to this many events. "
+            "This helps reduce memory usage in the script and increases helps with LRS performance.",
         )
         parser.add_argument(
-            '--sleep_between_batches_secs',
+            "--sleep_between_batches_secs",
             type=float,
             default=10.0,
             help="Fractional seconds to sleep between sending batches to a destination, used to reduce load on the LMS "
-                 "and LRSs when performing large operations.",
+            "and LRSs when performing large operations.",
         )
         parser.add_argument(
-            '--dry_run',
+            "--dry_run",
             action="store_true",
             help="Attempt to transform all lines from all files, but do not send to the destination.",
         )
@@ -262,22 +253,25 @@ class Command(BaseCommand):
         """
         source_config, source_container, source_prefix = get_source_config_from_options(options["source_config"])
         dest_config, dest_container, dest_prefix = get_dest_config_from_options(
-            options["destination_provider"],
-            options["destination_config"]
+            options["destination_provider"], options["destination_config"]
         )
 
         source_driver, dest_driver = get_libcloud_drivers(
             options["source_provider"],
             source_config,
             options["destination_provider"],
-            dest_config
+            dest_config,
         )
 
         source_file_list = validate_source_and_files(source_driver, source_container, source_prefix)
         if dest_driver != "LRS":
             validate_destination(dest_driver, dest_container, dest_prefix, source_file_list)
         else:
-            print(f"Found {len(source_file_list)} source files: ", *source_file_list, sep="\n")
+            print(
+                f"Found {len(source_file_list)} source files: ",
+                *source_file_list,
+                sep="\n",
+            )
 
         sender = QueuedSender(
             dest_driver,
@@ -286,12 +280,7 @@ class Command(BaseCommand):
             options["transformer_type"],
             max_queue_size=options["batch_size"],
             sleep_between_batches_secs=options["sleep_between_batches_secs"],
-            dry_run=options["dry_run"]
+            dry_run=options["dry_run"],
         )
 
-        transform_tracking_logs(
-            source_driver,
-            source_container,
-            source_prefix,
-            sender
-        )
+        transform_tracking_logs(source_driver, source_container, source_prefix, sender)

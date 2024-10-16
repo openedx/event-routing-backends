@@ -1,4 +1,5 @@
 """Test cases for the filters file."""
+
 from django.test import TestCase
 from mock import Mock, patch
 from openedx_filters.tooling import OpenEdxPublicFilter
@@ -29,9 +30,7 @@ class TestProcessorBaseFilter(TestCase):
             - run_filter returns the value of the result key
         """
         transformer = Mock()
-        run_pipeline_mock.return_value = {
-            "result": "expected_value"
-        }
+        run_pipeline_mock.return_value = {"result": "expected_value"}
         input_value = "dummy_value"
         openedx_filter = ProcessorBaseFilter.generate_dynamic_filter(filter_type="test_filter")
 

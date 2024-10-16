@@ -1,7 +1,7 @@
 from celery import Celery
 from django.conf import settings
 
-app = Celery('event_routing_backends')
+app = Celery("event_routing_backends")
 
 app.config_from_object(settings)
 

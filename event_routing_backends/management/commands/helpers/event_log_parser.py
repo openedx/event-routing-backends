@@ -3,6 +3,7 @@ Support for reading tracking event logs.
 
 Taken entirely from edx-analytics-pipeline.
 """
+
 import json
 import logging
 import re
@@ -10,7 +11,7 @@ from json.decoder import JSONDecodeError
 
 log = logging.getLogger(__name__)
 
-PATTERN_JSON = re.compile(r'^.*?(\{.*\})\s*$')
+PATTERN_JSON = re.compile(r"^.*?(\{.*\})\s*$")
 
 
 def parse_json_event(line):

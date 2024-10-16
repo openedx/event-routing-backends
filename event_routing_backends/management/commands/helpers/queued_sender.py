@@ -1,6 +1,7 @@
 """
 Class to handle batching and sending bulk transformed statements.
 """
+
 import datetime
 import json
 import os
@@ -16,6 +17,7 @@ class QueuedSender:
     """
     Handles queuing and sending events to the destination.
     """
+
     def __init__(  # pylint: disable=too-many-positional-arguments
         self,
         destination,
@@ -24,7 +26,7 @@ class QueuedSender:
         transformer_type,
         max_queue_size=10000,
         sleep_between_batches_secs=1.0,
-        dry_run=False
+        dry_run=False,
     ):
         self.destination = destination
         self.destination_container = destination_container
@@ -51,9 +53,9 @@ class QueuedSender:
         """
         if "name" in event:
             for processor in self.engine.processors:
-                if hasattr(processor, 'whitelist') and event["name"] in processor.whitelist:
+                if hasattr(processor, "whitelist") and event["name"] in processor.whitelist:
                     return True
-                elif hasattr(processor, 'registry') and event["name"] in processor.registry.mapping:
+                elif hasattr(processor, "registry") and event["name"] in processor.registry.mapping:
                     return True
         return False
 
@@ -120,7 +122,7 @@ class QueuedSender:
 
         container = self.destination.get_container(self.destination_container)
 
-        datestr = datetime.datetime.now().strftime('%y-%m-%d_%H-%M-%S')
+        datestr = datetime.datetime.now().strftime("%y-%m-%d_%H-%M-%S")
         object_name = f"{self.destination_prefix}/{datestr}_{self.transformer_type}.log"
         print(f"Writing to {self.destination_container}/{object_name}")
 
@@ -131,11 +133,7 @@ class QueuedSender:
             out.write(str.encode("\n"))
         out.seek(0)
 
-        self.destination.upload_object_via_stream(
-            out,
-            container,
-            object_name
-        )
+        self.destination.upload_object_via_stream(out, container, object_name)
 
     def finalize(self):
         """
@@ -156,7 +154,9 @@ class QueuedSender:
                 self.store()
             self.batches_sent += 1
 
-        print(f"Queued {self.queued_lines} log lines, "
-              f"could not parse {self.unparsable_lines} log lines, "
-              f"skipped {self.skipped_lines} log lines, "
-              f"sent {self.batches_sent} batches.")
+        print(
+            f"Queued {self.queued_lines} log lines, "
+            f"could not parse {self.unparsable_lines} log lines, "
+            f"skipped {self.skipped_lines} log lines, "
+            f"sent {self.batches_sent} batches."
+        )

@@ -1,6 +1,7 @@
 """
 xAPI processor for transforming and routing events.
 """
+
 import json
 from logging import getLogger
 
@@ -11,7 +12,7 @@ from event_routing_backends.processors.xapi import XAPI_EVENT_LOGGING_ENABLED, X
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 
 logger = getLogger(__name__)
-xapi_logger = getLogger('xapi_tracking')
+xapi_logger = getLogger("xapi_tracking")
 
 
 class XApiProcessor(BaseTransformerProcessorMixin):

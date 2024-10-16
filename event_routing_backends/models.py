@@ -1,7 +1,7 @@
-
 """
 Database models for event_routing_backends.
 """
+
 import logging
 import re
 
@@ -39,7 +39,7 @@ def get_value_from_dotted_path(dict_obj, dotted_key):
         ANY :                 Returns the value found in the dict or `None` if
                               no value exists for provided dotted path.
     """
-    nested_keys = dotted_key.split('.')
+    nested_keys = dotted_key.split(".")
     result = dict_obj
     try:
         for key in nested_keys:
@@ -69,7 +69,7 @@ class RouterConfigurationManager(ConfigurationModelManager):
         if cached_response.is_found:
             return cached_response.value
 
-        current = self.current_set().filter(backend_name=backend_name, enabled=True).order_by('-change_date')
+        current = self.current_set().filter(backend_name=backend_name, enabled=True).order_by("-change_date")
         TieredCache.set_all_tiers(cache_key, current, backend_cache_ttl())
         return current
 
@@ -114,13 +114,19 @@ class RouterConfiguration(ConfigurationModel):
 
     """
 
-    AUTH_BASIC = 'Basic'
-    AUTH_BEARER = 'Bearer'
-    AUTH_CHOICES = ((AUTH_BASIC, 'Basic'), (AUTH_BEARER, 'Bearer'),)
-    CALIPER_BACKEND = 'Caliper'
-    XAPI_BACKEND = 'xAPI'
-    BACKEND_CHOICES = ((CALIPER_BACKEND, 'Caliper'), (XAPI_BACKEND, 'xAPI'),)
-    KEY_FIELDS = ('route_url',)
+    AUTH_BASIC = "Basic"
+    AUTH_BEARER = "Bearer"
+    AUTH_CHOICES = (
+        (AUTH_BASIC, "Basic"),
+        (AUTH_BEARER, "Bearer"),
+    )
+    CALIPER_BACKEND = "Caliper"
+    XAPI_BACKEND = "xAPI"
+    BACKEND_CHOICES = (
+        (CALIPER_BACKEND, "Caliper"),
+        (XAPI_BACKEND, "xAPI"),
+    )
+    KEY_FIELDS = ("route_url",)
     backend_name = models.CharField(
         choices=BACKEND_CHOICES,
         max_length=50,
@@ -129,50 +135,35 @@ class RouterConfiguration(ConfigurationModel):
         db_index=True,
         default=XAPI_BACKEND,
         help_text=(
-            'Name of the tracking backend on which this router should be applied.'
-            '<br/>'
-            'Please note that this field is <b>case sensitive.</b>'
-        )
+            "Name of the tracking backend on which this router should be applied."
+            "<br/>"
+            "Please note that this field is <b>case sensitive.</b>"
+        ),
     )
 
     route_url = models.CharField(
         max_length=255,
-        verbose_name='Route url',
+        verbose_name="Route url",
         null=False,
         blank=False,
         help_text=(
-            'Route Url of the tracking backend on which this router should be applied.'
-            '<br/>'
-            'Please note that this field is <b>case sensitive.</b>'
-        )
+            "Route Url of the tracking backend on which this router should be applied."
+            "<br/>"
+            "Please note that this field is <b>case sensitive.</b>"
+        ),
     )
 
     auth_scheme = models.CharField(
         choices=AUTH_CHOICES,
-        verbose_name='Auth Scheme',
+        verbose_name="Auth Scheme",
         max_length=6,
         default=None,
         blank=True,
-        null=True
+        null=True,
     )
-    auth_key = EncryptedCharField(
-        verbose_name='Auth Key',
-        max_length=256,
-        blank=True,
-        null=True
-    )
-    username = EncryptedCharField(
-        verbose_name='Username',
-        max_length=256,
-        blank=True,
-        null=True
-    )
-    password = EncryptedCharField(
-        verbose_name='Password',
-        max_length=256,
-        blank=True,
-        null=True
-    )
+    auth_key = EncryptedCharField(verbose_name="Auth Key", max_length=256, blank=True, null=True)
+    username = EncryptedCharField(verbose_name="Username", max_length=256, blank=True, null=True)
+    password = EncryptedCharField(verbose_name="Password", max_length=256, blank=True, null=True)
     configurations = EncryptedJSONField(blank=True, default=None)
     objects = RouterConfigurationManager()
 
@@ -181,17 +172,17 @@ class RouterConfiguration(ConfigurationModel):
         Addition of class names.
         """
 
-        verbose_name = 'Router Configuration'
-        verbose_name_plural = 'Router Configurations'
+        verbose_name = "Router Configuration"
+        verbose_name_plural = "Router Configurations"
 
     def __str__(self):
         """
         Return string representation for class instance.
         """
-        return '{id} - {backend} - {enabled}'.format(
+        return "{id} - {backend} - {enabled}".format(
             id=self.pk,
             backend=self.backend_name,
-            enabled='Enabled' if self.enabled else 'Disabled'
+            enabled="Enabled" if self.enabled else "Disabled",
         )
 
     @classmethod
@@ -255,7 +246,7 @@ class RouterConfiguration(ConfigurationModel):
             dict
         """
         if not self.configurations:
-            return {'host_configurations': {}}
+            return {"host_configurations": {}}
 
         is_allowed = self._match_event_for_host(original_event, self.configurations)
 
@@ -275,7 +266,7 @@ class RouterConfiguration(ConfigurationModel):
         Returns:
             bool
         """
-        for key, value in host_config.get('match_params', {}).items():
+        for key, value in host_config.get("match_params", {}).items():
             original_event_value = get_value_from_dotted_path(original_event, key)
             if isinstance(value, list):
                 matched = False
@@ -302,7 +293,5 @@ class RouterConfiguration(ConfigurationModel):
         try:
             return bool(re.compile(str(regex_exp))) and re.search(regex_exp, value_str)
         except TypeError as err:
-            logger.info(
-                        'Invalid regex %s with error: %s', regex_exp, err
-                    )
+            logger.info("Invalid regex %s with error: %s", regex_exp, err)
             return False

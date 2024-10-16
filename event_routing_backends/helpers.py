@@ -1,6 +1,7 @@
 """
 Helper utilities for event transformers.
 """
+
 import datetime
 import logging
 import uuid
@@ -30,8 +31,8 @@ except ImportError as exc:  # pragma: no cover
 
 
 User = get_user_model()
-UTC_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
-BLOCK_ID_FORMAT = '{block_version}:{course_id}+type@{block_type}+block@{block_id}'
+UTC_DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
+BLOCK_ID_FORMAT = "{block_version}:{course_id}+type@{block_type}+block@{block_id}"
 
 
 def get_uuid5(namespace_key, name):
@@ -48,7 +49,7 @@ def get_uuid5(namespace_key, name):
     """
     # We are not pulling base uuid from settings to avoid
     # data discrepancies incase setting is changed inadvertently
-    base_uuid = uuid.UUID('6ba7b810-9dad-11d1-80b4-00c04fd430c8')
+    base_uuid = uuid.UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
     base_namespace = uuid.uuid5(base_uuid, namespace_key)
     return uuid.uuid5(base_namespace, name)
 
@@ -73,8 +74,10 @@ def get_anonymous_user_id(username_or_id, external_type):
 
     user = get_user(username_or_id)
     if not user:
-        logger.warning('User with username "%s" does not exist. '
-                       'Cannot generate anonymous ID', username_or_id)
+        logger.warning(
+            'User with username "%s" does not exist. Cannot generate anonymous ID',
+            username_or_id,
+        )
 
         raise ValueError(f"User with username {username_or_id} does not exist.")
 
@@ -145,7 +148,7 @@ def get_user_email(username_or_id):
 
     if not user:
         logger.info('User with username "%s" does not exist.', username_or_id)
-        user_email = 'unknown@example.com'
+        user_email = "unknown@example.com"
     else:
         user_email = user.email
 
@@ -185,9 +188,7 @@ def convert_seconds_to_iso(seconds):
     """
     if seconds is None:
         return None
-    return duration_isoformat(datetime.timedelta(
-        seconds=seconds
-    ))
+    return duration_isoformat(datetime.timedelta(seconds=seconds))
 
 
 def convert_seconds_to_float(seconds):
@@ -223,7 +224,7 @@ def convert_datetime_to_iso(current_datetime):
     utc_offset = current_datetime.utcoffset()
     utc_datetime = current_datetime - utc_offset
 
-    formatted_datetime = utc_datetime.strftime(UTC_DATETIME_FORMAT)[:-3] + 'Z'
+    formatted_datetime = utc_datetime.strftime(UTC_DATETIME_FORMAT)[:-3] + "Z"
 
     return formatted_datetime
 
@@ -240,9 +241,11 @@ def get_block_id_from_event_referrer(referrer):
     """
     if referrer is not None:
         parsed = urlparse(referrer)
-        block_id = parse_qs(parsed.query)['activate_block_id'][0]\
-            if 'activate_block_id' in parse_qs(parsed.query) and parse_qs(parsed.query)['activate_block_id'][0] \
+        block_id = (
+            parse_qs(parsed.query)["activate_block_id"][0]
+            if "activate_block_id" in parse_qs(parsed.query) and parse_qs(parsed.query)["activate_block_id"][0]
             else None
+        )
 
     else:
         block_id = None
@@ -262,15 +265,15 @@ def get_block_id_from_event_data(data, course_id):
         str or None
     """
     if data is not None and course_id is not None:
-        data_array = data.split('_')
-        course_id_array = course_id.split(':')
+        data_array = data.split("_")
+        course_id_array = course_id.split(":")
         block_version = get_block_version(course_id)
         if len(data_array) > 1 and len(course_id_array) > 1:
             block_id = BLOCK_ID_FORMAT.format(
                 block_version=block_version,
                 course_id=course_id_array[1],
-                block_type='problem',
-                block_id=data_array[1]
+                block_type="problem",
+                block_id=data_array[1],
             )
         else:
             block_id = None  # pragma: no cover
@@ -294,10 +297,7 @@ def get_problem_block_id(referrer, data, course_id):
     """
     block_id = get_block_id_from_event_referrer(referrer)
     if block_id is None:
-        block_id = get_block_id_from_event_data(
-            data,
-            course_id
-        )
+        block_id = get_block_id_from_event_data(data, course_id)
 
     return block_id
 
@@ -313,13 +313,13 @@ def make_video_block_id(video_id, course_id):
     Returns:
         str
     """
-    course_id_array = course_id.split(':')
+    course_id_array = course_id.split(":")
     block_version = get_block_version(course_id)
     return BLOCK_ID_FORMAT.format(
         block_version=block_version,
         course_id=course_id_array[1],
-        block_type='video',
-        block_id=video_id
+        block_type="video",
+        block_id=video_id,
     )
 
 
@@ -330,7 +330,7 @@ def backend_cache_ttl():
     Returns:
         int
     """
-    return getattr(settings, 'EVENT_TRACKING_BACKENDS_CACHE_TTL', 600)
+    return getattr(settings, "EVENT_TRACKING_BACKENDS_CACHE_TTL", 600)
 
 
 def get_business_critical_events():
@@ -340,11 +340,15 @@ def get_business_critical_events():
     Returns:
         list
     """
-    return getattr(settings, 'EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS', [
-        'edx.course.enrollment.activated',
-        'edx.course.enrollment.deactivated',
-        'edx.course.grade.passed.first_time'
-    ])
+    return getattr(
+        settings,
+        "EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS",
+        [
+            "edx.course.enrollment.activated",
+            "edx.course.enrollment.deactivated",
+            "edx.course.grade.passed.first_time",
+        ],
+    )
 
 
 def get_block_version(course_id):
@@ -358,7 +362,7 @@ def get_block_version(course_id):
     Returns:
         str
     """
-    course_id_array = course_id.split(':')
+    course_id_array = course_id.split(":")
     block_version = "block-{0}".format(course_id_array[0].split("-")[-1])
     if "ccx" in course_id_array[0]:
         block_version = "ccx-{block_version}".format(block_version=block_version)

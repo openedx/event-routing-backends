@@ -21,29 +21,37 @@ class TestPluginSettings(TestCase):
         """
         common_settings.plugin_settings(settings)
 
-        self.assertIn('event_transformer', settings.EVENT_TRACKING_BACKENDS)
-        self.assertIn('OPTIONS', settings.EVENT_TRACKING_BACKENDS["event_transformer"])
+        self.assertIn("event_transformer", settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn("OPTIONS", settings.EVENT_TRACKING_BACKENDS["event_transformer"])
         transformer_options = settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]
 
         self.assertEqual(
             set(
-                settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS +
-                settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
+                settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS
+                + settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
             ),
-            transformer_options["processors"][0]["OPTIONS"]["whitelist"]
+            transformer_options["processors"][0]["OPTIONS"]["whitelist"],
         )
 
         self.assertIn("xapi", transformer_options["backends"])
         self.assertEqual(
             settings.EVENT_TRACKING_BACKENDS_ALLOWED_XAPI_EVENTS,
-            transformer_options["backends"]["xapi"]["OPTIONS"]["processors"][0]["OPTIONS"]["whitelist"])
+            transformer_options["backends"]["xapi"]["OPTIONS"]["processors"][0]["OPTIONS"]["whitelist"],
+        )
 
-        self.assertIn("caliper", settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]["backends"])
+        self.assertIn(
+            "caliper",
+            settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]["backends"],
+        )
         self.assertEqual(
             settings.EVENT_TRACKING_BACKENDS_ALLOWED_CALIPER_EVENTS,
-            transformer_options["backends"]["caliper"]["OPTIONS"]["processors"][0]["OPTIONS"]["whitelist"])
+            transformer_options["backends"]["caliper"]["OPTIONS"]["processors"][0]["OPTIONS"]["whitelist"],
+        )
 
-        self.assertIn('edx.course.enrollment.activated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
+        self.assertIn(
+            "edx.course.enrollment.activated",
+            settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS,
+        )
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
         self.assertFalse(settings.CALIPER_EVENT_LOGGING_ENABLED)
         self.assertTrue(settings.XAPI_EVENTS_ENABLED)
@@ -54,10 +62,19 @@ class TestPluginSettings(TestCase):
         Test devstack settings
         """
         devstack_settings.plugin_settings(settings)
-        self.assertIn('event_transformer', settings.EVENT_TRACKING_BACKENDS)
-        self.assertIn('xapi', settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]["backends"])
-        self.assertIn('caliper', settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]["backends"])
-        self.assertIn('edx.course.enrollment.deactivated', settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS)
+        self.assertIn("event_transformer", settings.EVENT_TRACKING_BACKENDS)
+        self.assertIn(
+            "xapi",
+            settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]["backends"],
+        )
+        self.assertIn(
+            "caliper",
+            settings.EVENT_TRACKING_BACKENDS["event_transformer"]["OPTIONS"]["backends"],
+        )
+        self.assertIn(
+            "edx.course.enrollment.deactivated",
+            settings.EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS,
+        )
         self.assertFalse(settings.CALIPER_EVENTS_ENABLED)
         self.assertFalse(settings.CALIPER_EVENT_LOGGING_ENABLED)
         self.assertTrue(settings.XAPI_EVENTS_ENABLED)
@@ -68,12 +85,12 @@ class TestPluginSettings(TestCase):
         Test production settings
         """
         settings.ENV_TOKENS = {
-            'EVENT_TRACKING_BACKENDS': None,
-            'CALIPER_EVENTS_ENABLED': False,
-            'CALIPER_EVENT_LOGGING_ENABLED': True,
-            'XAPI_EVENTS_ENABLED': False,
-            'XAPI_EVENT_LOGGING_ENABLED': True,
-            'EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS': [],
+            "EVENT_TRACKING_BACKENDS": None,
+            "CALIPER_EVENTS_ENABLED": False,
+            "CALIPER_EVENT_LOGGING_ENABLED": True,
+            "XAPI_EVENTS_ENABLED": False,
+            "XAPI_EVENT_LOGGING_ENABLED": True,
+            "EVENT_TRACKING_BACKENDS_BUSINESS_CRITICAL_EVENTS": [],
         }
         production_setttings.plugin_settings(settings)
         self.assertIsNone(settings.EVENT_TRACKING_BACKENDS)
