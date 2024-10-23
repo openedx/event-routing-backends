@@ -70,9 +70,9 @@ code-annotations==1.8.0
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.6.3
+coverage[toml]==7.6.4
     # via pytest-cov
-cryptography==43.0.1
+cryptography==43.0.3
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -125,7 +125,7 @@ edx-ccx-keys==1.3.0
     #   openedx-events
 edx-celeryutils==1.3.0
     # via -r requirements/base.txt
-edx-django-utils==6.1.0
+edx-django-utils==7.0.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -147,7 +147,7 @@ event-tracking==2.4.0
     #   -r requirements/base.txt
 factory-boy==3.3.1
     # via -r requirements/test.in
-faker==30.4.0
+faker==30.8.0
     # via factory-boy
 fastavro==1.9.7
     # via
@@ -175,7 +175,7 @@ kombu==5.4.2
     # via
     #   -r requirements/base.txt
     #   celery
-markupsafe==3.0.1
+markupsafe==3.0.2
     # via
     #   -r requirements/base.txt
     #   jinja2
@@ -203,7 +203,7 @@ prompt-toolkit==3.0.48
     # via
     #   -r requirements/base.txt
     #   click-repl
-psutil==6.0.0
+psutil==6.1.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
