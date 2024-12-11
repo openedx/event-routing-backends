@@ -18,7 +18,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.3.5
+astroid==3.3.6
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -100,7 +100,7 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.6.8
+coverage[toml]==7.6.9
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -120,7 +120,7 @@ distlib==0.3.9
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==4.2.16
+django==4.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -173,7 +173,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-celeryutils==1.3.0
     # via -r requirements/quality.txt
-edx-django-utils==7.0.1
+edx-django-utils==7.1.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -382,7 +382,7 @@ pyyaml==6.0.2
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==5.2.0
+redis==5.2.1
     # via
     #   -r requirements/quality.txt
     #   django-redis
@@ -390,7 +390,7 @@ requests==2.32.3
     # via
     #   -r requirements/quality.txt
     #   apache-libcloud
-six==1.16.0
+six==1.17.0
     # via
     #   -r requirements/quality.txt
     #   edx-ccx-keys
@@ -401,7 +401,7 @@ snowballstemmer==2.2.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlparse==0.5.2
+sqlparse==0.5.3
     # via
     #   -r requirements/quality.txt
     #   django
