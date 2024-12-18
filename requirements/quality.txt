@@ -22,7 +22,7 @@ astroid==3.3.6
     # via
     #   pylint
     #   pylint-celery
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -35,7 +35,7 @@ celery==5.4.0
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2024.8.30
+certifi==2024.12.14
     # via
     #   -r requirements/test.txt
     #   requests
@@ -73,7 +73,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==2.0.0
+code-annotations==2.1.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
@@ -208,7 +208,7 @@ mccabe==0.7.0
     # via pylint
 mock==5.1.0
     # via -r requirements/test.txt
-newrelic==10.3.1
+newrelic==10.4.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -216,7 +216,7 @@ openedx-events==9.15.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==1.11.0
+openedx-filters==1.12.0
     # via -r requirements/test.txt
 packaging==24.2
     # via
