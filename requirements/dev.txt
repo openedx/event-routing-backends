@@ -18,12 +18,12 @@ asgiref==3.8.1
     # via
     #   -r requirements/quality.txt
     #   django
-astroid==3.3.6
+astroid==3.3.8
     # via
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -44,7 +44,7 @@ celery==5.4.0
     #   -r requirements/quality.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2024.8.30
+certifi==2024.12.14
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -58,11 +58,11 @@ chardet==5.2.0
     #   -r requirements/ci.txt
     #   diff-cover
     #   tox
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -91,7 +91,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/quality.txt
     #   celery
-code-annotations==2.0.0
+code-annotations==2.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -110,7 +110,7 @@ cryptography==44.0.0
     #   django-fernet-fields-v2
 ddt==1.7.2
     # via -r requirements/quality.txt
-diff-cover==9.2.0
+diff-cover==9.2.1
     # via -r requirements/dev.in
 dill==0.3.9
     # via
@@ -201,7 +201,7 @@ faker==33.1.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-fastavro==1.9.7
+fastavro==1.10.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -226,7 +226,7 @@ isort==5.13.2
     # via
     #   -r requirements/quality.txt
     #   pylint
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -255,7 +255,7 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==10.3.1
+newrelic==10.4.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -263,7 +263,7 @@ openedx-events==9.15.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-openedx-filters==1.11.0
+openedx-filters==1.12.0
     # via -r requirements/quality.txt
 packaging==24.2
     # via
@@ -302,7 +302,7 @@ prompt-toolkit==3.0.48
     # via
     #   -r requirements/quality.txt
     #   click-repl
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -316,7 +316,7 @@ pydocstyle==6.3.0
     # via -r requirements/quality.txt
 pygments==2.18.0
     # via diff-cover
-pylint==3.3.2
+pylint==3.3.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -433,7 +433,7 @@ tzdata==2024.2
     #   -r requirements/quality.txt
     #   celery
     #   kombu
-urllib3==2.2.3
+urllib3==2.3.0
     # via
     #   -r requirements/quality.txt
     #   requests
