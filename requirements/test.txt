@@ -18,7 +18,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/base.txt
     #   django
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -31,7 +31,7 @@ celery==5.4.0
     #   -r requirements/base.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2024.8.30
+certifi==2024.12.14
     # via
     #   -r requirements/base.txt
     #   requests
@@ -40,11 +40,11 @@ cffi==1.17.1
     #   -r requirements/base.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/base.txt
     #   celery
@@ -65,12 +65,12 @@ click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
-code-annotations==2.0.0
+code-annotations==2.1.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.6.9
+coverage[toml]==7.6.10
     # via pytest-cov
 cryptography==44.0.0
     # via
@@ -151,7 +151,7 @@ factory-boy==3.3.1
     # via -r requirements/test.in
 faker==33.1.0
     # via factory-boy
-fastavro==1.9.7
+fastavro==1.10.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -165,7 +165,7 @@ iniconfig==2.0.0
     # via pytest
 isodate==0.7.2
     # via -r requirements/base.txt
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -183,7 +183,7 @@ markupsafe==3.0.2
     #   jinja2
 mock==5.1.0
     # via -r requirements/test.in
-newrelic==10.3.1
+newrelic==10.4.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -191,7 +191,7 @@ openedx-events==9.15.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==1.11.0
+openedx-filters==1.12.0
     # via -r requirements/base.txt
 packaging==24.2
     # via pytest
@@ -205,7 +205,7 @@ prompt-toolkit==3.0.48
     # via
     #   -r requirements/base.txt
     #   click-repl
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -288,7 +288,7 @@ tzdata==2024.2
     #   -r requirements/base.txt
     #   celery
     #   kombu
-urllib3==2.2.3
+urllib3==2.3.0
     # via
     #   -r requirements/base.txt
     #   requests
