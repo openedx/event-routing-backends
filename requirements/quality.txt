@@ -18,11 +18,11 @@ asgiref==3.8.1
     # via
     #   -r requirements/test.txt
     #   django
-astroid==3.3.6
+astroid==3.3.8
     # via
     #   pylint
     #   pylint-celery
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -35,7 +35,7 @@ celery==5.4.0
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2024.8.30
+certifi==2024.12.14
     # via
     #   -r requirements/test.txt
     #   requests
@@ -44,11 +44,11 @@ cffi==1.17.1
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/test.txt
     #   celery
@@ -73,12 +73,12 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==2.0.0
+code-annotations==2.1.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
     #   edx-toggles
-coverage[toml]==7.6.9
+coverage[toml]==7.6.10
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -164,11 +164,11 @@ event-tracking==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.1
     # via -r requirements/test.txt
-faker==33.1.0
+faker==33.3.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.9.7
+fastavro==1.10.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -188,7 +188,7 @@ isort==5.13.2
     # via
     #   -r requirements/quality.in
     #   pylint
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -208,7 +208,7 @@ mccabe==0.7.0
     # via pylint
 mock==5.1.0
     # via -r requirements/test.txt
-newrelic==10.3.1
+newrelic==10.4.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -216,7 +216,7 @@ openedx-events==9.15.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==1.11.0
+openedx-filters==1.12.0
     # via -r requirements/test.txt
 packaging==24.2
     # via
@@ -236,7 +236,7 @@ prompt-toolkit==3.0.48
     # via
     #   -r requirements/test.txt
     #   click-repl
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -248,7 +248,7 @@ pycparser==2.22
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.in
-pylint==3.3.2
+pylint==3.3.3
     # via
     #   edx-lint
     #   pylint-celery
@@ -345,6 +345,7 @@ tzdata==2024.2
     #   kombu
 urllib3==2.2.3
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   requests
 vine==5.1.0
@@ -361,5 +362,5 @@ wheel==0.45.1
     # via -r requirements/quality.in
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==75.6.0
+setuptools==75.7.0
     # via -r requirements/quality.in
