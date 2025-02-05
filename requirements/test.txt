@@ -8,7 +8,7 @@ amqp==5.3.1
     # via
     #   -r requirements/base.txt
     #   kombu
-aniso8601==9.0.1
+aniso8601==10.0.0
     # via
     #   -r requirements/base.txt
     #   tincan
@@ -18,7 +18,7 @@ asgiref==3.8.1
     # via
     #   -r requirements/base.txt
     #   django
-attrs==24.2.0
+attrs==25.1.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -31,7 +31,7 @@ celery==5.4.0
     #   -r requirements/base.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2024.8.30
+certifi==2025.1.31
     # via
     #   -r requirements/base.txt
     #   requests
@@ -40,11 +40,11 @@ cffi==1.17.1
     #   -r requirements/base.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.1.7
+click==8.1.8
     # via
     #   -r requirements/base.txt
     #   celery
@@ -65,12 +65,12 @@ click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
-code-annotations==2.0.0
+code-annotations==2.2.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.6.9
+coverage[toml]==7.6.10
     # via pytest-cov
 cryptography==44.0.0
     # via
@@ -141,17 +141,18 @@ edx-opaque-keys[django]==2.11.0
     #   -r requirements/base.txt
     #   edx-ccx-keys
     #   openedx-events
+    #   openedx-filters
 edx-toggles==5.2.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
 event-tracking==3.0.0
     # via -r requirements/base.txt
-factory-boy==3.3.1
+factory-boy==3.3.3
     # via -r requirements/test.in
-faker==33.1.0
+faker==35.2.0
     # via factory-boy
-fastavro==1.9.7
+fastavro==1.10.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -165,7 +166,7 @@ iniconfig==2.0.0
     # via pytest
 isodate==0.7.2
     # via -r requirements/base.txt
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -183,29 +184,29 @@ markupsafe==3.0.2
     #   jinja2
 mock==5.1.0
     # via -r requirements/test.in
-newrelic==10.3.1
+newrelic==10.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.15.0
+openedx-events==9.17.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==1.11.0
+openedx-filters==1.13.0
     # via -r requirements/base.txt
 packaging==24.2
     # via pytest
-pbr==6.1.0
+pbr==6.1.1
     # via
     #   -r requirements/base.txt
     #   stevedore
 pluggy==1.5.0
     # via pytest
-prompt-toolkit==3.0.48
+prompt-toolkit==3.0.50
     # via
     #   -r requirements/base.txt
     #   click-repl
-psutil==6.1.0
+psutil==6.1.1
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -239,7 +240,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/base.txt
     #   code-annotations
-pytz==2024.2
+pytz==2025.1
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -283,13 +284,14 @@ typing-extensions==4.12.2
     #   -r requirements/base.txt
     #   edx-opaque-keys
     #   faker
-tzdata==2024.2
+tzdata==2025.1
     # via
     #   -r requirements/base.txt
     #   celery
     #   kombu
 urllib3==2.2.3
     # via
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.txt
     #   requests
 vine==5.1.0
@@ -302,3 +304,6 @@ wcwidth==0.2.13
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
