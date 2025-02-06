@@ -64,11 +64,15 @@ class EventsRouter:
 
         return host
 
-    def prepare_to_send(self, events):
+    def prepare_to_send(self, events, router_urls=None):
         """
         Prepare a list of events to be sent and create a processed, filtered batch for each router.
+        If router_urls are explicitly mentioned, then only use the specified routers
         """
         routers = RouterConfiguration.get_enabled_routers(self.backend_name)
+        if router_urls:
+            routers = routers.filter(route_url__in=router_urls)
+
         business_critical_events = get_business_critical_events()
         route_events = {}
 
@@ -139,7 +143,7 @@ class EventsRouter:
             return []
         return [json.loads(event.decode('utf-8')) for event in failed_events]
 
-    def bulk_send(self, events):
+    def bulk_send(self, events, router_urls=None):
         """
         Send the event to configured routers after processing it.
 
@@ -150,7 +154,7 @@ class EventsRouter:
         Arguments:
             events (list[dict]): list of original event dictionaries
         """
-        event_routes = self.prepare_to_send(events)
+        event_routes = self.prepare_to_send(events, router_urls)
 
         for events_for_route in event_routes.values():
             prepared_events = []

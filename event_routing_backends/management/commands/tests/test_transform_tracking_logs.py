@@ -163,6 +163,24 @@ def command_options():
             },
             "whitelist": ["problem_check"]
         },
+        # Test with LRS URLs
+        {
+            "transformer_type": "xapi",
+            "source_provider": "MINIO",
+            "source_config": REMOTE_CONFIG,
+            "lrs_urls": ["http://lrs1.com", "http://lrs2.com"],
+            "expected_results": {
+                "expected_batches_sent": 1,
+                "log_lines": [
+                    "Looking for log files in test_bucket/xapi_statements/*",
+                    "Finalizing 2 events to LRS",
+                    "Sending to LRS!",
+                    "Sending 2 events to LRS...",
+                    "Queued 2 log lines, could not parse 2 log lines, skipped 8 log lines, sent 1 batches.",
+                ],
+            },
+            "whitelist": ["problem_check"],
+        },
     ]
 
     for option in options:
@@ -189,7 +207,8 @@ def _get_raw_log_stream(_, start_bytes, chunk_size):
 
 
 @pytest.mark.parametrize("command_opts", command_options())
-def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
+@patch("event_routing_backends.management.commands.transform_tracking_logs.RouterConfiguration")
+def test_transform_command(MockRouterConfiguration, command_opts, mock_common_calls, caplog, capsys):
     """
     Test the command and QueuedSender with a variety of options.
     """
@@ -197,6 +216,12 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
 
     expected_results = command_opts.pop("expected_results")
     transform_tracking_logs.CHUNK_SIZE = command_opts.pop("chunk_size", 1024*1024*2)
+
+    # Mock RouterConfiguration to return specific URLs
+    MockRouterConfiguration.objects.filter.return_value.values_list.return_value = [
+        "http://lrs1.com",
+        "http://lrs2.com",
+    ]
 
     mm = MagicMock()
 
@@ -242,6 +267,44 @@ def test_transform_command(command_opts, mock_common_calls, caplog, capsys):
     # Check the specific expected log lines for this set of options
     for line in expected_results["log_lines"]:
         assert line in caplog.text or line in captured.out
+
+
+@patch("event_routing_backends.management.commands.transform_tracking_logs.RouterConfiguration")
+def test_invalid_lrs_urls(MockRouterConfiguration, mock_common_calls, caplog):
+    """
+    Test that a ValueError is raised when invalid LRS URLs are provided.
+    """
+    command_opts = {
+        "transformer_type": "xapi",
+        "source_provider": "MINIO",
+        "source_config": REMOTE_CONFIG,
+        "lrs_urls": ["http://lrs3-invalid.com"],
+    }
+
+    mock_libcloud_provider, mock_libcloud_get_driver = mock_common_calls
+
+    MockRouterConfiguration.objects.filter.return_value.values_list.return_value = [
+        "http://lrs1.com",
+        "http://lrs2.com",
+    ]
+
+    transform_tracking_logs.CHUNK_SIZE = command_opts.pop("chunk_size", 1024 * 1024 * 2)
+
+    mm = MagicMock()
+
+    mock_log_object = MagicMock()
+    mock_log_object.__str__.return_value = "tracking.log"
+    mock_log_object.name = "tracking.log"
+    mock_log_object.size = _get_raw_log_size()
+
+    # Fake finding one log file in each container, it will be loaded and parsed twice
+    mm.return_value.iterate_container_objects.return_value = [mock_log_object]
+    mm.return_value.download_object_range_as_stream = _get_raw_log_stream
+    mock_libcloud_get_driver.return_value = mm
+
+    # Run command with invalid route_urls and assert ValueError is raised
+    with pytest.raises(ValueError):
+        call_command("transform_tracking_logs", **command_opts)
 
 
 def test_queued_sender_store_on_lrs(mock_common_calls, capsys):

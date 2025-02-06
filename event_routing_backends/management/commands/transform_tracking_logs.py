@@ -13,6 +13,7 @@ from libcloud.storage.providers import get_driver
 from libcloud.storage.types import Provider
 
 from event_routing_backends.management.commands.helpers.queued_sender import QueuedSender
+from event_routing_backends.models import RouterConfiguration
 
 # Number of bytes to download at a time, this is 2 MB
 CHUNK_SIZE = 1024 * 1024 * 2
@@ -159,6 +160,25 @@ def validate_destination(driver, container_name, prefix, source_objects):
     print(f"Wrote source file list to '{container_name}/{full_path}'")
 
 
+def validate_lrs_routes(lrs_urls):
+    """
+    Validate that the provided LRS URLs are present and enabled in the RouterConfiguration.
+
+    Raises a ValueError if any of the URLs are missing or not enabled.
+    """
+    if lrs_urls:
+        missing_urls = set(lrs_urls) - set(
+            RouterConfiguration.objects.filter(
+                route_url__in=lrs_urls, enabled=True
+            ).values_list("route_url", flat=True)
+        )
+        if missing_urls:
+            raise ValueError(
+                "The following LRS URLs are not present or not enabled in the ",
+                f"RouterConfiguration: {', '.join(missing_urls)}"
+            )
+
+
 def get_libcloud_drivers(source_provider, source_config, destination_provider, destination_config):
     """
     Attempt to configure the libcloud drivers for source and destination.
@@ -256,6 +276,15 @@ class Command(BaseCommand):
             help="Attempt to transform all lines from all files, but do not send to the destination.",
         )
 
+        parser.add_argument(
+            '--lrs-urls',
+            nargs='+',
+            type=str,
+            default=None,
+            help="Specify the LRS route_url(s) to send data to "
+            "(e.g., --lrs-urls http://lrs1.example.com http://lrs2.example.com).",
+        )
+
     def handle(self, *args, **options):
         """
         Configure the command and start the transform process.
@@ -272,11 +301,13 @@ class Command(BaseCommand):
             options["destination_provider"],
             dest_config
         )
+        lrs_urls = options.get('lrs_urls')
 
         source_file_list = validate_source_and_files(source_driver, source_container, source_prefix)
         if dest_driver != "LRS":
             validate_destination(dest_driver, dest_container, dest_prefix, source_file_list)
         else:
+            validate_lrs_routes(lrs_urls)
             print(f"Found {len(source_file_list)} source files: ", *source_file_list, sep="\n")
 
         sender = QueuedSender(
@@ -286,7 +317,8 @@ class Command(BaseCommand):
             options["transformer_type"],
             max_queue_size=options["batch_size"],
             sleep_between_batches_secs=options["sleep_between_batches_secs"],
-            dry_run=options["dry_run"]
+            dry_run=options["dry_run"],
+            lrs_urls=lrs_urls
         )
 
         transform_tracking_logs(
