@@ -35,7 +35,7 @@ Modes Of Operation
 
 The command can work in a few distinct ways.
 
-**File(s) to learning record store (LRS)** - this will use the existing event-routing-backends configuration to route any log replays to **all** configured LRS backends just like the event was being emitted right now. This can be used to backfill old data, capture old events that didn't previously have transforms, or fix up lost data from downtime issues.
+**File(s) to learning record store (LRS)** - this will use the existing event-routing-backends configuration to route any log replays to **all** configured LRS backends by default, just like the event was being emitted right now. This can be used to backfill old data, capture old events that didn't previously have transforms, or fix up lost data from downtime issues. To target specific LRSs, you can use the ``--lrs-urls`` option to specify one or more LRS endpoints by their `route_url`. When provided, the command will route the transformed events exclusively to the specified LRSs, rather than all configured ones.
 
 **File(s) to file(s)** - This will perform the same transformations as usual, but instead of routing them to an LRS they can be saved as a file to any libcloud destination. In this mode all events are saved to a single file and no filters are applied.
 
@@ -64,6 +64,16 @@ Examples
     --source_config '{"key": "/openedx/data/", "prefix": "tracking.log", "container": "logs"}' \
     --destination_provider LRS \
     --transformer_type xapi
+
+::
+
+    # Transform all events in the local file /openedx/data/tracking.log to the specified LRSs
+    python manage.py lms transform_tracking_logs \
+    --source_provider LOCAL \
+    --source_config '{"key": "/openedx/data/", "prefix": "tracking.log", "container": "logs"}' \
+    --destination_provider LRS \
+    --transformer_type xapi \
+    --lrs-urls http://lrs1.example.com http://lrs2.example.com
 
 ::
 

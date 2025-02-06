@@ -917,6 +917,66 @@ class TestAsyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-
         # test mocked oauth client
         mocked_oauth_client.assert_not_called()
 
+    @patch("event_routing_backends.tasks.dispatch_bulk_events.delay")
+    @patch("event_routing_backends.utils.http_client.requests.post")
+    @patch("event_routing_backends.utils.xapi_lrs_client.RemoteLRS")
+    def test_bulk_send_routes_events_based_on_configured_urls(
+        self, mocked_lrs, mocked_post, mock_dispatch_event
+    ):
+        TieredCache.dangerous_clear_all_tiers()
+        mocked_oauth_client = MagicMock()
+        mocked_api_key_client = MagicMock()
+
+        MOCKED_MAP = {
+            "AUTH_HEADERS": HttpClient,
+            "OAUTH2": mocked_oauth_client,
+            "API_KEY": mocked_api_key_client,
+            "XAPI_LRS": LrsClient,
+        }
+        RouterConfigurationFactory.create(
+            backend_name=RouterConfiguration.XAPI_BACKEND,
+            enabled=True,
+            route_url="http://test1.com",
+            auth_scheme=RouterConfiguration.AUTH_BASIC,
+            auth_key=None,
+            username="abc",
+            password="xyz",
+            configurations=ROUTER_CONFIG_FIXTURE[0],
+        )
+        RouterConfigurationFactory.create(
+            backend_name=RouterConfiguration.XAPI_BACKEND,
+            enabled=True,
+            route_url="http://test2.com",
+            auth_scheme=RouterConfiguration.AUTH_BASIC,
+            auth_key=None,
+            username="abc1",
+            password="xyz1",
+            configurations=ROUTER_CONFIG_FIXTURE[0],
+        )
+
+        router = AsyncEventsRouter(
+            processors=[], backend_name=RouterConfiguration.XAPI_BACKEND
+        )
+
+        with patch.dict(
+            "event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING", MOCKED_MAP
+        ):
+            router.bulk_send(self.bulk_transformed_events)
+
+        assert mock_dispatch_event.call_count == 2
+
+        # Reset mock before the next call
+        mock_dispatch_event.reset_mock()
+
+        with patch.dict(
+            "event_routing_backends.tasks.ROUTER_STRATEGY_MAPPING", MOCKED_MAP
+        ):
+            router.bulk_send(
+                self.bulk_transformed_events, router_urls=["http://test1.com"]
+            )
+
+        assert mock_dispatch_event.call_count == 1
+
 
 @ddt.ddt
 class TestSyncEventsRouter(TestEventsRouter):  # pylint: disable=test-inherits-tests

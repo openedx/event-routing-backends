@@ -24,7 +24,8 @@ class QueuedSender:
         transformer_type,
         max_queue_size=10000,
         sleep_between_batches_secs=1.0,
-        dry_run=False
+        dry_run=False,
+        lrs_urls=None
     ):
         self.destination = destination
         self.destination_container = destination_container
@@ -34,6 +35,7 @@ class QueuedSender:
         self.max_queue_size = max_queue_size
         self.sleep_between_batches = sleep_between_batches_secs
         self.dry_run = dry_run
+        self.lrs_urls = lrs_urls or []
 
         # Bookkeeping
         self.queued_lines = 0
@@ -101,7 +103,7 @@ class QueuedSender:
         """
         if self.destination == "LRS":
             print(f"Sending {len(self.event_queue)} events to LRS...")
-            self.backend.bulk_send(self.event_queue)
+            self.backend.bulk_send(self.event_queue, self.lrs_urls)
         else:
             print("Skipping send, we're storing with libcloud instead of an LRS.")
 
