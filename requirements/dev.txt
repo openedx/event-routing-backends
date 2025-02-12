@@ -100,11 +100,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.6.10
+coverage[toml]==7.6.12
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==44.0.0
+cryptography==44.0.1
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -120,7 +120,7 @@ distlib==0.3.9
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==4.2.18
+django==4.2.19
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -198,7 +198,7 @@ event-tracking==3.0.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==35.2.0
+faker==36.1.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -240,7 +240,7 @@ kombu==5.4.2
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml[html-clean,html_clean]==5.3.0
+lxml[html-clean,html_clean]==5.3.1
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -256,11 +256,11 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==10.5.0
+newrelic==10.6.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==9.17.0
+openedx-events==9.18.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -362,13 +362,12 @@ pytest==8.3.4
     #   pytest-django
 pytest-cov==6.0.0
     # via -r requirements/quality.txt
-pytest-django==4.9.0
+pytest-django==4.10.0
     # via -r requirements/quality.txt
 python-dateutil==2.9.0.post0
     # via
     #   -r requirements/quality.txt
     #   celery
-    #   faker
 python-slugify==8.0.4
     # via
     #   -r requirements/quality.txt
@@ -428,11 +427,11 @@ typing-extensions==4.12.2
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
-    #   faker
 tzdata==2025.1
     # via
     #   -r requirements/quality.txt
     #   celery
+    #   faker
     #   kombu
 urllib3==2.2.3
     # via
@@ -445,7 +444,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.29.1
+virtualenv==20.29.2
     # via
     #   -r requirements/ci.txt
     #   tox

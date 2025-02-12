@@ -44,9 +44,9 @@ click-repl==0.3.0
     # via celery
 code-annotations==2.2.0
     # via edx-toggles
-cryptography==44.0.0
+cryptography==44.0.1
     # via django-fernet-fields-v2
-django==4.2.18
+django==4.2.19
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -123,9 +123,9 @@ kombu==5.4.2
     # via celery
 markupsafe==3.0.2
     # via jinja2
-newrelic==10.5.0
+newrelic==10.6.0
     # via edx-django-utils
-openedx-events==9.17.0
+openedx-events==9.18.0
     # via event-tracking
 openedx-filters==1.13.0
     # via -r requirements/base.in

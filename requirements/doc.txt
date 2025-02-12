@@ -83,18 +83,18 @@ code-annotations==2.2.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.6.10
+coverage[toml]==7.6.12
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==44.0.0
+cryptography==44.0.1
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==4.2.18
+django==4.2.19
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -176,7 +176,7 @@ event-tracking==3.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==35.2.0
+faker==36.1.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -241,13 +241,13 @@ more-itertools==10.6.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-newrelic==10.5.0
+newrelic==10.6.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.20
     # via readme-renderer
-openedx-events==9.17.0
+openedx-events==9.18.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -308,13 +308,12 @@ pytest==8.3.4
     #   pytest-django
 pytest-cov==6.0.0
     # via -r requirements/test.txt
-pytest-django==4.9.0
+pytest-django==4.10.0
     # via -r requirements/test.txt
 python-dateutil==2.9.0.post0
     # via
     #   -r requirements/test.txt
     #   celery
-    #   faker
 python-slugify==8.0.4
     # via
     #   -r requirements/test.txt
@@ -405,12 +404,12 @@ typing-extensions==4.12.2
     #   -r requirements/test.txt
     #   beautifulsoup4
     #   edx-opaque-keys
-    #   faker
     #   pydata-sphinx-theme
 tzdata==2025.1
     # via
     #   -r requirements/test.txt
     #   celery
+    #   faker
     #   kombu
 urllib3==2.2.3
     # via
