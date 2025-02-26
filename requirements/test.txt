@@ -70,9 +70,9 @@ code-annotations==2.2.0
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.6.10
+coverage[toml]==7.6.12
     # via pytest-cov
-cryptography==44.0.0
+cryptography==44.0.1
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -95,7 +95,7 @@ ddt==1.7.2
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.7.0
+django-config-models==2.8.0
     # via -r requirements/base.txt
 django-crum==0.7.9
     # via
@@ -142,7 +142,7 @@ edx-opaque-keys[django]==2.11.0
     #   edx-ccx-keys
     #   openedx-events
     #   openedx-filters
-edx-toggles==5.2.0
+edx-toggles==5.3.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -150,7 +150,7 @@ event-tracking==3.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==35.2.0
+faker==36.1.1
     # via factory-boy
 fastavro==1.10.0
     # via
@@ -184,15 +184,15 @@ markupsafe==3.0.2
     #   jinja2
 mock==5.1.0
     # via -r requirements/test.in
-newrelic==10.5.0
+newrelic==10.6.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-openedx-events==9.17.0
+openedx-events==9.18.2
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==1.13.0
+openedx-filters==2.0.1
     # via -r requirements/base.txt
 packaging==24.2
     # via pytest
@@ -206,7 +206,7 @@ prompt-toolkit==3.0.50
     # via
     #   -r requirements/base.txt
     #   click-repl
-psutil==6.1.1
+psutil==7.0.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -229,13 +229,12 @@ pytest==8.3.4
     #   pytest-django
 pytest-cov==6.0.0
     # via -r requirements/test.in
-pytest-django==4.9.0
+pytest-django==4.10.0
     # via -r requirements/test.in
 python-dateutil==2.9.0.post0
     # via
     #   -r requirements/base.txt
     #   celery
-    #   faker
 python-slugify==8.0.4
     # via
     #   -r requirements/base.txt
@@ -267,7 +266,7 @@ sqlparse==0.5.3
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.4.0
+stevedore==5.4.1
     # via
     #   -r requirements/base.txt
     #   code-annotations
@@ -283,11 +282,11 @@ typing-extensions==4.12.2
     # via
     #   -r requirements/base.txt
     #   edx-opaque-keys
-    #   faker
 tzdata==2025.1
     # via
     #   -r requirements/base.txt
     #   celery
+    #   faker
     #   kombu
 urllib3==2.2.3
     # via
