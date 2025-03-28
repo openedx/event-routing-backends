@@ -131,7 +131,7 @@
     "id": "707a78e0-c017-5a78-9581-df5bcca031c9",
     "result": {
       "success": false,
-      "response": "[\"Un emprunt \\u00e0 l'anglais ou anglicisme\", \"Un type de demande\", \"Quelque chose de rapide, d'instantan\\u00e9\", \"Une question structur\\u00e9e et pr\\u00e9cise\", \"Un type de poisson\", \"I\\\"M SWP' \\\"SDF\\\"\"]"
+      "response": "[\"Un emprunt à l'anglais ou anglicisme\", \"Un type de demande\", \"Quelque chose de rapide, d'instantané\", \"Une question structuré et précise\", \"Un type de poisson\", \"I\\\"M SWP' \\\"SDF\\\"\"]"
     },
     "version": "1.0.3",
     "actor": {

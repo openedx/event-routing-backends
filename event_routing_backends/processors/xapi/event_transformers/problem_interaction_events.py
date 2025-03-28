@@ -509,4 +509,4 @@ class JSONEncodedResult(Result):
         if not isinstance(value, list):
             raise ValueError(f"JSONEncodedResult only accepts lists, {type(value)} given.")
 
-        self._response = json.dumps(value)
+        self._response = json.dumps(value, ensure_ascii=False)

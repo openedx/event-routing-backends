@@ -11,6 +11,10 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[9.3.3]
+
+* Fixes bad decoding of unicode characrters during json dumps
+
 [9.3.2]
 
 * Fixes issues with gzip files and duplicated events
