@@ -16,7 +16,7 @@ jobs:
       matrix:
         os: [ 'ubuntu-24.04' ]
         python-version: ['3.11', '3.12']
-        toxenv: [ 'django42' ]
+        toxenv: [ 'django42', 'django52' ]
         # Only run these other workflows on the latest python version we support.
         include:
           - python-version: '3.12'
