@@ -39,7 +39,7 @@ cachetools==5.5.2
     # via
     #   -r requirements/ci.txt
     #   tox
-celery==5.5.0
+celery==5.5.1
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -91,7 +91,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/quality.txt
     #   celery
-code-annotations==2.2.0
+code-annotations==2.3.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -240,7 +240,7 @@ kombu==5.5.2
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml[html-clean,html_clean]==5.3.1
+lxml[html-clean,html_clean]==5.3.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -275,6 +275,7 @@ packaging==24.2
     #   pyproject-api
     #   pytest
     #   tox
+    #   wheel
 path==16.16.0
     # via edx-i18n-tools
 pbr==6.1.1
@@ -360,9 +361,9 @@ pytest==8.3.5
     #   -r requirements/quality.txt
     #   pytest-cov
     #   pytest-django
-pytest-cov==6.1.0
+pytest-cov==6.1.1
     # via -r requirements/quality.txt
-pytest-django==4.11.0
+pytest-django==4.11.1
     # via -r requirements/quality.txt
 python-dateutil==2.9.0.post0
     # via
@@ -423,7 +424,7 @@ tomlkit==0.13.2
     #   pylint
 tox==4.25.0
     # via -r requirements/ci.txt
-typing-extensions==4.13.0
+typing-extensions==4.13.1
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -451,7 +452,7 @@ wcwidth==0.2.13
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
-wheel==0.45.1
+wheel==0.46.1
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
