@@ -30,7 +30,7 @@ billiard==4.2.1
     # via
     #   -r requirements/test.txt
     #   celery
-celery==5.5.0
+celery==5.5.1
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -73,7 +73,7 @@ click-repl==0.3.0
     # via
     #   -r requirements/test.txt
     #   celery
-code-annotations==2.2.0
+code-annotations==2.3.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
@@ -223,6 +223,7 @@ packaging==24.2
     # via
     #   -r requirements/test.txt
     #   pytest
+    #   wheel
 pbr==6.1.1
     # via
     #   -r requirements/test.txt
@@ -277,9 +278,9 @@ pytest==8.3.5
     #   -r requirements/test.txt
     #   pytest-cov
     #   pytest-django
-pytest-cov==6.1.0
+pytest-cov==6.1.1
     # via -r requirements/test.txt
-pytest-django==4.11.0
+pytest-django==4.11.1
     # via -r requirements/test.txt
 python-dateutil==2.9.0.post0
     # via
@@ -333,7 +334,7 @@ tincan==1.0.0
     # via -r requirements/test.txt
 tomlkit==0.13.2
     # via pylint
-typing-extensions==4.13.0
+typing-extensions==4.13.1
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
@@ -357,7 +358,7 @@ wcwidth==0.2.13
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
-wheel==0.45.1
+wheel==0.46.1
     # via -r requirements/quality.in
 
 # The following packages are considered to be unsafe in a requirements file:
