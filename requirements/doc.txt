@@ -12,7 +12,7 @@ amqp==5.3.1
     # via
     #   -r requirements/test.txt
     #   kombu
-aniso8601==10.0.0
+aniso8601==10.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
@@ -32,7 +32,7 @@ babel==2.17.0
     #   sphinx
 backports-tarfile==1.2.0
     # via jaraco-context
-beautifulsoup4==4.13.3
+beautifulsoup4==4.13.4
     # via pydata-sphinx-theme
 billiard==4.2.1
     # via
@@ -112,7 +112,7 @@ django==4.2.20
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.8.0
+django-config-models==2.9.0
     # via -r requirements/test.txt
 django-crum==0.7.9
     # via
@@ -155,14 +155,14 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-celeryutils==1.3.0
     # via -r requirements/test.txt
-edx-django-utils==7.2.0
+edx-django-utils==7.4.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
     #   edx-toggles
     #   event-tracking
     #   openedx-events
-edx-opaque-keys[django]==2.12.0
+edx-opaque-keys[django]==2.13.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
@@ -223,7 +223,7 @@ jsonfield==3.1.0
     #   edx-celeryutils
 keyring==25.6.0
     # via twine
-kombu==5.5.2
+kombu==5.5.3
     # via
     #   -r requirements/test.txt
     #   celery
@@ -237,23 +237,23 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.2.0
     # via -r requirements/test.txt
-more-itertools==10.6.0
+more-itertools==10.7.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-newrelic==10.8.1
+newrelic==10.9.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 nh3==0.2.21
     # via readme-renderer
-openedx-events==9.20.0
+openedx-events==10.0.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
 openedx-filters==2.0.1
     # via -r requirements/test.txt
-packaging==24.2
+packaging==25.0
     # via
     #   -r requirements/test.txt
     #   build
@@ -269,7 +269,7 @@ pluggy==1.5.0
     # via
     #   -r requirements/test.txt
     #   pytest
-prompt-toolkit==3.0.50
+prompt-toolkit==3.0.51
     # via
     #   -r requirements/test.txt
     #   click-repl
@@ -362,7 +362,7 @@ six==1.17.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via sphinx
-soupsieve==2.6
+soupsieve==2.7
     # via beautifulsoup4
 sphinx==8.2.3
     # via
@@ -402,7 +402,7 @@ tincan==1.0.0
     # via -r requirements/test.txt
 twine==6.1.0
     # via -r requirements/doc.in
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via
     #   -r requirements/test.txt
     #   beautifulsoup4
