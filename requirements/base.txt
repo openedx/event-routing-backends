@@ -16,7 +16,7 @@ attrs==25.3.0
     # via openedx-events
 billiard==4.2.1
     # via celery
-celery==5.5.1
+celery==5.5.2
     # via
     #   edx-celeryutils
     #   event-tracking
@@ -125,7 +125,7 @@ markupsafe==3.0.2
     # via jinja2
 newrelic==10.12.0
     # via edx-django-utils
-openedx-events==10.2.0
+openedx-events==10.2.1
     # via event-tracking
 openedx-filters==2.1.0
     # via -r requirements/base.in
@@ -156,7 +156,7 @@ pytz==2025.2
     #   tincan
 pyyaml==6.0.2
     # via code-annotations
-redis==6.0.0
+redis==6.1.0
     # via django-redis
 requests==2.32.3
     # via
@@ -178,7 +178,7 @@ text-unidecode==1.3
     # via python-slugify
 tincan==1.0.0
     # via -r requirements/base.in
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via edx-opaque-keys
 tzdata==2025.2
     # via kombu
