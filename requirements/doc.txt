@@ -40,7 +40,7 @@ billiard==4.2.1
     #   celery
 build==1.2.2.post1
     # via -r requirements/doc.in
-celery==5.5.1
+celery==5.5.2
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -91,6 +91,7 @@ cryptography==44.0.3
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
+    #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
 django==4.2.21
@@ -207,6 +208,10 @@ jaraco-context==6.0.1
     # via keyring
 jaraco-functools==4.1.0
     # via keyring
+jeepney==0.9.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.6
     # via
     #   -r requirements/test.txt
@@ -242,7 +247,7 @@ newrelic==10.12.0
     #   edx-django-utils
 nh3==0.2.21
     # via readme-renderer
-openedx-events==10.2.0
+openedx-events==10.2.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -325,7 +330,7 @@ pyyaml==6.0.2
     #   code-annotations
 readme-renderer==44.0
     # via twine
-redis==6.0.0
+redis==6.1.0
     # via
     #   -r requirements/test.txt
     #   django-redis
@@ -347,6 +352,8 @@ rich==14.0.0
     # via twine
 roman-numerals-py==3.1.0
     # via sphinx
+secretstorage==3.3.3
+    # via keyring
 six==1.17.0
     # via
     #   -r requirements/test.txt
@@ -395,7 +402,7 @@ tincan==1.0.0
     # via -r requirements/test.txt
 twine==6.1.0
     # via -r requirements/doc.in
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via
     #   -r requirements/test.txt
     #   beautifulsoup4
