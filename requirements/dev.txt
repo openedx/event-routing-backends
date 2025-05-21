@@ -39,7 +39,7 @@ cachetools==5.5.2
     # via
     #   -r requirements/ci.txt
     #   tox
-celery==5.5.1
+celery==5.5.2
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -62,7 +62,7 @@ charset-normalizer==3.4.2
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.2.0
+click==8.2.1
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -104,7 +104,7 @@ coverage[toml]==7.8.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==44.0.3
+cryptography==45.0.2
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -198,11 +198,11 @@ event-tracking==3.3.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==37.1.0
+faker==37.3.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
-fastavro==1.10.0
+fastavro==1.11.1
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -240,7 +240,7 @@ kombu==5.5.3
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml[html-clean,html_clean]==5.3.2
+lxml[html-clean,html_clean]==5.4.0
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -260,7 +260,7 @@ newrelic==10.12.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-openedx-events==10.2.0
+openedx-events==10.2.1
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -275,7 +275,6 @@ packaging==25.0
     #   pyproject-api
     #   pytest
     #   tox
-    #   wheel
 path==16.16.0
     # via edx-i18n-tools
 pbr==6.1.1
@@ -291,7 +290,7 @@ platformdirs==4.3.8
     #   pylint
     #   tox
     #   virtualenv
-pluggy==1.5.0
+pluggy==1.6.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -338,7 +337,7 @@ pylint-plugin-utils==0.8.2
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==4.12.1
+pymongo==4.13.0
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -383,7 +382,7 @@ pyyaml==6.0.2
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==6.0.0
+redis==6.1.0
     # via
     #   -r requirements/quality.txt
     #   django-redis
@@ -422,9 +421,9 @@ tomlkit==0.13.2
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.25.0
+tox==4.26.0
     # via -r requirements/ci.txt
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -452,7 +451,7 @@ wcwidth==0.2.13
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
-wheel==0.46.1
+wheel==0.45.1
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
