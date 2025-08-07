@@ -133,11 +133,11 @@ class BaseTransformerMixin:
         #
         # Prefer user id to username, since usernames can change (via retirement) and usernames can
         # require more database lookups (again, for finding retired users).
-        username_or_id = self.get_data("data.user_id") or self.get_data("data.username")
-        if not username_or_id:
-            username_or_id = self.get_data("user_id") or self.get_data("username")
+        id_or_username = self.get_data("data.user_id") or self.get_data("data.username")
+        if not id_or_username:
+            id_or_username = self.get_data("user_id") or self.get_data("username")
 
-        return username_or_id
+        return id_or_username
 
     def extract_sessionid(self):
         """
