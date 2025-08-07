@@ -11,6 +11,10 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[9.3.6]
+
+* Fixes issues where the context user is not the same as the data user, such as enrolling uses via the Instructor Dashboard
+
 [9.3.5]
 
 * Adding django52 support.
