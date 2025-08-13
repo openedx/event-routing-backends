@@ -2,4 +2,4 @@
 Various backends for receiving edX LMS events..
 """
 
-__version__ = '9.3.5'
+__version__ = "9.3.6"
