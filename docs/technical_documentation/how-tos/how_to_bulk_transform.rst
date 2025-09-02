@@ -1,5 +1,5 @@
 How To Bulk Transform Tracking Logs
-===================================
+###################################
 
 This is a rough guide of how to transform existing tracking log files into the formats supported by event-routing-backends using the ``transform_tracking_logs`` Django management command inside a running LMS installation. Because the transformations perform database access, looking up user, course, and block data, you will need to run this command on the same install of Open edX that created the tracking log files.
 

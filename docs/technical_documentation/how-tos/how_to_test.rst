@@ -1,6 +1,5 @@
-===========
 How To Test
-===========
+###########
 
 This is a rough guide of how to go about testing backends in edx-platform. It assumes you have devstack already up and running. If not, see `devstack docs <https://github.com/openedx/devstack>`_.
 

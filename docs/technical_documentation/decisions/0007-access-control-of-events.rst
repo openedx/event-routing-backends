@@ -1,5 +1,5 @@
-Access control of events
-========================
+7. Access control of events
+###########################
 
 Status
 ------

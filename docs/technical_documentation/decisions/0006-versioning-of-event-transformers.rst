@@ -1,5 +1,5 @@
-Versioning of event transformers
-================================
+6. Versioning of event transformers
+###################################
 
 Status
 ------

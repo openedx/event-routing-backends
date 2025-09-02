@@ -1,7 +1,5 @@
-.. _chapter-testing:
-
 Testing
-=======
+#######
 
 event-routing-backends has an assortment of test cases and code quality
 checks to catch potential problems during development.  To run them all in the

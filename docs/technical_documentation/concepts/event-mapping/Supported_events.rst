@@ -1,6 +1,7 @@
+.. _supported_events:
 
-List of supported edx events
-============================
+Supported Events
+################
 
 edX events supported by ``event-routing-backends`` are listed below.
 
@@ -31,6 +32,7 @@ Problem interaction events
 * `problem_check`_ with ``event_source`` as ``browser`` | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/problem_check(browser).json>`__ | xAPI `map <./xAPI_mapping.rst#problem-check-event-source-browser>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/problem_check(browser).json>`__ | Caliper `map <./Caliper_mapping.rst#problem-check-event-source-browser>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/problem_check(browser).json>`__
 * `showanswer`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/showanswer.json>`__ | xAPI `map <./xAPI_mapping.rst#showanswer>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/showanswer.json>`__ | Caliper `map <./Caliper_mapping.rst#showanswer>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/showanswer.json>`__
 * `edx.problem.hint.demandhint_displayed`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.problem.hint.demandhint_displayed.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-problem-hint-demandhint-displayed>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.problem.hint.demandhint_displayed.json>`__ | Caliper `map <./Caliper_mapping.rst#edx-problem-hint-demandhint-displayed>`__ , `sample <../../event_routing_backends/processors/caliper/tests/fixtures/expected/edx.problem.hint.demandhint_displayed.json>`__
+* `edx.grades.problem.submitted`_ | edX `sample <../../event_routing_backends/processors/tests/fixtures/current/edx.grades.problem.submitted.json>`__ | xAPI `map <./xAPI_mapping.rst#edx-grades-problem-submitted>`__ , `sample <../../event_routing_backends/processors/xapi/tests/fixtures/expected/edx.grades.problem.submitted.json>`__
 
 Video events
 -------------

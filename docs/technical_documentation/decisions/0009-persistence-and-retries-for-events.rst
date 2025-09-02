@@ -1,5 +1,5 @@
-Persistence and retries for events
-==================================
+9. Persistence and retries for events
+#####################################
 
 Status
 ------
