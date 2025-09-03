@@ -1,3 +1,5 @@
+.. _filters:
+
 OpenEdx Filters
 ###############
 

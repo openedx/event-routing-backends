@@ -70,6 +70,8 @@ extensions = [
     'sphinx.ext.autosectionlabel'
 ]
 
+autosectionlabel_prefix_document = True
+
 # A list of warning types to suppress arbitrary warning messages.
 suppress_warnings = [
     'image.nonlocal_uri',

@@ -44,7 +44,7 @@ Additionally all generated statements are written to a Python logger which can b
 **File(s) to logger** - For any destination you can use the ``--dry_run`` flag to perform tests on finding and transforming data before attempting to store it. Used in conjunction with loggers mentioned above, you can use Python log forwarding without the additional overhead of storing full files.
 
 .. warning::
-    Events may be filtered differently in this command than in normal operation. Normally events pass through two layers of filters as described in `getting started <docs/getting_started.rst>`_.
+    Events may be filtered differently in this command than in normal operation. Normally events pass through two layers of filters as described  :ref:`here <filters>`.
 
     First are the eventtracking AsyncRoutingBackend can have processor filters, which will be ignored when running this script (since these events have already passed through the eventtracking process).
 

@@ -1,8 +1,7 @@
 How To Test
 ###########
 
-This is a rough guide of how to go about testing backends in edx-platform. It assumes you have devstack already up and running. If not, see `devstack docs <https://github.com/openedx/devstack>`_.
-
+This is a rough guide of how to go about testing backends in edx-platform. 
 
 Add edx-event-routing-backends to requirements
 ----------------------------------------------
@@ -39,7 +38,7 @@ Set the Django setting ``CALIPER_EVENTS_ENABLED`` or ``XAPI_EVENTS_ENABLED`` to 
 Configure for testing
 ---------------------
 
-Follow instructions in `getting started <docs/getting_started.rst>`_ doc. There is a chance some of this has already been done. Most of the code changes should just be copy and paste, but here are some suggested changes for debugging. It'll be easier to understand following instructions if you read `getting_started <docs/gettingstarted.rst>`_ doc first.
+Follow instructions in :ref:`configuration <configuration>`. There is a chance some of this has already been done. Most of the code changes should just be copy and paste, but here are some suggested changes for debugging. It'll be easier to understand following instructions if you read `getting_started <docs/gettingstarted.rst>`_ doc first.
 
 Change router endpoint
 ~~~~~~~~~~~~~~~~~~~~~~
