@@ -5,6 +5,6 @@ Concepts
    :maxdepth: 1
 
    Event Mapping <event-mapping/index>
-   eventVersion
+   xapi_extensions
    internationalization
 

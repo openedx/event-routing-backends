@@ -4,6 +4,6 @@ Event Mapping
 .. toctree::
    :maxdepth: 1
 
-   Caliper_mapping
-   Supported_events
-   xAPI_mapping
+   caliper_mapping
+   supported_events
+   xapi_mapping

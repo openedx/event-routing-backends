@@ -54,5 +54,3 @@ Examples
     "match_params": {
              "enterprise_uuid": "org_XYZ",
              "name": ["edx.course.completed", "edx.course.enrollment.activated"]}
-
-.. _here: ../event-mapping/Supported_events.rst
