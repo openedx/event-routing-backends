@@ -1,7 +1,7 @@
 How To Test
 ###########
 
-This is a rough guide of how to go about testing backends in edx-platform. 
+This is a rough guide of how to go about testing backends in edx-platform.
 
 Add edx-event-routing-backends to requirements
 ----------------------------------------------
