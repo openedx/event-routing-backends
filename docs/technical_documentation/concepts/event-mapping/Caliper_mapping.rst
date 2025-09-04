@@ -1,3 +1,5 @@
+Caliper Mapping
+###############
 
 edx.course.enrollment.activated
 ===============================
@@ -52,7 +54,7 @@ type        CourseOffering
 name        <name of course-run>
 =========== ============================================
 
-problem_check event_source_server
+problem_check.event_source.server
 ====================================
 
 ================================ ====================================================================================================
@@ -82,7 +84,7 @@ score [ attempt ]                < data [ attempts ] >
 score [ extensions [ success ] ] TRUE if < data [success] >  == "correct" else FALSE
 ================================ ====================================================================================================
 
-problem_check event_source_browser
+problem_check.event_source.browser
 =====================================
 
 =============== ============================================

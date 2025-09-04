@@ -70,6 +70,8 @@ extensions = [
     'sphinx.ext.autosectionlabel'
 ]
 
+autosectionlabel_prefix_document = True
+
 # A list of warning types to suppress arbitrary warning messages.
 suppress_warnings = [
     'image.nonlocal_uri',
@@ -112,7 +114,7 @@ release = VERSION
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -314,6 +316,16 @@ html_css_files = [
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = f'{project}doc'
+
+# -- Read the Docs Specific Configuration
+# Define the canonical URL if you are using a custom domain on Read the Docs
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
+
+# Tell Jinja2 templates the build is running on Read the Docs
+if os.environ.get("READTHEDOCS", "") == "True":
+    if "html_context" not in globals():
+        html_context = {}
+    html_context["READTHEDOCS"] = True
 
 # -- Options for LaTeX output ---------------------------------------------
 

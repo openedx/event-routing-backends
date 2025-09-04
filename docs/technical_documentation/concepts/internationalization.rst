@@ -1,7 +1,6 @@
-.. _chapter-i18n:
-
 Internationalization
-====================
+####################
+
 All user-facing text content should be marked for translation. Even if this application is only run in English, our
 open source users may choose to use another language. Marking content for translation ensures our users have
 this choice.
@@ -11,7 +10,7 @@ Follow the `internationalization coding guidelines`_ in the Open edX Developer's
 .. _internationalization coding guidelines: https://docs.openedx.org/en/latest/developers/references/developer_guide/internationalization/i18n.html
 
 Updating Translations
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 This project uses `Transifex`_ to translate content. After new features are developed the translation source files
 should be pushed to Transifex. Our translation community will translate the content, after which we can retrieve the
 translations.
@@ -38,7 +37,7 @@ The `make` targets listed below can be used to push or pull translations.
       - Push source translation files to Transifex
 
 Fake Translations
-~~~~~~~~~~~~~~~~~
+-----------------
 As you develop features it may be helpful to know which strings have been marked for translation, and which are not.
 Use the `fake_translations` make target for this purpose. This target will extract all strings marked for translation,
 generate fake translations in the Esperanto (eo) language directory, and compile the translations.

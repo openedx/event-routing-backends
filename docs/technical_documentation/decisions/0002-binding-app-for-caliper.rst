@@ -1,5 +1,5 @@
-1. Binding app for Caliper
-==========================
+2. Binding app for Caliper
+##########################
 
 Status
 ------

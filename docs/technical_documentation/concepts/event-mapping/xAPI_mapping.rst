@@ -1,3 +1,5 @@
+xAPI Mapping
+############
 
 edx.course.enrollment.activated
 ===============================
@@ -81,7 +83,7 @@ definition [ type ]          http://adlnet.gov/expapi/activities/course
 definition [ name ][ en-US ] <name of course-run>
 ============================ ==========================================
 
-problem_check event_source_server
+problem_check.event_source.server
 =====================================
 
 ========================================================================== ======================================================================================================
@@ -137,7 +139,7 @@ symbolicresponse       fill-in
 truefalseresponse      true-false
 ====================== ===============
 
-problem_check event_source_browser
+problem_check.event_source.browser
 =====================================
 
 ============================================================= =================================================================================================================

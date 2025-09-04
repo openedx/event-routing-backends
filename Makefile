@@ -1,6 +1,14 @@
+
+# You can set these variables from the command line, and also
+# from the environment for the first two.
+SPHINXOPTS    ?= -W
+SPHINXBUILD   ?= sphinx-build
+SOURCEDIR     = docs
+BUILDDIR      = _build
+
 .PHONY: clean compile_translations coverage diff_cover docs dummy_translations \
         extract_translations fake_translations help pii_check pull_translations push_translations \
-        quality requirements selfcheck test test-all upgrade validate
+        quality requirements selfcheck test test-all upgrade validate check_docs serve_docs
 
 .DEFAULT_GOAL := help
 
@@ -101,3 +109,15 @@ dummy_translations: ## generate dummy translation (.po) files
 build_dummy_translations: extract_translations dummy_translations compile_translations ## generate and compile dummy translation files
 
 validate_translations: build_dummy_translations detect_changed_source_translations ## validate translations
+
+serve_docs:
+	sphinx-autobuild -W docs/ docs/_build/html/
+
+# Emulate the build step on RTD to flush out errors ahead pushing
+check_docs:
+	sphinx-build -T -E -W --keep-going docs/ docs/_build/html
+
+# Catch-all target: route all unknown targets to Sphinx using the new
+# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
+%: Makefile
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
