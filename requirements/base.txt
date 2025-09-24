@@ -10,11 +10,11 @@ aniso8601==10.0.1
     # via tincan
 apache-libcloud==3.8.0
     # via -r requirements/base.in
-asgiref==3.9.1
+asgiref==3.9.2
     # via django
 attrs==25.3.0
     # via openedx-events
-billiard==4.2.1
+billiard==4.2.2
     # via celery
 celery==5.5.3
     # via
@@ -28,7 +28,7 @@ cffi==2.0.0
     #   pynacl
 charset-normalizer==3.4.3
     # via requests
-click==8.2.1
+click==8.3.0
     # via
     #   celery
     #   click-didyoumean
@@ -131,7 +131,7 @@ packaging==25.0
     # via kombu
 prompt-toolkit==3.0.52
     # via click-repl
-psutil==7.0.0
+psutil==7.1.0
     # via edx-django-utils
 pycparser==2.23
     # via cffi
@@ -187,7 +187,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.2.13
+wcwidth==0.2.14
     # via prompt-toolkit
 
 # The following packages are considered to be unsafe in a requirements file:
