@@ -82,7 +82,7 @@ coverage[toml]==7.10.7
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.1
+cryptography==46.0.2
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -142,7 +142,7 @@ edx-ccx-keys==2.0.2
     #   openedx-events
 edx-celeryutils==1.4.0
     # via -r requirements/test.txt
-edx-django-utils==8.0.0
+edx-django-utils==8.0.1
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -201,7 +201,7 @@ kombu==5.5.4
     # via
     #   -r requirements/test.txt
     #   celery
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -292,7 +292,7 @@ pytz==2025.2
     #   -r requirements/test.txt
     #   event-tracking
     #   tincan
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   -r requirements/test.txt
     #   code-annotations
