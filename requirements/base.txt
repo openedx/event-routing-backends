@@ -44,7 +44,7 @@ click-repl==0.3.0
     # via celery
 code-annotations==2.3.0
     # via edx-toggles
-cryptography==46.0.1
+cryptography==46.0.2
     # via django-fernet-fields-v2
 django==4.2.24
     # via
@@ -88,7 +88,7 @@ edx-ccx-keys==2.0.2
     # via openedx-events
 edx-celeryutils==1.4.0
     # via -r requirements/base.in
-edx-django-utils==8.0.0
+edx-django-utils==8.0.1
     # via
     #   django-config-models
     #   edx-toggles
@@ -121,7 +121,7 @@ jsonfield==3.2.0
     #   edx-celeryutils
 kombu==5.5.4
     # via celery
-markupsafe==3.0.2
+markupsafe==3.0.3
     # via jinja2
 openedx-events==10.5.0
     # via event-tracking
@@ -152,7 +152,7 @@ pytz==2025.2
     #   -r requirements/base.in
     #   event-tracking
     #   tincan
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via code-annotations
 redis==6.4.0
     # via django-redis
