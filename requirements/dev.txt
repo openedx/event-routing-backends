@@ -14,7 +14,7 @@ aniso8601==10.0.1
     #   tincan
 apache-libcloud==3.8.0
     # via -r requirements/quality.txt
-asgiref==3.9.2
+asgiref==3.10.0
     # via
     #   -r requirements/quality.txt
     #   django
@@ -23,7 +23,7 @@ astroid==3.3.11
     #   -r requirements/quality.txt
     #   pylint
     #   pylint-celery
-attrs==25.3.0
+attrs==25.4.0
     # via
     #   -r requirements/quality.txt
     #   openedx-events
@@ -44,7 +44,7 @@ celery==5.5.3
     #   -r requirements/quality.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2025.8.3
+certifi==2025.10.5
     # via
     #   -r requirements/quality.txt
     #   requests
@@ -120,9 +120,9 @@ distlib==0.4.0
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==4.2.24
+django==4.2.25
     # via
-    #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
     #   django-config-models
     #   django-crum
@@ -198,7 +198,7 @@ event-tracking==3.3.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==37.8.0
+faker==37.11.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -223,7 +223,7 @@ iniconfig==2.1.0
     #   pytest
 isodate==0.7.2
     # via -r requirements/quality.txt
-isort==6.0.1
+isort==6.1.0
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -244,7 +244,7 @@ lxml[html-clean]==6.0.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
-lxml-html-clean==0.4.2
+lxml-html-clean==0.4.3
     # via lxml
 markupsafe==3.0.3
     # via
@@ -274,7 +274,7 @@ packaging==25.0
     #   tox
 path==16.16.0
     # via edx-i18n-tools
-pip-tools==7.5.0
+pip-tools==7.5.1
     # via -r requirements/pip-tools.txt
 platformdirs==4.4.0
     # via
@@ -314,7 +314,7 @@ pygments==2.19.2
     #   -r requirements/quality.txt
     #   diff-cover
     #   pytest
-pylint==3.3.8
+pylint==3.3.9
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -334,7 +334,7 @@ pylint-plugin-utils==0.9.0
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pymongo==4.15.1
+pymongo==4.15.3
     # via
     #   -r requirements/quality.txt
     #   edx-opaque-keys
@@ -418,7 +418,7 @@ tomlkit==0.13.3
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.30.2
+tox==4.30.3
     # via -r requirements/ci.txt
 typing-extensions==4.15.0
     # via

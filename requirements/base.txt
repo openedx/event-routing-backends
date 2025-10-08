@@ -10,9 +10,9 @@ aniso8601==10.0.1
     # via tincan
 apache-libcloud==3.8.0
     # via -r requirements/base.in
-asgiref==3.9.2
+asgiref==3.10.0
     # via django
-attrs==25.3.0
+attrs==25.4.0
     # via openedx-events
 billiard==4.2.2
     # via celery
@@ -20,7 +20,7 @@ celery==5.5.3
     # via
     #   edx-celeryutils
     #   event-tracking
-certifi==2025.8.3
+certifi==2025.10.5
     # via requests
 cffi==2.0.0
     # via
@@ -46,9 +46,9 @@ code-annotations==2.3.0
     # via edx-toggles
 cryptography==46.0.2
     # via django-fernet-fields-v2
-django==4.2.24
+django==4.2.25
     # via
-    #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
     #   django-config-models
     #   django-crum
@@ -135,7 +135,7 @@ psutil==7.1.0
     # via edx-django-utils
 pycparser==2.23
     # via cffi
-pymongo==4.15.1
+pymongo==4.15.3
     # via
     #   edx-opaque-keys
     #   event-tracking
