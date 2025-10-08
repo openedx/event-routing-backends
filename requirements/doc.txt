@@ -18,11 +18,11 @@ aniso8601==10.0.1
     #   tincan
 apache-libcloud==3.8.0
     # via -r requirements/test.txt
-asgiref==3.9.2
+asgiref==3.10.0
     # via
     #   -r requirements/test.txt
     #   django
-attrs==25.3.0
+attrs==25.4.0
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -45,7 +45,7 @@ celery==5.5.3
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2025.8.3
+certifi==2025.10.5
     # via
     #   -r requirements/test.txt
     #   requests
@@ -94,9 +94,9 @@ cryptography==46.0.2
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==4.2.24
+django==4.2.25
     # via
-    #   -c https:/raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
     #   django-config-models
     #   django-crum
@@ -176,7 +176,7 @@ event-tracking==3.3.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==37.8.0
+faker==37.11.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -241,7 +241,7 @@ more-itertools==10.8.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-nh3==0.3.0
+nh3==0.3.1
     # via readme-renderer
 openedx-events==10.5.0
     # via
@@ -287,7 +287,7 @@ pygments==2.19.2
     #   readme-renderer
     #   rich
     #   sphinx
-pymongo==4.15.1
+pymongo==4.15.3
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
