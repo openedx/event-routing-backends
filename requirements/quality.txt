@@ -44,7 +44,7 @@ cffi==2.0.0
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.3
+charset-normalizer==3.4.4
     # via
     #   -r requirements/test.txt
     #   requests
@@ -169,13 +169,13 @@ faker==37.11.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.12.0
+fastavro==1.12.1
     # via
     #   -r requirements/test.txt
     #   openedx-events
 fasteners==0.20
     # via -r requirements/test.txt
-idna==3.10
+idna==3.11
     # via
     #   -r requirements/test.txt
     #   requests
@@ -220,7 +220,7 @@ packaging==25.0
     #   -r requirements/test.txt
     #   kombu
     #   pytest
-platformdirs==4.4.0
+platformdirs==4.5.0
     # via pylint
 pluggy==1.6.0
     # via
