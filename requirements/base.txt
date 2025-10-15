@@ -26,7 +26,7 @@ cffi==2.0.0
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.3
+charset-normalizer==3.4.4
     # via requests
 click==8.3.0
     # via
@@ -105,11 +105,11 @@ edx-toggles==5.4.1
     #   event-tracking
 event-tracking==3.3.0
     # via -r requirements/base.in
-fastavro==1.12.0
+fastavro==1.12.1
     # via openedx-events
 fasteners==0.20
     # via -r requirements/base.in
-idna==3.10
+idna==3.11
     # via requests
 isodate==0.7.2
     # via -r requirements/base.in

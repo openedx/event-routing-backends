@@ -54,7 +54,7 @@ cffi==2.0.0
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.3
+charset-normalizer==3.4.4
     # via
     #   -r requirements/test.txt
     #   requests
@@ -180,7 +180,7 @@ faker==37.11.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
-fastavro==1.12.0
+fastavro==1.12.1
     # via
     #   -r requirements/test.txt
     #   openedx-events
@@ -188,7 +188,7 @@ fasteners==0.20
     # via -r requirements/test.txt
 id==1.5.0
     # via twine
-idna==3.10
+idna==3.11
     # via
     #   -r requirements/test.txt
     #   requests
@@ -344,7 +344,7 @@ restructuredtext-lint==1.4.0
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==14.1.0
+rich==14.2.0
     # via twine
 roman-numerals-py==3.1.0
     # via sphinx
