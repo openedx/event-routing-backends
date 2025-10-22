@@ -100,11 +100,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.10.7
+coverage[toml]==7.11.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==46.0.2
+cryptography==46.0.3
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -217,7 +217,7 @@ idna==3.11
     # via
     #   -r requirements/quality.txt
     #   requests
-iniconfig==2.1.0
+iniconfig==2.3.0
     # via
     #   -r requirements/quality.txt
     #   pytest
@@ -297,7 +297,7 @@ prompt-toolkit==3.0.52
     # via
     #   -r requirements/quality.txt
     #   click-repl
-psutil==7.1.0
+psutil==7.1.1
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils

@@ -70,9 +70,9 @@ code-annotations==2.3.0
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.10.7
+coverage[toml]==7.11.0
     # via pytest-cov
-cryptography==46.0.2
+cryptography==46.0.3
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -162,7 +162,7 @@ idna==3.11
     # via
     #   -r requirements/base.txt
     #   requests
-iniconfig==2.1.0
+iniconfig==2.3.0
     # via pytest
 isodate==0.7.2
     # via -r requirements/base.txt
@@ -203,7 +203,7 @@ prompt-toolkit==3.0.52
     # via
     #   -r requirements/base.txt
     #   click-repl
-psutil==7.1.0
+psutil==7.1.1
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
