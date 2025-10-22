@@ -44,7 +44,7 @@ click-repl==0.3.0
     # via celery
 code-annotations==2.3.0
     # via edx-toggles
-cryptography==46.0.2
+cryptography==46.0.3
     # via django-fernet-fields-v2
 django==4.2.25
     # via
@@ -131,7 +131,7 @@ packaging==25.0
     # via kombu
 prompt-toolkit==3.0.52
     # via click-repl
-psutil==7.1.0
+psutil==7.1.1
     # via edx-django-utils
 pycparser==2.23
     # via cffi
