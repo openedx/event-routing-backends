@@ -12,7 +12,7 @@ apache-libcloud==3.9.0
     # via -r requirements/base.in
 asgiref==3.11.1
     # via django
-attrs==25.4.0
+attrs==26.1.0
     # via openedx-events
 billiard==4.2.4
     # via celery
@@ -64,7 +64,7 @@ django==5.2.12
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.9.0
+django-config-models==3.0.0
     # via -r requirements/base.in
 django-crum==0.7.9
     # via
@@ -80,7 +80,7 @@ django-waffle==5.0.0
     # via
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.16.1
+djangorestframework==3.17.1
     # via django-config-models
 dnspython==2.8.0
     # via pymongo
@@ -103,7 +103,7 @@ edx-toggles==5.4.1
     # via
     #   -r requirements/base.in
     #   event-tracking
-event-tracking==3.3.0
+event-tracking==4.0.0
     # via -r requirements/base.in
 fastavro==1.12.1
     # via openedx-events
@@ -123,9 +123,9 @@ kombu==5.6.2
     # via celery
 markupsafe==3.0.3
     # via jinja2
-openedx-events==10.5.0
+openedx-events==11.0.0
     # via event-tracking
-openedx-filters==2.1.0
+openedx-filters==3.0.0
     # via -r requirements/base.in
 packaging==26.0
     # via kombu
@@ -154,7 +154,7 @@ pytz==2026.1.post1
     #   tincan
 pyyaml==6.0.3
     # via code-annotations
-redis==7.3.0
+redis==7.4.0
     # via django-redis
 requests==2.32.5
     # via

@@ -18,7 +18,7 @@ asgiref==3.11.1
     # via
     #   -r requirements/base.txt
     #   django
-attrs==25.4.0
+attrs==26.1.0
     # via
     #   -r requirements/base.txt
     #   openedx-events
@@ -95,7 +95,7 @@ ddt==1.7.2
     #   jsonfield
     #   openedx-events
     #   openedx-filters
-django-config-models==2.9.0
+django-config-models==3.0.0
     # via -r requirements/base.txt
 django-crum==0.7.9
     # via
@@ -115,7 +115,7 @@ django-waffle==5.0.0
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.16.1
+djangorestframework==3.17.1
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -146,11 +146,11 @@ edx-toggles==5.4.1
     # via
     #   -r requirements/base.txt
     #   event-tracking
-event-tracking==3.3.0
+event-tracking==4.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.11.0
+faker==40.11.1
     # via factory-boy
 fastavro==1.12.1
     # via
@@ -184,11 +184,11 @@ markupsafe==3.0.3
     #   jinja2
 mock==5.2.0
     # via -r requirements/test.in
-openedx-events==10.5.0
+openedx-events==11.0.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==2.1.0
+openedx-filters==3.0.0
     # via -r requirements/base.txt
 packaging==26.0
     # via
@@ -226,7 +226,7 @@ pytest==9.0.2
     # via
     #   pytest-cov
     #   pytest-django
-pytest-cov==7.0.0
+pytest-cov==7.1.0
     # via -r requirements/test.in
 pytest-django==4.12.0
     # via -r requirements/test.in
@@ -247,7 +247,7 @@ pyyaml==6.0.3
     # via
     #   -r requirements/base.txt
     #   code-annotations
-redis==7.3.0
+redis==7.4.0
     # via
     #   -r requirements/base.txt
     #   django-redis
