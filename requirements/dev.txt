@@ -31,7 +31,7 @@ billiard==4.2.4
     # via
     #   -r requirements/quality.txt
     #   celery
-build==1.4.1
+build==1.4.2
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -39,7 +39,7 @@ cachetools==7.0.5
     # via
     #   -r requirements/ci.txt
     #   tox
-celery==5.6.2
+celery==5.6.3
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -53,7 +53,7 @@ cffi==2.0.0
     #   -r requirements/quality.txt
     #   cryptography
     #   pynacl
-chardet==7.3.0
+chardet==7.4.0.post2
     # via diff-cover
 charset-normalizer==3.4.6
     # via
@@ -101,7 +101,7 @@ coverage[toml]==7.13.5
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==46.0.5
+cryptography==46.0.6
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -195,7 +195,7 @@ event-tracking==4.0.0
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==40.11.1
+faker==40.12.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -254,7 +254,7 @@ mccabe==0.7.0
     #   pylint
 mock==5.2.0
     # via -r requirements/quality.txt
-openedx-events==11.0.0
+openedx-events==11.1.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
@@ -309,7 +309,7 @@ pycparser==3.0
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
-pygments==2.19.2
+pygments==2.20.0
     # via
     #   -r requirements/quality.txt
     #   diff-cover
@@ -365,9 +365,10 @@ python-dateutil==2.9.0.post0
     # via
     #   -r requirements/quality.txt
     #   celery
-python-discovery==1.2.0
+python-discovery==1.2.1
     # via
     #   -r requirements/ci.txt
+    #   tox
     #   virtualenv
 python-slugify==8.0.4
     # via
@@ -387,7 +388,7 @@ redis==7.4.0
     # via
     #   -r requirements/quality.txt
     #   django-redis
-requests==2.32.5
+requests==2.33.1
     # via
     #   -r requirements/quality.txt
     #   apache-libcloud
@@ -426,7 +427,7 @@ tomlkit==0.14.0
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.50.3
+tox==4.52.0
     # via -r requirements/ci.txt
 typing-extensions==4.15.0
     # via

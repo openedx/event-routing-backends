@@ -26,7 +26,7 @@ billiard==4.2.4
     # via
     #   -r requirements/base.txt
     #   celery
-celery==5.6.2
+celery==5.6.3
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -72,7 +72,7 @@ code-annotations==3.0.0
     #   edx-toggles
 coverage[toml]==7.13.5
     # via pytest-cov
-cryptography==46.0.5
+cryptography==46.0.6
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -150,7 +150,7 @@ event-tracking==4.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.11.1
+faker==40.12.0
     # via factory-boy
 fastavro==1.12.1
     # via
@@ -184,7 +184,7 @@ markupsafe==3.0.3
     #   jinja2
 mock==5.2.0
     # via -r requirements/test.in
-openedx-events==11.0.0
+openedx-events==11.1.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -211,7 +211,7 @@ pycparser==3.0
     # via
     #   -r requirements/base.txt
     #   cffi
-pygments==2.19.2
+pygments==2.20.0
     # via pytest
 pymongo==4.16.0
     # via
@@ -251,7 +251,7 @@ redis==7.4.0
     # via
     #   -r requirements/base.txt
     #   django-redis
-requests==2.32.5
+requests==2.33.1
     # via
     #   -r requirements/base.txt
     #   apache-libcloud
