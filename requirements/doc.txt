@@ -36,9 +36,9 @@ billiard==4.2.4
     # via
     #   -r requirements/test.txt
     #   celery
-build==1.4.1
+build==1.4.2
     # via -r requirements/doc.in
-celery==5.6.2
+celery==5.6.3
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
@@ -85,7 +85,7 @@ coverage[toml]==7.13.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.5
+cryptography==46.0.6
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -174,7 +174,7 @@ event-tracking==4.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.11.1
+faker==40.12.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -237,9 +237,9 @@ more-itertools==10.8.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-nh3==0.3.3
+nh3==0.3.4
     # via readme-renderer
-openedx-events==11.0.0
+openedx-events==11.1.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -272,7 +272,7 @@ pycparser==3.0
     #   cffi
 pydata-sphinx-theme==0.16.1
     # via sphinx-book-theme
-pygments==2.19.2
+pygments==2.20.0
     # via
     #   -r requirements/test.txt
     #   accessible-pygments
@@ -325,7 +325,7 @@ redis==7.4.0
     # via
     #   -r requirements/test.txt
     #   django-redis
-requests==2.32.5
+requests==2.33.1
     # via
     #   -r requirements/test.txt
     #   apache-libcloud
