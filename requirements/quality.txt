@@ -44,11 +44,11 @@ cffi==2.0.0
     #   -r requirements/test.txt
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.6
+charset-normalizer==3.4.7
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.3.1
+click==8.3.2
     # via
     #   -r requirements/test.txt
     #   celery
@@ -82,7 +82,7 @@ coverage[toml]==7.13.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==46.0.6
+cryptography==46.0.7
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -90,7 +90,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.4.1
     # via pylint
-django==5.2.12
+django==5.2.13
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -140,7 +140,7 @@ edx-ccx-keys==2.0.2
     # via
     #   -r requirements/test.txt
     #   openedx-events
-edx-celeryutils==1.4.0
+edx-celeryutils==2.0.0
     # via -r requirements/test.txt
 edx-django-utils==8.0.1
     # via
@@ -151,13 +151,13 @@ edx-django-utils==8.0.1
     #   openedx-events
 edx-lint==6.0.0
     # via -r requirements/quality.in
-edx-opaque-keys[django]==3.1.0
+edx-opaque-keys[django]==4.0.0
     # via
     #   -r requirements/test.txt
     #   edx-ccx-keys
     #   openedx-events
     #   openedx-filters
-edx-toggles==5.4.1
+edx-toggles==6.0.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
@@ -165,7 +165,7 @@ event-tracking==4.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.12.0
+faker==40.13.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -213,7 +213,7 @@ openedx-events==11.1.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==3.0.0
+openedx-filters==3.1.0
     # via -r requirements/test.txt
 packaging==26.0
     # via
@@ -271,7 +271,7 @@ pynacl==1.6.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==9.0.2
+pytest==9.0.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -336,7 +336,7 @@ typing-extensions==4.15.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
-tzdata==2025.3
+tzdata==2026.1
     # via
     #   -r requirements/test.txt
     #   kombu

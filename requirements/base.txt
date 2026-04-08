@@ -26,9 +26,9 @@ cffi==2.0.0
     # via
     #   cryptography
     #   pynacl
-charset-normalizer==3.4.6
+charset-normalizer==3.4.7
     # via requests
-click==8.3.1
+click==8.3.2
     # via
     #   celery
     #   click-didyoumean
@@ -44,9 +44,9 @@ click-repl==0.3.0
     # via celery
 code-annotations==3.0.0
     # via edx-toggles
-cryptography==46.0.6
+cryptography==46.0.7
     # via django-fernet-fields-v2
-django==5.2.12
+django==5.2.13
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -86,7 +86,7 @@ dnspython==2.8.0
     # via pymongo
 edx-ccx-keys==2.0.2
     # via openedx-events
-edx-celeryutils==1.4.0
+edx-celeryutils==2.0.0
     # via -r requirements/base.in
 edx-django-utils==8.0.1
     # via
@@ -94,12 +94,12 @@ edx-django-utils==8.0.1
     #   edx-toggles
     #   event-tracking
     #   openedx-events
-edx-opaque-keys[django]==3.1.0
+edx-opaque-keys[django]==4.0.0
     # via
     #   edx-ccx-keys
     #   openedx-events
     #   openedx-filters
-edx-toggles==5.4.1
+edx-toggles==6.0.0
     # via
     #   -r requirements/base.in
     #   event-tracking
@@ -125,7 +125,7 @@ markupsafe==3.0.3
     # via jinja2
 openedx-events==11.1.0
     # via event-tracking
-openedx-filters==3.0.0
+openedx-filters==3.1.0
     # via -r requirements/base.in
 packaging==26.0
     # via kombu
@@ -178,7 +178,7 @@ tincan==1.0.0
     # via -r requirements/base.in
 typing-extensions==4.15.0
     # via edx-opaque-keys
-tzdata==2025.3
+tzdata==2026.1
     # via kombu
 tzlocal==5.3.1
     # via celery
