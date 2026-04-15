@@ -31,7 +31,7 @@ billiard==4.2.4
     # via
     #   -r requirements/quality.txt
     #   celery
-build==1.4.2
+build==1.4.3
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -53,7 +53,7 @@ cffi==2.0.0
     #   -r requirements/quality.txt
     #   cryptography
     #   pynacl
-chardet==7.4.1
+chardet==7.4.3
     # via diff-cover
 charset-normalizer==3.4.7
     # via
@@ -205,7 +205,7 @@ fastavro==1.12.1
     #   openedx-events
 fasteners==0.20
     # via -r requirements/quality.txt
-filelock==3.25.2
+filelock==3.28.0
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -238,7 +238,7 @@ kombu==5.6.2
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml[html-clean]==6.0.2
+lxml[html-clean]==6.0.4
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -254,13 +254,13 @@ mccabe==0.7.0
     #   pylint
 mock==5.2.0
     # via -r requirements/quality.txt
-openedx-events==11.1.0
+openedx-events==11.1.1
     # via
     #   -r requirements/quality.txt
     #   event-tracking
 openedx-filters==3.1.0
     # via -r requirements/quality.txt
-packaging==26.0
+packaging==26.1
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -275,7 +275,7 @@ path==16.16.0
     # via edx-i18n-tools
 pip-tools==7.5.3
     # via -r requirements/pip-tools.txt
-platformdirs==4.9.4
+platformdirs==4.9.6
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -427,7 +427,7 @@ tomlkit==0.14.0
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.52.0
+tox==4.53.0
     # via -r requirements/ci.txt
 typing-extensions==4.15.0
     # via
@@ -451,7 +451,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==21.2.0
+virtualenv==21.2.4
     # via
     #   -r requirements/ci.txt
     #   tox
