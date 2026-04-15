@@ -36,7 +36,7 @@ billiard==4.2.4
     # via
     #   -r requirements/test.txt
     #   celery
-build==1.4.2
+build==1.4.3
     # via -r requirements/doc.in
 celery==5.6.3
     # via
@@ -233,19 +233,19 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.2.0
     # via -r requirements/test.txt
-more-itertools==11.0.1
+more-itertools==11.0.2
     # via
     #   jaraco-classes
     #   jaraco-functools
 nh3==0.3.4
     # via readme-renderer
-openedx-events==11.1.0
+openedx-events==11.1.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
 openedx-filters==3.1.0
     # via -r requirements/test.txt
-packaging==26.0
+packaging==26.1
     # via
     #   -r requirements/test.txt
     #   build
@@ -338,7 +338,7 @@ restructuredtext-lint==2.0.2
     # via doc8
 rfc3986==2.0.0
     # via twine
-rich==14.3.3
+rich==15.0.0
     # via twine
 roman-numerals==4.1.0
     # via sphinx

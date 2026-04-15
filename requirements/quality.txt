@@ -209,19 +209,19 @@ mccabe==0.7.0
     # via pylint
 mock==5.2.0
     # via -r requirements/test.txt
-openedx-events==11.1.0
+openedx-events==11.1.1
     # via
     #   -r requirements/test.txt
     #   event-tracking
 openedx-filters==3.1.0
     # via -r requirements/test.txt
-packaging==26.0
+packaging==26.1
     # via
     #   -r requirements/test.txt
     #   kombu
     #   pytest
     #   wheel
-platformdirs==4.9.4
+platformdirs==4.9.6
     # via pylint
 pluggy==1.6.0
     # via
