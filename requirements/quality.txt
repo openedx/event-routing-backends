@@ -12,7 +12,7 @@ aniso8601==10.0.1
     # via
     #   -r requirements/test.txt
     #   tincan
-apache-libcloud==3.9.0
+apache-libcloud==3.9.1
     # via -r requirements/test.txt
 asgiref==3.11.1
     # via
@@ -165,7 +165,7 @@ event-tracking==4.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.13.0
+faker==40.15.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -175,7 +175,7 @@ fastavro==1.12.1
     #   openedx-events
 fasteners==0.20
     # via -r requirements/test.txt
-idna==3.11
+idna==3.12
     # via
     #   -r requirements/test.txt
     #   requests
@@ -262,7 +262,7 @@ pylint-plugin-utils==0.9.0
     # via
     #   pylint-celery
     #   pylint-django
-pymongo==4.16.0
+pymongo==4.17.0
     # via
     #   -r requirements/test.txt
     #   edx-opaque-keys
