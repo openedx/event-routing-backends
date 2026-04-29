@@ -31,7 +31,7 @@ celery==5.6.3
     #   -r requirements/base.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2026.2.25
+certifi==2026.4.22
     # via
     #   -r requirements/base.txt
     #   requests
@@ -44,7 +44,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.3.2
+click==8.3.3
     # via
     #   -r requirements/base.txt
     #   celery
@@ -72,7 +72,7 @@ code-annotations==3.0.0
     #   edx-toggles
 coverage[toml]==7.13.5
     # via pytest-cov
-cryptography==46.0.7
+cryptography==47.0.0
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -152,13 +152,13 @@ factory-boy==3.3.3
     # via -r requirements/test.in
 faker==40.15.0
     # via factory-boy
-fastavro==1.12.1
+fastavro==1.12.2
     # via
     #   -r requirements/base.txt
     #   openedx-events
 fasteners==0.20
     # via -r requirements/base.txt
-idna==3.12
+idna==3.13
     # via
     #   -r requirements/base.txt
     #   requests
@@ -184,13 +184,13 @@ markupsafe==3.0.3
     #   jinja2
 mock==5.2.0
     # via -r requirements/test.in
-openedx-events==11.1.1
+openedx-events==11.2.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
 openedx-filters==3.1.0
     # via -r requirements/base.txt
-packaging==26.1
+packaging==26.2
     # via
     #   -r requirements/base.txt
     #   kombu
@@ -281,7 +281,7 @@ typing-extensions==4.15.0
     # via
     #   -r requirements/base.txt
     #   edx-opaque-keys
-tzdata==2026.1
+tzdata==2026.2
     # via
     #   -r requirements/base.txt
     #   kombu
