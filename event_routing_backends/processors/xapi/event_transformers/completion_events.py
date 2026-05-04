@@ -1,5 +1,5 @@
 """
-Transformers for forum related events.
+Transformers for completion related events.
 """
 from tincan import Activity, ActivityDefinition, Extensions, LanguageMap, Result, Verb
 
