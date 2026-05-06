@@ -72,7 +72,7 @@ code-annotations==3.0.0
     #   edx-toggles
 coverage[toml]==7.13.5
     # via pytest-cov
-cryptography==47.0.0
+cryptography==48.0.0
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -188,7 +188,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==3.1.0
+openedx-filters==3.3.0
     # via -r requirements/base.txt
 packaging==26.2
     # via
@@ -238,7 +238,7 @@ python-slugify==8.0.4
     # via
     #   -r requirements/base.txt
     #   code-annotations
-pytz==2026.1.post1
+pytz==2026.2
     # via
     #   -r requirements/base.txt
     #   event-tracking
@@ -299,7 +299,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.6.0
+wcwidth==0.7.0
     # via
     #   -r requirements/base.txt
     #   prompt-toolkit
