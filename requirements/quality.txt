@@ -78,7 +78,7 @@ code-annotations==3.0.0
     #   -r requirements/test.txt
     #   edx-lint
     #   edx-toggles
-coverage[toml]==7.13.5
+coverage[toml]==7.14.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -175,7 +175,7 @@ fastavro==1.12.2
     #   openedx-events
 fasteners==0.20
     # via -r requirements/test.txt
-idna==3.13
+idna==3.15
     # via
     #   -r requirements/test.txt
     #   requests
@@ -213,7 +213,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==3.3.0
+openedx-filters==3.4.0
     # via -r requirements/test.txt
 packaging==26.2
     # via
@@ -301,7 +301,7 @@ redis==7.4.0
     # via
     #   -r requirements/test.txt
     #   django-redis
-requests==2.33.1
+requests==2.34.0
     # via
     #   -r requirements/test.txt
     #   apache-libcloud
@@ -330,7 +330,7 @@ text-unidecode==1.3
     #   python-slugify
 tincan==1.0.0
     # via -r requirements/test.txt
-tomlkit==0.14.0
+tomlkit==0.15.0
     # via
     #   edx-lint
     #   pylint
@@ -346,7 +346,7 @@ tzlocal==5.3.1
     # via
     #   -r requirements/test.txt
     #   celery
-urllib3==2.6.3
+urllib3==2.7.0
     # via
     #   -r requirements/test.txt
     #   requests
