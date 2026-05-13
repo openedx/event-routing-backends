@@ -109,7 +109,7 @@ fastavro==1.12.2
     # via openedx-events
 fasteners==0.20
     # via -r requirements/base.in
-idna==3.13
+idna==3.15
     # via requests
 isodate==0.7.2
     # via -r requirements/base.in
@@ -125,7 +125,7 @@ markupsafe==3.0.3
     # via jinja2
 openedx-events==11.2.0
     # via event-tracking
-openedx-filters==3.3.0
+openedx-filters==3.4.0
     # via -r requirements/base.in
 packaging==26.2
     # via kombu
@@ -156,7 +156,7 @@ pyyaml==6.0.3
     # via code-annotations
 redis==7.4.0
     # via django-redis
-requests==2.33.1
+requests==2.34.0
     # via
     #   -r requirements/base.in
     #   apache-libcloud
@@ -182,7 +182,7 @@ tzdata==2026.2
     # via kombu
 tzlocal==5.3.1
     # via celery
-urllib3==2.6.3
+urllib3==2.7.0
     # via requests
 vine==5.1.0
     # via
