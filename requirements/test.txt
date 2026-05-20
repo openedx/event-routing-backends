@@ -44,7 +44,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/base.txt
     #   requests
-click==8.3.3
+click==8.4.0
     # via
     #   -r requirements/base.txt
     #   celery
@@ -150,7 +150,7 @@ event-tracking==4.0.0
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.15.0
+faker==40.18.0
     # via factory-boy
 fastavro==1.12.2
     # via
@@ -251,7 +251,7 @@ redis==7.4.0
     # via
     #   -r requirements/base.txt
     #   django-redis
-requests==2.34.0
+requests==2.34.2
     # via
     #   -r requirements/base.txt
     #   apache-libcloud
@@ -265,7 +265,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==5.7.0
+stevedore==5.8.0
     # via
     #   -r requirements/base.txt
     #   code-annotations
