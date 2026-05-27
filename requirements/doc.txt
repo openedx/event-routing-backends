@@ -43,7 +43,7 @@ celery==5.6.3
     #   -r requirements/test.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2026.4.22
+certifi==2026.5.20
     # via
     #   -r requirements/test.txt
     #   requests
@@ -56,7 +56,7 @@ charset-normalizer==3.4.7
     # via
     #   -r requirements/test.txt
     #   requests
-click==8.3.3
+click==8.4.1
     # via
     #   -r requirements/test.txt
     #   celery
@@ -81,7 +81,7 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.14.0
+coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -174,7 +174,7 @@ event-tracking==4.0.0
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.15.0
+faker==40.19.1
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -186,7 +186,7 @@ fasteners==0.20
     # via -r requirements/test.txt
 id==1.6.1
     # via twine
-idna==3.15
+idna==3.16
     # via
     #   -r requirements/test.txt
     #   requests
@@ -202,7 +202,7 @@ jaraco-classes==3.4.0
     # via keyring
 jaraco-context==6.1.2
     # via keyring
-jaraco-functools==4.4.0
+jaraco-functools==4.5.0
     # via keyring
 jeepney==0.9.0
     # via
@@ -233,7 +233,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.2.0
     # via -r requirements/test.txt
-more-itertools==11.0.2
+more-itertools==11.1.0
     # via
     #   jaraco-classes
     #   jaraco-functools
@@ -325,7 +325,7 @@ redis==7.4.0
     # via
     #   -r requirements/test.txt
     #   django-redis
-requests==2.34.0
+requests==2.34.2
     # via
     #   -r requirements/test.txt
     #   apache-libcloud
@@ -350,9 +350,9 @@ six==1.17.0
     #   edx-ccx-keys
     #   event-tracking
     #   python-dateutil
-snowballstemmer==3.0.1
+snowballstemmer==3.1.0
     # via sphinx
-soupsieve==2.8.3
+soupsieve==2.8.4
     # via beautifulsoup4
 sphinx==9.1.0
     # via
@@ -377,7 +377,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.7.0
+stevedore==5.8.0
     # via
     #   -r requirements/test.txt
     #   code-annotations

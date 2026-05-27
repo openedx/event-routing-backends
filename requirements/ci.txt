@@ -4,7 +4,7 @@
 #
 #    make upgrade
 #
-cachetools==7.1.1
+cachetools==7.1.4
     # via tox
 colorama==0.4.6
     # via tox
@@ -36,5 +36,5 @@ tomli-w==1.2.0
     # via tox
 tox==4.54.0
     # via -r requirements/ci.in
-virtualenv==21.3.2
+virtualenv==21.3.3
     # via tox
