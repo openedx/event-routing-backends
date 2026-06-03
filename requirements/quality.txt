@@ -161,11 +161,11 @@ edx-toggles==6.0.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-event-tracking==4.0.0
+event-tracking==4.0.2
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.19.1
+faker==40.21.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -175,7 +175,7 @@ fastavro==1.12.2
     #   openedx-events
 fasteners==0.20
     # via -r requirements/test.txt
-idna==3.16
+idna==3.18
     # via
     #   -r requirements/test.txt
     #   requests
@@ -213,7 +213,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==3.4.0
+openedx-filters==3.4.1
     # via -r requirements/test.txt
 packaging==26.2
     # via
@@ -221,7 +221,7 @@ packaging==26.2
     #   kombu
     #   pytest
     #   wheel
-platformdirs==4.9.6
+platformdirs==4.10.0
     # via pylint
 pluggy==1.6.0
     # via
@@ -312,7 +312,7 @@ six==1.17.0
     #   edx-lint
     #   event-tracking
     #   python-dateutil
-snowballstemmer==3.1.0
+snowballstemmer==3.1.1
     # via pydocstyle
 sqlparse==0.5.5
     # via
@@ -337,6 +337,7 @@ tomlkit==0.15.0
 typing-extensions==4.15.0
     # via
     #   -r requirements/test.txt
+    #   django-redis
     #   edx-opaque-keys
 tzdata==2026.2
     # via

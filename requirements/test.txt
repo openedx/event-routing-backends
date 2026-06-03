@@ -146,11 +146,11 @@ edx-toggles==6.0.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-event-tracking==4.0.0
+event-tracking==4.0.2
     # via -r requirements/base.txt
 factory-boy==3.3.3
     # via -r requirements/test.in
-faker==40.19.1
+faker==40.21.0
     # via factory-boy
 fastavro==1.12.2
     # via
@@ -158,7 +158,7 @@ fastavro==1.12.2
     #   openedx-events
 fasteners==0.20
     # via -r requirements/base.txt
-idna==3.16
+idna==3.18
     # via
     #   -r requirements/base.txt
     #   requests
@@ -188,7 +188,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==3.4.0
+openedx-filters==3.4.1
     # via -r requirements/base.txt
 packaging==26.2
     # via
@@ -280,6 +280,7 @@ tincan==1.0.0
 typing-extensions==4.15.0
     # via
     #   -r requirements/base.txt
+    #   django-redis
     #   edx-opaque-keys
 tzdata==2026.2
     # via

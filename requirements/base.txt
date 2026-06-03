@@ -103,13 +103,13 @@ edx-toggles==6.0.0
     # via
     #   -r requirements/base.in
     #   event-tracking
-event-tracking==4.0.0
+event-tracking==4.0.2
     # via -r requirements/base.in
 fastavro==1.12.2
     # via openedx-events
 fasteners==0.20
     # via -r requirements/base.in
-idna==3.16
+idna==3.18
     # via requests
 isodate==0.7.2
     # via -r requirements/base.in
@@ -125,7 +125,7 @@ markupsafe==3.0.3
     # via jinja2
 openedx-events==11.2.0
     # via event-tracking
-openedx-filters==3.4.0
+openedx-filters==3.4.1
     # via -r requirements/base.in
 packaging==26.2
     # via kombu
@@ -177,7 +177,9 @@ text-unidecode==1.3
 tincan==1.0.0
     # via -r requirements/base.in
 typing-extensions==4.15.0
-    # via edx-opaque-keys
+    # via
+    #   django-redis
+    #   edx-opaque-keys
 tzdata==2026.2
     # via kombu
 tzlocal==5.3.1
