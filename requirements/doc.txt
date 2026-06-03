@@ -123,7 +123,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-redis==7.0.0
+django-redis==6.0.0
     # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
@@ -321,7 +321,7 @@ pyyaml==6.0.3
     #   code-annotations
 readme-renderer==44.0
     # via twine
-redis==8.0.0
+redis==7.4.0
     # via
     #   -r requirements/test.txt
     #   django-redis
