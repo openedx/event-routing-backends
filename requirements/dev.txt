@@ -149,7 +149,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-redis==7.0.0
+django-redis==6.0.0
     # via -r requirements/quality.txt
 django-waffle==5.0.0
     # via
@@ -384,7 +384,7 @@ pyyaml==6.0.3
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==8.0.0
+redis==7.4.0
     # via
     #   -r requirements/quality.txt
     #   django-redis
