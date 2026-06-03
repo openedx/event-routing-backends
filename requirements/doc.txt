@@ -123,7 +123,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
@@ -170,11 +170,11 @@ edx-toggles==6.0.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-event-tracking==4.0.0
+event-tracking==4.0.2
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.19.1
+faker==40.21.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -186,7 +186,7 @@ fasteners==0.20
     # via -r requirements/test.txt
 id==1.6.1
     # via twine
-idna==3.16
+idna==3.18
     # via
     #   -r requirements/test.txt
     #   requests
@@ -243,7 +243,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==3.4.0
+openedx-filters==3.4.1
     # via -r requirements/test.txt
 packaging==26.2
     # via
@@ -321,7 +321,7 @@ pyyaml==6.0.3
     #   code-annotations
 readme-renderer==44.0
     # via twine
-redis==7.4.0
+redis==8.0.0
     # via
     #   -r requirements/test.txt
     #   django-redis
@@ -350,7 +350,7 @@ six==1.17.0
     #   edx-ccx-keys
     #   event-tracking
     #   python-dateutil
-snowballstemmer==3.1.0
+snowballstemmer==3.1.1
     # via sphinx
 soupsieve==2.8.4
     # via beautifulsoup4
@@ -396,6 +396,7 @@ typing-extensions==4.15.0
     # via
     #   -r requirements/test.txt
     #   beautifulsoup4
+    #   django-redis
     #   edx-opaque-keys
     #   pydata-sphinx-theme
 tzdata==2026.2
