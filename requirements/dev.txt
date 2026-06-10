@@ -101,7 +101,7 @@ coverage[toml]==7.14.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==48.0.0
+cryptography==48.0.1
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -113,11 +113,11 @@ dill==0.4.1
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.4.1
+distlib==0.4.2
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==5.2.14
+django==5.2.15
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -149,7 +149,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/quality.txt
 django-waffle==5.0.0
     # via
@@ -195,7 +195,7 @@ event-tracking==4.0.2
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==40.21.0
+faker==40.22.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -205,7 +205,7 @@ fastavro==1.12.2
     #   openedx-events
 fasteners==0.20
     # via -r requirements/quality.txt
-filelock==3.29.0
+filelock==3.29.1
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -384,7 +384,7 @@ pyyaml==6.0.3
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==7.4.0
+redis==8.0.0
     # via
     #   -r requirements/quality.txt
     #   django-redis
@@ -428,7 +428,7 @@ tomlkit==0.15.0
     #   -r requirements/quality.txt
     #   edx-lint
     #   pylint
-tox==4.55.0
+tox==4.55.1
     # via -r requirements/ci.txt
 typing-extensions==4.15.0
     # via
@@ -457,7 +457,7 @@ virtualenv==21.4.2
     # via
     #   -r requirements/ci.txt
     #   tox
-wcwidth==0.7.0
+wcwidth==0.8.1
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
