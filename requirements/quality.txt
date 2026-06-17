@@ -82,7 +82,7 @@ coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==48.0.0
+cryptography==49.0.0
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
@@ -90,7 +90,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.4.1
     # via pylint
-django==5.2.14
+django==5.2.15
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -121,7 +121,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
@@ -165,7 +165,7 @@ event-tracking==4.0.2
     # via -r requirements/test.txt
 factory-boy==3.3.3
     # via -r requirements/test.txt
-faker==40.21.0
+faker==40.23.0
     # via
     #   -r requirements/test.txt
     #   factory-boy
@@ -213,7 +213,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==3.4.1
+openedx-filters==3.5.0
     # via -r requirements/test.txt
 packaging==26.2
     # via
@@ -248,7 +248,7 @@ pygments==2.20.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pylint==4.0.5
+pylint==4.0.6
     # via
     #   edx-lint
     #   pylint-celery
@@ -271,7 +271,7 @@ pynacl==1.6.2
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-pytest==9.0.3
+pytest==9.1.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -297,7 +297,7 @@ pyyaml==6.0.3
     # via
     #   -r requirements/test.txt
     #   code-annotations
-redis==7.4.0
+redis==8.0.0
     # via
     #   -r requirements/test.txt
     #   django-redis
@@ -343,7 +343,7 @@ tzdata==2026.2
     # via
     #   -r requirements/test.txt
     #   kombu
-tzlocal==5.3.1
+tzlocal==5.4.3
     # via
     #   -r requirements/test.txt
     #   celery
@@ -357,7 +357,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.7.0
+wcwidth==0.8.1
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
