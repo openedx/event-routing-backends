@@ -14,7 +14,7 @@ aniso8601==10.0.1
     #   tincan
 apache-libcloud==3.9.1
     # via -r requirements/quality.txt
-asgiref==3.11.1
+asgiref==3.12.1
     # via
     #   -r requirements/quality.txt
     #   django
@@ -31,7 +31,7 @@ billiard==4.2.4
     # via
     #   -r requirements/quality.txt
     #   celery
-build==1.5.0
+build==1.5.1
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -44,22 +44,22 @@ celery==5.6.3
     #   -r requirements/quality.txt
     #   edx-celeryutils
     #   event-tracking
-certifi==2026.5.20
+certifi==2026.6.17
     # via
     #   -r requirements/quality.txt
     #   requests
-cffi==2.0.0
+cffi==2.1.0
     # via
     #   -r requirements/quality.txt
     #   cryptography
     #   pynacl
 chardet==7.4.3
     # via diff-cover
-charset-normalizer==3.4.7
+charset-normalizer==3.4.9
     # via
     #   -r requirements/quality.txt
     #   requests
-click==8.4.1
+click==8.4.2
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt
@@ -97,11 +97,11 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.14.1
+coverage[toml]==7.15.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==48.0.0
+cryptography==49.0.0
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
@@ -113,11 +113,11 @@ dill==0.4.1
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.4.1
+distlib==0.4.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==5.2.14
+django==5.2.16
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -149,7 +149,7 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/quality.txt
 django-waffle==5.0.0
     # via
@@ -195,7 +195,7 @@ event-tracking==4.0.2
     # via -r requirements/quality.txt
 factory-boy==3.3.3
     # via -r requirements/quality.txt
-faker==40.21.0
+faker==40.31.0
     # via
     #   -r requirements/quality.txt
     #   factory-boy
@@ -205,7 +205,7 @@ fastavro==1.12.2
     #   openedx-events
 fasteners==0.20
     # via -r requirements/quality.txt
-filelock==3.29.0
+filelock==3.29.7
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -258,7 +258,7 @@ openedx-events==11.2.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-openedx-filters==3.4.1
+openedx-filters==3.8.0
     # via -r requirements/quality.txt
 packaging==26.2
     # via
@@ -314,7 +314,7 @@ pygments==2.20.0
     #   -r requirements/quality.txt
     #   diff-cover
     #   pytest
-pylint==4.0.5
+pylint==4.0.6
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -325,7 +325,7 @@ pylint-celery==0.3
     # via
     #   -r requirements/quality.txt
     #   edx-lint
-pylint-django==2.7.0
+pylint-django==2.8.0
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -352,7 +352,7 @@ pyproject-hooks==1.2.0
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==9.0.3
+pytest==9.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -365,7 +365,7 @@ python-dateutil==2.9.0.post0
     # via
     #   -r requirements/quality.txt
     #   celery
-python-discovery==1.4.0
+python-discovery==1.4.4
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -384,7 +384,7 @@ pyyaml==6.0.3
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==7.4.0
+redis==8.0.1
     # via
     #   -r requirements/quality.txt
     #   django-redis
@@ -407,7 +407,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==5.8.0
+stevedore==5.9.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -428,18 +428,18 @@ tomlkit==0.15.0
     #   -r requirements/quality.txt
     #   edx-lint
     #   pylint
-tox==4.55.0
+tox==4.56.4
     # via -r requirements/ci.txt
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   -r requirements/quality.txt
     #   django-redis
     #   edx-opaque-keys
-tzdata==2026.2
+tzdata==2026.3
     # via
     #   -r requirements/quality.txt
     #   kombu
-tzlocal==5.3.1
+tzlocal==5.4.4
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -453,11 +453,11 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==21.4.2
+virtualenv==21.6.1
     # via
     #   -r requirements/ci.txt
     #   tox
-wcwidth==0.7.0
+wcwidth==0.8.2
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
