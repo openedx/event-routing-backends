@@ -1,7 +1,7 @@
 [run]
 branch = True
 data_file = .coverage
-source=event_routing_backends
+source=src/event_routing_backends
 omit =
     test_settings
     *migrations*

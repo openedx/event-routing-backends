@@ -88,14 +88,14 @@ selfcheck: ## check that the Makefile is well-formed
 
 extract_translations: ## extract strings to be translated, outputting .mo files
 	rm -rf docs/_build
-	cd event_routing_backends && ../manage.py makemessages -l en -v1 -d django
-	cd event_routing_backends && ../manage.py makemessages -l en -v1 -d djangojs
+	cd src/event_routing_backends && ../../manage.py makemessages -l en -v1 -d django
+	cd src/event_routing_backends && ../../manage.py makemessages -l en -v1 -d djangojs
 
 compile_translations: ## compile translation files, outputting .po files for each supported language
-	cd event_routing_backends && ../manage.py compilemessages
+	cd src/event_routing_backends && ../../manage.py compilemessages
 
 detect_changed_source_translations:
-	cd event_routing_backends && i18n_tool changed
+	cd src/event_routing_backends && i18n_tool changed
 
 pull_translations: ## pull translations from Transifex
 	tx pull -t -a -f --mode reviewed
@@ -104,7 +104,7 @@ push_translations: ## push source translation files (.po) from Transifex
 	tx push -s
 
 dummy_translations: ## generate dummy translation (.po) files
-	cd event_routing_backends && i18n_tool dummy
+	cd src/event_routing_backends && i18n_tool dummy
 
 build_dummy_translations: extract_translations dummy_translations compile_translations ## generate and compile dummy translation files
 

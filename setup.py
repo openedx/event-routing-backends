@@ -6,7 +6,7 @@ import os
 import re
 import sys
 
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 def get_version(*file_paths):
@@ -121,7 +121,7 @@ def is_requirement(line):
     return line and line.strip() and not line.startswith(('-r', '#', '-e', 'git+', '-c'))
 
 
-VERSION = get_version('event_routing_backends', '__init__.py')
+VERSION = get_version('src', 'event_routing_backends', '__init__.py')
 
 if sys.argv[-1] == 'tag':
     print("Tagging the version on github:")
@@ -143,9 +143,8 @@ setup(
     author='edX',
     author_email='oscm@edx.org',
     url='https://github.com/openedx/event-routing-backends',
-    packages=[
-        'event_routing_backends',
-    ],
+    packages=find_packages(where='src'),
+    package_dir={'': 'src'},
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
     python_requires=">=3.12",

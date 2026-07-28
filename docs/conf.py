@@ -38,7 +38,7 @@ def get_version(*file_paths):
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(REPO_ROOT)
 
-VERSION = get_version('../event_routing_backends', '__init__.py')
+VERSION = get_version('../src/event_routing_backends', '__init__.py')
 
 # Configure Django for autodoc usage
 settings.configure()
@@ -538,8 +538,8 @@ def on_init(app):  # pylint: disable=unused-argument
         # If we are, assemble the path manually
         bin_path = os.path.abspath(os.path.join(sys.prefix, 'bin'))
         apidoc_path = os.path.join(bin_path, apidoc_path)
-    check_call([apidoc_path, '-o', docs_path, os.path.join(root_path, 'event_routing_backends'),
-                os.path.join(root_path, 'event_routing_backends/migrations')])
+    check_call([apidoc_path, '-o', docs_path, os.path.join(root_path, 'src/event_routing_backends'),
+                os.path.join(root_path, 'src/event_routing_backends/migrations')])
 
 
 def setup(app):
