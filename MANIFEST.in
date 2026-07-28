@@ -1,6 +1,4 @@
 include CHANGELOG.rst
 include LICENSE.txt
 include README.rst
-include requirements/base.in
 recursive-include src/event_routing_backends *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.py
-include requirements/constraints.txt
