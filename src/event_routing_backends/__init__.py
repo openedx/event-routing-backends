@@ -2,4 +2,9 @@
 Various backends for receiving edX LMS events..
 """
 
-__version__ = "10.0.0"
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("edx-event-routing-backends")
+except PackageNotFoundError:
+    __version__ = "0.0.0"

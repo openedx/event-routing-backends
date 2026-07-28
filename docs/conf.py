@@ -14,31 +14,18 @@ serve to show the default.
 
 import io
 import os
-import re
 import sys
 from datetime import datetime
+from importlib.metadata import version as get_distribution_version
 from subprocess import check_call
 
 from django import setup as django_setup
 from django.conf import settings
 
-
-def get_version(*file_paths):
-    """
-    Extract the version string from the file at the given relative path fragments.
-    """
-    filename = os.path.join(os.path.dirname(__file__), *file_paths)
-    version_file = open(filename).read()
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError('Unable to find version string.')
-
-
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(REPO_ROOT)
 
-VERSION = get_version('../src/event_routing_backends', '__init__.py')
+VERSION = get_distribution_version('edx-event-routing-backends')
 
 # Configure Django for autodoc usage
 settings.configure()

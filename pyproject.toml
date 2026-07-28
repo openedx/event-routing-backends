@@ -1,0 +1,182 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edx-event-routing-backends"
+description = "Various backends for receiving edX LMS events."
+requires-python = ">=3.12"
+license = "AGPL-3.0"
+license-files = ["LICENSE.txt"]
+authors = [
+    {name = "edX", email = "oscm@edx.org"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = [
+    "Python",
+    "edx",
+]
+
+dynamic = ["readme", "version"]
+
+dependencies = [
+    "Django>=4.2",
+    "isodate",
+    "pytz",
+    "requests",
+    "python-dateutil",
+    "jsonfield",
+    "django-fernet-fields-v2",
+    "django-config-models",
+    "edx-toggles",
+    "tincan",
+    "event-tracking",
+    "edx-celeryutils",
+    "apache-libcloud",
+    "fasteners",
+    "openedx-filters",
+    "django-redis",
+    "setuptools",
+]
+
+[project.urls]
+Homepage = "https://github.com/openedx/event-routing-backends"
+Repository = "https://github.com/openedx/event-routing-backends"
+
+[project.entry-points."lms.djangoapp"]
+event_routing_backends = "event_routing_backends.apps:EventRoutingBackendsConfig"
+
+[project.entry-points."cms.djangoapp"]
+event_routing_backends = "event_routing_backends.apps:EventRoutingBackendsConfig"
+
+[dependency-groups]
+# Base test packages, no Django version pinned
+test-base = [
+    "pytest-cov",
+    "pytest-django",
+    "code-annotations",
+    "factory-boy",
+    "mock",
+    "ddt",
+]
+# Default test group: current supported Django version
+test = [
+    {include-group = "test-base"},
+    "Django>=5.2,<6.0",
+]
+# Legacy Django 4.2 support
+django42 = [
+    {include-group = "test-base"},
+    "Django>=4.2,<4.3",
+]
+quality = [
+    {include-group = "test"},
+    "edx-lint",
+    "isort",
+    "pycodestyle",
+    "pydocstyle",
+    "wheel",
+    "setuptools",
+]
+doc = [
+    {include-group = "test"},
+    "doc8",
+    "sphinx-book-theme",
+    "twine",
+    "build",
+    "Sphinx",
+]
+ci = [
+    {include-group = "test"},
+    {include-group = "quality"},
+    "tox",
+    "tox-uv",
+]
+dev = [
+    {include-group = "quality"},
+    {include-group = "ci"},
+    {include-group = "doc"},
+    "diff-cover",
+    "edx-i18n-tools",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGELOG.rst"], content-type = "text/x-rst"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["event_routing_backends", "event_routing_backends.*"]
+exclude = ["*tests"]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["tests*", "*.tests*", "spec*", "*.spec*"]
+
+[tool.setuptools_scm]
+version_scheme = "only-version"
+local_scheme = "no-local-version"
+fallback_version = "0.0.0"
+
+[tool.semantic_release]
+build_command = "python -m pip install --upgrade build && SETUPTOOLS_SCM_PRETEND_VERSION=$NEW_VERSION python -m build"
+major_on_zero = false
+allow_zero_version = true
+
+[tool.uv]
+package = true
+conflicts = [
+    [
+        {group = "test"},
+        {group = "django42"},
+    ],
+]
+# DO NOT EDIT constraint-dependencies DIRECTLY.
+# This list is managed by `edx_lint write_uv_constraints`
+# and will be overwritten the next time `make upgrade` is run.
+#  - GLOBAL constraints: edit edx_lint/files/common_constraints.txt
+#  - REPO-SPECIFIC constraints: edit [tool.edx_lint].uv_constraints in this file
+constraint-dependencies = []
+
+[tool.edx_lint]
+uv_constraints = []
+
+[tool.isort]
+include_trailing_comma = true
+indent = "    "
+line_length = 120
+multi_line_output = 3
+skip_glob = ["migrations"]
+
+[tool.coverage.run]
+branch = true
+source = ["src/event_routing_backends"]
+omit = [
+    "*/tests/*",
+    "*/migrations/*",
+    "*/__pycache__/*",
+    "*/settings.py",
+    "*/admin.py",
+    "*/static/*",
+    "*/templates/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
