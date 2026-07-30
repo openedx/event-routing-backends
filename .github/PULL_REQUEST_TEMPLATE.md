@@ -22,11 +22,6 @@ instructions.
 - [ ] Documentation updated (not only docstrings)
 - [ ] Commits are squashed
 
-**Post merge:**
-- [ ] Create a tag
-- [ ] Check new version is pushed to PyPI after tag-triggered build is
-      finished.
-
 **Author concerns:** List any concerns about this PR - inelegant
 solutions, hacks, quick-and-dirty implementations, concerns about
 migrations, etc.
