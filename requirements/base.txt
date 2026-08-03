@@ -74,7 +74,7 @@ django-fernet-fields-v2==0.9
     # via -r requirements/base.in
 django-model-utils==5.0.0
     # via edx-celeryutils
-django-redis==7.0.0
+django-redis==6.0.0
     # via -r requirements/base.in
 django-waffle==5.0.0
     # via
@@ -154,7 +154,7 @@ pytz==2026.3.post1
     #   tincan
 pyyaml==6.0.3
     # via code-annotations
-redis==8.0.1
+redis==7.4.0
     # via django-redis
 requests==2.34.2
     # via
