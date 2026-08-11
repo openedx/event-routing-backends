@@ -13,9 +13,11 @@ coverage:
         # fallback branch) that can't be exercised while the package is
         # installed. Together these drop the reported total from 100.0% to
         # ~99.9% as a one-time methodology change, not a regression in
-        # production-code coverage. This threshold absorbs that one-time
-        # drop while still catching real future regressions.
-        threshold: 1%
+        # production-code coverage. No threshold added: `target: auto`
+        # compares against each PR's own base commit, so once this PR
+        # merges, the new percentage becomes the baseline for every future
+        # comparison -- there's no lingering gap to accommodate, and this
+        # status check isn't required for merging anyway.
     patch:
       default:
         enabled: yes
