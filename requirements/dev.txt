@@ -35,7 +35,7 @@ build==1.5.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
-cachetools==7.1.6
+cachetools==7.1.7
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -48,12 +48,12 @@ certifi==2026.7.22
     # via
     #   -r requirements/quality.txt
     #   requests
-cffi==2.1.0
+cffi==2.1.1
     # via
     #   -r requirements/quality.txt
     #   cryptography
     #   pynacl
-chardet==7.4.3
+chardet==7.5.1
     # via diff-cover
 charset-normalizer==3.4.9
     # via
@@ -97,17 +97,17 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.15.2
+coverage[toml]==7.15.4
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
-cryptography==49.0.0
+cryptography==50.0.0
     # via
     #   -r requirements/quality.txt
     #   django-fernet-fields-v2
 ddt==1.7.2
     # via -r requirements/quality.txt
-diff-cover==10.4.1
+diff-cover==10.5.0
     # via -r requirements/dev.in
 dill==0.4.1
     # via
@@ -117,7 +117,7 @@ distlib==0.4.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
-django==5.2.16
+django==5.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/quality.txt
@@ -149,14 +149,14 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/quality.txt
 django-waffle==5.0.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.17.1
+djangorestframework==3.18.0
     # via
     #   -r requirements/quality.txt
     #   django-config-models
@@ -205,7 +205,7 @@ fastavro==1.12.2
     #   openedx-events
 fasteners==0.20
     # via -r requirements/quality.txt
-filelock==3.32.0
+filelock==3.32.2
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -258,9 +258,9 @@ openedx-events==11.2.0
     # via
     #   -r requirements/quality.txt
     #   event-tracking
-openedx-filters==3.8.0
+openedx-filters==3.9.0
     # via -r requirements/quality.txt
-packaging==26.2
+packaging==26.3
     # via
     #   -r requirements/ci.txt
     #   -r requirements/pip-tools.txt
@@ -273,14 +273,13 @@ packaging==26.2
     #   wheel
 path==16.16.0
     # via edx-i18n-tools
-pip-tools==7.6.0
+pip-tools==7.6.1
     # via -r requirements/pip-tools.txt
-platformdirs==4.11.0
+platformdirs==4.11.2
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   pylint
-    #   python-discovery
     #   tox
     #   virtualenv
 pluggy==1.6.0
@@ -314,7 +313,7 @@ pygments==2.20.0
     #   -r requirements/quality.txt
     #   diff-cover
     #   pytest
-pylint==4.0.6
+pylint==4.0.7
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -359,13 +358,13 @@ pytest==9.1.1
     #   pytest-django
 pytest-cov==7.1.0
     # via -r requirements/quality.txt
-pytest-django==4.12.0
+pytest-django==4.14.0
     # via -r requirements/quality.txt
 python-dateutil==2.9.0.post0
     # via
     #   -r requirements/quality.txt
     #   celery
-python-discovery==1.5.0
+python-discovery==1.5.1
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -384,7 +383,7 @@ pyyaml==6.0.3
     #   -r requirements/quality.txt
     #   code-annotations
     #   edx-i18n-tools
-redis==7.4.0
+redis==8.1.0
     # via
     #   -r requirements/quality.txt
     #   django-redis
@@ -428,13 +427,15 @@ tomlkit==0.15.1
     #   -r requirements/quality.txt
     #   edx-lint
     #   pylint
-tox==4.58.0
+tox==4.59.0
     # via -r requirements/ci.txt
 typing-extensions==4.16.0
     # via
+    #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   django-redis
     #   edx-opaque-keys
+    #   tox
 tzdata==2026.3
     # via
     #   -r requirements/quality.txt
@@ -453,7 +454,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==21.7.0
+virtualenv==21.7.4
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -461,7 +462,7 @@ wcwidth==0.8.2
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
-wheel==0.47.0
+wheel==0.48.0
     # via
     #   -r requirements/pip-tools.txt
     #   -r requirements/quality.txt

@@ -35,7 +35,7 @@ certifi==2026.7.22
     # via
     #   -r requirements/base.txt
     #   requests
-cffi==2.1.0
+cffi==2.1.1
     # via
     #   -r requirements/base.txt
     #   cryptography
@@ -70,9 +70,9 @@ code-annotations==3.0.0
     #   -r requirements/base.txt
     #   -r requirements/test.in
     #   edx-toggles
-coverage[toml]==7.15.2
+coverage[toml]==7.15.4
     # via pytest-cov
-cryptography==49.0.0
+cryptography==50.0.0
     # via
     #   -r requirements/base.txt
     #   django-fernet-fields-v2
@@ -108,14 +108,14 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/base.txt
 django-waffle==5.0.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.17.1
+djangorestframework==3.18.0
     # via
     #   -r requirements/base.txt
     #   django-config-models
@@ -188,9 +188,9 @@ openedx-events==11.2.0
     # via
     #   -r requirements/base.txt
     #   event-tracking
-openedx-filters==3.8.0
+openedx-filters==3.9.0
     # via -r requirements/base.txt
-packaging==26.2
+packaging==26.3
     # via
     #   -r requirements/base.txt
     #   kombu
@@ -228,7 +228,7 @@ pytest==9.1.1
     #   pytest-django
 pytest-cov==7.1.0
     # via -r requirements/test.in
-pytest-django==4.12.0
+pytest-django==4.14.0
     # via -r requirements/test.in
 python-dateutil==2.9.0.post0
     # via
@@ -247,7 +247,7 @@ pyyaml==6.0.3
     # via
     #   -r requirements/base.txt
     #   code-annotations
-redis==7.4.0
+redis==8.1.0
     # via
     #   -r requirements/base.txt
     #   django-redis

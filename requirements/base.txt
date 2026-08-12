@@ -22,7 +22,7 @@ celery==5.6.3
     #   event-tracking
 certifi==2026.7.22
     # via requests
-cffi==2.1.0
+cffi==2.1.1
     # via
     #   cryptography
     #   pynacl
@@ -44,9 +44,9 @@ click-repl==0.3.0
     # via celery
 code-annotations==3.0.0
     # via edx-toggles
-cryptography==49.0.0
+cryptography==50.0.0
     # via django-fernet-fields-v2
-django==5.2.16
+django==5.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -74,13 +74,13 @@ django-fernet-fields-v2==0.9
     # via -r requirements/base.in
 django-model-utils==5.0.0
     # via edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/base.in
 django-waffle==5.0.0
     # via
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.17.1
+djangorestframework==3.18.0
     # via django-config-models
 dnspython==2.8.0
     # via pymongo
@@ -125,9 +125,9 @@ markupsafe==3.0.3
     # via jinja2
 openedx-events==11.2.0
     # via event-tracking
-openedx-filters==3.8.0
+openedx-filters==3.9.0
     # via -r requirements/base.in
-packaging==26.2
+packaging==26.3
     # via kombu
 prompt-toolkit==3.0.53
     # via click-repl
@@ -154,7 +154,7 @@ pytz==2026.3.post1
     #   tincan
 pyyaml==6.0.3
     # via code-annotations
-redis==7.4.0
+redis==8.1.0
     # via django-redis
 requests==2.34.2
     # via
