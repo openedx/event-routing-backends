@@ -47,7 +47,7 @@ certifi==2026.7.22
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==2.1.0
+cffi==2.1.1
     # via
     #   -r requirements/test.txt
     #   cryptography
@@ -81,18 +81,18 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-toggles
-coverage[toml]==7.15.2
+coverage[toml]==7.15.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==49.0.0
+cryptography==50.0.0
     # via
     #   -r requirements/test.txt
     #   django-fernet-fields-v2
     #   secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==5.2.16
+django==5.2.17
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -123,14 +123,14 @@ django-model-utils==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-redis==6.0.0
+django-redis==7.0.0
     # via -r requirements/test.txt
 django-waffle==5.0.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
     #   edx-toggles
-djangorestframework==3.17.1
+djangorestframework==3.18.0
     # via
     #   -r requirements/test.txt
     #   django-config-models
@@ -244,9 +244,9 @@ openedx-events==11.2.0
     # via
     #   -r requirements/test.txt
     #   event-tracking
-openedx-filters==3.8.0
+openedx-filters==3.9.0
     # via -r requirements/test.txt
-packaging==26.2
+packaging==26.3
     # via
     #   -r requirements/test.txt
     #   build
@@ -301,7 +301,7 @@ pytest==9.1.1
     #   pytest-django
 pytest-cov==7.1.0
     # via -r requirements/test.txt
-pytest-django==4.12.0
+pytest-django==4.14.0
     # via -r requirements/test.txt
 python-dateutil==2.9.0.post0
     # via
@@ -322,7 +322,7 @@ pyyaml==6.0.3
     #   code-annotations
 readme-renderer==45.0
     # via twine
-redis==7.4.0
+redis==8.1.0
     # via
     #   -r requirements/test.txt
     #   django-redis
@@ -354,7 +354,7 @@ six==1.17.0
     #   python-dateutil
 snowballstemmer==3.1.1
     # via sphinx
-soupsieve==2.9.1
+soupsieve==2.9.2
     # via beautifulsoup4
 sphinx==9.1.0
     # via
