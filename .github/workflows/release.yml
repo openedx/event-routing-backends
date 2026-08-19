@@ -39,6 +39,7 @@ jobs:
         github_token: ${{ secrets.OPENEDX_SEMANTIC_RELEASE_GITHUB_TOKEN }}
         git_committer_name: "github-actions"
         git_committer_email: "github-actions@github.com"
+        changelog: "false"
 
     - name: Publish | Upload to GitHub Release Assets
       uses: python-semantic-release/publish-action@v10.6.1

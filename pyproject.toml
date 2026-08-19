@@ -134,14 +134,6 @@ major_on_zero = false
 allow_zero_version = true
 tag_format = "v{version}"
 
-[tool.semantic_release.changelog]
-mode = "update"
-insertion_flag = ".. changelog-insertion-marker"
-
-[tool.semantic_release.changelog.default_templates]
-changelog_file = "CHANGELOG.rst"
-output_format = "rst"
-
 [tool.uv]
 package = true
 conflicts = [
