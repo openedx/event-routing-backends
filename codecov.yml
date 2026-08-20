@@ -4,20 +4,7 @@ coverage:
       default:
         enabled: yes
         target: auto
-        # This tooling migration (openedx/public-engineering#506) changed the
-        # coverage measurement scope: */tests/* is now correctly omitted from
-        # [tool.coverage.run] (the old .coveragerc never excluded test files
-        # at all, so they inflated the reported project % since test files
-        # execute almost all of their own lines). It also added two lines to
-        # __init__.py's importlib.metadata lookup (the PackageNotFoundError
-        # fallback branch) that can't be exercised while the package is
-        # installed. Together these drop the reported total from 100.0% to
-        # ~99.9% as a one-time methodology change, not a regression in
-        # production-code coverage. No threshold added: `target: auto`
-        # compares against each PR's own base commit, so once this PR
-        # merges, the new percentage becomes the baseline for every future
-        # comparison -- there's no lingering gap to accommodate, and this
-        # status check isn't required for merging anyway.
+        # One-time coverage-measurement shift from this migration; see PR description.
     patch:
       default:
         enabled: yes
