@@ -35,7 +35,14 @@ coverage: clean ## generate and view HTML coverage report
 	$(BROWSER)htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	uv run tox -e docs
+	uv sync --group doc
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) uv run doc8 --ignore-path docs/_build README.rst docs
+	rm -f docs/event_routing_backends.rst
+	rm -f docs/modules.rst
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) uv run make -C docs clean
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=$(CURDIR) uv run make -C docs html
+	uv run python -m build --wheel
+	uv run twine check dist/*
 	$(BROWSER)docs/_build/html/index.html
 
 upgrade: ## update the uv lockfile with the latest packages satisfying pyproject.toml
@@ -43,10 +50,15 @@ upgrade: ## update the uv lockfile with the latest packages satisfying pyproject
 	uv lock --upgrade
 
 quality: ## check coding style with pycodestyle and pylint
-	uv run tox -e quality
+	uv sync --group quality
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=. uv run pylint src/event_routing_backends test_utils manage.py
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=. uv run pycodestyle src/event_routing_backends manage.py
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=. uv run pydocstyle src/event_routing_backends manage.py
+	DJANGO_SETTINGS_MODULE=test_settings PYTHONPATH=. uv run isort --check-only --diff test_utils src/event_routing_backends manage.py test_settings.py
+	$(MAKE) selfcheck
 
 pii_check: ## check for PII annotations on all Django models
-	uv run tox -e pii_check
+	DJANGO_SETTINGS_MODULE=test_settings uv run code_annotations django_find_annotations --config_file .pii_annotations.yml --lint --report --coverage
 
 requirements: ## install development environment requirements
 	uv sync --group dev
