@@ -16,7 +16,7 @@ import io
 import os
 import sys
 from datetime import datetime
-from importlib.metadata import version as get_distribution_version
+from importlib.metadata import version as get_version
 from subprocess import check_call
 
 from django import setup as django_setup
@@ -25,7 +25,7 @@ from django.conf import settings
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(REPO_ROOT)
 
-VERSION = get_distribution_version('edx-event-routing-backends')
+VERSION = get_version('edx-event-routing-backends')
 
 # Configure Django for autodoc usage
 settings.configure()
