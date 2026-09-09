@@ -4,6 +4,7 @@ coverage:
       default:
         enabled: yes
         target: auto
+        # One-time coverage-measurement shift from this migration; see PR description.
     patch:
       default:
         enabled: yes
