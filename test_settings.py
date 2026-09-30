@@ -36,7 +36,7 @@ INSTALLED_APPS = (
 )
 
 LOCALE_PATHS = [
-    root('event_routing_backends', 'conf', 'locale'),
+    root('src', 'event_routing_backends', 'conf', 'locale'),
 ]
 
 SECRET_KEY = 'insecure-secret-key'

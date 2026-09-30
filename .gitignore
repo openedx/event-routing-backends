@@ -59,10 +59,9 @@ docs/modules.rst
 docs/event_routing_backends.rst
 docs/event_routing_backends.*.rst
 
-# Private requirements
-requirements/private.in
-requirements/private.txt
-
 .idea
+
+# uv virtual environment
+.venv
 
 test_output/
