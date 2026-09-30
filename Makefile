@@ -69,11 +69,11 @@ selfcheck: ## check that the Makefile is well-formed
 
 extract_translations: ## extract strings to be translated, outputting .mo files
 	rm -rf docs/_build
-	cd src/event_routing_backends && ../../manage.py makemessages -l en -v1 -d django
-	cd src/event_routing_backends && ../../manage.py makemessages -l en -v1 -d djangojs
+	cd src/event_routing_backends && python ../../manage.py makemessages -l en -v1 -d django
+	cd src/event_routing_backends && python ../../manage.py makemessages -l en -v1 -d djangojs
 
 compile_translations: ## compile translation files, outputting .po files for each supported language
-	cd src/event_routing_backends && ../../manage.py compilemessages
+	cd src/event_routing_backends && python ../../manage.py compilemessages
 
 detect_changed_source_translations:
 	cd src/event_routing_backends && i18n_tool changed
