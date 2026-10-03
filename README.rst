@@ -23,6 +23,37 @@ Documentation
 
 Documentation for this repo is published to `Read the Docs <https://event-routing-backends.readthedocs.io/en/latest/>`_
 
+Credential-free delivery diagnostics
+-----------------------------------
+
+Event deliveries contain routing credentials and event payloads. Configure the
+supported logging filter in Django's ``LOGGING`` setting before collecting
+these diagnostics::
+
+    LOGGING["filters"]["event_delivery"] = {
+        "()": "event_routing_backends.security.CredentialSafeEventRoutingFilter",
+    }
+    for name in ("celery.app.trace", "event_routing_backends.tasks",
+                 "event_routing_backends.utils.http_client",
+                 "event_routing_backends.utils.xapi_lrs_client"):
+        entry = LOGGING["loggers"].setdefault(name, {})
+        entry.setdefault("filters", []).append("event_delivery")
+    for handler in LOGGING["handlers"].values():
+        handler.setdefault("filters", []).append("event_delivery")
+
+Logger coverage protects Celery worker handler replacement; handler coverage
+also protects records propagated by additional event-routing children. The
+filter retains severity, source location and validated task correlation while
+withholding message payloads, exception text and arbitrary structured extras.
+It does not alter records for unrelated applications or Celery tasks.
+
+Persistent delivery failures retain their task name and ID in native
+``FailedTask`` rows, with empty invocation arguments and a constant exception.
+These rows are diagnostic-only: ``FailedTask.reapply`` refuses them before
+submission. Recover from the original tracking logs with current routing
+configuration using ``recover_failed_events`` instead. This change does not
+sanitize already-stored failure rows or alter their retention.
+
 License
 -------
 
