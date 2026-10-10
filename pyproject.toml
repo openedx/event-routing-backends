@@ -61,6 +61,7 @@ event_routing_backends = "event_routing_backends.apps:EventRoutingBackendsConfig
 [dependency-groups]
 # Base test packages, no Django version pinned
 test-base = [
+    "python-json-logger",
     "pytest-cov",
     "pytest-django",
     "code-annotations",

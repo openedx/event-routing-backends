@@ -11,6 +11,20 @@ Change Log
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[Unreleased]
+~~~~~~~~~~~~
+
+* Do not persist event-routing arguments or exception text in FailedTask. These
+  rows are now diagnostic-only; recover events from tracking logs instead of
+  FailedTask.reapply. Task submission hides argument representations.
+* Add CredentialSafeEventRoutingFilter for Django LOGGING: install it on
+  celery.app.trace and all collected handlers to withhold event payloads,
+  URL/authentication material, exception text and arbitrary structured extras.
+* Retry OSError transport failures using the existing retry budget. Retrying
+  attempts log at warning level, with credential-free retry exceptions.
+* Require a referer only for browser problem_check events; server events use
+  their module_id.
+
 [9.3.6]
 
 * Fixes issues where the context user is not the same as the data user, such as enrolling uses via the Instructor Dashboard
