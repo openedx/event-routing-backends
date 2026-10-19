@@ -173,6 +173,7 @@ class RouterConfiguration(ConfigurationModel):
     username = EncryptedCharField(
         verbose_name="Username", max_length=256, blank=True, null=True
     )
+    # pylint: disable-next=pii-invalid-no-pii-annotation  # field does not store user PII data, safe under OEP-30
     password = EncryptedCharField(
         verbose_name="Password", max_length=256, blank=True, null=True
     )
