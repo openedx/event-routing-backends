@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.12"
 conflicts = [[
     { package = "edx-event-routing-backends", group = "django42" },
@@ -193,7 +193,7 @@ name = "cffi"
 version = "2.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser", marker = "implementation_name != 'PyPy' or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "pycparser", marker = "implementation_name != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/9e/ef/008a1939e372c06329a3fce4279c02f328488f3526744906eeec3da7ad5f/cffi-2.1.1.tar.gz", hash = "sha256:dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be", size = 530807, upload-time = "2026-08-03T21:21:18.939Z" }
 wheels = [
@@ -633,7 +633,7 @@ name = "cryptography"
 version = "50.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy' or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/9d/af/182eb91b0df3fe75c4d9f26fe70684569566745f6ba7e5c9c73a862c5252/cryptography-50.0.2.tar.gz", hash = "sha256:7b46165bb56eb4704e2eaaf86f3c940d19154535d9b0ca7d6d590b04060e00d5", size = 880623, upload-time = "2026-09-30T15:30:04.884Z" }
 wheels = [
@@ -754,7 +754,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "sqlparse" },
-    { name = "tzdata", marker = "(sys_platform == 'win32' and extra == 'group-26-edx-event-routing-backends-ci') or (sys_platform == 'win32' and extra == 'group-26-edx-event-routing-backends-dev') or (sys_platform == 'win32' and extra != 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "tzdata", marker = "(sys_platform == 'win32' and extra != 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/85/fe/79e692b430c7721bf4b812c328bfe687e73e3f28f56611a6a18a97e887cc/django-5.2.18.tar.gz", hash = "sha256:461c5dd06d2ea16bd5ca37d3f46e4def1d6b0fe7588c6f4e2119517bb0af8b2d", size = 10910238, upload-time = "2026-10-06T13:01:09.371Z" }
 wheels = [
@@ -767,9 +767,9 @@ version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "djangorestframework", version = "3.17.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "djangorestframework", version = "3.18.3", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "djangorestframework", version = "3.18.3", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "edx-django-utils" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e5/4e/57ce6d3f3dda278f684b9a13b69304119782dd6ff70d934417dd7d3196f6/django_config_models-3.0.0.tar.gz", hash = "sha256:abc0d9f8967c574570239a9c0dbe7d96ecf2e5326bb6bce420d812c787638a85", size = 40671, upload-time = "2026-03-24T10:40:46.942Z" }
@@ -783,7 +783,7 @@ version = "0.7.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/34/1d/c56588f67130aeef8828e47535e8551337d2ae02f91f1414da61bc5e49fb/django-crum-0.7.9.tar.gz", hash = "sha256:65e9bc0f070a663fafc4d9e357f45fd4e6f01838b20a9e2fb7670f5706754288", size = 5168, upload-time = "2020-11-10T17:15:35.124Z" }
 wheels = [
@@ -797,7 +797,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "cryptography" },
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/bd/e5/aeb7c9f763d879006d33814b457677fa141ad6def17e57d8273df527ab4b/django_fernet_fields_v2-0.9.tar.gz", hash = "sha256:998476968be1ded3eabb4fa51b27ceddcae295c8227c304f117a3348ece8cbda", size = 7525, upload-time = "2023-08-15T13:44:17.787Z" }
 wheels = [
@@ -810,7 +810,7 @@ version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/81/60/5e232c32a2c977cc1af8c70a38ef436598bc649ad89c2c4568454edde2c9/django_model_utils-5.0.0.tar.gz", hash = "sha256:041cdd6230d2fbf6cd943e1969318bce762272077f4ecd333ab2263924b4e5eb", size = 80559, upload-time = "2024-09-04T11:35:22.858Z" }
 wheels = [
@@ -835,9 +835,9 @@ name = "django-redis"
 version = "7.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "redis", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "typing-extensions", marker = "(python_full_version < '3.13' and extra == 'group-26-edx-event-routing-backends-ci') or (python_full_version < '3.13' and extra == 'group-26-edx-event-routing-backends-dev') or (python_full_version < '3.13' and extra != 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "redis", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "typing-extensions", marker = "(python_full_version < '3.13' and extra != 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fb/78/203a0cdc0f1c083a5407d01f77b58099a120bb8a5a04562f56a9bb341314/django_redis-7.0.0.tar.gz", hash = "sha256:e48491c862f4350b0747ceb1016700686fb93c4f4e0fb9c490fe6c6658ffd933", size = 64601, upload-time = "2026-06-02T14:17:48.819Z" }
 wheels = [
@@ -850,7 +850,7 @@ version = "5.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/22/e1/6f533da0d4ac89f427dfd9410e39bfc14ae3a23335ecd549d76be4b2a834/django_waffle-5.0.0.tar.gz", hash = "sha256:62f9d00eedf68dafb82657beab56e601bddedc1ea1ccfef91d83df8658708509", size = 37761, upload-time = "2025-06-12T07:38:54.895Z" }
 wheels = [
@@ -874,7 +874,7 @@ name = "djangorestframework"
 version = "3.18.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/8d/b2/1cee76b188301f7d03169ca77fab2b3d3ec5d01b3469189f944af2d7f11a/djangorestframework-3.18.3.tar.gz", hash = "sha256:446a9b352e7eff630421ab3f2328bd2401b109a9470afa4a31189994911ed030", size = 923563, upload-time = "2026-10-06T21:33:51.521Z" }
 wheels = [
@@ -934,7 +934,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "celery" },
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "django-model-utils" },
     { name = "jsonfield" },
 ]
@@ -950,7 +950,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "django-crum" },
     { name = "django-waffle" },
     { name = "psutil" },
@@ -968,15 +968,15 @@ source = { editable = "." }
 dependencies = [
     { name = "apache-libcloud" },
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "django-config-models" },
     { name = "django-fernet-fields-v2" },
     { name = "django-redis", version = "6.0.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django-redis", version = "7.0.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django-redis", version = "7.0.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "edx-celeryutils" },
     { name = "edx-toggles" },
     { name = "event-tracking", version = "4.0.2", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "event-tracking", version = "4.1.5", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "event-tracking", version = "4.1.5", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "fasteners" },
     { name = "isodate" },
     { name = "jsonfield" },
@@ -1211,7 +1211,7 @@ version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" } },
-    { name = "lxml", extra = ["html-clean"], marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "lxml", extra = ["html-clean"], marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "path" },
     { name = "polib" },
     { name = "pyyaml" },
@@ -1261,7 +1261,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "code-annotations" },
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "django-crum" },
     { name = "django-waffle" },
     { name = "edx-django-utils" },
@@ -1295,14 +1295,14 @@ name = "event-tracking"
 version = "4.1.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "celery", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "edx-django-utils", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "edx-toggles", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "openedx-events", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "pymongo", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "pytz", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
-    { name = "six", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "celery", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "edx-django-utils", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "edx-toggles", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "openedx-events", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "pymongo", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "pytz", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
+    { name = "six", marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/5d/21/43a7b5e963c80fb5f93939d1646fabf78365124834b0b4e7fee479c5ef0e/event_tracking-4.1.5.tar.gz", hash = "sha256:c2dee7b3d9d0abb9483ba1f4fbe7acdd3f422762f85dd7fcd95bc803c3f133ad", size = 140250, upload-time = "2026-09-28T13:06:15.541Z" }
 wheels = [
@@ -1326,7 +1326,7 @@ name = "faker"
 version = "40.43.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tzdata", marker = "sys_platform == 'win32' or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/33/6c/b8793efc2f00a912ef17cf0b61b717cddf34607499efcb8a32238c119368/faker-40.43.0.tar.gz", hash = "sha256:02fae4327c03a4a6315e1b428a3878f435bfc276c93435ea349b95c0c9372361", size = 2032713, upload-time = "2026-10-09T20:06:29.652Z" }
 wheels = [
@@ -1538,7 +1538,7 @@ version = "3.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fa/e9/537e105246dba81d898853dbbe17eb3edd23d47a35074b99fd4add6f1662/jsonfield-3.2.0.tar.gz", hash = "sha256:ca53871bc3308ae4f4cddc3b4f99ed5c6fc6abb1832fbfb499bc6da566c70e4a", size = 17156, upload-time = "2025-07-04T23:06:24.883Z" }
 wheels = [
@@ -1915,7 +1915,7 @@ source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "edx-ccx-keys" },
     { name = "edx-django-utils" },
     { name = "edx-opaque-keys" },
@@ -1933,7 +1933,7 @@ version = "3.15.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.30", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-django42'" },
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'group-26-edx-event-routing-backends-ci' or extra == 'group-26-edx-event-routing-backends-dev' or extra != 'group-26-edx-event-routing-backends-django42' or extra == 'group-26-edx-event-routing-backends-doc' or extra == 'group-26-edx-event-routing-backends-quality' or extra == 'group-26-edx-event-routing-backends-test'" },
     { name = "edx-opaque-keys" },
     { name = "setuptools" },
 ]
@@ -2195,7 +2195,7 @@ name = "pynacl"
 version = "1.6.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy' or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/d9/9a/4019b524b03a13438637b11538c82781a5eda427394380381af8f04f467a/pynacl-1.6.2.tar.gz", hash = "sha256:018494d6d696ae03c7e656e5e74cdfd8ea1326962cc401bcf018f1ed8436811c", size = 3511692, upload-time = "2026-01-01T17:48:10.851Z" }
 wheels = [
@@ -2251,7 +2251,7 @@ name = "pytest"
 version = "9.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "iniconfig" },
     { name = "packaging" },
     { name = "pluggy" },
@@ -2496,11 +2496,11 @@ wheels = [
 
 [[package]]
 name = "setuptools"
-version = "84.0.0"
+version = "84.1.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/6d/44/f5da03a8ef95d369145c5bb53050e7877c9f3d312e128605fd9504829143/setuptools-84.0.0.tar.gz", hash = "sha256:f4695c21257f0d9b537ec2692c941d02ee143b7cc1276941349a546573b2ef73", size = 1168449, upload-time = "2026-08-08T18:27:58.365Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/73/eb/7e5f628ee2eb168fecbf8026de7856b2543d6d609cc85f086b9a91ac93d6/setuptools-84.1.0.tar.gz", hash = "sha256:23657205b63d4d31395ab917815247f694aafad28cd21316bf5fd45a51048ea0", size = 1171783, upload-time = "2026-10-19T20:11:43.489Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/95/9c/c510029fc6ef33a6275cd2c5d3cecd6613dfd6aa401d57c54f1c18852ccf/setuptools-84.0.0-py3-none-any.whl", hash = "sha256:51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670", size = 818216, upload-time = "2026-08-08T18:27:56.719Z" },
+    { url = "https://files.pythonhosted.org/packages/18/02/b4bbb90f8f29e334898ff45c6d9b1fffaa6f378017052b3023a06262b5f7/setuptools-84.1.0-py3-none-any.whl", hash = "sha256:5231689c6ac8156cd155cfb98c3fd6fb252c3e7e9bd3d78b64d3c55f132624c9", size = 819380, upload-time = "2026-10-19T20:11:41.684Z" },
 ]
 
 [[package]]
@@ -2773,7 +2773,7 @@ name = "tzlocal"
 version = "5.4.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tzdata", marker = "sys_platform == 'win32' or (extra == 'group-26-edx-event-routing-backends-ci' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-dev' and extra == 'group-26-edx-event-routing-backends-django42') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-doc') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-quality') or (extra == 'group-26-edx-event-routing-backends-django42' and extra == 'group-26-edx-event-routing-backends-test')" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/81/5b/879b2f932adfa7a053c360d50bc896c977fa6426109185f7c12ebdd0cb9d/tzlocal-5.4.4.tar.gz", hash = "sha256:8dbb8660838688a7b6ba4fed31d18dedf842afb4d47ca050d6d891c2c15f3be4", size = 31170, upload-time = "2026-06-29T08:03:40.026Z" }
 wheels = [
