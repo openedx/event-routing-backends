@@ -231,8 +231,8 @@ class BaseProblemCheckTransformer(BaseProblemsTransformer):
         # If the event was generated from browser, there is no `problem_id`
         # or `module_id` field. Therefore we get block id from the referrer.
         event_source = self.get_data('context.event_source') or self.get_data('event_source')
-        referer = self.get_data('referer') or self.get_data('context.referer', True)
         if event_source == 'browser':
+            referer = self.get_data('referer') or self.get_data('context.referer', True)
             block_id = get_problem_block_id(
                 referer,
                 self.get_data('data'),
